@@ -121,6 +121,6 @@ Picker.propTypes = {
 
 Picker.defaultProps = {
   onClick: (() => {}),
-  emojiSize: 32,
+  emojiSize: 24,
   perLine: 9,
 }
