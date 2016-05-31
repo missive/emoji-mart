@@ -33,11 +33,12 @@ export default class Emoji extends React.Component {
   }
 
   render() {
-    var { sheetURL, size, onOver, onClick } = this.props
+    var { sheetURL, size, onOver, onLeave, onClick } = this.props
 
     return <span
       onClick={() => onClick(this.emoji)}
       onMouseEnter={() => onOver(this.emoji)}
+      onMouseLeave={() => onLeave(this.emoji)}
       className='emoji-picker-emoji'>
       <span style={{
         width: size,
@@ -54,6 +55,7 @@ export default class Emoji extends React.Component {
 
 Emoji.propTypes = {
   onOver: React.PropTypes.func,
+  onLeave: React.PropTypes.func,
   onClick: React.PropTypes.func,
   size: React.PropTypes.number.isRequired,
   emoji: React.PropTypes.string.isRequired,
@@ -62,5 +64,6 @@ Emoji.propTypes = {
 
 Emoji.defaultProps = {
   onOver: (() => {}),
+  onLeave: (() => {}),
   onClick: (() => {}),
 }

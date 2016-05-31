@@ -31,6 +31,14 @@ export default class Picker extends React.Component {
   handleEmojiOver(emoji) {
     var { preview } = this.refs
     preview.setState({ emoji: emoji })
+    clearTimeout(this.leaveTimeout)
+  }
+
+  handleEmojiLeave(emoji) {
+    this.leaveTimeout = setTimeout(() => {
+      var { preview } = this.refs
+      preview.setState({ emoji: null })
+    }, 16)
   }
 
   handleScroll() {
@@ -84,6 +92,7 @@ export default class Picker extends React.Component {
               size: emojiSize,
               sheetURL: sheetURL,
               onOver: this.handleEmojiOver.bind(this),
+              onLeave: this.handleEmojiLeave.bind(this),
               onClick: this.props.onClick,
             }}
           />
