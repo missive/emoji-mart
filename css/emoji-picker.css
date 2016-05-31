@@ -27,7 +27,7 @@
 
 .emoji-picker-scroll {
   overflow: scroll;
-  max-height: 270px;
+  height: 270px;
   padding: 0 6px 6px 6px;
   border: solid #d9d9d9;
   border-width: 1px 0;

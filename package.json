@@ -18,7 +18,8 @@
     "url": "https://github.com/missive/emoji-picker/issues"
   },
   "homepage": "https://github.com/missive/emoji-picker",
-  "dependencies": {},
+  "dependencies": {
+  },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0-0"
   },
@@ -29,6 +30,7 @@
     "babel-preset-react": "6.5.0",
     "emoji-data": "git://github.com/missive/emoji-data.git#01aeccb3adf6cdfaab6e13892f7688740047ff32",
     "inflection": "1.10.0",
+    "lunr": "0.7.1",
     "mkdirp": "0.5.1",
     "react": "0.14.7",
     "react-dom": "0.14.7",
