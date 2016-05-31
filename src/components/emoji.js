@@ -9,12 +9,11 @@ export default class Emoji extends React.Component {
     this.emoji = data.emojis[this.props.emoji]
   }
 
-  shouldComponentUpdate(props) {
-    if (props.size != this.props.size || props.sheetURL != this.props.sheetURL) {
-      return true
-    }
-
-    return false
+  shouldComponentUpdate(nextProps) {
+    return (
+      nextProps.size != this.props.size ||
+      nextProps.sheetURL != this.props.sheetURL
+    )
   }
 
   getSheetSize() {
