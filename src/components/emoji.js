@@ -3,21 +3,50 @@ import data from '../../data'
 
 const SHEET_SIZE = 2624
 const EMOJI_SIZE = 64
+const SKINS = [
+  '1F3FA', '1F3FB', '1F3FC',
+  '1F3FD', '1F3FE', '1F3FF',
+]
 
 export default class Emoji extends React.Component {
+  constructor(props) {
+    super(props)
+
+    var emojiData = this.getEmojiData()
+    this.hasSkinVariations = !!emojiData.skin_variations
+  }
+
   shouldComponentUpdate(nextProps) {
     return (
+      this.hasSkinVariations && nextProps.skin != this.props.skin ||
       nextProps.size != this.props.size ||
       nextProps.sheetURL != this.props.sheetURL
     )
   }
 
   getEmojiData() {
-    var { emoji } = this.props,
+    var { emoji, skin, sheetURL } = this.props,
         emojiData = emoji
 
     if (typeof emoji == 'string') {
       emojiData = data.emojis[emoji]
+    }
+
+    if (this.hasSkinVariations && skin > 1) {
+      emojiData = JSON.parse(JSON.stringify(data.emojis[emoji]))
+
+      var skinKey = SKINS[skin - 1],
+          variationKey = `${emojiData.unified}-${skinKey}`,
+          variationData = emojiData.skin_variations[variationKey],
+          kitMatches = sheetURL.match(/(apple|google|twitter|emojione)/),
+          kit = kitMatches[0]
+
+      if (variationData[`has_img_${kit}`]) {
+        for (let k in variationData) {
+          let v = variationData[k]
+          emojiData[k] = v
+        }
+      }
     }
 
     return emojiData
@@ -62,6 +91,7 @@ export default class Emoji extends React.Component {
 }
 
 Emoji.propTypes = {
+  skin: React.PropTypes.number,
   onOver: React.PropTypes.func,
   onLeave: React.PropTypes.func,
   onClick: React.PropTypes.func,
@@ -74,6 +104,7 @@ Emoji.propTypes = {
 }
 
 Emoji.defaultProps = {
+  skin: 1,
   onOver: (() => {}),
   onLeave: (() => {}),
   onClick: (() => {}),

@@ -67,7 +67,7 @@ export default class Picker extends React.Component {
   }
 
   render() {
-    var { perLine, emojiSize, sheetURL } = this.props,
+    var { skin, perLine, emojiSize, sheetURL } = this.props,
         width = (perLine * (emojiSize + 12)) + 12 + 2
 
     return <div style={{width: width}} className='emoji-picker'>
@@ -89,6 +89,7 @@ export default class Picker extends React.Component {
             emojis={category.emojis}
             hasStickyPosition={this.hasStickyPosition}
             emojiProps={{
+              skin: skin,
               size: emojiSize,
               sheetURL: sheetURL,
               onOver: this.handleEmojiOver.bind(this),
@@ -114,6 +115,7 @@ export default class Picker extends React.Component {
 
 Picker.propTypes = {
   onClick: React.PropTypes.func,
+  skin: React.PropTypes.number,
   perLine: React.PropTypes.number,
   emojiSize: React.PropTypes.number,
   sheetURL: React.PropTypes.string.isRequired,
@@ -123,4 +125,5 @@ Picker.defaultProps = {
   onClick: (() => {}),
   emojiSize: 24,
   perLine: 9,
+  skin: 1,
 }
