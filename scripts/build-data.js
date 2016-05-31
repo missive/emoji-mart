@@ -3,8 +3,8 @@ var emojiData = require('emoji-data')
 var inflection = require('inflection')
 var mkdirp = require('mkdirp')
 
-var categories = ['People', 'Nature', 'Foods', 'Activity', 'Places', 'Objects', 'Symbols', 'Flags', 'Skins']
-var data = { categories: [], emojis: {} }
+var categories = ['People', 'Nature', 'Foods', 'Activity', 'Places', 'Objects', 'Symbols', 'Flags']
+var data = { categories: [], emojis: {}, skins: {} }
 var categoriesIndex = {}
 
 categories.forEach((category, i) => {
@@ -28,9 +28,11 @@ emojiData.forEach((datum) => {
     if (/^skin/.test(shortName)) category = 'Skins'
     if (/^flag/.test(shortName)) category = 'Flags'
     if (/^(left_speech_bubble|keycap_star|eject)$/.test(shortName)) category = 'Symbols'
+
+    datum.category = category
   }
 
-  if (!category) {
+  if (!datum.category) {
     throw new Error('“' + datum.short_name + '” doesn’t have a category')
   }
 
@@ -41,9 +43,13 @@ emojiData.forEach((datum) => {
     throw new Error('“' + datum.short_name + '” doesn’t have a name')
   }
 
-  categoryIndex = categoriesIndex[category]
-  data.categories[categoryIndex].emojis.push(datum.short_name)
-  data.emojis[datum.short_name] = datum
+  if (datum.category == 'Skins') {
+    data.skins[datum.short_name] = datum
+  } else {
+    categoryIndex = categoriesIndex[category]
+    data.categories[categoryIndex].emojis.push(datum.short_name)
+    data.emojis[datum.short_name] = datum
+  }
 })
 
 mkdirp('data', (err) => {
