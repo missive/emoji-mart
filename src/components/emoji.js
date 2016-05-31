@@ -5,15 +5,22 @@ const SHEET_SIZE = 2624
 const EMOJI_SIZE = 64
 
 export default class Emoji extends React.Component {
-  componentWillMount() {
-    this.emoji = data.emojis[this.props.emoji]
-  }
-
   shouldComponentUpdate(nextProps) {
     return (
       nextProps.size != this.props.size ||
       nextProps.sheetURL != this.props.sheetURL
     )
+  }
+
+  getEmojiData() {
+    var { emoji } = this.props,
+        emojiData = emoji
+
+    if (typeof emoji == 'string') {
+      emojiData = data.emojis[emoji]
+    }
+
+    return emojiData
   }
 
   getSheetSize() {
@@ -23,9 +30,9 @@ export default class Emoji extends React.Component {
     return `${sheetSize}px ${sheetSize}px`
   }
 
-  getEmojiPosition(emoji) {
+  getPosition(emojiData) {
     var { size } = this.props,
-        { sheet_x, sheet_y } = emoji,
+        { sheet_x, sheet_y } = emojiData,
         x = sheet_x * size,
         y = sheet_y * size
 
@@ -33,12 +40,13 @@ export default class Emoji extends React.Component {
   }
 
   render() {
-    var { sheetURL, size, onOver, onLeave, onClick } = this.props
+    var { sheetURL, size, onOver, onLeave, onClick } = this.props,
+        emojiData = this.getEmojiData()
 
     return <span
-      onClick={() => onClick(this.emoji)}
-      onMouseEnter={() => onOver(this.emoji)}
-      onMouseLeave={() => onLeave(this.emoji)}
+      onClick={() => onClick(emojiData)}
+      onMouseEnter={() => onOver(emojiData)}
+      onMouseLeave={() => onLeave(emojiData)}
       className='emoji-picker-emoji'>
       <span style={{
         width: size,
@@ -46,7 +54,7 @@ export default class Emoji extends React.Component {
         display: 'inline-block',
         backgroundImage: `url(${sheetURL})`,
         backgroundSize: this.getSheetSize(),
-        backgroundPosition: this.getEmojiPosition(this.emoji),
+        backgroundPosition: this.getPosition(emojiData),
       }}>
       </span>
     </span>
@@ -58,8 +66,11 @@ Emoji.propTypes = {
   onLeave: React.PropTypes.func,
   onClick: React.PropTypes.func,
   size: React.PropTypes.number.isRequired,
-  emoji: React.PropTypes.string.isRequired,
   sheetURL: React.PropTypes.string.isRequired,
+  emoji: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.object,
+  ]).isRequired,
 }
 
 Emoji.defaultProps = {

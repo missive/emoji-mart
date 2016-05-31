@@ -15,8 +15,8 @@ export default class Preview extends React.Component {
       return <div>
         <div className='emoji-picker-preview-emoji'>
           <Emoji
-            key={emoji.short_name}
-            emoji={emoji.short_name}
+            key={emoji.short_name || emoji}
+            emoji={emoji}
             {...emojiProps}
           />
         </div>
