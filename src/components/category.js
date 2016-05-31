@@ -37,16 +37,10 @@ export default class Category extends React.Component {
   }
 
   render() {
-    var { name, emojis, perLine, hasStickyPosition, emojiProps } = this.props,
+    var { name, emojis, hasStickyPosition, emojiProps } = this.props,
         emojis = emojis.slice(0),
-        lines = [],
-        linesCount = Math.ceil(emojis.length / perLine),
         labelStyles = {},
         labelSpanStyles = {}
-
-    Array(linesCount).fill().forEach((_, i) =>
-      lines.push(emojis.splice(0, perLine))
-    )
 
     if (!hasStickyPosition) {
       labelStyles = {
@@ -63,16 +57,12 @@ export default class Category extends React.Component {
         <span style={labelSpanStyles} ref='label'>{name}</span>
       </div>
 
-      {lines.map((emojis, i) =>
-        <div key={`line-${i}`}>
-          {emojis.map((emoji) =>
-            <Emoji
-              key={emoji}
-              emoji={emoji}
-              {...emojiProps}
-            />
-          )}
-        </div>
+      {emojis.map((emoji) =>
+        <Emoji
+          key={emoji}
+          emoji={emoji}
+          {...emojiProps}
+        />
       )}
     </div>
   }
@@ -82,7 +72,6 @@ Category.propTypes = {
   emojis: React.PropTypes.array,
   hasStickyPosition: React.PropTypes.bool,
   name: React.PropTypes.string.isRequired,
-  perLine: React.PropTypes.number.isRequired,
   emojiProps: React.PropTypes.object.isRequired,
 }
 
