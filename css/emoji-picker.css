@@ -1,0 +1,94 @@
+.emoji-picker,
+.emoji-picker * {
+  box-sizing: border-box;
+}
+
+.emoji-picker {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  display: inline-block;
+  color: #222427;
+  border: 1px solid rgba(0, 0, 0, .15);
+  border-radius: 5px;
+}
+
+.emoji-picker-bar {
+  background-color: #f4f4f4;
+  padding: 12px;
+}
+.emoji-picker-bar:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.emoji-picker-bar:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.emoji-picker-scroll {
+  overflow: scroll;
+  max-height: 270px;
+  padding: 6px;
+  border: solid rgba(0, 0, 0, .15);
+  border-width: 1px 0;
+}
+
+.emoji-picker-search {
+  font-size: 16px;
+  display: block;
+  width: 100%;
+  padding: .2em .6em;
+  border-radius: 25px;
+  border: 1px solid rgba(0, 0, 0, .15);
+  outline: 0;
+}
+
+.emoji-picker-category .emoji-picker-emoji:hover {
+  background-color: #b7e887;
+}
+
+.emoji-picker-category-label {
+  font-weight: bold;
+  padding: 5px 6px;
+  background-color: rgba(255, 255, 255, .95);
+}
+
+.emoji-picker-emoji {
+  display: inline-block;
+  padding: 4px 6px;
+  border-radius: 5px;
+}
+
+.emoji-picker-preview {
+  position: relative;
+  height: 70px;
+}
+
+.emoji-picker-preview-emoji,
+.emoji-picker-preview-data {
+  position: absolute;
+  top: 12px;
+}
+
+.emoji-picker-preview-emoji {
+  left: 12px;
+}
+
+.emoji-picker-preview-data {
+  top: 50%;
+  left: 68px; right: 12px;
+  transform: translateY(-50%);
+  word-break: break-word;
+}
+
+.emoji-picker-preview-name {
+  font-size: 14px;
+}
+
+.emoji-picker-preview-shortname {
+  font-size: 12px;
+  color: #888;
+}
+.emoji-picker-preview-shortname + .emoji-picker-preview-shortname {
+  margin-left: .5em;
+}
