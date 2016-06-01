@@ -42,6 +42,8 @@ export default class Emoji extends React.Component {
           kit = kitMatches[0]
 
       if (variationData[`has_img_${kit}`]) {
+        emojiData.skin_tone = skin
+
         for (let k in variationData) {
           let v = variationData[k]
           emojiData[k] = v
@@ -68,12 +70,45 @@ export default class Emoji extends React.Component {
     return `-${x}px -${y}px`
   }
 
+  getNative(emojiData) {
+    var { unified } = emojiData,
+        unicodes = unified.split('-'),
+        codePoints = unicodes.map((u) => `0x${u}`)
+
+    return String.fromCodePoint(...codePoints)
+  }
+
+  handleClick(emojiData) {
+    var { onClick } = this.props,
+        { name, short_names, skin_tone, text, texts, unified } = emojiData,
+        id = short_names[0],
+        colons = `:${id}:`
+
+    texts || (texts = [])
+    if (text && !texts.length) {
+      texts = [text]
+    }
+
+    if (skin_tone) {
+      colons += `:skin-tone-${skin_tone}:`
+    }
+
+    onClick({
+      id,
+      name,
+      colons,
+      skin: skin_tone || 1,
+      emoticons: texts,
+      native: this.getNative(emojiData),
+    })
+  }
+
   render() {
-    var { sheetURL, size, onOver, onLeave, onClick } = this.props,
+    var { sheetURL, size, onOver, onLeave } = this.props,
         emojiData = this.getEmojiData()
 
     return <span
-      onClick={() => onClick(emojiData)}
+      onClick={() => this.handleClick(emojiData)}
       onMouseEnter={() => onOver(emojiData)}
       onMouseLeave={() => onLeave(emojiData)}
       className='emoji-picker-emoji'>
