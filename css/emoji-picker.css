@@ -57,7 +57,7 @@
 .emoji-picker-category-label span {
   display: block;
   width: 100%;
-  font-weight: bold;
+  font-weight: 500;
   padding: 5px 6px;
   background-color: #fff;
   background-color: rgba(255, 255, 255, .95);
