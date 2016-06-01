@@ -81,7 +81,6 @@ export default class Picker extends React.Component {
         />
 
         {this.state.categories.map((category, i) => {
-          if (category.name == 'Skins') return null
           return <Category
             ref={`category-${i}`}
             key={category.name}
