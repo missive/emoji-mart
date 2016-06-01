@@ -64,6 +64,20 @@ export default class Category extends React.Component {
           {...emojiProps}
         />
       )}
+
+      {!emojis.length &&
+        <div className='emoji-picker-no-results'>
+          <Emoji
+            {...emojiProps}
+            size={22}
+            emoji='sleuth_or_spy'
+          />
+
+          <span className='emoji-picker-no-results-label'>
+            No emoji found
+          </span>
+        </div>
+      }
     </div>
   }
 }

@@ -69,6 +69,17 @@
   border-radius: 5px;
 }
 
+.emoji-picker-no-results {
+  font-size: 14px;
+  text-align: center;
+  padding-top: 70px;
+  color: #858585;
+}
+.emoji-picker-no-results span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .emoji-picker-preview {
   position: relative;
   height: 70px;
