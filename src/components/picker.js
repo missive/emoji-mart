@@ -100,7 +100,7 @@ export default class Picker extends React.Component {
         })}
       </div>
 
-      <div className='emoji-picker-bar emoji-picker-preview'>
+      <div className='emoji-picker-bar'>
         <Preview
           ref='preview'
           emojiProps={{
