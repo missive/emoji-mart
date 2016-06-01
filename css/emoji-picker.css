@@ -102,3 +102,18 @@
 .emoji-picker-preview-shortname + .emoji-picker-preview-shortname {
   margin-left: .5em;
 }
+
+.emoji-picker-title span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.emoji-picker-title .emoji-picker-emoji {
+  padding: 0;
+}
+
+.emoji-picker-title-label {
+  font-size: 26px;
+  font-weight: 500;
+  margin-left: .4em;
+}

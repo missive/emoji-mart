@@ -31,8 +31,16 @@ export default class Preview extends React.Component {
         </div>
       </div>
     } else {
-      return <div>
-        EmojiPicker
+      return <div className='emoji-picker-title'>
+        <Emoji
+          {...emojiProps}
+          emoji='tophat'
+          size={46}
+        />
+
+        <span className='emoji-picker-title-label'>
+          EmojiPicker
+        </span>
       </div>
     }
   }
