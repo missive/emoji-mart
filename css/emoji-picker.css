@@ -12,9 +12,6 @@
   border-radius: 5px;
 }
 
-.emoji-picker-bar {
-  background-color: #f4f4f4;
-}
 .emoji-picker-bar:first-child {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
