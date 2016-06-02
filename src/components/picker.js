@@ -1,9 +1,16 @@
+import '../utils/raf-polyfill'
+
 import React from 'react'
 
 import data from '../../data'
 import Preview from './preview'
 import Category from './category'
 import Search from './search'
+import Anchors from './anchors'
+
+const DEFAULT_CATEGORIES = [
+  { name: 'Recent', emojis: null }
+].concat(data.categories)
 
 export default class Picker extends React.Component {
   constructor(props) {
@@ -11,7 +18,7 @@ export default class Picker extends React.Component {
     this.testStickyPosition()
 
     this.state = {
-      categories: data.categories,
+      categories: DEFAULT_CATEGORIES,
     }
   }
 
@@ -42,22 +49,46 @@ export default class Picker extends React.Component {
   }
 
   handleScroll() {
-    var target = this.refs.scroll,
-        scrollTop = target.scrollTop
-
-    if (!this.hasStickyPosition) {
-      Array(this.state.categories.length).fill().forEach((_, i) => {
-        var category = this.refs[`category-${i}`]
-        if (category) {
-          category.handleScroll(scrollTop)
-        }
-      })
+    if (!this.waitingForPaint) {
+      this.waitingForPaint = true
+      window.requestAnimationFrame(this.handleScrollPaint.bind(this))
     }
+  }
+
+  handleScrollPaint() {
+    this.waitingForPaint = false
+
+    var target = this.refs.scroll,
+        scrollTop = target.scrollTop,
+        activeCategory = null
+
+    for (let i = 0, l = this.state.categories.length; i < l; i++) {
+      let category = this.state.categories[i],
+          component = this.refs[`category-${i}`]
+
+      if (component) {
+        let active = component.handleScroll(scrollTop)
+        if (active && !activeCategory) {
+          activeCategory = category
+        }
+      }
+    }
+
+    if (activeCategory) {
+      let { anchors } = this.refs,
+          { name: categoryName } = activeCategory
+
+      if (anchors.state.selected != categoryName) {
+        anchors.setState({ selected: categoryName })
+      }
+    }
+
+    this.scrollTop = scrollTop
   }
 
   handleSearch(emojis) {
     if (emojis == null) {
-      this.setState({ categories: data.categories })
+      this.setState({ categories: DEFAULT_CATEGORIES })
     } else {
       this.setState({ categories: [{
         name: 'Search Results',
@@ -72,7 +103,10 @@ export default class Picker extends React.Component {
 
     return <div style={{width: width}} className='emoji-picker'>
       <div className='emoji-picker-bar'>
-        Categories
+        <Anchors
+          ref='anchors'
+          categories={DEFAULT_CATEGORIES}
+        />
       </div>
 
       <div ref="scroll" className='emoji-picker-scroll' onScroll={this.handleScroll.bind(this)}>

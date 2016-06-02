@@ -23,7 +23,11 @@ export default class Category extends React.Component {
     var { height: labelHeight } = this.label.getBoundingClientRect()
 
     this.top = top - parentTop + this.parent.scrollTop
-    this.maxMargin = height - labelHeight
+    if (height > labelHeight) {
+      this.maxMargin = height - labelHeight
+    } else {
+      this.maxMargin = 1
+    }
   }
 
   handleScroll(scrollTop) {
@@ -32,15 +36,22 @@ export default class Category extends React.Component {
     margin = margin > this.maxMargin ? this.maxMargin : margin
 
     if (margin == this.margin) return
-    this.label.style.top = `${margin}px`
+    var { name } = this.props
+
+    if (!this.props.hasStickyPosition) {
+      this.label.style.top = `${margin}px`
+    }
+
     this.margin = margin
+    return true
   }
 
   render() {
     var { name, emojis, hasStickyPosition, emojiProps } = this.props,
-        emojis = emojis.slice(0),
+        emojis = emojis ? emojis.slice(0) : null,
         labelStyles = {},
-        labelSpanStyles = {}
+        labelSpanStyles = {},
+        containerStyles = {}
 
     if (!hasStickyPosition) {
       labelStyles = {
@@ -52,12 +63,19 @@ export default class Category extends React.Component {
       }
     }
 
-    return <div ref='container' className='emoji-picker-category'>
+    if (!emojis) {
+      containerStyles = {
+        height: 1,
+        overflow: 'hidden',
+      }
+    }
+
+    return <div ref='container' className='emoji-picker-category' style={containerStyles}>
       <div style={labelStyles} data-name={name} className='emoji-picker-category-label'>
         <span style={labelSpanStyles} ref='label'>{name}</span>
       </div>
 
-      {emojis.map((emoji) =>
+      {emojis && emojis.map((emoji) =>
         <Emoji
           key={emoji}
           emoji={emoji}
@@ -65,7 +83,7 @@ export default class Category extends React.Component {
         />
       )}
 
-      {!emojis.length &&
+      {emojis && !emojis.length &&
         <div className='emoji-picker-no-results'>
           <Emoji
             {...emojiProps}

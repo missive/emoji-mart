@@ -23,6 +23,13 @@ module.exports = {
           path.resolve('data'),
         ],
       },
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline',
+        include: [
+          path.resolve('src/svgs'),
+        ],
+      },
     ],
   },
 

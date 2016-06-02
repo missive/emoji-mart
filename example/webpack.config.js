@@ -18,6 +18,13 @@ module.exports = {
           path.resolve('example'),
         ],
       },
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline',
+        include: [
+          path.resolve('src/svgs'),
+        ],
+      },
     ],
   },
 
