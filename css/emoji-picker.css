@@ -82,7 +82,7 @@
 }
 
 .emoji-picker-category .emoji-picker-emoji:hover {
-  background-color: #b7e887;
+  background-color: #f4f4f4;
 }
 
 .emoji-picker-category-label {
@@ -102,8 +102,8 @@
 
 .emoji-picker-emoji {
   display: inline-block;
-  padding: 4px 6px;
-  border-radius: 5px;
+  padding: 6px;
+  border-radius: 100%;
 }
 
 .emoji-picker-no-results {
