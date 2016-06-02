@@ -1,5 +1,5 @@
 import React from 'react'
-import Emoji from './emoji'
+import {Emoji} from '.'
 
 export default class Category extends React.Component {
   componentDidMount() {

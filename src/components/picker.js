@@ -1,12 +1,9 @@
 import '../utils/raf-polyfill'
 
 import React from 'react'
-
 import data from '../../data'
-import Preview from './preview'
-import Category from './category'
-import Search from './search'
-import Anchors from './anchors'
+
+import {Anchors, Category, Preview, Search} from '.'
 
 const DEFAULT_CATEGORIES = [
   { name: 'Recent', emojis: null }

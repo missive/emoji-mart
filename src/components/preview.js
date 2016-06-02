@@ -1,5 +1,5 @@
 import React from 'react'
-import Emoji from './emoji'
+import {Emoji} from '.'
 
 export default class Preview extends React.Component {
   constructor(props) {

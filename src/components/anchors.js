@@ -1,27 +1,7 @@
 import React from 'react'
 import InlineSVG from 'svg-inline-react'
 
-import Activity from '../svgs/activity.svg'
-import Flags from '../svgs/flags.svg'
-import Foods from '../svgs/foods.svg'
-import Nature from '../svgs/nature.svg'
-import Objects from '../svgs/objects.svg'
-import People from '../svgs/people.svg'
-import Places from '../svgs/places.svg'
-import Recent from '../svgs/recent.svg'
-import Symbols from '../svgs/symbols.svg'
-
-var svgs = {
-  Activity,
-  Flags,
-  Foods,
-  Nature,
-  Objects,
-  People,
-  Places,
-  Recent,
-  Symbols,
-}
+import * as SVGs from '../svgs'
 
 export default class Anchors extends React.Component {
   constructor(props) {
@@ -41,7 +21,7 @@ export default class Anchors extends React.Component {
         var { name } = category
 
         return <span key={name} className={`emoji-picker-anchor ${name == selected ? 'emoji-picker-anchor-selected' : ''}`}>
-          <InlineSVG src={svgs[name]} />
+          <InlineSVG src={SVGs[name]} />
           <span className='emoji-picker-anchor-bar'></span>
         </span>
       })}
