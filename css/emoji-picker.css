@@ -34,10 +34,14 @@
   text-align: center;
   padding: 12px 4px;
   overflow: hidden;
-  transition: color .2s ease-out;
+  transition: color .1s ease-out;
+}
+.emoji-picker-anchor:hover {
+  color: #464646;
 }
 
-.emoji-picker-anchor-selected {
+.emoji-picker-anchor-selected,
+.emoji-picker-anchor-selected:hover {
   color: #ae65c5;
 }
 .emoji-picker-anchor-selected .emoji-picker-anchor-bar {

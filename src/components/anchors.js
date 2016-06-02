@@ -13,17 +13,24 @@ export default class Anchors extends React.Component {
   }
 
   render() {
-    var { categories } = this.props,
+    var { categories, onAnchorClick } = this.props,
         { selected } = this.state
 
     return <div className='emoji-picker-anchors'>
       {categories.map((category, i) => {
         var { name } = category
 
-        return <span key={name} className={`emoji-picker-anchor ${name == selected ? 'emoji-picker-anchor-selected' : ''}`}>
-          <InlineSVG src={SVGs[name]} />
-          <span className='emoji-picker-anchor-bar'></span>
-        </span>
+        return (
+          <span
+            key={name}
+            title={name}
+            onClick={() => onAnchorClick(category, i)}
+            className={`emoji-picker-anchor ${name == selected ? 'emoji-picker-anchor-selected' : ''}`}
+          >
+            <InlineSVG src={SVGs[name]} />
+            <span className='emoji-picker-anchor-bar'></span>
+          </span>
+        )
       })}
     </div>
   }
@@ -31,8 +38,10 @@ export default class Anchors extends React.Component {
 
 Anchors.propTypes = {
   categories: React.PropTypes.array,
+  onAnchorClick: React.PropTypes.func,
 }
 
 Anchors.defaultProps = {
   categories: [],
+  onAnchorClick: (() => {}),
 }

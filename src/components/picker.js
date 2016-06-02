@@ -57,11 +57,14 @@ export default class Picker extends React.Component {
 
     var target = this.refs.scroll,
         scrollTop = target.scrollTop,
-        activeCategory = null
+        scrollingDown = scrollTop > (this.scrollTop || 0),
+        activeCategory = null,
+        { categories } = this.state
 
-    for (let i = 0, l = this.state.categories.length; i < l; i++) {
-      let category = this.state.categories[i],
-          component = this.refs[`category-${i}`]
+    for (let i = 0, l = categories.length; i < l; i++) {
+      let ii = scrollingDown ? (categories.length - 1 - i) : i,
+          category = categories[ii],
+          component = this.refs[`category-${ii}`]
 
       if (component) {
         let active = component.handleScroll(scrollTop)
@@ -94,6 +97,23 @@ export default class Picker extends React.Component {
     }
   }
 
+  handleAnchorClick(category, i) {
+    var component = this.refs[`category-${i}`],
+        { scroll, anchors } = this.refs
+
+    if (component) {
+      let { top } = component
+
+      if (i == 0) {
+        top = 0
+      } else {
+        top += 1
+      }
+
+      scroll.scrollTop = top
+    }
+  }
+
   render() {
     var { skin, perLine, emojiSize, sheetURL } = this.props,
         width = (perLine * (emojiSize + 12)) + 12 + 2
@@ -103,6 +123,7 @@ export default class Picker extends React.Component {
         <Anchors
           ref='anchors'
           categories={DEFAULT_CATEGORIES}
+          onAnchorClick={this.handleAnchorClick.bind(this)}
         />
       </div>
 
