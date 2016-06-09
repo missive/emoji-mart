@@ -1,5 +1,5 @@
 import React from 'react'
-import {Emoji} from '.'
+import {Emoji, Skins} from '.'
 
 export default class Preview extends React.Component {
   constructor(props) {
@@ -9,7 +9,7 @@ export default class Preview extends React.Component {
 
   render() {
     var { emoji } = this.state,
-        { emojiProps } = this.props
+        { emojiProps, skinsProps } = this.props
 
     if (emoji) {
       return <div className='emoji-picker-preview'>
@@ -44,6 +44,12 @@ export default class Preview extends React.Component {
             EmojiPicker
           </span>
         </div>
+
+        <div className='emoji-picker-preview-skins'>
+          <Skins
+            {...skinsProps}
+          />
+        </div>
       </div>
     }
   }
@@ -51,4 +57,5 @@ export default class Preview extends React.Component {
 
 Preview.propTypes = {
   emojiProps: React.PropTypes.object.isRequired,
+  skinsProps: React.PropTypes.object.isRequired,
 }

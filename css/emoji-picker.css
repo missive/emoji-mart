@@ -126,9 +126,11 @@
 }
 
 .emoji-picker-preview-emoji,
-.emoji-picker-preview-data {
+.emoji-picker-preview-data,
+.emoji-picker-preview-skins {
   position: absolute;
-  top: 12px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .emoji-picker-preview-emoji {
@@ -136,10 +138,13 @@
 }
 
 .emoji-picker-preview-data {
-  top: 50%;
   left: 68px; right: 12px;
-  transform: translateY(-50%);
   word-break: break-word;
+}
+
+.emoji-picker-preview-skins {
+  right: 30px;
+  text-align: right;
 }
 
 .emoji-picker-preview-name {
@@ -167,3 +172,74 @@
   font-size: 26px;
   font-weight: 500;
 }
+
+.emoji-picker-skin-current {
+  display: inline-block;
+  padding: 2px;
+  border-radius: 100%;
+  border: 1px solid #d9d9d9;
+}
+
+.emoji-picker-skin-swatches {
+  padding: 2px 0;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  background-color: #fff;
+}
+
+.emoji-picker-skin-swatches-opened .emoji-picker-skin-swatch {
+  width: 16px;
+  padding: 0 2px;
+}
+
+.emoji-picker-skin-swatches-opened .emoji-picker-skin-swatch-selected:after {
+  opacity: .75;
+}
+
+.emoji-picker-skin-swatch {
+  display: inline-block;
+  width: 0;
+  vertical-align: middle;
+  transition-property: width, padding;
+  transition-duration: .125s;
+  transition-timing-function: ease-out;
+}
+
+.emoji-picker-skin-swatch:nth-child(1) { transition-delay: 0 }
+.emoji-picker-skin-swatch:nth-child(2) { transition-delay: .03s }
+.emoji-picker-skin-swatch:nth-child(3) { transition-delay: .06s }
+.emoji-picker-skin-swatch:nth-child(4) { transition-delay: .09s }
+.emoji-picker-skin-swatch:nth-child(5) { transition-delay: .12s }
+.emoji-picker-skin-swatch:nth-child(6) { transition-delay: .15s }
+
+.emoji-picker-skin-swatch-selected {
+  position: relative;
+  width: 16px;
+  padding: 0 2px;
+}
+.emoji-picker-skin-swatch-selected:after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 4px; height: 4px;
+  margin: -2px 0 0 -2px;
+  background-color: #fff;
+  border-radius: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .2s ease-out;
+}
+
+.emoji-picker-skin {
+  display: inline-block;
+  width: 100%; padding-top: 100%;
+  max-width: 12px;
+  border-radius: 100%;
+}
+
+.emoji-picker-skin-tone-1 { background-color: #ffc93a }
+.emoji-picker-skin-tone-2 { background-color: #fadcbc }
+.emoji-picker-skin-tone-3 { background-color: #e0bb95 }
+.emoji-picker-skin-tone-4 { background-color: #bf8f68 }
+.emoji-picker-skin-tone-5 { background-color: #9b643d }
+.emoji-picker-skin-tone-6 { background-color: #594539 }
