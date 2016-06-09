@@ -24,14 +24,6 @@ emojiData.forEach((datum) => {
       shortName = datum.short_name,
       categoryIndex
 
-  if (!category) {
-    if (/^skin/.test(shortName)) category = 'Skins'
-    if (/^flag/.test(shortName)) category = 'Flags'
-    if (/^(left_speech_bubble|keycap_star|eject)$/.test(shortName)) category = 'Symbols'
-
-    datum.category = category
-  }
-
   if (!datum.category) {
     throw new Error('“' + datum.short_name + '” doesn’t have a category')
   }
@@ -43,7 +35,7 @@ emojiData.forEach((datum) => {
     throw new Error('“' + datum.short_name + '” doesn’t have a name')
   }
 
-  if (datum.category == 'Skins') {
+  if (datum.category == 'Skin Tones') {
     data.skins[datum.short_name] = datum
   } else {
     categoryIndex = categoriesIndex[category]
