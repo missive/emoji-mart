@@ -3,6 +3,7 @@ import '../vendor/raf-polyfill'
 import React from 'react'
 import data from '../../data'
 
+import {store} from '../utils'
 import {Anchors, Category, Preview, Search} from '.'
 
 const DEFAULT_CATEGORIES = [
@@ -16,12 +17,14 @@ export default class Picker extends React.Component {
 
     this.state = {
       categories: DEFAULT_CATEGORIES,
-      skin: props.skin,
+      skin: store.get('skin') || props.skin,
     }
   }
 
   componentWillReceiveProps(props) {
-    this.setState({ skin: props.skin })
+    if (props.skin && !store.get('skin')) {
+      this.setState({ skin: props.skin })
+    }
   }
 
   componentDidUpdate() {
@@ -120,7 +123,10 @@ export default class Picker extends React.Component {
   }
 
   handleSkinChange(skin) {
-    this.setState({ skin: skin })
+    var newState = { skin: skin }
+
+    this.setState(newState)
+    store.update(newState)
   }
 
   render() {
