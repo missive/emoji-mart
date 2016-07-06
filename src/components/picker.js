@@ -1,4 +1,4 @@
-import '../utils/raf-polyfill'
+import '../vendor/raf-polyfill'
 
 import React from 'react'
 import data from '../../data'
