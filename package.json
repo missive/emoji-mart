@@ -31,8 +31,9 @@
     "inflection": "1.10.0",
     "lunr": "0.7.1",
     "mkdirp": "0.5.1",
-    "react": "0.14.7",
-    "react-dom": "0.14.7",
+    "react": "15.2.0",
+    "react-addons-test-utils": "15.2.0",
+    "react-dom": "15.2.0",
     "rimraf": "2.5.2",
     "svg-inline-loader": "0.4.1",
     "svg-inline-react": "1.0.1",
@@ -45,8 +46,8 @@
     "build:dist": "node scripts/build-dist",
     "build": "npm run build:data && npm run build:dist",
     "react:clean": "rimraf node_modules/{react,react-dom,react-addons-test-utils}",
-    "react:14": "npm run react:clean && npm i react@^0.14 react-dom@^0.14 react-addons-test-utils@^0.14",
-    "react:15": "npm run react:clean && npm i react@^15 react-dom@^15 react-addons-test-utils@^15",
+    "react:14": "npm run react:clean && npm i react@^0.14 react-dom@^0.14 react-addons-test-utils@^0.14 --save-dev",
+    "react:15": "npm run react:clean && npm i react@^15 react-dom@^15 react-addons-test-utils@^15 --save-dev",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublish": "npm run clean && npm run build"
   }
