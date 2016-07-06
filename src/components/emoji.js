@@ -1,8 +1,7 @@
 import React from 'react'
 import data from '../../data'
 
-const SHEET_SIZE = 2624
-const EMOJI_SIZE = 64
+const SHEET_COLUMNS = 41
 const SKINS = [
   '1F3FA', '1F3FB', '1F3FC',
   '1F3FD', '1F3FE', '1F3FF',
@@ -54,20 +53,11 @@ export default class Emoji extends React.Component {
     return emojiData
   }
 
-  getSheetSize() {
-    var { size } = this.props,
-        sheetSize = SHEET_SIZE * size / EMOJI_SIZE
-
-    return `${sheetSize}px ${sheetSize}px`
-  }
-
   getPosition(emojiData) {
-    var { size } = this.props,
-        { sheet_x, sheet_y } = emojiData,
-        x = sheet_x * size,
-        y = sheet_y * size
+    var { sheet_x, sheet_y } = emojiData,
+        multiply = 100 / (SHEET_COLUMNS - 1)
 
-    return `-${x}px -${y}px`
+    return `${multiply * sheet_x}% ${multiply * sheet_y}%`
   }
 
   getNative(emojiData) {
@@ -117,7 +107,7 @@ export default class Emoji extends React.Component {
         height: size,
         display: 'inline-block',
         backgroundImage: `url(${sheetURL})`,
-        backgroundSize: this.getSheetSize(),
+        backgroundSize: `${100 * SHEET_COLUMNS}%`,
         backgroundPosition: this.getPosition(emojiData),
       }}>
       </span>
