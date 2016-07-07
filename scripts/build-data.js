@@ -48,6 +48,9 @@ emojiData.forEach((datum) => {
   }
 })
 
+var flags = data.categories[categoriesIndex['Flags']];
+flags.emojis.sort()
+
 mkdirp('data', (err) => {
   if (err) throw err
 
