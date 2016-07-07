@@ -11,18 +11,32 @@ export default class Search extends React.Component {
 
   buildIndex() {
     this.index = lunr(function() {
+      this.pipeline.reset()
+
       this.field('short_name', { boost: 2 })
       this.field('name')
 
-      this.ref('short_name')
+      this.ref('id')
     })
 
     for (let emoji in data.emojis) {
       let emojiData = data.emojis[emoji],
           { short_name, name } = emojiData
 
-      this.index.add({ short_name, name })
+      this.index.add({
+        id: short_name,
+        short_name: this.tokenize(short_name),
+        name: this.tokenize(name),
+      })
     }
+  }
+
+  tokenize (string) {
+    if (['-', '-1', '+', '+1'].indexOf(string) == 0) {
+      return string.split('')
+    }
+
+    return string.split(/[-|_|\s]+/)
   }
 
   handleChange() {
@@ -31,7 +45,7 @@ export default class Search extends React.Component {
         results = null
 
     if (value.length) {
-      results = this.index.search(value).map((result) =>
+      results = this.index.search(this.tokenize(value)).map((result) =>
         result.ref
       )
     }
