@@ -14,6 +14,7 @@ export default class Search extends React.Component {
       this.pipeline.reset()
 
       this.field('short_name', { boost: 2 })
+      this.field('emoticons')
       this.field('name')
 
       this.ref('id')
@@ -21,10 +22,16 @@ export default class Search extends React.Component {
 
     for (let emoji in data.emojis) {
       let emojiData = data.emojis[emoji],
-          { short_name, name } = emojiData
+          { short_name, name, text, texts } = emojiData
+
+      texts || (texts = [])
+      if (text && !texts.length) {
+        texts = [text]
+      }
 
       this.index.add({
         id: short_name,
+        emoticons: texts,
         short_name: this.tokenize(short_name),
         name: this.tokenize(name),
       })
@@ -34,6 +41,10 @@ export default class Search extends React.Component {
   tokenize (string) {
     if (['-', '-1', '+', '+1'].indexOf(string) == 0) {
       return string.split('')
+    }
+
+    if (/(:|;|=)-/.test(string)) {
+      return [string]
     }
 
     return string.split(/[-|_|\s]+/)
