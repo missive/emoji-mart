@@ -12,6 +12,22 @@ export default class Preview extends React.Component {
         { emojiProps, skinsProps } = this.props
 
     if (emoji) {
+      var { text, texts } = emoji,
+          knownEmoticons = [],
+          emoticons = []
+
+      texts || (texts = [])
+      if (text && !texts.length) {
+        texts = [text]
+      }
+
+      for (let text of texts) {
+        if (knownEmoticons.indexOf(text.toLowerCase()) == -1) {
+          knownEmoticons.push(text.toLowerCase())
+          emoticons.push(text)
+        }
+      }
+
       return <div className='emoji-picker-preview'>
         <div className='emoji-picker-preview-emoji'>
           <Emoji
@@ -26,6 +42,9 @@ export default class Preview extends React.Component {
           <span className='emoji-picker-preview-shortnames'>
             {emoji.short_names.map((short_name) =>
               <span key={short_name} className='emoji-picker-preview-shortname'>:{short_name}:</span>
+            )}<br />
+            {emoticons.map((emoticon) =>
+              <span key={emoticon} className='emoji-picker-preview-emoticon'>{emoticon}</span>
             )}
           </span>
         </div>

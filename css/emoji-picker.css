@@ -170,8 +170,15 @@
   font-size: 12px;
   color: #888;
 }
-.emoji-picker-preview-shortname + .emoji-picker-preview-shortname {
+.emoji-picker-preview-shortname + .emoji-picker-preview-shortname,
+.emoji-picker-preview-shortname + .emoji-picker-preview-emoticon,
+.emoji-picker-preview-emoticon + .emoji-picker-preview-emoticon {
   margin-left: .5em;
+}
+
+.emoji-picker-preview-emoticon {
+  font-size: 11px;
+  color: #bbb;
 }
 
 .emoji-picker-title span {
