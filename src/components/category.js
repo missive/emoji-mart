@@ -3,6 +3,19 @@ import React from 'react'
 import {frequently} from '../utils'
 import {Emoji} from '.'
 
+const LABELS = {
+  'Search': 'Search Results',
+  'Recent': 'Frequently Used',
+  'People': 'Smileys & People',
+  'Nature': 'Animals & Nature',
+  'Foods': 'Food & Drink',
+  'Activity': 'Activity',
+  'Places': 'Travel & Places',
+  'Objects': 'Objects',
+  'Symbols': 'Symbols',
+  'Flags': 'Flags',
+}
+
 export default class Category extends React.Component {
   componentDidMount() {
     this.container = this.refs.container
@@ -83,7 +96,7 @@ export default class Category extends React.Component {
 
     return <div ref='container' className='emoji-picker-category' style={containerStyles}>
       <div style={labelStyles} data-name={name} className='emoji-picker-category-label'>
-        <span style={labelSpanStyles} ref='label'>{name}</span>
+        <span style={labelSpanStyles} ref='label'>{LABELS[name]}</span>
       </div>
 
       {emojis && emojis.map((emoji) =>

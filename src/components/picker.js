@@ -122,7 +122,7 @@ export default class Picker extends React.Component {
       this.setState({ categories: DEFAULT_CATEGORIES })
     } else {
       this.setState({ categories: [{
-        name: 'Search Results',
+        name: 'Search',
         emojis: emojis,
       }]})
     }
