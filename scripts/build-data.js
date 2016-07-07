@@ -31,6 +31,10 @@ emojiData.forEach((datum) => {
   datum.name || (datum.name = datum.short_name.replace(/\-/g, ' '))
   datum.name = inflection.titleize(datum.name || '')
 
+  if (datum.category == 'Flags') {
+    datum.name = datum.name.replace(/\s(\w+)$/, (letters) => letters.toUpperCase())
+  }
+
   if (!datum.name) {
     throw new Error('“' + datum.short_name + '” doesn’t have a name')
   }
