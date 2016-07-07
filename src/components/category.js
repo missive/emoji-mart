@@ -1,4 +1,6 @@
 import React from 'react'
+
+import {frequently} from '../utils'
 import {Emoji} from '.'
 
 export default class Category extends React.Component {
@@ -47,11 +49,27 @@ export default class Category extends React.Component {
   }
 
   render() {
-    var { name, emojis, hasStickyPosition, emojiProps } = this.props,
-        emojis = emojis ? emojis.slice(0) : null,
+    var { name, emojis, perLine, hasStickyPosition, emojiProps } = this.props,
         labelStyles = {},
         labelSpanStyles = {},
         containerStyles = {}
+
+    if (name == 'Recent') {
+      let frequentlyUsed = frequently.get(perLine * 4)
+
+      if (frequentlyUsed.length) {
+        emojis = frequentlyUsed
+      }
+    }
+
+    if (emojis) {
+      emojis = emojis.slice(0)
+    } else {
+      containerStyles = {
+        height: 1,
+        overflow: 'hidden',
+      }
+    }
 
     if (!hasStickyPosition) {
       labelStyles = {
@@ -60,13 +78,6 @@ export default class Category extends React.Component {
 
       labelSpanStyles = {
         position: 'absolute',
-      }
-    }
-
-    if (!emojis) {
-      containerStyles = {
-        height: 1,
-        overflow: 'hidden',
       }
     }
 
@@ -104,6 +115,7 @@ Category.propTypes = {
   emojis: React.PropTypes.array,
   hasStickyPosition: React.PropTypes.bool,
   name: React.PropTypes.string.isRequired,
+  perLine: React.PropTypes.number.isRequired,
   emojiProps: React.PropTypes.object.isRequired,
 }
 

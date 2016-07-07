@@ -3,7 +3,7 @@ import '../vendor/raf-polyfill'
 import React from 'react'
 import data from '../../data'
 
-import {store} from '../utils'
+import {store, frequently} from '../utils'
 import {Anchors, Category, Preview, Search} from '.'
 
 const DEFAULT_CATEGORIES = [
@@ -53,6 +53,29 @@ export default class Picker extends React.Component {
     }, 16)
   }
 
+  handleEmojiClick(emoji) {
+    this.props.onClick(emoji)
+    frequently.add(emoji)
+
+    var component = this.refs['category-0']
+    if (component && component.props.name == 'Recent') {
+      let maxMargin = component.maxMargin
+      component.forceUpdate()
+
+      window.requestAnimationFrame(() => {
+        if (maxMargin == component.maxMargin) return
+        var { categories } = this.state
+
+        for (let i = 0, l = categories.length; i < l; i++) {
+          let component = this.refs[`category-${i}`]
+          if (component) component.memoizeSize()
+        }
+
+        this.handleScrollPaint()
+      })
+    }
+  }
+
   handleScroll() {
     if (!this.waitingForPaint) {
       this.waitingForPaint = true
@@ -65,7 +88,7 @@ export default class Picker extends React.Component {
 
     var target = this.refs.scroll,
         scrollTop = target.scrollTop,
-        scrollingDown = scrollTop > (this.scrollTop || 0),
+        scrollingDown = scrollTop >= (this.scrollTop || 0),
         activeCategory = null,
         { categories } = this.state
 
@@ -154,6 +177,7 @@ export default class Picker extends React.Component {
             key={category.name}
             name={category.name}
             emojis={category.emojis}
+            perLine={perLine}
             hasStickyPosition={this.hasStickyPosition}
             emojiProps={{
               skin: skin,
@@ -161,7 +185,7 @@ export default class Picker extends React.Component {
               sheetURL: sheetURL,
               onOver: this.handleEmojiOver.bind(this),
               onLeave: this.handleEmojiLeave.bind(this),
-              onClick: this.props.onClick,
+              onClick: this.handleEmojiClick.bind(this),
             }}
           />
         })}
