@@ -1,11 +1,11 @@
-var fs = require('fs')
-var emojiData = require('emoji-data')
-var inflection = require('inflection')
-var mkdirp = require('mkdirp')
+var fs = require('fs'),
+    emojiData = require('emoji-data'),
+    inflection = require('inflection'),
+    mkdirp = require('mkdirp')
 
-var categories = ['People', 'Nature', 'Foods', 'Activity', 'Places', 'Objects', 'Symbols', 'Flags']
-var data = { categories: [], emojis: {}, skins: {} }
-var categoriesIndex = {}
+var categories = ['People', 'Nature', 'Foods', 'Activity', 'Places', 'Objects', 'Symbols', 'Flags'],
+    data = { categories: [], emojis: {}, skins: {} },
+    categoriesIndex = {}
 
 categories.forEach((category, i) => {
   data.categories[i] = { name: category, emojis: [] }
@@ -13,8 +13,8 @@ categories.forEach((category, i) => {
 })
 
 emojiData.sort((a, b) => {
-  var aTest = a.sort_order || a.short_name
-  var bTest = b.sort_order || b.short_name
+  var aTest = a.sort_order || a.short_name,
+      bTest = b.sort_order || b.short_name
 
   return aTest - bTest
 })
