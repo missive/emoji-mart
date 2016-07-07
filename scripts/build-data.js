@@ -39,6 +39,14 @@ emojiData.forEach((datum) => {
     throw new Error('“' + datum.short_name + '” doesn’t have a name')
   }
 
+  datum.emoticons = datum.texts || []
+  if (datum.text && !datum.emoticons.length) {
+    datum.emoticons = [datum.text]
+  }
+
+  delete datum.text
+  delete datum.texts
+
   if (datum.category == 'Skin Tones') {
     data.skins[datum.short_name] = datum
   } else {

@@ -70,14 +70,9 @@ export default class Emoji extends React.Component {
 
   handleClick(emojiData) {
     var { onClick } = this.props,
-        { name, short_names, skin_tone, text, texts, unified } = emojiData,
+        { name, short_names, skin_tone, emoticons, unified } = emojiData,
         id = short_names[0],
         colons = `:${id}:`
-
-    texts || (texts = [])
-    if (text && !texts.length) {
-      texts = [text]
-    }
 
     if (skin_tone) {
       colons += `:skin-tone-${skin_tone}:`
@@ -87,8 +82,8 @@ export default class Emoji extends React.Component {
       id,
       name,
       colons,
+      emoticons,
       skin: skin_tone || 1,
-      emoticons: texts,
       native: this.getNative(emojiData),
     })
   }

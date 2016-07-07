@@ -22,16 +22,11 @@ export default class Search extends React.Component {
 
     for (let emoji in data.emojis) {
       let emojiData = data.emojis[emoji],
-          { short_name, name, text, texts } = emojiData
-
-      texts || (texts = [])
-      if (text && !texts.length) {
-        texts = [text]
-      }
+          { short_name, name, emoticons } = emojiData
 
       this.index.add({
         id: short_name,
-        emoticons: texts,
+        emoticons: emoticons,
         short_name: this.tokenize(short_name),
         name: this.tokenize(name),
       })
