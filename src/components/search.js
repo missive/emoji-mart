@@ -54,6 +54,8 @@ export default class Search extends React.Component {
       results = this.index.search(this.tokenize(value)).map((result) =>
         result.ref
       )
+
+      results = results.slice(0, this.props.maxResults)
     }
 
     this.props.onSearch(results)
@@ -76,8 +78,10 @@ export default class Search extends React.Component {
 
 Search.propTypes = {
   onSearch: React.PropTypes.func,
+  maxResults: React.PropTypes.number,
 }
 
 Search.defaultProps = {
   onSearch: (() => {}),
+  maxResults: 75,
 }
