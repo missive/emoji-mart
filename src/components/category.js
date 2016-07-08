@@ -56,12 +56,11 @@ export default class Category extends React.Component {
     var { height: labelHeight } = this.label.getBoundingClientRect()
 
     this.top = top - parentTop + this.parent.scrollTop
+
     if (height == 0) {
       this.maxMargin = 0
-    } else if (height > labelHeight) {
-      this.maxMargin = height - labelHeight
     } else {
-      this.maxMargin = 1
+      this.maxMargin = height - labelHeight
     }
   }
 
@@ -81,11 +80,8 @@ export default class Category extends React.Component {
     return true
   }
 
-  render() {
-    var { name, emojis, perLine, hasStickyPosition, emojiProps } = this.props,
-        labelStyles = {},
-        labelSpanStyles = {},
-        containerStyles = {}
+  getEmojis() {
+    var { name, emojis, perLine } = this.props
 
     if (name == 'Recent') {
       let frequentlyUsed = frequently.get(perLine * 4)
@@ -97,11 +93,31 @@ export default class Category extends React.Component {
 
     if (emojis) {
       emojis = emojis.slice(0)
-    } else {
+    }
+
+    return emojis
+  }
+
+  updateDisplay(display) {
+    var emojis = this.getEmojis()
+
+    if (!display && !emojis) {
+      return
+    }
+
+    this.container.style.display = display
+  }
+
+  render() {
+    var { name, hasStickyPosition, emojiProps } = this.props,
+        emojis = this.getEmojis(),
+        labelStyles = {},
+        labelSpanStyles = {},
+        containerStyles = {}
+
+    if (!emojis) {
       containerStyles = {
-        height: 1,
-        overflow: 'hidden',
-        marginBottom: '-1px',
+        display: 'none',
       }
     }
 

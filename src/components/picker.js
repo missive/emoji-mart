@@ -1,7 +1,6 @@
 import '../vendor/raf-polyfill'
 
 import React from 'react'
-import ReactDOM from 'react-dom'
 import data from '../../data'
 
 import {store, frequently} from '../utils'
@@ -90,12 +89,19 @@ export default class Picker extends React.Component {
     var target = this.refs.scroll,
         scrollTop = target.scrollTop,
         scrollingDown = scrollTop > (this.scrollTop || 0),
-        activeCategory = null
+        activeCategory = null,
+        minTop = 0
 
     for (let i = 0, l = CATEGORIES.length; i < l; i++) {
       let ii = scrollingDown ? (CATEGORIES.length - 1 - i) : i,
           category = CATEGORIES[ii],
           component = this.refs[`category-${ii}`]
+
+      if (!minTop || component.top < minTop) {
+        if (component.top > 0) {
+          minTop = component.top
+        }
+      }
 
       if (component) {
         let active = component.handleScroll(scrollTop)
@@ -104,6 +110,10 @@ export default class Picker extends React.Component {
           activeCategory = category
         }
       }
+    }
+
+    if (scrollTop < minTop) {
+      activeCategory = RECENT_CATEGORY
     }
 
     if (activeCategory) {
@@ -125,10 +135,8 @@ export default class Picker extends React.Component {
       let component = this.refs[`category-${i}`]
 
       if (component && component.props.name != 'Search') {
-        let DOMNode = ReactDOM.findDOMNode(component),
-            display = emojis ? 'none' : null
-
-        if (DOMNode) DOMNode.style.display = display
+        let display = emojis ? 'none' : null
+        component.updateDisplay(display)
       }
     }
 
