@@ -59,6 +59,10 @@ export default class Search extends React.Component {
     this.props.onSearch(results)
   }
 
+  clear() {
+    this.refs.input.value = ''
+  }
+
   render() {
     return <input
       ref='input'

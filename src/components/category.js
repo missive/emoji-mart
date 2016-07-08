@@ -56,7 +56,9 @@ export default class Category extends React.Component {
     var { height: labelHeight } = this.label.getBoundingClientRect()
 
     this.top = top - parentTop + this.parent.scrollTop
-    if (height > labelHeight) {
+    if (height == 0) {
+      this.maxMargin = 0
+    } else if (height > labelHeight) {
       this.maxMargin = height - labelHeight
     } else {
       this.maxMargin = 1

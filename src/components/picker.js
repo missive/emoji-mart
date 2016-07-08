@@ -137,18 +137,30 @@ export default class Picker extends React.Component {
 
   handleAnchorClick(category, i) {
     var component = this.refs[`category-${i}`],
-        { scroll, anchors } = this.refs
+        { scroll, anchors } = this.refs,
+        scrollToComponent = null
 
-    if (component) {
-      let { top } = component
+    scrollToComponent = () => {
+      if (component) {
+        let { top } = component
 
-      if (category.name == 'Recent') {
-        top = 0
-      } else {
-        top += 1
+        if (category.name == 'Recent') {
+          top = 0
+        } else {
+          top += 1
+        }
+
+        scroll.scrollTop = top
       }
+    }
 
-      scroll.scrollTop = top
+    if (SEARCH_CATEGORY.emojis) {
+      this.handleSearch(null)
+      this.refs.search.clear()
+
+      window.requestAnimationFrame(scrollToComponent)
+    } else {
+      scrollToComponent()
     }
   }
 
@@ -182,6 +194,7 @@ export default class Picker extends React.Component {
 
       <div ref="scroll" className='emoji-picker-scroll' onScroll={this.handleScroll.bind(this)}>
         <Search
+          ref='search'
           onSearch={this.handleSearch.bind(this)}
         />
 
