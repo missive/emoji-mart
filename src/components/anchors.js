@@ -7,8 +7,13 @@ export default class Anchors extends React.Component {
   constructor(props) {
     super(props)
 
+    var defaultCategory = props.categories[0]
+    if (defaultCategory.anchor) {
+      defaultCategory = defaultCategory.anchor
+    }
+
     this.state = {
-      selected: props.categories[0].name
+      selected: defaultCategory.name
     }
   }
 
@@ -18,7 +23,11 @@ export default class Anchors extends React.Component {
 
     return <div className='emoji-picker-anchors'>
       {categories.map((category, i) => {
-        var { name } = category
+        var { name, anchor } = category
+
+        if (anchor) {
+          return null
+        }
 
         return (
           <span

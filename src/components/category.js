@@ -28,8 +28,26 @@ export default class Category extends React.Component {
     this.memoizeSize()
   }
 
-  componentDidUpdate() {
-    this.memoizeSize()
+  shouldComponentUpdate(nextProps, nextState) {
+    var { name, perLine, emojis, emojiProps } = this.props,
+        { skin, size, sheetURL } = emojiProps,
+        { perLine: nextPerLine, emojis: nextEmojis, emojiProps: nextEmojiProps } = nextProps,
+        { skin: nextSkin, size: nextSize, sheetURL: nextSheetURL } = nextEmojiProps,
+        shouldUpdate = false
+
+    if (name == 'Recent' && perLine != nextPerLine) {
+      shouldUpdate = true
+    }
+
+    if (name == 'Search') {
+      shouldUpdate = !(emojis == nextEmojis)
+    }
+
+    if (skin != nextSkin || size != nextSize || sheetURL != nextSheetURL) {
+      shouldUpdate = true
+    }
+
+    return shouldUpdate
   }
 
   memoizeSize() {
@@ -81,6 +99,7 @@ export default class Category extends React.Component {
       containerStyles = {
         height: 1,
         overflow: 'hidden',
+        marginBottom: '-1px',
       }
     }
 
