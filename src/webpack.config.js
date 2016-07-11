@@ -38,6 +38,5 @@ module.exports = {
   },
 
   plugins: [],
-  devtool: 'source-map',
   bail: true,
 }

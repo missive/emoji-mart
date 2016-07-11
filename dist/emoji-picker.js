@@ -11,41 +11,41 @@
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-/******/
+
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-/******/
+
 /******/ 		// Check if module is in cache
 /******/ 		if(installedModules[moduleId])
 /******/ 			return installedModules[moduleId].exports;
-/******/
+
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			exports: {},
 /******/ 			id: moduleId,
 /******/ 			loaded: false
 /******/ 		};
-/******/
+
 /******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
+
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-/******/
+
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
-/******/
+
+
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
-/******/
+
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-/******/
+
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-/******/
+
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
 /******/ })
@@ -55,13 +55,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
+
 	var _components = __webpack_require__(1);
-	
+
 	Object.defineProperty(exports, 'Picker', {
 	  enumerable: true,
 	  get: function get() {
@@ -74,9 +74,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return _components.Emoji;
 	  }
 	});
-	
+
 	var _utils = __webpack_require__(16);
-	
+
 	Object.defineProperty(exports, 'emojiIndex', {
 	  enumerable: true,
 	  get: function get() {
@@ -89,67 +89,67 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
+
 	var _anchors = __webpack_require__(2);
-	
+
 	Object.defineProperty(exports, 'Anchors', {
 	  enumerable: true,
 	  get: function get() {
 	    return _interopRequireDefault(_anchors).default;
 	  }
 	});
-	
+
 	var _category = __webpack_require__(15);
-	
+
 	Object.defineProperty(exports, 'Category', {
 	  enumerable: true,
 	  get: function get() {
 	    return _interopRequireDefault(_category).default;
 	  }
 	});
-	
+
 	var _emoji = __webpack_require__(22);
-	
+
 	Object.defineProperty(exports, 'Emoji', {
 	  enumerable: true,
 	  get: function get() {
 	    return _interopRequireDefault(_emoji).default;
 	  }
 	});
-	
+
 	var _picker = __webpack_require__(23);
-	
+
 	Object.defineProperty(exports, 'Picker', {
 	  enumerable: true,
 	  get: function get() {
 	    return _interopRequireDefault(_picker).default;
 	  }
 	});
-	
+
 	var _preview = __webpack_require__(25);
-	
+
 	Object.defineProperty(exports, 'Preview', {
 	  enumerable: true,
 	  get: function get() {
 	    return _interopRequireDefault(_preview).default;
 	  }
 	});
-	
+
 	var _search = __webpack_require__(26);
-	
+
 	Object.defineProperty(exports, 'Search', {
 	  enumerable: true,
 	  get: function get() {
 	    return _interopRequireDefault(_search).default;
 	  }
 	});
-	
+
 	var _skins = __webpack_require__(27);
-	
+
 	Object.defineProperty(exports, 'Skins', {
 	  enumerable: true,
 	  get: function get() {
@@ -164,54 +164,54 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
+
 	var _react = __webpack_require__(3);
-	
+
 	var _react2 = _interopRequireDefault(_react);
-	
+
 	var _svgInlineReact = __webpack_require__(4);
-	
+
 	var _svgInlineReact2 = _interopRequireDefault(_svgInlineReact);
-	
+
 	var _svgs = __webpack_require__(5);
-	
+
 	var SVGs = _interopRequireWildcard(_svgs);
-	
+
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
+
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
+
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
+
 	var Anchors = function (_React$Component) {
 	  _inherits(Anchors, _React$Component);
-	
+
 	  function Anchors(props) {
 	    _classCallCheck(this, Anchors);
-	
+
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Anchors).call(this, props));
-	
+
 	    var defaultCategory = props.categories[0];
 	    if (defaultCategory.anchor) {
 	      defaultCategory = defaultCategory.anchor;
 	    }
-	
+
 	    _this.state = {
 	      selected: defaultCategory.name
 	    };
 	    return _this;
 	  }
-	
+
 	  _createClass(Anchors, [{
 	    key: 'render',
 	    value: function render() {
@@ -219,20 +219,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var categories = _props.categories;
 	      var onAnchorClick = _props.onAnchorClick;
 	      var selected = this.state.selected;
-	
-	
+
+
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'emoji-picker-anchors' },
 	        categories.map(function (category, i) {
 	          var name = category.name;
 	          var anchor = category.anchor;
-	
-	
+
+
 	          if (anchor) {
 	            return null;
 	          }
-	
+
 	          return _react2.default.createElement(
 	            'span',
 	            {
@@ -250,18 +250,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	      );
 	    }
 	  }]);
-	
+
 	  return Anchors;
 	}(_react2.default.Component);
-	
+
 	exports.default = Anchors;
-	
-	
+
+
 	Anchors.propTypes = {
 	  categories: _react2.default.PropTypes.array,
 	  onAnchorClick: _react2.default.PropTypes.func
 	};
-	
+
 	Anchors.defaultProps = {
 	  categories: [],
 	  onAnchorClick: function onAnchorClick() {}
@@ -278,47 +278,47 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
+
 	Object.defineProperty(exports, '__esModule', {
 	    value: true
 	});
-	
+
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
+
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
+
 	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-	
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-	
+
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
+
 	var _react = __webpack_require__(3);
-	
+
 	var _react2 = _interopRequireDefault(_react);
-	
+
 	var DOMParser = typeof window !== 'undefined' && window.DOMParser;
 	var process = process || {};
 	process.env = process.env || {};
 	var parserAvailable = typeof DOMParser !== 'undefined' && DOMParser.prototype != null && DOMParser.prototype.parseFromString != null;
-	
+
 	if ("production" !== process.env.NODE_ENV && !parserAvailable) {
 	    console.info('<InlineSVG />: `raw` prop works only when `window.DOMParser` exists.');
 	}
-	
+
 	function isParsable(src) {
 	    // kinda naive but meh, ain't gonna use full-blown parser for this
 	    return parserAvailable && typeof src === 'string' && src.trim().substr(0, 4) === '<svg';
 	}
-	
+
 	// parse SVG string using `DOMParser`
 	function parseFromSVGString(src) {
 	    var parser = new DOMParser();
 	    return parser.parseFromString(src, "image/svg+xml");
 	}
-	
+
 	// Transform DOM prop/attr names applicable to `<svg>` element but react-limited
 	function switchSVGAttrToReactProp(propName) {
 	    switch (propName) {
@@ -328,10 +328,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return propName;
 	    }
 	}
-	
+
 	var InlineSVG = (function (_React$Component) {
 	    _inherits(InlineSVG, _React$Component);
-	
+
 	    _createClass(InlineSVG, null, [{
 	        key: 'defaultProps',
 	        value: {
@@ -349,16 +349,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 	        enumerable: true
 	    }]);
-	
+
 	    function InlineSVG(props) {
 	        _classCallCheck(this, InlineSVG);
-	
+
 	        _get(Object.getPrototypeOf(InlineSVG.prototype), 'constructor', this).call(this, props);
 	        this._extractSVGProps = this._extractSVGProps.bind(this);
 	    }
-	
+
 	    // Serialize `Attr` objects in `NamedNodeMap`
-	
+
 	    _createClass(InlineSVG, [{
 	        key: '_serializeAttrs',
 	        value: function _serializeAttrs(map) {
@@ -370,7 +370,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            return ret;
 	        }
-	
+
 	        // get <svg /> element props
 	    }, {
 	        key: '_extractSVGProps',
@@ -378,7 +378,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var map = parseFromSVGString(src).documentElement.attributes;
 	            return map.length > 0 ? this._serializeAttrs(map) : null;
 	        }
-	
+
 	        // get content inside <svg> element.
 	    }, {
 	        key: '_stripSVG',
@@ -389,7 +389,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'componentWillReceiveProps',
 	        value: function componentWillReceiveProps(_ref) {
 	            var children = _ref.children;
-	
+
 	            if ("production" !== process.env.NODE_ENV && children != null) {
 	                console.info('<InlineSVG />: `children` prop will be ignored.');
 	            }
@@ -404,7 +404,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var element = _props.element;
 	            var raw = _props.raw;
 	            var src = _props.src;
-	
+
 	            if (raw === true && isParsable(src)) {
 	                Element = 'svg';
 	                svgProps = this._extractSVGProps(src);
@@ -413,15 +413,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            __html = __html || src;
 	            Element = Element || element;
 	            svgProps = svgProps || {};
-	
+
 	            return _react2['default'].createElement(Element, _extends({}, svgProps, this.props, { src: null, children: null,
 	                dangerouslySetInnerHTML: { __html: __html } }));
 	        }
 	    }]);
-	
+
 	    return InlineSVG;
 	})(_react2['default'].Component);
-	
+
 	exports['default'] = InlineSVG;
 	module.exports = exports['default'];
 
@@ -430,85 +430,85 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
+
 	var _activity = __webpack_require__(6);
-	
+
 	Object.defineProperty(exports, 'Activity', {
 	  enumerable: true,
 	  get: function get() {
 	    return _interopRequireDefault(_activity).default;
 	  }
 	});
-	
+
 	var _flags = __webpack_require__(7);
-	
+
 	Object.defineProperty(exports, 'Flags', {
 	  enumerable: true,
 	  get: function get() {
 	    return _interopRequireDefault(_flags).default;
 	  }
 	});
-	
+
 	var _foods = __webpack_require__(8);
-	
+
 	Object.defineProperty(exports, 'Foods', {
 	  enumerable: true,
 	  get: function get() {
 	    return _interopRequireDefault(_foods).default;
 	  }
 	});
-	
+
 	var _nature = __webpack_require__(9);
-	
+
 	Object.defineProperty(exports, 'Nature', {
 	  enumerable: true,
 	  get: function get() {
 	    return _interopRequireDefault(_nature).default;
 	  }
 	});
-	
+
 	var _objects = __webpack_require__(10);
-	
+
 	Object.defineProperty(exports, 'Objects', {
 	  enumerable: true,
 	  get: function get() {
 	    return _interopRequireDefault(_objects).default;
 	  }
 	});
-	
+
 	var _people = __webpack_require__(11);
-	
+
 	Object.defineProperty(exports, 'People', {
 	  enumerable: true,
 	  get: function get() {
 	    return _interopRequireDefault(_people).default;
 	  }
 	});
-	
+
 	var _places = __webpack_require__(12);
-	
+
 	Object.defineProperty(exports, 'Places', {
 	  enumerable: true,
 	  get: function get() {
 	    return _interopRequireDefault(_places).default;
 	  }
 	});
-	
+
 	var _recent = __webpack_require__(13);
-	
+
 	Object.defineProperty(exports, 'Recent', {
 	  enumerable: true,
 	  get: function get() {
 	    return _interopRequireDefault(_recent).default;
 	  }
 	});
-	
+
 	var _symbols = __webpack_require__(14);
-	
+
 	Object.defineProperty(exports, 'Symbols', {
 	  enumerable: true,
 	  get: function get() {
@@ -577,31 +577,31 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
+
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
+
 	var _react = __webpack_require__(3);
-	
+
 	var _react2 = _interopRequireDefault(_react);
-	
+
 	var _utils = __webpack_require__(16);
-	
+
 	var _ = __webpack_require__(1);
-	
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
+
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
+
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
+
 	var LABELS = {
 	  'Search': 'Search Results',
 	  'Recent': 'Frequently Used',
@@ -614,26 +614,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	  'Symbols': 'Symbols',
 	  'Flags': 'Flags'
 	};
-	
+
 	var Category = function (_React$Component) {
 	  _inherits(Category, _React$Component);
-	
+
 	  function Category() {
 	    _classCallCheck(this, Category);
-	
+
 	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Category).apply(this, arguments));
 	  }
-	
+
 	  _createClass(Category, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      this.container = this.refs.container;
 	      this.label = this.refs.label;
 	      this.parent = this.container.parentNode;
-	
+
 	      this.margin = 0;
 	      this.minMargin = 0;
-	
+
 	      this.memoizeSize();
 	    }
 	  }, {
@@ -654,40 +654,40 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var nextSize = nextEmojiProps.size;
 	      var nextSheetURL = nextEmojiProps.sheetURL;
 	      var shouldUpdate = false;
-	
+
 	      if (name == 'Recent' && perLine != nextPerLine) {
 	        shouldUpdate = true;
 	      }
-	
+
 	      if (name == 'Search') {
 	        shouldUpdate = !(emojis == nextEmojis);
 	      }
-	
+
 	      if (skin != nextSkin || size != nextSize || sheetURL != nextSheetURL) {
 	        shouldUpdate = true;
 	      }
-	
+
 	      return shouldUpdate;
 	    }
 	  }, {
 	    key: 'memoizeSize',
 	    value: function memoizeSize() {
 	      var _container$getBoundin = this.container.getBoundingClientRect();
-	
+
 	      var top = _container$getBoundin.top;
 	      var height = _container$getBoundin.height;
-	
+
 	      var _parent$getBoundingCl = this.parent.getBoundingClientRect();
-	
+
 	      var parentTop = _parent$getBoundingCl.top;
-	
+
 	      var _label$getBoundingCli = this.label.getBoundingClientRect();
-	
+
 	      var labelHeight = _label$getBoundingCli.height;
-	
-	
+
+
 	      this.top = top - parentTop + this.parent.scrollTop;
-	
+
 	      if (height == 0) {
 	        this.maxMargin = 0;
 	      } else {
@@ -700,15 +700,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var margin = scrollTop - this.top;
 	      margin = margin < this.minMargin ? this.minMargin : margin;
 	      margin = margin > this.maxMargin ? this.maxMargin : margin;
-	
+
 	      if (margin == this.margin) return;
 	      var name = this.props.name;
-	
-	
+
+
 	      if (!this.props.hasStickyPosition) {
 	        this.label.style.top = margin + 'px';
 	      }
-	
+
 	      this.margin = margin;
 	      return true;
 	    }
@@ -719,31 +719,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var name = _props2.name;
 	      var emojis = _props2.emojis;
 	      var perLine = _props2.perLine;
-	
-	
+
+
 	      if (name == 'Recent') {
 	        var frequentlyUsed = _utils.frequently.get(perLine * 4);
-	
+
 	        if (frequentlyUsed.length) {
 	          emojis = frequentlyUsed;
 	        }
 	      }
-	
+
 	      if (emojis) {
 	        emojis = emojis.slice(0);
 	      }
-	
+
 	      return emojis;
 	    }
 	  }, {
 	    key: 'updateDisplay',
 	    value: function updateDisplay(display) {
 	      var emojis = this.getEmojis();
-	
+
 	      if (!display && !emojis) {
 	        return;
 	      }
-	
+
 	      this.container.style.display = display;
 	    }
 	  }, {
@@ -757,23 +757,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var labelStyles = {};
 	      var labelSpanStyles = {};
 	      var containerStyles = {};
-	
+
 	      if (!emojis) {
 	        containerStyles = {
 	          display: 'none'
 	        };
 	      }
-	
+
 	      if (!hasStickyPosition) {
 	        labelStyles = {
 	          height: 28
 	        };
-	
+
 	        labelSpanStyles = {
 	          position: 'absolute'
 	        };
 	      }
-	
+
 	      return _react2.default.createElement(
 	        'div',
 	        { ref: 'container', className: 'emoji-picker-category', style: containerStyles },
@@ -808,13 +808,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      );
 	    }
 	  }]);
-	
+
 	  return Category;
 	}(_react2.default.Component);
-	
+
 	exports.default = Category;
-	
-	
+
+
 	Category.propTypes = {
 	  emojis: _react2.default.PropTypes.array,
 	  hasStickyPosition: _react2.default.PropTypes.bool,
@@ -822,7 +822,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  perLine: _react2.default.PropTypes.number.isRequired,
 	  emojiProps: _react2.default.PropTypes.object.isRequired
 	};
-	
+
 	Category.defaultProps = {
 	  emojis: [],
 	  hasStickyPosition: true
@@ -833,31 +833,31 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
+
 	var _store = __webpack_require__(17);
-	
+
 	Object.defineProperty(exports, 'store', {
 	  enumerable: true,
 	  get: function get() {
 	    return _interopRequireDefault(_store).default;
 	  }
 	});
-	
+
 	var _emojiIndex = __webpack_require__(18);
-	
+
 	Object.defineProperty(exports, 'emojiIndex', {
 	  enumerable: true,
 	  get: function get() {
 	    return _interopRequireDefault(_emojiIndex).default;
 	  }
 	});
-	
+
 	var _frequently = __webpack_require__(21);
-	
+
 	Object.defineProperty(exports, 'frequently', {
 	  enumerable: true,
 	  get: function get() {
@@ -872,34 +872,34 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	'use strict';
-	
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	var NAMESPACE = 'emoji-picker';
-	
+
 	function update(state) {
 	  for (var key in state) {
 	    var value = state[key];
 	    set(key, value);
 	  }
 	}
-	
+
 	function set(key, value) {
 	  if (!('localStorage' in window)) return;
 	  window.localStorage[NAMESPACE + '.' + key] = JSON.stringify(value);
 	}
-	
+
 	function get(key) {
 	  if (!('localStorage' in window)) return;
-	
+
 	  var value = window.localStorage[NAMESPACE + '.' + key];
-	
+
 	  if (value) {
 	    return JSON.parse(value);
 	  }
 	}
-	
+
 	exports.default = { update: update, set: set, get: get };
 
 /***/ },
@@ -907,38 +907,38 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
+
 	var _lunr = __webpack_require__(19);
-	
+
 	var _lunr2 = _interopRequireDefault(_lunr);
-	
+
 	var _data = __webpack_require__(20);
-	
+
 	var _data2 = _interopRequireDefault(_data);
-	
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
+
 	var index = (0, _lunr2.default)(function () {
 	  this.pipeline.reset();
-	
+
 	  this.field('short_name', { boost: 2 });
 	  this.field('emoticons');
 	  this.field('name');
-	
+
 	  this.ref('id');
 	});
-	
+
 	for (var emoji in _data2.default.emojis) {
 	  var emojiData = _data2.default.emojis[emoji];
 	  var short_name = emojiData.short_name;
 	  var name = emojiData.name;
 	  var emoticons = emojiData.emoticons;
-	
-	
+
+
 	  index.add({
 	    id: short_name,
 	    emoticons: emoticons,
@@ -946,35 +946,35 @@ return /******/ (function(modules) { // webpackBootstrap
 	    name: tokenize(name)
 	  });
 	}
-	
+
 	function search(value) {
 	  var maxResults = arguments.length <= 1 || arguments[1] === undefined ? 75 : arguments[1];
-	
+
 	  var results = null;
-	
+
 	  if (value.length) {
 	    results = index.search(tokenize(value)).map(function (result) {
 	      return result.ref;
 	    });
-	
+
 	    results = results.slice(0, maxResults);
 	  }
-	
+
 	  return results;
 	}
-	
+
 	function tokenize(string) {
 	  if (['-', '-1', '+', '+1'].indexOf(string) == 0) {
 	    return string.split('');
 	  }
-	
+
 	  if (/(:|;|=)-/.test(string)) {
 	    return [string];
 	  }
-	
+
 	  return string.split(/[-|_|\s]+/);
 	}
-	
+
 	exports.default = { search: search };
 
 /***/ },
@@ -986,9 +986,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Copyright (C) 2016 Oliver Nightingale
 	 * @license MIT
 	 */
-	
+
 	;(function(){
-	
+
 	/**
 	 * Convenience function for instantiating a new lunr index and configuring it
 	 * with the default pipeline functions and the passed config function.
@@ -1026,29 +1026,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	var lunr = function (config) {
 	  var idx = new lunr.Index
-	
+
 	  idx.pipeline.add(
 	    lunr.trimmer,
 	    lunr.stopWordFilter,
 	    lunr.stemmer
 	  )
-	
+
 	  if (config) config.call(idx, idx)
-	
+
 	  return idx
 	}
-	
+
 	lunr.version = "0.7.1"
 	/*!
 	 * lunr.utils
 	 * Copyright (C) 2016 Oliver Nightingale
 	 */
-	
+
 	/**
 	 * A namespace containing utils for the rest of the lunr library
 	 */
 	lunr.utils = {}
-	
+
 	/**
 	 * Print a warning message to the console.
 	 *
@@ -1062,7 +1062,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }
 	})(this)
-	
+
 	/**
 	 * Convert an object to a string.
 	 *
@@ -1085,7 +1085,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * lunr.EventEmitter
 	 * Copyright (C) 2016 Oliver Nightingale
 	 */
-	
+
 	/**
 	 * lunr.EventEmitter is an event emitter for lunr. It manages adding and removing event handlers and triggering events and their handlers.
 	 *
@@ -1094,7 +1094,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	lunr.EventEmitter = function () {
 	  this.events = {}
 	}
-	
+
 	/**
 	 * Binds a handler function to a specific event(s).
 	 *
@@ -1108,15 +1108,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var args = Array.prototype.slice.call(arguments),
 	      fn = args.pop(),
 	      names = args
-	
+
 	  if (typeof fn !== "function") throw new TypeError ("last argument must be a function")
-	
+
 	  names.forEach(function (name) {
 	    if (!this.hasHandler(name)) this.events[name] = []
 	    this.events[name].push(fn)
 	  }, this)
 	}
-	
+
 	/**
 	 * Removes a handler function from a specific event.
 	 *
@@ -1126,13 +1126,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	lunr.EventEmitter.prototype.removeListener = function (name, fn) {
 	  if (!this.hasHandler(name)) return
-	
+
 	  var fnIndex = this.events[name].indexOf(fn)
 	  this.events[name].splice(fnIndex, 1)
-	
+
 	  if (!this.events[name].length) delete this.events[name]
 	}
-	
+
 	/**
 	 * Calls all functions bound to the given event.
 	 *
@@ -1144,14 +1144,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	lunr.EventEmitter.prototype.emit = function (name) {
 	  if (!this.hasHandler(name)) return
-	
+
 	  var args = Array.prototype.slice.call(arguments, 1)
-	
+
 	  this.events[name].forEach(function (fn) {
 	    fn.apply(undefined, args)
 	  })
 	}
-	
+
 	/**
 	 * Checks whether a handler has ever been stored against an event.
 	 *
@@ -1162,12 +1162,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	lunr.EventEmitter.prototype.hasHandler = function (name) {
 	  return name in this.events
 	}
-	
+
 	/*!
 	 * lunr.tokenizer
 	 * Copyright (C) 2016 Oliver Nightingale
 	 */
-	
+
 	/**
 	 * A function for splitting a string into tokens ready to be inserted into
 	 * the search index. Uses `lunr.tokenizer.seperator` to split strings, change
@@ -1181,10 +1181,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	lunr.tokenizer = function (obj) {
 	  if (!arguments.length || obj == null || obj == undefined) return []
 	  if (Array.isArray(obj)) return obj.map(function (t) { return lunr.utils.asString(t).toLowerCase() })
-	
+
 	  return obj.toString().trim().toLowerCase().split(lunr.tokenizer.seperator)
 	}
-	
+
 	/**
 	 * The sperator used to split a string into tokens. Override this property to change the behaviour of
 	 * `lunr.tokenizer` behaviour when tokenizing strings. By default this splits on whitespace and hyphens.
@@ -1193,7 +1193,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @see lunr.tokenizer
 	 */
 	lunr.tokenizer.seperator = /[\s\-]+/
-	
+
 	/**
 	 * Loads a previously serialised tokenizer.
 	 *
@@ -1206,20 +1206,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	lunr.tokenizer.load = function (label) {
 	  var fn = this.registeredFunctions[label]
-	
+
 	  if (!fn) {
 	    throw new Error('Cannot load un-registered function: ' + label)
 	  }
-	
+
 	  return fn
 	}
-	
+
 	lunr.tokenizer.label = 'default'
-	
+
 	lunr.tokenizer.registeredFunctions = {
 	  'default': lunr.tokenizer
 	}
-	
+
 	/**
 	 * Register a tokenizer function.
 	 *
@@ -1235,7 +1235,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (label in this.registeredFunctions) {
 	    lunr.utils.warn('Overwriting existing tokenizer: ' + label)
 	  }
-	
+
 	  fn.label = label
 	  this.registeredFunctions[label] = fn
 	}
@@ -1243,7 +1243,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * lunr.Pipeline
 	 * Copyright (C) 2016 Oliver Nightingale
 	 */
-	
+
 	/**
 	 * lunr.Pipelines maintain an ordered list of functions to be applied to all
 	 * tokens in documents entering the search index and queries being ran against
@@ -1276,9 +1276,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	lunr.Pipeline = function () {
 	  this._stack = []
 	}
-	
+
 	lunr.Pipeline.registeredFunctions = {}
-	
+
 	/**
 	 * Register a function with the pipeline.
 	 *
@@ -1296,11 +1296,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (label in this.registeredFunctions) {
 	    lunr.utils.warn('Overwriting existing registered function: ' + label)
 	  }
-	
+
 	  fn.label = label
 	  lunr.Pipeline.registeredFunctions[fn.label] = fn
 	}
-	
+
 	/**
 	 * Warns if the function is not registered as a Pipeline function.
 	 *
@@ -1310,12 +1310,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	lunr.Pipeline.warnIfFunctionNotRegistered = function (fn) {
 	  var isRegistered = fn.label && (fn.label in this.registeredFunctions)
-	
+
 	  if (!isRegistered) {
 	    lunr.utils.warn('Function is not registered with pipeline. This may cause problems when serialising the index.\n', fn)
 	  }
 	}
-	
+
 	/**
 	 * Loads a previously serialised pipeline.
 	 *
@@ -1329,20 +1329,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	lunr.Pipeline.load = function (serialised) {
 	  var pipeline = new lunr.Pipeline
-	
+
 	  serialised.forEach(function (fnName) {
 	    var fn = lunr.Pipeline.registeredFunctions[fnName]
-	
+
 	    if (fn) {
 	      pipeline.add(fn)
 	    } else {
 	      throw new Error('Cannot load un-registered function: ' + fnName)
 	    }
 	  })
-	
+
 	  return pipeline
 	}
-	
+
 	/**
 	 * Adds new functions to the end of the pipeline.
 	 *
@@ -1353,13 +1353,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	lunr.Pipeline.prototype.add = function () {
 	  var fns = Array.prototype.slice.call(arguments)
-	
+
 	  fns.forEach(function (fn) {
 	    lunr.Pipeline.warnIfFunctionNotRegistered(fn)
 	    this._stack.push(fn)
 	  }, this)
 	}
-	
+
 	/**
 	 * Adds a single function after a function that already exists in the
 	 * pipeline.
@@ -1372,16 +1372,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	lunr.Pipeline.prototype.after = function (existingFn, newFn) {
 	  lunr.Pipeline.warnIfFunctionNotRegistered(newFn)
-	
+
 	  var pos = this._stack.indexOf(existingFn)
 	  if (pos == -1) {
 	    throw new Error('Cannot find existingFn')
 	  }
-	
+
 	  pos = pos + 1
 	  this._stack.splice(pos, 0, newFn)
 	}
-	
+
 	/**
 	 * Adds a single function before a function that already exists in the
 	 * pipeline.
@@ -1394,15 +1394,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	lunr.Pipeline.prototype.before = function (existingFn, newFn) {
 	  lunr.Pipeline.warnIfFunctionNotRegistered(newFn)
-	
+
 	  var pos = this._stack.indexOf(existingFn)
 	  if (pos == -1) {
 	    throw new Error('Cannot find existingFn')
 	  }
-	
+
 	  this._stack.splice(pos, 0, newFn)
 	}
-	
+
 	/**
 	 * Removes a function from the pipeline.
 	 *
@@ -1414,10 +1414,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (pos == -1) {
 	    return
 	  }
-	
+
 	  this._stack.splice(pos, 1)
 	}
-	
+
 	/**
 	 * Runs the current list of functions that make up the pipeline against the
 	 * passed tokens.
@@ -1430,21 +1430,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var out = [],
 	      tokenLength = tokens.length,
 	      stackLength = this._stack.length
-	
+
 	  for (var i = 0; i < tokenLength; i++) {
 	    var token = tokens[i]
-	
+
 	    for (var j = 0; j < stackLength; j++) {
 	      token = this._stack[j](token, i, tokens)
 	      if (token === void 0 || token === '') break
 	    };
-	
+
 	    if (token !== void 0 && token !== '') out.push(token)
 	  };
-	
+
 	  return out
 	}
-	
+
 	/**
 	 * Resets the pipeline by removing any existing processors.
 	 *
@@ -1453,7 +1453,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	lunr.Pipeline.prototype.reset = function () {
 	  this._stack = []
 	}
-	
+
 	/**
 	 * Returns a representation of the pipeline ready for serialisation.
 	 *
@@ -1465,7 +1465,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	lunr.Pipeline.prototype.toJSON = function () {
 	  return this._stack.map(function (fn) {
 	    lunr.Pipeline.warnIfFunctionNotRegistered(fn)
-	
+
 	    return fn.label
 	  })
 	}
@@ -1473,7 +1473,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * lunr.Vector
 	 * Copyright (C) 2016 Oliver Nightingale
 	 */
-	
+
 	/**
 	 * lunr.Vectors implement vector related operations for
 	 * a series of elements.
@@ -1485,7 +1485,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  this.list = undefined
 	  this.length = 0
 	}
-	
+
 	/**
 	 * lunr.Vector.Node is a simple struct for each node
 	 * in a lunr.Vector.
@@ -1502,7 +1502,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  this.val = val
 	  this.next = next
 	}
-	
+
 	/**
 	 * Inserts a new value at a position in a vector.
 	 *
@@ -1513,33 +1513,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	lunr.Vector.prototype.insert = function (idx, val) {
 	  this._magnitude = undefined;
 	  var list = this.list
-	
+
 	  if (!list) {
 	    this.list = new lunr.Vector.Node (idx, val, list)
 	    return this.length++
 	  }
-	
+
 	  if (idx < list.idx) {
 	    this.list = new lunr.Vector.Node (idx, val, list)
 	    return this.length++
 	  }
-	
+
 	  var prev = list,
 	      next = list.next
-	
+
 	  while (next != undefined) {
 	    if (idx < next.idx) {
 	      prev.next = new lunr.Vector.Node (idx, val, next)
 	      return this.length++
 	    }
-	
+
 	    prev = next, next = next.next
 	  }
-	
+
 	  prev.next = new lunr.Vector.Node (idx, val, next)
 	  return this.length++
 	}
-	
+
 	/**
 	 * Calculates the magnitude of this vector.
 	 *
@@ -1551,16 +1551,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var node = this.list,
 	      sumOfSquares = 0,
 	      val
-	
+
 	  while (node) {
 	    val = node.val
 	    sumOfSquares += val * val
 	    node = node.next
 	  }
-	
+
 	  return this._magnitude = Math.sqrt(sumOfSquares)
 	}
-	
+
 	/**
 	 * Calculates the dot product of this vector and another vector.
 	 *
@@ -1572,7 +1572,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var node = this.list,
 	      otherNode = otherVector.list,
 	      dotProduct = 0
-	
+
 	  while (node && otherNode) {
 	    if (node.idx < otherNode.idx) {
 	      node = node.next
@@ -1584,10 +1584,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      otherNode = otherNode.next
 	    }
 	  }
-	
+
 	  return dotProduct
 	}
-	
+
 	/**
 	 * Calculates the cosine similarity between this vector and another
 	 * vector.
@@ -1604,7 +1604,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * lunr.SortedSet
 	 * Copyright (C) 2016 Oliver Nightingale
 	 */
-	
+
 	/**
 	 * lunr.SortedSets are used to maintain an array of uniq values in a sorted
 	 * order.
@@ -1615,7 +1615,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  this.length = 0
 	  this.elements = []
 	}
-	
+
 	/**
 	 * Loads a previously serialised sorted set.
 	 *
@@ -1625,13 +1625,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	lunr.SortedSet.load = function (serialisedData) {
 	  var set = new this
-	
+
 	  set.elements = serialisedData
 	  set.length = serialisedData.length
-	
+
 	  return set
 	}
-	
+
 	/**
 	 * Inserts new items into the set in the correct position to maintain the
 	 * order.
@@ -1641,16 +1641,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	lunr.SortedSet.prototype.add = function () {
 	  var i, element
-	
+
 	  for (i = 0; i < arguments.length; i++) {
 	    element = arguments[i]
 	    if (~this.indexOf(element)) continue
 	    this.elements.splice(this.locationFor(element), 0, element)
 	  }
-	
+
 	  this.length = this.elements.length
 	}
-	
+
 	/**
 	 * Converts this sorted set into an array.
 	 *
@@ -1660,7 +1660,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	lunr.SortedSet.prototype.toArray = function () {
 	  return this.elements.slice()
 	}
-	
+
 	/**
 	 * Creates a new array with the results of calling a provided function on every
 	 * element in this sorted set.
@@ -1677,7 +1677,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	lunr.SortedSet.prototype.map = function (fn, ctx) {
 	  return this.elements.map(fn, ctx)
 	}
-	
+
 	/**
 	 * Executes a provided function once per sorted set element.
 	 *
@@ -1692,7 +1692,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	lunr.SortedSet.prototype.forEach = function (fn, ctx) {
 	  return this.elements.forEach(fn, ctx)
 	}
-	
+
 	/**
 	 * Returns the index at which a given element can be found in the
 	 * sorted set, or -1 if it is not present.
@@ -1707,23 +1707,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	      sectionLength = end - start,
 	      pivot = start + Math.floor(sectionLength / 2),
 	      pivotElem = this.elements[pivot]
-	
+
 	  while (sectionLength > 1) {
 	    if (pivotElem === elem) return pivot
-	
+
 	    if (pivotElem < elem) start = pivot
 	    if (pivotElem > elem) end = pivot
-	
+
 	    sectionLength = end - start
 	    pivot = start + Math.floor(sectionLength / 2)
 	    pivotElem = this.elements[pivot]
 	  }
-	
+
 	  if (pivotElem === elem) return pivot
-	
+
 	  return -1
 	}
-	
+
 	/**
 	 * Returns the position within the sorted set that an element should be
 	 * inserted at to maintain the current order of the set.
@@ -1741,20 +1741,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	      sectionLength = end - start,
 	      pivot = start + Math.floor(sectionLength / 2),
 	      pivotElem = this.elements[pivot]
-	
+
 	  while (sectionLength > 1) {
 	    if (pivotElem < elem) start = pivot
 	    if (pivotElem > elem) end = pivot
-	
+
 	    sectionLength = end - start
 	    pivot = start + Math.floor(sectionLength / 2)
 	    pivotElem = this.elements[pivot]
 	  }
-	
+
 	  if (pivotElem > elem) return pivot
 	  if (pivotElem < elem) return pivot + 1
 	}
-	
+
 	/**
 	 * Creates a new lunr.SortedSet that contains the elements in the intersection
 	 * of this set and the passed set.
@@ -1768,30 +1768,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	      i = 0, j = 0,
 	      a_len = this.length, b_len = otherSet.length,
 	      a = this.elements, b = otherSet.elements
-	
+
 	  while (true) {
 	    if (i > a_len - 1 || j > b_len - 1) break
-	
+
 	    if (a[i] === b[j]) {
 	      intersectSet.add(a[i])
 	      i++, j++
 	      continue
 	    }
-	
+
 	    if (a[i] < b[j]) {
 	      i++
 	      continue
 	    }
-	
+
 	    if (a[i] > b[j]) {
 	      j++
 	      continue
 	    }
 	  };
-	
+
 	  return intersectSet
 	}
-	
+
 	/**
 	 * Makes a copy of this set
 	 *
@@ -1800,13 +1800,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	lunr.SortedSet.prototype.clone = function () {
 	  var clone = new lunr.SortedSet
-	
+
 	  clone.elements = this.toArray()
 	  clone.length = clone.elements.length
-	
+
 	  return clone
 	}
-	
+
 	/**
 	 * Creates a new lunr.SortedSet that contains the elements in the union
 	 * of this set and the passed set.
@@ -1817,22 +1817,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	lunr.SortedSet.prototype.union = function (otherSet) {
 	  var longSet, shortSet, unionSet
-	
+
 	  if (this.length >= otherSet.length) {
 	    longSet = this, shortSet = otherSet
 	  } else {
 	    longSet = otherSet, shortSet = this
 	  }
-	
+
 	  unionSet = longSet.clone()
-	
+
 	  for(var i = 0, shortSetElements = shortSet.toArray(); i < shortSetElements.length; i++){
 	    unionSet.add(shortSetElements[i])
 	  }
-	
+
 	  return unionSet
 	}
-	
+
 	/**
 	 * Returns a representation of the sorted set ready for serialisation.
 	 *
@@ -1846,7 +1846,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * lunr.Index
 	 * Copyright (C) 2016 Oliver Nightingale
 	 */
-	
+
 	/**
 	 * lunr.Index is object that manages a search index.  It contains the indexes
 	 * and stores all the tokens and document lookups.  It also provides the main
@@ -1863,14 +1863,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	  this.corpusTokens = new lunr.SortedSet
 	  this.eventEmitter =  new lunr.EventEmitter
 	  this.tokenizerFn = lunr.tokenizer
-	
+
 	  this._idfCache = {}
-	
+
 	  this.on('add', 'remove', 'update', (function () {
 	    this._idfCache = {}
 	  }).bind(this))
 	}
-	
+
 	/**
 	 * Bind a handler to events being emitted by the index.
 	 *
@@ -1884,7 +1884,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var args = Array.prototype.slice.call(arguments)
 	  return this.eventEmitter.addListener.apply(this.eventEmitter, args)
 	}
-	
+
 	/**
 	 * Removes a handler from an event being emitted by the index.
 	 *
@@ -1895,7 +1895,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	lunr.Index.prototype.off = function (name, fn) {
 	  return this.eventEmitter.removeListener(name, fn)
 	}
-	
+
 	/**
 	 * Loads a previously serialised index.
 	 *
@@ -1910,21 +1910,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (serialisedData.version !== lunr.version) {
 	    lunr.utils.warn('version mismatch: current ' + lunr.version + ' importing ' + serialisedData.version)
 	  }
-	
+
 	  var idx = new this
-	
+
 	  idx._fields = serialisedData.fields
 	  idx._ref = serialisedData.ref
-	
+
 	  idx.tokenizer = lunr.tokenizer.load(serialisedData.tokenizer)
 	  idx.documentStore = lunr.Store.load(serialisedData.documentStore)
 	  idx.tokenStore = lunr.TokenStore.load(serialisedData.tokenStore)
 	  idx.corpusTokens = lunr.SortedSet.load(serialisedData.corpusTokens)
 	  idx.pipeline = lunr.Pipeline.load(serialisedData.pipeline)
-	
+
 	  return idx
 	}
-	
+
 	/**
 	 * Adds a field to the list of fields that will be searchable within documents
 	 * in the index.
@@ -1946,11 +1946,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	lunr.Index.prototype.field = function (fieldName, opts) {
 	  var opts = opts || {},
 	      field = { name: fieldName, boost: opts.boost || 1 }
-	
+
 	  this._fields.push(field)
 	  return this
 	}
-	
+
 	/**
 	 * Sets the property used to uniquely identify documents added to the index,
 	 * by default this property is 'id'.
@@ -1971,7 +1971,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  this._ref = refName
 	  return this
 	}
-	
+
 	/**
 	 * Sets the tokenizer used for this index.
 	 *
@@ -1985,15 +1985,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	lunr.Index.prototype.tokenizer = function (fn) {
 	  var isRegistered = fn.label && (fn.label in lunr.tokenizer.registeredFunctions)
-	
+
 	  if (!isRegistered) {
 	    lunr.utils.warn('Function is not a registered tokenizer. This may cause problems when serialising the index')
 	  }
-	
+
 	  this.tokenizerFn = fn
 	  return this
 	}
-	
+
 	/**
 	 * Add a document to the index.
 	 *
@@ -2014,48 +2014,48 @@ return /******/ (function(modules) { // webpackBootstrap
 	      allDocumentTokens = new lunr.SortedSet,
 	      docRef = doc[this._ref],
 	      emitEvent = emitEvent === undefined ? true : emitEvent
-	
+
 	  this._fields.forEach(function (field) {
 	    var fieldTokens = this.pipeline.run(this.tokenizerFn(doc[field.name]))
-	
+
 	    docTokens[field.name] = fieldTokens
-	
+
 	    for (var i = 0; i < fieldTokens.length; i++) {
 	      var token = fieldTokens[i]
 	      allDocumentTokens.add(token)
 	      this.corpusTokens.add(token)
 	    }
 	  }, this)
-	
+
 	  this.documentStore.set(docRef, allDocumentTokens)
-	
+
 	  for (var i = 0; i < allDocumentTokens.length; i++) {
 	    var token = allDocumentTokens.elements[i]
 	    var tf = 0;
-	
+
 	    for (var j = 0; j < this._fields.length; j++){
 	      var field = this._fields[j]
 	      var fieldTokens = docTokens[field.name]
 	      var fieldLength = fieldTokens.length
-	
+
 	      if (!fieldLength) continue
-	
+
 	      var tokenCount = 0
 	      for (var k = 0; k < fieldLength; k++){
 	        if (fieldTokens[k] === token){
 	          tokenCount++
 	        }
 	      }
-	
+
 	      tf += (tokenCount / fieldLength * field.boost)
 	    }
-	
+
 	    this.tokenStore.add(token, { ref: docRef, tf: tf })
 	  };
-	
+
 	  if (emitEvent) this.eventEmitter.emit('add', doc, this)
 	}
-	
+
 	/**
 	 * Removes a document from the index.
 	 *
@@ -2077,20 +2077,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	lunr.Index.prototype.remove = function (doc, emitEvent) {
 	  var docRef = doc[this._ref],
 	      emitEvent = emitEvent === undefined ? true : emitEvent
-	
+
 	  if (!this.documentStore.has(docRef)) return
-	
+
 	  var docTokens = this.documentStore.get(docRef)
-	
+
 	  this.documentStore.remove(docRef)
-	
+
 	  docTokens.forEach(function (token) {
 	    this.tokenStore.remove(token, docRef)
 	  }, this)
-	
+
 	  if (emitEvent) this.eventEmitter.emit('remove', doc, this)
 	}
-	
+
 	/**
 	 * Updates a document in the index.
 	 *
@@ -2113,13 +2113,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	lunr.Index.prototype.update = function (doc, emitEvent) {
 	  var emitEvent = emitEvent === undefined ? true : emitEvent
-	
+
 	  this.remove(doc, false)
 	  this.add(doc, false)
-	
+
 	  if (emitEvent) this.eventEmitter.emit('update', doc, this)
 	}
-	
+
 	/**
 	 * Calculates the inverse document frequency for a token within the index.
 	 *
@@ -2131,17 +2131,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	lunr.Index.prototype.idf = function (term) {
 	  var cacheKey = "@" + term
 	  if (Object.prototype.hasOwnProperty.call(this._idfCache, cacheKey)) return this._idfCache[cacheKey]
-	
+
 	  var documentFrequency = this.tokenStore.count(term),
 	      idf = 1
-	
+
 	  if (documentFrequency > 0) {
 	    idf = 1 + Math.log(this.documentStore.length / documentFrequency)
 	  }
-	
+
 	  return this._idfCache[cacheKey] = idf
 	}
-	
+
 	/**
 	 * Searches the index using the passed query.
 	 *
@@ -2171,24 +2171,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	      queryVector = new lunr.Vector,
 	      documentSets = [],
 	      fieldBoosts = this._fields.reduce(function (memo, f) { return memo + f.boost }, 0)
-	
+
 	  var hasSomeToken = queryTokens.some(function (token) {
 	    return this.tokenStore.has(token)
 	  }, this)
-	
+
 	  if (!hasSomeToken) return []
-	
+
 	  queryTokens
 	    .forEach(function (token, i, tokens) {
 	      var tf = 1 / tokens.length * this._fields.length * fieldBoosts,
 	          self = this
-	
+
 	      var set = this.tokenStore.expand(token).reduce(function (memo, key) {
 	        var pos = self.corpusTokens.indexOf(key),
 	            idf = self.idf(key),
 	            similarityBoost = 1,
 	            set = new lunr.SortedSet
-	
+
 	        // if the expanded key is not an exact match to the token then
 	        // penalise the score for this key by how different the key is
 	        // to the token.
@@ -2196,32 +2196,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	          var diff = Math.max(3, key.length - token.length)
 	          similarityBoost = 1 / Math.log(diff)
 	        }
-	
+
 	        // calculate the query tf-idf score for this token
 	        // applying an similarityBoost to ensure exact matches
 	        // these rank higher than expanded terms
 	        if (pos > -1) queryVector.insert(pos, tf * idf * similarityBoost)
-	
+
 	        // add all the documents that have this key into a set
 	        // ensuring that the type of key is preserved
 	        var matchingDocuments = self.tokenStore.get(key),
 	            refs = Object.keys(matchingDocuments),
 	            refsLen = refs.length
-	
+
 	        for (var i = 0; i < refsLen; i++) {
 	          set.add(matchingDocuments[refs[i]].ref)
 	        }
-	
+
 	        return memo.union(set)
 	      }, new lunr.SortedSet)
-	
+
 	      documentSets.push(set)
 	    }, this)
-	
+
 	  var documentSet = documentSets.reduce(function (memo, set) {
 	    return memo.intersect(set)
 	  })
-	
+
 	  return documentSet
 	    .map(function (ref) {
 	      return { ref: ref, score: queryVector.similarity(this.documentVector(ref)) }
@@ -2230,7 +2230,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return b.score - a.score
 	    })
 	}
-	
+
 	/**
 	 * Generates a vector containing all the tokens in the document matching the
 	 * passed documentRef.
@@ -2249,18 +2249,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var documentTokens = this.documentStore.get(documentRef),
 	      documentTokensLength = documentTokens.length,
 	      documentVector = new lunr.Vector
-	
+
 	  for (var i = 0; i < documentTokensLength; i++) {
 	    var token = documentTokens.elements[i],
 	        tf = this.tokenStore.get(token)[documentRef].tf,
 	        idf = this.idf(token)
-	
+
 	    documentVector.insert(this.corpusTokens.indexOf(token), tf * idf)
 	  };
-	
+
 	  return documentVector
 	}
-	
+
 	/**
 	 * Returns a representation of the index ready for serialisation.
 	 *
@@ -2279,7 +2279,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    pipeline: this.pipeline.toJSON()
 	  }
 	}
-	
+
 	/**
 	 * Applies a plugin to the current index.
 	 *
@@ -2315,7 +2315,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * lunr.Store
 	 * Copyright (C) 2016 Oliver Nightingale
 	 */
-	
+
 	/**
 	 * lunr.Store is a simple key-value store used for storing sets of tokens for
 	 * documents stored in index.
@@ -2327,7 +2327,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  this.store = {}
 	  this.length = 0
 	}
-	
+
 	/**
 	 * Loads a previously serialised store
 	 *
@@ -2337,16 +2337,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	lunr.Store.load = function (serialisedData) {
 	  var store = new this
-	
+
 	  store.length = serialisedData.length
 	  store.store = Object.keys(serialisedData.store).reduce(function (memo, key) {
 	    memo[key] = lunr.SortedSet.load(serialisedData.store[key])
 	    return memo
 	  }, {})
-	
+
 	  return store
 	}
-	
+
 	/**
 	 * Stores the given tokens in the store against the given id.
 	 *
@@ -2358,7 +2358,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!this.has(id)) this.length++
 	  this.store[id] = tokens
 	}
-	
+
 	/**
 	 * Retrieves the tokens from the store for a given key.
 	 *
@@ -2369,7 +2369,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	lunr.Store.prototype.get = function (id) {
 	  return this.store[id]
 	}
-	
+
 	/**
 	 * Checks whether the store contains a key.
 	 *
@@ -2380,7 +2380,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	lunr.Store.prototype.has = function (id) {
 	  return id in this.store
 	}
-	
+
 	/**
 	 * Removes the value for a key in the store.
 	 *
@@ -2389,11 +2389,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	lunr.Store.prototype.remove = function (id) {
 	  if (!this.has(id)) return
-	
+
 	  delete this.store[id]
 	  this.length--
 	}
-	
+
 	/**
 	 * Returns a representation of the store ready for serialisation.
 	 *
@@ -2406,13 +2406,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    length: this.length
 	  }
 	}
-	
+
 	/*!
 	 * lunr.stemmer
 	 * Copyright (C) 2016 Oliver Nightingale
 	 * Includes code from - http://tartarus.org/~martin/PorterStemmer/js.txt
 	 */
-	
+
 	/**
 	 * lunr.stemmer is an english language stemmer, this is a JavaScript
 	 * implementation of the PorterStemmer taken from http://tartarus.org/~martin
@@ -2446,7 +2446,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "biliti" : "ble",
 	      "logi" : "log"
 	    },
-	
+
 	    step3list = {
 	      "icate" : "ic",
 	      "ative" : "",
@@ -2456,22 +2456,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "ful" : "",
 	      "ness" : ""
 	    },
-	
+
 	    c = "[^aeiou]",          // consonant
 	    v = "[aeiouy]",          // vowel
 	    C = c + "[^aeiouy]*",    // consonant sequence
 	    V = v + "[aeiou]*",      // vowel sequence
-	
+
 	    mgr0 = "^(" + C + ")?" + V + C,               // [C]VC... is m>0
 	    meq1 = "^(" + C + ")?" + V + C + "(" + V + ")?$",  // [C]VC[V] is m=1
 	    mgr1 = "^(" + C + ")?" + V + C + V + C,       // [C]VCVC... is m>1
 	    s_v = "^(" + C + ")?" + v;                   // vowel in stem
-	
+
 	  var re_mgr0 = new RegExp(mgr0);
 	  var re_mgr1 = new RegExp(mgr1);
 	  var re_meq1 = new RegExp(meq1);
 	  var re_s_v = new RegExp(s_v);
-	
+
 	  var re_1a = /^(.+?)(ss|i)es$/;
 	  var re2_1a = /^(.+?)([^s])s$/;
 	  var re_1b = /^(.+?)eed$/;
@@ -2480,19 +2480,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var re2_1b_2 = /(at|bl|iz)$/;
 	  var re3_1b_2 = new RegExp("([^aeiouylsz])\\1$");
 	  var re4_1b_2 = new RegExp("^" + C + v + "[^aeiouwxy]$");
-	
+
 	  var re_1c = /^(.+?[^aeiou])y$/;
 	  var re_2 = /^(.+?)(ational|tional|enci|anci|izer|bli|alli|entli|eli|ousli|ization|ation|ator|alism|iveness|fulness|ousness|aliti|iviti|biliti|logi)$/;
-	
+
 	  var re_3 = /^(.+?)(icate|ative|alize|iciti|ical|ful|ness)$/;
-	
+
 	  var re_4 = /^(.+?)(al|ance|ence|er|ic|able|ible|ant|ement|ment|ent|ou|ism|ate|iti|ous|ive|ize)$/;
 	  var re2_4 = /^(.+?)(s|t)(ion)$/;
-	
+
 	  var re_5 = /^(.+?)e$/;
 	  var re_5_1 = /ll$/;
 	  var re3_5 = new RegExp("^" + C + v + "[^aeiouwxy]$");
-	
+
 	  var porterStemmer = function porterStemmer(w) {
 	    var   stem,
 	      suffix,
@@ -2501,21 +2501,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	      re2,
 	      re3,
 	      re4;
-	
+
 	    if (w.length < 3) { return w; }
-	
+
 	    firstch = w.substr(0,1);
 	    if (firstch == "y") {
 	      w = firstch.toUpperCase() + w.substr(1);
 	    }
-	
+
 	    // Step 1a
 	    re = re_1a
 	    re2 = re2_1a;
-	
+
 	    if (re.test(w)) { w = w.replace(re,"$1$2"); }
 	    else if (re2.test(w)) { w = w.replace(re2,"$1$2"); }
-	
+
 	    // Step 1b
 	    re = re_1b;
 	    re2 = re2_1b;
@@ -2540,7 +2540,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        else if (re4.test(w)) { w = w + "e"; }
 	      }
 	    }
-	
+
 	    // Step 1c - replace suffix y or Y by i if preceded by a non-vowel which is not the first letter of the word (so cry -> cri, by -> by, say -> say)
 	    re = re_1c;
 	    if (re.test(w)) {
@@ -2548,7 +2548,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      stem = fp[1];
 	      w = stem + "i";
 	    }
-	
+
 	    // Step 2
 	    re = re_2;
 	    if (re.test(w)) {
@@ -2560,7 +2560,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        w = stem + step2list[suffix];
 	      }
 	    }
-	
+
 	    // Step 3
 	    re = re_3;
 	    if (re.test(w)) {
@@ -2572,7 +2572,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        w = stem + step3list[suffix];
 	      }
 	    }
-	
+
 	    // Step 4
 	    re = re_4;
 	    re2 = re2_4;
@@ -2591,7 +2591,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        w = stem;
 	      }
 	    }
-	
+
 	    // Step 5
 	    re = re_5;
 	    if (re.test(w)) {
@@ -2604,32 +2604,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	        w = stem;
 	      }
 	    }
-	
+
 	    re = re_5_1;
 	    re2 = re_mgr1;
 	    if (re.test(w) && re2.test(w)) {
 	      re = re_1b_2;
 	      w = w.replace(re,"");
 	    }
-	
+
 	    // and turn initial Y back to y
-	
+
 	    if (firstch == "y") {
 	      w = firstch.toLowerCase() + w.substr(1);
 	    }
-	
+
 	    return w;
 	  };
-	
+
 	  return porterStemmer;
 	})();
-	
+
 	lunr.Pipeline.registerFunction(lunr.stemmer, 'stemmer')
 	/*!
 	 * lunr.stopWordFilter
 	 * Copyright (C) 2016 Oliver Nightingale
 	 */
-	
+
 	/**
 	 * lunr.generateStopWordFilter builds a stopWordFilter function from the provided
 	 * list of stop words.
@@ -2648,12 +2648,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    memo[stopWord] = stopWord
 	    return memo
 	  }, {})
-	
+
 	  return function (token) {
 	    if (token && words[token] !== token) return token
 	  }
 	}
-	
+
 	/**
 	 * lunr.stopWordFilter is an English language stop word list filter, any words
 	 * contained in the list will not be passed through the filter.
@@ -2787,13 +2787,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  'you',
 	  'your'
 	])
-	
+
 	lunr.Pipeline.registerFunction(lunr.stopWordFilter, 'stopWordFilter')
 	/*!
 	 * lunr.trimmer
 	 * Copyright (C) 2016 Oliver Nightingale
 	 */
-	
+
 	/**
 	 * lunr.trimmer is a pipeline function for trimming non word
 	 * characters from the begining and end of tokens before they
@@ -2811,14 +2811,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	lunr.trimmer = function (token) {
 	  return token.replace(/^\W+/, '').replace(/\W+$/, '')
 	}
-	
+
 	lunr.Pipeline.registerFunction(lunr.trimmer, 'trimmer')
 	/*!
 	 * lunr.stemmer
 	 * Copyright (C) 2016 Oliver Nightingale
 	 * Includes code from - http://tartarus.org/~martin/PorterStemmer/js.txt
 	 */
-	
+
 	/**
 	 * lunr.TokenStore is used for efficient storing and lookup of the reverse
 	 * index of token to document ref.
@@ -2829,7 +2829,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  this.root = { docs: {} }
 	  this.length = 0
 	}
-	
+
 	/**
 	 * Loads a previously serialised token store
 	 *
@@ -2839,13 +2839,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	lunr.TokenStore.load = function (serialisedData) {
 	  var store = new this
-	
+
 	  store.root = serialisedData.root
 	  store.length = serialisedData.length
-	
+
 	  return store
 	}
-	
+
 	/**
 	 * Adds a new token doc pair to the store.
 	 *
@@ -2863,9 +2863,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var root = root || this.root,
 	      key = token.charAt(0),
 	      rest = token.slice(1)
-	
+
 	  if (!(key in root)) root[key] = {docs: {}}
-	
+
 	  if (rest.length === 0) {
 	    root[key].docs[doc.ref] = doc
 	    this.length += 1
@@ -2874,7 +2874,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return this.add(rest, doc, root[key])
 	  }
 	}
-	
+
 	/**
 	 * Checks whether this key is contained within this lunr.TokenStore.
 	 *
@@ -2887,18 +2887,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	lunr.TokenStore.prototype.has = function (token) {
 	  if (!token) return false
-	
+
 	  var node = this.root
-	
+
 	  for (var i = 0; i < token.length; i++) {
 	    if (!node[token.charAt(i)]) return false
-	
+
 	    node = node[token.charAt(i)]
 	  }
-	
+
 	  return true
 	}
-	
+
 	/**
 	 * Retrieve a node from the token store for a given token.
 	 *
@@ -2913,18 +2913,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	lunr.TokenStore.prototype.getNode = function (token) {
 	  if (!token) return {}
-	
+
 	  var node = this.root
-	
+
 	  for (var i = 0; i < token.length; i++) {
 	    if (!node[token.charAt(i)]) return {}
-	
+
 	    node = node[token.charAt(i)]
 	  }
-	
+
 	  return node
 	}
-	
+
 	/**
 	 * Retrieve the documents for a node for the given token.
 	 *
@@ -2939,11 +2939,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	lunr.TokenStore.prototype.get = function (token, root) {
 	  return this.getNode(token, root).docs || {}
 	}
-	
+
 	lunr.TokenStore.prototype.count = function (token, root) {
 	  return Object.keys(this.get(token, root)).length
 	}
-	
+
 	/**
 	 * Remove the document identified by ref from the token in the store.
 	 *
@@ -2959,15 +2959,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	lunr.TokenStore.prototype.remove = function (token, ref) {
 	  if (!token) return
 	  var node = this.root
-	
+
 	  for (var i = 0; i < token.length; i++) {
 	    if (!(token.charAt(i) in node)) return
 	    node = node[token.charAt(i)]
 	  }
-	
+
 	  delete node.docs[ref]
 	}
-	
+
 	/**
 	 * Find all the possible suffixes of the passed token using tokens
 	 * currently in the store.
@@ -2980,19 +2980,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var root = this.getNode(token),
 	      docs = root.docs || {},
 	      memo = memo || []
-	
+
 	  if (Object.keys(docs).length) memo.push(token)
-	
+
 	  Object.keys(root)
 	    .forEach(function (key) {
 	      if (key === 'docs') return
-	
+
 	      memo.concat(this.expand(token + key, memo))
 	    }, this)
-	
+
 	  return memo
 	}
-	
+
 	/**
 	 * Returns a representation of the token store ready for serialisation.
 	 *
@@ -3005,7 +3005,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    length: this.length
 	  }
 	}
-	
+
 	  /**
 	   * export the module via AMD, CommonJS or as a browser global
 	   * Export code from https://github.com/umdjs/umd/blob/master/returnExports.js
@@ -3047,41 +3047,41 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
+
 	var _ = __webpack_require__(16);
-	
+
 	var frequently = _.store.get('frequently') || {};
-	
+
 	function add(emoji) {
 	  var id = emoji.id;
-	
-	
+
+
 	  frequently[id] || (frequently[id] = 0);
 	  frequently[id] += 1;
-	
+
 	  _.store.set('last', id);
 	  _.store.set('frequently', frequently);
 	}
-	
+
 	function get(quantity) {
 	  var sorted = Object.keys(frequently).sort(function (a, b) {
 	    return frequently[a] - frequently[b];
 	  }).reverse(),
 	      sliced = sorted.slice(0, quantity),
 	      last = _.store.get('last');
-	
+
 	  if (last && sliced.indexOf(last) == -1) {
 	    sliced.pop();
 	    sliced.push(last);
 	  }
-	
+
 	  return sliced;
 	}
-	
+
 	exports.default = { add: add, get: get };
 
 /***/ },
@@ -3089,47 +3089,47 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
+
 	var _react = __webpack_require__(3);
-	
+
 	var _react2 = _interopRequireDefault(_react);
-	
+
 	var _data = __webpack_require__(20);
-	
+
 	var _data2 = _interopRequireDefault(_data);
-	
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
+
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-	
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
+
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
+
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
+
 	var SHEET_COLUMNS = 41;
 	var SKINS = ['1F3FA', '1F3FB', '1F3FC', '1F3FD', '1F3FE', '1F3FF'];
-	
+
 	var Emoji = function (_React$Component) {
 	  _inherits(Emoji, _React$Component);
-	
+
 	  function Emoji(props) {
 	    _classCallCheck(this, Emoji);
-	
+
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Emoji).call(this, props));
-	
+
 	    var emojiData = _this.getEmojiData();
 	    _this.hasSkinVariations = !!emojiData.skin_variations;
 	    return _this;
 	  }
-	
+
 	  _createClass(Emoji, [{
 	    key: 'shouldComponentUpdate',
 	    value: function shouldComponentUpdate(nextProps) {
@@ -3143,30 +3143,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var skin = _props.skin;
 	      var sheetURL = _props.sheetURL;
 	      var emojiData = emoji;
-	
+
 	      if (typeof emoji == 'string') {
 	        emojiData = _data2.default.emojis[emoji];
 	      }
-	
+
 	      if (this.hasSkinVariations && skin > 1) {
 	        emojiData = JSON.parse(JSON.stringify(_data2.default.emojis[emoji]));
-	
+
 	        var skinKey = SKINS[skin - 1],
 	            variationKey = emojiData.unified + '-' + skinKey,
 	            variationData = emojiData.skin_variations[variationKey],
 	            kitMatches = sheetURL.match(/(apple|google|twitter|emojione)/),
 	            kit = kitMatches[0];
-	
+
 	        if (variationData['has_img_' + kit]) {
 	          emojiData.skin_tone = skin;
-	
+
 	          for (var k in variationData) {
 	            var v = variationData[k];
 	            emojiData[k] = v;
 	          }
 	        }
 	      }
-	
+
 	      return emojiData;
 	    }
 	  }, {
@@ -3175,7 +3175,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var sheet_x = emojiData.sheet_x;
 	      var sheet_y = emojiData.sheet_y;
 	      var multiply = 100 / (SHEET_COLUMNS - 1);
-	
+
 	      return multiply * sheet_x + '% ' + multiply * sheet_y + '%';
 	    }
 	  }, {
@@ -3186,7 +3186,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var codePoints = unicodes.map(function (u) {
 	        return '0x' + u;
 	      });
-	
+
 	      return String.fromCodePoint.apply(String, _toConsumableArray(codePoints));
 	    }
 	  }, {
@@ -3200,11 +3200,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var unified = emojiData.unified;
 	      var id = short_names[0];
 	      var colons = ':' + id + ':';
-	
+
 	      if (skin_tone) {
 	        colons += ':skin-tone-' + skin_tone + ':';
 	      }
-	
+
 	      onClick({
 	        id: id,
 	        name: name,
@@ -3218,14 +3218,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
-	
+
 	      var _props2 = this.props;
 	      var sheetURL = _props2.sheetURL;
 	      var size = _props2.size;
 	      var onOver = _props2.onOver;
 	      var onLeave = _props2.onLeave;
 	      var emojiData = this.getEmojiData();
-	
+
 	      return _react2.default.createElement(
 	        'span',
 	        {
@@ -3250,13 +3250,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      );
 	    }
 	  }]);
-	
+
 	  return Emoji;
 	}(_react2.default.Component);
-	
+
 	exports.default = Emoji;
-	
-	
+
+
 	Emoji.propTypes = {
 	  skin: _react2.default.PropTypes.number,
 	  onOver: _react2.default.PropTypes.func,
@@ -3266,7 +3266,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  sheetURL: _react2.default.PropTypes.string.isRequired,
 	  emoji: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.object]).isRequired
 	};
-	
+
 	Emoji.defaultProps = {
 	  skin: 1,
 	  onOver: function onOver() {},
@@ -3279,58 +3279,58 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
+
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
+
 	__webpack_require__(24);
-	
+
 	var _react = __webpack_require__(3);
-	
+
 	var _react2 = _interopRequireDefault(_react);
-	
+
 	var _data = __webpack_require__(20);
-	
+
 	var _data2 = _interopRequireDefault(_data);
-	
+
 	var _utils = __webpack_require__(16);
-	
+
 	var _ = __webpack_require__(1);
-	
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
+
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
+
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
+
 	var RECENT_CATEGORY = { name: 'Recent', emojis: null };
 	var SEARCH_CATEGORY = { name: 'Search', emojis: null, anchor: RECENT_CATEGORY };
-	
+
 	var CATEGORIES = [SEARCH_CATEGORY, RECENT_CATEGORY].concat(_data2.default.categories);
-	
+
 	var Picker = function (_React$Component) {
 	  _inherits(Picker, _React$Component);
-	
+
 	  function Picker(props) {
 	    _classCallCheck(this, Picker);
-	
+
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Picker).call(this, props));
-	
+
 	    _this.testStickyPosition();
-	
+
 	    _this.state = {
 	      skin: _utils.store.get('skin') || props.skin
 	    };
 	    return _this;
 	  }
-	
+
 	  _createClass(Picker, [{
 	    key: 'componentWillReceiveProps',
 	    value: function componentWillReceiveProps(props) {
@@ -3353,14 +3353,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var prefix = _arr[_i];
 	        stickyTestElement.style.position = prefix + 'sticky';
 	      }
-	
+
 	      this.hasStickyPosition = !!stickyTestElement.style.position.length;
 	    }
 	  }, {
 	    key: 'handleEmojiOver',
 	    value: function handleEmojiOver(emoji) {
 	      var preview = this.refs.preview;
-	
+
 	      preview.setState({ emoji: emoji });
 	      clearTimeout(this.leaveTimeout);
 	    }
@@ -3368,10 +3368,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: 'handleEmojiLeave',
 	    value: function handleEmojiLeave(emoji) {
 	      var _this2 = this;
-	
+
 	      this.leaveTimeout = setTimeout(function () {
 	        var preview = _this2.refs.preview;
-	
+
 	        preview.setState({ emoji: null });
 	      }, 16);
 	    }
@@ -3379,20 +3379,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: 'handleEmojiClick',
 	    value: function handleEmojiClick(emoji) {
 	      var _this3 = this;
-	
+
 	      this.props.onClick(emoji);
 	      _utils.frequently.add(emoji);
-	
+
 	      var component = this.refs['category-1'];
 	      if (component) {
 	        (function () {
 	          var maxMargin = component.maxMargin;
 	          component.forceUpdate();
-	
+
 	          window.requestAnimationFrame(function () {
 	            component.memoizeSize();
 	            if (maxMargin == component.maxMargin) return;
-	
+
 	            _this3.updateCategoriesSize();
 	            _this3.handleScrollPaint();
 	          });
@@ -3411,24 +3411,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: 'handleScrollPaint',
 	    value: function handleScrollPaint() {
 	      this.waitingForPaint = false;
-	
+
 	      var target = this.refs.scroll,
 	          scrollTop = target.scrollTop,
 	          scrollingDown = scrollTop > (this.scrollTop || 0),
 	          activeCategory = null,
 	          minTop = 0;
-	
+
 	      for (var i = 0, l = CATEGORIES.length; i < l; i++) {
 	        var ii = scrollingDown ? CATEGORIES.length - 1 - i : i,
 	            category = CATEGORIES[ii],
 	            component = this.refs['category-' + ii];
-	
+
 	        if (!minTop || component.top < minTop) {
 	          if (component.top > 0) {
 	            minTop = component.top;
 	          }
 	        }
-	
+
 	        if (component) {
 	          var active = component.handleScroll(scrollTop);
 	          if (active && !activeCategory) {
@@ -3437,38 +3437,38 @@ return /******/ (function(modules) { // webpackBootstrap
 	          }
 	        }
 	      }
-	
+
 	      if (scrollTop < minTop) {
 	        activeCategory = RECENT_CATEGORY;
 	      }
-	
+
 	      if (activeCategory) {
 	        var anchors = this.refs.anchors;
 	        var _activeCategory = activeCategory;
 	        var categoryName = _activeCategory.name;
-	
-	
+
+
 	        if (anchors.state.selected != categoryName) {
 	          anchors.setState({ selected: categoryName });
 	        }
 	      }
-	
+
 	      this.scrollTop = scrollTop;
 	    }
 	  }, {
 	    key: 'handleSearch',
 	    value: function handleSearch(emojis) {
 	      SEARCH_CATEGORY.emojis = emojis;
-	
+
 	      for (var i = 0, l = CATEGORIES.length; i < l; i++) {
 	        var component = this.refs['category-' + i];
-	
+
 	        if (component && component.props.name != 'Search') {
 	          var display = emojis ? 'none' : null;
 	          component.updateDisplay(display);
 	        }
 	      }
-	
+
 	      this.forceUpdate();
 	    }
 	  }, {
@@ -3479,26 +3479,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var scroll = _refs.scroll;
 	      var anchors = _refs.anchors;
 	      var scrollToComponent = null;
-	
+
 	      scrollToComponent = function scrollToComponent() {
 	        if (component) {
 	          var top = component.top;
-	
-	
+
+
 	          if (category.name == 'Recent') {
 	            top = 0;
 	          } else {
 	            top += 1;
 	          }
-	
+
 	          scroll.scrollTop = top;
 	        }
 	      };
-	
+
 	      if (SEARCH_CATEGORY.emojis) {
 	        this.handleSearch(null);
 	        this.refs.search.clear();
-	
+
 	        window.requestAnimationFrame(scrollToComponent);
 	      } else {
 	        scrollToComponent();
@@ -3508,7 +3508,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: 'handleSkinChange',
 	    value: function handleSkinChange(skin) {
 	      var newState = { skin: skin };
-	
+
 	      this.setState(newState);
 	      _utils.store.update(newState);
 	    }
@@ -3524,7 +3524,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: 'render',
 	    value: function render() {
 	      var _this4 = this;
-	
+
 	      var _props = this.props;
 	      var perLine = _props.perLine;
 	      var emojiSize = _props.emojiSize;
@@ -3532,7 +3532,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var style = _props.style;
 	      var skin = this.state.skin;
 	      var width = perLine * (emojiSize + 12) + 12 + 2;
-	
+
 	      return _react2.default.createElement(
 	        'div',
 	        { style: _extends({}, style, { width: width }), className: 'emoji-picker' },
@@ -3589,13 +3589,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      );
 	    }
 	  }]);
-	
+
 	  return Picker;
 	}(_react2.default.Component);
-	
+
 	exports.default = Picker;
-	
-	
+
+
 	Picker.propTypes = {
 	  onClick: _react2.default.PropTypes.func,
 	  skin: _react2.default.PropTypes.number,
@@ -3604,7 +3604,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  style: _react2.default.PropTypes.object,
 	  sheetURL: _react2.default.PropTypes.string.isRequired
 	};
-	
+
 	Picker.defaultProps = {
 	  onClick: function onClick() {},
 	  emojiSize: 24,
@@ -3618,14 +3618,14 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	'use strict';
-	
+
 	// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
 	// http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
-	
+
 	// requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
-	
+
 	// MIT license
-	
+
 	(function () {
 	    var lastTime = 0;
 	    var vendors = ['ms', 'moz', 'webkit', 'o'];
@@ -3633,7 +3633,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
 	        window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
 	    }
-	
+
 	    if (!window.requestAnimationFrame) window.requestAnimationFrame = function (callback, element) {
 	        var currTime = new Date().getTime();
 	        var timeToCall = Math.max(0, 16 - (currTime - lastTime));
@@ -3643,7 +3643,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        lastTime = currTime + timeToCall;
 	        return id;
 	    };
-	
+
 	    if (!window.cancelAnimationFrame) window.cancelAnimationFrame = function (id) {
 	        clearTimeout(id);
 	    };
@@ -3654,41 +3654,41 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
+
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
+
 	var _react = __webpack_require__(3);
-	
+
 	var _react2 = _interopRequireDefault(_react);
-	
+
 	var _ = __webpack_require__(1);
-	
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
+
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
+
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
+
 	var Preview = function (_React$Component) {
 	  _inherits(Preview, _React$Component);
-	
+
 	  function Preview(props) {
 	    _classCallCheck(this, Preview);
-	
+
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Preview).call(this, props));
-	
+
 	    _this.state = { emoji: null };
 	    return _this;
 	  }
-	
+
 	  _createClass(Preview, [{
 	    key: 'render',
 	    value: function render() {
@@ -3696,21 +3696,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _props = this.props;
 	      var emojiProps = _props.emojiProps;
 	      var skinsProps = _props.skinsProps;
-	
-	
+
+
 	      if (emoji) {
 	        var emoticons = emoji.emoticons;
 	        var knownEmoticons = [];
 	        var listedEmoticons = [];
-	
+
 	        var _iteratorNormalCompletion = true;
 	        var _didIteratorError = false;
 	        var _iteratorError = undefined;
-	
+
 	        try {
 	          for (var _iterator = emoticons[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 	            var emoticon = _step.value;
-	
+
 	            if (knownEmoticons.indexOf(emoticon.toLowerCase()) == -1) {
 	              knownEmoticons.push(emoticon.toLowerCase());
 	              listedEmoticons.push(emoticon);
@@ -3730,7 +3730,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	          }
 	        }
-	
+
 	        return _react2.default.createElement(
 	          'div',
 	          { className: 'emoji-picker-preview' },
@@ -3803,13 +3803,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  }]);
-	
+
 	  return Preview;
 	}(_react2.default.Component);
-	
+
 	exports.default = Preview;
-	
-	
+
+
 	Preview.propTypes = {
 	  emojiProps: _react2.default.PropTypes.object.isRequired,
 	  skinsProps: _react2.default.PropTypes.object.isRequired
@@ -3820,42 +3820,42 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
+
 	var _react = __webpack_require__(3);
-	
+
 	var _react2 = _interopRequireDefault(_react);
-	
+
 	var _utils = __webpack_require__(16);
-	
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
+
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
+
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
+
 	var Search = function (_React$Component) {
 	  _inherits(Search, _React$Component);
-	
+
 	  function Search() {
 	    _classCallCheck(this, Search);
-	
+
 	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Search).apply(this, arguments));
 	  }
-	
+
 	  _createClass(Search, [{
 	    key: 'handleChange',
 	    value: function handleChange() {
 	      var input = this.refs.input;
 	      var value = input.value;
-	
+
 	      this.props.onSearch(_utils.emojiIndex.search(value));
 	    }
 	  }, {
@@ -3875,18 +3875,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	      });
 	    }
 	  }]);
-	
+
 	  return Search;
 	}(_react2.default.Component);
-	
+
 	exports.default = Search;
-	
-	
+
+
 	Search.propTypes = {
 	  onSearch: _react2.default.PropTypes.func,
 	  maxResults: _react2.default.PropTypes.number
 	};
-	
+
 	Search.defaultProps = {
 	  onSearch: function onSearch() {},
 	  maxResults: 75
@@ -3897,45 +3897,45 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
+
 	var _react = __webpack_require__(3);
-	
+
 	var _react2 = _interopRequireDefault(_react);
-	
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
+
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
+
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
+
 	var Skins = function (_React$Component) {
 	  _inherits(Skins, _React$Component);
-	
+
 	  function Skins(props) {
 	    _classCallCheck(this, Skins);
-	
+
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Skins).call(this, props));
-	
+
 	    _this.state = {
 	      opened: false
 	    };
 	    return _this;
 	  }
-	
+
 	  _createClass(Skins, [{
 	    key: 'handleClick',
 	    value: function handleClick(skin) {
 	      var onChange = this.props.onChange;
-	
-	
+
+
 	      if (!this.state.opened) {
 	        this.setState({ opened: true });
 	      } else {
@@ -3947,11 +3947,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
-	
+
 	      var skin = this.props.skin;
 	      var opened = this.state.opened;
-	
-	
+
+
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -3961,7 +3961,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          Array(6).fill().map(function (_, i) {
 	            var skinTone = i + 1,
 	                selected = skinTone == skin;
-	
+
 	            return _react2.default.createElement(
 	              'span',
 	              { key: 'skin-tone-' + skinTone, className: 'emoji-picker-skin-swatch ' + (selected ? 'emoji-picker-skin-swatch-selected' : '') },
@@ -3976,18 +3976,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	      );
 	    }
 	  }]);
-	
+
 	  return Skins;
 	}(_react2.default.Component);
-	
+
 	exports.default = Skins;
-	
-	
+
+
 	Skins.propTypes = {
 	  onChange: _react2.default.PropTypes.func,
 	  skin: _react2.default.PropTypes.number.isRequired
 	};
-	
+
 	Skins.defaultProps = {
 	  onChange: function onChange() {}
 	};
@@ -3996,4 +3996,3 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ ])
 });
 ;
-//# sourceMappingURL=emoji-picker.js.map
