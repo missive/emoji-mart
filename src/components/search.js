@@ -1,64 +1,12 @@
 import React from 'react'
-import lunr from 'lunr'
-
-import data from '../../data'
+import {emojiIndex} from '../utils'
 
 export default class Search extends React.Component {
-  constructor(props) {
-    super(props)
-    this.buildIndex()
-  }
-
-  buildIndex() {
-    this.index = lunr(function() {
-      this.pipeline.reset()
-
-      this.field('short_name', { boost: 2 })
-      this.field('emoticons')
-      this.field('name')
-
-      this.ref('id')
-    })
-
-    for (let emoji in data.emojis) {
-      let emojiData = data.emojis[emoji],
-          { short_name, name, emoticons } = emojiData
-
-      this.index.add({
-        id: short_name,
-        emoticons: emoticons,
-        short_name: this.tokenize(short_name),
-        name: this.tokenize(name),
-      })
-    }
-  }
-
-  tokenize (string) {
-    if (['-', '-1', '+', '+1'].indexOf(string) == 0) {
-      return string.split('')
-    }
-
-    if (/(:|;|=)-/.test(string)) {
-      return [string]
-    }
-
-    return string.split(/[-|_|\s]+/)
-  }
-
   handleChange() {
     var { input } = this.refs,
-        value = input.value,
-        results = null
+        value = input.value
 
-    if (value.length) {
-      results = this.index.search(this.tokenize(value)).map((result) =>
-        result.ref
-      )
-
-      results = results.slice(0, this.props.maxResults)
-    }
-
-    this.props.onSearch(results)
+    this.props.onSearch(emojiIndex.search(value))
   }
 
   clear() {
