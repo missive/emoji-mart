@@ -196,13 +196,6 @@
   font-weight: 500;
 }
 
-.emoji-picker-skin-current {
-  display: inline-block;
-  padding: 2px;
-  border-radius: 100%;
-  border: 1px solid #d9d9d9;
-}
-
 .emoji-picker-skin-swatches {
   padding: 2px 0;
   border: 1px solid #d9d9d9;
