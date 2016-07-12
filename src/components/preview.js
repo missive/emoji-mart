@@ -33,15 +33,17 @@ export default class Preview extends React.Component {
         </div>
 
         <div className='emoji-picker-preview-data'>
-          <span className='emoji-picker-preview-name'>{emoji.name}</span><br />
-          <span className='emoji-picker-preview-shortnames'>
+          <div className='emoji-picker-preview-name'>{emoji.name}</div>
+          <div className='emoji-picker-preview-shortnames'>
             {emoji.short_names.map((short_name) =>
               <span key={short_name} className='emoji-picker-preview-shortname'>:{short_name}:</span>
-            )}<br />
+            )}
+          </div>
+          <div className='emoji-picker-preview-emoticons'>
             {listedEmoticons.map((emoticon) =>
               <span key={emoticon} className='emoji-picker-preview-emoticon'>{emoticon}</span>
             )}
-          </span>
+          </div>
         </div>
       </div>
     } else {
