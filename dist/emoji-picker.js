@@ -3746,13 +3746,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            'div',
 	            { className: 'emoji-picker-preview-data' },
 	            _react2.default.createElement(
-	              'span',
+	              'div',
 	              { className: 'emoji-picker-preview-name' },
 	              emoji.name
 	            ),
-	            _react2.default.createElement('br', null),
 	            _react2.default.createElement(
-	              'span',
+	              'div',
 	              { className: 'emoji-picker-preview-shortnames' },
 	              emoji.short_names.map(function (short_name) {
 	                return _react2.default.createElement(
@@ -3762,8 +3761,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                  short_name,
 	                  ':'
 	                );
-	              }),
-	              _react2.default.createElement('br', null),
+	              })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'emoji-picker-preview-emoticons' },
 	              listedEmoticons.map(function (emoticon) {
 	                return _react2.default.createElement(
 	                  'span',
