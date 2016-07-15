@@ -3326,7 +3326,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _this.testStickyPosition();
 
 	    _this.state = {
-	      skin: _utils.store.get('skin') || props.skin
+	      skin: _utils.store.get('skin') || props.skin,
+	      firstRender: true
 	    };
 	    return _this;
 	  }
@@ -3339,10 +3340,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+
+	      if (this.state.firstRender) {
+	        this.firstRenderTimeout = setTimeout(function () {
+	          _this2.setState({ firstRender: false });
+	        }, 60);
+	      }
+	    }
+	  }, {
 	    key: 'componentDidUpdate',
 	    value: function componentDidUpdate() {
 	      this.updateCategoriesSize();
 	      this.handleScroll();
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      clearTimeout(this.leaveTimeout);
+	      clearTimeout(this.firstRenderTimeout);
 	    }
 	  }, {
 	    key: 'testStickyPosition',
@@ -3367,10 +3385,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'handleEmojiLeave',
 	    value: function handleEmojiLeave(emoji) {
-	      var _this2 = this;
+	      var _this3 = this;
 
 	      this.leaveTimeout = setTimeout(function () {
-	        var preview = _this2.refs.preview;
+	        var preview = _this3.refs.preview;
 
 	        preview.setState({ emoji: null });
 	      }, 16);
@@ -3378,7 +3396,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'handleEmojiClick',
 	    value: function handleEmojiClick(emoji) {
-	      var _this3 = this;
+	      var _this4 = this;
 
 	      this.props.onClick(emoji);
 	      _utils.frequently.add(emoji);
@@ -3393,8 +3411,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            component.memoizeSize();
 	            if (maxMargin == component.maxMargin) return;
 
-	            _this3.updateCategoriesSize();
-	            _this3.handleScrollPaint();
+	            _this4.updateCategoriesSize();
+	            _this4.handleScrollPaint();
 	          });
 	        })();
 	      }
@@ -3412,6 +3430,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function handleScrollPaint() {
 	      this.waitingForPaint = false;
 
+	      if (!this.refs.scroll) {
+	        return;
+	      }
+
 	      var target = this.refs.scroll,
 	          scrollTop = target.scrollTop,
 	          scrollingDown = scrollTop > (this.scrollTop || 0),
@@ -3423,14 +3445,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            category = CATEGORIES[ii],
 	            component = this.refs['category-' + ii];
 
-	        if (!minTop || component.top < minTop) {
-	          if (component.top > 0) {
-	            minTop = component.top;
-	          }
-	        }
-
 	        if (component) {
 	          var active = component.handleScroll(scrollTop);
+
+	          if (!minTop || component.top < minTop) {
+	            if (component.top > 0) {
+	              minTop = component.top;
+	            }
+	          }
+
 	          if (active && !activeCategory) {
 	            if (category.anchor) category = category.anchor;
 	            activeCategory = category;
@@ -3521,15 +3544,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  }, {
+	    key: 'getCategories',
+	    value: function getCategories() {
+	      var categories = CATEGORIES;
+
+	      return this.state.firstRender ? categories.slice(0, 3) : categories;
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _this4 = this;
+	      var _this5 = this;
 
 	      var _props = this.props;
 	      var perLine = _props.perLine;
 	      var emojiSize = _props.emojiSize;
 	      var sheetURL = _props.sheetURL;
 	      var style = _props.style;
+	      var title = _props.title;
+	      var emoji = _props.emoji;
 	      var skin = this.state.skin;
 	      var width = perLine * (emojiSize + 12) + 12 + 2;
 
@@ -3552,21 +3584,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	            ref: 'search',
 	            onSearch: this.handleSearch.bind(this)
 	          }),
-	          CATEGORIES.map(function (category, i) {
+	          this.getCategories().map(function (category, i) {
 	            return _react2.default.createElement(_.Category, {
 	              ref: 'category-' + i,
 	              key: category.name,
 	              name: category.name,
 	              emojis: category.emojis,
 	              perLine: perLine,
-	              hasStickyPosition: _this4.hasStickyPosition,
+	              hasStickyPosition: _this5.hasStickyPosition,
 	              emojiProps: {
 	                skin: skin,
 	                size: emojiSize,
 	                sheetURL: sheetURL,
-	                onOver: _this4.handleEmojiOver.bind(_this4),
-	                onLeave: _this4.handleEmojiLeave.bind(_this4),
-	                onClick: _this4.handleEmojiClick.bind(_this4)
+	                onOver: _this5.handleEmojiOver.bind(_this5),
+	                onLeave: _this5.handleEmojiLeave.bind(_this5),
+	                onClick: _this5.handleEmojiClick.bind(_this5)
 	              }
 	            });
 	          })
@@ -3576,6 +3608,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	          { className: 'emoji-picker-bar' },
 	          _react2.default.createElement(_.Preview, {
 	            ref: 'preview',
+	            title: title,
+	            emoji: emoji,
 	            emojiProps: {
 	              size: 38,
 	              sheetURL: sheetURL
@@ -3602,6 +3636,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  perLine: _react2.default.PropTypes.number,
 	  emojiSize: _react2.default.PropTypes.number,
 	  style: _react2.default.PropTypes.object,
+	  title: _react2.default.PropTypes.string,
+	  emoji: _react2.default.PropTypes.string,
 	  sheetURL: _react2.default.PropTypes.string.isRequired
 	};
 
@@ -3610,7 +3646,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  emojiSize: 24,
 	  perLine: 9,
 	  style: {},
-	  skin: 1
+	  skin: 1,
+	  title: 'EmojiPicker',
+	  emoji: 'tophat'
 	};
 
 /***/ },
@@ -3696,6 +3734,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _props = this.props;
 	      var emojiProps = _props.emojiProps;
 	      var skinsProps = _props.skinsProps;
+	      var title = _props.title;
+	      var idleEmoji = _props.emoji;
 
 
 	      if (emoji) {
@@ -3784,7 +3824,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            'div',
 	            { className: 'emoji-picker-preview-emoji' },
 	            _react2.default.createElement(_.Emoji, _extends({
-	              emoji: 'tophat'
+	              emoji: idleEmoji
 	            }, emojiProps))
 	          ),
 	          _react2.default.createElement(
@@ -3793,7 +3833,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _react2.default.createElement(
 	              'span',
 	              { className: 'emoji-picker-title-label' },
-	              'EmojiPicker'
+	              title
 	            )
 	          ),
 	          _react2.default.createElement(
@@ -3813,6 +3853,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	Preview.propTypes = {
+	  title: _react2.default.PropTypes.string.isRequired,
+	  emoji: _react2.default.PropTypes.string.isRequired,
 	  emojiProps: _react2.default.PropTypes.object.isRequired,
 	  skinsProps: _react2.default.PropTypes.object.isRequired
 	};
