@@ -33,8 +33,7 @@ export default class Picker extends React.Component {
 
   componentDidMount() {
     if (this.state.firstRender) {
-      setTimeout(() => {
-        if (!this.isMounted) return
+      this.firstRenderTimeout = setTimeout(() => {
         this.setState({ firstRender: false })
       }, 60)
     }
@@ -43,6 +42,11 @@ export default class Picker extends React.Component {
   componentDidUpdate() {
     this.updateCategoriesSize()
     this.handleScroll()
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.leaveTimeout)
+    clearTimeout(this.firstRenderTimeout)
   }
 
   testStickyPosition() {
