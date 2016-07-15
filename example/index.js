@@ -11,6 +11,7 @@ class Example extends React.Component {
       perLine: 9,
       skin: 1,
       set: 'apple',
+      hidden: false,
     }
   }
 
@@ -43,6 +44,12 @@ class Example extends React.Component {
         })}
       </div>
 
+      <div>
+        <button
+          onClick={() => this.setState({ hidden: !this.state.hidden })}
+        >{this.state.hidden ? 'Mount' : 'Unmount'}</button>
+      </div>
+
       <pre style={{
         fontSize: 18,
         display: 'inline-block',
@@ -61,13 +68,15 @@ class Example extends React.Component {
 <br /><Operator>/&gt;</Operator>
       </pre>
 
-      <Picker
-        emojiSize={this.state.emojiSize}
-        perLine={this.state.perLine}
-        skin={this.state.skin}
-        sheetURL={`../sheets/sheet_${this.state.set}_64.png`}
-        onClick={(emoji) => console.log(emoji)}
-      />
+      {!this.state.hidden &&
+        <Picker
+          emojiSize={this.state.emojiSize}
+          perLine={this.state.perLine}
+          skin={this.state.skin}
+          sheetURL={`../sheets/sheet_${this.state.set}_64.png`}
+          onClick={(emoji) => console.log(emoji)}
+        />
+      }
     </div>
   }
 }

@@ -21,12 +21,22 @@ export default class Picker extends React.Component {
 
     this.state = {
       skin: store.get('skin') || props.skin,
+      firstRender: true,
     }
   }
 
   componentWillReceiveProps(props) {
     if (props.skin && !store.get('skin')) {
       this.setState({ skin: props.skin })
+    }
+  }
+
+  componentDidMount() {
+    if (this.state.firstRender) {
+      setTimeout(() => {
+        if (!this.isMounted) return
+        this.setState({ firstRender: false })
+      }, 60)
     }
   }
 
@@ -86,6 +96,10 @@ export default class Picker extends React.Component {
   handleScrollPaint() {
     this.waitingForPaint = false
 
+    if (!this.refs.scroll) {
+      return
+    }
+
     var target = this.refs.scroll,
         scrollTop = target.scrollTop,
         scrollingDown = scrollTop > (this.scrollTop || 0),
@@ -97,14 +111,15 @@ export default class Picker extends React.Component {
           category = CATEGORIES[ii],
           component = this.refs[`category-${ii}`]
 
-      if (!minTop || component.top < minTop) {
-        if (component.top > 0) {
-          minTop = component.top
-        }
-      }
-
       if (component) {
         let active = component.handleScroll(scrollTop)
+
+        if (!minTop || component.top < minTop) {
+          if (component.top > 0) {
+            minTop = component.top
+          }
+        }
+
         if (active && !activeCategory) {
           if (category.anchor) category = category.anchor
           activeCategory = category
@@ -186,6 +201,12 @@ export default class Picker extends React.Component {
     }
   }
 
+  getCategories() {
+    var categories = CATEGORIES
+
+    return this.state.firstRender ? categories.slice(0, 3) : categories
+  }
+
   render() {
     var { perLine, emojiSize, sheetURL, style } = this.props,
         { skin } = this.state,
@@ -206,7 +227,7 @@ export default class Picker extends React.Component {
           onSearch={this.handleSearch.bind(this)}
         />
 
-        {CATEGORIES.map((category, i) => {
+        {this.getCategories().map((category, i) => {
           return <Category
             ref={`category-${i}`}
             key={category.name}
