@@ -60,6 +60,8 @@ class Example extends React.Component {
 <Operator>import</Operator> &#123;Picker&#125; <Operator>from</Operator> <String>'emoji-picker'</String>
 <br />
 <br /><Operator>&lt;</Operator><Variable>Picker</Variable>
+<br />  title<Operator>=</Operator><String>'EmojiPicker'</String>
+<br />  emoji<Operator>=</Operator><String>'tophat'</String>
 <br />  emojiSize<Operator>=</Operator>&#123;<Variable>{this.state.emojiSize}</Variable>&#125; <input type='range' data-key='emojiSize' onChange={this.handleInput.bind(this)} min='16' max='64' value={this.state.emojiSize} />
 <br />  perLine<Operator>=</Operator>&#123;<Variable>{this.state.perLine}</Variable>&#125; {this.state.perLine < 10 ? '  ' : ' '} <input type='range' data-key='perLine' onChange={this.handleInput.bind(this)} min='7' max='16' value={this.state.perLine} />
 <br />  skin<Operator>=</Operator>&#123;<Variable>{this.state.skin}</Variable>&#125;       <input type='range' data-key='skin' onChange={this.handleInput.bind(this)} min='1' max='6' value={this.state.skin} />

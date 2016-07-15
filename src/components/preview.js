@@ -9,7 +9,7 @@ export default class Preview extends React.Component {
 
   render() {
     var { emoji } = this.state,
-        { emojiProps, skinsProps } = this.props
+        { emojiProps, skinsProps, title, emoji: idleEmoji } = this.props
 
     if (emoji) {
       var { emoticons } = emoji,
@@ -50,14 +50,14 @@ export default class Preview extends React.Component {
       return <div className='emoji-picker-preview'>
         <div className='emoji-picker-preview-emoji'>
           <Emoji
-            emoji='tophat'
+            emoji={idleEmoji}
             {...emojiProps}
           />
         </div>
 
         <div className='emoji-picker-preview-data'>
           <span className='emoji-picker-title-label'>
-            EmojiPicker
+            {title}
           </span>
         </div>
 
@@ -72,6 +72,8 @@ export default class Preview extends React.Component {
 }
 
 Preview.propTypes = {
+  title: React.PropTypes.string.isRequired,
+  emoji: React.PropTypes.string.isRequired,
   emojiProps: React.PropTypes.object.isRequired,
   skinsProps: React.PropTypes.object.isRequired,
 }
