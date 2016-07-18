@@ -1,6 +1,8 @@
 import lunr from 'lunr'
 import data from '../../data'
 
+var emoticonsList = []
+
 var index = lunr(function() {
   this.pipeline.reset()
 
@@ -14,6 +16,12 @@ var index = lunr(function() {
 for (let emoji in data.emojis) {
   let emojiData = data.emojis[emoji],
       { short_name, name, emoticons } = emojiData
+
+  for (let emoticon of emoticons) {
+    if (emoticonsList.indexOf(emoticon) == -1) {
+      emoticonsList.push(emoticon)
+    }
+  }
 
   index.add({
     id: short_name,
@@ -49,4 +57,4 @@ function tokenize (string = '') {
   return string.split(/[-|_|\s]+/)
 }
 
-export default { search }
+export default { search, emoticons: emoticonsList }
