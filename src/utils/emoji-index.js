@@ -36,7 +36,7 @@ function search(value, maxResults = 75) {
 
   if (value.length) {
     results = index.search(tokenize(value)).map((result) =>
-      result.ref
+      data.emojis[result.ref]
     )
 
     results = results.slice(0, maxResults)
