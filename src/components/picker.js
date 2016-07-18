@@ -45,6 +45,8 @@ export default class Picker extends React.Component {
   }
 
   componentWillUnmount() {
+    SEARCH_CATEGORY.emojis = null
+
     clearTimeout(this.leaveTimeout)
     clearTimeout(this.firstRenderTimeout)
   }
