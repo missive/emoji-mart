@@ -37,8 +37,8 @@ function search(value, maxResults = 75) {
   return results
 }
 
-function tokenize (string) {
-  if (['-', '-1', '+', '+1'].indexOf(string) == 0) {
+function tokenize (string = '') {
+  if (string[0] == '-' || string[0] == '+') {
     return string.split('')
   }
 
