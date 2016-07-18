@@ -32,7 +32,7 @@ export default class Emoji extends React.Component {
     }
 
     if (this.hasSkinVariations && skin > 1) {
-      emojiData = JSON.parse(JSON.stringify(data.emojis[emoji]))
+      emojiData = JSON.parse(JSON.stringify(emojiData))
 
       var skinKey = SKINS[skin - 1],
           variationKey = `${emojiData.unified}-${skinKey}`,
