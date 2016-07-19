@@ -3,7 +3,7 @@ import data from '../../data'
 
 import {getSanitizedData} from '.'
 
-var emoticonsList = []
+var emoticonsList = {}
 
 var index = lunr(function() {
   this.pipeline.reset()
@@ -20,8 +20,8 @@ for (let emoji in data.emojis) {
       { short_name, name, emoticons } = emojiData
 
   for (let emoticon of emoticons) {
-    if (emoticonsList.indexOf(emoticon) == -1) {
-      emoticonsList.push(emoticon)
+    if (!emoticonsList[emoticon]) {
+      emoticonsList[emoticon] = short_name
     }
   }
 
