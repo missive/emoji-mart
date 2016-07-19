@@ -138,7 +138,7 @@ export default class Category extends React.Component {
 
       {emojis && emojis.map((emoji) =>
         <Emoji
-          key={emoji.short_name || emoji}
+          key={emoji.id || emoji}
           emoji={emoji}
           {...emojiProps}
         />

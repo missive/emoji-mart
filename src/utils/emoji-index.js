@@ -1,6 +1,8 @@
 import lunr from 'lunr'
 import data from '../../data'
 
+import {getSanitizedData} from '.'
+
 var emoticonsList = []
 
 var index = lunr(function() {
@@ -36,7 +38,7 @@ function search(value, maxResults = 75) {
 
   if (value.length) {
     results = index.search(tokenize(value)).map((result) =>
-      data.emojis[result.ref]
+      getSanitizedData(result.ref)
     )
 
     results = results.slice(0, maxResults)

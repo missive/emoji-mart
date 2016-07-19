@@ -1,5 +1,7 @@
 import React from 'react'
+
 import {Emoji, Skins} from '.'
+import {getData} from '../utils'
 
 export default class Preview extends React.Component {
   constructor(props) {
@@ -12,7 +14,8 @@ export default class Preview extends React.Component {
         { emojiProps, skinsProps, title, emoji: idleEmoji } = this.props
 
     if (emoji) {
-      var { emoticons } = emoji,
+      var emojiData = getData(emoji),
+          { emoticons } = emojiData,
           knownEmoticons = [],
           listedEmoticons = []
 
@@ -26,7 +29,7 @@ export default class Preview extends React.Component {
       return <div className='emoji-picker-preview'>
         <div className='emoji-picker-preview-emoji'>
           <Emoji
-            key={emoji.short_name || emoji}
+            key={emoji.id}
             emoji={emoji}
             {...emojiProps}
           />
@@ -35,7 +38,7 @@ export default class Preview extends React.Component {
         <div className='emoji-picker-preview-data'>
           <div className='emoji-picker-preview-name'>{emoji.name}</div>
           <div className='emoji-picker-preview-shortnames'>
-            {emoji.short_names.map((short_name) =>
+            {emojiData.short_names.map((short_name) =>
               <span key={short_name} className='emoji-picker-preview-shortname'>:{short_name}:</span>
             )}
           </div>

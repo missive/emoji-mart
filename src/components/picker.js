@@ -260,6 +260,7 @@ export default class Picker extends React.Component {
           emoji={emoji}
           emojiProps={{
             size: 38,
+            skin: skin,
             sheetURL: sheetURL,
           }}
           skinsProps={{
