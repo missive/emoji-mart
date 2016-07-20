@@ -3,6 +3,7 @@ import data from '../../data'
 
 import {getSanitizedData} from '.'
 
+var emojisList = {}
 var emoticonsList = {}
 
 var index = lunr(function() {
@@ -25,6 +26,8 @@ for (let emoji in data.emojis) {
     }
   }
 
+  emojisList[short_name] = getSanitizedData(short_name)
+
   index.add({
     id: short_name,
     emoticons: emoticons,
@@ -38,7 +41,7 @@ function search(value, maxResults = 75) {
 
   if (value.length) {
     results = index.search(tokenize(value)).map((result) =>
-      getSanitizedData(result.ref)
+      emojisList[result.ref]
     )
 
     results = results.slice(0, maxResults)
@@ -59,4 +62,4 @@ function tokenize (string = '') {
   return string.split(/[-|_|\s]+/)
 }
 
-export default { search, emoticons: emoticonsList }
+export default { search, emojis: emojisList, emoticons: emoticonsList }
