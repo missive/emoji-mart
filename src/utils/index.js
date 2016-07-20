@@ -67,8 +67,4 @@ function getData(emoji, skin, sheetURL) {
   return emojiData
 }
 
-export {default as store} from './store'
-export {default as emojiIndex} from './emoji-index'
-export {default as frequently} from './frequently'
-
 export { getData, getSanitizedData }

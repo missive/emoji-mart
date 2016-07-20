@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {frequently} from '../utils'
+import frequently from '../utils/frequently'
 import {Emoji} from '.'
 
 const LABELS = {

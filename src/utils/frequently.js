@@ -1,4 +1,4 @@
-import {store} from '.'
+import store from './store'
 
 let frequently = store.get('frequently') || {}
 

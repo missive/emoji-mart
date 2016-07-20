@@ -3,7 +3,9 @@ import '../vendor/raf-polyfill'
 import React from 'react'
 import data from '../../data'
 
-import {store, frequently} from '../utils'
+import store from '../utils/store'
+import frequently from '../utils/frequently'
+
 import {Anchors, Category, Preview, Search} from '.'
 
 const RECENT_CATEGORY = { name: 'Recent', emojis: null }

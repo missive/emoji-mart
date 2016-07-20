@@ -1,5 +1,5 @@
 import React from 'react'
-import {emojiIndex} from '../utils'
+import emojiIndex from '../utils/emoji-index'
 
 export default class Search extends React.Component {
   handleChange() {

@@ -1,9 +1,5 @@
-export {
-  Picker,
-  Emoji,
-} from './components'
+import emojiIndex from './utils/emoji-index'
+import store from './utils/store'
 
-export {
-  emojiIndex,
-  store,
-} from './utils'
+export { Picker, Emoji } from './components'
+export { emojiIndex, store }
