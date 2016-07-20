@@ -5,4 +5,5 @@ export {
 
 export {
   emojiIndex,
+  store,
 } from './utils'
