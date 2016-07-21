@@ -1,7 +1,10 @@
 var fs = require('fs'),
     emojiData = require('emoji-data'),
+    emojiLib = require('emojilib'),
     inflection = require('inflection'),
     mkdirp = require('mkdirp')
+
+// console.log(emojiLib.lib);
 
 var categories = ['People', 'Nature', 'Foods', 'Activity', 'Places', 'Objects', 'Symbols', 'Flags'],
     data = { categories: [], emojis: {}, skins: {} },
@@ -22,6 +25,7 @@ emojiData.sort((a, b) => {
 emojiData.forEach((datum) => {
   var category = datum.category,
       shortName = datum.short_name,
+      keywords = [],
       categoryIndex
 
   if (!datum.category) {
@@ -46,6 +50,12 @@ emojiData.forEach((datum) => {
 
   delete datum.text
   delete datum.texts
+
+  if (emojiLib.lib[datum.short_name]) {
+    keywords = emojiLib.lib[datum.short_name].keywords
+  }
+
+  datum.keywords = keywords
 
   if (datum.category == 'Skin Tones') {
     data.skins[datum.short_name] = datum
