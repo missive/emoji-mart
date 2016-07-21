@@ -216,7 +216,7 @@ export default class Picker extends React.Component {
   }
 
   render() {
-    var { perLine, emojiSize, sheetURL, style, title, emoji } = this.props,
+    var { perLine, emojiSize, sheetURL, style, title, emoji, color } = this.props,
         { skin } = this.state,
         width = (perLine * (emojiSize + 12)) + 12 + 2
 
@@ -224,6 +224,7 @@ export default class Picker extends React.Component {
       <div className='emoji-picker-bar'>
         <Anchors
           ref='anchors'
+          color={color}
           categories={CATEGORIES}
           onAnchorClick={this.handleAnchorClick.bind(this)}
         />
@@ -283,6 +284,7 @@ Picker.propTypes = {
   style: React.PropTypes.object,
   title: React.PropTypes.string,
   emoji: React.PropTypes.string,
+  color: React.PropTypes.string,
   sheetURL: React.PropTypes.string.isRequired,
 }
 
@@ -294,4 +296,5 @@ Picker.defaultProps = {
   skin: 1,
   title: 'EmojiPicker',
   emoji: 'tophat',
+  color: '#ae65c5',
 }

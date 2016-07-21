@@ -41,14 +41,11 @@
   overflow: hidden;
   transition: color .1s ease-out;
 }
-.emoji-picker-anchor:hover {
+.emoji-picker-anchor:hover,
+.emoji-picker-anchor-selected {
   color: #464646;
 }
 
-.emoji-picker-anchor-selected,
-.emoji-picker-anchor-selected:hover {
-  color: #ae65c5;
-}
 .emoji-picker-anchor-selected .emoji-picker-anchor-bar {
   bottom: 0;
 }
@@ -57,7 +54,7 @@
   position: absolute;
   bottom: -3px; left: 0;
   width: 100%; height: 3px;
-  background-color: #ae65c5;
+  background-color: #464646;
 }
 
 .emoji-picker-anchors i {

@@ -18,12 +18,13 @@ export default class Anchors extends React.Component {
   }
 
   render() {
-    var { categories, onAnchorClick } = this.props,
+    var { categories, onAnchorClick, color } = this.props,
         { selected } = this.state
 
     return <div className='emoji-picker-anchors'>
       {categories.map((category, i) => {
-        var { name, anchor } = category
+        var { name, anchor } = category,
+            isSelected = name == selected
 
         if (anchor) {
           return null
@@ -34,10 +35,11 @@ export default class Anchors extends React.Component {
             key={name}
             title={name}
             onClick={() => onAnchorClick(category, i)}
-            className={`emoji-picker-anchor ${name == selected ? 'emoji-picker-anchor-selected' : ''}`}
+            className={`emoji-picker-anchor ${isSelected ? 'emoji-picker-anchor-selected' : ''}`}
+            style={{ color: isSelected ? color : null }}
           >
             <InlineSVG src={SVGs[name]} />
-            <span className='emoji-picker-anchor-bar'></span>
+            <span className='emoji-picker-anchor-bar' style={{ backgroundColor: color }}></span>
           </span>
         )
       })}
