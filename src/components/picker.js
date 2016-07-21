@@ -75,8 +75,8 @@ export default class Picker extends React.Component {
     }, 16)
   }
 
-  handleEmojiClick(emoji) {
-    this.props.onClick(emoji)
+  handleEmojiClick(emoji, e) {
+    this.props.onClick(emoji, e)
     frequently.add(emoji)
 
     var component = this.refs['category-1']

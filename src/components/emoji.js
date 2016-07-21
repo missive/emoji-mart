@@ -37,25 +37,25 @@ export default class Emoji extends React.Component {
     return getSanitizedData(emoji, skin, sheetURL)
   }
 
-  handleClick() {
+  handleClick(e) {
     var { onClick } = this.props,
         emoji = this.getSanitizedData()
 
-    onClick(emoji)
+    onClick(emoji, e)
   }
 
-  handleOver() {
+  handleOver(e) {
     var { onOver } = this.props,
         emoji = this.getSanitizedData()
 
-    onOver(emoji)
+    onOver(emoji, e)
   }
 
-  handleLeave() {
+  handleLeave(e) {
     var { onLeave } = this.props,
         emoji = this.getSanitizedData()
 
-    onLeave(emoji)
+    onLeave(emoji, e)
   }
 
   render() {
