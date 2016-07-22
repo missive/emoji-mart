@@ -1,24 +1,14 @@
-import lunr from 'lunr'
 import data from '../../data'
 
 import {getSanitizedData} from '.'
 
+var index = {}
 var emojisList = {}
 var emoticonsList = {}
 
-var index = lunr(function() {
-  this.pipeline.reset()
-
-  this.field('short_name', { boost: 2 })
-  this.field('emoticons')
-  this.field('name')
-
-  this.ref('id')
-})
-
 for (let emoji in data.emojis) {
   let emojiData = data.emojis[emoji],
-      { short_names, name, emoticons } = emojiData,
+      { short_names, emoticons } = emojiData,
       id = short_names[0]
 
   for (let emoticon of emoticons) {
@@ -28,39 +18,45 @@ for (let emoji in data.emojis) {
   }
 
   emojisList[id] = getSanitizedData(id)
-
-  index.add({
-    id: id,
-    emoticons: emoticons,
-    short_name: tokenize(id),
-    name: tokenize(name),
-  })
 }
 
 function search(value, maxResults = 75) {
   var results = null
 
   if (value.length) {
-    results = index.search(tokenize(value)).map((result) =>
-      emojisList[result.ref]
-    )
+    var aPool = data.emojis,
+        aIndex = index,
+        i = 0
 
-    results = results.slice(0, maxResults)
+    value = value.toLowerCase()
+
+    for (let char of value.split('')) {
+      i++
+
+      aIndex[char] || (aIndex[char] = {})
+      aIndex = aIndex[char]
+
+      if (!aIndex.results) {
+        aIndex.results = []
+        aIndex.pool = {}
+
+        for (let id in aPool) {
+          let emoji = aPool[id],
+              { search } = emoji
+
+          if (search.indexOf(value.substr(0, i)) != -1) {
+            aIndex.results.push(emojisList[id])
+            aIndex.pool[id] = emoji
+          }
+        }
+      }
+
+      aPool = aIndex.pool
+      results = aIndex.results.slice(0, maxResults)
+    }
   }
 
   return results
-}
-
-function tokenize (string = '') {
-  if (string[0] == '-' || string[0] == '+') {
-    return string.split('')
-  }
-
-  if (/(:|;|=)-/.test(string)) {
-    return [string]
-  }
-
-  return string.split(/[-|_|\s]+/)
 }
 
 export default { search, emojis: emojisList, emoticons: emoticonsList }
