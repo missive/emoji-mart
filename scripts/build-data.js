@@ -64,6 +64,15 @@ emojiData.forEach((datum) => {
     data.categories[categoryIndex].emojis.push(datum.short_name)
     data.emojis[datum.short_name] = datum
   }
+
+  delete datum.docomo
+  delete datum.au
+  delete datum.softbank
+  delete datum.google
+  delete datum.image
+  delete datum.short_name
+  delete datum.category
+  delete datum.sort_order
 })
 
 var flags = data.categories[categoriesIndex['Flags']];

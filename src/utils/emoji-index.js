@@ -18,20 +18,21 @@ var index = lunr(function() {
 
 for (let emoji in data.emojis) {
   let emojiData = data.emojis[emoji],
-      { short_name, name, emoticons } = emojiData
+      { short_names, name, emoticons } = emojiData,
+      id = short_names[0]
 
   for (let emoticon of emoticons) {
     if (!emoticonsList[emoticon]) {
-      emoticonsList[emoticon] = short_name
+      emoticonsList[emoticon] = id
     }
   }
 
-  emojisList[short_name] = getSanitizedData(short_name)
+  emojisList[id] = getSanitizedData(id)
 
   index.add({
-    id: short_name,
+    id: id,
     emoticons: emoticons,
-    short_name: tokenize(short_name),
+    short_name: tokenize(id),
     name: tokenize(name),
   })
 }
