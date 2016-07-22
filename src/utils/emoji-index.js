@@ -36,6 +36,10 @@ function search(value, maxResults = 75) {
           aIndex = index,
           length = 0
 
+      if (value == '-') {
+        return [emojisList['-1']]
+      }
+
       for (let char of value.split('')) {
         length++
 
