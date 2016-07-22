@@ -1,6 +1,6 @@
 import data from '../../data'
 
-import {getSanitizedData} from '.'
+import {getSanitizedData, intersect} from '.'
 
 var index = {}
 var emojisList = {}
@@ -24,36 +24,56 @@ function search(value, maxResults = 75) {
   var results = null
 
   if (value.length) {
-    var aPool = data.emojis,
-        aIndex = index,
-        i = 0
+    var values = value.toLowerCase().split(/[\s|,]+/),
+        allResults = []
 
-    value = value.toLowerCase()
+    if (values.length > 2) {
+      values = [values[0], values[1]]
+    }
 
-    for (let char of value.split('')) {
-      i++
+    allResults = values.map((value) => {
+      var aPool = data.emojis,
+          aIndex = index,
+          length = 0
 
-      aIndex[char] || (aIndex[char] = {})
-      aIndex = aIndex[char]
+      for (let char of value.split('')) {
+        length++
 
-      if (!aIndex.results) {
-        aIndex.results = []
-        aIndex.pool = {}
+        aIndex[char] || (aIndex[char] = {})
+        aIndex = aIndex[char]
 
-        for (let id in aPool) {
-          let emoji = aPool[id],
-              { search } = emoji
+        if (!aIndex.results) {
+          aIndex.results = []
+          aIndex.pool = {}
 
-          if (search.indexOf(value.substr(0, i)) != -1) {
-            aIndex.results.push(emojisList[id])
-            aIndex.pool[id] = emoji
+          for (let id in aPool) {
+            let emoji = aPool[id],
+                { search } = emoji
+
+            if (search.indexOf(value.substr(0, length)) != -1) {
+              aIndex.results.push(emojisList[id])
+              aIndex.pool[id] = emoji
+            }
           }
         }
+
+        aPool = aIndex.pool
       }
 
-      aPool = aIndex.pool
-      results = aIndex.results.slice(0, maxResults)
+      return aIndex.results
+    }).filter(a => a)
+
+    if (allResults.length > 1) {
+      results = intersect(...allResults)
+    } else if (allResults.length) {
+      results = allResults[0]
+    } else {
+      results = []
     }
+  }
+
+  if (results) {
+    results = results.slice(0, maxResults)
   }
 
   return results
