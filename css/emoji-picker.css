@@ -86,6 +86,11 @@
   outline: 0;
 }
 
+.emoji-picker-category .emoji-picker-emoji span {
+  z-index: 1;
+  position: relative;
+}
+
 .emoji-picker-category .emoji-picker-emoji:hover:before {
   z-index: 0;
   content: "";
@@ -116,11 +121,6 @@
   position: relative;
   display: inline-block;
   font-size: 0;
-}
-
-.emoji-picker-emoji span {
-  z-index: 1;
-  position: relative;
 }
 
 .emoji-picker-no-results {
