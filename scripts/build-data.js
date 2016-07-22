@@ -2,9 +2,8 @@ var fs = require('fs'),
     emojiData = require('emoji-data'),
     emojiLib = require('emojilib'),
     inflection = require('inflection'),
-    mkdirp = require('mkdirp')
-
-// console.log(emojiLib.lib);
+    mkdirp = require('mkdirp'),
+    uniq = require('uniq')
 
 var categories = ['People', 'Nature', 'Foods', 'Activity', 'Places', 'Objects', 'Symbols', 'Flags'],
     data = { categories: [], emojis: {}, skins: {} },
@@ -56,6 +55,13 @@ emojiData.forEach((datum) => {
   }
 
   datum.keywords = keywords
+  datum.search = uniq([]
+    .concat(datum.name.split(/[-|_|\s]+/))
+    .concat(datum.short_names)
+    .concat(datum.keywords)
+    .concat(datum.emoticons)
+    .map((s) => s.toLowerCase())
+  ).join(',')
 
   if (datum.category == 'Skin Tones') {
     data.skins[datum.short_name] = datum
