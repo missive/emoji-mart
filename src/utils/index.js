@@ -67,4 +67,16 @@ function getData(emoji, skin, sheetURL) {
   return emojiData
 }
 
-export { getData, getSanitizedData }
+function intersect(a, b) {
+  var aSet = new Set(a),
+      bSet = new Set(b),
+      intersection = null
+
+  intersection = new Set(
+    [...aSet].filter(x => bSet.has(x))
+  )
+
+  return Array.from(intersection)
+}
+
+export { getData, getSanitizedData, intersect }
