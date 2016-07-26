@@ -39,7 +39,6 @@
     "rimraf": "2.5.2",
     "svg-inline-loader": "0.4.1",
     "svg-inline-react": "1.0.1",
-    "uniq": "1.0.1",
     "webpack": "1.12.14"
   },
   "scripts": {

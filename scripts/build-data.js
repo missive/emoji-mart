@@ -2,8 +2,7 @@ var fs = require('fs'),
     emojiData = require('emoji-data'),
     emojiLib = require('emojilib'),
     inflection = require('inflection'),
-    mkdirp = require('mkdirp'),
-    uniq = require('uniq')
+    mkdirp = require('mkdirp')
 
 var categories = ['People', 'Nature', 'Foods', 'Activity', 'Places', 'Objects', 'Symbols', 'Flags'],
     data = { categories: [], emojis: {}, skins: {} },
@@ -55,13 +54,26 @@ emojiData.forEach((datum) => {
   }
 
   datum.keywords = keywords
-  datum.search = uniq([]
-    .concat(datum.name.split(/[-|_|\s]+/))
-    .concat(datum.short_names)
-    .concat(datum.keywords)
-    .concat(datum.emoticons)
-    .map((s) => s.toLowerCase())
-  ).join(',')
+
+  datum.search = []
+  var addToSearch = (strings, split) => {
+    (Array.isArray(strings) ? strings : [strings]).forEach((string) => {
+      (split ? string.split(/[-|_|\s]+/) : [string]).forEach((s) => {
+        s = s.toLowerCase()
+
+        if (datum.search.indexOf(s) == -1) {
+          datum.search.push(s)
+        }
+      })
+    })
+  }
+
+  addToSearch(datum.short_names, true)
+  addToSearch(datum.name, true)
+  addToSearch(datum.keywords, false)
+  addToSearch(datum.emoticons, false)
+
+  datum.search = datum.search.join(',')
 
   if (datum.category == 'Skin Tones') {
     data.skins[datum.short_name] = datum
