@@ -47,18 +47,34 @@ function search(value, maxResults = 75) {
         aIndex = aIndex[char]
 
         if (!aIndex.results) {
+          let scores = {}
+
           aIndex.results = []
           aIndex.pool = {}
 
           for (let id in aPool) {
             let emoji = aPool[id],
-                { search } = emoji
+                { search } = emoji,
+                sub = value.substr(0, length),
+                subIndex = search.indexOf(sub)
 
-            if (search.indexOf(value.substr(0, length)) != -1) {
+            if (subIndex != -1) {
+              let score = subIndex + 1
+              if (sub == id) score = 0
+
               aIndex.results.push(emojisList[id])
               aIndex.pool[id] = emoji
+
+              scores[id] = score
             }
           }
+
+          aIndex.results.sort((a, b) => {
+            var aScore = scores[a.id],
+                bScore = scores[b.id]
+
+            return aScore - bScore
+          })
         }
 
         aPool = aIndex.pool
@@ -76,7 +92,7 @@ function search(value, maxResults = 75) {
     }
   }
 
-  if (results) {
+  if (results && results.length) {
     results = results.slice(0, maxResults)
   }
 
