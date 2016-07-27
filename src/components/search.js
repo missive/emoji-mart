@@ -19,7 +19,7 @@ export default class Search extends React.Component {
       type='text'
       onChange={this.handleChange.bind(this)}
       placeholder='Search'
-      className='emoji-picker-search'
+      className='emoji-mart-search'
     />
   }
 }

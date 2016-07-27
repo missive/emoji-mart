@@ -1,4 +1,4 @@
-const NAMESPACE = 'emoji-picker'
+const NAMESPACE = 'emoji-mart'
 
 function update(state) {
   for (let key in state) {

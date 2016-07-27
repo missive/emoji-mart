@@ -1,7 +1,7 @@
-<h1 align="center">⛏ EmojiPicker ⛏</h1>
+<h1 align="center">🏬 Emoji Mart</h1>
 
 ```jsx
-import {Picker} from 'emoji-picker'
+import {Picker} from 'emoji-mart'
 
 <Picker
   emojiSize={24}

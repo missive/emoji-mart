@@ -220,8 +220,8 @@ export default class Picker extends React.Component {
         { skin } = this.state,
         width = (perLine * (emojiSize + 12)) + 12 + 2
 
-    return <div style={{...style, width: width}} className='emoji-picker'>
-      <div className='emoji-picker-bar'>
+    return <div style={{...style, width: width}} className='emoji-mart'>
+      <div className='emoji-mart-bar'>
         <Anchors
           ref='anchors'
           color={color}
@@ -230,7 +230,7 @@ export default class Picker extends React.Component {
         />
       </div>
 
-      <div ref="scroll" className='emoji-picker-scroll' onScroll={this.handleScroll.bind(this)}>
+      <div ref="scroll" className='emoji-mart-scroll' onScroll={this.handleScroll.bind(this)}>
         <Search
           ref='search'
           onSearch={this.handleSearch.bind(this)}
@@ -256,7 +256,7 @@ export default class Picker extends React.Component {
         })}
       </div>
 
-      <div className='emoji-picker-bar'>
+      <div className='emoji-mart-bar'>
         <Preview
           ref='preview'
           title={title}
@@ -294,7 +294,7 @@ Picker.defaultProps = {
   perLine: 9,
   style: {},
   skin: 1,
-  title: 'EmojiPicker',
-  emoji: 'tophat',
+  title: 'Emoji Mart™',
+  emoji: 'department_store',
   color: '#ae65c5',
 }

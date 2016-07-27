@@ -65,7 +65,7 @@ export default class Emoji extends React.Component {
       onClick={this.handleClick.bind(this)}
       onMouseEnter={this.handleOver.bind(this)}
       onMouseLeave={this.handleLeave.bind(this)}
-      className='emoji-picker-emoji'>
+      className='emoji-mart-emoji'>
       <span style={{
         width: size,
         height: size,

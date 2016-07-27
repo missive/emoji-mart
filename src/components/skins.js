@@ -25,15 +25,15 @@ export default class Skins extends React.Component {
         { opened } = this.state
 
     return <div>
-      <div className={`emoji-picker-skin-swatches ${opened ? 'emoji-picker-skin-swatches-opened' : ''}`}>
+      <div className={`emoji-mart-skin-swatches ${opened ? 'emoji-mart-skin-swatches-opened' : ''}`}>
         {Array(6).fill().map((_, i) => {
           var skinTone = i + 1,
               selected = skinTone == skin
 
-          return <span key={`skin-tone-${skinTone}`} className={`emoji-picker-skin-swatch ${selected ? 'emoji-picker-skin-swatch-selected' : ''}`}>
+          return <span key={`skin-tone-${skinTone}`} className={`emoji-mart-skin-swatch ${selected ? 'emoji-mart-skin-swatch-selected' : ''}`}>
             <span
               onClick={() => this.handleClick(skinTone)}
-              className={`emoji-picker-skin emoji-picker-skin-tone-${skinTone}`}>
+              className={`emoji-mart-skin emoji-mart-skin-tone-${skinTone}`}>
             </span>
           </span>
         })}

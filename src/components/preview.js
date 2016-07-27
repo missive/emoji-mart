@@ -26,8 +26,8 @@ export default class Preview extends React.Component {
         }
       }
 
-      return <div className='emoji-picker-preview'>
-        <div className='emoji-picker-preview-emoji'>
+      return <div className='emoji-mart-preview'>
+        <div className='emoji-mart-preview-emoji'>
           <Emoji
             key={emoji.id}
             emoji={emoji}
@@ -35,36 +35,36 @@ export default class Preview extends React.Component {
           />
         </div>
 
-        <div className='emoji-picker-preview-data'>
-          <div className='emoji-picker-preview-name'>{emoji.name}</div>
-          <div className='emoji-picker-preview-shortnames'>
+        <div className='emoji-mart-preview-data'>
+          <div className='emoji-mart-preview-name'>{emoji.name}</div>
+          <div className='emoji-mart-preview-shortnames'>
             {emojiData.short_names.map((short_name) =>
-              <span key={short_name} className='emoji-picker-preview-shortname'>:{short_name}:</span>
+              <span key={short_name} className='emoji-mart-preview-shortname'>:{short_name}:</span>
             )}
           </div>
-          <div className='emoji-picker-preview-emoticons'>
+          <div className='emoji-mart-preview-emoticons'>
             {listedEmoticons.map((emoticon) =>
-              <span key={emoticon} className='emoji-picker-preview-emoticon'>{emoticon}</span>
+              <span key={emoticon} className='emoji-mart-preview-emoticon'>{emoticon}</span>
             )}
           </div>
         </div>
       </div>
     } else {
-      return <div className='emoji-picker-preview'>
-        <div className='emoji-picker-preview-emoji'>
+      return <div className='emoji-mart-preview'>
+        <div className='emoji-mart-preview-emoji'>
           <Emoji
             emoji={idleEmoji}
             {...emojiProps}
           />
         </div>
 
-        <div className='emoji-picker-preview-data'>
-          <span className='emoji-picker-title-label'>
+        <div className='emoji-mart-preview-data'>
+          <span className='emoji-mart-title-label'>
             {title}
           </span>
         </div>
 
-        <div className='emoji-picker-preview-skins'>
+        <div className='emoji-mart-preview-skins'>
           <Skins
             {...skinsProps}
           />

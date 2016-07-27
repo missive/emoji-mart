@@ -4,8 +4,8 @@ module.exports = {
   entry: path.resolve('src/index.js'),
   output: {
     path: path.resolve('dist'),
-    filename: 'emoji-picker.js',
-    library: 'EmojiPicker',
+    filename: 'emoji-mart.js',
+    library: 'EmojiMart',
     libraryTarget: 'umd',
   },
 
