@@ -1,8 +1,8 @@
 <div align="center">
   <br><b>Emoji Mart</b> is a Slack-like customizable<br>emoji picker component for React
   <br><img src="https://cloud.githubusercontent.com/assets/436043/17186519/9e71e8fe-5403-11e6-9314-21365c56a601.png">
-  <br><a href="https://missiveapp.com"><img src="https://cloud.githubusercontent.com/assets/436043/17186909/17f9cede-5405-11e6-988a-a7c2380af396.png"></a>
-  <br>Brought to you by the <a href="https://missiveapp.com">Missive</a> team
+  <br><a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com"><img alt="Missive | Team email, team chat, team tasks, one app" src="https://cloud.githubusercontent.com/assets/436043/17186909/17f9cede-5405-11e6-988a-a7c2380af396.png"></a>
+  <br>Brought to you by the <a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com">Missive</a> team
 </div>
 
 ## Components
@@ -51,8 +51,8 @@ Examples of `emoji` object:
 }
 ```
 
-You can use [npmcdn](https://npmcdn.com/emoji-mart@0.2.0/sheets/) with the sheets included in this repo:
-https://npmcdn.com/emoji-mart@0.2.0/sheets/sheet_apple_64.png
+You can use [npmcdn](https://npmcdn.com/emoji-mart@0.2.0/sheets/) with the sheets included in this repo:<br>
+https://npmcdn.com/emoji-mart@0.2.0/sheets/sheet_apple_64.png<br>
 https://npmcdn.com/emoji-mart@0.2.0/sheets/sheet_emojione_64.png
 
 ### Emoji
@@ -102,7 +102,7 @@ For better results, **Emoji Mart** split search into words and only returns resu
 
 ### Fully customizable
 #### Anchors color, title and default emoji
-![anchors](https://cloud.githubusercontent.com/assets/436043/17187575/d245c796-5407-11e6-8b90-6f988b058b9b.png)
+![anchors](https://cloud.githubusercontent.com/assets/436043/17187575/d245c796-5407-11e6-8b90-6f988b058b9b.png)<br>
 ![pick](https://cloud.githubusercontent.com/assets/436043/17187576/d2537bac-5407-11e6-9a05-ba20cd0f374d.png)
 
 #### Emojis sizes and length
@@ -126,11 +126,12 @@ Apple / Google / Twitter / EmojiOne
 **Emoji Mart** doesn’t automatically insert anything into a text input, nor does it show or hide itself. It simply returns an `emoji` object. It’s up to the developer to mount/unmount (it’s fast!) and position the picker. You can use the returned object as props for the `EmojiMart.Emoji` component. You could also use `emoji.colons` to insert text into a textarea or `emoji.native` to use the emoji.
 
 ## 🎩 Hat tips!
-Powered by [iamcal/emoji-data](https://github.com/iamcal/emoji-data) and inspired by [iamcal/js-emoji](https://github.com/iamcal/js-emoji).
+Powered by [iamcal/emoji-data](https://github.com/iamcal/emoji-data) and inspired by [iamcal/js-emoji](https://github.com/iamcal/js-emoji).<br>
 🙌🏼  [Cal Henderson](https://github.com/iamcal).
 
 <br><br>
 <div align="center">
-  <a href="https://missiveapp.com"><img src="https://cloud.githubusercontent.com/assets/436043/17222476/7fb2ef62-54c6-11e6-81a9-6b9d7323d19c.png"></a>
-  <br><a href="https://missiveapp.com">Missive</a> mixes team email and threaded group chat for productive teams. A single app for all your internal and external communication and a full work management solution.
+  <a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com"><img alt="Missive | Team email, team chat, team tasks, one app" src="https://cloud.githubusercontent.com/assets/436043/17222476/7fb2ef62-54c6-11e6-81a9-6b9d7323d19c.png"></a>
+  <br><a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com">Missive</a> mixes team email and threaded group chat for productive teams.
+  <br>A single app for all your internal and external communication and a full work management solution.
 </div>
