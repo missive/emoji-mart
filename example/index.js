@@ -27,7 +27,17 @@ class Example extends React.Component {
 
   render() {
     return <div>
-      <h1>Emoji Mart</h1>
+      <div>
+        <h1 className='demo-title'>Emoji Mart</h1>
+
+        <iframe
+          src='https://ghbtns.com/github-btn.html?user=missive&repo=emoji-mart&type=star&count=true'
+          frameBorder='0'
+          scrolling='0'
+          width='170px'
+          height='20px'
+        ></iframe>
+      </div>
 
       <div className="row">
         {['apple', 'google', 'twitter', 'emojione'].map((set) => {
