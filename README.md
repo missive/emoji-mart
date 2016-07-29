@@ -1,5 +1,6 @@
 <div align="center">
   <br><b>Emoji Mart</b> is a Slack-like customizable<br>emoji picker component for React
+  <br>[<a href="https://missive.github.io/emoji-mart">Demo</a>]
   <br><img src="https://cloud.githubusercontent.com/assets/436043/17186519/9e71e8fe-5403-11e6-9314-21365c56a601.png">
   <br><a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com"><img alt="Missive | Team email, team chat, team tasks, one app" src="https://cloud.githubusercontent.com/assets/436043/17186909/17f9cede-5405-11e6-988a-a7c2380af396.png"></a>
   <br>Brought to you by the <a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com">Missive</a> team
@@ -124,6 +125,13 @@ Apple / Google / Twitter / EmojiOne
 
 ## Not opinionated
 **Emoji Mart** doesn’t automatically insert anything into a text input, nor does it show or hide itself. It simply returns an `emoji` object. It’s up to the developer to mount/unmount (it’s fast!) and position the picker. You can use the returned object as props for the `EmojiMart.Emoji` component. You could also use `emoji.colons` to insert text into a textarea or `emoji.native` to use the emoji.
+
+## Development
+```sh
+$ npm run build:data
+$ npm run watch
+$ open example/index.html
+```
 
 ## 🎩 Hat tips!
 Powered by [iamcal/emoji-data](https://github.com/iamcal/emoji-data) and inspired by [iamcal/js-emoji](https://github.com/iamcal/js-emoji).<br>
