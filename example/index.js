@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import {Picker} from '../src'
+import {Picker, Emoji} from '../src'
 
 class Example extends React.Component {
   constructor(props) {
@@ -29,22 +29,25 @@ class Example extends React.Component {
     return <div>
       <h1>Emoji Mart</h1>
 
-      <div>
-        {['Apple', 'Google', 'Twitter', 'EmojiOne'].map((set) => {
-          var value = set.toLowerCase(),
-              props = { disabled: value == this.state.set }
+      <div className="row">
+        {['apple', 'google', 'twitter', 'emojione'].map((set) => {
+          var props = { disabled: set == this.state.set }
 
           return <button
-            key={value}
-            value={value}
-            onClick={() => this.setState({ set: value })}
+            key={set}
+            value={set}
+            onClick={() => this.setState({ set: set })}
             {...props}>
-            {set}
+            <Emoji
+              sheetURL={`https://npmcdn.com/emoji-mart@0.2.1/sheets/sheet_${set}_32.png`}
+              size={24}
+              emoji='grinning'
+            />
           </button>
         })}
       </div>
 
-      <div>
+      <div className="row">
         <button
           onClick={() => this.setState({ hidden: !this.state.hidden })}
         >{this.state.hidden ? 'Mount' : 'Unmount'}</button>
@@ -73,7 +76,7 @@ class Example extends React.Component {
           emojiSize={this.state.emojiSize}
           perLine={this.state.perLine}
           skin={this.state.skin}
-          sheetURL={`../sheets/sheet_${this.state.set}_64.png`}
+          sheetURL={`https://npmcdn.com/emoji-mart@0.2.1/sheets/sheet_${this.state.set}_64.png`}
           onClick={(emoji) => console.log(emoji)}
         />
       }
