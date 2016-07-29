@@ -1,8 +1,10 @@
 var path = require('path')
 var webpack = require('webpack')
-var config = require('../example/webpack.config.js')
 
-webpack(config, (err, stats) => {
+var config = require('../example/webpack.config.js'),
+    compiler = webpack(config)
+
+compiler.watch({}, (err, stats) => {
   if (err) throw err
 
   console.log(
