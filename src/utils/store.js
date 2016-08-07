@@ -8,12 +8,12 @@ function update(state) {
 }
 
 function set(key, value) {
-  if (!window || !('localStorage' in window)) return
+  if (typeof window === 'undefined' || !('localStorage' in window)) return
   window.localStorage[`${NAMESPACE}.${key}`] = JSON.stringify(value)
 }
 
 function get(key) {
-  if (!window || !('localStorage' in window)) return
+  if (typeof window === 'undefined' || !('localStorage' in window)) return
 
   var value = window.localStorage[`${NAMESPACE}.${key}`]
 
