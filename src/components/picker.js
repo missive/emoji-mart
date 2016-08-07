@@ -84,18 +84,20 @@ export default class Picker extends React.Component {
       let maxMargin = component.maxMargin
       component.forceUpdate()
 
-      window.requestAnimationFrame(() => {
-        component.memoizeSize()
-        if (maxMargin == component.maxMargin) return
+      if (window) {
+        window.requestAnimationFrame(() => {
+          component.memoizeSize()
+          if (maxMargin == component.maxMargin) return
 
-        this.updateCategoriesSize()
-        this.handleScrollPaint()
-      })
+          this.updateCategoriesSize()
+          this.handleScrollPaint()
+        })
+      }
     }
   }
 
   handleScroll() {
-    if (!this.waitingForPaint) {
+    if (!this.waitingForPaint && window) {
       this.waitingForPaint = true
       window.requestAnimationFrame(this.handleScrollPaint.bind(this))
     }
@@ -185,7 +187,7 @@ export default class Picker extends React.Component {
       }
     }
 
-    if (SEARCH_CATEGORY.emojis) {
+    if (SEARCH_CATEGORY.emojis && window) {
       this.handleSearch(null)
       this.refs.search.clear()
 
