@@ -8,8 +8,8 @@ import frequently from '../utils/frequently'
 
 import {Anchors, Category, Preview, Search} from '.'
 
-const RECENT_CATEGORY = {name: 'Recent', emojis: null}
-const SEARCH_CATEGORY = {name: 'Search', emojis: null, anchor: RECENT_CATEGORY}
+const RECENT_CATEGORY = { name: 'Recent', emojis: null }
+const SEARCH_CATEGORY = { name: 'Search', emojis: null, anchor: RECENT_CATEGORY }
 
 const CATEGORIES = [
   SEARCH_CATEGORY,
@@ -29,14 +29,14 @@ export default class Picker extends React.Component {
 
   componentWillReceiveProps(props) {
     if (props.skin && !store.get('skin')) {
-      this.setState({skin: props.skin})
+      this.setState({ skin: props.skin })
     }
   }
 
   componentDidMount() {
     if (this.state.firstRender) {
       this.firstRenderTimeout = setTimeout(() => {
-        this.setState({firstRender: false})
+        this.setState({ firstRender: false })
       }, 60)
     }
   }
@@ -66,14 +66,14 @@ export default class Picker extends React.Component {
 
   handleEmojiOver(emoji) {
     var { preview } = this.refs
-    preview.setState({emoji: emoji})
+    preview.setState({ emoji: emoji })
     clearTimeout(this.leaveTimeout)
   }
 
   handleEmojiLeave(emoji) {
     this.leaveTimeout = setTimeout(() => {
       var { preview } = this.refs
-      preview.setState({emoji: null})
+      preview.setState({ emoji: null })
     }, 16)
   }
 
@@ -113,15 +113,15 @@ export default class Picker extends React.Component {
     }
 
     var target = this.refs.scroll,
-      scrollTop = target.scrollTop,
-      scrollingDown = scrollTop > (this.scrollTop || 0),
-      activeCategory = null,
-      minTop = 0
+        scrollTop = target.scrollTop,
+        scrollingDown = scrollTop > (this.scrollTop || 0),
+        activeCategory = null,
+        minTop = 0
 
     for (let i = 0, l = CATEGORIES.length; i < l; i++) {
       let ii = scrollingDown ? (CATEGORIES.length - 1 - i) : i,
-        category = CATEGORIES[ii],
-        component = this.refs[`category-${ii}`]
+          category = CATEGORIES[ii],
+          component = this.refs[`category-${ii}`]
 
       if (component) {
         let active = component.handleScroll(scrollTop)
@@ -145,10 +145,10 @@ export default class Picker extends React.Component {
 
     if (activeCategory) {
       let { anchors } = this.refs,
-        { name: categoryName } = activeCategory
+          { name: categoryName } = activeCategory
 
       if (anchors.state.selected != categoryName) {
-        anchors.setState({selected: categoryName})
+        anchors.setState({ selected: categoryName })
       }
     }
 
@@ -172,8 +172,8 @@ export default class Picker extends React.Component {
 
   handleAnchorClick(category, i) {
     var component = this.refs[`category-${i}`],
-      { scroll, anchors } = this.refs,
-      scrollToComponent = null
+        { scroll, anchors } = this.refs,
+        scrollToComponent = null
 
     scrollToComponent = () => {
       if (component) {
@@ -200,7 +200,7 @@ export default class Picker extends React.Component {
   }
 
   handleSkinChange(skin) {
-    var newState = {skin: skin}
+    var newState = { skin: skin }
 
     this.setState(newState)
     store.update(newState)
@@ -221,8 +221,8 @@ export default class Picker extends React.Component {
 
   render() {
     var { perLine, emojiSize, sheetURL, style, title, emoji, color } = this.props,
-      { skin } = this.state,
-      width = (perLine * (emojiSize + 12)) + 12 + 2
+        { skin } = this.state,
+        width = (perLine * (emojiSize + 12)) + 12 + 2
 
     return <div style={{...style, width: width}} className='emoji-mart'>
       <div className='emoji-mart-bar'>
@@ -249,13 +249,13 @@ export default class Picker extends React.Component {
             perLine={perLine}
             hasStickyPosition={this.hasStickyPosition}
             emojiProps={{
-      skin: skin,
-        size: emojiSize,
-        sheetURL: sheetURL,
-        onOver: this.handleEmojiOver.bind(this),
-        onLeave: this.handleEmojiLeave.bind(this),
-        onClick: this.handleEmojiClick.bind(this),
-    }}
+              skin: skin,
+              size: emojiSize,
+              sheetURL: sheetURL,
+              onOver: this.handleEmojiOver.bind(this),
+              onLeave: this.handleEmojiLeave.bind(this),
+              onClick: this.handleEmojiClick.bind(this),
+            }}
           />
         })}
       </div>
@@ -266,14 +266,14 @@ export default class Picker extends React.Component {
           title={title}
           emoji={emoji}
           emojiProps={{
-      size: 38,
-        skin: skin,
-        sheetURL: sheetURL,
-    }}
+            size: 38,
+            skin: skin,
+            sheetURL: sheetURL,
+          }}
           skinsProps={{
-      skin: skin,
-        onChange: this.handleSkinChange.bind(this)
-    }}
+            skin: skin,
+            onChange: this.handleSkinChange.bind(this)
+          }}
         />
       </div>
     </div>
@@ -293,8 +293,7 @@ Picker.propTypes = {
 }
 
 Picker.defaultProps = {
-  onClick: (() => {
-  }),
+  onClick: (() => {}),
   emojiSize: 24,
   perLine: 9,
   style: {},
