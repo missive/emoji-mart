@@ -8,8 +8,8 @@ import frequently from '../utils/frequently'
 
 import {Anchors, Category, Preview, Search} from '.'
 
-const RECENT_CATEGORY = { name: 'Recent', emojis: null }
-const SEARCH_CATEGORY = { name: 'Search', emojis: null, anchor: RECENT_CATEGORY }
+const RECENT_CATEGORY = {name: 'Recent', emojis: null}
+const SEARCH_CATEGORY = {name: 'Search', emojis: null, anchor: RECENT_CATEGORY}
 
 const CATEGORIES = [
   SEARCH_CATEGORY,
@@ -29,15 +29,15 @@ export default class Picker extends React.Component {
 
   componentWillReceiveProps(props) {
     if (props.skin && !store.get('skin')) {
-      this.setState({ skin: props.skin })
+      this.setState({skin: props.skin})
     }
   }
 
   componentDidMount() {
     if (this.state.firstRender) {
       this.firstRenderTimeout = setTimeout(() => {
-          this.setState({ firstRender: false })
-    }, 60)
+        this.setState({firstRender: false})
+      }, 60)
     }
   }
 
@@ -66,15 +66,15 @@ export default class Picker extends React.Component {
 
   handleEmojiOver(emoji) {
     var { preview } = this.refs
-    preview.setState({ emoji: emoji })
+    preview.setState({emoji: emoji})
     clearTimeout(this.leaveTimeout)
   }
 
   handleEmojiLeave(emoji) {
     this.leaveTimeout = setTimeout(() => {
-        var { preview } = this.refs
-        preview.setState({ emoji: null })
-  }, 16)
+      var { preview } = this.refs
+      preview.setState({emoji: null})
+    }, 16)
   }
 
   handleEmojiClick(emoji, e) {
@@ -89,11 +89,11 @@ export default class Picker extends React.Component {
       if (typeof window !== 'undefined') {
         window.requestAnimationFrame(() => {
           component.memoizeSize()
-        if (maxMargin == component.maxMargin) return
+          if (maxMargin == component.maxMargin) return
 
-        this.updateCategoriesSize()
-        this.handleScrollPaint()
-      })
+          this.updateCategoriesSize()
+          this.handleScrollPaint()
+        })
       }
     }
   }
@@ -148,7 +148,7 @@ export default class Picker extends React.Component {
         { name: categoryName } = activeCategory
 
       if (anchors.state.selected != categoryName) {
-        anchors.setState({ selected: categoryName })
+        anchors.setState({selected: categoryName})
       }
     }
 
@@ -200,7 +200,7 @@ export default class Picker extends React.Component {
   }
 
   handleSkinChange(skin) {
-    var newState = { skin: skin }
+    var newState = {skin: skin}
 
     this.setState(newState)
     store.update(newState)
@@ -226,29 +226,29 @@ export default class Picker extends React.Component {
 
     return <div style={{...style, width: width}} className='emoji-mart'>
       <div className='emoji-mart-bar'>
-      <Anchors
-    ref='anchors'
-    color={color}
-    categories={CATEGORIES}
-    onAnchorClick={this.handleAnchorClick.bind(this)}
-  />
-  </div>
+        <Anchors
+          ref='anchors'
+          color={color}
+          categories={CATEGORIES}
+          onAnchorClick={this.handleAnchorClick.bind(this)}
+        />
+      </div>
 
-    <div ref="scroll" className='emoji-mart-scroll' onScroll={this.handleScroll.bind(this)}>
-  <Search
-    ref='search'
-    onSearch={this.handleSearch.bind(this)}
-  />
+      <div ref="scroll" className='emoji-mart-scroll' onScroll={this.handleScroll.bind(this)}>
+        <Search
+          ref='search'
+          onSearch={this.handleSearch.bind(this)}
+        />
 
-    {this.getCategories().map((category, i) => {
-      return <Category
-      ref={`category-${i}`}
-      key={category.name}
-      name={category.name}
-      emojis={category.emojis}
-      perLine={perLine}
-      hasStickyPosition={this.hasStickyPosition}
-      emojiProps={{
+        {this.getCategories().map((category, i) => {
+          return <Category
+            ref={`category-${i}`}
+            key={category.name}
+            name={category.name}
+            emojis={category.emojis}
+            perLine={perLine}
+            hasStickyPosition={this.hasStickyPosition}
+            emojiProps={{
       skin: skin,
         size: emojiSize,
         sheetURL: sheetURL,
@@ -256,26 +256,26 @@ export default class Picker extends React.Component {
         onLeave: this.handleEmojiLeave.bind(this),
         onClick: this.handleEmojiClick.bind(this),
     }}
-    />
-    })}
-  </div>
+          />
+        })}
+      </div>
 
-    <div className='emoji-mart-bar'>
-      <Preview
-    ref='preview'
-    title={title}
-    emoji={emoji}
-    emojiProps={{
+      <div className='emoji-mart-bar'>
+        <Preview
+          ref='preview'
+          title={title}
+          emoji={emoji}
+          emojiProps={{
       size: 38,
         skin: skin,
         sheetURL: sheetURL,
     }}
-    skinsProps={{
+          skinsProps={{
       skin: skin,
         onChange: this.handleSkinChange.bind(this)
     }}
-  />
-  </div>
+        />
+      </div>
     </div>
   }
 }
@@ -293,11 +293,12 @@ Picker.propTypes = {
 }
 
 Picker.defaultProps = {
-  onClick: (() => {}),
-emojiSize: 24,
+  onClick: (() => {
+  }),
+  emojiSize: 24,
   perLine: 9,
   style: {},
-skin: 1,
+  skin: 1,
   title: 'Emoji Mart™',
   emoji: 'department_store',
   color: '#ae65c5',
