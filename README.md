@@ -52,9 +52,9 @@ Examples of `emoji` object:
 }
 ```
 
-You can use [unpkg](https://unpkg.com/emoji-mart@0.2.0/sheets/) with the sheets included in this repo:<br>
-https://unpkg.com/emoji-mart@0.2.0/sheets/sheet_apple_64.png<br>
-https://unpkg.com/emoji-mart@0.2.0/sheets/sheet_emojione_64.png
+You can use [unpkg](https://unpkg.com/emoji-mart@0.2.4/sheets/) with the sheets included in this repo:<br>
+https://unpkg.com/emoji-mart@0.2.4/sheets/sheet_apple_64.png<br>
+https://unpkg.com/emoji-mart@0.2.4/sheets/sheet_emojione_64.png
 
 ### Emoji
 ```jsx
