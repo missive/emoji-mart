@@ -54,12 +54,14 @@ export default class Picker extends React.Component {
   }
 
   testStickyPosition() {
-    var stickyTestElement = document.createElement('div')
-    for (let prefix of ['', '-webkit-', '-ms-', '-moz-', '-o-']) {
-      stickyTestElement.style.position = `${prefix}sticky`
-    }
+    if (typeof document !== 'undefined') {
+      var stickyTestElement = document.createElement('div')
+      for (let prefix of ['', '-webkit-', '-ms-', '-moz-', '-o-']) {
+        stickyTestElement.style.position = `${prefix}sticky`
+      }
 
-    this.hasStickyPosition = !!stickyTestElement.style.position.length
+      this.hasStickyPosition = !!stickyTestElement.style.position.length
+    }
   }
 
   handleEmojiOver(emoji) {
@@ -84,18 +86,20 @@ export default class Picker extends React.Component {
       let maxMargin = component.maxMargin
       component.forceUpdate()
 
-      window.requestAnimationFrame(() => {
-        component.memoizeSize()
-        if (maxMargin == component.maxMargin) return
+      if (typeof window !== 'undefined') {
+        window.requestAnimationFrame(() => {
+          component.memoizeSize()
+          if (maxMargin == component.maxMargin) return
 
-        this.updateCategoriesSize()
-        this.handleScrollPaint()
-      })
+          this.updateCategoriesSize()
+          this.handleScrollPaint()
+        })
+      }
     }
   }
 
   handleScroll() {
-    if (!this.waitingForPaint) {
+    if (!this.waitingForPaint && typeof window !== 'undefined') {
       this.waitingForPaint = true
       window.requestAnimationFrame(this.handleScrollPaint.bind(this))
     }
@@ -185,7 +189,7 @@ export default class Picker extends React.Component {
       }
     }
 
-    if (SEARCH_CATEGORY.emojis) {
+    if (SEARCH_CATEGORY.emojis && typeof window !== 'undefined') {
       this.handleSearch(null)
       this.refs.search.clear()
 
