@@ -29,9 +29,9 @@ export default class Category extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    var { name, perLine, emojis, emojiProps } = this.props,
+    var { name, perLine, hasStickyPosition, emojis, emojiProps } = this.props,
         { skin, size, sheetURL } = emojiProps,
-        { perLine: nextPerLine, emojis: nextEmojis, emojiProps: nextEmojiProps } = nextProps,
+        { perLine: nextPerLine, hasStickyPosition: nextHasStickyPosition, emojis: nextEmojis, emojiProps: nextEmojiProps } = nextProps,
         { skin: nextSkin, size: nextSize, sheetURL: nextSheetURL } = nextEmojiProps,
         shouldUpdate = false
 
@@ -43,7 +43,7 @@ export default class Category extends React.Component {
       shouldUpdate = !(emojis == nextEmojis)
     }
 
-    if (skin != nextSkin || size != nextSize || sheetURL != nextSheetURL) {
+    if (skin != nextSkin || size != nextSize || sheetURL != nextSheetURL || hasStickyPosition != nextHasStickyPosition) {
       shouldUpdate = true
     }
 

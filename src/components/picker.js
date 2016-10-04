@@ -19,7 +19,6 @@ const CATEGORIES = [
 export default class Picker extends React.Component {
   constructor(props) {
     super(props)
-    this.testStickyPosition()
 
     this.state = {
       skin: store.get('skin') || props.skin,
@@ -35,6 +34,7 @@ export default class Picker extends React.Component {
 
   componentDidMount() {
     if (this.state.firstRender) {
+      this.testStickyPosition()
       this.firstRenderTimeout = setTimeout(() => {
         this.setState({ firstRender: false })
       }, 60)
