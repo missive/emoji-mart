@@ -216,7 +216,7 @@ export default class Picker extends React.Component {
   }
 
   render() {
-    var { perLine, emojiSize, sheetURL, style, title, emoji, color } = this.props,
+    var { perLine, emojiSize, sheetURL, style, title, emoji, color, excludeUnsupportedNativeEmojis } = this.props,
         { skin } = this.state,
         width = (perLine * (emojiSize + 12)) + 12 + 2
 
@@ -244,6 +244,7 @@ export default class Picker extends React.Component {
             emojis={category.emojis}
             perLine={perLine}
             hasStickyPosition={this.hasStickyPosition}
+            excludeUnsupportedNativeEmojis={excludeUnsupportedNativeEmojis}
             emojiProps={{
               skin: skin,
               size: emojiSize,
@@ -285,6 +286,7 @@ Picker.propTypes = {
   title: React.PropTypes.string,
   emoji: React.PropTypes.string,
   color: React.PropTypes.string,
+  excludeUnsupportedNativeEmojis: React.PropTypes.bool,
   sheetURL: React.PropTypes.string.isRequired,
 }
 
@@ -297,4 +299,5 @@ Picker.defaultProps = {
   title: 'Emoji Mart™',
   emoji: 'department_store',
   color: '#ae65c5',
+  excludeUnsupportedNativeEmojis: false,
 }

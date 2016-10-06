@@ -5,11 +5,40 @@ const SKINS = [
   '1F3FD', '1F3FE', '1F3FF',
 ]
 
+var blankDataURL, canvas, context
+
 function unifiedToNative(unified) {
   var unicodes = unified.split('-'),
       codePoints = unicodes.map((u) => `0x${u}`)
 
   return String.fromCodePoint(...codePoints)
+}
+
+function clearCanvas() {
+  if (!canvas) {
+    canvas = document.createElement('canvas')
+    canvas.width = canvas.height = 2
+
+    context = canvas.getContext('2d')
+    context.font = '2px Arial'
+    context.textBaseline = 'top'
+
+    blankDataURL = canvas.toDataURL()
+  }
+
+  context.clearRect(0, 0, canvas.width, canvas.height)
+}
+
+function nativeIsSupported() {
+  if (typeof document == 'undefined') return true
+
+  var data = getSanitizedData(...arguments),
+      { native } = data
+
+  clearCanvas()
+  context.fillText(native, 0, 0)
+
+  return blankDataURL != canvas.toDataURL()
 }
 
 function sanitize(emoji) {
@@ -79,4 +108,4 @@ function intersect(a, b) {
   return Array.from(intersection)
 }
 
-export { getData, getSanitizedData, intersect }
+export { getData, getSanitizedData, intersect, nativeIsSupported }

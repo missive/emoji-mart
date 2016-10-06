@@ -27,6 +27,7 @@ import { Picker } from 'emoji-mart'
 | **skin** | | `1` | Default skin color (1-6) |
 | **style** | | | Inline styles applied to the root element. Useful for positioning |
 | **title** | | `Emoji Mart™` | The title shown when no emojis are hovered |
+| **excludeUnsupportedNativeEmojis** | | `false` | Excludes natively unsupported emojis. Useful when using the emojis in a `<textarea>` |
 
 Examples of `emoji` object:
 ```js
