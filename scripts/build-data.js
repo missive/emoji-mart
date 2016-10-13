@@ -5,7 +5,7 @@ var fs = require('fs'),
     mkdirp = require('mkdirp')
 
 var categories = ['People', 'Nature', 'Foods', 'Activity', 'Places', 'Objects', 'Symbols', 'Flags'],
-    data = { categories: [], emojis: {}, skins: {} },
+    data = { categories: [], emojis: {}, skins: {}, short_names: {} },
     categoriesIndex = {}
 
 categories.forEach((category, i) => {
@@ -22,7 +22,6 @@ emojiData.sort((a, b) => {
 
 emojiData.forEach((datum) => {
   var category = datum.category,
-      shortName = datum.short_name,
       keywords = [],
       categoryIndex
 
@@ -82,6 +81,11 @@ emojiData.forEach((datum) => {
     data.categories[categoryIndex].emojis.push(datum.short_name)
     data.emojis[datum.short_name] = datum
   }
+
+  datum.short_names.forEach((short_name, i) => {
+    if (i == 0) { return }
+    data.short_names[short_name] = datum.short_name
+  })
 
   delete datum.docomo
   delete datum.au

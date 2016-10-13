@@ -37,13 +37,21 @@ function getSanitizedData() {
 
 function getData(emoji, skin, sheetURL) {
   var emojiData = {},
-      _emojiData = null
+      _emojiData, _emoji, _id
 
   if (typeof emoji == 'string') {
+    if (_emoji = data.short_names[emoji]) {
+      emoji = _emoji
+    }
+
     if (_emojiData = data.emojis[emoji]) {
       emojiData = _emojiData
     }
   } else if (emoji.id) {
+    if (_id = data.short_names[emoji.id]) {
+      emoji.id = _id
+    }
+
     if (_emojiData = data.emojis[emoji.id]) {
       emojiData = _emojiData
       skin || (skin = emoji.skin)
