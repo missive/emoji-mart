@@ -59,7 +59,12 @@ export default class Emoji extends React.Component {
   }
 
   render() {
-    var { sheetURL, size, onOver, onLeave } = this.props
+    var { sheetURL, size, onOver, onLeave } = this.props,
+        { unified } = this.getData()
+
+    if (!unified) {
+      return null
+    }
 
     return <span
       onClick={this.handleClick.bind(this)}

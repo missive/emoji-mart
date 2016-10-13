@@ -36,13 +36,18 @@ function getSanitizedData() {
 }
 
 function getData(emoji, skin, sheetURL) {
-  var emojiData = {}
+  var emojiData = {},
+      _emojiData = null
 
   if (typeof emoji == 'string') {
-    emojiData = data.emojis[emoji]
+    if (_emojiData = data.emojis[emoji]) {
+      emojiData = _emojiData
+    }
   } else if (emoji.id) {
-    emojiData = data.emojis[emoji.id]
-    skin || (skin = emoji.skin)
+    if (_emojiData = data.emojis[emoji.id]) {
+      emojiData = _emojiData
+      skin || (skin = emoji.skin)
+    }
   }
 
   if (emojiData.skin_variations && skin > 1 && sheetURL) {
