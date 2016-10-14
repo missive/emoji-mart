@@ -24,7 +24,7 @@ function search(value, maxResults = 75) {
   var results = null
 
   if (value.length) {
-    var values = value.toLowerCase().split(/[\s|,]+/),
+    var values = value.toLowerCase().split(/[\s|,|\-|_]+/),
         allResults = []
 
     if (values.length > 2) {
