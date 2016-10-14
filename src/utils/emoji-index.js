@@ -36,7 +36,7 @@ function search(value, maxResults = 75) {
           aIndex = index,
           length = 0
 
-      if (value == '-') {
+      if (value == '-' || value == '-1') {
         return [emojisList['-1']]
       }
 
