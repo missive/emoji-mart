@@ -90,6 +90,10 @@ export default class Picker extends React.Component {
 
         this.updateCategoriesSize()
         this.handleScrollPaint()
+
+        if (SEARCH_CATEGORY.emojis) {
+          component.updateDisplay('none')
+        }
       })
     }
   }
