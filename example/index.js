@@ -49,7 +49,7 @@ class Example extends React.Component {
             onClick={() => this.setState({ set: set })}
             {...props}>
             <Emoji
-              sheetURL={`https://unpkg.com/emoji-mart@0.2.9/sheets/sheet_${set}_32.png`}
+              sheetURL={`https://unpkg.com/emoji-mart@0.2.10/sheets/sheet_${set}_32.png`}
               size={24}
               emoji='grinning'
             />
@@ -86,7 +86,7 @@ class Example extends React.Component {
           emojiSize={this.state.emojiSize}
           perLine={this.state.perLine}
           skin={this.state.skin}
-          sheetURL={`https://unpkg.com/emoji-mart@0.2.9/sheets/sheet_${this.state.set}_64.png`}
+          sheetURL={`https://unpkg.com/emoji-mart@0.2.10/sheets/sheet_${this.state.set}_64.png`}
           onClick={(emoji) => console.log(emoji)}
         />
       }
