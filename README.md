@@ -11,19 +11,20 @@
 ```jsx
 import { Picker } from 'emoji-mart'
 
-<Picker sheetURL='…' onClick={this.addEmoji} />
-<Picker sheetURL='…' title='Pick your emoji…' emoji='point_up' />
-<Picker sheetURL='…' style={{ position: 'absolute', bottom: '20px', right: '20px' }} />
+<Picker set='emojione' />
+<Picker onClick={this.addEmoji} />
+<Picker title='Pick your emoji…' emoji='point_up' />
+<Picker style={{ position: 'absolute', bottom: '20px', right: '20px' }} />
 ```
 
 | Prop | Required | Default | Description |
 | ---- | :------: | ------- | ----------- |
-| **sheetURL** | ✓ | | The absolute or relative path of the emoji sheet |
 | **color** | | `#ae65c5` | The top bar anchors select and hover color |
 | **emoji** | | `department_store` | The emoji shown when no emojis are hovered |
 | **emojiSize** | | `24` | The emoji width and height |
 | **onClick** | | | Params: `(emoji, event) => {}` |
 | **perLine** | | `9` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set *Frequently Used* length as well (`perLine * 4`) |
+| **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'emojione'` |
 | **skin** | | `1` | Default skin color (1-6) |
 | **style** | | | Inline styles applied to the root element. Useful for positioning |
 | **title** | | `Emoji Mart™` | The title shown when no emojis are hovered |
@@ -52,26 +53,22 @@ Examples of `emoji` object:
 }
 ```
 
-You can use [unpkg](https://unpkg.com/emoji-mart@0.2.10/sheets/) with the sheets included in this repo:<br>
-https://unpkg.com/emoji-mart@0.2.10/sheets/sheet_apple_64.png<br>
-https://unpkg.com/emoji-mart@0.2.10/sheets/sheet_emojione_64.png
-
 ### Emoji
 ```jsx
 import { Emoji } from 'emoji-mart'
 
-<Emoji sheetURL='…' emoji={{ id: 'santa', skin: 3 }} />
-<Emoji sheetURL='…' emoji='santa' />
+<Emoji emoji={{ id: 'santa', skin: 3 }} />
+<Emoji set='emojione' emoji='santa' />
 ```
 
 | Prop | Required | Default | Description |
 | ---- | :------: | ------- | ----------- |
 | **emoji** | ✓ | | Either a string or an `emoji` object |
-| **sheetURL** | ✓ | | The absolute or relative path of the emoji sheet |
 | **size** | ✓ | | The emoji width and height. |
 | **onClick** | | | Params: `(emoji, event) => {}` |
 | **onLeave** | | | Params: `(emoji, event) => {}` |
 | **onOver** | | | Params: `(emoji, event) => {}` |
+| **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'emojione'` |
 | **skin** | | `1` | Skin color (1-6) |
 
 ## Headless search

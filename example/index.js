@@ -49,7 +49,7 @@ class Example extends React.Component {
             onClick={() => this.setState({ set: set })}
             {...props}>
             <Emoji
-              sheetURL={`https://unpkg.com/emoji-mart@0.2.10/sheets/sheet_${set}_32.png`}
+              set={set}
               size={24}
               emoji='grinning'
             />
@@ -76,7 +76,7 @@ class Example extends React.Component {
 <br />  emojiSize<Operator>=</Operator>&#123;<Variable>{this.state.emojiSize}</Variable>&#125; <input type='range' data-key='emojiSize' onChange={this.handleInput.bind(this)} min='16' max='64' value={this.state.emojiSize} />
 <br />  perLine<Operator>=</Operator>&#123;<Variable>{this.state.perLine}</Variable>&#125; {this.state.perLine < 10 ? '  ' : ' '} <input type='range' data-key='perLine' onChange={this.handleInput.bind(this)} min='7' max='16' value={this.state.perLine} />
 <br />  skin<Operator>=</Operator>&#123;<Variable>{this.state.skin}</Variable>&#125;       <input type='range' data-key='skin' onChange={this.handleInput.bind(this)} min='1' max='6' value={this.state.skin} />
-<br />  sheetURL<Operator>=</Operator><String>'sheets/sheet_{this.state.set}_64.png'</String>
+<br />  set<Operator>=</Operator><String>'{this.state.set}'</String>
 <br />  onClick<Operator>=</Operator>&#123;(<Variable>emoji</Variable>) => console.log(<Variable>emoji</Variable>)&#125;
 <br /><Operator>/&gt;</Operator>
       </pre>
@@ -86,7 +86,7 @@ class Example extends React.Component {
           emojiSize={this.state.emojiSize}
           perLine={this.state.perLine}
           skin={this.state.skin}
-          sheetURL={`https://unpkg.com/emoji-mart@0.2.10/sheets/sheet_${this.state.set}_64.png`}
+          set={this.state.set}
           onClick={(emoji) => console.log(emoji)}
         />
       }

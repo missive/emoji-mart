@@ -16,7 +16,7 @@ export default class Emoji extends React.Component {
     return (
       this.hasSkinVariations && nextProps.skin != this.props.skin ||
       nextProps.size != this.props.size ||
-      nextProps.sheetURL != this.props.sheetURL
+      nextProps.set != this.props.set
     )
   }
 
@@ -28,13 +28,13 @@ export default class Emoji extends React.Component {
   }
 
   getData() {
-    var { emoji, skin, sheetURL } = this.props
-    return getData(emoji, skin, sheetURL)
+    var { emoji, skin, set } = this.props
+    return getData(emoji, skin, set)
   }
 
   getSanitizedData() {
-    var { emoji, skin, sheetURL } = this.props
-    return getSanitizedData(emoji, skin, sheetURL)
+    var { emoji, skin, set } = this.props
+    return getSanitizedData(emoji, skin, set)
   }
 
   handleClick(e) {
@@ -59,7 +59,7 @@ export default class Emoji extends React.Component {
   }
 
   render() {
-    var { sheetURL, size, onOver, onLeave } = this.props,
+    var { set, size, onOver, onLeave } = this.props,
         { unified } = this.getData()
 
     if (!unified) {
@@ -75,7 +75,7 @@ export default class Emoji extends React.Component {
         width: size,
         height: size,
         display: 'inline-block',
-        backgroundImage: `url(${sheetURL})`,
+        backgroundImage: `url(https://unpkg.com/emoji-datasource@2.4.4/sheet_${set}_64.png)`,
         backgroundSize: `${100 * SHEET_COLUMNS}%`,
         backgroundPosition: this.getPosition(),
       }}>
@@ -86,11 +86,11 @@ export default class Emoji extends React.Component {
 
 Emoji.propTypes = {
   skin: React.PropTypes.number,
+  set: React.PropTypes.string,
   onOver: React.PropTypes.func,
   onLeave: React.PropTypes.func,
   onClick: React.PropTypes.func,
   size: React.PropTypes.number.isRequired,
-  sheetURL: React.PropTypes.string.isRequired,
   emoji: React.PropTypes.oneOfType([
     React.PropTypes.string,
     React.PropTypes.object,
@@ -99,6 +99,7 @@ Emoji.propTypes = {
 
 Emoji.defaultProps = {
   skin: 1,
+  set: 'apple',
   onOver: (() => {}),
   onLeave: (() => {}),
   onClick: (() => {}),

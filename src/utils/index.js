@@ -35,7 +35,7 @@ function getSanitizedData() {
   return sanitize(getData(...arguments))
 }
 
-function getData(emoji, skin, sheetURL) {
+function getData(emoji, skin, set) {
   var emojiData = {}
 
   if (typeof emoji == 'string') {
@@ -57,16 +57,14 @@ function getData(emoji, skin, sheetURL) {
     }
   }
 
-  if (emojiData.skin_variations && skin > 1 && sheetURL) {
+  if (emojiData.skin_variations && skin > 1 && set) {
     emojiData = JSON.parse(JSON.stringify(emojiData))
 
     var skinKey = SKINS[skin - 1],
         variationKey = `${emojiData.unified}-${skinKey}`,
-        variationData = emojiData.skin_variations[variationKey],
-        kitMatches = sheetURL.match(/(apple|google|twitter|emojione)/),
-        kit = kitMatches[0]
+        variationData = emojiData.skin_variations[variationKey]
 
-    if (variationData[`has_img_${kit}`]) {
+    if (variationData[`has_img_${set}`]) {
       emojiData.skin_tone = skin
 
       for (let k in variationData) {
