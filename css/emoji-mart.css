@@ -68,7 +68,7 @@
 }
 
 .emoji-mart-scroll {
-  overflow: scroll;
+  overflow-y: scroll;
   height: 270px;
   padding: 0 6px 6px 6px;
   border: solid #d9d9d9;
