@@ -1,7 +1,7 @@
 import React from 'react'
 
-import {Emoji, Skins} from '.'
-import {getData} from '../utils'
+import { Emoji, Skins } from '.'
+import { getData } from '../utils'
 
 export default class Preview extends React.Component {
   constructor(props) {

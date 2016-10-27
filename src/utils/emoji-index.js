@@ -1,6 +1,6 @@
 import data from '../../data'
 
-import {getSanitizedData, intersect} from '.'
+import { getSanitizedData, intersect } from '.'
 
 var index = {}
 var emojisList = {}

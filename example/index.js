@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import {Picker, Emoji} from '../src'
+import { Picker, Emoji } from '../src'
 
 class Example extends React.Component {
   constructor(props) {

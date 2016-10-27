@@ -1,7 +1,7 @@
 import React from 'react'
 import data from '../../data'
 
-import {getData, getSanitizedData} from '../utils'
+import { getData, getSanitizedData } from '../utils'
 
 const SHEET_COLUMNS = 41
 

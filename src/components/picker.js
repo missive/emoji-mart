@@ -5,9 +5,9 @@ import data from '../../data'
 
 import store from '../utils/store'
 import frequently from '../utils/frequently'
-import {deepMerge} from '../utils'
+import { deepMerge } from '../utils'
 
-import {Anchors, Category, Emoji, Preview, Search} from '.'
+import { Anchors, Category, Emoji, Preview, Search } from '.'
 
 const RECENT_CATEGORY = { name: 'Recent', emojis: null }
 const SEARCH_CATEGORY = { name: 'Search', emojis: null, anchor: RECENT_CATEGORY }
