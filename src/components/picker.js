@@ -282,7 +282,6 @@ export default class Picker extends React.Component {
 
 Picker.propTypes = {
   onClick: React.PropTypes.func,
-  skin: React.PropTypes.number,
   perLine: React.PropTypes.number,
   emojiSize: React.PropTypes.number,
   style: React.PropTypes.object,
@@ -290,6 +289,7 @@ Picker.propTypes = {
   emoji: React.PropTypes.string,
   color: React.PropTypes.string,
   set: Emoji.propTypes.set,
+  skin: Emoji.propTypes.skin,
 }
 
 Picker.defaultProps = {
@@ -297,9 +297,9 @@ Picker.defaultProps = {
   emojiSize: 24,
   perLine: 9,
   style: {},
-  skin: 1,
   title: 'Emoji Mart™',
   emoji: 'department_store',
   color: '#ae65c5',
   set: Emoji.defaultProps.set,
+  skin: Emoji.defaultProps.skin,
 }

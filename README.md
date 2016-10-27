@@ -25,7 +25,7 @@ import { Picker } from 'emoji-mart'
 | **onClick** | | | Params: `(emoji, event) => {}` |
 | **perLine** | | `9` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set *Frequently Used* length as well (`perLine * 4`) |
 | **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'emojione'` |
-| **skin** | | `1` | Default skin color (1-6) |
+| **skin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
 | **style** | | | Inline styles applied to the root element. Useful for positioning |
 | **title** | | `Emoji Mart™` | The title shown when no emojis are hovered |
 
@@ -69,7 +69,7 @@ import { Emoji } from 'emoji-mart'
 | **onLeave** | | | Params: `(emoji, event) => {}` |
 | **onOver** | | | Params: `(emoji, event) => {}` |
 | **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'emojione'` |
-| **skin** | | `1` | Skin color (1-6) |
+| **skin** | | `1` | Skin color: `1, 2, 3, 4, 5, 6` |
 
 ## Headless search
 The `Picker` doesn’t have to be mounted for you to take advantage of the advanced search results.
