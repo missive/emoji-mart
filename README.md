@@ -25,11 +25,34 @@ import { Picker } from 'emoji-mart'
 | **onClick** | | | Params: `(emoji, event) => {}` |
 | **perLine** | | `9` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set *Frequently Used* length as well (`perLine * 4`) |
 | **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'emojione'` |
+| **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
 | **skin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
 | **style** | | | Inline styles applied to the root element. Useful for positioning |
 | **title** | | `Emoji Mart™` | The title shown when no emojis are hovered |
 
-Examples of `emoji` object:
+#### Sheet sizes
+Sheets are served from [unpkg](https://unpkg.com), a global CDN that serves files published to [npm](https://www.npmjs.com).
+
+| Set      | sheetSize | Size     |
+| -------- | --------- | -------- |
+| apple    | 16        | 938.7 kB |
+| apple    | 20        | 1.3 MB   |
+| apple    | 32        | 2.6 MB   |
+| apple    | 64        | 7.2 MB   |
+| emojione | 16        | 805.5 kB |
+| emojione | 20        | 1.1 MB   |
+| emojione | 32        | 2.0 MB   |
+| emojione | 64        | 2.7 MB   |
+| google   | 16        | 622.6 kB |
+| google   | 20        | 849.8 kB |
+| google   | 32        | 1.6 MB   |
+| google   | 64        | 3.6 MB   |
+| twitter  | 16        | 776.0 kB |
+| twitter  | 20        | 1.0 MB   |
+| twitter  | 32        | 1.9 MB   |
+| twitter  | 64        | 4.2 MB   |
+
+#### Examples of `emoji` object:
 ```js
 {
   id: 'smiley',
@@ -69,6 +92,7 @@ import { Emoji } from 'emoji-mart'
 | **onLeave** | | | Params: `(emoji, event) => {}` |
 | **onOver** | | | Params: `(emoji, event) => {}` |
 | **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'emojione'` |
+| **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
 | **skin** | | `1` | Skin color: `1, 2, 3, 4, 5, 6` |
 
 ## Headless search

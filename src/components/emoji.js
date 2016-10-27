@@ -59,7 +59,7 @@ export default class Emoji extends React.Component {
   }
 
   render() {
-    var { set, size, onOver, onLeave } = this.props,
+    var { set, size, sheetSize, onOver, onLeave } = this.props,
         { unified } = this.getData()
 
     if (!unified) {
@@ -75,7 +75,7 @@ export default class Emoji extends React.Component {
         width: size,
         height: size,
         display: 'inline-block',
-        backgroundImage: `url(https://unpkg.com/emoji-datasource@2.4.4/sheet_${set}_64.png)`,
+        backgroundImage: `url(https://unpkg.com/emoji-datasource@2.4.4/sheet_${set}_${sheetSize}.png)`,
         backgroundSize: `${100 * SHEET_COLUMNS}%`,
         backgroundPosition: this.getPosition(),
       }}>
@@ -89,6 +89,7 @@ Emoji.propTypes = {
   onLeave: React.PropTypes.func,
   onClick: React.PropTypes.func,
   skin: React.PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
+  sheetSize: React.PropTypes.oneOf([16, 20, 32, 64]),
   set: React.PropTypes.oneOf(['apple', 'google', 'twitter', 'emojione']),
   size: React.PropTypes.number.isRequired,
   emoji: React.PropTypes.oneOfType([
@@ -100,6 +101,7 @@ Emoji.propTypes = {
 Emoji.defaultProps = {
   skin: 1,
   set: 'apple',
+  sheetSize: 64,
   onOver: (() => {}),
   onLeave: (() => {}),
   onClick: (() => {}),
