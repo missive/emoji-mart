@@ -89,4 +89,25 @@ function intersect(a, b) {
   return Array.from(intersection)
 }
 
-export { getData, getSanitizedData, intersect }
+function deepMerge(a, b) {
+  var o = {}
+
+  for (let key in a) {
+    let originalValue = a[key],
+        value = originalValue
+
+    if (b.hasOwnProperty(key)) {
+      value = b[key]
+    }
+
+    if (typeof value === 'object') {
+      value = deepMerge(originalValue, value)
+    }
+
+    o[key] = value
+  }
+
+  return o
+}
+
+export { getData, getSanitizedData, intersect, deepMerge }

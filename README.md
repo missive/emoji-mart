@@ -15,6 +15,7 @@ import { Picker } from 'emoji-mart'
 <Picker onClick={this.addEmoji} />
 <Picker title='Pick your emoji…' emoji='point_up' />
 <Picker style={{ position: 'absolute', bottom: '20px', right: '20px' }} />
+<Picker i18n={{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }} />
 ```
 
 | Prop | Required | Default | Description |
@@ -24,11 +25,29 @@ import { Picker } from 'emoji-mart'
 | **emojiSize** | | `24` | The emoji width and height |
 | **onClick** | | | Params: `(emoji, event) => {}` |
 | **perLine** | | `9` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set *Frequently Used* length as well (`perLine * 4`) |
+| **i18n** | | [`{…}`](#i18n) | [An object](#i18n) containing localized strings |
 | **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'emojione'` |
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
 | **skin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
 | **style** | | | Inline styles applied to the root element. Useful for positioning |
 | **title** | | `Emoji Mart™` | The title shown when no emojis are hovered |
+
+#### I18n
+```js
+search: 'Search',
+categories: {
+  search: 'Search Results',
+  recent: 'Frequently Used',
+  people: 'Smileys & People',
+  nature: 'Animals & Nature',
+  foods: 'Food & Drink',
+  activity: 'Activity',
+  places: 'Travel & Places',
+  objects: 'Objects',
+  symbols: 'Symbols',
+  flags: 'Flags',
+}
+```
 
 #### Sheet sizes
 Sheets are served from [unpkg](https://unpkg.com), a global CDN that serves files published to [npm](https://www.npmjs.com).

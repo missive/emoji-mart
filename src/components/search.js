@@ -14,11 +14,13 @@ export default class Search extends React.Component {
   }
 
   render() {
+    var { i18n } = this.props
+
     return <input
       ref='input'
       type='text'
       onChange={this.handleChange.bind(this)}
-      placeholder='Search'
+      placeholder={i18n.search}
       className='emoji-mart-search'
     />
   }

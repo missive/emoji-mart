@@ -18,7 +18,7 @@ export default class Anchors extends React.Component {
   }
 
   render() {
-    var { categories, onAnchorClick, color } = this.props,
+    var { categories, onAnchorClick, color, i18n } = this.props,
         { selected } = this.state
 
     return <div className='emoji-mart-anchors'>
@@ -33,7 +33,7 @@ export default class Anchors extends React.Component {
         return (
           <span
             key={name}
-            title={name}
+            title={i18n.categories[name.toLowerCase()]}
             onClick={() => onAnchorClick(category, i)}
             className={`emoji-mart-anchor ${isSelected ? 'emoji-mart-anchor-selected' : ''}`}
             style={{ color: isSelected ? color : null }}

@@ -5,6 +5,7 @@ import data from '../../data'
 
 import store from '../utils/store'
 import frequently from '../utils/frequently'
+import {deepMerge} from '../utils'
 
 import {Anchors, Category, Emoji, Preview, Search} from '.'
 
@@ -16,10 +17,27 @@ const CATEGORIES = [
   RECENT_CATEGORY,
 ].concat(data.categories)
 
+const I18N = {
+  search: 'Search',
+  categories: {
+    search: 'Search Results',
+    recent: 'Frequently Used',
+    people: 'Smileys & People',
+    nature: 'Animals & Nature',
+    foods: 'Food & Drink',
+    activity: 'Activity',
+    places: 'Travel & Places',
+    objects: 'Objects',
+    symbols: 'Symbols',
+    flags: 'Flags',
+  },
+}
+
 export default class Picker extends React.Component {
   constructor(props) {
     super(props)
 
+    this.i18n = deepMerge(I18N, props.i18n)
     this.state = {
       skin: store.get('skin') || props.skin,
       firstRender: true,
@@ -228,6 +246,7 @@ export default class Picker extends React.Component {
       <div className='emoji-mart-bar'>
         <Anchors
           ref='anchors'
+          i18n={this.i18n}
           color={color}
           categories={CATEGORIES}
           onAnchorClick={this.handleAnchorClick.bind(this)}
@@ -238,6 +257,7 @@ export default class Picker extends React.Component {
         <Search
           ref='search'
           onSearch={this.handleSearch.bind(this)}
+          i18n={this.i18n}
         />
 
         {this.getCategories().map((category, i) => {
@@ -248,6 +268,7 @@ export default class Picker extends React.Component {
             emojis={category.emojis}
             perLine={perLine}
             hasStickyPosition={this.hasStickyPosition}
+            i18n={this.i18n}
             emojiProps={{
               skin: skin,
               size: emojiSize,
@@ -286,6 +307,7 @@ Picker.propTypes = {
   onClick: React.PropTypes.func,
   perLine: React.PropTypes.number,
   emojiSize: React.PropTypes.number,
+  i18n: React.PropTypes.object,
   style: React.PropTypes.object,
   title: React.PropTypes.string,
   emoji: React.PropTypes.string,
@@ -299,6 +321,7 @@ Picker.defaultProps = {
   onClick: (() => {}),
   emojiSize: 24,
   perLine: 9,
+  i18n: {},
   style: {},
   title: 'Emoji Mart™',
   emoji: 'department_store',
