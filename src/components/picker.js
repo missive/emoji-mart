@@ -6,7 +6,7 @@ import data from '../../data'
 import store from '../utils/store'
 import frequently from '../utils/frequently'
 
-import {Anchors, Category, Preview, Search} from '.'
+import {Anchors, Category, Emoji, Preview, Search} from '.'
 
 const RECENT_CATEGORY = { name: 'Recent', emojis: null }
 const SEARCH_CATEGORY = { name: 'Search', emojis: null, anchor: RECENT_CATEGORY }
@@ -289,7 +289,7 @@ Picker.propTypes = {
   title: React.PropTypes.string,
   emoji: React.PropTypes.string,
   color: React.PropTypes.string,
-  set: React.PropTypes.string,
+  set: Emoji.propTypes.set,
 }
 
 Picker.defaultProps = {
@@ -301,5 +301,5 @@ Picker.defaultProps = {
   title: 'Emoji Mart™',
   emoji: 'department_store',
   color: '#ae65c5',
-  set: 'apple',
+  set: Emoji.defaultProps.set,
 }

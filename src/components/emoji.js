@@ -86,10 +86,10 @@ export default class Emoji extends React.Component {
 
 Emoji.propTypes = {
   skin: React.PropTypes.number,
-  set: React.PropTypes.string,
   onOver: React.PropTypes.func,
   onLeave: React.PropTypes.func,
   onClick: React.PropTypes.func,
+  set: React.PropTypes.oneOf(['apple', 'google', 'twitter', 'emojione']),
   size: React.PropTypes.number.isRequired,
   emoji: React.PropTypes.oneOfType([
     React.PropTypes.string,
