@@ -31,6 +31,7 @@
   justify-content: space-between;
   padding: 0 6px;
   color: #858585;
+  line-height: 0;
 }
 
 .emoji-mart-anchor {
