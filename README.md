@@ -108,6 +108,7 @@ import { Emoji } from 'emoji-mart'
 | ---- | :------: | ------- | ----------- |
 | **emoji** | ✓ | | Either a string or an `emoji` object |
 | **size** | ✓ | | The emoji width and height. |
+| **native** | | `false` | Renders the native unicode emoji |
 | **onClick** | | | Params: `(emoji, event) => {}` |
 | **onLeave** | | | Params: `(emoji, event) => {}` |
 | **onOver** | | | Params: `(emoji, event) => {}` |

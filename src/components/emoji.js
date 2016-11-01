@@ -1,7 +1,7 @@
 import React from 'react'
 import data from '../../data'
 
-import { getData, getSanitizedData } from '../utils'
+import { getData, getSanitizedData, unifiedToNative } from '../utils'
 
 const SHEET_COLUMNS = 41
 
@@ -59,11 +59,27 @@ export default class Emoji extends React.Component {
   }
 
   render() {
-    var { set, size, sheetSize, onOver, onLeave } = this.props,
-        { unified } = this.getData()
+    var { set, size, sheetSize, native, onOver, onLeave } = this.props,
+        { unified } = this.getData(),
+        style = {},
+        children = null
 
     if (!unified) {
       return null
+    }
+
+    if (native && unified) {
+      style = { fontSize: size }
+      children = unifiedToNative(unified)
+    } else {
+      style = {
+        width: size,
+        height: size,
+        display: 'inline-block',
+        backgroundImage: `url(https://unpkg.com/emoji-datasource@2.4.4/sheet_${set}_${sheetSize}.png)`,
+        backgroundSize: `${100 * SHEET_COLUMNS}%`,
+        backgroundPosition: this.getPosition(),
+      }
     }
 
     return <span
@@ -71,15 +87,7 @@ export default class Emoji extends React.Component {
       onMouseEnter={this.handleOver.bind(this)}
       onMouseLeave={this.handleLeave.bind(this)}
       className='emoji-mart-emoji'>
-      <span style={{
-        width: size,
-        height: size,
-        display: 'inline-block',
-        backgroundImage: `url(https://unpkg.com/emoji-datasource@2.4.4/sheet_${set}_${sheetSize}.png)`,
-        backgroundSize: `${100 * SHEET_COLUMNS}%`,
-        backgroundPosition: this.getPosition(),
-      }}>
-      </span>
+      <span style={style}>{children}</span>
     </span>
   }
 }
@@ -88,6 +96,7 @@ Emoji.propTypes = {
   onOver: React.PropTypes.func,
   onLeave: React.PropTypes.func,
   onClick: React.PropTypes.func,
+  native: React.PropTypes.bool,
   skin: React.PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   sheetSize: React.PropTypes.oneOf([16, 20, 32, 64]),
   set: React.PropTypes.oneOf(['apple', 'google', 'twitter', 'emojione']),
@@ -102,6 +111,7 @@ Emoji.defaultProps = {
   skin: 1,
   set: 'apple',
   sheetSize: 64,
+  native: false,
   onOver: (() => {}),
   onLeave: (() => {}),
   onClick: (() => {}),
