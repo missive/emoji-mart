@@ -100,7 +100,8 @@ Sheets are served from [unpkg](https://unpkg.com), a global CDN that serves file
 import { Emoji } from 'emoji-mart'
 
 <Emoji emoji={{ id: 'santa', skin: 3 }} />
-<Emoji set='emojione' emoji='santa' />
+<Emoji emoji=':santa::skin-tone-3:' />
+<Emoji emoji='santa' set='emojione' />
 ```
 
 | Prop | Required | Default | Description |

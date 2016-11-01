@@ -1,5 +1,6 @@
 import data from '../../data'
 
+const COLONS_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/
 const SKINS = [
   '1F3FA', '1F3FB', '1F3FC',
   '1F3FD', '1F3FE', '1F3FF',
@@ -39,6 +40,16 @@ function getData(emoji, skin, set) {
   var emojiData = {}
 
   if (typeof emoji == 'string') {
+    let matches = emoji.match(COLONS_REGEX)
+
+    if (matches) {
+      emoji = matches[1]
+
+      if (matches[2]) {
+        skin = parseInt(matches[2])
+      }
+    }
+
     if (data.short_names.hasOwnProperty(emoji)) {
       emoji = data.short_names[emoji]
     }
