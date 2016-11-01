@@ -121,4 +121,4 @@ function deepMerge(a, b) {
   return o
 }
 
-export { getData, getSanitizedData, intersect, deepMerge }
+export { getData, getSanitizedData, intersect, deepMerge, unifiedToNative }
