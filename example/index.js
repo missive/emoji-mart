@@ -90,6 +90,101 @@ class Example extends React.Component {
           onClick={(emoji) => console.log(emoji)}
         />
       }
+
+      <div>
+        <pre style={{
+          fontSize: 18,
+          display: 'inline-block',
+          verticalAlign: 'top',
+          margin: '1em',
+          width: '370px',
+        }}>
+<Operator>import</Operator> &#123;Emoji&#125; <Operator>from</Operator> <String>'emoji-mart'</String>
+<br />
+<br /><Operator>&lt;</Operator><Variable>Emoji</Variable>
+<br />  emoji<Operator>=</Operator><String>'thumbsup'</String>
+<br />  size<Operator>=</Operator>&#123;<Variable>{64}</Variable>&#125;
+<br /><Operator>/&gt;</Operator>
+        </pre>
+
+        <span style={{ display: 'inline-block', marginTop: 60 }}>
+          <Emoji
+            emoji='thumbsup'
+            size={64}
+            set={this.state.set}
+          />
+        </span>
+      </div>
+
+      <div>
+        <pre style={{
+          fontSize: 18,
+          display: 'inline-block',
+          verticalAlign: 'top',
+          margin: '1em',
+          width: '370px',
+        }}>
+<br /><Operator>&lt;</Operator><Variable>Emoji</Variable>
+<br />  emoji<Operator>=</Operator><String>':thumbsup:'</String>
+<br />  size<Operator>=</Operator>&#123;<Variable>{64}</Variable>&#125;
+<br /><Operator>/&gt;</Operator>
+        </pre>
+
+        <span style={{ display: 'inline-block', marginTop: 40 }}>
+          <Emoji
+            emoji=':thumbsup:'
+            size={64}
+            set={this.state.set}
+          />
+        </span>
+      </div>
+
+      <div>
+        <pre style={{
+          fontSize: 18,
+          display: 'inline-block',
+          verticalAlign: 'top',
+          margin: '1em',
+          width: '370px',
+        }}>
+  <br /><Operator>&lt;</Operator><Variable>Emoji</Variable>
+  <br />  emoji<Operator>=</Operator><String>':thumbsup::skin-tone-3:'</String>
+  <br />  size<Operator>=</Operator>&#123;<Variable>{64}</Variable>&#125;
+  <br /><Operator>/&gt;</Operator>
+        </pre>
+
+        <span style={{ display: 'inline-block', marginTop: 40 }}>
+          <Emoji
+            emoji=':thumbsup::skin-tone-3:'
+            size={64}
+            set={this.state.set}
+          />
+        </span>
+      </div>
+
+      <div>
+        <pre style={{
+          fontSize: 18,
+          display: 'inline-block',
+          verticalAlign: 'top',
+          margin: '1em',
+          width: '370px',
+        }}>
+  <br /><Operator>&lt;</Operator><Variable>Emoji</Variable>
+  <br />  emoji<Operator>=</Operator><String>':thumbsup::skin-tone-3:'</String>
+  <br />  size<Operator>=</Operator>&#123;<Variable>{64}</Variable>&#125;
+  <br />  native<Operator>=</Operator>&#123;<Variable>{'true'}</Variable>&#125;
+  <br /><Operator>/&gt;</Operator>
+        </pre>
+
+        <span style={{ display: 'inline-block', marginTop: 60 }}>
+          <Emoji
+            emoji=':thumbsup::skin-tone-3:'
+            size={64}
+            native={true}
+          />
+        </span>
+      </div>
     </div>
   }
 }
