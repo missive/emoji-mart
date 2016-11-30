@@ -59,7 +59,7 @@ export default class Emoji extends React.Component {
   }
 
   render() {
-    var { set, size, sheetSize, native, onOver, onLeave } = this.props,
+    var { set, size, sheetSize, native, onOver, onLeave, backgroundImageFn } = this.props,
         { unified } = this.getData(),
         style = {},
         children = null
@@ -76,7 +76,7 @@ export default class Emoji extends React.Component {
         width: size,
         height: size,
         display: 'inline-block',
-        backgroundImage: `url(https://unpkg.com/emoji-datasource@2.4.4/sheet_${set}_${sheetSize}.png)`,
+        backgroundImage: `url(${backgroundImageFn(set, sheetSize)})`,
         backgroundSize: `${100 * SHEET_COLUMNS}%`,
         backgroundPosition: this.getPosition(),
       }
@@ -96,6 +96,7 @@ Emoji.propTypes = {
   onOver: React.PropTypes.func,
   onLeave: React.PropTypes.func,
   onClick: React.PropTypes.func,
+  backgroundImageFn: React.PropTypes.func,
   native: React.PropTypes.bool,
   skin: React.PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   sheetSize: React.PropTypes.oneOf([16, 20, 32, 64]),
@@ -113,6 +114,7 @@ Emoji.defaultProps = {
   sheetSize: 64,
   native: false,
   onOver: (() => {}),
+  backgroundImageFn: ((set, sheetSize) => `https://unpkg.com/emoji-datasource@2.4.4/sheet_${set}_${sheetSize}.png`),
   onLeave: (() => {}),
   onClick: (() => {}),
 }
