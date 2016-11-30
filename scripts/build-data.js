@@ -1,5 +1,5 @@
 var fs = require('fs'),
-    emojiData = require('emoji-data'),
+    emojiData = require('emoji-datasource'),
     emojiLib = require('emojilib'),
     inflection = require('inflection'),
     mkdirp = require('mkdirp')
