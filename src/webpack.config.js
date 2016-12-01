@@ -1,4 +1,6 @@
 var path = require('path')
+var pack = require('../package.json')
+var webpack = require('webpack')
 
 module.exports = {
   entry: path.resolve('src/index.js'),
@@ -42,6 +44,11 @@ module.exports = {
     extensions: ['', '.js'],
   },
 
-  plugins: [],
+  plugins: [
+    new webpack.DefinePlugin({
+      EMOJI_DATASOURCE_VERSION: `'${pack.devDependencies['emoji-datasource']}'`,
+    }),
+  ],
+
   bail: true,
 }

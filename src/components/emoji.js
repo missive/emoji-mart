@@ -113,8 +113,8 @@ Emoji.defaultProps = {
   set: 'apple',
   sheetSize: 64,
   native: false,
+  backgroundImageFn: ((set, sheetSize) => `https://unpkg.com/emoji-datasource@${EMOJI_DATASOURCE_VERSION}/sheet_${set}_${sheetSize}.png`),
   onOver: (() => {}),
-  backgroundImageFn: ((set, sheetSize) => `https://unpkg.com/emoji-datasource@2.4.4/sheet_${set}_${sheetSize}.png`),
   onLeave: (() => {}),
   onClick: (() => {}),
 }
