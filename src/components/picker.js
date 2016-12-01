@@ -238,7 +238,7 @@ export default class Picker extends React.Component {
   }
 
   render() {
-    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color } = this.props,
+    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, backgroundImageFn } = this.props,
         { skin } = this.state,
         width = (perLine * (emojiSize + 12)) + 12 + 2
 
@@ -274,6 +274,7 @@ export default class Picker extends React.Component {
               size: emojiSize,
               set: set,
               sheetSize: sheetSize,
+              backgroundImageFn: backgroundImageFn,
               onOver: this.handleEmojiOver.bind(this),
               onLeave: this.handleEmojiLeave.bind(this),
               onClick: this.handleEmojiClick.bind(this),
@@ -292,6 +293,7 @@ export default class Picker extends React.Component {
             skin: skin,
             set: set,
             sheetSize: sheetSize,
+            backgroundImageFn: backgroundImageFn,
           }}
           skinsProps={{
             skin: skin,
@@ -313,6 +315,7 @@ Picker.propTypes = {
   emoji: React.PropTypes.string,
   color: React.PropTypes.string,
   set: Emoji.propTypes.set,
+  backgroundImageFn: Emoji.propTypes.backgroundImageFn,
   skin: Emoji.propTypes.skin,
   sheetSize: Emoji.propTypes.sheetSize,
 }
@@ -329,4 +332,5 @@ Picker.defaultProps = {
   set: Emoji.defaultProps.set,
   skin: Emoji.defaultProps.skin,
   sheetSize: Emoji.defaultProps.sheetSize,
+  backgroundImageFn: Emoji.defaultProps.backgroundImageFn,
 }
