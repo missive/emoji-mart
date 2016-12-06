@@ -1,4 +1,4 @@
-const NAMESPACE = 'emoji-mart'
+var NAMESPACE = 'emoji-mart'
 
 var isLocalStorageSupported = typeof window !== 'undefined' &&
                               'localStorage' in window
@@ -24,4 +24,8 @@ function get(key) {
   }
 }
 
-export default { update, set, get }
+function setNamespace(namespace){
+	NAMESPACE = namespace
+}
+
+export default { update, set, get, setNamespace }
