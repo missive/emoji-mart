@@ -24,8 +24,8 @@ function get(key) {
   }
 }
 
-function setNamespace(namespace){
-	NAMESPACE = namespace
+function setNamespace(namespace) {
+  NAMESPACE = namespace
 }
 
 export default { update, set, get, setNamespace }
