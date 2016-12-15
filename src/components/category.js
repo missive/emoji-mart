@@ -160,7 +160,7 @@ Category.propTypes = {
   name: React.PropTypes.string.isRequired,
   perLine: React.PropTypes.number.isRequired,
   emojiProps: React.PropTypes.object.isRequired,
-  excludeUnsupportedNativeEmojis: React.PropTypes.bool.isRequired,
+  excludeUnsupportedNativeEmojis: React.PropTypes.bool,
 }
 
 Category.defaultProps = {
