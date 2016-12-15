@@ -238,7 +238,7 @@ export default class Picker extends React.Component {
   }
 
   render() {
-    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, backgroundImageFn } = this.props,
+    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, backgroundImageFn, excludeUnsupportedNativeEmojis, renderNative } = this.props,
         { skin } = this.state,
         width = (perLine * (emojiSize + 12)) + 12 + 2
 
@@ -274,6 +274,8 @@ export default class Picker extends React.Component {
               size: emojiSize,
               set: set,
               sheetSize: sheetSize,
+              excludeUnsupportedNativeEmojis: excludeUnsupportedNativeEmojis,
+              native: renderNative,
               backgroundImageFn: backgroundImageFn,
               onOver: this.handleEmojiOver.bind(this),
               onLeave: this.handleEmojiLeave.bind(this),
@@ -294,6 +296,8 @@ export default class Picker extends React.Component {
             set: set,
             sheetSize: sheetSize,
             backgroundImageFn: backgroundImageFn,
+            excludeUnsupportedNativeEmojis: excludeUnsupportedNativeEmojis,
+            native: renderNative
           }}
           skinsProps={{
             skin: skin,
@@ -315,6 +319,8 @@ Picker.propTypes = {
   emoji: React.PropTypes.string,
   color: React.PropTypes.string,
   set: Emoji.propTypes.set,
+  excludeUnsupportedNativeEmojis: React.PropTypes.bool,
+  renderNative: React.PropTypes.bool,
   backgroundImageFn: Emoji.propTypes.backgroundImageFn,
   skin: Emoji.propTypes.skin,
   sheetSize: Emoji.propTypes.sheetSize,
@@ -331,6 +337,7 @@ Picker.defaultProps = {
   color: '#ae65c5',
   set: Emoji.defaultProps.set,
   skin: Emoji.defaultProps.skin,
+  excludeUnsupportedNativeEmojis: false,
   sheetSize: Emoji.defaultProps.sheetSize,
   backgroundImageFn: Emoji.defaultProps.backgroundImageFn,
 }

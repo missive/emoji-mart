@@ -13,6 +13,31 @@ function unifiedToNative(unified) {
   return String.fromCodePoint(...codePoints)
 }
 
+function clearCanvas() {
+  if (!canvas) {
+    canvas = docuent.createElement('canvas')
+    canvas.width = canvas.height = 2
+
+    context = canvas.getContext('2d')
+    context.font = '2px Arial'
+    context.textBaseline = 'top'
+
+    blankDataURL = canvas.toDataURL()
+  }
+
+  context.clearRect(0, 0, canvas.width, canvas.height)
+}
+
+function nativeIsSupported() {
+  if (typeof document == 'undefined') return true
+  var data = getSanitizedData(...arguments),
+    { native } = data
+
+  clearCanvas()
+  context.fillText(native, 0, 0)
+  return blankDataURL != canvas.toDataURL()
+}
+
 function sanitize(emoji) {
   var { name, short_names, skin_tone, skin_variations, emoticons, unified } = emoji,
       id = short_names[0],
@@ -121,4 +146,4 @@ function deepMerge(a, b) {
   return o
 }
 
-export { getData, getSanitizedData, intersect, deepMerge, unifiedToNative }
+export { getData, getSanitizedData, intersect, deepMerge, unifiedToNative, nativeIsSupported }

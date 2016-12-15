@@ -1,6 +1,7 @@
 import React from 'react'
 
 import frequently from '../utils/frequently'
+import { nativeIsSupported } from '../utils';
 import { Emoji } from '.'
 
 export default class Category extends React.Component {
@@ -16,7 +17,7 @@ export default class Category extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    var { name, perLine, hasStickyPosition, emojis, emojiProps } = this.props,
+    var { name, perLine, hasStickyPosition, emojis, emojiProps, excludeUnsupportedNativeEmojis } = this.props,
         { skin, size, set } = emojiProps,
         { perLine: nextPerLine, hasStickyPosition: nextHasStickyPosition, emojis: nextEmojis, emojiProps: nextEmojiProps } = nextProps,
         { skin: nextSkin, size: nextSize, set: nextSet } = nextEmojiProps,
@@ -30,7 +31,7 @@ export default class Category extends React.Component {
       shouldUpdate = !(emojis == nextEmojis)
     }
 
-    if (skin != nextSkin || size != nextSize || set != nextSet || hasStickyPosition != nextHasStickyPosition) {
+    if (skin != nextSkin || size != nextSize || set != nextSet || hasStickyPosition != nextHasStickyPosition || excludeUnsupportedNativeEmojis != nextExcludeUnsupportedNativeEmojis) {
       shouldUpdate = true
     }
 
@@ -96,7 +97,7 @@ export default class Category extends React.Component {
   }
 
   render() {
-    var { name, hasStickyPosition, emojiProps, i18n } = this.props,
+    var { name, hasStickyPosition, emojiProps, excludeUnsupportedNativeEmojis, i18n } = this.props,
         emojis = this.getEmojis(),
         labelStyles = {},
         labelSpanStyles = {},
@@ -123,13 +124,18 @@ export default class Category extends React.Component {
         <span style={labelSpanStyles} ref='label'>{i18n.categories[name.toLowerCase()]}</span>
       </div>
 
-      {emojis && emojis.map((emoji) =>
-        <Emoji
+      {emojis && emojis.map((emoji) => {
+        if (excludeUnsupportedNativeEmojis && !nativeIsSupported(emoji, emojiProps.skin, emojiProps.sheetURL)) {
+          return null
+        }
+
+        return <Emoji
           key={emoji.id || emoji}
           emoji={emoji}
           {...emojiProps}
         />
-      )}
+      })
+    }
 
       {emojis && !emojis.length &&
         <div className='emoji-mart-no-results'>
@@ -154,6 +160,7 @@ Category.propTypes = {
   name: React.PropTypes.string.isRequired,
   perLine: React.PropTypes.number.isRequired,
   emojiProps: React.PropTypes.object.isRequired,
+  excludeUnsupportedNativeEmojis: React.PropTypes.bool.isRequired,
 }
 
 Category.defaultProps = {
