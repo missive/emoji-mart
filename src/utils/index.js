@@ -3,8 +3,6 @@ import data from '../../data'
 let blankDataURL;
 let canvas;
 let context;
-let blankSymbol = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAmUlEQVRYR+3TMQuAIBiE4VdoqIbW/v/Pa2hqi4YQCiJClEMQOkfxg/PxDDS+QuP5cED1hSxoQVVAnXcHLagKqPO/7GC89AR0L70N2EtFawgOwAisjzBfe1lZHfBismBWXxJazQnOQPy19+qBA1hKbhrP1vgkpRmS5x1Q5bSgBVUBdd4dtKAqoM67gxZUBdR5d9CCqoA633wHT6b4Dymo8pz7AAAAAElFTkSuQmCC";
-let doubleBlank = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAo0lEQVRYR+2VsQqAMBBDn+CgDq7+/+c5OLmJg1QQqoM3xIpgOjakTV/v2oqPj+rj+XBA9YZM0ARVAqrfNWiCKgHV/8saTIfugfpCbwYW2L/XO/1kK0GwBTpgynbK5yLdASNCkW6CEaFIf4XgAKSuPUYDrMAIpIB3evGA6tvsgCb4KAF1sRJfnZrJTWKCjxJQF3OTmKBKQPW7Bk1QJaD6XYMqwQ1Q5x4pJ4/Z7QAAAABJRU5ErkJggg=="
 const COLONS_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/
 const SKINS = [
   '1F3FA', '1F3FB', '1F3FC',
@@ -21,8 +19,9 @@ function unifiedToNative(unified) {
 function clearCanvas() {
   if (canvas === undefined) {
     canvas = document.createElement('canvas')
-    canvas.width = canvas.height = 40
+    canvas.width = canvas.height = 2
     context = canvas.getContext('2d')
+    blankDataURL = canvas.toDataURL()
   }
   context.clearRect(0, 0, canvas.width, canvas.height)
 }
@@ -33,11 +32,9 @@ function nativeIsSupported() {
     { native } = data
 
   clearCanvas()
-  context.fillText(native, 20, 20)
-  let emojiString = canvas.toDataURL()
-  let singleSymbolSupported = blankSymbol !== emojiString
-  let doubleSymbolSupported = doubleBlank !== emojiString
-  return singleSymbolSupported && doubleSymbolSupported
+  context.fillText(native, 0, 0)
+  let emojiString1 = canvas.toDataURL()
+  return emojiString1 !== blankDataURL;
 }
 
 function sanitize(emoji) {

@@ -17,7 +17,7 @@ export default class Category extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    var { name, perLine, hasStickyPosition, emojis, emojiProps, excludeUnsupportedNativeEmojis } = this.props,
+    var { name, perLine, hasStickyPosition, emojis, emojiProps } = this.props,
         { skin, size, set } = emojiProps,
         { perLine: nextPerLine, hasStickyPosition: nextHasStickyPosition, emojis: nextEmojis, emojiProps: nextEmojiProps } = nextProps,
         { skin: nextSkin, size: nextSize, set: nextSet } = nextEmojiProps,
@@ -31,7 +31,7 @@ export default class Category extends React.Component {
       shouldUpdate = !(emojis == nextEmojis)
     }
 
-    if (skin != nextSkin || size != nextSize || set != nextSet || hasStickyPosition != nextHasStickyPosition || excludeUnsupportedNativeEmojis != nextExcludeUnsupportedNativeEmojis) {
+    if (skin != nextSkin || size != nextSize || set != nextSet || hasStickyPosition != nextHasStickyPosition) {
       shouldUpdate = true
     }
 
@@ -128,7 +128,6 @@ export default class Category extends React.Component {
         if (excludeUnsupportedNativeEmojis && !nativeIsSupported(emoji, emojiProps.skin, emojiProps.sheetURL)) {
           return null
         }
-
         return <Emoji
           key={emoji.id || emoji}
           emoji={emoji}
