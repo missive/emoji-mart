@@ -39,9 +39,11 @@
     "rimraf": "2.5.2",
     "svg-inline-loader": "0.4.1",
     "svg-inline-react": "1.0.2",
-    "webpack": "1.12.14"
+    "webpack": "1.12.14",
+    "webpack-dev-server": "^1.16.2"
   },
   "scripts": {
+    "webpack-dev": "webpack-dev-server",
     "clean": "rimraf data/ dist/",
     "build:data": "node scripts/build-data",
     "build:example": "node scripts/build-example",

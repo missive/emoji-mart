@@ -269,12 +269,12 @@ export default class Picker extends React.Component {
             perLine={perLine}
             hasStickyPosition={this.hasStickyPosition}
             i18n={this.i18n}
+            excludeUnsupportedNativeEmojis={excludeUnsupportedNativeEmojis}
             emojiProps={{
               skin: skin,
               size: emojiSize,
               set: set,
               sheetSize: sheetSize,
-              excludeUnsupportedNativeEmojis: excludeUnsupportedNativeEmojis,
               native: renderNative,
               backgroundImageFn: backgroundImageFn,
               onOver: this.handleEmojiOver.bind(this),
