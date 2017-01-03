@@ -1,5 +1,8 @@
 import data from '../../data'
 
+let blankDataURL;
+let canvas;
+let context;
 const COLONS_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/
 const SKINS = [
   '1F3FA', '1F3FB', '1F3FC',
@@ -14,17 +17,12 @@ function unifiedToNative(unified) {
 }
 
 function clearCanvas() {
-  if (!canvas) {
-    canvas = docuent.createElement('canvas')
+  if (canvas === undefined) {
+    canvas = document.createElement('canvas')
     canvas.width = canvas.height = 2
-
     context = canvas.getContext('2d')
-    context.font = '2px Arial'
-    context.textBaseline = 'top'
-
     blankDataURL = canvas.toDataURL()
   }
-
   context.clearRect(0, 0, canvas.width, canvas.height)
 }
 
@@ -35,7 +33,8 @@ function nativeIsSupported() {
 
   clearCanvas()
   context.fillText(native, 0, 0)
-  return blankDataURL != canvas.toDataURL()
+  let emojiString1 = canvas.toDataURL()
+  return emojiString1 !== blankDataURL;
 }
 
 function sanitize(emoji) {
