@@ -29,7 +29,6 @@ const I18N = {
     places: 'Travel & Places',
     objects: 'Objects',
     symbols: 'Symbols',
-    flags: 'Flags',
   },
 }
 
