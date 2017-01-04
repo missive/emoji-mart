@@ -6,8 +6,7 @@ var index = {}
 var emojisList = {}
 var emoticonsList = {}
 
-for (var i = 0; i < data.emojis.length; i++) {
-  let emoji = data.emojis[i];
+for (let emoji in data.emojis) {
   let emojiData = data.emojis[emoji],
       { short_names, emoticons } = emojiData,
       id = short_names[0]
