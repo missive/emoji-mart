@@ -60,8 +60,7 @@ export default class Emoji extends React.Component {
   }
 
   render() {
-    var { set, size, sheetSize, native, onOver, onLeave, backgroundImageFn } = this.props,
-        { unified } = this.getData(),
+    var { set, size, sheetSize, native, onOver, onLeave, backgroundImageFn, unified } = this.props,
         style = {},
         children = this.props.children
 
