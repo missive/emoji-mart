@@ -11,11 +11,12 @@ import { Anchors, Category, Emoji, Preview, Search } from '.'
 
 const RECENT_CATEGORY = { name: 'Recent', emojis: null }
 const SEARCH_CATEGORY = { name: 'Search', emojis: null, anchor: RECENT_CATEGORY }
+const BLOCKED_CATEGORIES = ['Flags']
 
 const CATEGORIES = [
   SEARCH_CATEGORY,
   RECENT_CATEGORY,
-].concat(data.categories)
+].concat(data.categories).filter(cat => BLOCKED_CATEGORIES.indexOf(cat.name) === -1); 
 
 const I18N = {
   search: 'Search',
