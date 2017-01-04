@@ -4,9 +4,6 @@ import frequently from '../utils/frequently'
 import { nativeIsSupported } from '../utils';
 import { Emoji } from '.'
 
-import { getData } from '../utils'
-
-
 export default class Category extends React.Component {
   componentDidMount() {
     this.container = this.refs.container
@@ -53,10 +50,6 @@ export default class Category extends React.Component {
     } else {
       this.maxMargin = height - labelHeight
     }
-  }
-
-  getData(emoji, skin, set) {
-    return getData(emoji, skin, set)
   }
 
   handleScroll(scrollTop) {
@@ -135,9 +128,7 @@ export default class Category extends React.Component {
         if (excludeUnsupportedNativeEmojis && !nativeIsSupported(emoji, emojiProps.skin, emojiProps.sheetURL)) {
           return null
         }
-        let { unified } = this.getData(emoji, emojiProps.skin, emojiProps.set)
         return <Emoji
-          unified={unified}
           key={emoji.id || emoji}
           emoji={emoji}
           {...emojiProps}

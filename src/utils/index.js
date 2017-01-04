@@ -1,5 +1,4 @@
 import data from '../../data'
-import supportedEmojis from './filtered-emojis'
 
 let blankDataURL;
 let canvas;
@@ -54,8 +53,6 @@ function sanitize(emoji) {
     emoticons,
     skin: skin_tone || skin_variations ? 1 : null,
     native: unifiedToNative(unified),
-    unified: unified,
-    supported: supportedEmojis[unified]
   }
 }
 
