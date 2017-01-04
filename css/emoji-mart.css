@@ -29,6 +29,7 @@
 
 .emoji-mart-anchors {
   display: flex;
+  overflow: hidden;
   justify-content: space-between;
   padding: 0 6px;
   color: #858585;
@@ -37,6 +38,7 @@
 
 .emoji-mart-anchor {
   position: relative;
+  height: 46px;
   flex: 1;
   text-align: center;
   padding: 12px 4px;
