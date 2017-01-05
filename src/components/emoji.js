@@ -70,7 +70,7 @@ export default class Emoji extends React.Component {
     }
 
     if (native && unified) {
-      style = { fontSize: size, fontFamily: '"Segoe UI Emoji", "Apple Color Emoji", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif' }
+      style = { fontSize: size }
       children = unifiedToNative(unified)
     } else {
       style = {
