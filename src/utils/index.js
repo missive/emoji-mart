@@ -1,5 +1,8 @@
 import data from '../../data'
 
+let blankDataURL;
+let canvas;
+let context;
 const COLONS_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/
 const SKINS = [
   '1F3FA', '1F3FB', '1F3FC',
@@ -11,6 +14,27 @@ function unifiedToNative(unified) {
       codePoints = unicodes.map((u) => `0x${u}`)
 
   return String.fromCodePoint(...codePoints)
+}
+
+function clearCanvas() {
+  if (canvas === undefined) {
+    canvas = document.createElement('canvas')
+    canvas.width = canvas.height = 2
+    context = canvas.getContext('2d')
+    blankDataURL = canvas.toDataURL()
+  }
+  context.clearRect(0, 0, canvas.width, canvas.height)
+}
+
+function nativeIsSupported() {
+  if (typeof document == 'undefined') return true
+  var data = getSanitizedData(...arguments),
+    { native } = data
+
+  clearCanvas()
+  context.fillText(native, 0, 0)
+  let emojiString1 = canvas.toDataURL()
+  return emojiString1 !== blankDataURL;
 }
 
 function sanitize(emoji) {
@@ -121,4 +145,4 @@ function deepMerge(a, b) {
   return o
 }
 
-export { getData, getSanitizedData, intersect, deepMerge, unifiedToNative }
+export { getData, getSanitizedData, intersect, deepMerge, unifiedToNative, nativeIsSupported }

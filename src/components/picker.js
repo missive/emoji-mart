@@ -11,11 +11,12 @@ import { Anchors, Category, Emoji, Preview, Search } from '.'
 
 const RECENT_CATEGORY = { name: 'Recent', emojis: null }
 const SEARCH_CATEGORY = { name: 'Search', emojis: null, anchor: RECENT_CATEGORY }
+const BLOCKED_CATEGORIES = ['Flags']
 
 const CATEGORIES = [
   SEARCH_CATEGORY,
   RECENT_CATEGORY,
-].concat(data.categories)
+].concat(data.categories).filter(cat => BLOCKED_CATEGORIES.indexOf(cat.name) === -1); 
 
 const I18N = {
   search: 'Search',
@@ -29,7 +30,6 @@ const I18N = {
     places: 'Travel & Places',
     objects: 'Objects',
     symbols: 'Symbols',
-    flags: 'Flags',
   },
 }
 
@@ -238,7 +238,7 @@ export default class Picker extends React.Component {
   }
 
   render() {
-    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, backgroundImageFn } = this.props,
+    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, backgroundImageFn, excludeUnsupportedNativeEmojis, renderNative } = this.props,
         { skin } = this.state,
         width = (perLine * (emojiSize + 12)) + 12 + 2
 
@@ -269,11 +269,13 @@ export default class Picker extends React.Component {
             perLine={perLine}
             hasStickyPosition={this.hasStickyPosition}
             i18n={this.i18n}
+            excludeUnsupportedNativeEmojis={excludeUnsupportedNativeEmojis}
             emojiProps={{
               skin: skin,
               size: emojiSize,
               set: set,
               sheetSize: sheetSize,
+              native: renderNative,
               backgroundImageFn: backgroundImageFn,
               onOver: this.handleEmojiOver.bind(this),
               onLeave: this.handleEmojiLeave.bind(this),
@@ -294,6 +296,8 @@ export default class Picker extends React.Component {
             set: set,
             sheetSize: sheetSize,
             backgroundImageFn: backgroundImageFn,
+            excludeUnsupportedNativeEmojis: excludeUnsupportedNativeEmojis,
+            native: renderNative
           }}
           skinsProps={{
             skin: skin,
@@ -315,6 +319,8 @@ Picker.propTypes = {
   emoji: React.PropTypes.string,
   color: React.PropTypes.string,
   set: Emoji.propTypes.set,
+  excludeUnsupportedNativeEmojis: React.PropTypes.bool,
+  renderNative: React.PropTypes.bool,
   backgroundImageFn: Emoji.propTypes.backgroundImageFn,
   skin: Emoji.propTypes.skin,
   sheetSize: Emoji.propTypes.sheetSize,
@@ -331,6 +337,7 @@ Picker.defaultProps = {
   color: '#ae65c5',
   set: Emoji.defaultProps.set,
   skin: Emoji.defaultProps.skin,
+  excludeUnsupportedNativeEmojis: false,
   sheetSize: Emoji.defaultProps.sheetSize,
   backgroundImageFn: Emoji.defaultProps.backgroundImageFn,
 }

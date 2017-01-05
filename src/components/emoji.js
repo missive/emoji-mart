@@ -1,5 +1,6 @@
 import React from 'react'
 import data from '../../data'
+import supportedEmojis from '../utils/filtered-emojis'
 
 import { getData, getSanitizedData, unifiedToNative } from '../utils'
 
@@ -82,13 +83,16 @@ export default class Emoji extends React.Component {
       }
     }
 
-    return <span
-      onClick={this.handleClick.bind(this)}
-      onMouseEnter={this.handleOver.bind(this)}
-      onMouseLeave={this.handleLeave.bind(this)}
-      className='emoji-mart-emoji'>
-      <span style={style}>{children}</span>
-    </span>
+    if (supportedEmojis[unified]) {
+      return (<span
+        onClick={this.handleClick.bind(this)}
+        onMouseEnter={this.handleOver.bind(this)}
+        onMouseLeave={this.handleLeave.bind(this)}
+        className='emoji-mart-emoji'>
+        <span style={style}>{children}</span>
+      </span>);
+    }
+    else return null;
   }
 }
 
