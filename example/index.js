@@ -88,6 +88,8 @@ class Example extends React.Component {
           skin={this.state.skin}
           set={this.state.set}
           onClick={(emoji) => console.log(emoji)}
+          renderNative={true}
+          excludeUnsupportedNativeEmojis={true}
         />
       }
 
