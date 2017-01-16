@@ -27,7 +27,7 @@ function sanitize(emoji) {
     name,
     colons,
     emoticons,
-    skin: skin_tone || skin_variations ? 1 : null,
+    skin: skin_tone || (skin_variations ? 1 : null),
     native: unifiedToNative(unified),
   }
 }
