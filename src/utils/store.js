@@ -12,12 +12,19 @@ function update(state) {
 
 function set(key, value) {
   if (!isLocalStorageSupported) return
-  window.localStorage[`${NAMESPACE}.${key}`] = JSON.stringify(value)
+  try {
+    window.localStorage[`${NAMESPACE}.${key}`] = JSON.stringify(value)
+  } catch (e) {
+  }
 }
 
 function get(key) {
   if (!isLocalStorageSupported) return
-  var value = window.localStorage[`${NAMESPACE}.${key}`]
+  try {
+    var value = window.localStorage[`${NAMESPACE}.${key}`]
+  } catch (e) {
+    return
+  }
 
   if (value) {
     return JSON.parse(value)
