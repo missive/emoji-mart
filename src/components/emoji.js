@@ -16,7 +16,8 @@ export default class Emoji extends React.Component {
     return (
       this.hasSkinVariations && nextProps.skin != this.props.skin ||
       nextProps.size != this.props.size ||
-      nextProps.set != this.props.set
+      nextProps.set != this.props.set ||
+      nextProps.emoji != this.props.emoji
     )
   }
 
