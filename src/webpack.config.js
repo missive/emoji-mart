@@ -32,7 +32,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: 'svg-inline',
+        loader: 'svg-inline?removeSVGTagAttrs=false',
         include: [
           path.resolve('src/svgs'),
         ],
