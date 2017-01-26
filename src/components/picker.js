@@ -9,14 +9,6 @@ import { deepMerge } from '../utils'
 
 import { Anchors, Category, Emoji, Preview, Search } from '.'
 
-const RECENT_CATEGORY = { name: 'Recent', emojis: null }
-const SEARCH_CATEGORY = { name: 'Search', emojis: null, anchor: RECENT_CATEGORY }
-
-const CATEGORIES = [
-  SEARCH_CATEGORY,
-  RECENT_CATEGORY,
-].concat(data.categories)
-
 const I18N = {
   search: 'Search',
   categories: {
@@ -42,7 +34,19 @@ export default class Picker extends React.Component {
       skin: store.get('skin') || props.skin,
       firstRender: true,
     }
-    this.categories = CATEGORIES
+
+    this.searchCategory = { name: 'Search', emojis: null, anchor: null };
+    this.recentCategory = { name: 'Recent', emojis: null };
+    this.categories = data.categories.slice();
+
+    if(props.recent) {
+      this.categories.unshift(this.recentCategory);
+    }
+
+    if(props.search) {
+      this.searchCategory.anchor = this.categories[0];
+      this.categories.unshift(this.searchCategory);
+    }
   }
 
   componentWillReceiveProps(props) {
@@ -66,7 +70,7 @@ export default class Picker extends React.Component {
   }
 
   componentWillUnmount() {
-    SEARCH_CATEGORY.emojis = null
+    this.searchCategory.emojis = null
 
     clearTimeout(this.leaveTimeout)
     clearTimeout(this.firstRenderTimeout)
@@ -110,7 +114,7 @@ export default class Picker extends React.Component {
         this.updateCategoriesSize()
         this.handleScrollPaint()
 
-        if (SEARCH_CATEGORY.emojis) {
+        if (this.searchCategory.emojis) {
           component.updateDisplay('none')
         }
       })
@@ -159,7 +163,7 @@ export default class Picker extends React.Component {
     }
 
     if (scrollTop < minTop) {
-      activeCategory = RECENT_CATEGORY
+      activeCategory = this.categories.find(c => c !== this.searchCategory);
     }
 
     if (activeCategory) {
@@ -175,7 +179,7 @@ export default class Picker extends React.Component {
   }
 
   handleSearch(emojis) {
-    SEARCH_CATEGORY.emojis = emojis
+    this.searchCategory.emojis = emojis
 
     for (let i = 0, l = this.categories.length; i < l; i++) {
       let component = this.refs[`category-${i}`]
@@ -198,7 +202,9 @@ export default class Picker extends React.Component {
       if (component) {
         let { top } = component
 
-        if (category.name == 'Recent') {
+        if (category.name == this.categories[1].name && this.props.search) {
+          top = 0
+        } else if (category.name == this.categories[0].name) {
           top = 0
         } else {
           top += 1
@@ -208,7 +214,7 @@ export default class Picker extends React.Component {
       }
     }
 
-    if (SEARCH_CATEGORY.emojis) {
+    if (this.searchCategory.emojis) {
       this.handleSearch(null)
       this.refs.search.clear()
 
@@ -237,7 +243,7 @@ export default class Picker extends React.Component {
   }
 
   render() {
-    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, backgroundImageFn } = this.props,
+    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, backgroundImageFn, search } = this.props,
         { skin } = this.state,
         width = (perLine * (emojiSize + 12)) + 12 + 2
 
@@ -253,11 +259,11 @@ export default class Picker extends React.Component {
       </div>
 
       <div ref="scroll" className='emoji-mart-scroll' onScroll={this.handleScroll.bind(this)}>
-        <Search
+        {search && <Search
           ref='search'
           onSearch={this.handleSearch.bind(this)}
           i18n={this.i18n}
-        />
+          />}
 
         {this.getRenderCategories().map((category, i) => {
           return <Category
@@ -317,7 +323,8 @@ Picker.propTypes = {
   backgroundImageFn: Emoji.propTypes.backgroundImageFn,
   skin: Emoji.propTypes.skin,
   sheetSize: Emoji.propTypes.sheetSize,
-  categories: React.PropTypes.object,
+  search: React.PropTypes.bool,
+  recent: React.PropTypes.bool,
 }
 
 Picker.defaultProps = {
@@ -333,4 +340,6 @@ Picker.defaultProps = {
   skin: Emoji.defaultProps.skin,
   sheetSize: Emoji.defaultProps.sheetSize,
   backgroundImageFn: Emoji.defaultProps.backgroundImageFn,
+  search: true,
+  recent: true,
 }
