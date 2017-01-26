@@ -42,6 +42,7 @@ export default class Picker extends React.Component {
       skin: store.get('skin') || props.skin,
       firstRender: true,
     }
+    this.categories = CATEGORIES
   }
 
   componentWillReceiveProps(props) {
@@ -136,9 +137,9 @@ export default class Picker extends React.Component {
         activeCategory = null,
         minTop = 0
 
-    for (let i = 0, l = CATEGORIES.length; i < l; i++) {
-      let ii = scrollingDown ? (CATEGORIES.length - 1 - i) : i,
-          category = CATEGORIES[ii],
+    for (let i = 0, l = this.categories.length; i < l; i++) {
+      let ii = scrollingDown ? (this.categories.length - 1 - i) : i,
+          category = this.categories[ii],
           component = this.refs[`category-${ii}`]
 
       if (component) {
@@ -176,7 +177,7 @@ export default class Picker extends React.Component {
   handleSearch(emojis) {
     SEARCH_CATEGORY.emojis = emojis
 
-    for (let i = 0, l = CATEGORIES.length; i < l; i++) {
+    for (let i = 0, l = this.categories.length; i < l; i++) {
       let component = this.refs[`category-${i}`]
 
       if (component && component.props.name != 'Search') {
@@ -225,16 +226,14 @@ export default class Picker extends React.Component {
   }
 
   updateCategoriesSize() {
-    for (let i = 0, l = CATEGORIES.length; i < l; i++) {
+    for (let i = 0, l = this.categories.length; i < l; i++) {
       let component = this.refs[`category-${i}`]
       if (component) component.memoizeSize()
     }
   }
 
-  getCategories() {
-    var categories = CATEGORIES
-
-    return this.state.firstRender ? categories.slice(0, 3) : categories
+  getRenderCategories() {
+    return this.state.firstRender ? this.categories.slice(0, 3) : this.categories
   }
 
   render() {
@@ -248,7 +247,7 @@ export default class Picker extends React.Component {
           ref='anchors'
           i18n={this.i18n}
           color={color}
-          categories={CATEGORIES}
+          categories={this.categories}
           onAnchorClick={this.handleAnchorClick.bind(this)}
         />
       </div>
@@ -260,7 +259,7 @@ export default class Picker extends React.Component {
           i18n={this.i18n}
         />
 
-        {this.getCategories().map((category, i) => {
+        {this.getRenderCategories().map((category, i) => {
           return <Category
             ref={`category-${i}`}
             key={category.name}
@@ -318,6 +317,7 @@ Picker.propTypes = {
   backgroundImageFn: Emoji.propTypes.backgroundImageFn,
   skin: Emoji.propTypes.skin,
   sheetSize: Emoji.propTypes.sheetSize,
+  categories: React.PropTypes.object,
 }
 
 Picker.defaultProps = {
