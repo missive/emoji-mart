@@ -261,7 +261,7 @@ export default class Picker extends React.Component {
   }
 
   render() {
-    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, backgroundImageFn, emojisToShowFilter } = this.props,
+    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, backgroundImageFn, emojisToShowFilter, displayNative } = this.props,
         { skin } = this.state,
         width = (perLine * (emojiSize + 12)) + 12 + 2
 
@@ -294,6 +294,7 @@ export default class Picker extends React.Component {
             hasStickyPosition={this.hasStickyPosition}
             i18n={this.i18n}
             emojiProps={{
+              native: displayNative,
               skin: skin,
               size: emojiSize,
               set: set,
@@ -313,6 +314,7 @@ export default class Picker extends React.Component {
           title={title}
           emoji={emoji}
           emojiProps={{
+            native: displayNative,
             size: 38,
             skin: skin,
             set: set,
@@ -343,6 +345,7 @@ Picker.propTypes = {
   skin: Emoji.propTypes.skin,
   sheetSize: Emoji.propTypes.sheetSize,
   emojisToShowFilter: React.PropTypes.func,
+  displayNative: React.PropTypes.bool,
 }
 
 Picker.defaultProps = {
@@ -359,4 +362,5 @@ Picker.defaultProps = {
   sheetSize: Emoji.defaultProps.sheetSize,
   backgroundImageFn: Emoji.defaultProps.backgroundImageFn,
   emojisToShowFilter: (codePoint) => true,
+  displayNative: false,
 }
