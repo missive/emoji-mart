@@ -20,7 +20,7 @@ for (let emoji in data.emojis) {
   emojisList[id] = getSanitizedData(id)
 }
 
-function search(value, maxResults = 75) {
+function search(value, emojisToShowFilter = () => true, maxResults = 75) {
   var results = null
 
   if (value.length) {
@@ -92,11 +92,13 @@ function search(value, maxResults = 75) {
     }
   }
 
-  if (results && results.length) {
-    results = results.slice(0, maxResults)
+  let filtered_results = (results || []).filter(
+    (result) => emojisToShowFilter(data.emojis[result.id].unified));
+  if (filtered_results && filtered_results.length) {
+    filtered_results = filtered_results.slice(0, maxResults)
   }
 
-  return results
+  return filtered_results
 }
 
 export default { search, emojis: emojisList, emoticons: emoticonsList }
