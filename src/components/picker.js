@@ -262,8 +262,15 @@ export default class Picker extends React.Component {
 
   render() {
     var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, backgroundImageFn, emojisToShowFilter, displayNative } = this.props,
-        { skin } = this.state,
-        width = (perLine * (emojiSize + 12)) + 12 + 2
+        { skin } = this.state
+
+    let width;
+
+    if (displayNative) {
+      width = (perLine * (emojiSize + 15)) + 17;
+    } else {
+      width = (perLine * (emojiSize + 12)) + 12 + 2;
+    }
 
     return <div style={{width: width, ...style}} className='emoji-mart'>
       <div className='emoji-mart-bar'>
