@@ -87,6 +87,8 @@ class Example extends React.Component {
           perLine={this.state.perLine}
           skin={this.state.skin}
           set={this.state.set}
+          search={true}
+          recent={true}
           onClick={(emoji) => console.log(emoji)}
         />
       }
