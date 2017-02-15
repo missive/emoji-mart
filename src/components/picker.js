@@ -180,7 +180,7 @@ export default class Picker extends React.Component {
       let component = this.refs[`category-${i}`]
 
       if (component && component.props.name != 'Search') {
-        let display = emojis ? 'none' : null
+        let display = emojis ? 'none' : 'inherit'
         component.updateDisplay(display)
       }
     }
