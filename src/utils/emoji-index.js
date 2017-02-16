@@ -92,10 +92,13 @@ function search(value, emojisToShowFilter = () => true, maxResults = 75) {
     }
   }
 
-  let filtered_results = (results || []).filter(
-    (result) => emojisToShowFilter(data.emojis[result.id].unified));
-  if (filtered_results && filtered_results.length) {
-    filtered_results = filtered_results.slice(0, maxResults)
+  let filtered_results = null;
+  if (results) {
+    filtered_results = results.filter(
+      (result) => emojisToShowFilter(data.emojis[result.id].unified));
+      if (filtered_results && filtered_results.length) {
+        filtered_results = filtered_results.slice(0, maxResults)
+      }
   }
 
   return filtered_results
