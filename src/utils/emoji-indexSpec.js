@@ -13,11 +13,10 @@ describe('#emojiIndex', () => {
       }]);
     });
 
-    // This is the unit test for pull request (https://github.com/missive/emoji-mart/pull/43)
-    // it('should filter only emojis we care about, exclude pineapple', () => {
-    //   let emojisToShowFilter = (unified) => unified !== '1F34D';
-    //   expect(emojiIndex.search('apple', emojisToShowFilter).map((obj) => obj.id))
-    //     .not.toContain('pineapple');
-    // });
+    it('should filter only emojis we care about, exclude pineapple', () => {
+      let emojisToShowFilter = (unified) => unified !== '1F34D';
+      expect(emojiIndex.search('apple', emojisToShowFilter).map((obj) => obj.id))
+        .not.toContain('pineapple');
+    });
   });
 });

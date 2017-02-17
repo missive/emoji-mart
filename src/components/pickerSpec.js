@@ -20,18 +20,17 @@ describe('Picker', () => {
     expect(subject).toBeDefined();
   });
 
-  // This is the unit test for pull request (https://github.com/missive/emoji-mart/pull/43)
-  // describe('categories', () => {
-  //   it('shows 10 by default', () => {
-  //     subject = render();
-  //     expect(subject.categories.length).toEqual(10);
-  //   });
-  //
-  //   it('will not show some based upon our filter', () => {
-  //     subject = render({emojisToShowFilter: (unified) => false});
-  //     expect(subject.categories.length).toEqual(2);
-  //   });
-  // });
+  describe('categories', () => {
+    it('shows 10 by default', () => {
+      subject = render();
+      expect(subject.categories.length).toEqual(10);
+    });
+
+    it('will not show some based upon our filter', () => {
+      subject = render({emojisToShowFilter: (unified) => false});
+      expect(subject.categories.length).toEqual(2);
+    });
+  });
 
   function render(props = {}) {
     const defaultProps = {
