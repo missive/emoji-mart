@@ -265,7 +265,7 @@ export default class Picker extends React.Component {
         { skin } = this.state,
         width = (perLine * (emojiSize + 12)) + 12 + 2
 
-    return <div style={{...style, width: width}} className='emoji-mart'>
+    return <div style={{width: width, ...style}} className='emoji-mart'>
       <div className='emoji-mart-bar'>
         <Anchors
           ref='anchors'
