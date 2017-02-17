@@ -291,6 +291,7 @@ export default class Picker extends React.Component {
             name={category.name}
             emojis={category.emojis}
             perLine={perLine}
+            native={native}
             hasStickyPosition={this.hasStickyPosition}
             i18n={this.i18n}
             emojiProps={{

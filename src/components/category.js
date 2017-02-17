@@ -16,9 +16,9 @@ export default class Category extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    var { name, perLine, hasStickyPosition, emojis, emojiProps } = this.props,
+    var { name, perLine, native, hasStickyPosition, emojis, emojiProps } = this.props,
         { skin, size, set } = emojiProps,
-        { perLine: nextPerLine, hasStickyPosition: nextHasStickyPosition, emojis: nextEmojis, emojiProps: nextEmojiProps } = nextProps,
+        { perLine: nextPerLine, native: nextNative, hasStickyPosition: nextHasStickyPosition, emojis: nextEmojis, emojiProps: nextEmojiProps } = nextProps,
         { skin: nextSkin, size: nextSize, set: nextSet } = nextEmojiProps,
         shouldUpdate = false
 
@@ -30,7 +30,7 @@ export default class Category extends React.Component {
       shouldUpdate = !(emojis == nextEmojis)
     }
 
-    if (skin != nextSkin || size != nextSize || set != nextSet || hasStickyPosition != nextHasStickyPosition) {
+    if (skin != nextSkin || size != nextSize || native != nextNative || set != nextSet || hasStickyPosition != nextHasStickyPosition) {
       shouldUpdate = true
     }
 
@@ -152,6 +152,7 @@ Category.propTypes = {
   emojis: React.PropTypes.array,
   hasStickyPosition: React.PropTypes.bool,
   name: React.PropTypes.string.isRequired,
+  native: React.PropTypes.bool.isRequired,
   perLine: React.PropTypes.number.isRequired,
   emojiProps: React.PropTypes.object.isRequired,
 }
