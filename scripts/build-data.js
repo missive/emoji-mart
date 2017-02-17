@@ -32,10 +32,6 @@ emojiData.forEach((datum) => {
   datum.name || (datum.name = datum.short_name.replace(/\-/g, ' '))
   datum.name = inflection.titleize(datum.name || '')
 
-  if (datum.variations && datum.variations.length) {
-    datum.unified = datum.variations.shift()
-  }
-
   if (datum.category == 'Flags') {
     datum.name = datum.name.replace(/\s(\w+)$/, (letters) => letters.toUpperCase())
   }

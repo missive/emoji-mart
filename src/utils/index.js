@@ -75,6 +75,10 @@ function getData(emoji, skin, set) {
         variationKey = `${emojiData.unified}-${skinKey}`,
         variationData = emojiData.skin_variations[variationKey]
 
+    if (!variationData.variations && emojiData.variations) {
+      delete emojiData.variations
+    }
+
     if (variationData[`has_img_${set}`]) {
       emojiData.skin_tone = skin
 
@@ -83,6 +87,11 @@ function getData(emoji, skin, set) {
         emojiData[k] = v
       }
     }
+  }
+
+  if (emojiData.variations && emojiData.variations.length) {
+    emojiData = JSON.parse(JSON.stringify(emojiData))
+    emojiData.unified = emojiData.variations.shift()
   }
 
   return emojiData
