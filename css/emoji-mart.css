@@ -91,6 +91,8 @@
 .emoji-mart-category .emoji-mart-emoji span {
   z-index: 1;
   position: relative;
+  text-align: center;
+  cursor: default;
 }
 
 .emoji-mart-category .emoji-mart-emoji:hover:before {
