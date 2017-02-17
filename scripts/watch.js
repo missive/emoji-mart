@@ -1,7 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 
-var config = require('../src/webpack.config.js'),
+var config = require('../example/webpack.config.js'),
     compiler = webpack(config)
 
 compiler.watch({}, (err, stats) => {
