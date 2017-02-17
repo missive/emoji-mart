@@ -172,8 +172,8 @@ Apple / Google / Twitter / EmojiOne
 
 ## Development
 ```sh
-$ npm run build:data
-$ npm run watch
+$ yarn run build:data
+$ yarn run watch
 $ open example/index.html
 ```
 
