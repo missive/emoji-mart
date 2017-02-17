@@ -16,6 +16,7 @@ export default class Emoji extends React.Component {
     return (
       this.hasSkinVariations && nextProps.skin != this.props.skin ||
       nextProps.size != this.props.size ||
+      nextProps.native != this.props.native ||
       nextProps.set != this.props.set ||
       nextProps.emoji != this.props.emoji
     )
@@ -60,7 +61,7 @@ export default class Emoji extends React.Component {
   }
 
   render() {
-    var { set, size, sheetSize, native, onOver, onLeave, backgroundImageFn } = this.props,
+    var { set, size, sheetSize, native, forceSize, onOver, onLeave, backgroundImageFn } = this.props,
         { unified } = this.getData(),
         style = {},
         children = this.props.children
@@ -72,6 +73,12 @@ export default class Emoji extends React.Component {
     if (native && unified) {
       style = { fontSize: size }
       children = unifiedToNative(unified)
+
+      if (forceSize) {
+        style.display = 'inline-block'
+        style.width = size
+        style.height = size
+      }
     } else {
       style = {
         width: size,
@@ -99,6 +106,7 @@ Emoji.propTypes = {
   onClick: React.PropTypes.func,
   backgroundImageFn: React.PropTypes.func,
   native: React.PropTypes.bool,
+  forceSize: React.PropTypes.bool,
   skin: React.PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   sheetSize: React.PropTypes.oneOf([16, 20, 32, 64]),
   set: React.PropTypes.oneOf(['apple', 'google', 'twitter', 'emojione']),
@@ -114,6 +122,7 @@ Emoji.defaultProps = {
   set: 'apple',
   sheetSize: 64,
   native: false,
+  forceSize: false,
   backgroundImageFn: ((set, sheetSize) => `https://unpkg.com/emoji-datasource@${EMOJI_DATASOURCE_VERSION}/sheet_${set}_${sheetSize}.png`),
   onOver: (() => {}),
   onLeave: (() => {}),

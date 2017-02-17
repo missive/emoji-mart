@@ -261,7 +261,7 @@ export default class Picker extends React.Component {
   }
 
   render() {
-    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, backgroundImageFn, emojisToShowFilter } = this.props,
+    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, native, backgroundImageFn, emojisToShowFilter } = this.props,
         { skin } = this.state,
         width = (perLine * (emojiSize + 12)) + 12 + 2
 
@@ -291,13 +291,16 @@ export default class Picker extends React.Component {
             name={category.name}
             emojis={category.emojis}
             perLine={perLine}
+            native={native}
             hasStickyPosition={this.hasStickyPosition}
             i18n={this.i18n}
             emojiProps={{
+              native: native,
               skin: skin,
               size: emojiSize,
               set: set,
               sheetSize: sheetSize,
+              forceSize: native,
               backgroundImageFn: backgroundImageFn,
               onOver: this.handleEmojiOver.bind(this),
               onLeave: this.handleEmojiLeave.bind(this),
@@ -313,6 +316,7 @@ export default class Picker extends React.Component {
           title={title}
           emoji={emoji}
           emojiProps={{
+            native: native,
             size: 38,
             skin: skin,
             set: set,
@@ -339,8 +343,9 @@ Picker.propTypes = {
   emoji: React.PropTypes.string,
   color: React.PropTypes.string,
   set: Emoji.propTypes.set,
-  backgroundImageFn: Emoji.propTypes.backgroundImageFn,
   skin: Emoji.propTypes.skin,
+  native: React.PropTypes.bool,
+  backgroundImageFn: Emoji.propTypes.backgroundImageFn,
   sheetSize: Emoji.propTypes.sheetSize,
   emojisToShowFilter: React.PropTypes.func,
 }
@@ -356,6 +361,7 @@ Picker.defaultProps = {
   color: '#ae65c5',
   set: Emoji.defaultProps.set,
   skin: Emoji.defaultProps.skin,
+  native: Emoji.defaultProps.native,
   sheetSize: Emoji.defaultProps.sheetSize,
   backgroundImageFn: Emoji.defaultProps.backgroundImageFn,
   emojisToShowFilter: (codePoint) => true,
