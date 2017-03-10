@@ -52,8 +52,6 @@ emojiData.forEach((datum) => {
     keywords = emojiLib.lib[datum.short_name].keywords
   }
 
-  datum.keywords = keywords
-
   datum.search = []
   var addToSearch = (strings, split) => {
     (Array.isArray(strings) ? strings : [strings]).forEach((string) => {
@@ -69,7 +67,7 @@ emojiData.forEach((datum) => {
 
   addToSearch(datum.short_names, true)
   addToSearch(datum.name, true)
-  addToSearch(datum.keywords, false)
+  addToSearch(keywords, false)
   addToSearch(datum.emoticons, false)
 
   datum.search = datum.search.join(',')
