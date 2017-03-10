@@ -11,7 +11,7 @@ for (let emoji in data.emojis) {
       { short_names, emoticons } = emojiData,
       id = short_names[0]
 
-  for (let emoticon of emoticons) {
+  for (let emoticon of (emoticons || [])) {
     if (!emoticonsList[emoticon]) {
       emoticonsList[emoticon] = id
     }

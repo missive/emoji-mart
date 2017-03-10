@@ -68,6 +68,9 @@ function getData(emoji, skin, set) {
     }
   }
 
+  emojiData.emoticons || (emojiData.emoticons = [])
+  emojiData.variations || (emojiData.variations = [])
+
   if (emojiData.skin_variations && skin > 1 && set) {
     emojiData = JSON.parse(JSON.stringify(emojiData))
 

@@ -93,6 +93,14 @@ emojiData.forEach((datum) => {
   delete datum.short_name
   delete datum.category
   delete datum.sort_order
+
+  for (let key in datum) {
+    let value = datum[key]
+
+    if (Array.isArray(value) && !value.length) {
+      delete datum[key]
+    }
+  }
 })
 
 var flags = data.categories[categoriesIndex['Flags']];
