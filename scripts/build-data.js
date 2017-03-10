@@ -103,7 +103,8 @@ flags.emojis.sort()
 mkdirp('data', (err) => {
   if (err) throw err
 
-  fs.writeFile('data/index.js', `export default ${JSON.stringify(data)}`, (err) => {
+  const stringifiedData = JSON.stringify(data).replace(/\"([A-Za-z_]+)\":/g, '$1:')
+  fs.writeFile('data/index.js', `export default ${stringifiedData}`, (err) => {
     if (err) throw err
   })
 })
