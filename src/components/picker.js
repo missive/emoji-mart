@@ -43,6 +43,10 @@ export default class Picker extends React.Component {
     let filteredCategories = [];
 
     for (let hash of data.categories) {
+      let isIncluded = props.include == undefined ? true : props.include.indexOf(hash.name) > -1
+      let isExcluded = props.exclude == undefined ? false : props.exclude.indexOf(hash.name) > -1
+      if (!isIncluded || isExcluded) { continue; }
+
       let new_emojis = [];
       for (let emoji of hash.emojis) {
         let unified = data.emojis[emoji].unified;
@@ -348,6 +352,8 @@ Picker.propTypes = {
   backgroundImageFn: Emoji.propTypes.backgroundImageFn,
   sheetSize: Emoji.propTypes.sheetSize,
   emojisToShowFilter: React.PropTypes.func,
+  include: React.PropTypes.arrayOf(React.PropTypes.string),
+  exclude: React.PropTypes.arrayOf(React.PropTypes.string)
 }
 
 Picker.defaultProps = {
