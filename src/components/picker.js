@@ -265,7 +265,7 @@ export default class Picker extends React.Component {
   }
 
   render() {
-    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, native, backgroundImageFn, emojisToShowFilter } = this.props,
+    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, native, backgroundImageFn, emojisToShowFilter, autoFocus } = this.props,
         { skin } = this.state,
         width = (perLine * (emojiSize + 12)) + 12 + 2
 
@@ -286,6 +286,7 @@ export default class Picker extends React.Component {
           onSearch={this.handleSearch.bind(this)}
           i18n={this.i18n}
           emojisToShowFilter={emojisToShowFilter}
+          autoFocus={autoFocus}
         />
 
         {this.getCategories().map((category, i) => {
@@ -353,7 +354,8 @@ Picker.propTypes = {
   sheetSize: Emoji.propTypes.sheetSize,
   emojisToShowFilter: React.PropTypes.func,
   include: React.PropTypes.arrayOf(React.PropTypes.string),
-  exclude: React.PropTypes.arrayOf(React.PropTypes.string)
+  exclude: React.PropTypes.arrayOf(React.PropTypes.string),
+  autoFocus: React.PropTypes.bool,
 }
 
 Picker.defaultProps = {
@@ -371,4 +373,5 @@ Picker.defaultProps = {
   sheetSize: Emoji.defaultProps.sheetSize,
   backgroundImageFn: Emoji.defaultProps.backgroundImageFn,
   emojisToShowFilter: (codePoint) => true,
+  autoFocus: false,
 }
