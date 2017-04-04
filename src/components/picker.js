@@ -12,7 +12,7 @@ import { Anchors, Category, Emoji, Preview, Search } from '.'
 const RECENT_CATEGORY = { name: 'Recent', emojis: null }
 const SEARCH_CATEGORY = { name: 'Search', emojis: null, anchor: RECENT_CATEGORY }
 
-let CATEGORIES = [];
+let CATEGORIES = []
 
 const I18N = {
   search: 'Search',
@@ -40,35 +40,39 @@ export default class Picker extends React.Component {
       firstRender: true,
     }
 
-    let filteredCategories = [];
+    let filteredCategories = []
 
     for (let hash of data.categories) {
       let isIncluded = props.include == undefined ? true : props.include.indexOf(hash.name.toLowerCase()) > -1
       let isExcluded = props.exclude == undefined ? false : props.exclude.indexOf(hash.name.toLowerCase()) > -1
-      if (!isIncluded || isExcluded) { continue; }
+      if (!isIncluded || isExcluded) { continue }
 
-      let new_emojis = [];
+      let newEmojis = []
+
       for (let emoji of hash.emojis) {
-        let unified = data.emojis[emoji].unified;
+        let unified = data.emojis[emoji].unified
+
         if (props.emojisToShowFilter(unified)) {
-          new_emojis.push(emoji)
+          newEmojis.push(emoji)
         }
       }
 
-      if (new_emojis.length) {
-        let new_hash = {
-          emojis: new_emojis,
-          name: hash.name
+      if (newEmojis.length) {
+        let newHash = {
+          emojis: newEmojis,
+          name: hash.name,
         }
-        filteredCategories.push(new_hash);
+
+        filteredCategories.push(newHash)
       }
     }
+
     CATEGORIES = [
       SEARCH_CATEGORY,
       RECENT_CATEGORY,
-    ].concat(filteredCategories);
+    ].concat(filteredCategories)
 
-    this.categories = CATEGORIES;
+    this.categories = CATEGORIES
   }
 
   componentWillReceiveProps(props) {
