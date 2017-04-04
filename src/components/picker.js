@@ -43,8 +43,8 @@ export default class Picker extends React.Component {
     let filteredCategories = [];
 
     for (let hash of data.categories) {
-      let isIncluded = props.include == undefined ? true : props.include.indexOf(hash.name) > -1
-      let isExcluded = props.exclude == undefined ? false : props.exclude.indexOf(hash.name) > -1
+      let isIncluded = props.include == undefined ? true : props.include.indexOf(hash.name.toLowerCase()) > -1
+      let isExcluded = props.exclude == undefined ? false : props.exclude.indexOf(hash.name.toLowerCase()) > -1
       if (!isIncluded || isExcluded) { continue; }
 
       let new_emojis = [];

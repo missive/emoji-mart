@@ -23,8 +23,8 @@ import { Picker } from 'emoji-mart'
 | **autoFocus** | | `false` | Auto focus the search input when mounted |
 | **color** | | `#ae65c5` | The top bar anchors select and hover color |
 | **emoji** | | `department_store` | The emoji shown when no emojis are hovered |
-| **include** | | `['People', 'Flags']` | Only load included categories |
-| **exclude** | | `['Animals', 'Objects']` | Don't load excluded catagories |
+| **include** | | `[]` | Only load included categories. Accepts [I18n categories keys](#i18n). |
+| **exclude** | | `[]` | Don't load excluded categories. Accepts [I18n categories keys](#i18n). |
 | **emojiSize** | | `24` | The emoji width and height |
 | **onClick** | | | Params: `(emoji, event) => {}` |
 | **perLine** | | `9` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set *Frequently Used* length as well (`perLine * 4`) |
