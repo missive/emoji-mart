@@ -20,6 +20,7 @@ import { Picker } from 'emoji-mart'
 
 | Prop | Required | Default | Description |
 | ---- | :------: | ------- | ----------- |
+| **autoFocus** | | `false` | Auto focus the search input when mounted |
 | **color** | | `#ae65c5` | The top bar anchors select and hover color |
 | **emoji** | | `department_store` | The emoji shown when no emojis are hovered |
 | **include** | | `['People', 'Flags']` | Only load included categories |
