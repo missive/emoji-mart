@@ -42,14 +42,27 @@ export default class Picker extends React.Component {
 
     let filteredCategories = []
 
-    for (let hash of data.categories) {
-      let isIncluded = props.include == undefined ? true : props.include.indexOf(hash.name.toLowerCase()) > -1
-      let isExcluded = props.exclude == undefined ? false : props.exclude.indexOf(hash.name.toLowerCase()) > -1
+    if (props.include != undefined) {
+      data.categories.sort((a, b) => {
+        let aName = a.name.toLowerCase()
+        let bName = b.name.toLowerCase()
+
+        if (props.include.indexOf(aName) > props.include.indexOf(bName)) {
+          return 1
+        }
+
+        return 0
+      })
+    }
+
+    for (let category of data.categories) {
+      let isIncluded = props.include == undefined ? true : props.include.indexOf(category.name.toLowerCase()) > -1
+      let isExcluded = props.exclude == undefined ? false : props.exclude.indexOf(category.name.toLowerCase()) > -1
       if (!isIncluded || isExcluded) { continue }
 
       let newEmojis = []
 
-      for (let emoji of hash.emojis) {
+      for (let emoji of category.emojis) {
         let unified = data.emojis[emoji].unified
 
         if (props.emojisToShowFilter(unified)) {
@@ -58,12 +71,12 @@ export default class Picker extends React.Component {
       }
 
       if (newEmojis.length) {
-        let newHash = {
+        let newCategory = {
           emojis: newEmojis,
-          name: hash.name,
+          name: category.name,
         }
 
-        filteredCategories.push(newHash)
+        filteredCategories.push(newCategory)
       }
     }
 
