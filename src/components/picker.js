@@ -10,9 +10,7 @@ import { deepMerge } from '../utils'
 import { Anchors, Category, Emoji, Preview, Search } from '.'
 
 const RECENT_CATEGORY = { name: 'Recent', emojis: null }
-const SEARCH_CATEGORY = { name: 'Search', emojis: null, anchor: RECENT_CATEGORY }
-
-let CATEGORIES = []
+const SEARCH_CATEGORY = { name: 'Search', emojis: null, anchor: false }
 
 const I18N = {
   search: 'Search',
@@ -40,7 +38,7 @@ export default class Picker extends React.Component {
       firstRender: true,
     }
 
-    let filteredCategories = []
+    this.categories = []
 
     if (props.include != undefined) {
       data.categories.sort((a, b) => {
@@ -76,16 +74,21 @@ export default class Picker extends React.Component {
           name: category.name,
         }
 
-        filteredCategories.push(newCategory)
+        this.categories.push(newCategory)
       }
     }
 
-    CATEGORIES = [
-      SEARCH_CATEGORY,
-      RECENT_CATEGORY,
-    ].concat(filteredCategories)
+    let includeRecent = props.include == undefined ? true : props.include.indexOf('recent') > -1
+    let excludeRecent = props.exclude == undefined ? false : props.exclude.indexOf('recent') > -1
+    if (includeRecent && !excludeRecent) {
+      this.categories.unshift(RECENT_CATEGORY)
+    }
 
-    this.categories = CATEGORIES
+    if (this.categories[0]) {
+      this.categories[0].first = true
+    }
+
+    this.categories.unshift(SEARCH_CATEGORY)
   }
 
   componentWillReceiveProps(props) {
@@ -180,9 +183,9 @@ export default class Picker extends React.Component {
         activeCategory = null,
         minTop = 0
 
-    for (let i = 0, l = CATEGORIES.length; i < l; i++) {
-      let ii = scrollingDown ? (CATEGORIES.length - 1 - i) : i,
-          category = CATEGORIES[ii],
+    for (let i = 0, l = this.categories.length; i < l; i++) {
+      let ii = scrollingDown ? (this.categories.length - 1 - i) : i,
+          category = this.categories[ii],
           component = this.refs[`category-${ii}`]
 
       if (component) {
@@ -195,14 +198,18 @@ export default class Picker extends React.Component {
         }
 
         if (active && !activeCategory) {
-          if (category.anchor) category = category.anchor
           activeCategory = category
         }
       }
     }
 
     if (scrollTop < minTop) {
-      activeCategory = RECENT_CATEGORY
+      for (let category of this.categories) {
+        if (category.anchor === false) { continue }
+
+        activeCategory = category
+        break
+      }
     }
 
     if (activeCategory) {
@@ -220,7 +227,7 @@ export default class Picker extends React.Component {
   handleSearch(emojis) {
     SEARCH_CATEGORY.emojis = emojis
 
-    for (let i = 0, l = CATEGORIES.length; i < l; i++) {
+    for (let i = 0, l = this.categories.length; i < l; i++) {
       let component = this.refs[`category-${i}`]
 
       if (component && component.props.name != 'Search') {
@@ -241,7 +248,7 @@ export default class Picker extends React.Component {
       if (component) {
         let { top } = component
 
-        if (category.name == 'Recent') {
+        if (category.first) {
           top = 0
         } else {
           top += 1
@@ -269,16 +276,14 @@ export default class Picker extends React.Component {
   }
 
   updateCategoriesSize() {
-    for (let i = 0, l = CATEGORIES.length; i < l; i++) {
+    for (let i = 0, l = this.categories.length; i < l; i++) {
       let component = this.refs[`category-${i}`]
       if (component) component.memoizeSize()
     }
   }
 
   getCategories() {
-    var categories = CATEGORIES
-
-    return this.state.firstRender ? categories.slice(0, 3) : categories
+    return this.state.firstRender ? this.categories.slice(0, 3) : this.categories
   }
 
   render() {
@@ -292,7 +297,7 @@ export default class Picker extends React.Component {
           ref='anchors'
           i18n={this.i18n}
           color={color}
-          categories={CATEGORIES}
+          categories={this.categories}
           onAnchorClick={this.handleAnchorClick.bind(this)}
         />
       </div>

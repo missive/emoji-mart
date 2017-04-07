@@ -7,9 +7,12 @@ export default class Anchors extends React.Component {
   constructor(props) {
     super(props)
 
-    var defaultCategory = props.categories[0]
-    if (defaultCategory.anchor) {
-      defaultCategory = defaultCategory.anchor
+    let defaultCategory = null
+    for (let category of props.categories) {
+      if (category.first) {
+        defaultCategory = category
+        break
+      }
     }
 
     this.state = {
@@ -26,7 +29,7 @@ export default class Anchors extends React.Component {
         var { name, anchor } = category,
             isSelected = name == selected
 
-        if (anchor) {
+        if (anchor === false) {
           return null
         }
 
