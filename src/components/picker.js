@@ -59,23 +59,27 @@ export default class Picker extends React.Component {
       let isExcluded = props.exclude == undefined ? false : props.exclude.indexOf(category.name.toLowerCase()) > -1
       if (!isIncluded || isExcluded) { continue }
 
-      let newEmojis = []
+      if (props.emojisToShowFilter) {
+        let newEmojis = []
 
-      for (let emoji of category.emojis) {
-        let unified = data.emojis[emoji].unified
+        for (let emoji of category.emojis) {
+          let unified = data.emojis[emoji].unified
 
-        if (props.emojisToShowFilter(unified)) {
-          newEmojis.push(emoji)
-        }
-      }
-
-      if (newEmojis.length) {
-        let newCategory = {
-          emojis: newEmojis,
-          name: category.name,
+          if (props.emojisToShowFilter(unified)) {
+            newEmojis.push(emoji)
+          }
         }
 
-        this.categories.push(newCategory)
+        if (newEmojis.length) {
+          let newCategory = {
+            emojis: newEmojis,
+            name: category.name,
+          }
+
+          this.categories.push(newCategory)
+        }
+      } else {
+        this.categories.push(category)
       }
     }
 
@@ -395,6 +399,6 @@ Picker.defaultProps = {
   native: Emoji.defaultProps.native,
   sheetSize: Emoji.defaultProps.sheetSize,
   backgroundImageFn: Emoji.defaultProps.backgroundImageFn,
-  emojisToShowFilter: (codePoint) => true,
+  emojisToShowFilter: null,
   autoFocus: false,
 }

@@ -37,6 +37,6 @@ Search.propTypes = {
 Search.defaultProps = {
   onSearch: (() => {}),
   maxResults: 75,
-  emojisToShowFilter: () => true,
+  emojisToShowFilter: null,
   autoFocus: false,
 }

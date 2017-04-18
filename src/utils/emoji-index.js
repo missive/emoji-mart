@@ -92,16 +92,17 @@ function search(value, emojisToShowFilter = () => true, maxResults = 75) {
     }
   }
 
-  let filteredResults = null
-
   if (results) {
-    filteredResults = results.filter((result) => emojisToShowFilter(data.emojis[result.id].unified))
-    if (filteredResults && filteredResults.length) {
-      filteredResults = filteredResults.slice(0, maxResults)
+    if (emojisToShowFilter) {
+      results = results.filter((result) => emojisToShowFilter(data.emojis[result.id].unified))
+    }
+
+    if (results && results.length) {
+      results = results.slice(0, maxResults)
     }
   }
 
-  return filteredResults
+  return results
 }
 
 export default { search, emojis: emojisList, emoticons: emoticonsList }
