@@ -97,7 +97,7 @@ function search(value, emojisToShowFilter = () => true, maxResults = 75) {
       results = results.filter((result) => emojisToShowFilter(data.emojis[result.id].unified))
     }
 
-    if (results && results.length) {
+    if (results && results.length > maxResults) {
       results = results.slice(0, maxResults)
     }
   }
