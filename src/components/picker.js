@@ -14,6 +14,7 @@ const SEARCH_CATEGORY = { name: 'Search', emojis: null, anchor: false }
 
 const I18N = {
   search: 'Search',
+  notfound: 'No emoji found',
   categories: {
     search: 'Search Results',
     recent: 'Frequently Used',

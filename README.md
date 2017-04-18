@@ -41,6 +41,7 @@ import { Picker } from 'emoji-mart'
 #### I18n
 ```js
 search: 'Search',
+notfound: 'No emoji found',
 categories: {
   search: 'Search Results',
   recent: 'Frequently Used',

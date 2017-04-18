@@ -140,7 +140,7 @@ export default class Category extends React.Component {
           />
 
           <span className='emoji-mart-no-results-label'>
-            No emoji found
+            {i18n.notfound}
           </span>
         </div>
       }
