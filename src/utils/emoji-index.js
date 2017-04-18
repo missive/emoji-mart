@@ -1,5 +1,6 @@
-import data from '../../data'
+const extend = require('util')._extend
 
+import data from '../../data'
 import { getSanitizedData, intersect } from '.'
 
 var index = {}
@@ -20,8 +21,11 @@ for (let emoji in data.emojis) {
   emojisList[id] = getSanitizedData(id)
 }
 
-function search(value, emojisToShowFilter = () => true, maxResults = 75) {
-  var results = null
+function search(value, { emojisToShowFilter, maxResults, include, exclude } = {}) {
+  maxResults || (maxResults = 75)
+
+  var results = null,
+      pool = data.emojis
 
   if (value.length) {
     var values = value.toLowerCase().split(/[\s|,|\-|_]+/),
@@ -31,8 +35,22 @@ function search(value, emojisToShowFilter = () => true, maxResults = 75) {
       values = [values[0], values[1]]
     }
 
+    if ((include && include.length) || (exclude && exclude.length)) {
+      pool = {}
+
+      for (let category of data.categories) {
+        let isIncluded = include == undefined ? true : include.indexOf(category.name.toLowerCase()) > -1
+        let isExcluded = exclude == undefined ? false : exclude.indexOf(category.name.toLowerCase()) > -1
+        if (!isIncluded || isExcluded) { continue }
+
+        for (let emojiId of category.emojis) {
+          pool[emojiId] = data.emojis[emojiId]
+        }
+      }
+    }
+
     allResults = values.map((value) => {
-      var aPool = data.emojis,
+      var aPool = pool,
           aIndex = index,
           length = 0
 

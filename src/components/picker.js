@@ -292,7 +292,7 @@ export default class Picker extends React.Component {
   }
 
   render() {
-    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, native, backgroundImageFn, emojisToShowFilter, autoFocus } = this.props,
+    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, native, backgroundImageFn, emojisToShowFilter, include, exclude, autoFocus } = this.props,
         { skin } = this.state,
         width = (perLine * (emojiSize + 12)) + 12 + 2
 
@@ -313,6 +313,8 @@ export default class Picker extends React.Component {
           onSearch={this.handleSearch.bind(this)}
           i18n={this.i18n}
           emojisToShowFilter={emojisToShowFilter}
+          include={include}
+          exclude={exclude}
           autoFocus={autoFocus}
         />
 

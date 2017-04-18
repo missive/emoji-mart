@@ -6,7 +6,12 @@ export default class Search extends React.Component {
     var { input } = this.refs,
         value = input.value
 
-    this.props.onSearch(emojiIndex.search(value, this.props.emojisToShowFilter, this.props.maxResults))
+    this.props.onSearch(emojiIndex.search(value, {
+      emojisToShowFilter: this.props.emojisToShowFilter,
+      maxResults: this.props.maxResults,
+      include: this.props.include,
+      exclude: this.props.exclude,
+    }))
   }
 
   clear() {
