@@ -40,6 +40,7 @@ export default class Emoji extends React.Component {
   }
 
   handleClick(e) {
+    if (!this.props.onClick) { return }
     var { onClick } = this.props,
         emoji = this.getSanitizedData()
 
@@ -47,6 +48,7 @@ export default class Emoji extends React.Component {
   }
 
   handleOver(e) {
+    if (!this.props.onOver) { return }
     var { onOver } = this.props,
         emoji = this.getSanitizedData()
 
@@ -54,6 +56,7 @@ export default class Emoji extends React.Component {
   }
 
   handleLeave(e) {
+    if (!this.props.onLeave) { return }
     var { onLeave } = this.props,
         emoji = this.getSanitizedData()
 

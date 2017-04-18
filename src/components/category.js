@@ -137,6 +137,9 @@ export default class Category extends React.Component {
             {...emojiProps}
             size={22}
             emoji='sleuth_or_spy'
+            onOver={null}
+            onLeave={null}
+            onClick={null}
           />
 
           <span className='emoji-mart-no-results-label'>

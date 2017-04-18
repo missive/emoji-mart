@@ -104,6 +104,9 @@
   background-color: #f4f4f4;
   border-radius: 100%;
 }
+.emoji-mart-no-results .emoji-mart-emoji:hover:before {
+  content: none;
+}
 
 .emoji-mart-category-label {
   z-index: 2;
