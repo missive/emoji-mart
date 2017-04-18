@@ -104,9 +104,6 @@
   background-color: #f4f4f4;
   border-radius: 100%;
 }
-.emoji-mart-no-results .emoji-mart-emoji:hover:before {
-  content: none;
-}
 
 .emoji-mart-category-label {
   z-index: 2;
@@ -137,9 +134,14 @@
   padding-top: 70px;
   color: #858585;
 }
-.emoji-mart-no-results span {
-  display: inline-block;
-  vertical-align: middle;
+.emoji-mart-no-results .emoji-mart-category-label {
+  display: none;
+}
+.emoji-mart-no-results .emoji-mart-no-results-label {
+  margin-top: .2em;
+}
+.emoji-mart-no-results .emoji-mart-emoji:hover:before {
+  content: none;
 }
 
 .emoji-mart-preview {

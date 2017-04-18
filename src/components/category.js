@@ -118,7 +118,7 @@ export default class Category extends React.Component {
       }
     }
 
-    return <div ref='container' className='emoji-mart-category' style={containerStyles}>
+    return <div ref='container' className={`emoji-mart-category ${emojis && !emojis.length ? 'emoji-mart-no-results' : ''}`} style={containerStyles}>
       <div style={labelStyles} data-name={name} className='emoji-mart-category-label'>
         <span style={labelSpanStyles} ref='label'>{i18n.categories[name.toLowerCase()]}</span>
       </div>
@@ -132,19 +132,21 @@ export default class Category extends React.Component {
       )}
 
       {emojis && !emojis.length &&
-        <div className='emoji-mart-no-results'>
-          <Emoji
-            {...emojiProps}
-            size={22}
-            emoji='sleuth_or_spy'
-            onOver={null}
-            onLeave={null}
-            onClick={null}
-          />
+        <div>
+          <div>
+            <Emoji
+              {...emojiProps}
+              size={38}
+              emoji='sleuth_or_spy'
+              onOver={null}
+              onLeave={null}
+              onClick={null}
+            />
+          </div>
 
-          <span className='emoji-mart-no-results-label'>
+          <div className='emoji-mart-no-results-label'>
             {i18n.notfound}
-          </span>
+          </div>
         </div>
       }
     </div>
