@@ -1,6 +1,20 @@
 import store from './store'
 
-let frequently = store.get('frequently') || {}
+const increment = 1000000000
+let defaults = {
+  "heart": 1 * increment,
+  "smile": 2 * increment,
+  "disappointed": 3 * increment,
+  "grinning": 4 * increment,
+  "slightly_smiling_face": 5 * increment,
+  "+1": 6 * increment
+}
+
+let frequently = store.get('frequently')
+if(!frequently) {
+  store.set('frequently', defaults)
+  frequently = defaults
+}
 
 function add(emoji) {
   var { id } = emoji
