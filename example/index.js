@@ -10,7 +10,7 @@ class Example extends React.Component {
       emojiSize: 24,
       perLine: 9,
       skin: 1,
-      native: false,
+      native: true,
       set: 'apple',
       hidden: false,
     }
@@ -46,19 +46,25 @@ class Example extends React.Component {
       </div>
 
       <div className="row">
-        {['apple', 'google', 'twitter', 'emojione'].map((set) => {
-          var props = { disabled: set == this.state.set }
+        {['native', 'apple', 'google', 'twitter', 'emojione'].map((set) => {
+          var props = { disabled: !this.state.native && set == this.state.set }
+
+          if (set == 'native' && this.state.native) {
+            props.disabled = true
+          }
 
           return <button
             key={set}
             value={set}
-            onClick={() => this.setState({ set: set })}
+            onClick={() => {
+              if (set == 'native') {
+                this.setState({ native: true })
+              } else {
+                this.setState({ set: set, native: false })
+              }
+            }}
             {...props}>
-            <Emoji
-              set={set}
-              size={24}
-              emoji='grinning'
-            />
+            {set}
           </button>
         })}
       </div>
@@ -82,7 +88,6 @@ class Example extends React.Component {
 <br />  emojiSize<Operator>=</Operator>&#123;<Variable>{this.state.emojiSize}</Variable>&#125; <input type='range' data-key='emojiSize' onChange={this.handleInput.bind(this)} min='16' max='64' value={this.state.emojiSize} />
 <br />  perLine<Operator>=</Operator>&#123;<Variable>{this.state.perLine}</Variable>&#125; {this.state.perLine < 10 ? '  ' : ' '} <input type='range' data-key='perLine' onChange={this.handleInput.bind(this)} min='7' max='16' value={this.state.perLine} />
 <br />  skin<Operator>=</Operator>&#123;<Variable>{this.state.skin}</Variable>&#125;       <input type='range' data-key='skin' onChange={this.handleInput.bind(this)} min='1' max='6' value={this.state.skin} />
-<br />  native<Operator>=</Operator>&#123;<Variable>{this.state.native ? 'true' : 'false'}</Variable>&#125;{this.state.native ? ' ' : ''} <input type='checkbox' data-key='native' onChange={this.handleInput.bind(this)} value={this.state.native} />
 <br />  set<Operator>=</Operator><String>'{this.state.set}'</String>
 <br />  onClick<Operator>=</Operator>&#123;(<Variable>emoji</Variable>) => console.log(<Variable>emoji</Variable>)&#125;
 <br /><Operator>/&gt;</Operator>
