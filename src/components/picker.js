@@ -243,6 +243,8 @@ export default class Picker extends React.Component {
     }
 
     this.forceUpdate()
+    this.refs.scroll.scrollTop = 0
+    this.handleScroll()
   }
 
   handleAnchorClick(category, i) {
@@ -308,17 +310,17 @@ export default class Picker extends React.Component {
         />
       </div>
 
-      <div ref="scroll" className='emoji-mart-scroll' onScroll={this.handleScroll.bind(this)}>
-        <Search
-          ref='search'
-          onSearch={this.handleSearch.bind(this)}
-          i18n={this.i18n}
-          emojisToShowFilter={emojisToShowFilter}
-          include={include}
-          exclude={exclude}
-          autoFocus={autoFocus}
-        />
+      <Search
+        ref='search'
+        onSearch={this.handleSearch.bind(this)}
+        i18n={this.i18n}
+        emojisToShowFilter={emojisToShowFilter}
+        include={include}
+        exclude={exclude}
+        autoFocus={autoFocus}
+      />
 
+      <div ref="scroll" className='emoji-mart-scroll' onScroll={this.handleScroll.bind(this)}>
         {this.getCategories().map((category, i) => {
           return <Category
             ref={`category-${i}`}
