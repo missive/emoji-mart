@@ -125,24 +125,23 @@ export default class Category extends React.Component {
       </div>
 
       {emojis && emojis.map((emoji) =>
-        <Emoji
-          key={emoji.id || emoji}
-          emoji={emoji}
-          {...emojiProps}
-        />
+        Emoji({
+          emoji: emoji,
+          ...emojiProps
+        })
       )}
 
       {emojis && !emojis.length &&
         <div>
           <div>
-            <Emoji
-              {...emojiProps}
-              size={38}
-              emoji='sleuth_or_spy'
-              onOver={null}
-              onLeave={null}
-              onClick={null}
-            />
+          {Emoji({
+            ...emojiProps,
+            size: 38,
+            emoji: 'sleuth_or_spy',
+            onOver: null,
+            onLeave: null,
+            onClick: null,
+          })}
           </div>
 
           <div className='emoji-mart-no-results-label'>
