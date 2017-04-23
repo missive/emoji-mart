@@ -13,6 +13,7 @@ class Example extends React.Component {
       native: true,
       set: 'apple',
       hidden: false,
+      currentEmoji: 'thumbsup',
     }
   }
 
@@ -100,7 +101,10 @@ class Example extends React.Component {
           skin={this.state.skin}
           native={this.state.native}
           set={this.state.set}
-          onClick={(emoji) => console.log(emoji)}
+          onClick={(emoji) => {
+            this.setState({ currentEmoji: emoji.id })
+            console.log(emoji)
+          }}
         />
       }
 
@@ -121,11 +125,11 @@ class Example extends React.Component {
         </pre>
 
         <span style={{ display: 'inline-block', marginTop: 60 }}>
-          <Emoji
-            emoji='thumbsup'
-            size={64}
-            set={this.state.set}
-          />
+          {Emoji({
+            emoji: this.state.currentEmoji,
+            size: 64,
+            set: this.state.set,
+          })}
         </span>
       </div>
 
@@ -144,11 +148,11 @@ class Example extends React.Component {
         </pre>
 
         <span style={{ display: 'inline-block', marginTop: 40 }}>
-          <Emoji
-            emoji=':thumbsup:'
-            size={64}
-            set={this.state.set}
-          />
+          {Emoji({
+            emoji: `:${this.state.currentEmoji}:`,
+            size: 64,
+            set: this.state.set,
+          })}
         </span>
       </div>
 
@@ -167,11 +171,11 @@ class Example extends React.Component {
         </pre>
 
         <span style={{ display: 'inline-block', marginTop: 40 }}>
-          <Emoji
-            emoji=':thumbsup::skin-tone-3:'
-            size={64}
-            set={this.state.set}
-          />
+          {Emoji({
+            emoji: `:${this.state.currentEmoji}::skin-tone-3:`,
+            size: 64,
+            set: this.state.set,
+          })}
         </span>
       </div>
 
@@ -191,11 +195,11 @@ class Example extends React.Component {
         </pre>
 
         <span style={{ display: 'inline-block', marginTop: 60 }}>
-          <Emoji
-            emoji=':thumbsup::skin-tone-3:'
-            size={64}
-            native={true}
-          />
+          {Emoji({
+            emoji: `:${this.state.currentEmoji}::skin-tone-3:`,
+            size: 64,
+            native: true,
+          })}
         </span>
       </div>
     </div>
