@@ -6,102 +6,90 @@ import { getData, getSanitizedData, unifiedToNative } from '../utils'
 
 const SHEET_COLUMNS = 49
 
-export default class Emoji extends React.Component {
-  constructor(props) {
-    super(props)
+const _getPosition = (props) => {
+  var { sheet_x, sheet_y } = _getData(props),
+      multiply = 100 / (SHEET_COLUMNS - 1)
 
-    this.hasSkinVariations = !!this.getData().skin_variations
-  }
+  return `${multiply * sheet_x}% ${multiply * sheet_y}%`
+}
 
-  shouldComponentUpdate(nextProps) {
-    return (
-      this.hasSkinVariations && nextProps.skin != this.props.skin ||
-      nextProps.size != this.props.size ||
-      nextProps.native != this.props.native ||
-      nextProps.set != this.props.set ||
-      nextProps.emoji != this.props.emoji
-    )
-  }
+const _getData = (props) => {
+  var { emoji, skin, set } = props
+  return getData(emoji, skin, set)
+}
 
-  getPosition() {
-    var { sheet_x, sheet_y } = this.getData(),
-        multiply = 100 / (SHEET_COLUMNS - 1)
+const _getSanitizedData = (props) => {
+  var { emoji, skin, set } = props
+  return getSanitizedData(emoji, skin, set)
+}
 
-    return `${multiply * sheet_x}% ${multiply * sheet_y}%`
-  }
+const _handleClick = (e, props) => {
+  if (!props.onClick) { return }
+  var { onClick } = props,
+      emoji = _getSanitizedData(props)
 
-  getData() {
-    var { emoji, skin, set } = this.props
-    return getData(emoji, skin, set)
-  }
+  onClick(emoji, e)
+}
 
-  getSanitizedData() {
-    var { emoji, skin, set } = this.props
-    return getSanitizedData(emoji, skin, set)
-  }
+const _handleOver = (e, props) => {
+  if (!props.onOver) { return }
+  var { onOver } = props,
+      emoji = _getSanitizedData(props)
 
-  handleClick(e) {
-    if (!this.props.onClick) { return }
-    var { onClick } = this.props,
-        emoji = this.getSanitizedData()
+  onOver(emoji, e)
+}
 
-    onClick(emoji, e)
-  }
+const _handleLeave = (e, props) => {
+  if (!props.onLeave) { return }
+  var { onLeave } = props,
+      emoji = _getSanitizedData(props)
 
-  handleOver(e) {
-    if (!this.props.onOver) { return }
-    var { onOver } = this.props,
-        emoji = this.getSanitizedData()
+  onLeave(emoji, e)
+}
 
-    onOver(emoji, e)
-  }
-
-  handleLeave(e) {
-    if (!this.props.onLeave) { return }
-    var { onLeave } = this.props,
-        emoji = this.getSanitizedData()
-
-    onLeave(emoji, e)
-  }
-
-  render() {
-    var { set, size, sheetSize, native, forceSize, onOver, onLeave, backgroundImageFn } = this.props,
-        { unified } = this.getData(),
-        style = {},
-        children = this.props.children
-
-    if (!unified) {
-      return null
+const Emoji = (props) => {
+  for (let k in Emoji.defaultProps) {
+    if (props[k] == undefined && Emoji.defaultProps[k] != undefined) {
+      props[k] = Emoji.defaultProps[k]
     }
-
-    if (native && unified) {
-      style = { fontSize: size }
-      children = unifiedToNative(unified)
-
-      if (forceSize) {
-        style.display = 'inline-block'
-        style.width = size
-        style.height = size
-      }
-    } else {
-      style = {
-        width: size,
-        height: size,
-        display: 'inline-block',
-        backgroundImage: `url(${backgroundImageFn(set, sheetSize)})`,
-        backgroundSize: `${100 * SHEET_COLUMNS}%`,
-        backgroundPosition: this.getPosition(),
-      }
-    }
-
-    return <span
-      onClick={this.handleClick.bind(this)}
-      onMouseEnter={this.handleOver.bind(this)}
-      onMouseLeave={this.handleLeave.bind(this)}
-      className='emoji-mart-emoji'>
-      <span style={style}>{children}</span>
-    </span>
   }
+
+  var { unified } = _getData(props),
+      style = {},
+      children = props.children
+
+  if (!unified) {
+    return null
+  }
+
+  if (props.native && unified) {
+    style = { fontSize: props.size }
+    children = unifiedToNative(unified)
+
+    if (props.forceSize) {
+      style.display = 'inline-block'
+      style.width = props.size
+      style.height = props.size
+    }
+  } else {
+    style = {
+      width: props.size,
+      height: props.size,
+      display: 'inline-block',
+      backgroundImage: `url(${props.backgroundImageFn(props.set, props.sheetSize)})`,
+      backgroundSize: `${100 * SHEET_COLUMNS}%`,
+      backgroundPosition: _getPosition(props),
+    }
+  }
+
+  return <span
+    key={props.emoji.id || props.emoji}
+    onClick={(e) => _handleClick(e, props)}
+    onMouseEnter={(e) => _handleOver(e, props)}
+    onMouseLeave={(e) => _handleLeave(e, props)}
+    className='emoji-mart-emoji'>
+    <span style={style}>{children}</span>
+  </span>
 }
 
 Emoji.propTypes = {
@@ -132,3 +120,5 @@ Emoji.defaultProps = {
   onLeave: (() => {}),
   onClick: (() => {}),
 }
+
+export default Emoji
