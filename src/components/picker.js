@@ -33,12 +33,18 @@ export default class Picker extends React.Component {
   constructor(props) {
     super(props)
 
+    this.newdata = null;
+
+    this.addCustomData(data);
+
     this.i18n = deepMerge(I18N, props.i18n)
     this.state = {
       skin: store.get('skin') || props.skin,
       firstRender: true,
     }
-
+  }
+  initializeCategories(){
+    let props = this.props;
     this.categories = []
 
     if (props.include != undefined) {
@@ -92,7 +98,6 @@ export default class Picker extends React.Component {
     if (this.categories[0]) {
       this.categories[0].first = true
     }
-
     this.categories.unshift(SEARCH_CATEGORY)
   }
 
@@ -133,15 +138,17 @@ export default class Picker extends React.Component {
   }
 
   handleEmojiOver(emoji) {
-    var { preview } = this.refs
+    var { preview,search } = this.refs
     preview.setState({ emoji: emoji })
+    search.setState({placeholder : emoji.colons })
     clearTimeout(this.leaveTimeout)
   }
 
   handleEmojiLeave(emoji) {
     this.leaveTimeout = setTimeout(() => {
-      var { preview } = this.refs
+      var { preview,search } = this.refs
       preview.setState({ emoji: null })
+      search.setState({placeholder : null })
     }, 16)
   }
 
@@ -230,11 +237,10 @@ export default class Picker extends React.Component {
   }
 
   handleSearch(emojis) {
-    SEARCH_CATEGORY.emojis = emojis
+    SEARCH_CATEGORY.emojis = emojis;
 
     for (let i = 0, l = this.categories.length; i < l; i++) {
       let component = this.refs[`category-${i}`]
-
       if (component && component.props.name != 'Search') {
         let display = emojis ? 'none' : 'inherit'
         component.updateDisplay(display)
@@ -290,7 +296,95 @@ export default class Picker extends React.Component {
   getCategories() {
     return this.state.firstRender ? this.categories.slice(0, 3) : this.categories
   }
+ addCustomData(){
+   let self = this;
+   if(!self.props.emoji_custom){
+     self.initializeCategories();
+     return false;
+   }
 
+   let emoji_propsA = self.props.emoji_custom;
+   console.log(emoji_propsA);
+   for(let ix=0;ix<emoji_propsA.length;ix++){
+       let emoji_props = emoji_propsA[ix].emojis_obj;
+       let emoji_custom_name = emoji_propsA[ix].name;
+
+       let emoji_custom = this.formCustomEmohiObject(emoji_props);
+       let new_emoji_custom=[],emoji_list;
+       let eo = [];
+       for(let i=0;i<data.categories.length;i++){
+         eo.push(data.categories[i].emojis);
+       }
+       emoji_list = Array.prototype.concat.apply([], eo);
+
+       let elist = [];
+       let esrc = [];
+       for(let i=0;i<emoji_custom.length;i++){
+       	let a = self.nthize(emoji_custom[i].name,emoji_list);
+        let es = emoji_custom[i].search.split(",");
+            es.push(a);
+
+
+         emoji_custom[i].name = a;
+         emoji_custom[i].search = es.join(",");
+         emoji_custom[i].short_names= [a];
+
+         data.emojis[emoji_custom[i].name] = emoji_custom[i];
+         emoji_list.push(a);
+         elist.push(a);
+         esrc[a] = emoji_custom[i].src;
+       }
+         let category_custom = {
+           name : emoji_custom_name.split(" ").join("-")+'-'+ix,
+           title : emoji_custom_name,
+           emojis : elist,
+           custom : true,
+           emojis_src : esrc,
+           anchor : false
+         };
+         data.categories.unshift(category_custom);
+     }
+   this.newdata = data;
+   self.initializeCategories();
+   console.log(data);
+ }
+
+ nthize(element,array){
+ 	let separator = "-";
+   for(let i= 0;i<array.length;i++){
+   	let current = array[i];
+
+   if(current.indexOf(element) == 0){
+       let exploded_str = current.split(separator);
+       if(!exploded_str[1]){
+       	element = exploded_str[0] + separator + 1;
+       }else if(!isNaN(parseInt(exploded_str[1])) ){
+ 				element = exploded_str[0] + separator + (parseInt(exploded_str[1]) + 1);
+       }
+     }
+   }
+   return element;
+ }
+ formCustomEmohiObject(emoji_props){
+    let emoji_custom = [];
+     for(let i =0;i<emoji_props.length;i++){
+         let eo = emoji_props[i];
+         emoji_custom.push({
+          name : eo.name,
+          short_names : [eo.name],
+          search : eo.name,
+          src : eo.src,
+          custom : true,
+          emoticons : [],
+          variation : [],
+          has_img_apple : false,
+          has_img_emojione : false,
+          has_img_google : false,
+          has_img_twitter : false
+        });
+     }
+     return emoji_custom;
+ }
   render() {
     var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, native, backgroundImageFn, emojisToShowFilter, include, exclude, autoFocus } = this.props,
         { skin } = this.state,
@@ -316,6 +410,7 @@ export default class Picker extends React.Component {
           include={include}
           exclude={exclude}
           autoFocus={autoFocus}
+          newdata={this.newdata}
         />
 
         {this.getCategories().map((category, i) => {
@@ -323,7 +418,9 @@ export default class Picker extends React.Component {
             ref={`category-${i}`}
             key={category.name}
             name={category.name}
+            title={category.title}
             emojis={category.emojis}
+            emojis_src={ (category.emojis_src) ? category.emojis_src : null }
             perLine={perLine}
             native={native}
             hasStickyPosition={this.hasStickyPosition}
@@ -333,6 +430,7 @@ export default class Picker extends React.Component {
               skin: skin,
               size: emojiSize,
               set: set,
+              custom: (category.custom) ? category.custom : false,
               sheetSize: sheetSize,
               forceSize: native,
               backgroundImageFn: backgroundImageFn,

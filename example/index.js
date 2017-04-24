@@ -96,6 +96,7 @@ class Example extends React.Component {
           native={this.state.native}
           set={this.state.set}
           onClick={(emoji) => console.log(emoji)}
+          emoji_custom={[{name: 'New World Order' ,emojis_obj : [{name : "ape_man","src" : "https://cdn.discordapp.com/emojis/285668075846762496.png"},{name: "rowdy_gangbanger","src" : "https://cdn.discordapp.com/emojis/276065442777268224.png"}]}]}
         />
       }
 

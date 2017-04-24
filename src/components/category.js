@@ -21,7 +21,6 @@ export default class Category extends React.Component {
         { perLine: nextPerLine, native: nextNative, hasStickyPosition: nextHasStickyPosition, emojis: nextEmojis, emojiProps: nextEmojiProps } = nextProps,
         { skin: nextSkin, size: nextSize, set: nextSet } = nextEmojiProps,
         shouldUpdate = false
-
     if (name == 'Recent' && perLine != nextPerLine) {
       shouldUpdate = true
     }
@@ -96,12 +95,11 @@ export default class Category extends React.Component {
   }
 
   render() {
-    var { name, hasStickyPosition, emojiProps, i18n } = this.props,
+    var { name,title, hasStickyPosition, emojiProps, i18n ,emojis_src } = this.props,
         emojis = this.getEmojis(),
         labelStyles = {},
         labelSpanStyles = {},
         containerStyles = {}
-
     if (!emojis) {
       containerStyles = {
         display: 'none',
@@ -117,16 +115,15 @@ export default class Category extends React.Component {
         position: 'absolute',
       }
     }
-
     return <div ref='container' className={`emoji-mart-category ${emojis && !emojis.length ? 'emoji-mart-no-results' : ''}`} style={containerStyles}>
       <div style={labelStyles} data-name={name} className='emoji-mart-category-label'>
-        <span style={labelSpanStyles} ref='label'>{i18n.categories[name.toLowerCase()]}</span>
+        <span style={labelSpanStyles} ref='label'>{(title) ? title : i18n.categories[name.toLowerCase()] }</span>
       </div>
-
       {emojis && emojis.map((emoji) =>
         <Emoji
           key={emoji.id || emoji}
           emoji={emoji}
+          emojis_src={emojis_src}
           {...emojiProps}
         />
       )}
@@ -141,6 +138,7 @@ export default class Category extends React.Component {
               onOver={null}
               onLeave={null}
               onClick={null}
+              emojis_src={emojis_src}
             />
           </div>
 

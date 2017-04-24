@@ -31,8 +31,7 @@ export default class Anchors extends React.Component {
 
         if (anchor === false) {
           return null
-        }
-
+        } 
         return (
           <span
             key={name}

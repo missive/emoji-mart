@@ -1,5 +1,5 @@
 import React from 'react'
-import data from '../../data'
+//import data from '../../data'
 
 import { getData, getSanitizedData, unifiedToNative } from '../utils'
 
@@ -8,7 +8,6 @@ const SHEET_COLUMNS = 41
 export default class Emoji extends React.Component {
   constructor(props) {
     super(props)
-
     this.hasSkinVariations = !!this.getData().skin_variations
   }
 
@@ -64,14 +63,15 @@ export default class Emoji extends React.Component {
   }
 
   render() {
-    var { set, size, sheetSize, native, forceSize, onOver, onLeave, backgroundImageFn } = this.props,
+    var { set, size, sheetSize, native, forceSize, onOver, onLeave, backgroundImageFn,custom,emojis_src,emoji } = this.props,
         { unified } = this.getData(),
         style = {},
-        children = this.props.children
+        children = this.props.children;
+        if(!unified){
+          unified = emoji;
+          custom = true;
+        }
 
-    if (!unified) {
-      return null
-    }
 
     if (native && unified) {
       style = { fontSize: size }
@@ -83,13 +83,23 @@ export default class Emoji extends React.Component {
         style.height = size
       }
     } else {
-      style = {
-        width: size,
-        height: size,
-        display: 'inline-block',
-        backgroundImage: `url(${backgroundImageFn(set, sheetSize)})`,
-        backgroundSize: `${100 * SHEET_COLUMNS}%`,
-        backgroundPosition: this.getPosition(),
+      if(!custom){
+        style = {
+          width: size,
+          height: size,
+          display: 'inline-block',
+          backgroundImage: `url(${backgroundImageFn(set, sheetSize)})`,
+          backgroundSize: `${100 * SHEET_COLUMNS}%`,
+          backgroundPosition: this.getPosition(),
+        }
+      }else{
+        style = {
+          width: size,
+          height: size,
+          display: 'inline-block',
+          backgroundImage: `url(${ (emojis_src) ? emojis_src[emoji] : null  })`,
+          backgroundSize: 'contain'
+        }
       }
     }
 
