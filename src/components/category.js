@@ -71,7 +71,7 @@ export default class Category extends React.Component {
     var { name, emojis, perLine } = this.props
 
     if (name == 'Recent') {
-      let frequentlyUsed = frequently.get(perLine * 4)
+      let frequentlyUsed = frequently.get(perLine)
 
       if (frequentlyUsed.length) {
         emojis = frequentlyUsed
