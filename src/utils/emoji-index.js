@@ -39,8 +39,8 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude } = {}
       pool = {}
 
       for (let category of data.categories) {
-        let isIncluded = include == undefined ? true : include.indexOf(category.name.toLowerCase()) > -1
-        let isExcluded = exclude == undefined ? false : exclude.indexOf(category.name.toLowerCase()) > -1
+        let isIncluded = include && include.length ? include.indexOf(category.name.toLowerCase()) > -1 : true
+        let isExcluded = exclude && exclude.length ? exclude.indexOf(category.name.toLowerCase()) > -1 : false
         if (!isIncluded || isExcluded) { continue }
 
         for (let emojiId of category.emojis) {
