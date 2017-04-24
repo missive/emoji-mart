@@ -8,6 +8,8 @@ import frequently from '../utils/frequently'
 import { deepMerge } from '../utils'
 
 import { Anchors, Category, Emoji, Preview, Search } from '.'
+import { Scrollbars } from 'react-custom-scrollbars';
+
 
 const RECENT_CATEGORY = { name: 'Recent', emojis: null }
 const SEARCH_CATEGORY = { name: 'Search', emojis: null, anchor: false }
@@ -184,7 +186,6 @@ export default class Picker extends React.Component {
 
   handleScrollPaint() {
     this.waitingForPaint = false
-
     if (!this.refs.scroll) {
       return
     }
@@ -309,7 +310,7 @@ export default class Picker extends React.Component {
        let emoji_props = emoji_propsA[ix].emojis_obj;
        let emoji_custom_name = emoji_propsA[ix].name;
 
-       let emoji_custom = this.formCustomEmohiObject(emoji_props);
+       let emoji_custom = this.formCustomEmojiObject(emoji_props);
        let new_emoji_custom=[],emoji_list;
        let eo = [];
        for(let i=0;i<data.categories.length;i++){
@@ -365,7 +366,7 @@ export default class Picker extends React.Component {
    }
    return element;
  }
- formCustomEmohiObject(emoji_props){
+ formCustomEmojiObject(emoji_props){
     let emoji_custom = [];
      for(let i =0;i<emoji_props.length;i++){
          let eo = emoji_props[i];
@@ -391,28 +392,22 @@ export default class Picker extends React.Component {
         width = (perLine * (emojiSize + 12)) + 12 + 2
 
     return <div style={{width: width, ...style}} className='emoji-mart'>
-      <div className='emoji-mart-bar'>
-        <Anchors
-          ref='anchors'
-          i18n={this.i18n}
-          color={color}
-          categories={this.categories}
-          onAnchorClick={this.handleAnchorClick.bind(this)}
-        />
-      </div>
 
-      <div ref="scroll" className='emoji-mart-scroll' onScroll={this.handleScroll.bind(this)}>
-        <Search
-          ref='search'
-          onSearch={this.handleSearch.bind(this)}
-          i18n={this.i18n}
-          emojisToShowFilter={emojisToShowFilter}
-          include={include}
-          exclude={exclude}
-          autoFocus={autoFocus}
-          newdata={this.newdata}
-        />
+      <Search
+        ref='search'
+        onSearch={this.handleSearch.bind(this)}
+        i18n={this.i18n}
+        emojisToShowFilter={emojisToShowFilter}
+        include={include}
+        exclude={exclude}
+        autoFocus={autoFocus}
+        newdata={this.newdata}
+      />
 
+
+
+    <Scrollbars ref="scroll" className="emoji-mart-scroll" onScroll={this.handleScroll.bind(this)}  style={{height:225}} autoHide={true}>
+      <div className="inner-mart-scroll">
         {this.getCategories().map((category, i) => {
           return <Category
             ref={`category-${i}`}
@@ -440,8 +435,19 @@ export default class Picker extends React.Component {
             }}
           />
         })}
-      </div>
+    </div>
+  </Scrollbars>
 
+
+  <div className='emoji-mart-bar'>
+    <Anchors
+      ref='anchors'
+      i18n={this.i18n}
+      color={color}
+      categories={this.categories}
+      onAnchorClick={this.handleAnchorClick.bind(this)}
+    />
+  </div>
       <div className='emoji-mart-bar'>
         <Preview
           ref='preview'

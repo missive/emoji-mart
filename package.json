@@ -18,7 +18,9 @@
     "url": "https://github.com/missive/emoji-mart/issues"
   },
   "homepage": "https://github.com/missive/emoji-mart",
-  "dependencies": {},
+  "dependencies": {
+    "react-custom-scrollbars": "^4.1.1"
+  },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0-0"
   },

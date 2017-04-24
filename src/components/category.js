@@ -119,11 +119,12 @@ export default class Category extends React.Component {
       <div style={labelStyles} data-name={name} className='emoji-mart-category-label'>
         <span style={labelSpanStyles} ref='label'>{(title) ? title : i18n.categories[name.toLowerCase()] }</span>
       </div>
-      {emojis && emojis.map((emoji) =>
+      {emojis && emojis.map((emoji,i) =>
         <Emoji
           key={emoji.id || emoji}
           emoji={emoji}
           emojis_src={emojis_src}
+          data_index={i}
           {...emojiProps}
         />
       )}

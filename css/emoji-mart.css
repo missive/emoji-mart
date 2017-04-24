@@ -16,6 +16,7 @@
 
 .emoji-mart .emoji-mart-emoji {
   padding: 6px;
+  cursor:pointer;
 }
 
 .emoji-mart-bar:first-child {
@@ -76,16 +77,23 @@
   border: solid #d9d9d9;
   border-width: 1px 0;
 }
+.inner-mart-scroll{
+  padding-right:10px;
+}
 
 .emoji-mart-search {
-  font-size: 16px;
-  display: block;
-  width: 100%;
-  padding: .2em .6em;
-  margin-top: 6px;
-  border-radius: 25px;
-  border: 1px solid #d9d9d9;
-  outline: 0;
+      font-size: 16px;
+      display: block;
+      width: 100%;
+      padding: 0.3em 0.6em;
+      margin-top: 6px;
+      border-radius: 25px;
+      outline: 0;
+      border: 0;
+      margin: 9px;
+      background: #e0e0e0;
+      border-radius: 5px;
+      width: 80%;
 }
 
 .emoji-mart-category .emoji-mart-emoji span {
@@ -93,6 +101,7 @@
   position: relative;
   text-align: center;
   cursor: default;
+  cursor: pointer;
 }
 
 .emoji-mart-category .emoji-mart-emoji:hover:before {
@@ -103,7 +112,20 @@
   width: 100%; height: 100%;
   background-color: #f4f4f4;
   border-radius: 100%;
+  opacity:0;
 }
+.emoji-mart-category .emoji-mart-emoji{
+  border-radius: 5px;
+  background-color:transparent;
+  transition: .15s ease-in background-color;
+}
+.emoji-mart-category .emoji-mart-emoji[data-color-index="0"]:hover {background-color:#b4e1fa;}
+.emoji-mart-category .emoji-mart-emoji[data-color-index="1"]:hover {background-color:#b7e653;}
+.emoji-mart-category .emoji-mart-emoji[data-color-index="2"]:hover {background-color:#F3C3ED;}
+.emoji-mart-category .emoji-mart-emoji[data-color-index="3"]:hover {background-color:#FFE1AE;}
+.emoji-mart-category .emoji-mart-emoji[data-color-index="4"]:hover {background-color:#f4f4f4;}
+.emoji-mart-category .emoji-mart-emoji[data-color-index="5"]:hover {background-color:#fecdb5;}
+
 
 .emoji-mart-category-label {
   z-index: 2;
@@ -120,6 +142,10 @@
   padding: 5px 6px;
   background-color: #fff;
   background-color: rgba(255, 255, 255, .95);
+
+  text-transform: uppercase;
+  font-size: 13px;
+  color: #9ca1ad;
 }
 
 .emoji-mart-emoji {

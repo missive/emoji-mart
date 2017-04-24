@@ -63,7 +63,7 @@ export default class Emoji extends React.Component {
   }
 
   render() {
-    var { set, size, sheetSize, native, forceSize, onOver, onLeave, backgroundImageFn,custom,emojis_src,emoji } = this.props,
+    var { set, size, sheetSize, native, forceSize, onOver, onLeave, backgroundImageFn,custom,emojis_src,emoji,data_index } = this.props,
         { unified } = this.getData(),
         style = {},
         children = this.props.children;
@@ -103,11 +103,19 @@ export default class Emoji extends React.Component {
       }
     }
 
+    let colorIndex = 0;
+    if(data_index){
+      let total_index = 6;
+      colorIndex = (data_index % total_index);
+    }
+
     return <span
       onClick={this.handleClick.bind(this)}
       onMouseEnter={this.handleOver.bind(this)}
       onMouseLeave={this.handleLeave.bind(this)}
-      className='emoji-mart-emoji'>
+      className={'emoji-mart-emoji'}
+      data-color-index={colorIndex}
+      >
       <span style={style}>{children}</span>
     </span>
   }
