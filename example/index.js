@@ -3,6 +3,18 @@ import ReactDOM from 'react-dom'
 
 import { Picker, Emoji } from '../src'
 
+const CATEGORIES = [
+  'recent',
+  'people',
+  'nature',
+  'foods',
+  'activity',
+  'places',
+  'objects',
+  'symbols',
+  'flags',
+]
+
 class Example extends React.Component {
   constructor(props) {
     super(props)
@@ -14,22 +26,45 @@ class Example extends React.Component {
       set: 'apple',
       hidden: false,
       currentEmoji: 'thumbsup',
+      autoFocus: false,
+      include: [],
+      exclude: [],
     }
   }
 
   handleInput(e) {
     var { currentTarget } = e,
-        { value, type, checked } = currentTarget,
+        { type } = currentTarget,
         key = currentTarget.getAttribute('data-key'),
+        mount = currentTarget.getAttribute('data-mount'),
         state = {}
 
     if (type == 'checkbox') {
-      state[key] = checked
+      var { checked } = currentTarget,
+          value = currentTarget.getAttribute('data-value')
+
+      if (value) {
+        if (checked) {
+          state[key] = this.state[key].concat(value)
+        } else {
+          state[key] = this.state[key].filter((item) => { return item != value })
+        }
+      } else {
+        state[key] = checked
+      }
     } else {
+      var { value } = currentTarget
       state[key] = parseInt(value)
     }
 
-    this.setState(state)
+    if (mount) {
+      this.setState({ hidden: true }, () => {
+        state.hidden = false
+        this.setState(state)
+      })
+    } else {
+      this.setState(state)
+    }
   }
 
   render() {
@@ -86,12 +121,36 @@ class Example extends React.Component {
 <Operator>import</Operator> &#123;Picker&#125; <Operator>from</Operator> <String>'emoji-mart'</String>
 <br />
 <br /><Operator>&lt;</Operator><Variable>Picker</Variable>
-<br />  emojiSize<Operator>=</Operator>&#123;<Variable>{this.state.emojiSize}</Variable>&#125; <input type='range' data-key='emojiSize' onChange={this.handleInput.bind(this)} min='16' max='64' value={this.state.emojiSize} />
+<br />  emojiSize<Operator>=</Operator>&#123;<Variable>{this.state.emojiSize}</Variable>&#125; <input type='range' data-key='emojiSize' data-mount={true} onChange={this.handleInput.bind(this)} min='16' max='64' value={this.state.emojiSize} />
 <br />  perLine<Operator>=</Operator>&#123;<Variable>{this.state.perLine}</Variable>&#125; {this.state.perLine < 10 ? '  ' : ' '} <input type='range' data-key='perLine' onChange={this.handleInput.bind(this)} min='7' max='16' value={this.state.perLine} />
 <br />  skin<Operator>=</Operator>&#123;<Variable>{this.state.skin}</Variable>&#125;       <input type='range' data-key='skin' onChange={this.handleInput.bind(this)} min='1' max='6' value={this.state.skin} />
 <br />  set<Operator>=</Operator><String>'{this.state.set}'</String>
-<br />  onClick<Operator>=</Operator>&#123;(<Variable>emoji</Variable>) => console.log(<Variable>emoji</Variable>)&#125;
-<br /><Operator>/&gt;</Operator>
+<br />  autoFocus<Operator>=</Operator>&#123;<Variable>{this.state.autoFocus ? 'true' : 'false'}</Variable>&#125;{this.state.autoFocus ? ' ' : ''} <input type='checkbox' data-key='autoFocus' data-mount={true} onChange={this.handleInput.bind(this)} checked={this.state.autoFocus} />
+<div style={{ opacity: this.state.exclude.length ? 0.6 : 1 }}>  include<Operator>=</Operator>&#91;
+{[0, 2, 4, 6, 8].map((i) => {
+  let category1 = CATEGORIES[i],
+      category2 = CATEGORIES[i + 1]
+
+  return <div key={i}>
+    <label style={{ width: '200px', display: 'inline-block' }}>    <input type='checkbox' data-key='include' data-value={category1} data-mount={true} onChange={this.handleInput.bind(this)} disabled={this.state.exclude.length} /> <String>'{category1}'</String></label>
+    {category2 && <label><input type='checkbox' data-key='include' data-value={category2} data-mount={true} onChange={this.handleInput.bind(this)} disabled={this.state.exclude.length} /> <String>'{category2}'</String></label>}
+  </div>
+})}
+  &#93;
+</div>
+<div style={{ opacity: this.state.include.length ? 0.6 : 1 }}>  exclude<Operator>=</Operator>&#91;
+{[0, 2, 4, 6, 8].map((i) => {
+  let category1 = CATEGORIES[i],
+      category2 = CATEGORIES[i + 1]
+
+  return <div key={i}>
+    <label style={{ width: '200px', display: 'inline-block' }}>    <input type='checkbox' data-key='exclude' data-value={category1} data-mount={true} onChange={this.handleInput.bind(this)} disabled={this.state.include.length} /> <String>'{category1}'</String></label>
+    {category2 && <label><input type='checkbox' data-key='exclude' data-value={category2} data-mount={true} onChange={this.handleInput.bind(this)} disabled={this.state.include.length} /> <String>'{category2}'</String></label>}
+  </div>
+})}
+  &#93;
+</div>
+<Operator>/&gt;</Operator>
       </pre>
 
       {!this.state.hidden &&
@@ -101,6 +160,9 @@ class Example extends React.Component {
           skin={this.state.skin}
           native={this.state.native}
           set={this.state.set}
+          autoFocus={this.state.autoFocus}
+          include={this.state.include}
+          exclude={this.state.exclude}
           onClick={(emoji) => {
             this.setState({ currentEmoji: emoji.id })
             console.log(emoji)
