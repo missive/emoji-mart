@@ -6,6 +6,26 @@
   <br>Brought to you by the <a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com">Missive</a> team
 </div>
 
+## **NEW** Custom emojis
+
+Added ability to add custom emojis.
+
+**USAGE**
+
+```
+<Picker
+
+ emoji_custom={
+ [{name: 'New World Order' ,emojis_obj : [{name : "nvdia_fu","src" : "https://cdn.discordapp.com/emojis/285668075846762496.png"},{name: "donald_trump","src" : "https://cdn.discordapp.com/emojis/276065442777268224.png"}]}],
+ [...],[...]
+ }
+/>
+
+```
+
+*Bug*
+Currently onHover custom emoji the preview is not shown. Can be fixed in next version probably.
+
 ## Components
 ### Picker
 ```jsx
