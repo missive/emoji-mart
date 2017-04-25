@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types';
+
 import emojiIndex from '../utils/emoji-index'
 
 function rtrim(str,s) {
@@ -54,10 +56,10 @@ export default class Search extends React.Component {
 }
 
 Search.propTypes = {
-  onSearch: React.PropTypes.func,
-  maxResults: React.PropTypes.number,
-  emojisToShowFilter: React.PropTypes.func,
-  autoFocus: React.PropTypes.bool,
+  onSearch: PropTypes.func,
+  maxResults: PropTypes.number,
+  emojisToShowFilter: PropTypes.func,
+  autoFocus: PropTypes.bool,
 }
 
 Search.defaultProps = {

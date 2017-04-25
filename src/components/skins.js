@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 export default class Skins extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ export default class Skins extends React.Component {
     var { skin } = this.props,
         { opened } = this.state
 
-    return <div>
+    return <div className={`emoji-mart-flexer`}>
       <div className={`emoji-mart-skin-swatches ${opened ? 'emoji-mart-skin-swatches-opened' : ''}`}>
         {Array(6).fill().map((_, i) => {
           var skinTone = i + 1,
@@ -43,8 +44,8 @@ export default class Skins extends React.Component {
 }
 
 Skins.propTypes = {
-  onChange: React.PropTypes.func,
-  skin: React.PropTypes.number.isRequired,
+  onChange: PropTypes.func,
+  skin: PropTypes.number.isRequired,
 }
 
 Skins.defaultProps = {

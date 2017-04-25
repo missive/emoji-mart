@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types';
+
 //import data from '../../data'
 
 import { getData, getSanitizedData, unifiedToNative } from '../utils'
@@ -29,13 +31,13 @@ export default class Emoji extends React.Component {
   }
 
   getData() {
-    var { emoji, skin, set } = this.props
-    return getData(emoji, skin, set)
+    var { emoji, skin, set,emojis_src} = this.props
+    return getData(emoji, skin, set,emojis_src)
   }
 
   getSanitizedData() {
-    var { emoji, skin, set } = this.props
-    return getSanitizedData(emoji, skin, set)
+    var { emoji, skin, set,emojis_src } = this.props
+    return getSanitizedData(emoji, skin, set, emojis_src)
   }
 
   handleClick(e) {
@@ -67,11 +69,6 @@ export default class Emoji extends React.Component {
         { unified } = this.getData(),
         style = {},
         children = this.props.children;
-        if(!unified){
-          unified = emoji;
-          custom = true;
-        }
-
 
     if (native && unified) {
       style = { fontSize: size }
@@ -83,7 +80,7 @@ export default class Emoji extends React.Component {
         style.height = size
       }
     } else {
-      if(!custom){
+      if(!emojis_src){
         style = {
           width: size,
           height: size,
@@ -97,7 +94,7 @@ export default class Emoji extends React.Component {
           width: size,
           height: size,
           display: 'inline-block',
-          backgroundImage: `url(${ (emojis_src) ? emojis_src[emoji] : null  })`,
+          backgroundImage: `url(${ emojis_src })`,
           backgroundSize: 'contain'
         }
       }
@@ -122,19 +119,19 @@ export default class Emoji extends React.Component {
 }
 
 Emoji.propTypes = {
-  onOver: React.PropTypes.func,
-  onLeave: React.PropTypes.func,
-  onClick: React.PropTypes.func,
-  backgroundImageFn: React.PropTypes.func,
-  native: React.PropTypes.bool,
-  forceSize: React.PropTypes.bool,
-  skin: React.PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
-  sheetSize: React.PropTypes.oneOf([16, 20, 32, 64]),
-  set: React.PropTypes.oneOf(['apple', 'google', 'twitter', 'emojione']),
-  size: React.PropTypes.number.isRequired,
-  emoji: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.object,
+  onOver: PropTypes.func,
+  onLeave: PropTypes.func,
+  onClick: PropTypes.func,
+  backgroundImageFn: PropTypes.func,
+  native: PropTypes.bool,
+  forceSize: PropTypes.bool,
+  skin: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
+  sheetSize: PropTypes.oneOf([16, 20, 32, 64]),
+  set: PropTypes.oneOf(['apple', 'google', 'twitter', 'emojione']),
+  size: PropTypes.number.isRequired,
+  emoji: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
   ]).isRequired,
 }
 

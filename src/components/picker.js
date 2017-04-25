@@ -1,13 +1,15 @@
 import '../vendor/raf-polyfill'
 
 import React from 'react'
+import PropTypes from 'prop-types';
+
 import data from '../../data'
 
 import store from '../utils/store'
 import frequently from '../utils/frequently'
 import { deepMerge } from '../utils'
 
-import { Anchors, Category, Emoji, Preview, Search } from '.'
+import { Anchors, Category, Emoji, Search ,Skins} from '.'
 import { Scrollbars } from 'react-custom-scrollbars';
 
 
@@ -115,6 +117,7 @@ export default class Picker extends React.Component {
       this.firstRenderTimeout = setTimeout(() => {
         this.setState({ firstRender: false })
       }, 60)
+      this.setState({emojis_src : data.globalEmojiSrc });
     }
   }
 
@@ -140,16 +143,14 @@ export default class Picker extends React.Component {
   }
 
   handleEmojiOver(emoji) {
-    var { preview,search } = this.refs
-    preview.setState({ emoji: emoji })
+    var { search } = this.refs
     search.setState({placeholder : emoji.colons })
     clearTimeout(this.leaveTimeout)
   }
 
   handleEmojiLeave(emoji) {
     this.leaveTimeout = setTimeout(() => {
-      var { preview,search } = this.refs
-      preview.setState({ emoji: null })
+      var { search } = this.refs
       search.setState({placeholder : null })
     }, 16)
   }
@@ -191,8 +192,8 @@ export default class Picker extends React.Component {
     }
 
     var target = this.refs.scroll,
-        scrollTop = target.scrollTop,
-        scrollingDown = scrollTop > (this.scrollTop || 0),
+        scrollTop = target.viewScrollTop,
+        scrollingDown = scrollTop > (this.viewScrollTop || 0),
         activeCategory = null,
         minTop = 0
 
@@ -224,7 +225,6 @@ export default class Picker extends React.Component {
         break
       }
     }
-
     if (activeCategory) {
       let { anchors } = this.refs,
           { name: categoryName } = activeCategory
@@ -239,7 +239,7 @@ export default class Picker extends React.Component {
 
   handleSearch(emojis) {
     SEARCH_CATEGORY.emojis = emojis;
-
+    console.log(SEARCH_CATEGORY);
     for (let i = 0, l = this.categories.length; i < l; i++) {
       let component = this.refs[`category-${i}`]
       if (component && component.props.name != 'Search') {
@@ -255,7 +255,6 @@ export default class Picker extends React.Component {
     var component = this.refs[`category-${i}`],
         { scroll, anchors } = this.refs,
         scrollToComponent = null
-
     scrollToComponent = () => {
       if (component) {
         let { top } = component
@@ -265,8 +264,10 @@ export default class Picker extends React.Component {
         } else {
           top += 1
         }
-
-        scroll.scrollTop = top
+        scroll.scrollTop(top)
+        if(anchors && anchors.state && anchors.state.selected != category.name) {
+          anchors.setState({ selected: category.name })
+        }
       }
     }
 
@@ -303,9 +304,8 @@ export default class Picker extends React.Component {
      self.initializeCategories();
      return false;
    }
-
+   let globalEmojiSrc = [];
    let emoji_propsA = self.props.emoji_custom;
-   console.log(emoji_propsA);
    for(let ix=0;ix<emoji_propsA.length;ix++){
        let emoji_props = emoji_propsA[ix].emojis_obj;
        let emoji_custom_name = emoji_propsA[ix].name;
@@ -334,6 +334,7 @@ export default class Picker extends React.Component {
          emoji_list.push(a);
          elist.push(a);
          esrc[a] = emoji_custom[i].src;
+         globalEmojiSrc[a] = emoji_custom[i].src;
        }
          let category_custom = {
            name : emoji_custom_name.split(" ").join("-")+'-'+ix,
@@ -345,9 +346,9 @@ export default class Picker extends React.Component {
          };
          data.categories.unshift(category_custom);
      }
+   data.globalEmojiSrc = globalEmojiSrc;
    this.newdata = data;
    self.initializeCategories();
-   console.log(data);
  }
 
  nthize(element,array){
@@ -387,55 +388,33 @@ export default class Picker extends React.Component {
      return emoji_custom;
  }
   render() {
+    var self = this;
     var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, native, backgroundImageFn, emojisToShowFilter, include, exclude, autoFocus } = this.props,
         { skin } = this.state,
         width = (perLine * (emojiSize + 12)) + 12 + 2
 
     return <div style={{width: width, ...style}} className='emoji-mart'>
 
-      <Search
-        ref='search'
-        onSearch={this.handleSearch.bind(this)}
-        i18n={this.i18n}
-        emojisToShowFilter={emojisToShowFilter}
-        include={include}
-        exclude={exclude}
-        autoFocus={autoFocus}
-        newdata={this.newdata}
-      />
-
-
-
-    <Scrollbars ref="scroll" className="emoji-mart-scroll" onScroll={this.handleScroll.bind(this)}  style={{height:225}} autoHide={true}>
-      <div className="inner-mart-scroll">
-        {this.getCategories().map((category, i) => {
-          return <Category
-            ref={`category-${i}`}
-            key={category.name}
-            name={category.name}
-            title={category.title}
-            emojis={category.emojis}
-            emojis_src={ (category.emojis_src) ? category.emojis_src : null }
-            perLine={perLine}
-            native={native}
-            hasStickyPosition={this.hasStickyPosition}
-            i18n={this.i18n}
-            emojiProps={{
-              native: native,
-              skin: skin,
-              size: emojiSize,
-              set: set,
-              custom: (category.custom) ? category.custom : false,
-              sheetSize: sheetSize,
-              forceSize: native,
-              backgroundImageFn: backgroundImageFn,
-              onOver: this.handleEmojiOver.bind(this),
-              onLeave: this.handleEmojiLeave.bind(this),
-              onClick: this.handleEmojiClick.bind(this),
-            }}
-          />
-        })}
+      <div className={'emoji-mart-flexer-container'}>
+        <Search
+          ref='search'
+          onSearch={this.handleSearch.bind(this)}
+          i18n={this.i18n}
+          emojisToShowFilter={emojisToShowFilter}
+          include={include}
+          exclude={exclude}
+          autoFocus={autoFocus}
+          newdata={this.newdata}z
+        />
+        <Skins
+            skin={skin}
+            onChange={this.handleSkinChange.bind(this)}
+        />
     </div>
+
+
+  <Scrollbars ref="scroll" className="emoji-mart-scroll" onScroll={this.handleScroll.bind(this)}  style={{height:225}} autoHide={true}>
+        {(!this.props.emoji_custom || this.state.emojis_src) ? this.renderCategory() : null}
   </Scrollbars>
 
 
@@ -448,47 +427,65 @@ export default class Picker extends React.Component {
       onAnchorClick={this.handleAnchorClick.bind(this)}
     />
   </div>
-      <div className='emoji-mart-bar'>
-        <Preview
-          ref='preview'
-          title={title}
-          emoji={emoji}
-          emojiProps={{
-            native: native,
-            size: 38,
-            skin: skin,
-            set: set,
-            sheetSize: sheetSize,
-            backgroundImageFn: backgroundImageFn,
-          }}
-          skinsProps={{
-            skin: skin,
-            onChange: this.handleSkinChange.bind(this)
-          }}
-        />
-      </div>
     </div>
+  }
+
+renderCategory(){
+  var self = this;
+  var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, native, backgroundImageFn, emojisToShowFilter, include, exclude, autoFocus } = this.props,
+      { skin } = this.state;
+  return(
+  <div className="inner-mart-scroll">
+    {this.getCategories().map((category, i) => {
+
+      return <Category
+        ref={`category-${i}`}
+        key={category.name}
+        name={category.name}
+        title={category.title}
+        emojis={category.emojis}
+        emojis_src={self.state.emojis_src}
+        perLine={perLine}
+        native={native}
+        hasStickyPosition={this.hasStickyPosition}
+        i18n={this.i18n}
+        emojiProps={{
+          native:(category.custom) ? null : native,
+          skin: (category.custom) ? null : skin,
+          size: emojiSize,
+          set: (category.custom) ? null : set,
+          custom: (category.custom) ? category.custom : false,
+          sheetSize:(category.custom) ? null : sheetSize,
+          forceSize: (category.custom) ? null : native,
+          backgroundImageFn: backgroundImageFn,
+          onOver: this.handleEmojiOver.bind(this),
+          onLeave: this.handleEmojiLeave.bind(this),
+          onClick: this.handleEmojiClick.bind(this),
+        }}
+      />
+    })}
+  </div> );
   }
 }
 
 Picker.propTypes = {
-  onClick: React.PropTypes.func,
-  perLine: React.PropTypes.number,
-  emojiSize: React.PropTypes.number,
-  i18n: React.PropTypes.object,
-  style: React.PropTypes.object,
-  title: React.PropTypes.string,
-  emoji: React.PropTypes.string,
-  color: React.PropTypes.string,
+  onClick: PropTypes.func,
+  perLine: PropTypes.number,
+  emojiSize: PropTypes.number,
+  i18n: PropTypes.object,
+  style: PropTypes.object,
+  title: PropTypes.string,
+  emoji: PropTypes.string,
+  color: PropTypes.string,
   set: Emoji.propTypes.set,
   skin: Emoji.propTypes.skin,
-  native: React.PropTypes.bool,
+  native: PropTypes.bool,
   backgroundImageFn: Emoji.propTypes.backgroundImageFn,
   sheetSize: Emoji.propTypes.sheetSize,
-  emojisToShowFilter: React.PropTypes.func,
-  include: React.PropTypes.arrayOf(React.PropTypes.string),
-  exclude: React.PropTypes.arrayOf(React.PropTypes.string),
-  autoFocus: React.PropTypes.bool,
+  emojisToShowFilter: PropTypes.func,
+  include: PropTypes.arrayOf(PropTypes.string),
+  exclude: PropTypes.arrayOf(PropTypes.string),
+  autoFocus: PropTypes.bool,
 }
 
 Picker.defaultProps = {

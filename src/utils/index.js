@@ -20,7 +20,7 @@ function sanitize(emoji) {
   var { name, short_names, skin_tone, skin_variations, emoticons, unified} = emoji,
       id = short_names[0],
       colons = `:${id}:`
-  var custom = false;
+  var custom = false; 
   if(!unified){
     unified = name;
     custom = true;
@@ -35,6 +35,7 @@ function sanitize(emoji) {
     colons,
     emoticons,
     unified: unified.toLowerCase(),
+    custom : custom,
     skin: skin_tone || (skin_variations ? 1 : null),
     native: unifiedToNative(unified,custom),
   }
@@ -44,9 +45,12 @@ function getSanitizedData() {
   return sanitize(getData(...arguments))
 }
 
-function getData(emoji, skin, set) {
+function getData(emoji, skin, set,emojis_src) {
   var emojiData = {}
 
+  if(emojis_src && emojis_src[emoji]){
+    emojiData.custom_src = emojis_src[emoji];
+  }
   if (typeof emoji == 'string') {
     let matches = emoji.match(COLONS_REGEX)
 

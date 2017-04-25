@@ -79,21 +79,21 @@
 }
 .inner-mart-scroll{
   padding-right:10px;
+  padding-left: 2px;
 }
 
 .emoji-mart-search {
-      font-size: 16px;
-      display: block;
-      width: 100%;
-      padding: 0.3em 0.6em;
-      margin-top: 6px;
-      border-radius: 25px;
-      outline: 0;
-      border: 0;
-      margin: 9px;
-      background: #e0e0e0;
-      border-radius: 5px;
-      width: 80%;
+    font-size: 16px;
+    display: block;
+    width: 100%;
+    padding: 0.3em 0.6em;
+    border-radius: 25px;
+    outline: 0;
+    border: 0;
+    background: #e0e0e0;
+    border-radius: 5px;
+    flex: 0 1 auto;
+    margin: 9px 2px 9px 6px;
 }
 
 .emoji-mart-category .emoji-mart-emoji span {
@@ -170,51 +170,6 @@
   content: none;
 }
 
-.emoji-mart-preview {
-  position: relative;
-  height: 70px;
-}
-
-.emoji-mart-preview-emoji,
-.emoji-mart-preview-data,
-.emoji-mart-preview-skins {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.emoji-mart-preview-emoji {
-  left: 12px;
-}
-
-.emoji-mart-preview-data {
-  left: 68px; right: 12px;
-  word-break: break-word;
-}
-
-.emoji-mart-preview-skins {
-  right: 30px;
-  text-align: right;
-}
-
-.emoji-mart-preview-name {
-  font-size: 14px;
-}
-
-.emoji-mart-preview-shortname {
-  font-size: 12px;
-  color: #888;
-}
-.emoji-mart-preview-shortname + .emoji-mart-preview-shortname,
-.emoji-mart-preview-shortname + .emoji-mart-preview-emoticon,
-.emoji-mart-preview-emoticon + .emoji-mart-preview-emoticon {
-  margin-left: .5em;
-}
-
-.emoji-mart-preview-emoticon {
-  font-size: 11px;
-  color: #bbb;
-}
 
 .emoji-mart-title span {
   display: inline-block;
@@ -234,25 +189,49 @@
 .emoji-mart-skin-swatches {
   font-size: 0;
   padding: 2px 0;
-  border: 1px solid #d9d9d9;
   border-radius: 12px;
   background-color: #fff;
-}
 
+  transform: scale(1);
+  transition: .15s linear transform;
+  cursor: pointer;
+}
+.emoji-mart-skin-swatches:hover {
+    transform: scale(1.2);
+}
+.emoji-mart-skin-swatches-opened .emoji-mart-skin-swatch:hover:not(.emoji-mart-skin-swatch-selected){
+  transform: scale(1.4);
+}
+.emoji-mart-skin-swatches-opened.emoji-mart-skin-swatches{
+  transform: scale(1);
+}
 .emoji-mart-skin-swatches-opened .emoji-mart-skin-swatch {
-  width: 16px;
+  width: 18px;
   padding: 0 2px;
+}
+.emoji-mart-skin-swatches-opened .emoji-mart-skin-swatch.emoji-mart-skin-swatch-selected{
+  width: 26px;
 }
 
 .emoji-mart-skin-swatches-opened .emoji-mart-skin-swatch-selected:after {
   opacity: .75;
 }
-
+.emoji-mart-flexer-container{
+  display: flex;
+  position: relative;
+}
+.emoji-mart-flexer{
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+}
 .emoji-mart-skin-swatch {
   display: inline-block;
   width: 0;
   vertical-align: middle;
-  transition-property: width, padding;
+  transition-property: width, padding,transform;
   transition-duration: .125s;
   transition-timing-function: ease-out;
 }
@@ -266,7 +245,7 @@
 
 .emoji-mart-skin-swatch-selected {
   position: relative;
-  width: 16px;
+  width: 26px;
   padding: 0 2px;
 }
 .emoji-mart-skin-swatch-selected:after {
@@ -285,7 +264,7 @@
 .emoji-mart-skin {
   display: inline-block;
   width: 100%; padding-top: 100%;
-  max-width: 12px;
+  /*max-width: 12px;*/
   border-radius: 100%;
 }
 

@@ -131,7 +131,7 @@ class eIndex{
         if (results && results.length > maxResults) {
           results = results.slice(0, maxResults)
         }
-      } 
+      }
       return results;
     }
     getObjects(){
