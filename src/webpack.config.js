@@ -46,7 +46,7 @@ module.exports = {
   resolve: {
     extensions: ['', '.js'],
   },
-
+  devtool :  'source-map',
   plugins: [
     new webpack.DefinePlugin({
       EMOJI_DATASOURCE_VERSION: `'${pack.devDependencies['emoji-datasource']}'`,

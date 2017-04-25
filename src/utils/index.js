@@ -6,7 +6,10 @@ const SKINS = [
   '1F3FD', '1F3FE', '1F3FF',
 ]
 
-function unifiedToNative(unified) {
+function unifiedToNative(unified,custom) {
+  if ( (typeof(custom)==='undefined') || custom ){
+    return null;
+  }
   var unicodes = unified.split('-'),
       codePoints = unicodes.map((u) => `0x${u}`)
 
@@ -14,10 +17,14 @@ function unifiedToNative(unified) {
 }
 
 function sanitize(emoji) {
-  var { name, short_names, skin_tone, skin_variations, emoticons, unified } = emoji,
+  var { name, short_names, skin_tone, skin_variations, emoticons, unified} = emoji,
       id = short_names[0],
       colons = `:${id}:`
-
+  var custom = false; 
+  if(!unified){
+    unified = name;
+    custom = true;
+  }
   if (skin_tone) {
     colons += `:skin-tone-${skin_tone}:`
   }
@@ -28,8 +35,9 @@ function sanitize(emoji) {
     colons,
     emoticons,
     unified: unified.toLowerCase(),
+    custom : custom,
     skin: skin_tone || (skin_variations ? 1 : null),
-    native: unifiedToNative(unified),
+    native: unifiedToNative(unified,custom),
   }
 }
 
@@ -37,9 +45,12 @@ function getSanitizedData() {
   return sanitize(getData(...arguments))
 }
 
-function getData(emoji, skin, set) {
+function getData(emoji, skin, set,emojis_src) {
   var emojiData = {}
 
+  if(emojis_src && emojis_src[emoji]){
+    emojiData.custom_src = emojis_src[emoji];
+  }
   if (typeof emoji == 'string') {
     let matches = emoji.match(COLONS_REGEX)
 

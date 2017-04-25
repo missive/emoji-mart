@@ -1,5 +1,6 @@
 import React from 'react'
 import InlineSVG from 'svg-inline-react'
+import PropTypes from 'prop-types';
 
 import * as SVGs from '../svgs'
 
@@ -29,10 +30,10 @@ export default class Anchors extends React.Component {
         var { name, anchor } = category,
             isSelected = name == selected
 
+
         if (anchor === false) {
           return null
         }
-
         return (
           <span
             key={name}
@@ -51,8 +52,8 @@ export default class Anchors extends React.Component {
 }
 
 Anchors.propTypes = {
-  categories: React.PropTypes.array,
-  onAnchorClick: React.PropTypes.func,
+  categories: PropTypes.array,
+  onAnchorClick: PropTypes.func,
 }
 
 Anchors.defaultProps = {
