@@ -1,5 +1,7 @@
+Forked From Emoji Mart
+
 <div align="center">
-  <br><b>Emoji Mart</b> is a Slack-like customizable<br>emoji picker component for React
+  <br><b>Emoji Go</b> is a Slack-like customizable<br>emoji picker component for React
   <br>[<a href="https://missive.github.io/emoji-mart">Demo</a>]
   <br><img src="https://cloud.githubusercontent.com/assets/436043/17186519/9e71e8fe-5403-11e6-9314-21365c56a601.png">
   <br><a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com"><img alt="Missive | Team email, team chat, team tasks, one app" src="https://cloud.githubusercontent.com/assets/436043/17186909/17f9cede-5405-11e6-988a-a7c2380af396.png"></a>
@@ -56,7 +58,7 @@ import { Picker } from 'emoji-mart'
 | **emojisToShowFilter** | | ```((unicode) => true)``` | A Fn to choose whether an emoji should be displayed or not based on its unicode |
 | **skin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
 | **style** | | | Inline styles applied to the root element. Useful for positioning |
-| **title** | | `Emoji Mart™` | The title shown when no emojis are hovered |
+| **title** | | `Emoji Go™` | The title shown when no emojis are hovered |
 
 #### I18n
 ```js
@@ -157,7 +159,7 @@ emojiIndex.search('christmas').map((o) => o.native)
 ## Features
 ### Powerful search
 #### Short name, name and keywords
-Not only does **Emoji Mart** return more results than most emoji picker, they’re more accurate and sorted by relevance.
+Not only does **Emoji Go** return more results than most emoji picker, they’re more accurate and sorted by relevance.
 
 ![sun-results](https://cloud.githubusercontent.com/assets/436043/17188668/25d21028-540c-11e6-93e7-9decd6130f08.png)
 
@@ -167,7 +169,7 @@ The only emoji picker that returns emojis when searching for emoticons.
 ![emoticon-results](https://cloud.githubusercontent.com/assets/436043/17188671/28ce7000-540c-11e6-9492-99f037480eb6.png)
 
 #### Results intersection
-For better results, **Emoji Mart** split search into words and only returns results matching both terms.
+For better results, **Emoji Go** split search into words and only returns results matching both terms.
 
 ![highfive-results](https://cloud.githubusercontent.com/assets/436043/17188674/2c47d014-540c-11e6-925b-dfbdea517a65.png)
 
@@ -194,7 +196,7 @@ Apple / Google / Twitter / EmojiOne
 ![sets](https://cloud.githubusercontent.com/assets/436043/17221550/4261d64a-54c2-11e6-8c49-a5c4c4696f8b.png)
 
 ## Not opinionated
-**Emoji Mart** doesn’t automatically insert anything into a text input, nor does it show or hide itself. It simply returns an `emoji` object. It’s up to the developer to mount/unmount (it’s fast!) and position the picker. You can use the returned object as props for the `EmojiMart.Emoji` component. You could also use `emoji.colons` to insert text into a textarea or `emoji.native` to use the emoji.
+**Emoji Go** doesn’t automatically insert anything into a text input, nor does it show or hide itself. It simply returns an `emoji` object. It’s up to the developer to mount/unmount (it’s fast!) and position the picker. You can use the returned object as props for the `EmojiMart.Emoji` component. You could also use `emoji.colons` to insert text into a textarea or `emoji.native` to use the emoji.
 
 ## Development
 ```sh
