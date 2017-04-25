@@ -68,8 +68,7 @@ export default class Emoji extends React.Component {
     var { set, size, sheetSize, native, forceSize, onOver, onLeave, backgroundImageFn,custom,emojis_src,emoji,data_index } = this.props,
         { unified } = this.getData(),
         style = {},
-        children = this.props.children;
-
+        children = this.props.children; 
     if (native && unified) {
       style = { fontSize: size }
       children = unifiedToNative(unified)

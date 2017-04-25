@@ -38,21 +38,23 @@ export default class Picker extends React.Component {
     super(props)
 
     this.newdata = null;
+    this.data = data;
 
-    this.addCustomData(data);
 
     this.i18n = deepMerge(I18N, props.i18n)
     this.state = {
       skin: store.get('skin') || props.skin,
-      firstRender: true,
+      firstRender: true
     }
+
+    this.addCustomData(this.data);
   }
   initializeCategories(){
     let props = this.props;
     this.categories = []
 
     if (props.include != undefined) {
-      data.categories.sort((a, b) => {
+      this.data.categories.sort((a, b) => {
         let aName = a.name.toLowerCase()
         let bName = b.name.toLowerCase()
 
@@ -64,7 +66,7 @@ export default class Picker extends React.Component {
       })
     }
 
-    for (let category of data.categories) {
+    for (let category of this.data.categories) {
       let isIncluded = props.include == undefined ? true : props.include.indexOf(category.name.toLowerCase()) > -1
       let isExcluded = props.exclude == undefined ? false : props.exclude.indexOf(category.name.toLowerCase()) > -1
       if (!isIncluded || isExcluded) { continue }
@@ -73,7 +75,7 @@ export default class Picker extends React.Component {
         let newEmojis = []
 
         for (let emoji of category.emojis) {
-          let unified = data.emojis[emoji].unified
+          let unified = this.data.emojis[emoji].unified
 
           if (props.emojisToShowFilter(unified)) {
             newEmojis.push(emoji)
@@ -117,7 +119,7 @@ export default class Picker extends React.Component {
       this.firstRenderTimeout = setTimeout(() => {
         this.setState({ firstRender: false })
       }, 60)
-      this.setState({emojis_src : data.globalEmojiSrc });
+      this.setState({emojis_src : this.data.globalEmojiSrc});
     }
   }
 
@@ -300,12 +302,13 @@ export default class Picker extends React.Component {
   }
  addCustomData(){
    let self = this;
-   if(!self.props.emoji_custom){
+   if(!self.props.emoji_custom || this.data.customized){
      self.initializeCategories();
      return false;
    }
    let globalEmojiSrc = [];
    let emoji_propsA = self.props.emoji_custom;
+
    for(let ix=0;ix<emoji_propsA.length;ix++){
        let emoji_props = emoji_propsA[ix].emojis_obj;
        let emoji_custom_name = emoji_propsA[ix].name;
@@ -313,8 +316,8 @@ export default class Picker extends React.Component {
        let emoji_custom = this.formCustomEmojiObject(emoji_props);
        let new_emoji_custom=[],emoji_list;
        let eo = [];
-       for(let i=0;i<data.categories.length;i++){
-         eo.push(data.categories[i].emojis);
+       for(let i=0;i<this.data.categories.length;i++){
+         eo.push(this.data.categories[i].emojis);
        }
        emoji_list = Array.prototype.concat.apply([], eo);
 
@@ -330,7 +333,7 @@ export default class Picker extends React.Component {
          emoji_custom[i].search = es.join(",");
          emoji_custom[i].short_names= [a];
 
-         data.emojis[emoji_custom[i].name] = emoji_custom[i];
+         this.data.emojis[emoji_custom[i].name] = emoji_custom[i];
          emoji_list.push(a);
          elist.push(a);
          esrc[a] = emoji_custom[i].src;
@@ -344,10 +347,11 @@ export default class Picker extends React.Component {
            emojis_src : esrc,
            anchor : false
          };
-         data.categories.unshift(category_custom);
+         this.data.categories.unshift(category_custom);
      }
-   data.globalEmojiSrc = globalEmojiSrc;
-   this.newdata = data;
+   this.data.globalEmojiSrc = globalEmojiSrc;
+   this.data.customized = true;
+   this.newdata = this.data;
    self.initializeCategories();
  }
 
