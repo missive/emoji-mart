@@ -28,6 +28,10 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude } = {}
       pool = data.emojis
 
   if (value.length) {
+    if (value == '-' || value == '-1') {
+      return [emojisList['-1']]
+    }
+
     var values = value.toLowerCase().split(/[\s|,|\-|_]+/),
         allResults = []
 
@@ -53,10 +57,6 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude } = {}
       var aPool = pool,
           aIndex = index,
           length = 0
-
-      if (value == '-' || value == '-1') {
-        return [emojisList['-1']]
-      }
 
       for (let char of value.split('')) {
         length++
