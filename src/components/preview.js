@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { Emoji, Skins } from '.'
 import { getData } from '../utils'
@@ -75,8 +76,8 @@ export default class Preview extends React.Component {
 }
 
 Preview.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  emoji: React.PropTypes.string.isRequired,
-  emojiProps: React.PropTypes.object.isRequired,
-  skinsProps: React.PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+  emoji: PropTypes.string.isRequired,
+  emojiProps: PropTypes.object.isRequired,
+  skinsProps: PropTypes.object.isRequired,
 }
