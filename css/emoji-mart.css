@@ -1,6 +1,7 @@
 .emoji-mart,
 .emoji-mart * {
   box-sizing: border-box;
+  line-height: 1.15;
 }
 
 .emoji-mart {
@@ -90,6 +91,8 @@
 .emoji-mart-category .emoji-mart-emoji span {
   z-index: 1;
   position: relative;
+  text-align: center;
+  cursor: default;
 }
 
 .emoji-mart-category .emoji-mart-emoji:hover:before {
@@ -106,6 +109,7 @@
   z-index: 2;
   position: relative;
   position: -webkit-sticky;
+  position: sticky;
   top: 0;
 }
 
@@ -130,9 +134,14 @@
   padding-top: 70px;
   color: #858585;
 }
-.emoji-mart-no-results span {
-  display: inline-block;
-  vertical-align: middle;
+.emoji-mart-no-results .emoji-mart-category-label {
+  display: none;
+}
+.emoji-mart-no-results .emoji-mart-no-results-label {
+  margin-top: .2em;
+}
+.emoji-mart-no-results .emoji-mart-emoji:hover:before {
+  content: none;
 }
 
 .emoji-mart-preview {

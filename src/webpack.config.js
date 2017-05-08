@@ -1,4 +1,9 @@
 var path = require('path')
+var pack = require('../package.json')
+var webpack = require('webpack')
+
+var PROD = process.env.NODE_ENV === 'production';
+var TEST = process.env.NODE_ENV === 'test';
 
 module.exports = {
   entry: path.resolve('src/index.js'),
@@ -9,7 +14,7 @@ module.exports = {
     libraryTarget: 'umd',
   },
 
-  externals: [{
+  externals: !TEST && [{
     'react': {
       root: 'React',
       commonjs2: 'react',
@@ -30,7 +35,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: 'svg-inline',
+        loader: 'svg-inline?removeSVGTagAttrs=false',
         include: [
           path.resolve('src/svgs'),
         ],
@@ -42,6 +47,11 @@ module.exports = {
     extensions: ['', '.js'],
   },
 
-  plugins: [],
+  plugins: [
+    new webpack.DefinePlugin({
+      EMOJI_DATASOURCE_VERSION: `'${pack.devDependencies['emoji-datasource']}'`,
+    }),
+  ],
+
   bail: true,
 }

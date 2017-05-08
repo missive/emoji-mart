@@ -27,7 +27,8 @@ function sanitize(emoji) {
     name,
     colons,
     emoticons,
-    skin: skin_tone || skin_variations ? 1 : null,
+    unified: unified.toLowerCase(),
+    skin: skin_tone || (skin_variations ? 1 : null),
     native: unifiedToNative(unified),
   }
 }
@@ -68,12 +69,19 @@ function getData(emoji, skin, set) {
     }
   }
 
+  emojiData.emoticons || (emojiData.emoticons = [])
+  emojiData.variations || (emojiData.variations = [])
+
   if (emojiData.skin_variations && skin > 1 && set) {
     emojiData = JSON.parse(JSON.stringify(emojiData))
 
     var skinKey = SKINS[skin - 1],
         variationKey = `${emojiData.unified}-${skinKey}`,
         variationData = emojiData.skin_variations[variationKey]
+
+    if (!variationData.variations && emojiData.variations) {
+      delete emojiData.variations
+    }
 
     if (variationData[`has_img_${set}`]) {
       emojiData.skin_tone = skin
@@ -83,6 +91,11 @@ function getData(emoji, skin, set) {
         emojiData[k] = v
       }
     }
+  }
+
+  if (emojiData.variations && emojiData.variations.length) {
+    emojiData = JSON.parse(JSON.stringify(emojiData))
+    emojiData.unified = emojiData.variations.shift()
   }
 
   return emojiData

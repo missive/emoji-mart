@@ -10,6 +10,7 @@ class Example extends React.Component {
       emojiSize: 24,
       perLine: 9,
       skin: 1,
+      native: false,
       set: 'apple',
       hidden: false,
     }
@@ -17,11 +18,16 @@ class Example extends React.Component {
 
   handleInput(e) {
     var { currentTarget } = e,
-        { value } = currentTarget,
+        { value, type, checked } = currentTarget,
         key = currentTarget.getAttribute('data-key'),
         state = {}
 
-    state[key] = parseInt(value)
+    if (type == 'checkbox') {
+      state[key] = checked
+    } else {
+      state[key] = parseInt(value)
+    }
+
     this.setState(state)
   }
 
@@ -76,6 +82,7 @@ class Example extends React.Component {
 <br />  emojiSize<Operator>=</Operator>&#123;<Variable>{this.state.emojiSize}</Variable>&#125; <input type='range' data-key='emojiSize' onChange={this.handleInput.bind(this)} min='16' max='64' value={this.state.emojiSize} />
 <br />  perLine<Operator>=</Operator>&#123;<Variable>{this.state.perLine}</Variable>&#125; {this.state.perLine < 10 ? '  ' : ' '} <input type='range' data-key='perLine' onChange={this.handleInput.bind(this)} min='7' max='16' value={this.state.perLine} />
 <br />  skin<Operator>=</Operator>&#123;<Variable>{this.state.skin}</Variable>&#125;       <input type='range' data-key='skin' onChange={this.handleInput.bind(this)} min='1' max='6' value={this.state.skin} />
+<br />  native<Operator>=</Operator>&#123;<Variable>{this.state.native ? 'true' : 'false'}</Variable>&#125;{this.state.native ? ' ' : ''} <input type='checkbox' data-key='native' onChange={this.handleInput.bind(this)} value={this.state.native} />
 <br />  set<Operator>=</Operator><String>'{this.state.set}'</String>
 <br />  onClick<Operator>=</Operator>&#123;(<Variable>emoji</Variable>) => console.log(<Variable>emoji</Variable>)&#125;
 <br /><Operator>/&gt;</Operator>
@@ -86,6 +93,7 @@ class Example extends React.Component {
           emojiSize={this.state.emojiSize}
           perLine={this.state.perLine}
           skin={this.state.skin}
+          native={this.state.native}
           set={this.state.set}
           onClick={(emoji) => console.log(emoji)}
         />

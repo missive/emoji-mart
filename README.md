@@ -1,6 +1,6 @@
 <div align="center">
   <br><b>Emoji Mart</b> is a Slack-like customizable<br>emoji picker component for React
-  <br>[<a href="https://missive.github.io/emoji-mart">Demo</a>]
+  <br><a href="https://missive.github.io/emoji-mart">Demo</a> • <a href="https://github.com/missive/emoji-mart/releases">Changelog</a>
   <br><img src="https://cloud.githubusercontent.com/assets/436043/17186519/9e71e8fe-5403-11e6-9314-21365c56a601.png">
   <br><a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com"><img alt="Missive | Team email, team chat, team tasks, one app" src="https://cloud.githubusercontent.com/assets/436043/17186909/17f9cede-5405-11e6-988a-a7c2380af396.png"></a>
   <br>Brought to you by the <a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com">Missive</a> team
@@ -20,14 +20,20 @@ import { Picker } from 'emoji-mart'
 
 | Prop | Required | Default | Description |
 | ---- | :------: | ------- | ----------- |
+| **autoFocus** | | `false` | Auto focus the search input when mounted |
 | **color** | | `#ae65c5` | The top bar anchors select and hover color |
 | **emoji** | | `department_store` | The emoji shown when no emojis are hovered |
+| **include** | | `[]` | Only load included categories. Accepts [I18n categories keys](#i18n). Order will be respected, except for the `recent` category which will always be the first. |
+| **exclude** | | `[]` | Don't load excluded categories. Accepts [I18n categories keys](#i18n). |
 | **emojiSize** | | `24` | The emoji width and height |
 | **onClick** | | | Params: `(emoji, event) => {}` |
 | **perLine** | | `9` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set *Frequently Used* length as well (`perLine * 4`) |
 | **i18n** | | [`{…}`](#i18n) | [An object](#i18n) containing localized strings |
+| **native** | | `false` | Renders the native unicode emoji |
 | **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'emojione'` |
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
+| **backgroundImageFn** | | ```((set, sheetSize) => …)``` | A Fn that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
+| **emojisToShowFilter** | | ```((unicode) => true)``` | A Fn to choose whether an emoji should be displayed or not based on its unicode |
 | **skin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
 | **style** | | | Inline styles applied to the root element. Useful for positioning |
 | **title** | | `Emoji Mart™` | The title shown when no emojis are hovered |
@@ -35,6 +41,7 @@ import { Picker } from 'emoji-mart'
 #### I18n
 ```js
 search: 'Search',
+notfound: 'No Emoji Found',
 categories: {
   search: 'Search Results',
   recent: 'Frequently Used',
@@ -114,6 +121,7 @@ import { Emoji } from 'emoji-mart'
 | **onOver** | | | Params: `(emoji, event) => {}` |
 | **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'emojione'` |
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
+| **backgroundImageFn** | | ```((set, sheetSize) => `https://unpkg.com/emoji-datasource@2.4.4/sheet_${set}_${sheetSize}.png`)``` | A Fn that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **skin** | | `1` | Skin color: `1, 2, 3, 4, 5, 6` |
 
 ## Headless search
@@ -170,8 +178,8 @@ Apple / Google / Twitter / EmojiOne
 
 ## Development
 ```sh
-$ npm run build:data
-$ npm run watch
+$ yarn run build:data
+$ yarn run watch
 $ open example/index.html
 ```
 

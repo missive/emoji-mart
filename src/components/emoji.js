@@ -16,7 +16,9 @@ export default class Emoji extends React.Component {
     return (
       this.hasSkinVariations && nextProps.skin != this.props.skin ||
       nextProps.size != this.props.size ||
-      nextProps.set != this.props.set
+      nextProps.native != this.props.native ||
+      nextProps.set != this.props.set ||
+      nextProps.emoji != this.props.emoji
     )
   }
 
@@ -38,6 +40,7 @@ export default class Emoji extends React.Component {
   }
 
   handleClick(e) {
+    if (!this.props.onClick) { return }
     var { onClick } = this.props,
         emoji = this.getSanitizedData()
 
@@ -45,6 +48,7 @@ export default class Emoji extends React.Component {
   }
 
   handleOver(e) {
+    if (!this.props.onOver) { return }
     var { onOver } = this.props,
         emoji = this.getSanitizedData()
 
@@ -52,6 +56,7 @@ export default class Emoji extends React.Component {
   }
 
   handleLeave(e) {
+    if (!this.props.onLeave) { return }
     var { onLeave } = this.props,
         emoji = this.getSanitizedData()
 
@@ -59,10 +64,10 @@ export default class Emoji extends React.Component {
   }
 
   render() {
-    var { set, size, sheetSize, native, onOver, onLeave } = this.props,
+    var { set, size, sheetSize, native, forceSize, onOver, onLeave, backgroundImageFn } = this.props,
         { unified } = this.getData(),
         style = {},
-        children = null
+        children = this.props.children
 
     if (!unified) {
       return null
@@ -71,12 +76,18 @@ export default class Emoji extends React.Component {
     if (native && unified) {
       style = { fontSize: size }
       children = unifiedToNative(unified)
+
+      if (forceSize) {
+        style.display = 'inline-block'
+        style.width = size
+        style.height = size
+      }
     } else {
       style = {
         width: size,
         height: size,
         display: 'inline-block',
-        backgroundImage: `url(https://unpkg.com/emoji-datasource@2.4.4/sheet_${set}_${sheetSize}.png)`,
+        backgroundImage: `url(${backgroundImageFn(set, sheetSize)})`,
         backgroundSize: `${100 * SHEET_COLUMNS}%`,
         backgroundPosition: this.getPosition(),
       }
@@ -96,7 +107,9 @@ Emoji.propTypes = {
   onOver: React.PropTypes.func,
   onLeave: React.PropTypes.func,
   onClick: React.PropTypes.func,
+  backgroundImageFn: React.PropTypes.func,
   native: React.PropTypes.bool,
+  forceSize: React.PropTypes.bool,
   skin: React.PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   sheetSize: React.PropTypes.oneOf([16, 20, 32, 64]),
   set: React.PropTypes.oneOf(['apple', 'google', 'twitter', 'emojione']),
@@ -112,6 +125,8 @@ Emoji.defaultProps = {
   set: 'apple',
   sheetSize: 64,
   native: false,
+  forceSize: false,
+  backgroundImageFn: ((set, sheetSize) => `https://unpkg.com/emoji-datasource@${EMOJI_DATASOURCE_VERSION}/sheet_${set}_${sheetSize}.png`),
   onOver: (() => {}),
   onLeave: (() => {}),
   onClick: (() => {}),

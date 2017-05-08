@@ -10,15 +10,11 @@ import { deepMerge } from '../utils'
 import { Anchors, Category, Emoji, Preview, Search } from '.'
 
 const RECENT_CATEGORY = { name: 'Recent', emojis: null }
-const SEARCH_CATEGORY = { name: 'Search', emojis: null, anchor: RECENT_CATEGORY }
-
-const CATEGORIES = [
-  SEARCH_CATEGORY,
-  RECENT_CATEGORY,
-].concat(data.categories)
+const SEARCH_CATEGORY = { name: 'Search', emojis: null, anchor: false }
 
 const I18N = {
   search: 'Search',
+  notfound: 'No Emoji Found',
   categories: {
     search: 'Search Results',
     recent: 'Frequently Used',
@@ -42,6 +38,62 @@ export default class Picker extends React.Component {
       skin: store.get('skin') || props.skin,
       firstRender: true,
     }
+
+    this.categories = []
+
+    if (props.include != undefined) {
+      data.categories.sort((a, b) => {
+        let aName = a.name.toLowerCase()
+        let bName = b.name.toLowerCase()
+
+        if (props.include.indexOf(aName) > props.include.indexOf(bName)) {
+          return 1
+        }
+
+        return 0
+      })
+    }
+
+    for (let category of data.categories) {
+      let isIncluded = props.include == undefined ? true : props.include.indexOf(category.name.toLowerCase()) > -1
+      let isExcluded = props.exclude == undefined ? false : props.exclude.indexOf(category.name.toLowerCase()) > -1
+      if (!isIncluded || isExcluded) { continue }
+
+      if (props.emojisToShowFilter) {
+        let newEmojis = []
+
+        for (let emoji of category.emojis) {
+          let unified = data.emojis[emoji].unified
+
+          if (props.emojisToShowFilter(unified)) {
+            newEmojis.push(emoji)
+          }
+        }
+
+        if (newEmojis.length) {
+          let newCategory = {
+            emojis: newEmojis,
+            name: category.name,
+          }
+
+          this.categories.push(newCategory)
+        }
+      } else {
+        this.categories.push(category)
+      }
+    }
+
+    let includeRecent = props.include == undefined ? true : props.include.indexOf('recent') > -1
+    let excludeRecent = props.exclude == undefined ? false : props.exclude.indexOf('recent') > -1
+    if (includeRecent && !excludeRecent) {
+      this.categories.unshift(RECENT_CATEGORY)
+    }
+
+    if (this.categories[0]) {
+      this.categories[0].first = true
+    }
+
+    this.categories.unshift(SEARCH_CATEGORY)
   }
 
   componentWillReceiveProps(props) {
@@ -136,9 +188,9 @@ export default class Picker extends React.Component {
         activeCategory = null,
         minTop = 0
 
-    for (let i = 0, l = CATEGORIES.length; i < l; i++) {
-      let ii = scrollingDown ? (CATEGORIES.length - 1 - i) : i,
-          category = CATEGORIES[ii],
+    for (let i = 0, l = this.categories.length; i < l; i++) {
+      let ii = scrollingDown ? (this.categories.length - 1 - i) : i,
+          category = this.categories[ii],
           component = this.refs[`category-${ii}`]
 
       if (component) {
@@ -151,14 +203,18 @@ export default class Picker extends React.Component {
         }
 
         if (active && !activeCategory) {
-          if (category.anchor) category = category.anchor
           activeCategory = category
         }
       }
     }
 
     if (scrollTop < minTop) {
-      activeCategory = RECENT_CATEGORY
+      for (let category of this.categories) {
+        if (category.anchor === false) { continue }
+
+        activeCategory = category
+        break
+      }
     }
 
     if (activeCategory) {
@@ -176,11 +232,11 @@ export default class Picker extends React.Component {
   handleSearch(emojis) {
     SEARCH_CATEGORY.emojis = emojis
 
-    for (let i = 0, l = CATEGORIES.length; i < l; i++) {
+    for (let i = 0, l = this.categories.length; i < l; i++) {
       let component = this.refs[`category-${i}`]
 
       if (component && component.props.name != 'Search') {
-        let display = emojis ? 'none' : null
+        let display = emojis ? 'none' : 'inherit'
         component.updateDisplay(display)
       }
     }
@@ -197,7 +253,7 @@ export default class Picker extends React.Component {
       if (component) {
         let { top } = component
 
-        if (category.name == 'Recent') {
+        if (category.first) {
           top = 0
         } else {
           top += 1
@@ -225,30 +281,28 @@ export default class Picker extends React.Component {
   }
 
   updateCategoriesSize() {
-    for (let i = 0, l = CATEGORIES.length; i < l; i++) {
+    for (let i = 0, l = this.categories.length; i < l; i++) {
       let component = this.refs[`category-${i}`]
       if (component) component.memoizeSize()
     }
   }
 
   getCategories() {
-    var categories = CATEGORIES
-
-    return this.state.firstRender ? categories.slice(0, 3) : categories
+    return this.state.firstRender ? this.categories.slice(0, 3) : this.categories
   }
 
   render() {
-    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color } = this.props,
+    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, native, backgroundImageFn, emojisToShowFilter, include, exclude, autoFocus } = this.props,
         { skin } = this.state,
         width = (perLine * (emojiSize + 12)) + 12 + 2
 
-    return <div style={{...style, width: width}} className='emoji-mart'>
+    return <div style={{width: width, ...style}} className='emoji-mart'>
       <div className='emoji-mart-bar'>
         <Anchors
           ref='anchors'
           i18n={this.i18n}
           color={color}
-          categories={CATEGORIES}
+          categories={this.categories}
           onAnchorClick={this.handleAnchorClick.bind(this)}
         />
       </div>
@@ -258,6 +312,10 @@ export default class Picker extends React.Component {
           ref='search'
           onSearch={this.handleSearch.bind(this)}
           i18n={this.i18n}
+          emojisToShowFilter={emojisToShowFilter}
+          include={include}
+          exclude={exclude}
+          autoFocus={autoFocus}
         />
 
         {this.getCategories().map((category, i) => {
@@ -267,13 +325,17 @@ export default class Picker extends React.Component {
             name={category.name}
             emojis={category.emojis}
             perLine={perLine}
+            native={native}
             hasStickyPosition={this.hasStickyPosition}
             i18n={this.i18n}
             emojiProps={{
+              native: native,
               skin: skin,
               size: emojiSize,
               set: set,
               sheetSize: sheetSize,
+              forceSize: native,
+              backgroundImageFn: backgroundImageFn,
               onOver: this.handleEmojiOver.bind(this),
               onLeave: this.handleEmojiLeave.bind(this),
               onClick: this.handleEmojiClick.bind(this),
@@ -288,10 +350,12 @@ export default class Picker extends React.Component {
           title={title}
           emoji={emoji}
           emojiProps={{
+            native: native,
             size: 38,
             skin: skin,
             set: set,
             sheetSize: sheetSize,
+            backgroundImageFn: backgroundImageFn,
           }}
           skinsProps={{
             skin: skin,
@@ -314,7 +378,13 @@ Picker.propTypes = {
   color: React.PropTypes.string,
   set: Emoji.propTypes.set,
   skin: Emoji.propTypes.skin,
+  native: React.PropTypes.bool,
+  backgroundImageFn: Emoji.propTypes.backgroundImageFn,
   sheetSize: Emoji.propTypes.sheetSize,
+  emojisToShowFilter: React.PropTypes.func,
+  include: React.PropTypes.arrayOf(React.PropTypes.string),
+  exclude: React.PropTypes.arrayOf(React.PropTypes.string),
+  autoFocus: React.PropTypes.bool,
 }
 
 Picker.defaultProps = {
@@ -328,5 +398,9 @@ Picker.defaultProps = {
   color: '#ae65c5',
   set: Emoji.defaultProps.set,
   skin: Emoji.defaultProps.skin,
+  native: Emoji.defaultProps.native,
   sheetSize: Emoji.defaultProps.sheetSize,
+  backgroundImageFn: Emoji.defaultProps.backgroundImageFn,
+  emojisToShowFilter: null,
+  autoFocus: false,
 }

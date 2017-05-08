@@ -1,5 +1,5 @@
 var fs = require('fs'),
-    emojiData = require('emoji-data'),
+    emojiData = require('emoji-datasource'),
     emojiLib = require('emojilib'),
     inflection = require('inflection'),
     mkdirp = require('mkdirp')
@@ -52,8 +52,6 @@ emojiData.forEach((datum) => {
     keywords = emojiLib.lib[datum.short_name].keywords
   }
 
-  datum.keywords = keywords
-
   datum.search = []
   var addToSearch = (strings, split) => {
     (Array.isArray(strings) ? strings : [strings]).forEach((string) => {
@@ -69,7 +67,7 @@ emojiData.forEach((datum) => {
 
   addToSearch(datum.short_names, true)
   addToSearch(datum.name, true)
-  addToSearch(datum.keywords, false)
+  addToSearch(keywords, false)
   addToSearch(datum.emoticons, false)
 
   datum.search = datum.search.join(',')
@@ -95,15 +93,24 @@ emojiData.forEach((datum) => {
   delete datum.short_name
   delete datum.category
   delete datum.sort_order
+
+  for (let key in datum) {
+    let value = datum[key]
+
+    if (Array.isArray(value) && !value.length) {
+      delete datum[key]
+    }
+  }
 })
 
-var flags = data.categories[categoriesIndex['Flags']];
+var flags = data.categories[categoriesIndex['Flags']]
 flags.emojis.sort()
 
 mkdirp('data', (err) => {
   if (err) throw err
 
-  fs.writeFile('data/index.js', `export default ${JSON.stringify(data)}`, (err) => {
+  const stringifiedData = JSON.stringify(data).replace(/\"([A-Za-z_]+)\":/g, '$1:')
+  fs.writeFile('data/index.js', `export default ${stringifiedData}`, (err) => {
     if (err) throw err
   })
 })
