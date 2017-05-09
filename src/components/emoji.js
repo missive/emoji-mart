@@ -3,7 +3,7 @@ import data from '../../data'
 
 import { getData, getSanitizedData, unifiedToNative } from '../utils'
 
-const SHEET_COLUMNS = 41
+const SHEET_COLUMNS = 49
 
 export default class Emoji extends React.Component {
   constructor(props) {
@@ -123,7 +123,7 @@ Emoji.propTypes = {
 Emoji.defaultProps = {
   skin: 1,
   set: 'apple',
-  sheetSize: 64,
+  sheetSize: 32,
   native: false,
   forceSize: false,
   backgroundImageFn: ((set, sheetSize) => `https://unpkg.com/emoji-datasource@${EMOJI_DATASOURCE_VERSION}/sheet_${set}_${sheetSize}.png`),
