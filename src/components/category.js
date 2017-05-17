@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import frequently from '../utils/frequently'
 import { Emoji } from '.'
@@ -154,12 +155,12 @@ export default class Category extends React.Component {
 }
 
 Category.propTypes = {
-  emojis: React.PropTypes.array,
-  hasStickyPosition: React.PropTypes.bool,
-  name: React.PropTypes.string.isRequired,
-  native: React.PropTypes.bool.isRequired,
-  perLine: React.PropTypes.number.isRequired,
-  emojiProps: React.PropTypes.object.isRequired,
+  emojis: PropTypes.array,
+  hasStickyPosition: PropTypes.bool,
+  name: PropTypes.string.isRequired,
+  native: PropTypes.bool.isRequired,
+  perLine: PropTypes.number.isRequired,
+  emojiProps: PropTypes.object.isRequired,
 }
 
 Category.defaultProps = {

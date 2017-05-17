@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class Skins extends React.Component {
   constructor(props) {
@@ -43,8 +44,8 @@ export default class Skins extends React.Component {
 }
 
 Skins.propTypes = {
-  onChange: React.PropTypes.func,
-  skin: React.PropTypes.number.isRequired,
+  onChange: PropTypes.func,
+  skin: PropTypes.number.isRequired,
 }
 
 Skins.defaultProps = {

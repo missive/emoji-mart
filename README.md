@@ -6,6 +6,10 @@
   <br>Brought to you by the <a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com">Missive</a> team
 </div>
 
+## Installation
+
+`npm install --save emoji-mart`
+
 ## Components
 ### Picker
 ```jsx
