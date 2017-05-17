@@ -67,6 +67,7 @@
 
 .emoji-mart-anchors svg {
   fill: currentColor;
+  max-height: 18px;
 }
 
 .emoji-mart-scroll {
