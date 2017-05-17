@@ -39,6 +39,7 @@
     "karma-jasmine": "^1.1.0",
     "karma-webpack": "^2.0.2",
     "mkdirp": "0.5.1",
+    "prop-types": "^15.5.8",
     "react": "15.2.0",
     "react-addons-test-utils": "15.2.0",
     "react-dom": "15.2.0",
