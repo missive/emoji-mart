@@ -29,6 +29,7 @@ import { Picker } from 'emoji-mart'
 | **emoji** | | `department_store` | The emoji shown when no emojis are hovered |
 | **include** | | `[]` | Only load included categories. Accepts [I18n categories keys](#i18n). Order will be respected, except for the `recent` category which will always be the first. |
 | **exclude** | | `[]` | Don't load excluded categories. Accepts [I18n categories keys](#i18n). |
+| **custom** | | `[]` | [Custom emojis](#custom-emojis) |
 | **emojiSize** | | `24` | The emoji width and height |
 | **onClick** | | | Params: `(emoji, event) => {}` |
 | **perLine** | | `9` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set *Frequently Used* length as well (`perLine * 4`) |
@@ -57,6 +58,7 @@ categories: {
   objects: 'Objects',
   symbols: 'Symbols',
   flags: 'Flags',
+  custom: 'Custom',
 }
 ```
 
@@ -104,6 +106,16 @@ Sheets are served from [unpkg](https://unpkg.com), a global CDN that serves file
   skin: 3,
   native: '🎅🏼'
 }
+
+{
+  id: 'octocat',
+  name: 'Octocat',
+  colons: ':octocat',
+  emoticons: [],
+  custom: true,
+  imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'
+}
+
 ```
 
 ### Emoji
@@ -127,6 +139,25 @@ import { Emoji } from 'emoji-mart'
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
 | **backgroundImageFn** | | ```((set, sheetSize) => `https://unpkg.com/emoji-datasource@2.4.4/sheet_${set}_${sheetSize}.png`)``` | A Fn that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **skin** | | `1` | Skin color: `1, 2, 3, 4, 5, 6` |
+
+## Custom emojis
+You can provide custom emojis which will show up in their own category.
+
+```js
+import { Picker } from 'emoji-mart'
+
+const customEmojis = [
+  {
+    name: 'Octocat',
+    short_names: ['octocat'],
+    emoticons: [],
+    keywords: ['github'],
+    imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'
+  },
+]
+
+<Picker custom={customEmojis} />
+```
 
 ## Headless search
 The `Picker` doesn’t have to be mounted for you to take advantage of the advanced search results.
