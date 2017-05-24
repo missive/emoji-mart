@@ -1,3 +1,4 @@
+import buildSearch from './build-search'
 import data from '../../data'
 
 const COLONS_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/
@@ -58,6 +59,17 @@ function getData(emoji, skin, set) {
     if (data.emojis.hasOwnProperty(emoji)) {
       emojiData = data.emojis[emoji]
     }
+  } else if (emoji.custom) {
+    emojiData = emoji
+
+    emojiData.search = buildSearch({
+      short_names: emoji.short_names,
+      name: emoji.name,
+      keywords: emoji.keywords,
+      emoticons: emoji.emoticons
+    })
+
+    emojiData.search = emojiData.search.join(',')
   } else if (emoji.id) {
     if (data.short_names.hasOwnProperty(emoji.id)) {
       emoji.id = data.short_names[emoji.id]
