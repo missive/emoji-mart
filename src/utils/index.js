@@ -16,7 +16,7 @@ function unifiedToNative(unified) {
 
 function sanitize(emoji) {
   var { name, short_names, skin_tone, skin_variations, emoticons, unified, custom, imageUrl } = emoji,
-      id = short_names[0],
+      id = emoji.id || short_names[0],
       colons = `:${id}:`
 
   if (custom) {
