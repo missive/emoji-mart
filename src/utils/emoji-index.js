@@ -1,7 +1,7 @@
 const extend = require('util')._extend
 
 import data from '../../data'
-import { getSanitizedData, intersect } from '.'
+import { getData, getSanitizedData, intersect } from '.'
 
 var index = {}
 var emojisList = {}
@@ -21,8 +21,20 @@ for (let emoji in data.emojis) {
   emojisList[id] = getSanitizedData(id)
 }
 
-function search(value, { emojisToShowFilter, maxResults, include, exclude } = {}) {
+function search(value, { emojisToShowFilter, maxResults, include, exclude, custom = [] } = {}) {
   maxResults || (maxResults = 75)
+
+  if (custom.length) {
+    for (const emoji of custom) {
+      data.emojis[emoji.id] = getData(emoji)
+      emojisList[emoji.id] = getSanitizedData(emoji)
+    }
+
+    data.categories.push({
+      name: 'Custom',
+      emojis: custom.map(emoji => emoji.id)
+    })
+  }
 
   var results = null,
       pool = data.emojis
