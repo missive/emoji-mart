@@ -66,11 +66,11 @@ export default class Emoji extends React.Component {
 
   render() {
     var { set, size, sheetSize, native, forceSize, onOver, onLeave, backgroundImageFn } = this.props,
-        { unified } = this.getData(),
+        { unified, custom, imageUrl } = this.getData(),
         style = {},
         children = this.props.children
 
-    if (!unified) {
+    if (!unified && !custom) {
       return null
     }
 
@@ -82,6 +82,14 @@ export default class Emoji extends React.Component {
         style.display = 'inline-block'
         style.width = size
         style.height = size
+      }
+    } else if (custom) {
+      style = {
+        width: size,
+        height: size,
+        display: 'inline-block',
+        backgroundImage: `url(${imageUrl})`,
+        backgroundSize: '100%'
       }
     } else {
       style = {
