@@ -3,6 +3,21 @@ import ReactDOM from 'react-dom'
 
 import { Picker, Emoji } from '../src'
 
+const CUSTOM_EMOJIS = [
+  {
+    name: 'Octocat',
+    short_names: ['octocat'],
+    keywords: ['github'],
+    imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'
+  },
+  {
+    name: 'Squirrel',
+    short_names: ['shipit', 'squirrel'],
+    keywords: ['github'],
+    imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/shipit.png?v7'
+  }
+]
+
 class Example extends React.Component {
   constructor(props) {
     super(props)
@@ -84,6 +99,7 @@ class Example extends React.Component {
 <br />  skin<Operator>=</Operator>&#123;<Variable>{this.state.skin}</Variable>&#125;       <input type='range' data-key='skin' onChange={this.handleInput.bind(this)} min='1' max='6' value={this.state.skin} />
 <br />  native<Operator>=</Operator>&#123;<Variable>{this.state.native ? 'true' : 'false'}</Variable>&#125;{this.state.native ? ' ' : ''} <input type='checkbox' data-key='native' onChange={this.handleInput.bind(this)} value={this.state.native} />
 <br />  set<Operator>=</Operator><String>'{this.state.set}'</String>
+<br />  custom<Operator>=</Operator>&#123;<Variable>{'[…]'}</Variable>&#125;
 <br />  onClick<Operator>=</Operator>&#123;(<Variable>emoji</Variable>) => console.log(<Variable>emoji</Variable>)&#125;
 <br /><Operator>/&gt;</Operator>
       </pre>
@@ -95,6 +111,7 @@ class Example extends React.Component {
           skin={this.state.skin}
           native={this.state.native}
           set={this.state.set}
+          custom={CUSTOM_EMOJIS}
           onClick={(emoji) => console.log(emoji)}
         />
       }
