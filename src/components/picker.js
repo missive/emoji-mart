@@ -12,6 +12,7 @@ import { Anchors, Category, Emoji, Preview, Search } from '.'
 
 const RECENT_CATEGORY = { name: 'Recent', emojis: null }
 const SEARCH_CATEGORY = { name: 'Search', emojis: null, anchor: false }
+const CUSTOM_CATEGORY = { name: 'Custom', emojis: null }
 
 const I18N = {
   search: 'Search',
@@ -27,6 +28,7 @@ const I18N = {
     objects: 'Objects',
     symbols: 'Symbols',
     flags: 'Flags',
+    custom: 'Custom',
   },
 }
 
@@ -95,6 +97,21 @@ export default class Picker extends React.Component {
     }
 
     this.categories.unshift(SEARCH_CATEGORY)
+
+    if (props.custom.length > 0) {
+      CUSTOM_CATEGORY.emojis = props.custom
+
+      CUSTOM_CATEGORY.emojis = CUSTOM_CATEGORY.emojis.map(emoji => {
+        return {
+          ...emoji,
+          // `<Category />` expects emoji to have an `id`.
+          id: emoji.short_names[0],
+          custom: true
+        }
+      })
+
+      this.categories.push(CUSTOM_CATEGORY)
+    }
   }
 
   componentWillReceiveProps(props) {
@@ -386,6 +403,13 @@ Picker.propTypes = {
   include: PropTypes.arrayOf(PropTypes.string),
   exclude: PropTypes.arrayOf(PropTypes.string),
   autoFocus: PropTypes.bool,
+  custom: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    short_names: PropTypes.arrayOf(PropTypes.string).isRequired,
+    emoticons: PropTypes.arrayOf(PropTypes.string),
+    keywords: PropTypes.arrayOf(PropTypes.string),
+    imageUrl: PropTypes.string.isRequired,
+  })),
 }
 
 Picker.defaultProps = {
@@ -404,4 +428,5 @@ Picker.defaultProps = {
   backgroundImageFn: Emoji.defaultProps.backgroundImageFn,
   emojisToShowFilter: null,
   autoFocus: false,
+  custom: [],
 }
