@@ -2,6 +2,10 @@ module.exports = data => {
   const search = []
 
   var addToSearch = (strings, split) => {
+    if (!strings) {
+      return
+    }
+
     (Array.isArray(strings) ? strings : [strings]).forEach((string) => {
       (split ? string.split(/[-|_|\s]+/) : [string]).forEach((s) => {
         s = s.toLowerCase()
