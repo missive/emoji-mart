@@ -152,7 +152,8 @@ export default class Picker extends React.Component {
 
   handleEmojiOver(emoji) {
     var { preview } = this.refs
-    preview.setState({ emoji: emoji })
+    const emojiData = CUSTOM_CATEGORY.emojis.find(customEmoji => customEmoji.id === emoji.id)
+    preview.setState({ emoji: Object.assign(emoji, emojiData) })
     clearTimeout(this.leaveTimeout)
   }
 
