@@ -334,6 +334,7 @@ export default class Picker extends React.Component {
           emojisToShowFilter={emojisToShowFilter}
           include={include}
           exclude={exclude}
+          custom={CUSTOM_CATEGORY.emojis}
           autoFocus={autoFocus}
         />
 
