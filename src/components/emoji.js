@@ -67,8 +67,7 @@ export default class Emoji extends React.Component {
   render() {
     var { set, size, sheetSize, native, forceSize, onOver, onLeave, backgroundImageFn } = this.props,
         { unified } = this.getData(),
-        style = {},
-        children = this.props.children
+        style = {}
 
     if (!unified) {
       return null
@@ -76,7 +75,6 @@ export default class Emoji extends React.Component {
 
     if (native && unified) {
       style = { fontSize: size }
-      children = unifiedToNative(unified)
 
       if (forceSize) {
         style.display = 'inline-block'
@@ -94,13 +92,13 @@ export default class Emoji extends React.Component {
       }
     }
 
-    return <span
+    return <img
+      alt={this.props.alt}
       onClick={this.handleClick.bind(this)}
       onMouseEnter={this.handleOver.bind(this)}
       onMouseLeave={this.handleLeave.bind(this)}
-      className='emoji-mart-emoji'>
-      <span style={style}>{children}</span>
-    </span>
+      className='emoji-mart-emoji'
+      style={style} />
   }
 }
 

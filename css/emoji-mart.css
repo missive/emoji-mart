@@ -15,7 +15,7 @@
 }
 
 .emoji-mart .emoji-mart-emoji {
-  padding: 6px;
+  margin: 6px;
 }
 
 .emoji-mart-bar:first-child {
@@ -89,7 +89,7 @@
   outline: 0;
 }
 
-.emoji-mart-category .emoji-mart-emoji span {
+.emoji-mart-category .emoji-mart-emoji {
   z-index: 1;
   position: relative;
   text-align: center;
@@ -127,6 +127,7 @@
   position: relative;
   display: inline-block;
   font-size: 0;
+  content: url('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==');
 }
 
 .emoji-mart-no-results {
