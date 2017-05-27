@@ -53,10 +53,10 @@ export default class Preview extends React.Component {
     } else {
       return <div className='emoji-mart-preview'>
         <div className='emoji-mart-preview-emoji'>
-          <Emoji
+          {idleEmoji.length > 0 && <Emoji
             emoji={idleEmoji}
             {...emojiProps}
-          />
+          />}
         </div>
 
         <div className='emoji-mart-preview-data'>
