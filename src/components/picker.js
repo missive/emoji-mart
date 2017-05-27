@@ -233,6 +233,8 @@ export default class Picker extends React.Component {
         activeCategory = category
         break
       }
+    } else if (scrollTop + this.clientHeight >= this.scrollHeight) {
+      activeCategory = this.categories[this.categories.length - 1]
     }
 
     if (activeCategory) {
@@ -304,6 +306,12 @@ export default class Picker extends React.Component {
     for (let i = 0, l = this.categories.length; i < l; i++) {
       let component = this.refs[`category-${i}`]
       if (component) component.memoizeSize()
+    }
+
+    if (this.refs.scroll) {
+      let target = this.refs.scroll
+      this.scrollHeight = target.scrollHeight
+      this.clientHeight = target.clientHeight
     }
   }
 
