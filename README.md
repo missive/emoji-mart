@@ -214,7 +214,7 @@ Apple / Google / Twitter / EmojiOne / Messenger / Facebook
 ## Development
 ```sh
 $ yarn run build:data
-$ yarn run watch
+$ yarn start
 $ open example/index.html
 ```
 
