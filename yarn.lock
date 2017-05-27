@@ -989,13 +989,13 @@ ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
 
-emoji-datasource@2.4.4:
-  version "2.4.4"
-  resolved "https://registry.yarnpkg.com/emoji-datasource/-/emoji-datasource-2.4.4.tgz#b97ac1896bc208ecf1833564a20687a5215d0389"
+emoji-datasource@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/emoji-datasource/-/emoji-datasource-3.0.0.tgz#3c46c5aa4c39bb7a0c8e6877ae02cc94dbc1b12f"
 
-emojilib@2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/emojilib/-/emojilib-2.0.2.tgz#df91c45ede69f2d0ffd3d80acf8c72771b2a5ea1"
+emojilib@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/emojilib/-/emojilib-2.2.1.tgz#36723c8197a80917c422b1160af900f61ea28772"
 
 emojis-list@^2.0.0:
   version "2.1.0"
