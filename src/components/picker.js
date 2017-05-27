@@ -58,8 +58,8 @@ export default class Picker extends React.Component {
     }
 
     for (let category of data.categories) {
-      let isIncluded = props.include == undefined ? true : props.include.indexOf(category.name.toLowerCase()) > -1
-      let isExcluded = props.exclude == undefined ? false : props.exclude.indexOf(category.name.toLowerCase()) > -1
+      let isIncluded = props.include && props.include.length ? props.include.indexOf(category.name.toLowerCase()) > -1 : true
+      let isExcluded = props.exclude && props.exclude.length ? props.exclude.indexOf(category.name.toLowerCase()) > -1 : false
       if (!isIncluded || isExcluded) { continue }
 
       if (props.emojisToShowFilter) {
@@ -86,8 +86,8 @@ export default class Picker extends React.Component {
       }
     }
 
-    let includeRecent = props.include == undefined ? true : props.include.indexOf('recent') > -1
-    let excludeRecent = props.exclude == undefined ? false : props.exclude.indexOf('recent') > -1
+    let includeRecent = props.include && props.include.length ? props.include.indexOf('recent') > -1 : true
+    let excludeRecent = props.exclude && props.exclude.length ? props.exclude.indexOf('recent') > -1 : false
     if (includeRecent && !excludeRecent) {
       this.categories.unshift(RECENT_CATEGORY)
     }
@@ -261,6 +261,8 @@ export default class Picker extends React.Component {
     }
 
     this.forceUpdate()
+    this.refs.scroll.scrollTop = 0
+    this.handleScroll()
   }
 
   handleAnchorClick(category, i) {
@@ -326,18 +328,18 @@ export default class Picker extends React.Component {
         />
       </div>
 
-      <div ref="scroll" className='emoji-mart-scroll' onScroll={this.handleScroll.bind(this)}>
-        <Search
-          ref='search'
-          onSearch={this.handleSearch.bind(this)}
-          i18n={this.i18n}
-          emojisToShowFilter={emojisToShowFilter}
-          include={include}
-          exclude={exclude}
-          custom={CUSTOM_CATEGORY.emojis}
-          autoFocus={autoFocus}
-        />
+      <Search
+        ref='search'
+        onSearch={this.handleSearch.bind(this)}
+        i18n={this.i18n}
+        emojisToShowFilter={emojisToShowFilter}
+        include={include}
+        exclude={exclude}
+        custom={CUSTOM_CATEGORY.emojis}
+        autoFocus={autoFocus}
+      />
 
+      <div ref="scroll" className='emoji-mart-scroll' onScroll={this.handleScroll.bind(this)}>
         {this.getCategories().map((category, i) => {
           return <Category
             ref={`category-${i}`}

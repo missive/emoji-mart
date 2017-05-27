@@ -29,11 +29,11 @@ export default class Preview extends React.Component {
 
       return <div className='emoji-mart-preview'>
         <div className='emoji-mart-preview-emoji'>
-          <Emoji
-            key={emoji.id}
-            emoji={emoji}
-            {...emojiProps}
-          />
+          {Emoji({
+            key: emoji.id,
+            emoji: emoji,
+            ...emojiProps,
+          })}
         </div>
 
         <div className='emoji-mart-preview-data'>
@@ -53,10 +53,10 @@ export default class Preview extends React.Component {
     } else {
       return <div className='emoji-mart-preview'>
         <div className='emoji-mart-preview-emoji'>
-          <Emoji
-            emoji={idleEmoji}
-            {...emojiProps}
-          />
+          {idleEmoji && idleEmoji.length && Emoji({
+            emoji: idleEmoji,
+            ...emojiProps,
+          })}
         </div>
 
         <div className='emoji-mart-preview-data'>

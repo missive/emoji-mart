@@ -18,11 +18,16 @@
   padding: 6px;
 }
 
+.emoji-mart-bar {
+  border: 0 solid #d9d9d9;
+}
 .emoji-mart-bar:first-child {
+  border-bottom-width: 1px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 .emoji-mart-bar:last-child {
+  border-top-width: 1px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
@@ -74,16 +79,17 @@
   overflow-y: scroll;
   height: 270px;
   padding: 0 6px 6px 6px;
-  border: solid #d9d9d9;
-  border-width: 1px 0;
 }
 
 .emoji-mart-search {
+  margin-top: 6px;
+  padding: 0 6px;
+}
+.emoji-mart-search input {
   font-size: 16px;
   display: block;
   width: 100%;
   padding: .2em .6em;
-  margin-top: 6px;
   border-radius: 25px;
   border: 1px solid #d9d9d9;
   outline: 0;

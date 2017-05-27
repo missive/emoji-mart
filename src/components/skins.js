@@ -16,8 +16,10 @@ export default class Skins extends React.Component {
     if (!this.state.opened) {
       this.setState({ opened: true })
     } else {
-      onChange(skin)
       this.setState({ opened: false })
+      if (skin != this.props.skin) {
+        onChange(skin)
+      }
     }
   }
 

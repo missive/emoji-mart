@@ -20,11 +20,12 @@ const DEFAULTS = [
 ]
 
 let frequently = store.get('frequently')
+let defaults = {}
 
 function add(emoji) {
   var { id } = emoji
 
-  frequently || (frequently = {})
+  frequently || (frequently = defaults)
   frequently[id] || (frequently[id] = 0)
   frequently[id] += 1
 
@@ -34,10 +35,11 @@ function add(emoji) {
 
 function get(perLine) {
   if (!frequently) {
-    frequently = {}
+    defaults = {}
 
-    Array(perLine).fill('').forEach((_, i) => {
-      frequently[DEFAULTS[i]] = perLine - i
+    return Array(perLine).fill('').map((_, i) => {
+      defaults[DEFAULTS[i]] = perLine - i
+      return DEFAULTS[i]
     })
   }
 

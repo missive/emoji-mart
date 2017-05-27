@@ -99,8 +99,7 @@ function getData(emoji, skin, set) {
     emojiData = JSON.parse(JSON.stringify(emojiData))
 
     var skinKey = SKINS[skin - 1],
-        variationKey = `${emojiData.unified}-${skinKey}`,
-        variationData = emojiData.skin_variations[variationKey]
+        variationData = emojiData.skin_variations[skinKey]
 
     if (!variationData.variations && emojiData.variations) {
       delete emojiData.variations

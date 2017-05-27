@@ -23,14 +23,15 @@ export default class Search extends React.Component {
   render() {
     var { i18n, autoFocus } = this.props
 
-    return <input
-      ref='input'
-      type='text'
-      onChange={this.handleChange.bind(this)}
-      placeholder={i18n.search}
-      className='emoji-mart-search'
-      autoFocus={autoFocus}
-    />
+    return <div className='emoji-mart-search'>
+      <input
+        ref='input'
+        type='text'
+        onChange={this.handleChange.bind(this)}
+        placeholder={i18n.search}
+        autoFocus={autoFocus}
+      />
+    </div>
   }
 }
 
