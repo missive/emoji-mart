@@ -12,7 +12,7 @@ import { Anchors, Category, Emoji, Preview, Search } from '.'
 
 const RECENT_CATEGORY = { name: 'Recent', emojis: null }
 const SEARCH_CATEGORY = { name: 'Search', emojis: null, anchor: false }
-const CUSTOM_CATEGORY = { name: 'Custom', emojis: null }
+const CUSTOM_CATEGORY = { name: 'Custom', emojis: [] }
 
 const I18N = {
   search: 'Search',
@@ -357,6 +357,7 @@ export default class Picker extends React.Component {
             native={native}
             hasStickyPosition={this.hasStickyPosition}
             i18n={this.i18n}
+            custom={category.name == 'Recent' ? CUSTOM_CATEGORY.emojis : undefined}
             emojiProps={{
               native: native,
               skin: skin,
