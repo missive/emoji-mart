@@ -127,7 +127,7 @@ Emoji.defaultProps = {
   sheetSize: 64,
   native: false,
   forceSize: false,
-  backgroundImageFn: ((set, sheetSize) => `https://unpkg.com/emoji-datasource@${EMOJI_DATASOURCE_VERSION}/sheet_${set}_${sheetSize}.png`),
+  backgroundImageFn: ((set, sheetSize) => `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/sheets/${sheetSize}.png`),
   onOver: (() => {}),
   onLeave: (() => {}),
   onClick: (() => {}),
