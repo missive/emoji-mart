@@ -80,6 +80,12 @@ const Emoji = (props) => {
       backgroundSize: '100%',
     }
   } else {
+    let setHasEmoji = _getData(props)[`has_img_${props.set}`]
+
+    if (!setHasEmoji) {
+      return null
+    }
+
     style = {
       width: props.size,
       height: props.size,
