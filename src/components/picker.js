@@ -80,9 +80,7 @@ export default class Picker extends React.Component {
         let newEmojis = []
 
         for (let emoji of category.emojis) {
-          let unified = data.emojis[emoji].unified
-
-          if (props.emojisToShowFilter(unified)) {
+          if (props.emojisToShowFilter(data.emojis[emoji] || emoji)) {
             newEmojis.push(emoji)
           }
         }
