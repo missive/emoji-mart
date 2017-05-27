@@ -54,11 +54,11 @@ const Emoji = (props) => {
     }
   }
 
-  var { unified } = _getData(props),
+  var { unified, custom, imageUrl } = _getData(props),
       style = {},
       children = props.children
 
-  if (!unified) {
+  if (!unified && !custom) {
     return null
   }
 
@@ -70,6 +70,14 @@ const Emoji = (props) => {
       style.display = 'inline-block'
       style.width = props.size
       style.height = props.size
+    }
+  } else if (custom) {
+    style = {
+      width: props.size,
+      height: props.size,
+      display: 'inline-block',
+      backgroundImage: `url(${imageUrl})`,
+      backgroundSize: '100%',
     }
   } else {
     style = {

@@ -3,6 +3,21 @@ import ReactDOM from 'react-dom'
 
 import { Picker, Emoji } from '../src'
 
+const CUSTOM_EMOJIS = [
+  {
+    name: 'Octocat',
+    short_names: ['octocat'],
+    keywords: ['github'],
+    imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'
+  },
+  {
+    name: 'Squirrel',
+    short_names: ['shipit', 'squirrel'],
+    keywords: ['github'],
+    imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/shipit.png?v7'
+  }
+]
+
 const CATEGORIES = [
   'recent',
   'people',
@@ -13,6 +28,7 @@ const CATEGORIES = [
   'objects',
   'symbols',
   'flags',
+  'custom',
 ]
 
 class Example extends React.Component {
@@ -125,6 +141,7 @@ class Example extends React.Component {
 <br />  perLine<Operator>=</Operator>&#123;<Variable>{this.state.perLine}</Variable>&#125; {this.state.perLine < 10 ? '  ' : ' '} <input type='range' data-key='perLine' onChange={this.handleInput.bind(this)} min='7' max='16' value={this.state.perLine} />
 <br />  skin<Operator>=</Operator>&#123;<Variable>{this.state.skin}</Variable>&#125;       <input type='range' data-key='skin' onChange={this.handleInput.bind(this)} min='1' max='6' value={this.state.skin} />
 <br />  set<Operator>=</Operator><String>'{this.state.set}'</String>
+<br />  custom<Operator>=</Operator>&#123;<Variable>{'[…]'}</Variable>&#125;
 <br />  autoFocus<Operator>=</Operator>&#123;<Variable>{this.state.autoFocus ? 'true' : 'false'}</Variable>&#125;{this.state.autoFocus ? ' ' : ''} <input type='checkbox' data-key='autoFocus' data-mount={true} onChange={this.handleInput.bind(this)} checked={this.state.autoFocus} />
 <div style={{ opacity: this.state.exclude.length ? 0.6 : 1 }}>  include<Operator>=</Operator>&#91;
 {[0, 2, 4, 6, 8].map((i) => {
@@ -160,6 +177,7 @@ class Example extends React.Component {
           skin={this.state.skin}
           native={this.state.native}
           set={this.state.set}
+          custom={CUSTOM_EMOJIS}
           autoFocus={this.state.autoFocus}
           include={this.state.include}
           exclude={this.state.exclude}

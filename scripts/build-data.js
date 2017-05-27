@@ -2,7 +2,8 @@ var fs = require('fs'),
     emojiData = require('emoji-datasource'),
     emojiLib = require('emojilib'),
     inflection = require('inflection'),
-    mkdirp = require('mkdirp')
+    mkdirp = require('mkdirp'),
+    buildSearch = require('../src/utils/build-search')
 
 var categories = ['People', 'Nature', 'Foods', 'Activity', 'Places', 'Objects', 'Symbols', 'Flags'],
     data = { categories: [], emojis: {}, skins: {}, short_names: {} },
@@ -52,23 +53,12 @@ emojiData.forEach((datum) => {
     keywords = emojiLib.lib[datum.short_name].keywords
   }
 
-  datum.search = []
-  var addToSearch = (strings, split) => {
-    (Array.isArray(strings) ? strings : [strings]).forEach((string) => {
-      (split ? string.split(/[-|_|\s]+/) : [string]).forEach((s) => {
-        s = s.toLowerCase()
-
-        if (datum.search.indexOf(s) == -1) {
-          datum.search.push(s)
-        }
-      })
-    })
-  }
-
-  addToSearch(datum.short_names, true)
-  addToSearch(datum.name, true)
-  addToSearch(keywords, false)
-  addToSearch(datum.emoticons, false)
+  datum.search = buildSearch({
+    short_names: datum.short_names,
+    name: datum.name,
+    keywords,
+    emoticons: datum.emoticons
+  })
 
   datum.search = datum.search.join(',')
 

@@ -1,3 +1,4 @@
+import buildSearch from './build-search'
 import data from '../../data'
 
 const COLONS_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/
@@ -14,9 +15,20 @@ function unifiedToNative(unified) {
 }
 
 function sanitize(emoji) {
-  var { name, short_names, skin_tone, skin_variations, emoticons, unified } = emoji,
-      id = short_names[0],
+  var { name, short_names, skin_tone, skin_variations, emoticons, unified, custom, imageUrl } = emoji,
+      id = emoji.id || short_names[0],
       colons = `:${id}:`
+
+  if (custom) {
+    return {
+      id,
+      name,
+      colons,
+      emoticons,
+      custom,
+      imageUrl
+    }
+  }
 
   if (skin_tone) {
     colons += `:skin-tone-${skin_tone}:`
@@ -58,6 +70,17 @@ function getData(emoji, skin, set) {
     if (data.emojis.hasOwnProperty(emoji)) {
       emojiData = data.emojis[emoji]
     }
+  } else if (emoji.custom) {
+    emojiData = emoji
+
+    emojiData.search = buildSearch({
+      short_names: emoji.short_names,
+      name: emoji.name,
+      keywords: emoji.keywords,
+      emoticons: emoji.emoticons
+    })
+
+    emojiData.search = emojiData.search.join(',')
   } else if (emoji.id) {
     if (data.short_names.hasOwnProperty(emoji.id)) {
       emoji.id = data.short_names[emoji.id]

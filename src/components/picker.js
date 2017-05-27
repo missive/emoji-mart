@@ -12,6 +12,7 @@ import { Anchors, Category, Emoji, Preview, Search } from '.'
 
 const RECENT_CATEGORY = { name: 'Recent', emojis: null }
 const SEARCH_CATEGORY = { name: 'Search', emojis: null, anchor: false }
+const CUSTOM_CATEGORY = { name: 'Custom', emojis: [] }
 
 const I18N = {
   search: 'Search',
@@ -27,6 +28,7 @@ const I18N = {
     objects: 'Objects',
     symbols: 'Symbols',
     flags: 'Flags',
+    custom: 'Custom',
   },
 }
 
@@ -41,6 +43,20 @@ export default class Picker extends React.Component {
     }
 
     this.categories = []
+    let allCategories = [].concat(data.categories)
+
+    if (props.custom.length > 0) {
+      CUSTOM_CATEGORY.emojis = props.custom.map(emoji => {
+        return {
+          ...emoji,
+          // `<Category />` expects emoji to have an `id`.
+          id: emoji.short_names[0],
+          custom: true,
+        }
+      })
+
+      allCategories.push(CUSTOM_CATEGORY)
+    }
 
     if (props.include != undefined) {
       data.categories.sort((a, b) => {
@@ -55,7 +71,7 @@ export default class Picker extends React.Component {
       })
     }
 
-    for (let category of data.categories) {
+    for (let category of allCategories) {
       let isIncluded = props.include && props.include.length ? props.include.indexOf(category.name.toLowerCase()) > -1 : true
       let isExcluded = props.exclude && props.exclude.length ? props.exclude.indexOf(category.name.toLowerCase()) > -1 : false
       if (!isIncluded || isExcluded) { continue }
@@ -64,9 +80,7 @@ export default class Picker extends React.Component {
         let newEmojis = []
 
         for (let emoji of category.emojis) {
-          let unified = data.emojis[emoji].unified
-
-          if (props.emojisToShowFilter(unified)) {
+          if (props.emojisToShowFilter(data.emojis[emoji] || emoji)) {
             newEmojis.push(emoji)
           }
         }
@@ -135,7 +149,8 @@ export default class Picker extends React.Component {
 
   handleEmojiOver(emoji) {
     var { preview } = this.refs
-    preview.setState({ emoji: emoji })
+    const emojiData = CUSTOM_CATEGORY.emojis.find(customEmoji => customEmoji.id === emoji.id)
+    preview.setState({ emoji: Object.assign(emoji, emojiData) })
     clearTimeout(this.leaveTimeout)
   }
 
@@ -216,6 +231,8 @@ export default class Picker extends React.Component {
         activeCategory = category
         break
       }
+    } else if (scrollTop + this.clientHeight >= this.scrollHeight) {
+      activeCategory = this.categories[this.categories.length - 1]
     }
 
     if (activeCategory) {
@@ -288,6 +305,12 @@ export default class Picker extends React.Component {
       let component = this.refs[`category-${i}`]
       if (component) component.memoizeSize()
     }
+
+    if (this.refs.scroll) {
+      let target = this.refs.scroll
+      this.scrollHeight = target.scrollHeight
+      this.clientHeight = target.clientHeight
+    }
   }
 
   getCategories() {
@@ -317,6 +340,7 @@ export default class Picker extends React.Component {
         emojisToShowFilter={emojisToShowFilter}
         include={include}
         exclude={exclude}
+        custom={CUSTOM_CATEGORY.emojis}
         autoFocus={autoFocus}
       />
 
@@ -331,6 +355,7 @@ export default class Picker extends React.Component {
             native={native}
             hasStickyPosition={this.hasStickyPosition}
             i18n={this.i18n}
+            custom={category.name == 'Recent' ? CUSTOM_CATEGORY.emojis : undefined}
             emojiProps={{
               native: native,
               skin: skin,
@@ -388,6 +413,13 @@ Picker.propTypes = {
   include: PropTypes.arrayOf(PropTypes.string),
   exclude: PropTypes.arrayOf(PropTypes.string),
   autoFocus: PropTypes.bool,
+  custom: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    short_names: PropTypes.arrayOf(PropTypes.string).isRequired,
+    emoticons: PropTypes.arrayOf(PropTypes.string),
+    keywords: PropTypes.arrayOf(PropTypes.string),
+    imageUrl: PropTypes.string.isRequired,
+  })),
 }
 
 Picker.defaultProps = {
@@ -406,4 +438,5 @@ Picker.defaultProps = {
   backgroundImageFn: Emoji.defaultProps.backgroundImageFn,
   emojisToShowFilter: null,
   autoFocus: false,
+  custom: [],
 }
