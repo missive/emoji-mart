@@ -28,6 +28,7 @@ const CATEGORIES = [
   'objects',
   'symbols',
   'flags',
+  'custom',
 ]
 
 class Example extends React.Component {

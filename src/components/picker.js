@@ -43,6 +43,20 @@ export default class Picker extends React.Component {
     }
 
     this.categories = []
+    let allCategories = [].concat(data.categories)
+
+    if (props.custom.length > 0) {
+      CUSTOM_CATEGORY.emojis = props.custom.map(emoji => {
+        return {
+          ...emoji,
+          // `<Category />` expects emoji to have an `id`.
+          id: emoji.short_names[0],
+          custom: true,
+        }
+      })
+
+      allCategories.push(CUSTOM_CATEGORY)
+    }
 
     if (props.include != undefined) {
       data.categories.sort((a, b) => {
@@ -57,7 +71,7 @@ export default class Picker extends React.Component {
       })
     }
 
-    for (let category of data.categories) {
+    for (let category of allCategories) {
       let isIncluded = props.include && props.include.length ? props.include.indexOf(category.name.toLowerCase()) > -1 : true
       let isExcluded = props.exclude && props.exclude.length ? props.exclude.indexOf(category.name.toLowerCase()) > -1 : false
       if (!isIncluded || isExcluded) { continue }
@@ -97,21 +111,6 @@ export default class Picker extends React.Component {
     }
 
     this.categories.unshift(SEARCH_CATEGORY)
-
-    if (props.custom.length > 0) {
-      CUSTOM_CATEGORY.emojis = props.custom
-
-      CUSTOM_CATEGORY.emojis = CUSTOM_CATEGORY.emojis.map(emoji => {
-        return {
-          ...emoji,
-          // `<Category />` expects emoji to have an `id`.
-          id: emoji.short_names[0],
-          custom: true
-        }
-      })
-
-      this.categories.push(CUSTOM_CATEGORY)
-    }
   }
 
   componentWillReceiveProps(props) {
