@@ -198,41 +198,46 @@ export default class Picker extends React.Component {
       return
     }
 
-    var target = this.refs.scroll,
-        scrollTop = target.scrollTop,
-        scrollingDown = scrollTop > (this.scrollTop || 0),
-        activeCategory = null,
-        minTop = 0
+    let activeCategory = null
 
-    for (let i = 0, l = this.categories.length; i < l; i++) {
-      let ii = scrollingDown ? (this.categories.length - 1 - i) : i,
-          category = this.categories[ii],
-          component = this.refs[`category-${ii}`]
+    if (SEARCH_CATEGORY.emojis) {
+      activeCategory = SEARCH_CATEGORY
+    } else {
+      var target = this.refs.scroll,
+          scrollTop = target.scrollTop,
+          scrollingDown = scrollTop > (this.scrollTop || 0),
+          minTop = 0
 
-      if (component) {
-        let active = component.handleScroll(scrollTop)
+      for (let i = 0, l = this.categories.length; i < l; i++) {
+        let ii = scrollingDown ? (this.categories.length - 1 - i) : i,
+            category = this.categories[ii],
+            component = this.refs[`category-${ii}`]
 
-        if (!minTop || component.top < minTop) {
-          if (component.top > 0) {
-            minTop = component.top
+        if (component) {
+          let active = component.handleScroll(scrollTop)
+
+          if (!minTop || component.top < minTop) {
+            if (component.top > 0) {
+              minTop = component.top
+            }
+          }
+
+          if (active && !activeCategory) {
+            activeCategory = category
           }
         }
+      }
 
-        if (active && !activeCategory) {
+      if (scrollTop < minTop) {
+        for (let category of this.categories) {
+          if (category.anchor === false) { continue }
+
           activeCategory = category
+          break
         }
+      } else if (scrollTop + this.clientHeight >= this.scrollHeight) {
+        activeCategory = this.categories[this.categories.length - 1]
       }
-    }
-
-    if (scrollTop < minTop) {
-      for (let category of this.categories) {
-        if (category.anchor === false) { continue }
-
-        activeCategory = category
-        break
-      }
-    } else if (scrollTop + this.clientHeight >= this.scrollHeight) {
-      activeCategory = this.categories[this.categories.length - 1]
     }
 
     if (activeCategory) {
