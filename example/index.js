@@ -98,7 +98,7 @@ class Example extends React.Component {
       </div>
 
       <div className="row">
-        {['native', 'apple', 'google', 'twitter', 'emojione'].map((set) => {
+        {['native', 'apple', 'google', 'twitter', 'emojione', 'messenger', 'facebook'].map((set) => {
           var props = { disabled: !this.state.native && set == this.state.set }
 
           if (set == 'native' && this.state.native) {

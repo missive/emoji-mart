@@ -35,7 +35,7 @@ import { Picker } from 'emoji-mart'
 | **perLine** | | `9` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set *Frequently Used* length as well (`perLine * 4`) |
 | **i18n** | | [`{…}`](#i18n) | [An object](#i18n) containing localized strings |
 | **native** | | `false` | Renders the native unicode emoji |
-| **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'emojione'` |
+| **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'emojione', 'messenger', 'facebook'` |
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
 | **backgroundImageFn** | | ```((set, sheetSize) => …)``` | A Fn that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **emojisToShowFilter** | | ```((emoji) => true)``` | A Fn to choose whether an emoji should be displayed or not |
@@ -204,9 +204,9 @@ It can however be overwritten as per user preference.
 ![colors](https://cloud.githubusercontent.com/assets/436043/17221637/9f6f8508-54c2-11e6-8d10-59c5d3a458e0.png)
 
 #### Multiple sets supported
-Apple / Google / Twitter / EmojiOne
+Apple / Google / Twitter / EmojiOne / Messenger / Facebook
 
-![sets](https://cloud.githubusercontent.com/assets/436043/17221550/4261d64a-54c2-11e6-8c49-a5c4c4696f8b.png)
+![sets](https://cloud.githubusercontent.com/assets/436043/26523496/d41cd734-42e6-11e7-8ae8-bad87e83d534.png)
 
 ## Not opinionated
 **Emoji Mart** doesn’t automatically insert anything into a text input, nor does it show or hide itself. It simply returns an `emoji` object. It’s up to the developer to mount/unmount (it’s fast!) and position the picker. You can use the returned object as props for the `EmojiMart.Emoji` component. You could also use `emoji.colons` to insert text into a textarea or `emoji.native` to use the emoji.

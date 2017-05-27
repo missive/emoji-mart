@@ -115,7 +115,7 @@ Emoji.propTypes = {
   forceSize: PropTypes.bool,
   skin: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   sheetSize: PropTypes.oneOf([16, 20, 32, 64]),
-  set: PropTypes.oneOf(['apple', 'google', 'twitter', 'emojione']),
+  set: PropTypes.oneOf(['apple', 'google', 'twitter', 'emojione', 'messenger', 'facebook']),
   size: PropTypes.number.isRequired,
   emoji: PropTypes.oneOfType([
     PropTypes.string,
