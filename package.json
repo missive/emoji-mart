@@ -43,8 +43,7 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "rimraf": "2.5.2",
-    "svg-inline-loader": "0.4.1",
-    "svg-inline-react": "1.0.2",
+    "svg-jsx-loader": "^0.0.16",
     "webpack": "1.12.14"
   },
   "scripts": {

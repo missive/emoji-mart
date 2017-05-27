@@ -22,7 +22,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: 'svg-inline',
+        loaders: ['babel?presets[]=react', 'svg-jsx?es6=true'],
         include: [
           path.resolve('src/svgs'),
         ],

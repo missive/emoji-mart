@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import InlineSVG from 'svg-inline-react'
 
 import * as SVGs from '../svgs'
 
@@ -28,7 +27,8 @@ export default class Anchors extends React.Component {
     return <div className='emoji-mart-anchors'>
       {categories.map((category, i) => {
         var { name, anchor } = category,
-            isSelected = name == selected
+            isSelected = name == selected,
+            SVGElement = SVGs[name]
 
         if (anchor === false) {
           return null
@@ -42,7 +42,7 @@ export default class Anchors extends React.Component {
             className={`emoji-mart-anchor ${isSelected ? 'emoji-mart-anchor-selected' : ''}`}
             style={{ color: isSelected ? color : null }}
           >
-            <InlineSVG src={SVGs[name]} />
+            <SVGElement />
             <span className='emoji-mart-anchor-bar' style={{ backgroundColor: color }}></span>
           </span>
         )
