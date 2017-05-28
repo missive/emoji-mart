@@ -229,7 +229,7 @@ class Example extends React.Component {
 
         <span style={{ display: 'inline-block', marginTop: 40 }}>
           {Emoji({
-            emoji: `:${this.state.currentEmoji}:`,
+            emoji: ':thumbsup:',
             size: 64,
             set: this.state.set,
           })}
@@ -252,7 +252,7 @@ class Example extends React.Component {
 
         <span style={{ display: 'inline-block', marginTop: 40 }}>
           {Emoji({
-            emoji: `:${this.state.currentEmoji}::skin-tone-3:`,
+            emoji: ':thumbsup::skin-tone-3:',
             size: 64,
             set: this.state.set,
           })}
@@ -276,7 +276,7 @@ class Example extends React.Component {
 
         <span style={{ display: 'inline-block', marginTop: 60 }}>
           {Emoji({
-            emoji: `:${this.state.currentEmoji}::skin-tone-3:`,
+            emoji: ':thumbsup::skin-tone-3:',
             size: 64,
             native: true,
           })}
