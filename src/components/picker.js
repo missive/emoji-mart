@@ -102,7 +102,7 @@ export default class Picker extends React.Component {
 
     let includeRecent = props.include && props.include.length ? props.include.indexOf('recent') > -1 : true
     let excludeRecent = props.exclude && props.exclude.length ? props.exclude.indexOf('recent') > -1 : false
-    if (includeRecent && !excludeRecent) {
+    if (!includeRecent && excludeRecent) {
       this.hideRecent = true
       this.categories.unshift(RECENT_CATEGORY)
     }
