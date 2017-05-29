@@ -58,6 +58,8 @@ export default class Picker extends React.Component {
       allCategories.push(CUSTOM_CATEGORY)
     }
 
+    this.hideRecent = true
+
     if (props.include != undefined) {
       data.categories.sort((a, b) => {
         let aName = a.name.toLowerCase()
@@ -101,6 +103,7 @@ export default class Picker extends React.Component {
     let includeRecent = props.include && props.include.length ? props.include.indexOf('recent') > -1 : true
     let excludeRecent = props.exclude && props.exclude.length ? props.exclude.indexOf('recent') > -1 : false
     if (includeRecent && !excludeRecent) {
+      this.hideRecent = false
       this.categories.unshift(RECENT_CATEGORY)
     }
 
@@ -163,7 +166,7 @@ export default class Picker extends React.Component {
 
   handleEmojiClick(emoji, e) {
     this.props.onClick(emoji, e)
-    frequently.add(emoji)
+    if (!this.hideRecent) frequently.add(emoji)
 
     var component = this.refs['category-1']
     if (component) {
