@@ -90,11 +90,12 @@ Sheets are served from [unpkg](https://unpkg.com), a global CDN that serves file
   id: 'smiley',
   name: 'Smiling Face with Open Mouth',
   colons: ':smiley:',
+  text: ':)',
   emoticons: [
     '=)',
     '=-)'
   ],
-  skin: null,
+  skin: null,  
   native: '😃'
 }
 
@@ -102,6 +103,7 @@ Sheets are served from [unpkg](https://unpkg.com), a global CDN that serves file
   id: 'santa',
   name: 'Father Christmas',
   colons: ':santa::skin-tone-3:',
+  text: '',
   emoticons: [],
   skin: 3,
   native: '🎅🏼'
@@ -111,6 +113,7 @@ Sheets are served from [unpkg](https://unpkg.com), a global CDN that serves file
   id: 'octocat',
   name: 'Octocat',
   colons: ':octocat',
+  text: '',
   emoticons: [],
   custom: true,
   imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'
@@ -150,6 +153,7 @@ const customEmojis = [
   {
     name: 'Octocat',
     short_names: ['octocat'],
+    text: '',
     emoticons: [],
     keywords: ['github'],
     imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'

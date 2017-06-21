@@ -42,11 +42,7 @@ emojiData.forEach((datum) => {
   }
 
   datum.emoticons = datum.texts || []
-  if (datum.text && !datum.emoticons.length) {
-    datum.emoticons = [datum.text]
-  }
-
-  delete datum.text
+  datum.text = datum.text || ''
   delete datum.texts
 
   if (emojiLib.lib[datum.short_name]) {
