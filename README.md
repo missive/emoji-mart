@@ -95,7 +95,7 @@ Sheets are served from [unpkg](https://unpkg.com), a global CDN that serves file
     '=)',
     '=-)'
   ],
-  skin: null,  
+  skin: null,
   native: '😃'
 }
 
