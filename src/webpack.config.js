@@ -30,6 +30,7 @@ module.exports = {
         loader: 'babel-loader',
         include: [
           path.resolve('src'),
+          path.resolve('node_modules/measure-scrollbar'),
           path.resolve('data'),
         ],
       },
