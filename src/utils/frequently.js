@@ -37,7 +37,8 @@ function get(perLine) {
   if (!frequently) {
     defaults = {}
 
-    return Array(perLine).fill('').map((_, i) => {
+    // Use Array.prototype.fill() when it is more widely supported.
+    return [...Array(perLine)].map((_, i) => {
       defaults[DEFAULTS[i]] = perLine - i
       return DEFAULTS[i]
     })

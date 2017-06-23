@@ -29,7 +29,8 @@ export default class Skins extends React.Component {
 
     return <div>
       <div className={`emoji-mart-skin-swatches ${opened ? 'emoji-mart-skin-swatches-opened' : ''}`}>
-        {Array(6).fill().map((_, i) => {
+        {/* Use Array.prototype.fill() when it is more widely supported. */}
+        {[...Array(6)].map((_, i) => {
           var skinTone = i + 1,
               selected = skinTone == skin
 
