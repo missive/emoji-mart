@@ -6,8 +6,8 @@ import { getData, getSanitizedData, intersect } from '.'
 var index = {}
 var emojisList = {}
 var emoticonsList = {}
-var previousInclude = null
-var previousExclude = null
+var previousInclude = []
+var previousExclude = []
 
 for (let emoji in data.emojis) {
   let emojiData = data.emojis[emoji],
@@ -25,6 +25,8 @@ for (let emoji in data.emojis) {
 
 function search(value, { emojisToShowFilter, maxResults, include, exclude, custom = [] } = {}) {
   maxResults || (maxResults = 75)
+  include || (include = [])
+  exclude || (exclude = [])
 
   if (custom.length) {
     for (const emoji of custom) {
@@ -53,7 +55,7 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
       values = [values[0], values[1]]
     }
 
-    if ((include && include.length) || (exclude && exclude.length)) {
+    if (include.length || exclude.length) {
       pool = {}
 
       if (previousInclude != include.sort().join(',') || previousExclude != exclude.sort().join(',')) {
@@ -71,7 +73,7 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
           pool[emojiId] = data.emojis[emojiId]
         }
       }
-    } else if (previousInclude || previousExclude) {
+    } else if (previousInclude.length || previousExclude.length) {
       index = {}
     }
 
