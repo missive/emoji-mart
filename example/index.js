@@ -41,7 +41,7 @@ class Example extends React.Component {
       native: true,
       set: 'apple',
       hidden: false,
-      currentEmoji: 'thumbsup',
+      currentEmoji: { id: '+1' },
       autoFocus: false,
       include: [],
       exclude: [],
@@ -182,7 +182,7 @@ class Example extends React.Component {
           include={this.state.include}
           exclude={this.state.exclude}
           onClick={(emoji) => {
-            this.setState({ currentEmoji: emoji.id })
+            this.setState({ currentEmoji: emoji })
             console.log(emoji)
           }}
         />
@@ -199,14 +199,14 @@ class Example extends React.Component {
 <Operator>import</Operator> &#123;Emoji&#125; <Operator>from</Operator> <String>'emoji-mart'</String>
 <br />
 <br /><Operator>&lt;</Operator><Variable>Emoji</Variable>
-<br />  emoji<Operator>=</Operator><String>'thumbsup'</String>
+<br />  emoji<Operator>=</Operator>{this.state.currentEmoji.custom ? (<Variable>{'{…}'}</Variable>) : (<String>'{this.state.currentEmoji.id}'</String>)}
 <br />  size<Operator>=</Operator>&#123;<Variable>{64}</Variable>&#125;
 <br /><Operator>/&gt;</Operator>
         </pre>
 
         <span style={{ display: 'inline-block', marginTop: 60 }}>
           {Emoji({
-            emoji: this.state.currentEmoji,
+            emoji: this.state.currentEmoji.custom ? this.state.currentEmoji : this.state.currentEmoji.id,
             size: 64,
             set: this.state.set,
           })}
@@ -222,14 +222,14 @@ class Example extends React.Component {
           width: '370px',
         }}>
 <br /><Operator>&lt;</Operator><Variable>Emoji</Variable>
-<br />  emoji<Operator>=</Operator><String>':thumbsup:'</String>
+<br />  emoji<Operator>=</Operator><String>':{this.state.currentEmoji.id}:'</String>
 <br />  size<Operator>=</Operator>&#123;<Variable>{64}</Variable>&#125;
 <br /><Operator>/&gt;</Operator>
         </pre>
 
         <span style={{ display: 'inline-block', marginTop: 40 }}>
           {Emoji({
-            emoji: `:${this.state.currentEmoji}:`,
+            emoji: `:${this.state.currentEmoji.id}:`,
             size: 64,
             set: this.state.set,
           })}
@@ -245,14 +245,14 @@ class Example extends React.Component {
           width: '370px',
         }}>
   <br /><Operator>&lt;</Operator><Variable>Emoji</Variable>
-  <br />  emoji<Operator>=</Operator><String>':thumbsup::skin-tone-3:'</String>
+  <br />  emoji<Operator>=</Operator><String>':{this.state.currentEmoji.id}::skin-tone-3:'</String>
   <br />  size<Operator>=</Operator>&#123;<Variable>{64}</Variable>&#125;
   <br /><Operator>/&gt;</Operator>
         </pre>
 
         <span style={{ display: 'inline-block', marginTop: 40 }}>
           {Emoji({
-            emoji: `:${this.state.currentEmoji}::skin-tone-3:`,
+            emoji: `:${this.state.currentEmoji.id}::skin-tone-3:`,
             size: 64,
             set: this.state.set,
           })}
@@ -268,7 +268,7 @@ class Example extends React.Component {
           width: '370px',
         }}>
   <br /><Operator>&lt;</Operator><Variable>Emoji</Variable>
-  <br />  emoji<Operator>=</Operator><String>':thumbsup::skin-tone-3:'</String>
+  <br />  emoji<Operator>=</Operator><String>':{this.state.currentEmoji.id}::skin-tone-3:'</String>
   <br />  size<Operator>=</Operator>&#123;<Variable>{64}</Variable>&#125;
   <br />  native<Operator>=</Operator>&#123;<Variable>{'true'}</Variable>&#125;
   <br /><Operator>/&gt;</Operator>
@@ -276,7 +276,7 @@ class Example extends React.Component {
 
         <span style={{ display: 'inline-block', marginTop: 60 }}>
           {Emoji({
-            emoji: `:${this.state.currentEmoji}::skin-tone-3:`,
+            emoji: `:${this.state.currentEmoji.id}::skin-tone-3:`,
             size: 64,
             native: true,
           })}
