@@ -78,8 +78,9 @@ emojiData.forEach((datum) => {
 
   datum.name = inflection.titleize(datum.name || '')
 
-  if (datum.category == 'Flags' && !emojiLibMatch) {
-    datum.name = datum.name.replace(/\s(\w+)$/, (letters) => letters.toUpperCase())
+  if (datum.category == 'Flags') {
+    // uppercase two-letter country codes
+    datum.name = datum.name.replace(/\b[A-Z]([a-z])$/, letters => letters.toUpperCase())
   }
 
   if (!datum.name) {
