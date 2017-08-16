@@ -1,6 +1,7 @@
 var path = require('path')
 var pack = require('../package.json')
 var webpack = require('webpack')
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 var PROD = process.env.NODE_ENV === 'production';
 var TEST = process.env.NODE_ENV === 'test';
@@ -52,6 +53,7 @@ module.exports = {
     new webpack.DefinePlugin({
       EMOJI_DATASOURCE_VERSION: `'${pack.devDependencies['emoji-datasource']}'`,
     }),
+    new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false })
   ],
 
   bail: true,
