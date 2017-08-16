@@ -1,2 +1,7 @@
 scripts/
 .*
+
+src/
+example/
+karma.conf.js
+yarn.lock
