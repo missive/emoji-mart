@@ -4,4 +4,4 @@ import frequently from './utils/frequently'
 
 export { Picker, Emoji, Category } from './components'
 export { emojiIndex, store, frequently }
-export * from './utils'
+export { getData, getSanitizedData, intersect, deepMerge, unifiedToNative } from './utils'
