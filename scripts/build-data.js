@@ -5,6 +5,42 @@ var fs = require('fs'),
     mkdirp = require('mkdirp'),
     buildSearch = require('../src/utils/build-search')
 
+var unifiedToNative = unified => String.fromCodePoint(
+  ...unified.split('-').map(s => parseInt(s, 16))
+);
+
+// Turn this:
+//
+//   "uruguay": {
+//      "keywords": ["uy", "flag", "nation", "country", "banner"],
+//      "char": "🇺🇾",
+//      "fitzpatrick_scale": false,
+//      "category": "flags"
+//    },
+//
+// into this:
+//
+//   "🇺🇾": {
+//      "name": "uruguay",
+//      "keywords": ["uruguay", "uy", "flag", "nation", "country", "banner"],
+//      "char": "🇺🇾",
+//      "fitzpatrick_scale": false,
+//      "category": "flags"
+//    },
+var emojiLibByChar = Object.keys(emojiLib.lib).reduce(
+  (acc, shortName) => {
+    var data = Object.assign({}, emojiLib.lib[shortName])
+
+    data.keywords.unshift(shortName)
+    data.name = shortName
+
+    acc[data.char] = data
+
+    return acc
+  },
+  {}
+)
+
 var categories = ['People', 'Nature', 'Foods', 'Activity', 'Places', 'Objects', 'Symbols', 'Flags'],
     data = { categories: [], emojis: {}, skins: {}, short_names: {} },
     categoriesIndex = {}
@@ -24,17 +60,27 @@ emojiData.sort((a, b) => {
 emojiData.forEach((datum) => {
   var category = datum.category,
       keywords = [],
-      categoryIndex
+      categoryIndex,
+      char = unifiedToNative(datum.unified),
+      emojiLibMatch = emojiLibByChar[char]
 
   if (!datum.category) {
     throw new Error('“' + datum.short_name + '” doesn’t have a category')
   }
 
   datum.name || (datum.name = datum.short_name.replace(/\-/g, ' '))
+
+  if (datum.category == 'Flags' && emojiLibMatch) {
+    // prefer name from emojiLib ("Uruguay")
+    // instead of emojiData ("REGIONAL INDICATOR SYMBOL LETTERS UY")
+    datum.name = emojiLibMatch.name
+  }
+
   datum.name = inflection.titleize(datum.name || '')
 
   if (datum.category == 'Flags') {
-    datum.name = datum.name.replace(/\s(\w+)$/, (letters) => letters.toUpperCase())
+    // uppercase two-letter country codes
+    datum.name = datum.name.replace(/\b[A-Z]([a-z])$/, letters => letters.toUpperCase())
   }
 
   if (!datum.name) {
@@ -45,8 +91,8 @@ emojiData.forEach((datum) => {
   datum.text = datum.text || ''
   delete datum.texts
 
-  if (emojiLib.lib[datum.short_name]) {
-    keywords = emojiLib.lib[datum.short_name].keywords
+  if (emojiLibMatch) {
+    keywords = emojiLibMatch.keywords
   }
 
   datum.search = buildSearch({
