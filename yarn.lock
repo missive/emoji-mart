@@ -1425,7 +1425,7 @@ interpret@^0.6.4:
   version "0.6.6"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-0.6.6.tgz#fecd7a18e7ce5ca6abfb953e1f86213a49f1625b"
 
-invariant@^2.2.0:
+invariant@^2.2.0, invariant@^2.2.1:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.2.tgz#9e1f56ac0acdb6bf303306f338be3b204ae60360"
   dependencies:
@@ -1688,6 +1688,14 @@ loader-utils@^0.2.11, loader-utils@^0.2.5:
     emojis-list "^2.0.0"
     json5 "^0.5.0"
     object-assign "^4.0.1"
+
+lodash.flatten@^4.2.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/lodash.flatten/-/lodash.flatten-4.4.0.tgz#f31c22225a9632d2bbf8e4addbef240aa765a61f"
+
+lodash.isstring@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/lodash.isstring/-/lodash.isstring-4.0.1.tgz#d527dfb5456eca7cc9bb95d5daeaf88ba54a5451"
 
 lodash@^3.10.0, lodash@^3.5.0, lodash@^3.8.0:
   version "3.10.1"
@@ -2448,6 +2456,14 @@ stream-browserify@^1.0.0:
   dependencies:
     inherits "~2.0.1"
     readable-stream "^1.0.27-1"
+
+string-replace-to-array@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/string-replace-to-array/-/string-replace-to-array-1.0.3.tgz#c93eba999a5ee24d731aebbaf5aba36b5f18f7bf"
+  dependencies:
+    invariant "^2.2.1"
+    lodash.flatten "^4.2.0"
+    lodash.isstring "^4.0.1"
 
 string-width@^1.0.1, string-width@^1.0.2:
   version "1.0.2"
