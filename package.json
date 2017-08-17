@@ -47,8 +47,10 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "rimraf": "2.5.2",
+    "size-limit": "^0.10.0",
     "svg-jsx-loader": "^0.0.16",
-    "webpack": "1.12.14"
+    "webpack": "1.12.14",
+    "webpack-bundle-analyzer": "^2.9.0"
   },
   "scripts": {
     "clean": "rimraf data/ dist/",
@@ -61,7 +63,13 @@
     "react:clean": "rimraf node_modules/{react,react-dom,react-addons-test-utils}",
     "react:14": "npm run react:clean && npm i react@^0.14 react-dom@^0.14 react-addons-test-utils@^0.14 --save-dev",
     "react:15": "npm run react:clean && npm i react@^15 react-dom@^15 react-addons-test-utils@^15 --save-dev",
-    "test": "NODE_ENV=test ./node_modules/karma/bin/karma start",
+    "test": "NODE_ENV=test karma start && size-limit",
     "prepublish": "npm run clean && npm run build"
-  }
+  },
+  "size-limit": [
+    {
+      "path": "dist/emoji-mart.js",
+      "limit": "110 KB"
+    }
+  ]
 }
