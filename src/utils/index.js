@@ -50,19 +50,16 @@ function grabTheRightIcon(rawText) {
   )
 }
 
-function addUnifiedTreeToData(dataEmojis) {
-  const result = { ...dataEmojis }
-  const emojis = Object.values(result.emojis)
-  result.unified = {}
+function addUnifiedTreeToData() {
+  const emojis = Object.values(data.emojis)
+  data.unified = {}
 
   for (let i = 0; i < emojis.length; i++) {
-    result.unified[emojis[i].unified] = emojis[i]
+    data.unified[emojis[i].unified] = emojis[i]
   }
-
-  return result
 }
 
-addUnifiedTreeToData(data);
+addUnifiedTreeToData();
 
 function unifiedToNative(unified) {
   var unicodes = unified.split('-'),
