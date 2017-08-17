@@ -1,3 +1,4 @@
+import replaceStringToArray from 'string-replace-to-array'
 import buildSearch from './build-search'
 import data from '../../data'
 
@@ -6,6 +7,22 @@ const SKINS = [
   '1F3FA', '1F3FB', '1F3FC',
   '1F3FD', '1F3FE', '1F3FF',
 ]
+
+
+
+function addUnifiedTreeToData(dataEmojis) {
+  const result = { ...dataEmojis }
+  const emojis = Object.values(result.emojis)
+  result.unified = {}
+
+  for (let i = 0; i < emojis.length; i++) {
+    result.unified[emojis[i].unified] = emojis[i]
+  }
+
+  return result
+}
+
+addUnifiedTreeToData(data);
 
 function unifiedToNative(unified) {
   var unicodes = unified.split('-'),
@@ -156,4 +173,21 @@ function deepMerge(a, b) {
   return o
 }
 
-export { getData, getSanitizedData, intersect, deepMerge, unifiedToNative }
+function unifiedToEmojiObj(unified) {
+  const colons = data.unified[unified].short_names[0]
+  return getData(`:${colons}:`)
+}
+
+function replaceUnicodeString(string) {
+
+}
+
+export {
+  getData,
+  getSanitizedData,
+  intersect,
+  deepMerge,
+  unifiedToNative,
+  unifiedToEmojiObj,
+  replaceUnicodeString,
+}
