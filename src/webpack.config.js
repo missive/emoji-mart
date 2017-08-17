@@ -6,7 +6,7 @@ var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlug
 var PROD = process.env.NODE_ENV === 'production';
 var TEST = process.env.NODE_ENV === 'test';
 
-module.exports = {
+var config = {
   entry: path.resolve('src/index.js'),
   output: {
     path: path.resolve('dist'),
@@ -15,14 +15,7 @@ module.exports = {
     libraryTarget: 'umd',
   },
 
-  externals: !TEST && [{
-    'react': {
-      root: 'React',
-      commonjs2: 'react',
-      commonjs: 'react',
-      amd: 'react',
-    },
-  }],
+  externals: [],
 
   module: {
     loaders: [
@@ -53,8 +46,26 @@ module.exports = {
     new webpack.DefinePlugin({
       EMOJI_DATASOURCE_VERSION: `'${pack.devDependencies['emoji-datasource']}'`,
     }),
-    new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false })
   ],
 
   bail: true,
 }
+
+if (!TEST) {
+  config.externals = config.externals.concat([
+    {
+      'react': {
+        root: 'React',
+        commonjs2: 'react',
+        commonjs: 'react',
+        amd: 'react',
+      },
+    },
+  ])
+
+  config.plugins = config.plugins.concat([
+    new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false }),
+  ])
+}
+
+module.exports = config
