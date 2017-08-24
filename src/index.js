@@ -4,11 +4,13 @@ import frequently from './utils/frequently'
 
 export { Picker, Emoji, Category } from './components'
 export { emojiIndex, store, frequently }
-export { getData,
+export {
+  getData,
   getSanitizedData,
   intersect,
   deepMerge,
   unifiedToNative,
   replaceUnicodeString,
   unifiedToEmojiObj,
+  unifiedToColons,
 } from './utils'
