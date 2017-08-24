@@ -245,5 +245,6 @@ export {
   deepMerge,
   unifiedToNative,
   unifiedToEmojiObj,
+  unifiedToColons,
   replaceUnicodeString,
 }
