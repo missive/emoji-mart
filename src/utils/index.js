@@ -215,10 +215,26 @@ function unifiedToEmojiObj(unified) {
   return getData(`:${colons}:`)
 }
 
+function unifiedToColons(unified) {
+  const rowEmoji = unifiedToEmojiObj(String(iconCode).toUpperCase());
+  const colons = rowEmoji.short_names[0];
+
+  return colons;
+}
+
 function replaceUnicodeString(string, render) {
   return replaceStringToArray(string, UNIFIED_REGEX, function emojiReplacer(match, offset) {
     const icon = grabTheRightIcon(match)
     return render(icon, match, offset)
+  })
+}
+
+const colonsToUnicode = (text, render) => {
+  const colonsRegex = new RegExp('(^|\\s)(:[a-zA-Z0-9-_+]+:(:skin-tone-[2-6]:)?)', 'g')
+
+  return replaceStringToArray(text, colonsRegex, (match, offset) => {
+    const icon = getData(match);
+    return render(icon, match, offset);
   })
 }
 
