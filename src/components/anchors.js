@@ -1,5 +1,5 @@
 import React from 'react'
-import InlineSVG from 'svg-inline-react'
+import PropTypes from 'prop-types'
 
 import * as SVGs from '../svgs'
 
@@ -7,9 +7,12 @@ export default class Anchors extends React.Component {
   constructor(props) {
     super(props)
 
-    var defaultCategory = props.categories[0]
-    if (defaultCategory.anchor) {
-      defaultCategory = defaultCategory.anchor
+    let defaultCategory = null
+    for (let category of props.categories) {
+      if (category.first) {
+        defaultCategory = category
+        break
+      }
     }
 
     this.state = {
@@ -24,9 +27,10 @@ export default class Anchors extends React.Component {
     return <div className='emoji-mart-anchors'>
       {categories.map((category, i) => {
         var { name, anchor } = category,
-            isSelected = name == selected
+            isSelected = name == selected,
+            SVGElement = SVGs[name]
 
-        if (anchor) {
+        if (anchor === false) {
           return null
         }
 
@@ -38,7 +42,7 @@ export default class Anchors extends React.Component {
             className={`emoji-mart-anchor ${isSelected ? 'emoji-mart-anchor-selected' : ''}`}
             style={{ color: isSelected ? color : null }}
           >
-            <InlineSVG src={SVGs[name]} />
+            <SVGElement />
             <span className='emoji-mart-anchor-bar' style={{ backgroundColor: color }}></span>
           </span>
         )
@@ -48,8 +52,8 @@ export default class Anchors extends React.Component {
 }
 
 Anchors.propTypes = {
-  categories: React.PropTypes.array,
-  onAnchorClick: React.PropTypes.func,
+  categories: PropTypes.array,
+  onAnchorClick: PropTypes.func,
 }
 
 Anchors.defaultProps = {

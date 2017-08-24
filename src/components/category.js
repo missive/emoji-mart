@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import frequently from '../utils/frequently'
 import { Emoji } from '.'
@@ -16,9 +17,9 @@ export default class Category extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    var { name, perLine, hasStickyPosition, emojis, emojiProps } = this.props,
+    var { name, perLine, native, hasStickyPosition, emojis, emojiProps } = this.props,
         { skin, size, set } = emojiProps,
-        { perLine: nextPerLine, hasStickyPosition: nextHasStickyPosition, emojis: nextEmojis, emojiProps: nextEmojiProps } = nextProps,
+        { perLine: nextPerLine, native: nextNative, hasStickyPosition: nextHasStickyPosition, emojis: nextEmojis, emojiProps: nextEmojiProps } = nextProps,
         { skin: nextSkin, size: nextSize, set: nextSet } = nextEmojiProps,
         shouldUpdate = false
 
@@ -30,7 +31,7 @@ export default class Category extends React.Component {
       shouldUpdate = !(emojis == nextEmojis)
     }
 
-    if (skin != nextSkin || size != nextSize || set != nextSet || hasStickyPosition != nextHasStickyPosition) {
+    if (skin != nextSkin || size != nextSize || native != nextNative || set != nextSet || hasStickyPosition != nextHasStickyPosition) {
       shouldUpdate = true
     }
 
@@ -71,10 +72,19 @@ export default class Category extends React.Component {
     var { name, emojis, perLine } = this.props
 
     if (name == 'Recent') {
-      let frequentlyUsed = frequently.get(perLine * 4)
+      let { custom } = this.props
+      let frequentlyUsed = frequently.get(perLine)
 
       if (frequentlyUsed.length) {
-        emojis = frequentlyUsed
+        emojis = frequentlyUsed.map((id) => {
+          for (let emoji of custom) {
+            if (emoji.id === id) {
+              return emoji
+            }
+          }
+
+          return id
+        })
       }
     }
 
@@ -88,7 +98,7 @@ export default class Category extends React.Component {
   updateDisplay(display) {
     var emojis = this.getEmojis()
 
-    if (!display && !emojis) {
+    if (!emojis) {
       return
     }
 
@@ -118,30 +128,34 @@ export default class Category extends React.Component {
       }
     }
 
-    return <div ref='container' className='emoji-mart-category' style={containerStyles}>
+    return <div ref='container' className={`emoji-mart-category ${emojis && !emojis.length ? 'emoji-mart-no-results' : ''}`} style={containerStyles}>
       <div style={labelStyles} data-name={name} className='emoji-mart-category-label'>
         <span style={labelSpanStyles} ref='label'>{i18n.categories[name.toLowerCase()]}</span>
       </div>
 
       {emojis && emojis.map((emoji) =>
-        <Emoji
-          key={emoji.id || emoji}
-          emoji={emoji}
-          {...emojiProps}
-        />
+        Emoji({
+          emoji: emoji,
+          ...emojiProps
+        })
       )}
 
       {emojis && !emojis.length &&
-        <div className='emoji-mart-no-results'>
-          <Emoji
-            {...emojiProps}
-            size={22}
-            emoji='sleuth_or_spy'
-          />
+        <div>
+          <div>
+          {Emoji({
+            ...emojiProps,
+            size: 38,
+            emoji: 'sleuth_or_spy',
+            onOver: null,
+            onLeave: null,
+            onClick: null,
+          })}
+          </div>
 
-          <span className='emoji-mart-no-results-label'>
-            No emoji found
-          </span>
+          <div className='emoji-mart-no-results-label'>
+            {i18n.notfound}
+          </div>
         </div>
       }
     </div>
@@ -149,11 +163,12 @@ export default class Category extends React.Component {
 }
 
 Category.propTypes = {
-  emojis: React.PropTypes.array,
-  hasStickyPosition: React.PropTypes.bool,
-  name: React.PropTypes.string.isRequired,
-  perLine: React.PropTypes.number.isRequired,
-  emojiProps: React.PropTypes.object.isRequired,
+  emojis: PropTypes.array,
+  hasStickyPosition: PropTypes.bool,
+  name: PropTypes.string.isRequired,
+  native: PropTypes.bool.isRequired,
+  perLine: PropTypes.number.isRequired,
+  emojiProps: PropTypes.object.isRequired,
 }
 
 Category.defaultProps = {

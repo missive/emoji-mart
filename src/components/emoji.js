@@ -1,109 +1,125 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import data from '../../data'
 
 import { getData, getSanitizedData, unifiedToNative } from '../utils'
 
-const SHEET_COLUMNS = 41
+const SHEET_COLUMNS = 49
 
-export default class Emoji extends React.Component {
-  constructor(props) {
-    super(props)
+const _getPosition = (props) => {
+  var { sheet_x, sheet_y } = _getData(props),
+      multiply = 100 / (SHEET_COLUMNS - 1)
 
-    this.hasSkinVariations = !!this.getData().skin_variations
+  return `${multiply * sheet_x}% ${multiply * sheet_y}%`
+}
+
+const _getData = (props) => {
+  var { emoji, skin, set } = props
+  return getData(emoji, skin, set)
+}
+
+const _getSanitizedData = (props) => {
+  var { emoji, skin, set } = props
+  return getSanitizedData(emoji, skin, set)
+}
+
+const _handleClick = (e, props) => {
+  if (!props.onClick) { return }
+  var { onClick } = props,
+      emoji = _getSanitizedData(props)
+
+  onClick(emoji, e)
+}
+
+const _handleOver = (e, props) => {
+  if (!props.onOver) { return }
+  var { onOver } = props,
+      emoji = _getSanitizedData(props)
+
+  onOver(emoji, e)
+}
+
+const _handleLeave = (e, props) => {
+  if (!props.onLeave) { return }
+  var { onLeave } = props,
+      emoji = _getSanitizedData(props)
+
+  onLeave(emoji, e)
+}
+
+const Emoji = (props) => {
+  for (let k in Emoji.defaultProps) {
+    if (props[k] == undefined && Emoji.defaultProps[k] != undefined) {
+      props[k] = Emoji.defaultProps[k]
+    }
   }
 
-  shouldComponentUpdate(nextProps) {
-    return (
-      this.hasSkinVariations && nextProps.skin != this.props.skin ||
-      nextProps.size != this.props.size ||
-      nextProps.set != this.props.set
-    )
+  var { unified, custom, imageUrl } = _getData(props),
+      style = {},
+      children = props.children
+
+  if (!unified && !custom) {
+    return null
   }
 
-  getPosition() {
-    var { sheet_x, sheet_y } = this.getData(),
-        multiply = 100 / (SHEET_COLUMNS - 1)
+  if (props.native && unified) {
+    style = { fontSize: props.size }
+    children = unifiedToNative(unified)
 
-    return `${multiply * sheet_x}% ${multiply * sheet_y}%`
-  }
+    if (props.forceSize) {
+      style.display = 'inline-block'
+      style.width = props.size
+      style.height = props.size
+    }
+  } else if (custom) {
+    style = {
+      width: props.size,
+      height: props.size,
+      display: 'inline-block',
+      backgroundImage: `url(${imageUrl})`,
+      backgroundSize: '100%',
+    }
+  } else {
+    let setHasEmoji = _getData(props)[`has_img_${props.set}`]
 
-  getData() {
-    var { emoji, skin, set } = this.props
-    return getData(emoji, skin, set)
-  }
-
-  getSanitizedData() {
-    var { emoji, skin, set } = this.props
-    return getSanitizedData(emoji, skin, set)
-  }
-
-  handleClick(e) {
-    var { onClick } = this.props,
-        emoji = this.getSanitizedData()
-
-    onClick(emoji, e)
-  }
-
-  handleOver(e) {
-    var { onOver } = this.props,
-        emoji = this.getSanitizedData()
-
-    onOver(emoji, e)
-  }
-
-  handleLeave(e) {
-    var { onLeave } = this.props,
-        emoji = this.getSanitizedData()
-
-    onLeave(emoji, e)
-  }
-
-  render() {
-    var { set, size, sheetSize, native, onOver, onLeave } = this.props,
-        { unified } = this.getData(),
-        style = {},
-        children = null
-
-    if (!unified) {
+    if (!setHasEmoji) {
       return null
     }
 
-    if (native && unified) {
-      style = { fontSize: size }
-      children = unifiedToNative(unified)
-    } else {
-      style = {
-        width: size,
-        height: size,
-        display: 'inline-block',
-        backgroundImage: `url(https://unpkg.com/emoji-datasource@2.4.4/sheet_${set}_${sheetSize}.png)`,
-        backgroundSize: `${100 * SHEET_COLUMNS}%`,
-        backgroundPosition: this.getPosition(),
-      }
+    style = {
+      width: props.size,
+      height: props.size,
+      display: 'inline-block',
+      backgroundImage: `url(${props.backgroundImageFn(props.set, props.sheetSize)})`,
+      backgroundSize: `${100 * SHEET_COLUMNS}%`,
+      backgroundPosition: _getPosition(props),
     }
-
-    return <span
-      onClick={this.handleClick.bind(this)}
-      onMouseEnter={this.handleOver.bind(this)}
-      onMouseLeave={this.handleLeave.bind(this)}
-      className='emoji-mart-emoji'>
-      <span style={style}>{children}</span>
-    </span>
   }
+
+  return <span
+    key={props.emoji.id || props.emoji}
+    onClick={(e) => _handleClick(e, props)}
+    onMouseEnter={(e) => _handleOver(e, props)}
+    onMouseLeave={(e) => _handleLeave(e, props)}
+    className='emoji-mart-emoji'>
+    <span style={style}>{children}</span>
+  </span>
 }
 
 Emoji.propTypes = {
-  onOver: React.PropTypes.func,
-  onLeave: React.PropTypes.func,
-  onClick: React.PropTypes.func,
-  native: React.PropTypes.bool,
-  skin: React.PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
-  sheetSize: React.PropTypes.oneOf([16, 20, 32, 64]),
-  set: React.PropTypes.oneOf(['apple', 'google', 'twitter', 'emojione']),
-  size: React.PropTypes.number.isRequired,
-  emoji: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.object,
+  onOver: PropTypes.func,
+  onLeave: PropTypes.func,
+  onClick: PropTypes.func,
+  backgroundImageFn: PropTypes.func,
+  native: PropTypes.bool,
+  forceSize: PropTypes.bool,
+  skin: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
+  sheetSize: PropTypes.oneOf([16, 20, 32, 64]),
+  set: PropTypes.oneOf(['apple', 'google', 'twitter', 'emojione', 'messenger', 'facebook']),
+  size: PropTypes.number.isRequired,
+  emoji: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
   ]).isRequired,
 }
 
@@ -112,7 +128,11 @@ Emoji.defaultProps = {
   set: 'apple',
   sheetSize: 64,
   native: false,
+  forceSize: false,
+  backgroundImageFn: ((set, sheetSize) => `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/sheets/${sheetSize}.png`),
   onOver: (() => {}),
   onLeave: (() => {}),
   onClick: (() => {}),
 }
+
+export default Emoji

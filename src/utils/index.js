@@ -1,3 +1,4 @@
+import buildSearch from './build-search'
 import data from '../../data'
 
 const COLONS_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/
@@ -14,9 +15,20 @@ function unifiedToNative(unified) {
 }
 
 function sanitize(emoji) {
-  var { name, short_names, skin_tone, skin_variations, emoticons, unified } = emoji,
-      id = short_names[0],
+  var { name, short_names, skin_tone, skin_variations, emoticons, unified, custom, imageUrl } = emoji,
+      id = emoji.id || short_names[0],
       colons = `:${id}:`
+
+  if (custom) {
+    return {
+      id,
+      name,
+      colons,
+      emoticons,
+      custom,
+      imageUrl
+    }
+  }
 
   if (skin_tone) {
     colons += `:skin-tone-${skin_tone}:`
@@ -27,7 +39,8 @@ function sanitize(emoji) {
     name,
     colons,
     emoticons,
-    skin: skin_tone || skin_variations ? 1 : null,
+    unified: unified.toLowerCase(),
+    skin: skin_tone || (skin_variations ? 1 : null),
     native: unifiedToNative(unified),
   }
 }
@@ -57,6 +70,17 @@ function getData(emoji, skin, set) {
     if (data.emojis.hasOwnProperty(emoji)) {
       emojiData = data.emojis[emoji]
     }
+  } else if (emoji.custom) {
+    emojiData = emoji
+
+    emojiData.search = buildSearch({
+      short_names: emoji.short_names,
+      name: emoji.name,
+      keywords: emoji.keywords,
+      emoticons: emoji.emoticons
+    })
+
+    emojiData.search = emojiData.search.join(',')
   } else if (emoji.id) {
     if (data.short_names.hasOwnProperty(emoji.id)) {
       emoji.id = data.short_names[emoji.id]
@@ -68,12 +92,18 @@ function getData(emoji, skin, set) {
     }
   }
 
+  emojiData.emoticons || (emojiData.emoticons = [])
+  emojiData.variations || (emojiData.variations = [])
+
   if (emojiData.skin_variations && skin > 1 && set) {
     emojiData = JSON.parse(JSON.stringify(emojiData))
 
     var skinKey = SKINS[skin - 1],
-        variationKey = `${emojiData.unified}-${skinKey}`,
-        variationData = emojiData.skin_variations[variationKey]
+        variationData = emojiData.skin_variations[skinKey]
+
+    if (!variationData.variations && emojiData.variations) {
+      delete emojiData.variations
+    }
 
     if (variationData[`has_img_${set}`]) {
       emojiData.skin_tone = skin
@@ -83,6 +113,11 @@ function getData(emoji, skin, set) {
         emojiData[k] = v
       }
     }
+  }
+
+  if (emojiData.variations && emojiData.variations.length) {
+    emojiData = JSON.parse(JSON.stringify(emojiData))
+    emojiData.unified = emojiData.variations.shift()
   }
 
   return emojiData

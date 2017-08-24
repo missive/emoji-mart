@@ -18,11 +18,16 @@
   padding: 6px;
 }
 
+.emoji-mart-bar {
+  border: 0 solid #d9d9d9;
+}
 .emoji-mart-bar:first-child {
+  border-bottom-width: 1px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
 .emoji-mart-bar:last-child {
+  border-top-width: 1px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
@@ -67,22 +72,24 @@
 
 .emoji-mart-anchors svg {
   fill: currentColor;
+  max-height: 18px;
 }
 
 .emoji-mart-scroll {
   overflow-y: scroll;
   height: 270px;
   padding: 0 6px 6px 6px;
-  border: solid #d9d9d9;
-  border-width: 1px 0;
 }
 
 .emoji-mart-search {
+  margin-top: 6px;
+  padding: 0 6px;
+}
+.emoji-mart-search input {
   font-size: 16px;
   display: block;
   width: 100%;
   padding: .2em .6em;
-  margin-top: 6px;
   border-radius: 25px;
   border: 1px solid #d9d9d9;
   outline: 0;
@@ -91,6 +98,8 @@
 .emoji-mart-category .emoji-mart-emoji span {
   z-index: 1;
   position: relative;
+  text-align: center;
+  cursor: default;
 }
 
 .emoji-mart-category .emoji-mart-emoji:hover:before {
@@ -107,6 +116,7 @@
   z-index: 2;
   position: relative;
   position: -webkit-sticky;
+  position: sticky;
   top: 0;
 }
 
@@ -131,9 +141,14 @@
   padding-top: 70px;
   color: #858585;
 }
-.emoji-mart-no-results span {
-  display: inline-block;
-  vertical-align: middle;
+.emoji-mart-no-results .emoji-mart-category-label {
+  display: none;
+}
+.emoji-mart-no-results .emoji-mart-no-results-label {
+  margin-top: .2em;
+}
+.emoji-mart-no-results .emoji-mart-emoji:hover:before {
+  content: none;
 }
 
 .emoji-mart-preview {
@@ -155,7 +170,7 @@
 
 .emoji-mart-preview-data {
   left: 68px; right: 12px;
-  word-break: break-word;
+  word-break: break-all;
 }
 
 .emoji-mart-preview-skins {
@@ -223,7 +238,7 @@
   transition-timing-function: ease-out;
 }
 
-.emoji-mart-skin-swatch:nth-child(1) { transition-delay: 0 }
+.emoji-mart-skin-swatch:nth-child(1) { transition-delay: 0s }
 .emoji-mart-skin-swatch:nth-child(2) { transition-delay: .03s }
 .emoji-mart-skin-swatch:nth-child(3) { transition-delay: .06s }
 .emoji-mart-skin-swatch:nth-child(4) { transition-delay: .09s }
