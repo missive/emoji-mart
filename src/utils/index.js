@@ -229,13 +229,15 @@ function replaceUnicodeString(string, render) {
   })
 }
 
-const colonsToUnicode = (text, render) => {
-  const colonsRegex = new RegExp('(^|\\s)(:[a-zA-Z0-9-_+]+:(:skin-tone-[2-6]:)?)', 'g')
+const parseColonsToUnicode = (text) => {
+  const colonsRegex = new RegExp('(:[a-zA-Z0-9-_+]+:(:skin-tone-[2-6]:)?)', 'g')
 
   return replaceStringToArray(text, colonsRegex, (match, offset) => {
-    const icon = getData(match);
-    return render(icon, match, offset);
-  })
+    const icon = getData(match.trim());
+
+    const chars = icon.unified.split('-');
+    return chars.map(char => String.fromCodePoint(`0x${char}`)).join('')
+  }).join('');
 }
 
 export {
@@ -247,4 +249,5 @@ export {
   unifiedToEmojiObj,
   unifiedToColons,
   replaceUnicodeString,
+  parseColonsToUnicode,
 }

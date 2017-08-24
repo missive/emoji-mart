@@ -13,4 +13,5 @@ export {
   replaceUnicodeString,
   unifiedToEmojiObj,
   unifiedToColons,
+  parseColonsToUnicode,
 } from './utils'
