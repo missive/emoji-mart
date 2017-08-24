@@ -216,7 +216,7 @@ function unifiedToEmojiObj(unified) {
 }
 
 function unifiedToColons(unified) {
-  const rowEmoji = unifiedToEmojiObj(String(iconCode).toUpperCase());
+  const rowEmoji = unifiedToEmojiObj(String(unified).toUpperCase());
   const colons = rowEmoji.short_names[0];
 
   return colons;
