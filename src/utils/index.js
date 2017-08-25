@@ -235,6 +235,8 @@ const parseColonsToUnicode = (text) => {
   return replaceStringToArray(text, colonsRegex, (match, offset) => {
     const icon = getData(match.trim());
 
+    if (!icon.unified) return match;
+
     const chars = icon.unified.split('-');
     return chars.map(char => String.fromCodePoint(`0x${char}`)).join('')
   }).join('');
