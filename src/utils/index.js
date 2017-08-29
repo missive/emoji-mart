@@ -1,49 +1,12 @@
 import buildSearch from './build-search'
 import data from '../../data'
+import {sanitize, unifiedToNative} from './clear.js';
 
 const COLONS_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/
 const SKINS = [
   '1F3FA', '1F3FB', '1F3FC',
   '1F3FD', '1F3FE', '1F3FF',
 ]
-
-function unifiedToNative(unified) {
-  var unicodes = unified.split('-'),
-      codePoints = unicodes.map((u) => `0x${u}`)
-
-  return String.fromCodePoint(...codePoints)
-}
-
-function sanitize(emoji) {
-  var { name, short_names, skin_tone, skin_variations, emoticons, unified, custom, imageUrl } = emoji,
-      id = emoji.id || short_names[0],
-      colons = `:${id}:`
-
-  if (custom) {
-    return {
-      id,
-      name,
-      colons,
-      emoticons,
-      custom,
-      imageUrl
-    }
-  }
-
-  if (skin_tone) {
-    colons += `:skin-tone-${skin_tone}:`
-  }
-
-  return {
-    id,
-    name,
-    colons,
-    emoticons,
-    unified: unified.toLowerCase(),
-    skin: skin_tone || (skin_variations ? 1 : null),
-    native: unifiedToNative(unified),
-  }
-}
 
 function getSanitizedData() {
   return sanitize(getData(...arguments))

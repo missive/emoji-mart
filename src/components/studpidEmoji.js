@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import {sanitize, unifiedToNative} from '../utils'
+import {sanitize, unifiedToNative} from '../utils/clear.js'
 
 const SHEET_COLUMNS = 49
 
