@@ -58,7 +58,7 @@
     "build:example": "node scripts/build-example",
     "build:dist": "node scripts/build-dist",
     "build:studpid": "node scripts/build-studpidEmoji",
-    "build": "npm run build:data && npm run build:example && npm run build:dist && build:studpid",
+    "build": "npm run build:data && npm run build:example && npm run build:dist && npm run build:studpid",
     "watch": "node scripts/watch",
     "start": "npm run watch",
     "react:clean": "rimraf node_modules/{react,react-dom,react-addons-test-utils}",
