@@ -10,7 +10,9 @@ var config = {
   entry: path.resolve('src/components/studpidEmoji.js'),
   output: {
     path: path.resolve('dist'),
-    filename: 'studpid-emoji.js'
+    filename: 'studpid-emoji.js',
+    library: 'studpidEmoji',
+    libraryTarget: 'umd'
   },
 
   externals: [],
@@ -19,12 +21,7 @@ var config = {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        include: [
-          path.resolve('src'),
-          path.resolve('node_modules/measure-scrollbar'),
-          path.resolve('data'),
-        ],
+        loader: 'babel-loader'
       },
       {
         test: /\.svg$/,
