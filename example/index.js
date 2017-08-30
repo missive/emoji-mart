@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { Picker, Emoji } from '../src'
+import { Picker, Emoji, StudpidEmoji, getData } from '../src'
 
 const CUSTOM_EMOJIS = [
   {
@@ -42,6 +42,35 @@ class Example extends React.Component {
       set: 'apple',
       hidden: false,
       currentEmoji: { id: '+1' },
+      currentEmojiData: {
+        "name": "UPSIDE-DOWN FACE",
+        "unified": "1F643",
+        "variations": [
+
+        ],
+        "docomo": null,
+        "au": null,
+        "softbank": null,
+        "google": null,
+        "image": "1f643.png",
+        "sheet_x": 24,
+        "sheet_y": 2,
+        "short_name": "upside_down_face",
+        "short_names": [
+            "upside_down_face"
+        ],
+        "text": null,
+        "texts": null,
+        "category": "People",
+        "sort_order": 13,
+        "added_in": "8.0",
+        "has_img_apple": true,
+        "has_img_google": true,
+        "has_img_twitter": true,
+        "has_img_emojione": true,
+        "has_img_facebook": true,
+        "has_img_messenger": false
+      },
       autoFocus: false,
       include: [],
       exclude: [],
@@ -182,8 +211,8 @@ class Example extends React.Component {
           include={this.state.include}
           exclude={this.state.exclude}
           onClick={(emoji) => {
-            this.setState({ currentEmoji: emoji })
-            console.log(emoji)
+            const emojiData = getData(emoji);
+            this.setState({ currentEmoji: emoji, currentEmojiData: emojiData })
           }}
         />
       }
@@ -280,6 +309,23 @@ class Example extends React.Component {
             size: 64,
             native: true,
           })}
+        </span>
+      </div>
+      <div>
+        <pre style={{
+          fontSize: 18,
+          display: 'inline-block',
+          verticalAlign: 'top',
+          margin: '1em',
+          width: '370px',
+        }}>
+  <br /><Operator>&lt;</Operator><Variable>Emoji</Variable>
+  <br />  emoji<Operator>=</Operator><String>{JSON.stringify(this.state.currentEmojiData, null, 2)}</String>
+  <br /><Operator>/&gt;</Operator>
+        </pre>
+
+        <span style={{ display: 'inline-block', marginTop: 60 }}>
+          {StudpidEmoji({emojiData: this.state.currentEmojiData})}
         </span>
       </div>
     </div>

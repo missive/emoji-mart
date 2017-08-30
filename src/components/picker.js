@@ -332,7 +332,12 @@ export default class Picker extends React.Component {
         { skin } = this.state,
         width = (perLine * (emojiSize + 12)) + 12 + 2 + measureScrollbar()
 
-    return <div style={{width: width, ...style}} className='emoji-mart'>
+    const prevent = e => e.preventDefault()
+
+    return <div
+      style={{...style, width: width}}
+      className='emoji-mart'
+      onMouseDown={prevent}>
       <div className='emoji-mart-bar'>
         <Anchors
           ref='anchors'
