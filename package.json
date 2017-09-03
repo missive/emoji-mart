@@ -2,7 +2,7 @@
   "name": "emoji-mart",
   "version": "1.0.1",
   "description": "Customizable Slack-like emoji picker for React",
-  "main": "dist/emoji-mart.js",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:missive/emoji-mart.git"
@@ -25,10 +25,12 @@
     "react": "^0.14.0 || ^15.0.0-0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "6.7.2",
     "babel-loader": "6.2.4",
     "babel-plugin-transform-es2015-destructuring": "6.9.0",
     "babel-plugin-transform-object-rest-spread": "6.8.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.8",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "6.6.0",
     "babel-preset-react": "6.5.0",
@@ -54,11 +56,12 @@
   },
   "scripts": {
     "clean": "rimraf data/ dist/",
+    "clean:dist": "rm -rf dist/",
     "build:data": "node scripts/build-data",
     "build:example": "node scripts/build-example",
-    "build:dist": "node scripts/build-dist",
+    "build:dist": "npm run clean:dist && babel src --out-dir dist --copy-files",
     "build": "npm run build:data && npm run build:example && npm run build:dist",
-    "watch": "node scripts/watch",
+    "watch": "babel src --watch --out-dir dist --copy-files",
     "start": "npm run watch",
     "react:clean": "rimraf node_modules/{react,react-dom,react-addons-test-utils}",
     "react:14": "npm run react:clean && npm i react@^0.14 react-dom@^0.14 react-addons-test-utils@^0.14 --save-dev",
@@ -68,7 +71,7 @@
   },
   "size-limit": [
     {
-      "path": "dist/emoji-mart.js",
+      "path": "dist/index.js",
       "limit": "110 KB"
     }
   ]
