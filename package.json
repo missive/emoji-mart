@@ -51,8 +51,7 @@
     "rimraf": "2.5.2",
     "size-limit": "^0.10.0",
     "svg-jsx-loader": "^0.0.16",
-    "webpack": "1.12.14",
-    "webpack-bundle-analyzer": "^2.9.0"
+    "webpack": "1.12.14"
   },
   "scripts": {
     "clean": "rimraf data/ dist/",
