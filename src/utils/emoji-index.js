@@ -1,5 +1,3 @@
-const extend = require('util')._extend
-
 import data from '../../data'
 import { getData, getSanitizedData, intersect } from '.'
 
