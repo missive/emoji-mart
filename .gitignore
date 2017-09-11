@@ -1,4 +1,4 @@
 node_modules/
-data/
+data/data.js
 dist/
 bundle.js
