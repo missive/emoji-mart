@@ -55,7 +55,7 @@
     "webpack": "1.12.14"
   },
   "scripts": {
-    "clean": "rimraf data/ dist/",
+    "clean": "rimraf data/data.js dist/",
     "clean:dist": "rm -rf dist/",
     "build:data": "node scripts/build-data",
     "build:example": "node scripts/build-example",
@@ -72,7 +72,7 @@
   "size-limit": [
     {
       "path": "dist/index.js",
-      "limit": "99 KB"
+      "limit": "88 KB"
     }
   ]
 }
