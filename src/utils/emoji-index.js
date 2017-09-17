@@ -1,5 +1,5 @@
 import data from '../../data'
-import { getData, getSanitizedData, intersect } from '.'
+import { getData, getSanitizedData, uniq } from '.'
 
 var index = {}
 var emojisList = {}
@@ -12,10 +12,14 @@ for (let emoji in data.emojis) {
       { short_names, emoticons } = emojiData,
       id = short_names[0]
 
-  for (let emoticon of (emoticons || [])) {
-    if (!emoticonsList[emoticon]) {
+  if (emoticons) {
+    emoticons.forEach(emoticon => {
+      if (emoticonsList[emoticon]) {
+        return
+      }
+
       emoticonsList[emoticon] = id
-    }
+    })
   }
 
   emojisList[id] = getSanitizedData(id)
@@ -26,12 +30,12 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
   include || (include = [])
   exclude || (exclude = [])
 
-  if (custom.length) {
-    for (const emoji of custom) {
-      data.emojis[emoji.id] = getData(emoji)
-      emojisList[emoji.id] = getSanitizedData(emoji)
-    }
+  custom.forEach(emoji => {
+    data.emojis[emoji.id] = getData(emoji)
+    emojisList[emoji.id] = getSanitizedData(emoji)
+  })
 
+  if (custom.length) {
     data.categories.push({
       name: 'Custom',
       emojis: custom.map(emoji => emoji.id)
@@ -62,15 +66,15 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
         index = {}
       }
 
-      for (let category of data.categories) {
+      data.categories.forEach(category => {
         let isIncluded = include && include.length ? include.indexOf(category.name.toLowerCase()) > -1 : true
         let isExcluded = exclude && exclude.length ? exclude.indexOf(category.name.toLowerCase()) > -1 : false
-        if (!isIncluded || isExcluded) { continue }
-
-        for (let emojiId of category.emojis) {
-          pool[emojiId] = data.emojis[emojiId]
+        if (!isIncluded || isExcluded) {
+          return
         }
-      }
+
+        category.emojis.forEach(emojiId => pool[emojiId] = data.emojis[emojiId])
+      })
     } else if (previousInclude.length || previousExclude.length) {
       index = {}
     }
@@ -80,7 +84,8 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
           aIndex = index,
           length = 0
 
-      for (let char of value.split('')) {
+      for (let charIndex = 0; charIndex < value.length; charIndex++) {
+        const char = value[charIndex]
         length++
 
         aIndex[char] || (aIndex[char] = {})
@@ -124,7 +129,7 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
     }).filter(a => a)
 
     if (allResults.length > 1) {
-      results = intersect(...allResults)
+      results = uniq(allResults)
     } else if (allResults.length) {
       results = allResults[0]
     } else {
