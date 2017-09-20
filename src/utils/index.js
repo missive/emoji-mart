@@ -8,6 +8,14 @@ const SKINS = [
   '1F3FA', '1F3FB', '1F3FC',
   '1F3FD', '1F3FE', '1F3FF',
 ]
+const BIN_SKINS = {
+  '1F3FA': 'skin-tone-1',
+  '1F3FB': 'skin-tone-2',
+  '1F3FC': 'skin-tone-3',
+  '1F3FD': 'skin-tone-4',
+  '1F3FE': 'skin-tone-5',
+  '1F3FF': 'skin-tone-6',
+}
 
 // avoid runtime RegExp creation for not so smart,
 // not JIT based, and old browsers / engines
@@ -216,8 +224,17 @@ function unifiedToEmojiObj(unified) {
 }
 
 function unifiedToColons(unified) {
-  const rowEmoji = unifiedToEmojiObj(String(unified).toUpperCase());
-  const colons = rowEmoji.short_names[0];
+  let newUnified = unified.toUpperCase();
+  const matches = newUnified.match(/1F3F[0-9A-F]/);
+  let color = '';
+
+  if (matches) {
+    color = `:${BIN_SKINS[matches[0]]}:`;
+    newUnified = unified.substr(0, unified.lastIndexOf('-'));
+  }
+
+  const rowEmoji = unifiedToEmojiObj(String(newUnified).toUpperCase());
+  const colons = `:${rowEmoji.short_names[0]}:${color}`;
 
   return colons;
 }
