@@ -1,4 +1,4 @@
-module.exports = data => {
+export default data => {
   const search = []
 
   var addToSearch = (strings, split) => {

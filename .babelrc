@@ -12,7 +12,6 @@
     "transform-es2015-for-of",
     "transform-es2015-function-name",
     "transform-es2015-literals",
-    "transform-es2015-modules-commonjs",
     "transform-es2015-object-super",
     "transform-es2015-parameters",
     "transform-es2015-shorthand-properties",
@@ -40,5 +39,12 @@
         }
       }
     ]
-  ]
+  ],
+  "env": {
+    "cjs": {
+      "plugins": [
+        "transform-es2015-modules-commonjs"
+      ]
+    }
+  }
 }

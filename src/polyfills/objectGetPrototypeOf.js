@@ -1,6 +1,6 @@
 const _Object = Object
 
-module.exports = _Object.getPrototypeOf || function (O) {
+export default _Object.getPrototypeOf || function (O) {
   O = Object(O)
 
   if (typeof O.constructor === 'function' && O instanceof O.constructor) {

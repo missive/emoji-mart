@@ -143,4 +143,7 @@ flags.emojis = flags.emojis.filter((flag) => {
 const stringified = JSON.stringify(data).replace(/\"([A-Za-z_]+)\":/g, '$1:')
 fs.writeFile('dist/data/data.js', `module.exports = ${stringified}`, (err) => {
   if (err) throw err
+  fs.writeFile('dist-es/data/data.js', `export default ${stringified}`, (err) => {
+    if (err) throw err
+  })
 })

@@ -3,6 +3,7 @@
   "version": "2.0.1",
   "description": "Customizable Slack-like emoji picker for React",
   "main": "dist/index.js",
+  "module": "dist-es/index.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:missive/emoji-mart.git"
@@ -61,11 +62,13 @@
     "webpack": "^3.6.0"
   },
   "scripts": {
-    "clean": "rm -rf dist/",
+    "clean": "rm -rf dist/ dist-es/",
     "build:data": "node scripts/build-data",
-    "build:dist": "npm run clean && babel src --out-dir dist --copy-files --ignore webpack.config.js",
+    "build:dist": "npm run clean && npm run build:cjs && npm run build:es",
+    "build:cjs": "BABEL_ENV=cjs babel src --out-dir dist --copy-files --ignore webpack.config.js",
+    "build:es": "babel src --out-dir dist-es --copy-files --ignore webpack.config.js",
     "build": "npm run build:dist && npm run build:data",
-    "watch": "babel src --watch --out-dir dist --copy-files --ignore webpack.config.js",
+    "watch": "BABEL_ENV=cjs babel src --watch --out-dir dist --copy-files --ignore webpack.config.js",
     "start": "npm run watch",
     "stats": "webpack --config ./src/webpack.config.js --json > stats.json",
     "react:clean": "rimraf node_modules/{react,react-dom,react-addons-test-utils}",

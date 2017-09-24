@@ -1,6 +1,6 @@
 const _String = String
 
-module.exports = _String.fromCodePoint || function stringFromCodePoint() {
+export default _String.fromCodePoint || function stringFromCodePoint() {
   var MAX_SIZE = 0x4000;
   var codeUnits = [];
   var highSurrogate;
