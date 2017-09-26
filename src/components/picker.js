@@ -243,7 +243,7 @@ export default class Picker extends React.Component {
       }
 
       if (scrollTop < minTop) {
-        activeCategory = this.categories.filter(category => !category.anchor)[0]
+        activeCategory = this.categories.filter(category => !(category.anchor === false))[0]
       } else if (scrollTop + this.clientHeight >= this.scrollHeight) {
         activeCategory = this.categories[this.categories.length - 1]
       }
