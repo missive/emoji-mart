@@ -23,7 +23,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loaders: ['babel?presets[]=react', 'svg-jsx?es6=true'],
+        loaders: ['babel-loader?presets[]=react', 'svg-jsx-loader?es6=true'],
         include: [
           path.resolve('src/svgs'),
         ],
@@ -32,7 +32,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['.js'],
   },
 
   plugins: [

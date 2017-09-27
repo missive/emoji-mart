@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/missive/emoji-mart",
   "dependencies": {
-    "measure-scrollbar": "^0.1.0"
+    "measure-scrollbar": "^1.0.0"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0-0 || ^16.0.0"
@@ -27,7 +27,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "6.7.2",
-    "babel-loader": "6.2.4",
+    "babel-loader": "^7.1.2",
     "babel-plugin-transform-define": "^1.3.0",
     "babel-plugin-transform-es2015-destructuring": "6.9.0",
     "babel-plugin-transform-object-rest-spread": "6.8.0",
@@ -44,7 +44,7 @@
     "karma-chrome-launcher": "^2.0.0",
     "karma-cli": "^1.0.1",
     "karma-jasmine": "^1.1.0",
-    "karma-webpack": "^2.0.2",
+    "karma-webpack": "^2.0.4",
     "mkdirp": "0.5.1",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
@@ -52,7 +52,7 @@
     "rimraf": "2.5.2",
     "size-limit": "^0.11.4",
     "svg-jsx-loader": "^0.0.16",
-    "webpack": "1.12.14"
+    "webpack": "^3.6.0"
   },
   "scripts": {
     "clean": "rimraf data/data.js dist/",
