@@ -4,8 +4,7 @@ import emojiIndex from '../utils/emoji-index'
 
 export default class Search extends React.Component {
   handleChange() {
-    var { input } = this.refs,
-        value = input.value
+    var value = this.input.value
 
     this.props.onSearch(emojiIndex.search(value, {
       emojisToShowFilter: this.props.emojisToShowFilter,
@@ -16,8 +15,12 @@ export default class Search extends React.Component {
     }))
   }
 
+  setRef(c) {
+    this.input = c
+  }
+
   clear() {
-    this.refs.input.value = ''
+    this.input.value = ''
   }
 
   render() {
@@ -25,7 +28,7 @@ export default class Search extends React.Component {
 
     return <div className='emoji-mart-search'>
       <input
-        ref='input'
+        ref={this.setRef.bind(this)}
         type='text'
         onChange={this.handleChange.bind(this)}
         placeholder={i18n.search}
