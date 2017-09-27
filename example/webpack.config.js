@@ -10,10 +10,10 @@ module.exports = {
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        use: 'babel-loader',
         include: [
           path.resolve('src'),
           path.resolve('node_modules/measure-scrollbar'),
@@ -23,7 +23,17 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loaders: ['babel?presets[]=react', 'svg-jsx?es6=true'],
+        use: [
+          {
+            loader: 'babel-loader'
+          },
+          {
+            loader: 'svg-jsx-loader',
+            options: {
+              es6: true
+            }
+          },
+        ],
         include: [
           path.resolve('src/svgs'),
         ],
@@ -32,7 +42,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['.js'],
   },
 
   plugins: [

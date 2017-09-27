@@ -74,7 +74,8 @@ export default class Picker extends React.Component {
       })
     }
 
-    for (let category of allCategories) {
+    for (let categoryIndex = 0; categoryIndex < allCategories.length; categoryIndex++) {
+      const category = allCategories[categoryIndex]
       let isIncluded = props.include && props.include.length ? props.include.indexOf(category.name.toLowerCase()) > -1 : true
       let isExcluded = props.exclude && props.exclude.length ? props.exclude.indexOf(category.name.toLowerCase()) > -1 : false
       if (!isIncluded || isExcluded) { continue }
@@ -82,7 +83,9 @@ export default class Picker extends React.Component {
       if (props.emojisToShowFilter) {
         let newEmojis = []
 
-        for (let emoji of category.emojis) {
+        const {emojis} = category
+        for (let emojiIndex = 0; emojiIndex < emojis.length; emojiIndex++) {
+          const emoji = emojis[emojiIndex]
           if (props.emojisToShowFilter(data.emojis[emoji] || emoji)) {
             newEmojis.push(emoji)
           }
@@ -143,10 +146,11 @@ export default class Picker extends React.Component {
   }
 
   testStickyPosition() {
-    var stickyTestElement = document.createElement('div')
-    for (let prefix of ['', '-webkit-', '-ms-', '-moz-', '-o-']) {
-      stickyTestElement.style.position = `${prefix}sticky`
-    }
+    const stickyTestElement = document.createElement('div')
+
+    const prefixes = ['', '-webkit-', '-ms-', '-moz-', '-o-']
+
+    prefixes.forEach(prefix => stickyTestElement.style.position = `${prefix}sticky`)
 
     this.hasStickyPosition = !!stickyTestElement.style.position.length
   }
@@ -155,7 +159,12 @@ export default class Picker extends React.Component {
     var { preview } = this.refs
     // Use Array.prototype.find() when it is more widely supported.
     const emojiData = CUSTOM_CATEGORY.emojis.filter(customEmoji => customEmoji.id === emoji.id)[0]
-    preview.setState({ emoji: Object.assign(emoji, emojiData) })
+    for (let key in emojiData) {
+      if (emojiData.hasOwnProperty(key)) {
+          emoji[key] = emojiData[key]
+      }
+    }
+    preview.setState({ emoji })
     clearTimeout(this.leaveTimeout)
   }
 
@@ -234,12 +243,7 @@ export default class Picker extends React.Component {
       }
 
       if (scrollTop < minTop) {
-        for (let category of this.categories) {
-          if (category.anchor === false) { continue }
-
-          activeCategory = category
-          break
-        }
+        activeCategory = this.categories.filter(category => !(category.anchor === false))[0]
       } else if (scrollTop + this.clientHeight >= this.scrollHeight) {
         activeCategory = this.categories[this.categories.length - 1]
       }

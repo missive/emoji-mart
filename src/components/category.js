@@ -77,10 +77,9 @@ export default class Category extends React.Component {
 
       if (frequentlyUsed.length) {
         emojis = frequentlyUsed.map((id) => {
-          for (let emoji of custom) {
-            if (emoji.id === id) {
-              return emoji
-            }
+          const emoji = custom.filter(e => e.id === id)[0]
+          if (emoji) {
+            return emoji
           }
 
           return id

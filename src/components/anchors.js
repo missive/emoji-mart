@@ -7,13 +7,9 @@ export default class Anchors extends React.Component {
   constructor(props) {
     super(props)
 
-    let defaultCategory = null
-    for (let category of props.categories) {
-      if (category.first) {
-        defaultCategory = category
-        break
-      }
-    }
+    const {categories} = props
+
+    const defaultCategory = categories.filter(category => category.first)[0]
 
     this.state = {
       selected: defaultCategory.name

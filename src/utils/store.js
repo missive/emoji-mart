@@ -1,5 +1,7 @@
 var NAMESPACE = 'emoji-mart'
 
+const _JSON = JSON
+
 var isLocalStorageSupported = typeof window !== 'undefined' &&
                               'localStorage' in window
 
@@ -13,7 +15,7 @@ function update(state) {
 function set(key, value) {
   if (!isLocalStorageSupported) return
   try {
-    window.localStorage[`${NAMESPACE}.${key}`] = JSON.stringify(value)
+    window.localStorage[`${NAMESPACE}.${key}`] = _JSON.stringify(value)
   } catch (e) {
   }
 }

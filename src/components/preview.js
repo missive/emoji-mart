@@ -16,16 +16,18 @@ export default class Preview extends React.Component {
 
     if (emoji) {
       var emojiData = getData(emoji),
-          { emoticons } = emojiData,
+          { emoticons = [] } = emojiData,
           knownEmoticons = [],
           listedEmoticons = []
 
-      for (let emoticon of emoticons) {
-        if (knownEmoticons.indexOf(emoticon.toLowerCase()) == -1) {
-          knownEmoticons.push(emoticon.toLowerCase())
-          listedEmoticons.push(emoticon)
+      emoticons.forEach(emoticon => {
+        if (knownEmoticons.indexOf(emoticon.toLowerCase()) >= 0) {
+          return
         }
-      }
+
+        knownEmoticons.push(emoticon.toLowerCase())
+        listedEmoticons.push(emoticon)
+      })
 
       return <div className='emoji-mart-preview'>
         <div className='emoji-mart-preview-emoji'>
