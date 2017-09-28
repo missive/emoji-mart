@@ -218,8 +218,7 @@ Apple / Google / Twitter / EmojiOne / Messenger / Facebook
 ## Development
 ```sh
 $ yarn run build:data
-$ yarn start
-$ open example/index.html
+$ yarn storybook
 ```
 
 ## 🎩 Hat tips!
