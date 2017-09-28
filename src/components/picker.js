@@ -157,6 +157,8 @@ export default class Picker extends React.Component {
 
   handleEmojiOver(emoji) {
     var { preview } = this
+    if (!preview) { return }
+
     // Use Array.prototype.find() when it is more widely supported.
     const emojiData = CUSTOM_CATEGORY.emojis.filter(customEmoji => customEmoji.id === emoji.id)[0]
     for (let key in emojiData) {
@@ -164,13 +166,16 @@ export default class Picker extends React.Component {
           emoji[key] = emojiData[key]
       }
     }
+
     preview.setState({ emoji })
     clearTimeout(this.leaveTimeout)
   }
 
   handleEmojiLeave(emoji) {
+    var { preview } = this
+    if (!preview) { return }
+
     this.leaveTimeout = setTimeout(() => {
-      var { preview } = this
       preview.setState({ emoji: null })
     }, 16)
   }
@@ -356,7 +361,7 @@ export default class Picker extends React.Component {
   }
 
   render() {
-    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, native, backgroundImageFn, emojisToShowFilter, include, exclude, autoFocus } = this.props,
+    var { perLine, emojiSize, set, sheetSize, style, title, emoji, color, native, backgroundImageFn, emojisToShowFilter, showPreview, include, exclude, autoFocus } = this.props,
         { skin } = this.state,
         width = (perLine * (emojiSize + 12)) + 12 + 2 + measureScrollbar()
 
@@ -410,7 +415,7 @@ export default class Picker extends React.Component {
         })}
       </div>
 
-      <div className='emoji-mart-bar'>
+      {showPreview && <div className='emoji-mart-bar'>
         <Preview
           ref={this.setPreviewRef.bind(this)}
           title={title}
@@ -428,7 +433,7 @@ export default class Picker extends React.Component {
             onChange: this.handleSkinChange.bind(this)
           }}
         />
-      </div>
+      </div>}
     </div>
   }
 }
@@ -448,6 +453,7 @@ Picker.propTypes = {
   backgroundImageFn: Emoji.propTypes.backgroundImageFn,
   sheetSize: Emoji.propTypes.sheetSize,
   emojisToShowFilter: PropTypes.func,
+  showPreview: PropTypes.bool,
   include: PropTypes.arrayOf(PropTypes.string),
   exclude: PropTypes.arrayOf(PropTypes.string),
   autoFocus: PropTypes.bool,
@@ -475,6 +481,7 @@ Picker.defaultProps = {
   sheetSize: Emoji.defaultProps.sheetSize,
   backgroundImageFn: Emoji.defaultProps.backgroundImageFn,
   emojisToShowFilter: null,
+  showPreview: true,
   autoFocus: false,
   custom: [],
 }

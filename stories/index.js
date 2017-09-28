@@ -22,6 +22,7 @@ storiesOf('Picker', module)
       emoji={text('Idle emoji', 'department_store')}
       skin={number('Skin tone', 1)}
       color={color('Highlight color', '#ae65c5')}
+      showPreview={boolean('Show preview', true)}
     />
   ));
 
