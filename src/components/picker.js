@@ -2,12 +2,11 @@ import '../vendor/raf-polyfill'
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import measureScrollbar from 'measure-scrollbar'
 import data from '../data'
 
 import store from '../utils/store'
 import frequently from '../utils/frequently'
-import { deepMerge } from '../utils'
+import { deepMerge, measureScrollbar } from '../utils'
 
 import { Anchors, Category, Emoji, Preview, Search } from '.'
 
