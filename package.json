@@ -67,7 +67,7 @@
     "build:dist": "npm run clean:dist && babel src --out-dir dist --copy-files --ignore webpack.config.js",
     "build": "npm run build:data && npm run build:dist",
     "watch": "babel src --watch --out-dir dist --copy-files --ignore webpack.config.js",
-    "start": "npm run watch",
+    "start": "npm run storybook",
     "stats": "webpack --config ./src/webpack.config.js --json > stats.json",
     "react:clean": "rimraf node_modules/{react,react-dom,react-addons-test-utils}",
     "react:14": "npm run react:clean && npm i react@^0.14 react-dom@^0.14 react-addons-test-utils@^0.14 --save-dev",
