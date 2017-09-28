@@ -1,7 +1,11 @@
 import { configure } from '@storybook/react';
+import { setOptions } from '@storybook/addon-options';
 
-function loadStories() {
-  require('../stories');
-}
+setOptions({
+  name: 'Contribute on GitHub',
+  url: 'https://github.com/missive/emoji-mart',
+  downPanelInRight: true,
+  sidebarAnimations: false,
+})
 
-configure(loadStories, module);
+configure(() => require('../stories'), module);

@@ -28,6 +28,7 @@
     "@storybook/addon-actions": "^3.2.11",
     "@storybook/addon-knobs": "^3.2.10",
     "@storybook/addon-links": "^3.2.10",
+    "@storybook/addon-options": "3.2.10",
     "@storybook/react": "^3.2.11",
     "babel-cli": "^6.26.0",
     "babel-core": "6.7.2",
