@@ -3,7 +3,7 @@ import '../vendor/raf-polyfill'
 import React from 'react'
 import PropTypes from 'prop-types'
 import measureScrollbar from 'measure-scrollbar'
-import data from '../../data'
+import data from '../data'
 
 import store from '../utils/store'
 import frequently from '../utils/frequently'

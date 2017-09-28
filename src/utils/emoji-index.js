@@ -1,4 +1,4 @@
-import data from '../../data'
+import data from '../data'
 import { getData, getSanitizedData, uniq } from '.'
 
 var index = {}

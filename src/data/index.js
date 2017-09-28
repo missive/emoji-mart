@@ -1,5 +1,5 @@
-var buildSearch = require('../src/utils/build-search')
-var data = require('./data')
+import buildSearch from '../utils/build-search'
+import data from './data'
 
 function uncompress (list) {
   for (var short_name in list) {
@@ -29,4 +29,4 @@ function uncompress (list) {
 uncompress(data.emojis)
 uncompress(data.skins)
 
-module.exports = data
+export default data

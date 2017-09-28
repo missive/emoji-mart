@@ -1,5 +1,5 @@
 import buildSearch from './build-search'
-import data from '../../data'
+import data from '../data'
 import stringFromCodePoint from '../polyfills/stringFromCodePoint'
 
 const _JSON = JSON

@@ -61,11 +61,10 @@
     "webpack": "^3.6.0"
   },
   "scripts": {
-    "clean": "rimraf data/data.js dist/",
-    "clean:dist": "rm -rf dist/",
+    "clean": "rm -rf dist/",
     "build:data": "node scripts/build-data",
-    "build:dist": "npm run clean:dist && babel src --out-dir dist --copy-files --ignore webpack.config.js",
-    "build": "npm run build:data && npm run build:dist",
+    "build:dist": "npm run clean && babel src --out-dir dist --copy-files --ignore webpack.config.js",
+    "build": "npm run build:dist && npm run build:data",
     "watch": "babel src --watch --out-dir dist --copy-files --ignore webpack.config.js",
     "start": "npm run storybook",
     "stats": "webpack --config ./src/webpack.config.js --json > stats.json",
