@@ -1,5 +1,8 @@
 import buildSearch from './build-search'
 import data from '../../data'
+import stringFromCodePoint from '../polyfills/stringFromCodePoint'
+
+const _JSON = JSON
 
 const COLONS_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/
 const SKINS = [
@@ -11,7 +14,7 @@ function unifiedToNative(unified) {
   var unicodes = unified.split('-'),
       codePoints = unicodes.map((u) => `0x${u}`)
 
-  return String.fromCodePoint(...codePoints)
+  return stringFromCodePoint.apply(null, codePoints)
 }
 
 function sanitize(emoji) {
@@ -96,7 +99,7 @@ function getData(emoji, skin, set) {
   emojiData.variations || (emojiData.variations = [])
 
   if (emojiData.skin_variations && skin > 1 && set) {
-    emojiData = JSON.parse(JSON.stringify(emojiData))
+    emojiData = JSON.parse(_JSON.stringify(emojiData))
 
     var skinKey = SKINS[skin - 1],
         variationData = emojiData.skin_variations[skinKey]
@@ -116,23 +119,27 @@ function getData(emoji, skin, set) {
   }
 
   if (emojiData.variations && emojiData.variations.length) {
-    emojiData = JSON.parse(JSON.stringify(emojiData))
+    emojiData = JSON.parse(_JSON.stringify(emojiData))
     emojiData.unified = emojiData.variations.shift()
   }
 
   return emojiData
 }
 
+function uniq(arr) {
+  return arr.reduce((acc, item) => {
+    if (acc.indexOf(item) === -1) {
+      acc.push(item)
+    }
+    return acc
+  }, [])
+}
+
 function intersect(a, b) {
-  var aSet = new Set(a),
-      bSet = new Set(b),
-      intersection = null
+  const uniqA = uniq(a)
+  const uniqB = uniq(b)
 
-  intersection = new Set(
-    [...aSet].filter(x => bSet.has(x))
-  )
-
-  return Array.from(intersection)
+  return uniqA.filter(item => uniqB.indexOf(item) >= 0)
 }
 
 function deepMerge(a, b) {
@@ -156,4 +163,11 @@ function deepMerge(a, b) {
   return o
 }
 
-export { getData, getSanitizedData, intersect, deepMerge, unifiedToNative }
+export {
+  getData,
+  getSanitizedData,
+  uniq,
+  intersect,
+  deepMerge,
+  unifiedToNative
+}

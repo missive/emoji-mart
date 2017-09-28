@@ -18,10 +18,10 @@ var config = {
   externals: [],
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        use: 'babel-loader',
         include: [
           path.resolve('src'),
           path.resolve('node_modules/measure-scrollbar'),
@@ -30,7 +30,17 @@ var config = {
       },
       {
         test: /\.svg$/,
-        loaders: ['babel-loader?presets[]=react', 'svg-jsx-loader?es6=true'],
+        use: [
+          {
+            loader: 'babel-loader'
+          },
+          {
+            loader: 'svg-jsx-loader',
+            options: {
+                es6: true
+            }
+          },
+        ],
         include: [
           path.resolve('src/svgs'),
         ],

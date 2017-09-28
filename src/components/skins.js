@@ -24,23 +24,31 @@ export default class Skins extends React.Component {
   }
 
   render() {
-    var { skin } = this.props,
-        { opened } = this.state
+    const { skin } = this.props
+    const { opened } = this.state
+
+    const skinToneNodes = []
+
+    for (let i = 0; i < 6; i++) {
+      const skinTone = i + 1
+      const selected = skinTone == skin
+
+      skinToneNodes.push(
+        <span
+          key={`skin-tone-${skinTone}`}
+          className={`emoji-mart-skin-swatch ${selected ? 'emoji-mart-skin-swatch-selected' : ''}`}
+        >
+          <span
+            onClick={() => this.handleClick(skinTone)}
+            className={`emoji-mart-skin emoji-mart-skin-tone-${skinTone}`}>
+          </span>
+        </span>
+      )
+    }
 
     return <div>
       <div className={`emoji-mart-skin-swatches ${opened ? 'emoji-mart-skin-swatches-opened' : ''}`}>
-        {/* Use Array.prototype.fill() when it is more widely supported. */}
-        {[...Array(6)].map((_, i) => {
-          var skinTone = i + 1,
-              selected = skinTone == skin
-
-          return <span key={`skin-tone-${skinTone}`} className={`emoji-mart-skin-swatch ${selected ? 'emoji-mart-skin-swatch-selected' : ''}`}>
-            <span
-              onClick={() => this.handleClick(skinTone)}
-              className={`emoji-mart-skin emoji-mart-skin-tone-${skinTone}`}>
-            </span>
-          </span>
-        })}
+        {skinToneNodes}
       </div>
     </div>
   }
