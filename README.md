@@ -140,7 +140,7 @@ import { Emoji } from 'emoji-mart'
 | **onOver** | | | Params: `(emoji, event) => {}` |
 | **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'emojione'` |
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
-| **backgroundImageFn** | | ```((set, sheetSize) => `https://unpkg.com/emoji-datasource@2.4.4/sheet_${set}_${sheetSize}.png`)``` | A Fn that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
+| **backgroundImageFn** | | ```((set, sheetSize) => `https://unpkg.com/emoji-datasource@3.0.0/sheet_${set}_${sheetSize}.png`)``` | A Fn that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **skin** | | `1` | Skin color: `1, 2, 3, 4, 5, 6` |
 
 ## Custom emojis
