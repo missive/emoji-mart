@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, text, boolean, number, select, color } from '@storybook/addon-knobs';
 
-import { Picker, Emoji } from '../src';
+import { Picker, Emoji, emojiIndex } from '../src';
 import '../css/emoji-mart.css';
 
 const SETS = ['apple', 'google', 'twitter', 'emojione', 'messenger', 'facebook']
@@ -51,4 +51,14 @@ storiesOf('Emoji', module)
       size={number('Emoji size', 64)}
       skin={number('Skin tone', 1)}
     />
+  ));
+
+storiesOf('Headless Search', module)
+  .addDecorator(withKnobs)
+  .add('default', () => (
+    <div>
+      {emojiIndex.search(text('Search', 'christmas')).map((o) => {
+        return <span style={{ fontSize: '2em', marginLeft: '.2em' }}>{o.native}</span>
+      })}
+    </div>
   ));
