@@ -8,6 +8,20 @@ import { Picker, Emoji } from '../src';
 import '../css/emoji-mart.css';
 
 const SETS = ['apple', 'google', 'twitter', 'emojione', 'messenger', 'facebook']
+const CUSTOM_EMOJIS = [
+  {
+    name: 'Octocat',
+    short_names: ['octocat'],
+    keywords: ['github'],
+    imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'
+  },
+  {
+    name: 'Squirrel',
+    short_names: ['shipit', 'squirrel'],
+    keywords: ['github'],
+    imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/shipit.png?v7'
+  }
+]
 
 storiesOf('Picker', module)
   .addDecorator(withKnobs)
@@ -23,6 +37,7 @@ storiesOf('Picker', module)
       skin={number('Skin tone', 1)}
       color={color('Highlight color', '#ae65c5')}
       showPreview={boolean('Show preview', true)}
+      custom={CUSTOM_EMOJIS}
     />
   ));
 
