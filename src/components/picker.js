@@ -189,6 +189,7 @@ export default class Picker extends React.Component {
       component.forceUpdate()
 
       window.requestAnimationFrame(() => {
+        if (!this.scroll) return
         component.memoizeSize()
         if (maxMargin == component.maxMargin) return
 
