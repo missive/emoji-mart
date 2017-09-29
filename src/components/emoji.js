@@ -80,7 +80,7 @@ const Emoji = (props) => {
       height: props.size,
       display: 'inline-block',
       backgroundImage: `url(${imageUrl})`,
-      backgroundSize: '100%',
+      backgroundSize: 'cover',
     }
   } else {
     let setHasEmoji = _getData(props)[`has_img_${props.set}`]
