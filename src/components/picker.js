@@ -61,7 +61,7 @@ export default class Picker extends React.Component {
     this.hideRecent = true
 
     if (props.include != undefined) {
-      data.categories.sort((a, b) => {
+      allCategories.sort((a, b) => {
         let aName = a.name.toLowerCase()
         let bName = b.name.toLowerCase()
 
