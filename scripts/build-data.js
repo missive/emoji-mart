@@ -134,7 +134,11 @@ emojiData.forEach((datum) => {
 })
 
 var flags = data.categories[categoriesIndex['Flags']]
-flags.emojis.sort()
+flags.emojis = flags.emojis.filter((flag) => {
+  // Until browsers support Flag UN
+  if (flag == 'flag-un') return
+  return true
+}).sort()
 
 const stringified = JSON.stringify(data).replace(/\"([A-Za-z_]+)\":/g, '$1:')
 fs.writeFile('dist/data/data.js', `module.exports = ${stringified}`, (err) => {
