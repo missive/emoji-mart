@@ -58,7 +58,7 @@ storiesOf('Headless Search', module)
   .add('default', () => (
     <div>
       {emojiIndex.search(text('Search', 'christmas')).map((o) => {
-        return <span style={{ fontSize: '2em', marginLeft: '.2em' }}>{o.native}</span>
+        return <span key={o.id} style={{ fontSize: '2em', marginLeft: '.2em' }}>{o.native}</span>
       })}
     </div>
   ));
