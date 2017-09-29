@@ -56,13 +56,15 @@ const Emoji = (props) => {
 
   var { unified, custom, imageUrl } = _getData(props),
       style = {},
-      children = props.children
+      children = props.children,
+      className = 'emoji-mart-emoji'
 
   if (!unified && !custom) {
     return null
   }
 
   if (props.native && unified) {
+    className += ' emoji-mart-emoji-native'
     style = { fontSize: props.size }
     children = unifiedToNative(unified)
 
@@ -72,6 +74,7 @@ const Emoji = (props) => {
       style.height = props.size
     }
   } else if (custom) {
+    className += ' emoji-mart-emoji-custom'
     style = {
       width: props.size,
       height: props.size,
@@ -101,7 +104,7 @@ const Emoji = (props) => {
     onClick={(e) => _handleClick(e, props)}
     onMouseEnter={(e) => _handleOver(e, props)}
     onMouseLeave={(e) => _handleLeave(e, props)}
-    className='emoji-mart-emoji'>
+    className={className}>
     <span style={style}>{children}</span>
   </span>
 }
