@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Emoji, Skins } from '.'
 import { getData } from '../utils'
 
-export default class Preview extends React.Component {
+export default class Preview extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = { emoji: null }
@@ -31,11 +31,7 @@ export default class Preview extends React.Component {
 
       return <div className='emoji-mart-preview'>
         <div className='emoji-mart-preview-emoji'>
-          {Emoji({
-            key: emoji.id,
-            emoji: emoji,
-            ...emojiProps,
-          })}
+          <Emoji key={emoji.id} emoji={emoji} {...emojiProps} />
         </div>
 
         <div className='emoji-mart-preview-data'>
@@ -55,10 +51,7 @@ export default class Preview extends React.Component {
     } else {
       return <div className='emoji-mart-preview'>
         <div className='emoji-mart-preview-emoji'>
-          {idleEmoji && idleEmoji.length && Emoji({
-            emoji: idleEmoji,
-            ...emojiProps,
-          })}
+          {idleEmoji && idleEmoji.length && <Emoji emoji={idleEmoji} {...emojiProps} />}
         </div>
 
         <div className='emoji-mart-preview-data'>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import * as SVGs from '../svgs'
 
-export default class Anchors extends React.Component {
+export default class Anchors extends React.PureComponent {
   constructor(props) {
     super(props)
 
@@ -14,6 +14,15 @@ export default class Anchors extends React.Component {
     this.state = {
       selected: defaultCategory.name
     }
+
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick (e) {
+    var index = e.currentTarget.getAttribute('data-index')
+    var { categories, onAnchorClick } = this.props
+
+    onAnchorClick(categories[index], index)
   }
 
   render() {
@@ -34,7 +43,8 @@ export default class Anchors extends React.Component {
           <span
             key={name}
             title={i18n.categories[name.toLowerCase()]}
-            onClick={() => onAnchorClick(category, i)}
+            data-index={i}
+            onClick={this.handleClick}
             className={`emoji-mart-anchor ${isSelected ? 'emoji-mart-anchor-selected' : ''}`}
             style={{ color: isSelected ? color : null }}
           >

@@ -33,7 +33,7 @@ const I18N = {
   },
 }
 
-export default class Picker extends React.Component {
+export default class Picker extends React.PureComponent {
   constructor(props) {
     super(props)
 
@@ -116,6 +116,19 @@ export default class Picker extends React.Component {
     }
 
     this.categories.unshift(SEARCH_CATEGORY)
+
+    this.setAnchorsRef     = this.setAnchorsRef.bind(this)
+    this.handleAnchorClick = this.handleAnchorClick.bind(this)
+    this.setSearchRef      = this.setSearchRef.bind(this)
+    this.handleSearch      = this.handleSearch.bind(this)
+    this.setScrollRef      = this.setScrollRef.bind(this)
+    this.handleScroll      = this.handleScroll.bind(this)
+    this.handleScrollPaint = this.handleScrollPaint.bind(this)
+    this.handleEmojiOver   = this.handleEmojiOver.bind(this)
+    this.handleEmojiLeave  = this.handleEmojiLeave.bind(this)
+    this.handleEmojiClick  = this.handleEmojiClick.bind(this)
+    this.setPreviewRef     = this.setPreviewRef.bind(this)
+    this.handleSkinChange  = this.handleSkinChange.bind(this)
   }
 
   componentWillReceiveProps(props) {
@@ -206,7 +219,7 @@ export default class Picker extends React.Component {
   handleScroll() {
     if (!this.waitingForPaint) {
       this.waitingForPaint = true
-      window.requestAnimationFrame(this.handleScrollPaint.bind(this))
+      window.requestAnimationFrame(this.handleScrollPaint)
     }
   }
 
@@ -368,17 +381,17 @@ export default class Picker extends React.Component {
     return <div style={{width: width, ...style}} className='emoji-mart'>
       <div className='emoji-mart-bar'>
         <Anchors
-          ref={this.setAnchorsRef.bind(this)}
+          ref={this.setAnchorsRef}
           i18n={this.i18n}
           color={color}
           categories={this.categories}
-          onAnchorClick={this.handleAnchorClick.bind(this)}
+          onAnchorClick={this.handleAnchorClick}
         />
       </div>
 
       <Search
-        ref={this.setSearchRef.bind(this)}
-        onSearch={this.handleSearch.bind(this)}
+        ref={this.setSearchRef}
+        onSearch={this.handleSearch}
         i18n={this.i18n}
         emojisToShowFilter={emojisToShowFilter}
         include={include}
@@ -387,7 +400,7 @@ export default class Picker extends React.Component {
         autoFocus={autoFocus}
       />
 
-      <div ref={this.setScrollRef.bind(this)} className='emoji-mart-scroll' onScroll={this.handleScroll.bind(this)}>
+      <div ref={this.setScrollRef} className='emoji-mart-scroll' onScroll={this.handleScroll}>
         {this.getCategories().map((category, i) => {
           return <Category
             ref={this.setCategoryRef.bind(this, `category-${i}`)}
@@ -407,9 +420,9 @@ export default class Picker extends React.Component {
               sheetSize: sheetSize,
               forceSize: native,
               backgroundImageFn: backgroundImageFn,
-              onOver: this.handleEmojiOver.bind(this),
-              onLeave: this.handleEmojiLeave.bind(this),
-              onClick: this.handleEmojiClick.bind(this),
+              onOver: this.handleEmojiOver,
+              onLeave: this.handleEmojiLeave,
+              onClick: this.handleEmojiClick,
             }}
           />
         })}
@@ -417,7 +430,7 @@ export default class Picker extends React.Component {
 
       {showPreview && <div className='emoji-mart-bar'>
         <Preview
-          ref={this.setPreviewRef.bind(this)}
+          ref={this.setPreviewRef}
           title={title}
           emoji={emoji}
           emojiProps={{
@@ -430,7 +443,7 @@ export default class Picker extends React.Component {
           }}
           skinsProps={{
             skin: skin,
-            onChange: this.handleSkinChange.bind(this)
+            onChange: this.handleSkinChange
           }}
         />
       </div>}
