@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import * as SVGs from '../svgs'
+import SVGs from '../svgs'
 
 export default class Anchors extends React.Component {
   constructor(props) {
@@ -23,8 +23,7 @@ export default class Anchors extends React.Component {
     return <div className='emoji-mart-anchors'>
       {categories.map((category, i) => {
         var { name, anchor } = category,
-            isSelected = name == selected,
-            SVGElement = SVGs[name]
+            isSelected = name == selected
 
         if (anchor === false) {
           return null
@@ -38,7 +37,7 @@ export default class Anchors extends React.Component {
             className={`emoji-mart-anchor ${isSelected ? 'emoji-mart-anchor-selected' : ''}`}
             style={{ color: isSelected ? color : null }}
           >
-            <SVGElement />
+            <div dangerouslySetInnerHTML={{ __html: SVGs[name] }}></div>
             <span className='emoji-mart-anchor-bar' style={{ backgroundColor: color }}></span>
           </span>
         )
