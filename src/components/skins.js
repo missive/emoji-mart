@@ -1,16 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default class Skins extends React.Component {
+export default class Skins extends React.PureComponent {
   constructor(props) {
     super(props)
 
     this.state = {
       opened: false,
     }
+
+    this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick(skin) {
+  handleClick(e) {
+    var skin = e.currentTarget.getAttribute('data-skin')
     var { onChange } = this.props
 
     if (!this.state.opened) {
@@ -39,9 +42,9 @@ export default class Skins extends React.Component {
           className={`emoji-mart-skin-swatch ${selected ? 'emoji-mart-skin-swatch-selected' : ''}`}
         >
           <span
-            onClick={() => this.handleClick(skinTone)}
-            className={`emoji-mart-skin emoji-mart-skin-tone-${skinTone}`}>
-          </span>
+            onClick={this.handleClick}
+            data-skin={skinTone}
+            className={`emoji-mart-skin emoji-mart-skin-tone-${skinTone}`} />
         </span>
       )
     }

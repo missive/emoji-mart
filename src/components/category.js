@@ -5,6 +5,13 @@ import frequently from '../utils/frequently'
 import { Emoji } from '.'
 
 export default class Category extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.setContainerRef = this.setContainerRef.bind(this)
+    this.setLabelRef = this.setLabelRef.bind(this)
+  }
+
   componentDidMount() {
     this.parent = this.container.parentNode
 
@@ -133,29 +140,26 @@ export default class Category extends React.Component {
       }
     }
 
-    return <div ref={this.setContainerRef.bind(this)} className={`emoji-mart-category ${emojis && !emojis.length ? 'emoji-mart-no-results' : ''}`} style={containerStyles}>
+    return <div ref={this.setContainerRef} className={`emoji-mart-category ${emojis && !emojis.length ? 'emoji-mart-no-results' : ''}`} style={containerStyles}>
       <div style={labelStyles} data-name={name} className='emoji-mart-category-label'>
-        <span style={labelSpanStyles} ref={this.setLabelRef.bind(this)}>{i18n.categories[name.toLowerCase()]}</span>
+        <span style={labelSpanStyles} ref={this.setLabelRef}>{i18n.categories[name.toLowerCase()]}</span>
       </div>
 
       {emojis && emojis.map((emoji) =>
-        Emoji({
-          emoji: emoji,
-          ...emojiProps
-        })
+        Emoji({ emoji: emoji, ...emojiProps })
       )}
 
       {emojis && !emojis.length &&
         <div>
           <div>
-          {Emoji({
-            ...emojiProps,
-            size: 38,
-            emoji: 'sleuth_or_spy',
-            onOver: null,
-            onLeave: null,
-            onClick: null,
-          })}
+            {Emoji({
+              ...emojiProps,
+              size: 38,
+              emoji: 'sleuth_or_spy',
+              onOver: null,
+              onLeave: null,
+              onClick: null,
+            })}
           </div>
 
           <div className='emoji-mart-no-results-label'>

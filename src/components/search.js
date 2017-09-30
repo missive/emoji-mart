@@ -2,7 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import emojiIndex from '../utils/emoji-index'
 
-export default class Search extends React.Component {
+export default class Search extends React.PureComponent {
+  constructor (props) {
+    super(props)
+
+    this.setRef = this.setRef.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
   handleChange() {
     var value = this.input.value
 
@@ -28,9 +35,9 @@ export default class Search extends React.Component {
 
     return <div className='emoji-mart-search'>
       <input
-        ref={this.setRef.bind(this)}
+        ref={this.setRef}
         type='text'
-        onChange={this.handleChange.bind(this)}
+        onChange={this.handleChange}
         placeholder={i18n.search}
         autoFocus={autoFocus}
       />
