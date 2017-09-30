@@ -21,8 +21,6 @@ function uncompress (list) {
       keywords: datum.keywords,
       emoticons: datum.emoticons
     })
-
-    datum.search = datum.search.join(',')
   }
 }
 

@@ -73,17 +73,6 @@ function getData(emoji, skin, set) {
     if (data.emojis.hasOwnProperty(emoji)) {
       emojiData = data.emojis[emoji]
     }
-  } else if (emoji.custom) {
-    emojiData = emoji
-
-    emojiData.search = buildSearch({
-      short_names: emoji.short_names,
-      name: emoji.name,
-      keywords: emoji.keywords,
-      emoticons: emoji.emoticons
-    })
-
-    emojiData.search = emojiData.search.join(',')
   } else if (emoji.id) {
     if (data.short_names.hasOwnProperty(emoji.id)) {
       emoji.id = data.short_names[emoji.id]
@@ -92,6 +81,15 @@ function getData(emoji, skin, set) {
     if (data.emojis.hasOwnProperty(emoji.id)) {
       emojiData = data.emojis[emoji.id]
       skin || (skin = emoji.skin)
+    }
+  }
+
+  if (!Object.keys(emojiData).length) {
+    emojiData = emoji
+    emojiData.custom = true
+
+    if (!emojiData.search) {
+      emojiData.search = buildSearch(emoji)
     }
   }
 

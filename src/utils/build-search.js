@@ -22,5 +22,5 @@ module.exports = data => {
   addToSearch(data.keywords, false)
   addToSearch(data.emoticons, false)
 
-  return search
+  return search.join(',')
 }
