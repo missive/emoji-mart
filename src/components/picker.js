@@ -2,12 +2,11 @@ import '../vendor/raf-polyfill'
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import measureScrollbar from 'measure-scrollbar'
-import data from '../../data'
+import data from '../data'
 
 import store from '../utils/store'
 import frequently from '../utils/frequently'
-import { deepMerge } from '../utils'
+import { deepMerge, measureScrollbar } from '../utils'
 
 import { Anchors, Category, Emoji, Preview, Search } from '.'
 
@@ -62,7 +61,7 @@ export default class Picker extends React.PureComponent {
     this.hideRecent = true
 
     if (props.include != undefined) {
-      data.categories.sort((a, b) => {
+      allCategories.sort((a, b) => {
         let aName = a.name.toLowerCase()
         let bName = b.name.toLowerCase()
 
@@ -203,6 +202,7 @@ export default class Picker extends React.PureComponent {
       component.forceUpdate()
 
       window.requestAnimationFrame(() => {
+        if (!this.scroll) return
         component.memoizeSize()
         if (maxMargin == component.maxMargin) return
 

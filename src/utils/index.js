@@ -1,5 +1,5 @@
 import buildSearch from './build-search'
-import data from '../../data'
+import data from '../data'
 import stringFromCodePoint from '../polyfills/stringFromCodePoint'
 
 const _JSON = JSON
@@ -73,17 +73,6 @@ function getData(emoji, skin, set) {
     if (data.emojis.hasOwnProperty(emoji)) {
       emojiData = data.emojis[emoji]
     }
-  } else if (emoji.custom) {
-    emojiData = emoji
-
-    emojiData.search = buildSearch({
-      short_names: emoji.short_names,
-      name: emoji.name,
-      keywords: emoji.keywords,
-      emoticons: emoji.emoticons
-    })
-
-    emojiData.search = emojiData.search.join(',')
   } else if (emoji.id) {
     if (data.short_names.hasOwnProperty(emoji.id)) {
       emoji.id = data.short_names[emoji.id]
@@ -92,6 +81,15 @@ function getData(emoji, skin, set) {
     if (data.emojis.hasOwnProperty(emoji.id)) {
       emojiData = data.emojis[emoji.id]
       skin || (skin = emoji.skin)
+    }
+  }
+
+  if (!Object.keys(emojiData).length) {
+    emojiData = emoji
+    emojiData.custom = true
+
+    if (!emojiData.search) {
+      emojiData.search = buildSearch(emoji)
     }
   }
 
@@ -163,11 +161,29 @@ function deepMerge(a, b) {
   return o
 }
 
+// https://github.com/sonicdoe/measure-scrollbar
+function measureScrollbar() {
+  const div = document.createElement('div')
+
+  div.style.width = '100px'
+  div.style.height = '100px'
+  div.style.overflow = 'scroll'
+  div.style.position = 'absolute'
+  div.style.top = '-9999px'
+
+  document.body.appendChild(div)
+  const scrollbarWidth = div.offsetWidth - div.clientWidth
+  document.body.removeChild(div)
+
+  return scrollbarWidth
+}
+
 export {
   getData,
   getSanitizedData,
   uniq,
   intersect,
   deepMerge,
-  unifiedToNative
+  unifiedToNative,
+  measureScrollbar
 }

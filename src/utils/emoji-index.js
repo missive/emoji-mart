@@ -1,11 +1,10 @@
-import data from '../../data'
+import data from '../data'
 import { getData, getSanitizedData, uniq } from '.'
 
+var originalPool = {}
 var index = {}
 var emojisList = {}
 var emoticonsList = {}
-var previousInclude = []
-var previousExclude = []
 
 for (let emoji in data.emojis) {
   let emojiData = data.emojis[emoji],
@@ -23,27 +22,29 @@ for (let emoji in data.emojis) {
   }
 
   emojisList[id] = getSanitizedData(id)
+  originalPool[id] = emojiData
+}
+
+function addCustomToPool(custom, pool) {
+  custom.forEach((emoji) => {
+    let emojiId = emoji.id || emoji.short_names[0]
+
+    if (emojiId && !pool[emojiId]) {
+      pool[emojiId] = getData(emoji)
+      emojisList[emojiId] = getSanitizedData(emoji)
+    }
+  })
 }
 
 function search(value, { emojisToShowFilter, maxResults, include, exclude, custom = [] } = {}) {
+  addCustomToPool(custom, originalPool)
+
   maxResults || (maxResults = 75)
   include || (include = [])
   exclude || (exclude = [])
 
-  custom.forEach(emoji => {
-    data.emojis[emoji.id] = getData(emoji)
-    emojisList[emoji.id] = getSanitizedData(emoji)
-  })
-
-  if (custom.length) {
-    data.categories.push({
-      name: 'Custom',
-      emojis: custom.map(emoji => emoji.id)
-    })
-  }
-
   var results = null,
-      pool = data.emojis
+      pool = originalPool
 
   if (value.length) {
     if (value == '-' || value == '-1') {
@@ -60,12 +61,6 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
     if (include.length || exclude.length) {
       pool = {}
 
-      if (previousInclude != include.sort().join(',') || previousExclude != exclude.sort().join(',')) {
-        previousInclude = include.sort().join(',')
-        previousExclude = exclude.sort().join(',')
-        index = {}
-      }
-
       data.categories.forEach(category => {
         let isIncluded = include && include.length ? include.indexOf(category.name.toLowerCase()) > -1 : true
         let isExcluded = exclude && exclude.length ? exclude.indexOf(category.name.toLowerCase()) > -1 : false
@@ -75,8 +70,14 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
 
         category.emojis.forEach(emojiId => pool[emojiId] = data.emojis[emojiId])
       })
-    } else if (previousInclude.length || previousExclude.length) {
-      index = {}
+
+      if (custom.length) {
+        let customIsIncluded = include && include.length ? include.indexOf('custom') > -1 : true
+        let customIsExcluded = exclude && exclude.length ? exclude.indexOf('custom') > -1 : false
+        if (customIsIncluded && !customIsExcluded) {
+          addCustomToPool(custom, pool)
+        }
+      }
     }
 
     allResults = values.map((value) => {

@@ -1,6 +1,6 @@
 {
   "name": "emoji-mart",
-  "version": "1.0.1",
+  "version": "2.0.1",
   "description": "Customizable Slack-like emoji picker for React",
   "main": "dist/index.js",
   "repository": {
@@ -61,13 +61,12 @@
     "webpack": "^3.6.0"
   },
   "scripts": {
-    "clean": "rimraf data/data.js dist/",
-    "clean:dist": "rm -rf dist/",
+    "clean": "rm -rf dist/",
     "build:data": "node scripts/build-data",
-    "build:dist": "npm run clean:dist && babel src --out-dir dist --copy-files --ignore webpack.config.js",
-    "build": "npm run build:data && npm run build:dist",
+    "build:dist": "npm run clean && babel src --out-dir dist --copy-files --ignore webpack.config.js",
+    "build": "npm run build:dist && npm run build:data",
     "watch": "babel src --watch --out-dir dist --copy-files --ignore webpack.config.js",
-    "start": "npm run storybook",
+    "start": "npm run watch",
     "stats": "webpack --config ./src/webpack.config.js --json > stats.json",
     "react:clean": "rimraf node_modules/{react,react-dom,react-addons-test-utils}",
     "react:14": "npm run react:clean && npm i react@^0.14 react-dom@^0.14 react-addons-test-utils@^0.14 --save-dev",

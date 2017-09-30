@@ -3879,10 +3879,6 @@ md5.js@^1.3.4:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
-measure-scrollbar@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/measure-scrollbar/-/measure-scrollbar-1.0.0.tgz#a7b1019155671192c1a8587ea49669af4f75833d"
-
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
