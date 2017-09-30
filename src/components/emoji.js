@@ -23,98 +23,87 @@ const _getSanitizedData = (props) => {
   return getSanitizedData(emoji, skin, set)
 }
 
-export default class Emoji extends React.PureComponent {
+const _handleClick = (e, props) => {
+  if (!props.onClick) { return }
+  var { onClick } = props,
+      emoji = _getSanitizedData(props)
 
-  constructor (props) {
-    super(props)
+  onClick(emoji, e)
+}
 
-    this.handleClick = this.handleClick.bind(this)
-    this.handleEnter = this.handleEnter.bind(this)
-    this.handleLeave = this.handleLeave.bind(this)
+const _handleOver = (e, props) => {
+  if (!props.onOver) { return }
+  var { onOver } = props,
+      emoji = _getSanitizedData(props)
+
+  onOver(emoji, e)
+}
+
+const _handleLeave = (e, props) => {
+  if (!props.onLeave) { return }
+  var { onLeave } = props,
+      emoji = _getSanitizedData(props)
+
+  onLeave(emoji, e)
+}
+
+const Emoji = (props) => {
+  for (let k in Emoji.defaultProps) {
+    if (props[k] == undefined && Emoji.defaultProps[k] != undefined) {
+      props[k] = Emoji.defaultProps[k]
+    }
   }
 
-  handleClick (e) {
-    if (!this.props.onClick) { return }
+  var { unified, custom, imageUrl } = _getData(props),
+      style = {},
+      children = props.children
 
-    const { onClick } = this.props,
-        emoji = _getSanitizedData(this.props)
-
-    onClick(emoji, e)
+  if (!unified && !custom) {
+    return null
   }
 
-  handleEnter (e) {
-    if (!this.props.onOver) { return }
+  if (props.native && unified) {
+    style = { fontSize: props.size }
+    children = unifiedToNative(unified)
 
-    const { onOver } = this.props,
-        emoji = _getSanitizedData(this.props)
+    if (props.forceSize) {
+      style.display = 'inline-block'
+      style.width = props.size
+      style.height = props.size
+    }
+  } else if (custom) {
+    style = {
+      width: props.size,
+      height: props.size,
+      display: 'inline-block',
+      backgroundImage: `url(${imageUrl})`,
+      backgroundSize: '100%',
+    }
+  } else {
+    let setHasEmoji = _getData(props)[`has_img_${props.set}`]
 
-    onOver(emoji, e)
-  }
-
-  handleLeave (e) {
-    if (!this.props.onLeave) { return }
-
-    const { onLeave } = this.props,
-        emoji = _getSanitizedData(this.props)
-
-    onLeave(emoji, e)
-  }
-
-  render () {
-    var props = this.props;
-
-    var { unified, custom, imageUrl } = _getData(props),
-        style = {},
-        children = props.children
-
-    if (!unified && !custom) {
+    if (!setHasEmoji) {
       return null
     }
 
-    if (props.native && unified) {
-      style = { fontSize: props.size }
-      children = unifiedToNative(unified)
-
-      if (props.forceSize) {
-        style.display = 'inline-block'
-        style.width = props.size
-        style.height = props.size
-      }
-    } else if (custom) {
-      style = {
-        width: props.size,
-        height: props.size,
-        display: 'inline-block',
-        backgroundImage: `url(${imageUrl})`,
-        backgroundSize: '100%',
-      }
-    } else {
-      let setHasEmoji = _getData(props)[`has_img_${props.set}`]
-
-      if (!setHasEmoji) {
-        return null
-      }
-
-      style = {
-        width: props.size,
-        height: props.size,
-        display: 'inline-block',
-        backgroundImage: `url(${props.backgroundImageFn(props.set, props.sheetSize)})`,
-        backgroundSize: `${100 * SHEET_COLUMNS}%`,
-        backgroundPosition: _getPosition(props),
-      }
+    style = {
+      width: props.size,
+      height: props.size,
+      display: 'inline-block',
+      backgroundImage: `url(${props.backgroundImageFn(props.set, props.sheetSize)})`,
+      backgroundSize: `${100 * SHEET_COLUMNS}%`,
+      backgroundPosition: _getPosition(props),
     }
-
-    return <span
-      key={props.emoji.id || props.emoji}
-      onClick={this.handleClick}
-      onMouseEnter={this.handleEnter}
-      onMouseLeave={this.handleLeave}
-      className='emoji-mart-emoji'>
-      <span style={style}>{children}</span>
-    </span>
   }
 
+  return <span
+    key={props.emoji.id || props.emoji}
+    onClick={(e) => _handleClick(e, props)}
+    onMouseEnter={(e) => _handleOver(e, props)}
+    onMouseLeave={(e) => _handleLeave(e, props)}
+    className='emoji-mart-emoji'>
+    <span style={style}>{children}</span>
+  </span>
 }
 
 Emoji.propTypes = {
@@ -145,3 +134,5 @@ Emoji.defaultProps = {
   onLeave: (() => {}),
   onClick: (() => {}),
 }
+
+export default Emoji
