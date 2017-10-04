@@ -1,6 +1,6 @@
 const _Object = Object
 
-module.exports = _Object.assign || function (target) {
+export default _Object.assign || function (target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i];
 

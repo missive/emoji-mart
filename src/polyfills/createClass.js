@@ -1,6 +1,6 @@
 const _Object = Object
 
-module.exports = function createClass() {
+export default (function createClass() {
   function defineProperties(target, props) {
     for (var i = 0; i < props.length; i++) {
       var descriptor = props[i];
@@ -16,4 +16,4 @@ module.exports = function createClass() {
     if (staticProps) defineProperties(Constructor, staticProps);
     return Constructor;
   };
-}();
+}());
