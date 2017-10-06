@@ -30,7 +30,7 @@ describe('#emojiIndex', () => {
     })
 
     it('can search for woman-facepalming', () => {
-      expect(emojiIndex.search('woman-facep').map(x => x.id)).toEqual(['woman-facepalming');
+      expect(emojiIndex.search('woman-facep').map(x => x.id)).toEqual(['woman-facepalming']);
     })
   });
 });
