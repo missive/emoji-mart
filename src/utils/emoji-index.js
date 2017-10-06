@@ -1,5 +1,5 @@
 import data from '../data'
-import { getData, getSanitizedData, uniq } from '.'
+import { getData, getSanitizedData, intersect } from '.'
 
 var originalPool = {}
 var index = {}
@@ -130,7 +130,7 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
     }).filter(a => a)
 
     if (allResults.length > 1) {
-      results = uniq(allResults)
+      results = intersect.apply(null, allResults)
     } else if (allResults.length) {
       results = allResults[0]
     } else {
