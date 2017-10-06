@@ -24,5 +24,13 @@ describe('#emojiIndex', () => {
       expect(emojiIndex.search('flag', { include: ['people'] }))
         .toEqual([])
     })
+
+    it('can search for thinking_face', () => {
+      expect(emojiIndex.search('thinking_fac').map(x => x.id)).toEqual(['thinking_face'])
+    })
+
+    it('can search for woman-facepalming', () => {
+      expect(emojiIndex.search('woman-facep').map(x => x.id)).toEqual(['woman-facepalming');
+    })
   });
 });
