@@ -62,12 +62,12 @@
     "webpack": "^3.6.0"
   },
   "scripts": {
-    "clean": "rm -rf dist/ dist-es/",
+    "clean": "rm -rf dist/ dist-es/ src/data/data.js",
     "build:data": "node scripts/build-data",
-    "build:dist": "npm run clean && npm run build:cjs && npm run build:es",
+    "build:dist": "npm run build:cjs && npm run build:es",
     "build:cjs": "BABEL_ENV=cjs babel src --out-dir dist --copy-files --ignore webpack.config.js",
     "build:es": "babel src --out-dir dist-es --copy-files --ignore webpack.config.js",
-    "build": "npm run build:dist && npm run build:data",
+    "build": "npm run clean && npm run build:data && npm run build:dist",
     "watch": "BABEL_ENV=cjs babel src --watch --out-dir dist --copy-files --ignore webpack.config.js",
     "start": "npm run watch",
     "stats": "webpack --config ./src/webpack.config.js --json > stats.json",
@@ -75,13 +75,13 @@
     "react:14": "npm run react:clean && npm i react@^0.14 react-dom@^0.14 react-addons-test-utils@^0.14 --save-dev",
     "react:15": "npm run react:clean && npm i react@^15 react-dom@^15 react-addons-test-utils@^15 --save-dev",
     "test": "NODE_ENV=test karma start && size-limit",
-    "prepublish": "npm run clean && npm run build",
+    "prepublish": "npm run build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "size-limit": [
     {
-      "path": "dist/index.js",
+      "path": "dist-es/index.js",
       "limit": "80 KB"
     }
   ]
