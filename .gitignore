@@ -2,3 +2,4 @@ node_modules/
 dist/
 dist-es/
 bundle.js
+/src/data/data.js
