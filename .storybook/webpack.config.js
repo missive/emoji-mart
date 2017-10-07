@@ -11,7 +11,6 @@ module.exports = (baseConfig, env) => {
       include: [
         path.resolve(__dirname, '../stories'),
         path.resolve(__dirname, '../src'),
-        path.resolve(__dirname, '../node_modules/measure-scrollbar'),
         path.resolve(__dirname, '../data'),
       ],
     },
