@@ -220,7 +220,7 @@ export default class Picker extends React.PureComponent {
 
   handleEmojiClick(emoji, e) {
     this.props.onClick(emoji, e)
-    if (!this.hideRecent) frequently.add(emoji)
+    if (!this.hideRecent && !this.props.recent) frequently.add(emoji)
 
     var component = this.categoryRefs['category-1']
     if (component) {
@@ -420,6 +420,7 @@ export default class Picker extends React.PureComponent {
         emojiTooltip,
         include,
         exclude,
+        recent,
         autoFocus,
       } = this.props,
       { skin } = this.state,
@@ -464,6 +465,9 @@ export default class Picker extends React.PureComponent {
                 native={native}
                 hasStickyPosition={this.hasStickyPosition}
                 i18n={this.i18n}
+                recent={
+                  category.name == 'Recent' ? recent : undefined
+                }
                 custom={
                   category.name == 'Recent' ? CUSTOM_CATEGORY.emojis : undefined
                 }
@@ -530,6 +534,7 @@ Picker.propTypes = {
   emojiTooltip: Emoji.propTypes.tooltip,
   include: PropTypes.arrayOf(PropTypes.string),
   exclude: PropTypes.arrayOf(PropTypes.string),
+  recent: PropTypes.arrayOf(PropTypes.string),
   autoFocus: PropTypes.bool,
   custom: PropTypes.arrayOf(
     PropTypes.shape({

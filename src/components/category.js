@@ -93,11 +93,11 @@ export default class Category extends React.Component {
   }
 
   getEmojis() {
-    var { name, emojis, perLine } = this.props
+    var { name, emojis, recent, perLine } = this.props
 
     if (name == 'Recent') {
       let { custom } = this.props
-      let frequentlyUsed = frequently.get(perLine)
+      let frequentlyUsed = recent || frequently.get(perLine)
 
       if (frequentlyUsed.length) {
         emojis = frequentlyUsed.map(id => {
@@ -208,6 +208,7 @@ Category.propTypes = {
   native: PropTypes.bool.isRequired,
   perLine: PropTypes.number.isRequired,
   emojiProps: PropTypes.object.isRequired,
+  recent: PropTypes.arrayOf(PropTypes.string),
 }
 
 Category.defaultProps = {
