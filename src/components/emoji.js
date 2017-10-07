@@ -54,13 +54,18 @@ const Emoji = (props) => {
     }
   }
 
-  var { unified, custom, imageUrl } = _getData(props),
+  var { unified, custom, short_names, imageUrl } = _getData(props),
       style = {},
       children = props.children,
-      className = 'emoji-mart-emoji'
+      className = 'emoji-mart-emoji',
+      title = null
 
   if (!unified && !custom) {
     return null
+  }
+
+  if (props.tooltip) {
+    title = short_names[0]
   }
 
   if (props.native && unified) {
@@ -104,6 +109,7 @@ const Emoji = (props) => {
     onClick={(e) => _handleClick(e, props)}
     onMouseEnter={(e) => _handleOver(e, props)}
     onMouseLeave={(e) => _handleLeave(e, props)}
+    title={title}
     className={className}>
     <span style={style}>{children}</span>
   </span>
@@ -116,6 +122,7 @@ Emoji.propTypes = {
   backgroundImageFn: PropTypes.func,
   native: PropTypes.bool,
   forceSize: PropTypes.bool,
+  tooltip: PropTypes.bool,
   skin: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   sheetSize: PropTypes.oneOf([16, 20, 32, 64]),
   set: PropTypes.oneOf(['apple', 'google', 'twitter', 'emojione', 'messenger', 'facebook']),
@@ -132,6 +139,7 @@ Emoji.defaultProps = {
   sheetSize: 64,
   native: false,
   forceSize: false,
+  tooltip: false,
   backgroundImageFn: ((set, sheetSize) => `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/sheets/${sheetSize}.png`),
   onOver: (() => {}),
   onLeave: (() => {}),

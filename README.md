@@ -40,6 +40,7 @@ import { Picker } from 'emoji-mart'
 | **backgroundImageFn** | | ```((set, sheetSize) => …)``` | A Fn that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **emojisToShowFilter** | | ```((emoji) => true)``` | A Fn to choose whether an emoji should be displayed or not |
 | **showPreview** | | `true` | Display preview section |
+| **emojiTooltip** | | `false` | Show emojis short name when hovering (title) |
 | **skin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
 | **style** | | | Inline styles applied to the root element. Useful for positioning |
 | **title** | | `Emoji Mart™` | The title shown when no emojis are hovered |
@@ -143,6 +144,7 @@ import { Emoji } from 'emoji-mart'
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
 | **backgroundImageFn** | | ```((set, sheetSize) => `https://unpkg.com/emoji-datasource@3.0.0/sheet_${set}_${sheetSize}.png`)``` | A Fn that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **skin** | | `1` | Skin color: `1, 2, 3, 4, 5, 6` |
+| **tooltip** | | `false` | Show emoji short name when hovering (title) |
 
 ## Custom emojis
 You can provide custom emojis which will show up in their own category.
