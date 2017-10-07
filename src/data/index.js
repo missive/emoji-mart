@@ -1,7 +1,7 @@
 import buildSearch from '../utils/build-search'
 import data from './data'
 
-function uncompress (list) {
+function uncompress(list) {
   for (var short_name in list) {
     var datum = list[short_name]
 
@@ -19,7 +19,7 @@ function uncompress (list) {
       short_names: datum.short_names,
       name: datum.name,
       keywords: datum.keywords,
-      emoticons: datum.emoticons
+      emoticons: datum.emoticons,
     })
   }
 }

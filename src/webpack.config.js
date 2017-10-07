@@ -1,10 +1,11 @@
 var path = require('path')
 var pack = require('../package.json')
 var webpack = require('webpack')
-var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin
 
-var PROD = process.env.NODE_ENV === 'production';
-var TEST = process.env.NODE_ENV === 'test';
+var PROD = process.env.NODE_ENV === 'production'
+var TEST = process.env.NODE_ENV === 'test'
 
 var config = {
   entry: path.resolve('src/index.js'),
@@ -22,28 +23,22 @@ var config = {
       {
         test: /\.js$/,
         use: 'babel-loader',
-        include: [
-          path.resolve('src'),
-          path.resolve('node_modules/measure-scrollbar'),
-          path.resolve('data'),
-        ],
+        include: [path.resolve('src'), path.resolve('data')],
       },
       {
         test: /\.svg$/,
         use: [
           {
-            loader: 'babel-loader'
+            loader: 'babel-loader',
           },
           {
             loader: 'svg-jsx-loader',
             options: {
-                es6: true
-            }
+              es6: true,
+            },
           },
         ],
-        include: [
-          path.resolve('src/svgs'),
-        ],
+        include: [path.resolve('src/svgs')],
       },
     ],
   },
@@ -64,7 +59,7 @@ var config = {
 if (!TEST) {
   config.externals = config.externals.concat([
     {
-      'react': {
+      react: {
         root: 'React',
         commonjs2: 'react',
         commonjs: 'react',

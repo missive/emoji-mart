@@ -5,22 +5,28 @@ import stringFromCodePoint from '../polyfills/stringFromCodePoint'
 const _JSON = JSON
 
 const COLONS_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/
-const SKINS = [
-  '1F3FA', '1F3FB', '1F3FC',
-  '1F3FD', '1F3FE', '1F3FF',
-]
+const SKINS = ['1F3FA', '1F3FB', '1F3FC', '1F3FD', '1F3FE', '1F3FF']
 
 function unifiedToNative(unified) {
   var unicodes = unified.split('-'),
-      codePoints = unicodes.map((u) => `0x${u}`)
+    codePoints = unicodes.map(u => `0x${u}`)
 
   return stringFromCodePoint.apply(null, codePoints)
 }
 
 function sanitize(emoji) {
-  var { name, short_names, skin_tone, skin_variations, emoticons, unified, custom, imageUrl } = emoji,
-      id = emoji.id || short_names[0],
-      colons = `:${id}:`
+  var {
+      name,
+      short_names,
+      skin_tone,
+      skin_variations,
+      emoticons,
+      unified,
+      custom,
+      imageUrl,
+    } = emoji,
+    id = emoji.id || short_names[0],
+    colons = `:${id}:`
 
   if (custom) {
     return {
@@ -29,7 +35,7 @@ function sanitize(emoji) {
       colons,
       emoticons,
       custom,
-      imageUrl
+      imageUrl,
     }
   }
 
@@ -100,7 +106,7 @@ function getData(emoji, skin, set) {
     emojiData = JSON.parse(_JSON.stringify(emojiData))
 
     var skinKey = SKINS[skin - 1],
-        variationData = emojiData.skin_variations[skinKey]
+      variationData = emojiData.skin_variations[skinKey]
 
     if (!variationData.variations && emojiData.variations) {
       delete emojiData.variations
@@ -145,7 +151,7 @@ function deepMerge(a, b) {
 
   for (let key in a) {
     let originalValue = a[key],
-        value = originalValue
+      value = originalValue
 
     if (b.hasOwnProperty(key)) {
       value = b[key]
@@ -185,5 +191,5 @@ export {
   intersect,
   deepMerge,
   unifiedToNative,
-  measureScrollbar
+  measureScrollbar,
 }

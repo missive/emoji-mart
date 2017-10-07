@@ -52,11 +52,13 @@ function get(perLine) {
 
   for (let key in frequently) {
     if (frequently.hasOwnProperty(key)) {
-      frequentlyKeys.push(key);
+      frequentlyKeys.push(key)
     }
   }
 
-  const sorted = frequentlyKeys.sort((a, b) => frequently[a] - frequently[b]).reverse()
+  const sorted = frequentlyKeys
+    .sort((a, b) => frequently[a] - frequently[b])
+    .reverse()
   const sliced = sorted.slice(0, quantity)
 
   const last = store.get('last')

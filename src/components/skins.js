@@ -39,21 +39,30 @@ export default class Skins extends React.PureComponent {
       skinToneNodes.push(
         <span
           key={`skin-tone-${skinTone}`}
-          className={`emoji-mart-skin-swatch ${selected ? 'emoji-mart-skin-swatch-selected' : ''}`}
+          className={`emoji-mart-skin-swatch ${selected
+            ? 'emoji-mart-skin-swatch-selected'
+            : ''}`}
         >
           <span
             onClick={this.handleClick}
             data-skin={skinTone}
-            className={`emoji-mart-skin emoji-mart-skin-tone-${skinTone}`} />
+            className={`emoji-mart-skin emoji-mart-skin-tone-${skinTone}`}
+          />
         </span>
       )
     }
 
-    return <div>
-      <div className={`emoji-mart-skin-swatches ${opened ? 'emoji-mart-skin-swatches-opened' : ''}`}>
-        {skinToneNodes}
+    return (
+      <div>
+        <div
+          className={`emoji-mart-skin-swatches ${opened
+            ? 'emoji-mart-skin-swatches-opened'
+            : ''}`}
+        >
+          {skinToneNodes}
+        </div>
       </div>
-    </div>
+    )
   }
 }
 
@@ -63,5 +72,5 @@ Skins.propTypes = {
 }
 
 Skins.defaultProps = {
-  onChange: (() => {}),
+  onChange: () => {},
 }

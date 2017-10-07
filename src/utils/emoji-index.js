@@ -8,8 +8,8 @@ var emoticonsList = {}
 
 for (let emoji in data.emojis) {
   let emojiData = data.emojis[emoji],
-      { short_names, emoticons } = emojiData,
-      id = short_names[0]
+    { short_names, emoticons } = emojiData,
+    id = short_names[0]
 
   if (emoticons) {
     emoticons.forEach(emoticon => {
@@ -26,7 +26,7 @@ for (let emoji in data.emojis) {
 }
 
 function addCustomToPool(custom, pool) {
-  custom.forEach((emoji) => {
+  custom.forEach(emoji => {
     let emojiId = emoji.id || emoji.short_names[0]
 
     if (emojiId && !pool[emojiId]) {
@@ -36,7 +36,10 @@ function addCustomToPool(custom, pool) {
   })
 }
 
-function search(value, { emojisToShowFilter, maxResults, include, exclude, custom = [] } = {}) {
+function search(
+  value,
+  { emojisToShowFilter, maxResults, include, exclude, custom = [] } = {}
+) {
   addCustomToPool(custom, originalPool)
 
   maxResults || (maxResults = 75)
@@ -44,7 +47,7 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
   exclude || (exclude = [])
 
   var results = null,
-      pool = originalPool
+    pool = originalPool
 
   if (value.length) {
     if (value == '-' || value == '-1') {
@@ -52,7 +55,7 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
     }
 
     var values = value.toLowerCase().split(/[\s|,|\-|_]+/),
-        allResults = []
+      allResults = []
 
     if (values.length > 2) {
       values = [values[0], values[1]]
@@ -62,72 +65,84 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
       pool = {}
 
       data.categories.forEach(category => {
-        let isIncluded = include && include.length ? include.indexOf(category.name.toLowerCase()) > -1 : true
-        let isExcluded = exclude && exclude.length ? exclude.indexOf(category.name.toLowerCase()) > -1 : false
+        let isIncluded =
+          include && include.length
+            ? include.indexOf(category.name.toLowerCase()) > -1
+            : true
+        let isExcluded =
+          exclude && exclude.length
+            ? exclude.indexOf(category.name.toLowerCase()) > -1
+            : false
         if (!isIncluded || isExcluded) {
           return
         }
 
-        category.emojis.forEach(emojiId => pool[emojiId] = data.emojis[emojiId])
+        category.emojis.forEach(
+          emojiId => (pool[emojiId] = data.emojis[emojiId])
+        )
       })
 
       if (custom.length) {
-        let customIsIncluded = include && include.length ? include.indexOf('custom') > -1 : true
-        let customIsExcluded = exclude && exclude.length ? exclude.indexOf('custom') > -1 : false
+        let customIsIncluded =
+          include && include.length ? include.indexOf('custom') > -1 : true
+        let customIsExcluded =
+          exclude && exclude.length ? exclude.indexOf('custom') > -1 : false
         if (customIsIncluded && !customIsExcluded) {
           addCustomToPool(custom, pool)
         }
       }
     }
 
-    allResults = values.map((value) => {
-      var aPool = pool,
+    allResults = values
+      .map(value => {
+        var aPool = pool,
           aIndex = index,
           length = 0
 
-      for (let charIndex = 0; charIndex < value.length; charIndex++) {
-        const char = value[charIndex]
-        length++
+        for (let charIndex = 0; charIndex < value.length; charIndex++) {
+          const char = value[charIndex]
+          length++
 
-        aIndex[char] || (aIndex[char] = {})
-        aIndex = aIndex[char]
+          aIndex[char] || (aIndex[char] = {})
+          aIndex = aIndex[char]
 
-        if (!aIndex.results) {
-          let scores = {}
+          if (!aIndex.results) {
+            let scores = {}
 
-          aIndex.results = []
-          aIndex.pool = {}
+            aIndex.results = []
+            aIndex.pool = {}
 
-          for (let id in aPool) {
-            let emoji = aPool[id],
+            for (let id in aPool) {
+              let emoji = aPool[id],
                 { search } = emoji,
                 sub = value.substr(0, length),
                 subIndex = search.indexOf(sub)
 
-            if (subIndex != -1) {
-              let score = subIndex + 1
-              if (sub == id) score = 0
+              if (subIndex != -1) {
+                let score = subIndex + 1
+                if (sub == id) score = 0
 
-              aIndex.results.push(emojisList[id])
-              aIndex.pool[id] = emoji
+                aIndex.results.push(emojisList[id])
+                aIndex.pool[id] = emoji
 
-              scores[id] = score
+                scores[id] = score
+              }
             }
-          }
 
-          aIndex.results.sort((a, b) => {
-            var aScore = scores[a.id],
+            aIndex.results.sort((a, b) => {
+              var aScore = scores[a.id],
                 bScore = scores[b.id]
 
-            return aScore - bScore
-          })
+              return aScore - bScore
+            })
+          }
+
+          aPool = aIndex.pool
         }
 
-        aPool = aIndex.pool
-      }
-
-      return aIndex.results
-    }).filter(a => a)
+        return aIndex.results
+      })
+      .filter(a => a)
 
     if (allResults.length > 1) {
       results = intersect.apply(null, allResults)
@@ -140,7 +155,9 @@ function search(value, { emojisToShowFilter, maxResults, include, exclude, custo
 
   if (results) {
     if (emojisToShowFilter) {
-      results = results.filter((result) => emojisToShowFilter(data.emojis[result.id].unified))
+      results = results.filter(result =>
+        emojisToShowFilter(data.emojis[result.id].unified)
+      )
     }
 
     if (results && results.length > maxResults) {

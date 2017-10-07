@@ -7,18 +7,18 @@ export default class Anchors extends React.PureComponent {
   constructor(props) {
     super(props)
 
-    const {categories} = props
+    const { categories } = props
 
     const defaultCategory = categories.filter(category => category.first)[0]
 
     this.state = {
-      selected: defaultCategory.name
+      selected: defaultCategory.name,
     }
 
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick (e) {
+  handleClick(e) {
     var index = e.currentTarget.getAttribute('data-index')
     var { categories, onAnchorClick } = this.props
 
@@ -27,32 +27,39 @@ export default class Anchors extends React.PureComponent {
 
   render() {
     var { categories, onAnchorClick, color, i18n } = this.props,
-        { selected } = this.state
+      { selected } = this.state
 
-    return <div className='emoji-mart-anchors'>
-      {categories.map((category, i) => {
-        var { name, anchor } = category,
+    return (
+      <div className="emoji-mart-anchors">
+        {categories.map((category, i) => {
+          var { name, anchor } = category,
             isSelected = name == selected
 
-        if (anchor === false) {
-          return null
-        }
+          if (anchor === false) {
+            return null
+          }
 
-        return (
-          <span
-            key={name}
-            title={i18n.categories[name.toLowerCase()]}
-            data-index={i}
-            onClick={this.handleClick}
-            className={`emoji-mart-anchor ${isSelected ? 'emoji-mart-anchor-selected' : ''}`}
-            style={{ color: isSelected ? color : null }}
-          >
-            <div dangerouslySetInnerHTML={{ __html: SVGs[name] }}></div>
-            <span className='emoji-mart-anchor-bar' style={{ backgroundColor: color }}></span>
-          </span>
-        )
-      })}
-    </div>
+          return (
+            <span
+              key={name}
+              title={i18n.categories[name.toLowerCase()]}
+              data-index={i}
+              onClick={this.handleClick}
+              className={`emoji-mart-anchor ${isSelected
+                ? 'emoji-mart-anchor-selected'
+                : ''}`}
+              style={{ color: isSelected ? color : null }}
+            >
+              <div dangerouslySetInnerHTML={{ __html: SVGs[name] }} />
+              <span
+                className="emoji-mart-anchor-bar"
+                style={{ backgroundColor: color }}
+              />
+            </span>
+          )
+        })}
+      </div>
+    )
   }
 }
 
@@ -63,5 +70,5 @@ Anchors.propTypes = {
 
 Anchors.defaultProps = {
   categories: [],
-  onAnchorClick: (() => {}),
+  onAnchorClick: () => {},
 }
