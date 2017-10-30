@@ -78,6 +78,8 @@ function getData(emoji, skin, set) {
 
     if (data.emojis.hasOwnProperty(emoji)) {
       emojiData = data.emojis[emoji]
+    } else {
+      return null
     }
   } else if (emoji.id) {
     if (data.short_names.hasOwnProperty(emoji.id)) {

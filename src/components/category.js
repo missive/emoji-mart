@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import frequently from '../utils/frequently'
+import { getData } from '../utils'
 import { Emoji } from '.'
 
 export default class Category extends React.Component {
@@ -107,7 +108,11 @@ export default class Category extends React.Component {
           }
 
           return id
-        })
+        }).filter(id => !!getData(id))
+      }
+
+      if (emojis.length === 0 && frequentlyUsed.length > 0) {
+        return null;
       }
     }
 
