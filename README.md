@@ -30,6 +30,7 @@ import { Picker } from 'emoji-mart'
 | **include** | | `[]` | Only load included categories. Accepts [I18n categories keys](#i18n). Order will be respected, except for the `recent` category which will always be the first. |
 | **exclude** | | `[]` | Don't load excluded categories. Accepts [I18n categories keys](#i18n). |
 | **custom** | | `[]` | [Custom emojis](#custom-emojis) |
+| **recent** | | | Pass your own frequently used emojis as array of string IDs |
 | **emojiSize** | | `24` | The emoji width and height |
 | **onClick** | | | Params: `(emoji, event) => {}` |
 | **perLine** | | `9` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set *Frequently Used* length as well (`perLine * 4`) |
@@ -221,7 +222,7 @@ Apple / Google / Twitter / EmojiOne / Messenger / Facebook
 ## Development
 ```sh
 $ yarn build
-$ yarn start 
+$ yarn start
 $ yarn storybook
 ```
 
