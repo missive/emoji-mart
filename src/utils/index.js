@@ -171,6 +171,7 @@ function deepMerge(a, b) {
 
 // https://github.com/sonicdoe/measure-scrollbar
 function measureScrollbar() {
+  if (typeof document == 'undefined') return 0
   const div = document.createElement('div')
 
   div.style.width = '100px'
