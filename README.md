@@ -177,6 +177,30 @@ emojiIndex.search('christmas').map((o) => o.native)
 // => [🎄, 🎅🏼, 🔔, 🎁, ⛄️, ❄️]
 ```
 
+## Storage
+By default EmojiMart will store user chosen skin and frequently used emojis in `localStorage`. That can however be overwritten should you want to store these in your own storage.
+
+```js
+import { store } from 'emoji-mart'
+
+store.setHandlers({
+  getter: (key) => {
+    // Get from your own storage (sync)
+  },
+
+  setter: (key, value) => {
+    // Persist in your own storage (can be async)
+  }
+})
+```
+
+Possible keys are:
+
+| Key | Value | Description |
+| skin | `1, 2, 3, 4, 5, 6` | |
+| frequently | `{ 'astonished': 11, '+1': 22 }` | An object where the key is the emoji name and the value is the usage count |
+| last | 'astonished' | (Optional) Used by `frequently` to be sure the latest clicked emoji will always appear in the “Recent” category |
+
 ## Features
 ### Powerful search
 #### Short name, name and keywords

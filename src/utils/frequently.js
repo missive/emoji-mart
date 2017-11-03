@@ -19,10 +19,16 @@ const DEFAULTS = [
   'poop',
 ]
 
-let frequently = store.get('frequently')
+let frequently, initialized
 let defaults = {}
 
+function init() {
+  initialized = true
+  frequently = store.get('frequently')
+}
+
 function add(emoji) {
+  if (!initialized) init()
   var { id } = emoji
 
   frequently || (frequently = defaults)
@@ -34,6 +40,7 @@ function add(emoji) {
 }
 
 function get(perLine) {
+  if (!initialized) init()
   if (!frequently) {
     defaults = {}
 
