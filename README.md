@@ -197,6 +197,7 @@ store.setHandlers({
 Possible keys are:
 
 | Key | Value | Description |
+| --- | ----- | ----------- |
 | skin | `1, 2, 3, 4, 5, 6` | |
 | frequently | `{ 'astonished': 11, '+1': 22 }` | An object where the key is the emoji name and the value is the usage count |
 | last | 'astonished' | (Optional) Used by `frequently` to be sure the latest clicked emoji will always appear in the “Recent” category |
