@@ -17,7 +17,7 @@ describe('#emojiIndex', () => {
     })
 
     it('should filter only emojis we care about, exclude pineapple', () => {
-      let emojisToShowFilter = unified => unified !== '1F34D'
+      let emojisToShowFilter = (data) => { data.unified !== '1F34D' }
       expect(
         emojiIndex.search('apple', { emojisToShowFilter }).map(obj => obj.id)
       ).not.toContain('pineapple')

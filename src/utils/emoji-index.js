@@ -156,7 +156,7 @@ function search(
   if (results) {
     if (emojisToShowFilter) {
       results = results.filter(result =>
-        emojisToShowFilter(data.emojis[result.id].unified)
+        emojisToShowFilter(data.emojis[result.id])
       )
     }
 
