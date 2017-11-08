@@ -101,18 +101,20 @@ export default class Category extends React.Component {
       let frequentlyUsed = recent || frequently.get(perLine)
 
       if (frequentlyUsed.length) {
-        emojis = frequentlyUsed.map(id => {
-          const emoji = custom.filter(e => e.id === id)[0]
-          if (emoji) {
-            return emoji
-          }
+        emojis = frequentlyUsed
+          .map(id => {
+            const emoji = custom.filter(e => e.id === id)[0]
+            if (emoji) {
+              return emoji
+            }
 
-          return id
-        }).filter(id => !!getData(id))
+            return id
+          })
+          .filter(id => !!getData(id))
       }
 
       if (emojis.length === 0 && frequentlyUsed.length > 0) {
-        return null;
+        return null
       }
     }
 

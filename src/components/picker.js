@@ -465,9 +465,7 @@ export default class Picker extends React.PureComponent {
                 native={native}
                 hasStickyPosition={this.hasStickyPosition}
                 i18n={this.i18n}
-                recent={
-                  category.name == 'Recent' ? recent : undefined
-                }
+                recent={category.name == 'Recent' ? recent : undefined}
                 custom={
                   category.name == 'Recent' ? CUSTOM_CATEGORY.emojis : undefined
                 }
