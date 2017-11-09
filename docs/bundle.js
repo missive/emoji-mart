@@ -1859,6 +1859,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 var CUSTOM_EMOJIS = [{
+  name: 'Party Parrot',
+  short_names: ['parrot'],
+  keywords: ['party'],
+  imageUrl: 'http://cultofthepartyparrot.com/parrots/hd/parrot.gif'
+}, {
   name: 'Octocat',
   short_names: ['octocat'],
   keywords: ['github'],
