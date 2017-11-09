@@ -1,6 +1,6 @@
 import React from 'react'
 import TestUtils from 'react-dom/test-utils'
-import Picker from './picker'
+import Picker from '../src/components/picker'
 
 const { click } = TestUtils.Simulate
 
@@ -9,6 +9,11 @@ const {
   scryRenderedComponentsWithType,
   findRenderedComponentWithType,
 } = TestUtils
+
+const render = (props = {}) => {
+  const defaultProps = {}
+  return renderIntoDocument(<Picker {...defaultProps} {...props} />)
+}
 
 describe('Picker', () => {
   let subject
@@ -29,9 +34,4 @@ describe('Picker', () => {
       expect(subject.categories.length).toEqual(2)
     })
   })
-
-  function render(props = {}) {
-    const defaultProps = {}
-    return renderIntoDocument(<Picker {...defaultProps} {...props} />)
-  }
 })

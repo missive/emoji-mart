@@ -2,4 +2,6 @@ node_modules/
 dist/
 dist-es/
 bundle.js
+stats.json
+report.html
 /src/data/data.js

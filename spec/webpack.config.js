@@ -10,8 +10,8 @@ var TEST = process.env.NODE_ENV === 'test'
 var config = {
   entry: path.resolve('src/index.js'),
   output: {
-    path: path.resolve('dist'),
-    filename: 'emoji-mart.js',
+    path: path.resolve('spec'),
+    filename: 'bundle.js',
     library: 'EmojiMart',
     libraryTarget: 'umd',
   },
@@ -23,22 +23,7 @@ var config = {
       {
         test: /\.js$/,
         use: 'babel-loader',
-        include: [path.resolve('src'), path.resolve('data')],
-      },
-      {
-        test: /\.svg$/,
-        use: [
-          {
-            loader: 'babel-loader',
-          },
-          {
-            loader: 'svg-jsx-loader',
-            options: {
-              es6: true,
-            },
-          },
-        ],
-        include: [path.resolve('src/svgs')],
+        include: [path.resolve('src'), path.resolve('spec')],
       },
     ],
   },
