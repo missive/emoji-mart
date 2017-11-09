@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Emoji Mart 🏬 | One component to pick them all</title>
+    <link rel="stylesheet" href="../css/emoji-mart.css">
+    <style>
+      * {
+        margin: 0; padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+        font-size: 16px;
+        padding: 5%;
+        text-align: center;
+      }
+
+      button + button { margin-left: .5em }
+      button {
+        padding: .4em .6em;
+        border-radius: 5px;
+        border: 1px solid rgba(0, 0, 0, .1);
+        background: #fff;
+        outline: 0;
+        cursor: pointer;
+      }
+
+      button[disabled] {
+        border-color: #ae65c5;
+        cursor: default;
+      }
+
+      h1 {
+        font-family: Courier;
+      }
+
+      .row + .row {
+        margin-top: 2em;
+      }
+
+      .row-small {
+        margin-top: 1em;
+      }
+
+      .emoji-mart {
+        text-align: left;
+      }
+
+      .emoji-mart-title-label {
+        font-size: 21px;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+    <script src="./bundle.js"></script>
+  </body>
+</html>
