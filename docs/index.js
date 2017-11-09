@@ -80,16 +80,3 @@ class Example extends React.Component {
 }
 
 ReactDOM.render(<Example />, document.querySelector('div'))
-
-// <Picker
-//   emojiSize={this.state.emojiSize}
-//   perLine={this.state.perLine}
-//   skin={this.state.skin}
-//   native={this.state.native}
-//   set={this.state.set}
-//   custom={CUSTOM_EMOJIS}
-//   autoFocus={this.state.autoFocus}
-//   include={this.state.include}
-//   exclude={this.state.exclude}
-//   onClick={console.log}
-// />
