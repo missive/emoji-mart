@@ -7,15 +7,28 @@ export default class Anchors extends React.PureComponent {
   constructor(props) {
     super(props)
 
-    const { categories } = props
-
-    const defaultCategory = categories.filter(category => category.first)[0]
+    let defaultCategory = props.categories.filter(category => category.first)[0]
 
     this.state = {
       selected: defaultCategory.name,
     }
 
     this.handleClick = this.handleClick.bind(this)
+  }
+
+  getSVG(name) {
+    this.SVGs || (this.SVGs = {})
+
+    if (this.SVGs[name]) {
+      return this.SVGs[name]
+    } else {
+      let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+       ${SVGs[name]}
+      </svg>`
+
+      this.SVGs[name] = svg
+      return svg
+    }
   }
 
   handleClick(e) {
@@ -50,7 +63,7 @@ export default class Anchors extends React.PureComponent {
                 : ''}`}
               style={{ color: isSelected ? color : null }}
             >
-              <div dangerouslySetInnerHTML={{ __html: SVGs[name] }} />
+              <div dangerouslySetInnerHTML={{ __html: this.getSVG(name) }} />
               <span
                 className="emoji-mart-anchor-bar"
                 style={{ backgroundColor: color }}
