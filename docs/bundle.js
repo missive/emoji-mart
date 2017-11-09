@@ -1882,7 +1882,8 @@ var Example = function (_React$Component) {
       native: true,
       set: 'apple',
       emoji: 'point_up',
-      title: 'Pick your emoji…'
+      title: 'Pick your emoji…',
+      custom: CUSTOM_EMOJIS
     };
     return _this;
   }
@@ -1957,19 +1958,6 @@ var Example = function (_React$Component) {
 }(__WEBPACK_IMPORTED_MODULE_6_react___default.a.Component);
 
 __WEBPACK_IMPORTED_MODULE_7_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(Example, null), document.querySelector('div'));
-
-// <Picker
-//   emojiSize={this.state.emojiSize}
-//   perLine={this.state.perLine}
-//   skin={this.state.skin}
-//   native={this.state.native}
-//   set={this.state.set}
-//   custom={CUSTOM_EMOJIS}
-//   autoFocus={this.state.autoFocus}
-//   include={this.state.include}
-//   exclude={this.state.exclude}
-//   onClick={console.log}
-// />
 
 /***/ }),
 /* 38 */

@@ -26,6 +26,7 @@ class Example extends React.Component {
       set: 'apple',
       emoji: 'point_up',
       title: 'Pick your emoji…',
+      custom: CUSTOM_EMOJIS,
     }
   }
 
