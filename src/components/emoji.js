@@ -60,7 +60,10 @@ const Emoji = props => {
     }
   }
 
-  var { unified, custom, short_names, imageUrl } = _getData(props),
+  let data = _getData(props)
+  if (!data) { return null }
+
+  let { unified, custom, short_names, imageUrl } = data,
     style = {},
     children = props.children,
     className = 'emoji-mart-emoji',
