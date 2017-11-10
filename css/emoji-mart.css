@@ -48,7 +48,7 @@
   text-align: center;
   padding: 12px 4px;
   overflow: hidden;
-  transition: color .1s ease-out;
+  transition: color .15s ease-out;
 }
 .emoji-mart-anchor:hover,
 .emoji-mart-anchor-selected {
@@ -57,6 +57,15 @@
 
 .emoji-mart-anchor-selected .emoji-mart-anchor-bar {
   bottom: 0;
+  transition: bottom 0.15s ease-out;
+}
+
+.emoji-mart-anchor:hover .emoji-mart-anchor-bar {
+  opacity: 0.5;
+}
+
+.emoji-mart-anchor-selected .emoji-mart-anchor-bar {
+  opacity: 1 !important;
 }
 
 .emoji-mart-anchor-bar {
