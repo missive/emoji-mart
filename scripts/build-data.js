@@ -40,7 +40,7 @@ var emojiLibByChar = Object.keys(emojiLib.lib).reduce(
   {}
 )
 
-var categories = ['People', 'Nature', 'Foods', 'Activity', 'Places', 'Objects', 'Symbols', 'Flags'],
+var categories = ['Smileys & People', 'Animals & Nature', 'Food & Drink', 'Activities', 'Travel & Places', 'Objects', 'Symbols', 'Flags'],
     data = { categories: [], emojis: {}, skins: {}, short_names: {} },
     categoriesIndex = {}
 
