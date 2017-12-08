@@ -144,7 +144,7 @@ export default class Category extends React.Component {
   }
 
   render() {
-    var { name, hasStickyPosition, emojiProps, i18n } = this.props,
+    var { id, name, hasStickyPosition, emojiProps, i18n } = this.props,
       emojis = this.getEmojis(),
       labelStyles = {},
       labelSpanStyles = {},
@@ -180,7 +180,7 @@ export default class Category extends React.Component {
           className="emoji-mart-category-label"
         >
           <span style={labelSpanStyles} ref={this.setLabelRef}>
-            {i18n.categories[name.toLowerCase()]}
+            {i18n.categories[id]}
           </span>
         </div>
 
