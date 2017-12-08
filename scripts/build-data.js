@@ -40,13 +40,24 @@ var emojiLibByChar = Object.keys(emojiLib.lib).reduce(
   {}
 )
 
-var categories = ['Smileys & People', 'Animals & Nature', 'Food & Drink', 'Activities', 'Travel & Places', 'Objects', 'Symbols', 'Flags'],
-    data = { categories: [], emojis: {}, skins: {}, short_names: {} },
+var data = { categories: [], emojis: {}, skins: {}, short_names: {} },
     categoriesIndex = {}
 
+var categories = [
+  ['Smileys & People', 'people'],
+  ['Animals & Nature', 'nature'],
+  ['Food & Drink', 'foods'],
+  ['Activities', 'activity'],
+  ['Travel & Places', 'places'],
+  ['Objects', 'objects'],
+  ['Symbols', 'symbols'],
+  ['Flags', 'flags'],
+]
+
 categories.forEach((category, i) => {
-  data.categories[i] = { name: category, emojis: [] }
-  categoriesIndex[category] = i
+  let [name, id] = category
+  data.categories[i] = { id: id, name: name, emojis: [] }
+  categoriesIndex[name] = i
 })
 
 emojiData.sort((a, b) => {

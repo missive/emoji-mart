@@ -10,9 +10,9 @@ import { deepMerge, measureScrollbar } from '../utils'
 
 import { Anchors, Category, Emoji, Preview, Search } from '.'
 
-const RECENT_CATEGORY = { name: 'Recent', emojis: null }
-const SEARCH_CATEGORY = { name: 'Search', emojis: null, anchor: false }
-const CUSTOM_CATEGORY = { name: 'Custom', emojis: [] }
+const RECENT_CATEGORY = { id: 'recent', name: 'Recent', emojis: null }
+const SEARCH_CATEGORY = { id: 'search', name: 'Search', emojis: null, anchor: false }
+const CUSTOM_CATEGORY = { id: 'custom', name: 'Custom', emojis: [] }
 
 const I18N = {
   search: 'Search',
@@ -459,6 +459,7 @@ export default class Picker extends React.PureComponent {
               <Category
                 ref={this.setCategoryRef.bind(this, `category-${i}`)}
                 key={category.name}
+                id={category.id}
                 name={category.name}
                 emojis={category.emojis}
                 perLine={perLine}
