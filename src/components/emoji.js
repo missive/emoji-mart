@@ -4,7 +4,7 @@ import data from '../data'
 
 import { getData, getSanitizedData, unifiedToNative } from '../utils'
 
-const SHEET_COLUMNS = 51
+const SHEET_COLUMNS = 52
 
 const _getPosition = props => {
   var { sheet_x, sheet_y } = _getData(props),
