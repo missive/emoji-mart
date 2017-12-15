@@ -62,10 +62,7 @@ export default class Picker extends React.PureComponent {
 
     if (props.include != undefined) {
       allCategories.sort((a, b) => {
-        let aName = a.name.toLowerCase()
-        let bName = b.name.toLowerCase()
-
-        if (props.include.indexOf(aName) > props.include.indexOf(bName)) {
+        if (props.include.indexOf(a.id) > props.include.indexOf(b.id)) {
           return 1
         }
 
@@ -81,11 +78,11 @@ export default class Picker extends React.PureComponent {
       const category = allCategories[categoryIndex]
       let isIncluded =
         props.include && props.include.length
-          ? props.include.indexOf(category.name.toLowerCase()) > -1
+          ? props.include.indexOf(category.id) > -1
           : true
       let isExcluded =
         props.exclude && props.exclude.length
-          ? props.exclude.indexOf(category.name.toLowerCase()) > -1
+          ? props.exclude.indexOf(category.id) > -1
           : false
       if (!isIncluded || isExcluded) {
         continue
@@ -117,11 +114,11 @@ export default class Picker extends React.PureComponent {
 
     let includeRecent =
       props.include && props.include.length
-        ? props.include.indexOf('recent') > -1
+        ? props.include.indexOf(RECENT_CATEGORY.id) > -1
         : true
     let excludeRecent =
       props.exclude && props.exclude.length
-        ? props.exclude.indexOf('recent') > -1
+        ? props.exclude.indexOf(RECENT_CATEGORY.id) > -1
         : false
     if (includeRecent && !excludeRecent) {
       this.hideRecent = false
@@ -466,9 +463,9 @@ export default class Picker extends React.PureComponent {
                 native={native}
                 hasStickyPosition={this.hasStickyPosition}
                 i18n={this.i18n}
-                recent={category.name == 'Recent' ? recent : undefined}
+                recent={category.id == RECENT_CATEGORY.id ? recent : undefined}
                 custom={
-                  category.name == 'Recent' ? CUSTOM_CATEGORY.emojis : undefined
+                  category.id == RECENT_CATEGORY.id ? CUSTOM_CATEGORY.emojis : undefined
                 }
                 emojiProps={{
                   native: native,
