@@ -16,17 +16,17 @@ export default class Anchors extends React.PureComponent {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  getSVG(name) {
+  getSVG(id) {
     this.SVGs || (this.SVGs = {})
 
-    if (this.SVGs[name]) {
-      return this.SVGs[name]
+    if (this.SVGs[id]) {
+      return this.SVGs[id]
     } else {
       let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-       ${SVGs[name]}
+       ${SVGs[id]}
       </svg>`
 
-      this.SVGs[name] = svg
+      this.SVGs[id] = svg
       return svg
     }
   }
@@ -45,7 +45,7 @@ export default class Anchors extends React.PureComponent {
     return (
       <div className="emoji-mart-anchors">
         {categories.map((category, i) => {
-          var { name, anchor } = category,
+          var { id, name, anchor } = category,
             isSelected = name == selected
 
           if (anchor === false) {
@@ -54,8 +54,8 @@ export default class Anchors extends React.PureComponent {
 
           return (
             <span
-              key={name}
-              title={i18n.categories[name.toLowerCase()]}
+              key={id}
+              title={i18n.categories[id]}
               data-index={i}
               onClick={this.handleClick}
               className={`emoji-mart-anchor ${isSelected
@@ -63,7 +63,7 @@ export default class Anchors extends React.PureComponent {
                 : ''}`}
               style={{ color: isSelected ? color : null }}
             >
-              <div dangerouslySetInnerHTML={{ __html: this.getSVG(name) }} />
+              <div dangerouslySetInnerHTML={{ __html: this.getSVG(id) }} />
               <span
                 className="emoji-mart-anchor-bar"
                 style={{ backgroundColor: color }}
