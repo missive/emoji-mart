@@ -66,13 +66,9 @@ function search(
 
       data.categories.forEach(category => {
         let isIncluded =
-          include && include.length
-            ? include.indexOf(category.id) > -1
-            : true
+          include && include.length ? include.indexOf(category.id) > -1 : true
         let isExcluded =
-          exclude && exclude.length
-            ? exclude.indexOf(category.id) > -1
-            : false
+          exclude && exclude.length ? exclude.indexOf(category.id) > -1 : false
         if (!isIncluded || isExcluded) {
           return
         }

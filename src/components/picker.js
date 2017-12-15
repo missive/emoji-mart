@@ -11,7 +11,12 @@ import { deepMerge, measureScrollbar } from '../utils'
 import { Anchors, Category, Emoji, Preview, Search } from '.'
 
 const RECENT_CATEGORY = { id: 'recent', name: 'Recent', emojis: null }
-const SEARCH_CATEGORY = { id: 'search', name: 'Search', emojis: null, anchor: false }
+const SEARCH_CATEGORY = {
+  id: 'search',
+  name: 'Search',
+  emojis: null,
+  anchor: false,
+}
 const CUSTOM_CATEGORY = { id: 'custom', name: 'Custom', emojis: [] }
 
 const I18N = {
@@ -465,7 +470,9 @@ export default class Picker extends React.PureComponent {
                 i18n={this.i18n}
                 recent={category.id == RECENT_CATEGORY.id ? recent : undefined}
                 custom={
-                  category.id == RECENT_CATEGORY.id ? CUSTOM_CATEGORY.emojis : undefined
+                  category.id == RECENT_CATEGORY.id
+                    ? CUSTOM_CATEGORY.emojis
+                    : undefined
                 }
                 emojiProps={{
                   native: native,

@@ -61,7 +61,9 @@ const Emoji = props => {
   }
 
   let data = _getData(props)
-  if (!data) { return null }
+  if (!data) {
+    return null
+  }
 
   let { unified, custom, short_names, imageUrl } = data,
     style = {},
