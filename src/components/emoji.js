@@ -160,7 +160,7 @@ Emoji.defaultProps = {
   forceSize: false,
   tooltip: false,
   backgroundImageFn: (set, sheetSize) =>
-    `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/sheets/${sheetSize}.png`,
+    `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/sheets-256/${sheetSize}.png`,
   onOver: () => {},
   onLeave: () => {},
   onClick: () => {},

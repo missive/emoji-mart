@@ -68,24 +68,32 @@ categories: {
 #### Sheet sizes
 Sheets are served from [unpkg](https://unpkg.com), a global CDN that serves files published to [npm](https://www.npmjs.com).
 
-| Set      | sheetSize | Size     |
-| -------- | --------- | -------- |
-| apple    | 16        | 938.7 kB |
-| apple    | 20        | 1.3 MB   |
-| apple    | 32        | 2.6 MB   |
-| apple    | 64        | 7.2 MB   |
-| emojione | 16        | 805.5 kB |
-| emojione | 20        | 1.1 MB   |
-| emojione | 32        | 2.0 MB   |
-| emojione | 64        | 2.7 MB   |
-| google   | 16        | 622.6 kB |
-| google   | 20        | 849.8 kB |
-| google   | 32        | 1.6 MB   |
-| google   | 64        | 3.6 MB   |
-| twitter  | 16        | 776.0 kB |
-| twitter  | 20        | 1.0 MB   |
-| twitter  | 32        | 1.9 MB   |
-| twitter  | 64        | 4.2 MB   |
+| Set       | sheetSize | Size     |
+| --------- | --------- | -------- |
+| apple     | 16        | 334 KB   |
+| apple     | 20        | 459 KB   |
+| apple     | 32        | 1.08 MB  |
+| apple     | 64        | 2.94 MB  |
+| emojione  | 16        | 315 KB   |
+| emojione  | 20        | 435 KB   |
+| emojione  | 32        | 1020 KB  |
+| emojione  | 64        | 2.33 MB  |
+| facebook  | 16        | 322 KB   |
+| facebook  | 20        | 439 KB   |
+| facebook  | 32        | 1020 KB  |
+| facebook  | 64        | 2.5 MB   |
+| google    | 16        | 301 KB   |
+| google    | 20        | 409 KB   |
+| google    | 32        | 907 KB   |
+| google    | 64        | 2.17 MB  |
+| messenger | 16        | 325 KB   |
+| messenger | 20        | 449 MB   |
+| messenger | 32        | 1.05 MB  |
+| messenger | 64        | 2.69 MB  |
+| twitter   | 16        | 288 KB   |
+| twitter   | 20        | 389 KB   |
+| twitter   | 32        | 839 KB   |
+| twitter   | 64        | 1.82 MB  |
 
 #### Examples of `emoji` object:
 ```js
