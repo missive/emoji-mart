@@ -33,5 +33,11 @@ describe('Picker', () => {
       subject = render({ emojisToShowFilter: unified => false })
       expect(subject.categories.length).toEqual(2)
     })
+
+    it('maintains category ids after it is filtered', () => {
+      subject = render({emojisToShowFilter: emoji => true});
+      const categoriesWithIds = subject.categories.filter(category => category.id);
+      expect(categoriesWithIds.length).toEqual(10);
+    });
   })
 })
