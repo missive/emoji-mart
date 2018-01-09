@@ -151,9 +151,7 @@ function search(
 
   if (results) {
     if (emojisToShowFilter) {
-      results = results.filter(result =>
-        emojisToShowFilter(pool[result.id])
-      )
+      results = results.filter(result => emojisToShowFilter(pool[result.id]))
     }
 
     if (results && results.length > maxResults) {

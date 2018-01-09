@@ -108,7 +108,7 @@ export default class Picker extends React.PureComponent {
           let newCategory = {
             emojis: newEmojis,
             name: category.name,
-            id: category.id
+            id: category.id,
           }
 
           this.categories.push(newCategory)

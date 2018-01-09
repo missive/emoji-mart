@@ -53,11 +53,11 @@ const _handleLeave = (e, props) => {
   onLeave(emoji, e)
 }
 
-const _isNumeric = (value) => {
+const _isNumeric = value => {
   return !isNaN(value - parseFloat(value))
 }
 
-const _convertStyleToCSS = (style) => {
+const _convertStyleToCSS = style => {
   let div = document.createElement('div')
 
   for (let key in style) {
@@ -145,7 +145,9 @@ const Emoji = props => {
 
   if (props.html) {
     style = _convertStyleToCSS(style)
-    return `<span style='${style}' ${title ? `title='${title}'` : ''} class='${className}'>${children || ''}</span>`
+    return `<span style='${style}' ${title
+      ? `title='${title}'`
+      : ''} class='${className}'>${children || ''}</span>`
   } else {
     return (
       <span
@@ -197,7 +199,7 @@ Emoji.defaultProps = {
   onOver: () => {},
   onLeave: () => {},
   onClick: () => {},
-  fallback: (emoji) => {},
+  fallback: emoji => {},
 }
 
 export default Emoji
