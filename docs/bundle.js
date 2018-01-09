@@ -1748,7 +1748,7 @@ function search(value) {
   if (results) {
     if (emojisToShowFilter) {
       results = results.filter(function (result) {
-        return emojisToShowFilter(__WEBPACK_IMPORTED_MODULE_0__data__["a" /* default */].emojis[result.id]);
+        return emojisToShowFilter(pool[result.id]);
       });
     }
 
@@ -23148,6 +23148,26 @@ var _handleLeave = function _handleLeave(e, props) {
   onLeave(emoji, e);
 };
 
+var _isNumeric = function _isNumeric(value) {
+  return !isNaN(value - parseFloat(value));
+};
+
+var _convertStyleToCSS = function _convertStyleToCSS(style) {
+  var div = document.createElement('div');
+
+  for (var key in style) {
+    var value = style[key];
+
+    if (_isNumeric(value)) {
+      value += 'px';
+    }
+
+    div.style[key] = value;
+  }
+
+  return div.getAttribute('style');
+};
+
 var Emoji = function Emoji(props) {
   for (var k in Emoji.defaultProps) {
     if (props[k] == undefined && Emoji.defaultProps[k] != undefined) {
@@ -23200,41 +23220,51 @@ var Emoji = function Emoji(props) {
     var setHasEmoji = _getData(props)['has_img_' + props.set];
 
     if (!setHasEmoji) {
-      return null;
+      if (props.fallback) {
+        style = { fontSize: props.size };
+        children = props.fallback(data);
+      } else {
+        return null;
+      }
+    } else {
+      style = {
+        width: props.size,
+        height: props.size,
+        display: 'inline-block',
+        backgroundImage: 'url(' + props.backgroundImageFn(props.set, props.sheetSize) + ')',
+        backgroundSize: 100 * SHEET_COLUMNS + '%',
+        backgroundPosition: _getPosition(props)
+      };
     }
-
-    style = {
-      width: props.size,
-      height: props.size,
-      display: 'inline-block',
-      backgroundImage: 'url(' + props.backgroundImageFn(props.set, props.sheetSize) + ')',
-      backgroundSize: 100 * SHEET_COLUMNS + '%',
-      backgroundPosition: _getPosition(props)
-    };
   }
 
-  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-    'span',
-    {
-      key: props.emoji.id || props.emoji,
-      onClick: function onClick(e) {
-        return _handleClick(e, props);
-      },
-      onMouseEnter: function onMouseEnter(e) {
-        return _handleOver(e, props);
-      },
-      onMouseLeave: function onMouseLeave(e) {
-        return _handleLeave(e, props);
-      },
-      title: title,
-      className: className
-    },
-    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+  if (props.html) {
+    style = _convertStyleToCSS(style);
+    return '<span style=\'' + style + '\' ' + (title ? 'title=\'' + title + '\'' : '') + ' class=\'' + className + '\'>' + (children || '') + '</span>';
+  } else {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'span',
-      { style: style },
-      children
-    )
-  );
+      {
+        key: props.emoji.id || props.emoji,
+        onClick: function onClick(e) {
+          return _handleClick(e, props);
+        },
+        onMouseEnter: function onMouseEnter(e) {
+          return _handleOver(e, props);
+        },
+        onMouseLeave: function onMouseLeave(e) {
+          return _handleLeave(e, props);
+        },
+        title: title,
+        className: className
+      },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'span',
+        { style: style },
+        children
+      )
+    );
+  }
 };
 
 Emoji.defaultProps = {
@@ -23249,7 +23279,8 @@ Emoji.defaultProps = {
   },
   onOver: function onOver() {},
   onLeave: function onLeave() {},
-  onClick: function onClick() {}
+  onClick: function onClick() {},
+  fallback: function fallback(emoji) {}
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (Emoji);
@@ -23386,7 +23417,8 @@ var Picker = function (_React$PureComponent) {
         if (newEmojis.length) {
           var newCategory = {
             emojis: newEmojis,
-            name: category.name
+            name: category.name,
+            id: category.id
           };
 
           _this.categories.push(newCategory);
