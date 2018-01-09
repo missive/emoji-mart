@@ -102,19 +102,24 @@ const Emoji = props => {
     let setHasEmoji = _getData(props)[`has_img_${props.set}`]
 
     if (!setHasEmoji) {
-      return null
-    }
-
-    style = {
-      width: props.size,
-      height: props.size,
-      display: 'inline-block',
-      backgroundImage: `url(${props.backgroundImageFn(
-        props.set,
-        props.sheetSize
-      )})`,
-      backgroundSize: `${100 * SHEET_COLUMNS}%`,
-      backgroundPosition: _getPosition(props),
+      if (props.fallback) {
+        style = { fontSize: props.size }
+        children = props.fallback(data)
+      } else {
+        return null
+      }
+    } else {
+      style = {
+        width: props.size,
+        height: props.size,
+        display: 'inline-block',
+        backgroundImage: `url(${props.backgroundImageFn(
+          props.set,
+          props.sheetSize
+        )})`,
+        backgroundSize: `${100 * SHEET_COLUMNS}%`,
+        backgroundPosition: _getPosition(props),
+      }
     }
   }
 
@@ -136,6 +141,7 @@ Emoji.propTypes = {
   onOver: PropTypes.func,
   onLeave: PropTypes.func,
   onClick: PropTypes.func,
+  fallback: PropTypes.func,
   backgroundImageFn: PropTypes.func,
   native: PropTypes.bool,
   forceSize: PropTypes.bool,
@@ -166,6 +172,7 @@ Emoji.defaultProps = {
   onOver: () => {},
   onLeave: () => {},
   onClick: () => {},
+  fallback: (emoji) => {},
 }
 
 export default Emoji
