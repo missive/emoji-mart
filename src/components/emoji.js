@@ -53,6 +53,26 @@ const _handleLeave = (e, props) => {
   onLeave(emoji, e)
 }
 
+const _isNumeric = (value) => {
+  return !isNaN(value - parseFloat(value))
+}
+
+const _convertStyleToCSS = (style) => {
+  let div = document.createElement('div')
+
+  for (let key in style) {
+    let value = style[key]
+
+    if (_isNumeric(value)) {
+      value += 'px'
+    }
+
+    div.style[key] = value
+  }
+
+  return div.getAttribute('style')
+}
+
 const Emoji = props => {
   for (let k in Emoji.defaultProps) {
     if (props[k] == undefined && Emoji.defaultProps[k] != undefined) {
@@ -123,18 +143,23 @@ const Emoji = props => {
     }
   }
 
-  return (
-    <span
-      key={props.emoji.id || props.emoji}
-      onClick={e => _handleClick(e, props)}
-      onMouseEnter={e => _handleOver(e, props)}
-      onMouseLeave={e => _handleLeave(e, props)}
-      title={title}
-      className={className}
-    >
-      <span style={style}>{children}</span>
-    </span>
-  )
+  if (props.html) {
+    style = _convertStyleToCSS(style)
+    return `<span style='${style}' ${title ? `title='${title}'` : ''} class='${className}'>${children || ''}</span>`
+  } else {
+    return (
+      <span
+        key={props.emoji.id || props.emoji}
+        onClick={e => _handleClick(e, props)}
+        onMouseEnter={e => _handleOver(e, props)}
+        onMouseLeave={e => _handleLeave(e, props)}
+        title={title}
+        className={className}
+      >
+        <span style={style}>{children}</span>
+      </span>
+    )
+  }
 }
 
 Emoji.propTypes = {

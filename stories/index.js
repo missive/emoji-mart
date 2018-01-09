@@ -50,6 +50,7 @@ storiesOf('Emoji', module)
       emoji={text('Emoji', '+1')}
       size={number('Emoji size', 64)}
       skin={number('Skin tone', 1)}
+      html={boolean('HTML', false)}
       fallback={(emoji) => {
         return `:${emoji.short_names[0]}:`
       }}

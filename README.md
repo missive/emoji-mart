@@ -155,6 +155,7 @@ import { Emoji } from 'emoji-mart'
 | **backgroundImageFn** | | ```((set, sheetSize) => `https://unpkg.com/emoji-datasource@3.0.0/sheet_${set}_${sheetSize}.png`)``` | A Fn that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **skin** | | `1` | Skin color: `1, 2, 3, 4, 5, 6` |
 | **tooltip** | | `false` | Show emoji short name when hovering (title) |
+| [**html**](#using-with-dangerouslySetInnerHTML) | | `false` | Returns an HTML string to use with `dangerouslySetInnerHTML` |
 
 #### Unsupported emojis fallback
 Certain sets don’t support all emojis (i.e. Messenger & Facebook don’t support `:shrug:`). By default the Emoji component will not render anything so that the emojis’ don’t take space in the picker when not available. When using the standalone Emoji component, you can however render anything you want by providing the `fallback` props.
@@ -170,6 +171,20 @@ To have the component render `:shrug:` you would need to:
     return `:${emoji.short_names[0]}:`
   }}
 />
+```
+
+#### Using with `dangerouslySetInnerHTML`
+The Emoji component being a [functional component](https://medium.com/missive-app/45-faster-react-functional-components-now-3509a668e69f), you can call it as you would call any function instead of using JSX. Make sure you pass `html: true` for it to return an HTML string.
+
+```js
+<span dangerouslySetInnerHTML={{
+  __html: Emoji({
+    html: true
+    set: 'apple'
+    emoji: '+1'
+    size: 24
+  })
+}}></span>
 ```
 
 ## Custom emojis
