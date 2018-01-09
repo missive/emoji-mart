@@ -155,7 +155,7 @@ import { Emoji } from 'emoji-mart'
 | **backgroundImageFn** | | ```((set, sheetSize) => `https://unpkg.com/emoji-datasource@3.0.0/sheet_${set}_${sheetSize}.png`)``` | A Fn that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **skin** | | `1` | Skin color: `1, 2, 3, 4, 5, 6` |
 | **tooltip** | | `false` | Show emoji short name when hovering (title) |
-| [**html**](#using-with-dangerouslySetInnerHTML) | | `false` | Returns an HTML string to use with `dangerouslySetInnerHTML` |
+| [**html**](#using-with-dangerouslysetinnerhtml) | | `false` | Returns an HTML string to use with `dangerouslySetInnerHTML` |
 
 #### Unsupported emojis fallback
 Certain sets don’t support all emojis (i.e. Messenger & Facebook don’t support `:shrug:`). By default the Emoji component will not render anything so that the emojis’ don’t take space in the picker when not available. When using the standalone Emoji component, you can however render anything you want by providing the `fallback` props.
