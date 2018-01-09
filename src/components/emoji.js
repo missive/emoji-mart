@@ -123,7 +123,6 @@ const Emoji = props => {
 
     if (!setHasEmoji) {
       if (props.fallback) {
-        style = { fontSize: props.size }
         children = props.fallback(data)
       } else {
         return null
