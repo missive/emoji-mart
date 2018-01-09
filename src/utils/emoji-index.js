@@ -152,7 +152,7 @@ function search(
   if (results) {
     if (emojisToShowFilter) {
       results = results.filter(result =>
-        emojisToShowFilter(data.emojis[result.id])
+        emojisToShowFilter(pool[result.id])
       )
     }
 
