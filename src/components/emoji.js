@@ -198,7 +198,6 @@ Emoji.defaultProps = {
   onOver: () => {},
   onLeave: () => {},
   onClick: () => {},
-  fallback: emoji => {},
 }
 
 export default Emoji
