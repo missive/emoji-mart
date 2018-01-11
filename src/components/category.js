@@ -83,7 +83,6 @@ export default class Category extends React.Component {
     margin = margin > this.maxMargin ? this.maxMargin : margin
 
     if (margin == this.margin) return
-    var { name } = this.props
 
     if (!this.props.hasStickyPosition) {
       this.label.style.top = `${margin}px`
