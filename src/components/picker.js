@@ -71,7 +71,7 @@ export default class Picker extends React.PureComponent {
           return 1
         }
 
-        return 0
+        return -1
       })
     }
 
