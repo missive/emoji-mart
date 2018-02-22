@@ -61,6 +61,8 @@ export default class Picker extends React.PureComponent {
       })
 
       allCategories.push(CUSTOM_CATEGORY)
+    } else if (CUSTOM_CATEGORY.emojis.length > 0) {
+      CUSTOM_CATEGORY.emojis = [];
     }
 
     this.hideRecent = true
