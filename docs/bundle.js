@@ -23759,6 +23759,7 @@ var Picker = function (_React$PureComponent) {
       var backgroundImageFn = _props.backgroundImageFn;
       var emojisToShowFilter = _props.emojisToShowFilter;
       var showPreview = _props.showPreview;
+      var showSkinTones = _props.showSkinTones;
       var emojiTooltip = _props.emojiTooltip;
       var include = _props.include;
       var exclude = _props.exclude;
@@ -23834,6 +23835,7 @@ var Picker = function (_React$PureComponent) {
             ref: this.setPreviewRef,
             title: title,
             emoji: emoji,
+            showSkinTones: showSkinTones,
             emojiProps: {
               native: native,
               size: 38,
@@ -23876,6 +23878,7 @@ Picker.defaultProps = {
   backgroundImageFn: __WEBPACK_IMPORTED_MODULE_13____["c" /* Emoji */].defaultProps.backgroundImageFn,
   emojisToShowFilter: null,
   showPreview: true,
+  showSkinTones: true,
   emojiTooltip: __WEBPACK_IMPORTED_MODULE_13____["c" /* Emoji */].defaultProps.tooltip,
   autoFocus: false,
   custom: []
@@ -23968,6 +23971,7 @@ var Preview = function (_React$PureComponent) {
       var _props = this.props;
       var emojiProps = _props.emojiProps;
       var skinsProps = _props.skinsProps;
+      var showSkinTones = _props.showSkinTones;
       var title = _props.title;
       var idleEmoji = _props.emoji;
 
@@ -24048,7 +24052,7 @@ var Preview = function (_React$PureComponent) {
               title
             )
           ),
-          __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+          showSkinTones && __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
             'div',
             { className: 'emoji-mart-preview-skins' },
             __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8____["g" /* Skins */], skinsProps)
@@ -24062,6 +24066,12 @@ var Preview = function (_React$PureComponent) {
 }(__WEBPACK_IMPORTED_MODULE_6_react___default.a.PureComponent);
 
 /* harmony default export */ __webpack_exports__["a"] = (Preview);
+
+
+Preview.defaultProps = {
+  showSkinTones: true,
+  onChange: function onChange() {}
+};
 
 /***/ }),
 /* 90 */
