@@ -357,10 +357,13 @@ export default class Picker extends React.PureComponent {
   }
 
   handleSkinChange(skin) {
-    var newState = { skin: skin }
+    var newState = { skin: skin },
+      { onSkinChange } = this.props
 
     this.setState(newState)
     store.update(newState)
+
+    onSkinChange(skin)
   }
 
   updateCategoriesSize() {
@@ -521,6 +524,7 @@ export default class Picker extends React.PureComponent {
 
 Picker.propTypes = {
   onClick: PropTypes.func,
+  onSkinChange: PropTypes.func,
   perLine: PropTypes.number,
   emojiSize: PropTypes.number,
   i18n: PropTypes.object,
@@ -553,6 +557,7 @@ Picker.propTypes = {
 
 Picker.defaultProps = {
   onClick: () => {},
+  onSkinChange: () => {},
   emojiSize: 24,
   perLine: 9,
   i18n: {},

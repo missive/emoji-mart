@@ -13,7 +13,7 @@ export default class Skins extends React.PureComponent {
   }
 
   handleClick(e) {
-    var skin = e.currentTarget.getAttribute('data-skin')
+    var skin = parseInt(e.currentTarget.getAttribute('data-skin'))
     var { onChange } = this.props
 
     if (!this.state.opened) {
