@@ -43,7 +43,7 @@ export default class Picker extends React.PureComponent {
 
     this.i18n = deepMerge(I18N, props.i18n)
     this.state = {
-      skin: store.get('skin') || props.skin,
+      skin: props.skin || store.get('skin') || props.defaultSkin,
       firstRender: true,
     }
 
@@ -152,8 +152,10 @@ export default class Picker extends React.PureComponent {
   }
 
   componentWillReceiveProps(props) {
-    if (props.skin && !store.get('skin')) {
+    if (props.skin) {
       this.setState({ skin: props.skin })
+    } else if (props.defaultSkin && !store.get('skin')) {
+      this.setState({ skin: props.defaultSkin })
     }
   }
 
@@ -566,7 +568,8 @@ Picker.defaultProps = {
   emoji: 'department_store',
   color: '#ae65c5',
   set: Emoji.defaultProps.set,
-  skin: Emoji.defaultProps.skin,
+  skin: null,
+  defaultSkin: Emoji.defaultProps.skin,
   native: Emoji.defaultProps.native,
   sheetSize: Emoji.defaultProps.sheetSize,
   backgroundImageFn: Emoji.defaultProps.backgroundImageFn,

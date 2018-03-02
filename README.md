@@ -43,7 +43,8 @@ import { Picker } from 'emoji-mart'
 | **emojisToShowFilter** | | ```((emoji) => true)``` | A Fn to choose whether an emoji should be displayed or not |
 | **showPreview** | | `true` | Display preview section |
 | **emojiTooltip** | | `false` | Show emojis short name when hovering (title) |
-| **skin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
+| **skin** | | | Forces skin color: `1, 2, 3, 4, 5, 6` |
+| **defaultSkin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
 | **style** | | | Inline styles applied to the root element. Useful for positioning |
 | **title** | | `Emoji Mart™` | The title shown when no emojis are hovered |
 
