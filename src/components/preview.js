@@ -12,7 +12,13 @@ export default class Preview extends React.PureComponent {
 
   render() {
     var { emoji } = this.state,
-      { emojiProps, skinsProps, showSkinTones, title, emoji: idleEmoji } = this.props
+      {
+        emojiProps,
+        skinsProps,
+        showSkinTones,
+        title,
+        emoji: idleEmoji,
+      } = this.props
 
     if (emoji) {
       var emojiData = getData(emoji),
