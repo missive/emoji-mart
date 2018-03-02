@@ -189,6 +189,24 @@ The Emoji component being a [functional component](https://medium.com/missive-ap
 }}></span>
 ```
 
+#### Using with `contentEditable`
+Following the `dangerouslySetInnerHTML` example above, make sure the wrapping `span` sets `contenteditable="false"`.
+
+```js
+<div contentEditable={true}>
+  Looks good to me
+
+  <span contentEditable={false} dangerouslySetInnerHTML={{
+    __html: Emoji({
+      html: true
+      set: 'apple'
+      emoji: '+1'
+      size: 24
+    })
+  }}></span>
+</div>
+```
+
 ## Custom emojis
 You can provide custom emojis which will show up in their own category.
 
