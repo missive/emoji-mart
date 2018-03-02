@@ -12,7 +12,7 @@ export default class Preview extends React.PureComponent {
 
   render() {
     var { emoji } = this.state,
-      { emojiProps, skinsProps, title, emoji: idleEmoji } = this.props
+      { emojiProps, skinsProps, showSkinTones, title, emoji: idleEmoji } = this.props
 
     if (emoji) {
       var emojiData = getData(emoji),
@@ -67,9 +67,11 @@ export default class Preview extends React.PureComponent {
             <span className="emoji-mart-title-label">{title}</span>
           </div>
 
-          <div className="emoji-mart-preview-skins">
-            <Skins {...skinsProps} />
-          </div>
+          {showSkinTones && (
+            <div className="emoji-mart-preview-skins">
+              <Skins {...skinsProps} />
+            </div>
+          )}
         </div>
       )
     }
@@ -77,8 +79,14 @@ export default class Preview extends React.PureComponent {
 }
 
 Preview.propTypes = {
+  showSkinTones: PropTypes.bool,
   title: PropTypes.string.isRequired,
   emoji: PropTypes.string.isRequired,
   emojiProps: PropTypes.object.isRequired,
   skinsProps: PropTypes.object.isRequired,
+}
+
+Preview.defaultProps = {
+  showSkinTones: true,
+  onChange: () => {},
 }

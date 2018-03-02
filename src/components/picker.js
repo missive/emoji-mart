@@ -425,6 +425,7 @@ export default class Picker extends React.PureComponent {
         backgroundImageFn,
         emojisToShowFilter,
         showPreview,
+        showSkinTones,
         emojiTooltip,
         include,
         exclude,
@@ -504,6 +505,7 @@ export default class Picker extends React.PureComponent {
               ref={this.setPreviewRef}
               title={title}
               emoji={emoji}
+              showSkinTones={showSkinTones}
               emojiProps={{
                 native: native,
                 size: 38,
@@ -541,6 +543,7 @@ Picker.propTypes = {
   sheetSize: Emoji.propTypes.sheetSize,
   emojisToShowFilter: PropTypes.func,
   showPreview: PropTypes.bool,
+  showSkinTones: PropTypes.bool,
   emojiTooltip: Emoji.propTypes.tooltip,
   include: PropTypes.arrayOf(PropTypes.string),
   exclude: PropTypes.arrayOf(PropTypes.string),
@@ -575,6 +578,7 @@ Picker.defaultProps = {
   backgroundImageFn: Emoji.defaultProps.backgroundImageFn,
   emojisToShowFilter: null,
   showPreview: true,
+  showSkinTones: true,
   emojiTooltip: Emoji.defaultProps.tooltip,
   autoFocus: false,
   custom: [],

@@ -38,6 +38,7 @@ storiesOf('Picker', module)
       defaultSkin={number('Default skin tone', 1)}
       color={color('Highlight color', '#ae65c5')}
       showPreview={boolean('Show preview', true)}
+      showSkinTones={boolean('Show skin tones', true)}
       custom={CUSTOM_EMOJIS}
     />
   ));
