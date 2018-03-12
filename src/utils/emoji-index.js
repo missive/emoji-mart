@@ -5,6 +5,7 @@ var originalPool = {}
 var index = {}
 var emojisList = {}
 var emoticonsList = {}
+var customEmojisList = []
 
 for (let emoji in data.emojis) {
   let emojiData = data.emojis[emoji],
@@ -25,7 +26,18 @@ for (let emoji in data.emojis) {
   originalPool[id] = emojiData
 }
 
+function clearCustomEmojis(pool) {
+  customEmojisList.forEach(emoji => {
+    let emojiId = emoji.id || emoji.short_names[0]
+
+    delete pool[emojiId]
+    delete emojisList[emojiId]
+  })
+}
+
 function addCustomToPool(custom, pool) {
+  if (customEmojisList.length) clearCustomEmojis(pool)
+
   custom.forEach(emoji => {
     let emojiId = emoji.id || emoji.short_names[0]
 
@@ -34,13 +46,16 @@ function addCustomToPool(custom, pool) {
       emojisList[emojiId] = getSanitizedData(emoji)
     }
   })
+
+  customEmojisList = custom
+  index = {}
 }
 
 function search(
   value,
   { emojisToShowFilter, maxResults, include, exclude, custom = [] } = {}
 ) {
-  addCustomToPool(custom, originalPool)
+  if (customEmojisList != custom) addCustomToPool(custom, originalPool)
 
   maxResults || (maxResults = 75)
   include || (include = [])
