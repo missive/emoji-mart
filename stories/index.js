@@ -28,6 +28,7 @@ storiesOf('Picker', module)
   .add('default', () => (
     <Picker
       onClick={action('clicked')}
+      onSelect={action('selected')}
       onSkinChange={action('skin changed')}
       native={boolean('Unicode', true)}
       set={select('Emoji pack', SETS, SETS[0])}

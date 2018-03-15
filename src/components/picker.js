@@ -147,8 +147,10 @@ export default class Picker extends React.PureComponent {
     this.handleEmojiOver = this.handleEmojiOver.bind(this)
     this.handleEmojiLeave = this.handleEmojiLeave.bind(this)
     this.handleEmojiClick = this.handleEmojiClick.bind(this)
+    this.handleEmojiSelect = this.handleEmojiSelect.bind(this)
     this.setPreviewRef = this.setPreviewRef.bind(this)
     this.handleSkinChange = this.handleSkinChange.bind(this)
+    this.handleKeyDown = this.handleKeyDown.bind(this)
   }
 
   componentWillReceiveProps(props) {
@@ -225,6 +227,11 @@ export default class Picker extends React.PureComponent {
 
   handleEmojiClick(emoji, e) {
     this.props.onClick(emoji, e)
+    this.handleEmojiSelect(emoji)
+  }
+
+  handleEmojiSelect(emoji) {
+    this.props.onSelect(emoji)
     if (!this.hideRecent && !this.props.recent) frequently.add(emoji)
 
     var component = this.categoryRefs['category-1']
@@ -368,6 +375,21 @@ export default class Picker extends React.PureComponent {
     onSkinChange(skin)
   }
 
+  handleKeyDown(e) {
+    let handled = false
+    switch (e.keyCode) {
+      case 13:
+        handled = true
+        if (SEARCH_CATEGORY.emojis) {
+          this.handleEmojiSelect(SEARCH_CATEGORY.emojis[0])
+        }
+        break;
+    }
+    if (handled) {
+      e.preventDefault()
+    }
+  }
+
   updateCategoriesSize() {
     for (let i = 0, l = this.categories.length; i < l; i++) {
       let component = this.categoryRefs[`category-${i}`]
@@ -436,7 +458,7 @@ export default class Picker extends React.PureComponent {
       width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
 
     return (
-      <div style={{ width: width, ...style }} className="emoji-mart">
+      <div style={{ width: width, ...style }} className="emoji-mart" onKeyDown={this.handleKeyDown}>
         <div className="emoji-mart-bar">
           <Anchors
             ref={this.setAnchorsRef}
@@ -530,6 +552,7 @@ export default class Picker extends React.PureComponent {
 
 Picker.propTypes = {
   onClick: PropTypes.func,
+  onSelect: PropTypes.func,
   onSkinChange: PropTypes.func,
   perLine: PropTypes.number,
   emojiSize: PropTypes.number,
@@ -564,6 +587,7 @@ Picker.propTypes = {
 
 Picker.defaultProps = {
   onClick: () => {},
+  onSelect: () => {},
   onSkinChange: () => {},
   emojiSize: 24,
   perLine: 9,
