@@ -380,8 +380,8 @@ export default class Picker extends React.PureComponent {
     switch (e.keyCode) {
       case 13:
         handled = true
-        if (SEARCH_CATEGORY.emojis) {
-          this.handleEmojiSelect(SEARCH_CATEGORY.emojis[0])
+        if (this.SEARCH_CATEGORY.emojis) {
+          this.handleEmojiSelect(this.SEARCH_CATEGORY.emojis[0])
         }
         break;
     }
