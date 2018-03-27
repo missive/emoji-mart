@@ -17,7 +17,7 @@ import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
 
 <Picker set='emojione' />
-<Picker onClick={this.addEmoji} />
+<Picker onSelect={this.addEmoji} />
 <Picker title='Pick your emoji…' emoji='point_up' />
 <Picker style={{ position: 'absolute', bottom: '20px', right: '20px' }} />
 <Picker i18n={{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }} />
@@ -33,7 +33,8 @@ import { Picker } from 'emoji-mart'
 | **custom** | | `[]` | [Custom emojis](#custom-emojis) |
 | **recent** | | | Pass your own frequently used emojis as array of string IDs |
 | **emojiSize** | | `24` | The emoji width and height |
-| **onClick** | | | Params: `(emoji, event) => {}` |
+| **onClick** | | | Params: `(emoji, event) => {}`. Not called when emoji is selected with `enter` |
+| **onSelect** | | | Params: `(emoji) => {}`  |
 | **onSkinChange** | | | Params: `(skin) => {}` |
 | **perLine** | | `9` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set *Frequently Used* length as well (`perLine * 4`) |
 | **i18n** | | [`{…}`](#i18n) | [An object](#i18n) containing localized strings |

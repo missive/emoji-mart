@@ -69,7 +69,7 @@ class Example extends React.Component {
       <div className="row">
         <Picker
           {...this.state}
-          onClick={console.log}
+          onSelect={console.log}
         />
       </div>
 
