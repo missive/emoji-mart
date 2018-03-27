@@ -6,19 +6,19 @@ import { getData, getSanitizedData, unifiedToNative } from '../utils'
 
 const SHEET_COLUMNS = 52
 
-const _getPosition = props => {
+const _getPosition = (props) => {
   var { sheet_x, sheet_y } = _getData(props),
     multiply = 100 / (SHEET_COLUMNS - 1)
 
   return `${multiply * sheet_x}% ${multiply * sheet_y}%`
 }
 
-const _getData = props => {
+const _getData = (props) => {
   var { emoji, skin, set } = props
   return getData(emoji, skin, set)
 }
 
-const _getSanitizedData = props => {
+const _getSanitizedData = (props) => {
   var { emoji, skin, set } = props
   return getSanitizedData(emoji, skin, set)
 }
@@ -53,11 +53,11 @@ const _handleLeave = (e, props) => {
   onLeave(emoji, e)
 }
 
-const _isNumeric = value => {
+const _isNumeric = (value) => {
   return !isNaN(value - parseFloat(value))
 }
 
-const _convertStyleToCSS = style => {
+const _convertStyleToCSS = (style) => {
   let div = document.createElement('div')
 
   for (let key in style) {
@@ -73,7 +73,7 @@ const _convertStyleToCSS = style => {
   return div.getAttribute('style')
 }
 
-const Emoji = props => {
+const Emoji = (props) => {
   for (let k in Emoji.defaultProps) {
     if (props[k] == undefined && Emoji.defaultProps[k] != undefined) {
       props[k] = Emoji.defaultProps[k]
@@ -134,7 +134,7 @@ const Emoji = props => {
         display: 'inline-block',
         backgroundImage: `url(${props.backgroundImageFn(
           props.set,
-          props.sheetSize
+          props.sheetSize,
         )})`,
         backgroundSize: `${100 * SHEET_COLUMNS}%`,
         backgroundPosition: _getPosition(props),
@@ -144,16 +144,16 @@ const Emoji = props => {
 
   if (props.html) {
     style = _convertStyleToCSS(style)
-    return `<span style='${style}' ${title
-      ? `title='${title}'`
-      : ''} class='${className}'>${children || ''}</span>`
+    return `<span style='${style}' ${
+      title ? `title='${title}'` : ''
+    } class='${className}'>${children || ''}</span>`
   } else {
     return (
       <span
         key={props.emoji.id || props.emoji}
-        onClick={e => _handleClick(e, props)}
-        onMouseEnter={e => _handleOver(e, props)}
-        onMouseLeave={e => _handleLeave(e, props)}
+        onClick={(e) => _handleClick(e, props)}
+        onMouseEnter={(e) => _handleOver(e, props)}
+        onMouseLeave={(e) => _handleLeave(e, props)}
         title={title}
         className={className}
       >

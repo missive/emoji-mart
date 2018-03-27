@@ -51,7 +51,7 @@ export default class Picker extends React.PureComponent {
     let allCategories = [].concat(data.categories)
 
     if (props.custom.length > 0) {
-      this.CUSTOM_CATEGORY.emojis = props.custom.map(emoji => {
+      this.CUSTOM_CATEGORY.emojis = props.custom.map((emoji) => {
         return {
           ...emoji,
           // `<Category />` expects emoji to have an `id`.
@@ -188,7 +188,7 @@ export default class Picker extends React.PureComponent {
     const prefixes = ['', '-webkit-', '-ms-', '-moz-', '-o-']
 
     prefixes.forEach(
-      prefix => (stickyTestElement.style.position = `${prefix}sticky`)
+      (prefix) => (stickyTestElement.style.position = `${prefix}sticky`),
     )
 
     this.hasStickyPosition = !!stickyTestElement.style.position.length
@@ -202,7 +202,7 @@ export default class Picker extends React.PureComponent {
 
     // Use Array.prototype.find() when it is more widely supported.
     const emojiData = this.CUSTOM_CATEGORY.emojis.filter(
-      customEmoji => customEmoji.id === emoji.id
+      (customEmoji) => customEmoji.id === emoji.id,
     )[0]
     for (let key in emojiData) {
       if (emojiData.hasOwnProperty(key)) {
@@ -300,7 +300,7 @@ export default class Picker extends React.PureComponent {
 
       if (scrollTop < minTop) {
         activeCategory = this.categories.filter(
-          category => !(category.anchor === false)
+          (category) => !(category.anchor === false),
         )[0]
       } else if (scrollTop + this.clientHeight >= this.scrollHeight) {
         activeCategory = this.categories[this.categories.length - 1]
@@ -382,12 +382,15 @@ export default class Picker extends React.PureComponent {
       case 13:
         let emoji
 
-        if (this.SEARCH_CATEGORY.emojis && (emoji = this.SEARCH_CATEGORY.emojis[0])) {
+        if (
+          this.SEARCH_CATEGORY.emojis &&
+          (emoji = this.SEARCH_CATEGORY.emojis[0])
+        ) {
           this.handleEmojiSelect(emoji)
         }
 
         handled = true
-        break;
+        break
     }
 
     if (handled) {
@@ -463,7 +466,11 @@ export default class Picker extends React.PureComponent {
       width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
 
     return (
-      <div style={{ width: width, ...style }} className="emoji-mart" onKeyDown={this.handleKeyDown}>
+      <div
+        style={{ width: width, ...style }}
+        className="emoji-mart"
+        onKeyDown={this.handleKeyDown}
+      >
         <div className="emoji-mart-bar">
           <Anchors
             ref={this.setAnchorsRef}
@@ -586,7 +593,7 @@ Picker.propTypes = {
       emoticons: PropTypes.arrayOf(PropTypes.string),
       keywords: PropTypes.arrayOf(PropTypes.string),
       imageUrl: PropTypes.string.isRequired,
-    })
+    }),
   ),
 }
 

@@ -26,7 +26,7 @@ export default class Preview extends React.PureComponent {
         knownEmoticons = [],
         listedEmoticons = []
 
-      emoticons.forEach(emoticon => {
+      emoticons.forEach((emoticon) => {
         if (knownEmoticons.indexOf(emoticon.toLowerCase()) >= 0) {
           return
         }
@@ -44,14 +44,14 @@ export default class Preview extends React.PureComponent {
           <div className="emoji-mart-preview-data">
             <div className="emoji-mart-preview-name">{emoji.name}</div>
             <div className="emoji-mart-preview-shortnames">
-              {emojiData.short_names.map(short_name => (
+              {emojiData.short_names.map((short_name) => (
                 <span key={short_name} className="emoji-mart-preview-shortname">
                   :{short_name}:
                 </span>
               ))}
             </div>
             <div className="emoji-mart-preview-emoticons">
-              {listedEmoticons.map(emoticon => (
+              {listedEmoticons.map((emoticon) => (
                 <span key={emoticon} className="emoji-mart-preview-emoticon">
                   {emoticon}
                 </span>

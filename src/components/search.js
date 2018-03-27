@@ -20,7 +20,7 @@ export default class Search extends React.PureComponent {
         include: this.props.include,
         exclude: this.props.exclude,
         custom: this.props.custom,
-      })
+      }),
     )
   }
 

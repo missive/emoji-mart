@@ -7,7 +7,9 @@ export default class Anchors extends React.PureComponent {
   constructor(props) {
     super(props)
 
-    let defaultCategory = props.categories.filter(category => category.first)[0]
+    let defaultCategory = props.categories.filter(
+      (category) => category.first,
+    )[0]
 
     this.state = {
       selected: defaultCategory.name,
@@ -58,9 +60,9 @@ export default class Anchors extends React.PureComponent {
               title={i18n.categories[id]}
               data-index={i}
               onClick={this.handleClick}
-              className={`emoji-mart-anchor ${isSelected
-                ? 'emoji-mart-anchor-selected'
-                : ''}`}
+              className={`emoji-mart-anchor ${
+                isSelected ? 'emoji-mart-anchor-selected' : ''
+              }`}
               style={{ color: isSelected ? color : null }}
             >
               <div dangerouslySetInnerHTML={{ __html: this.getSVG(id) }} />

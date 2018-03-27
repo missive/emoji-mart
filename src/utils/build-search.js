@@ -1,4 +1,4 @@
-export default data => {
+export default (data) => {
   const search = []
 
   var addToSearch = (strings, split) => {
@@ -6,8 +6,8 @@ export default data => {
       return
     }
 
-    ;(Array.isArray(strings) ? strings : [strings]).forEach(string => {
-      ;(split ? string.split(/[-|_|\s]+/) : [string]).forEach(s => {
+    ;(Array.isArray(strings) ? strings : [strings]).forEach((string) => {
+      ;(split ? string.split(/[-|_|\s]+/) : [string]).forEach((s) => {
         s = s.toLowerCase()
 
         if (search.indexOf(s) == -1) {

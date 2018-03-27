@@ -101,15 +101,15 @@ export default class Category extends React.Component {
 
       if (frequentlyUsed.length) {
         emojis = frequentlyUsed
-          .map(id => {
-            const emoji = custom.filter(e => e.id === id)[0]
+          .map((id) => {
+            const emoji = custom.filter((e) => e.id === id)[0]
             if (emoji) {
               return emoji
             }
 
             return id
           })
-          .filter(id => !!getData(id))
+          .filter((id) => !!getData(id))
       }
 
       if (emojis.length === 0 && frequentlyUsed.length > 0) {
@@ -168,9 +168,9 @@ export default class Category extends React.Component {
     return (
       <div
         ref={this.setContainerRef}
-        className={`emoji-mart-category ${emojis && !emojis.length
-          ? 'emoji-mart-no-results'
-          : ''}`}
+        className={`emoji-mart-category ${
+          emojis && !emojis.length ? 'emoji-mart-no-results' : ''
+        }`}
         style={containerStyles}
       >
         <div
@@ -183,7 +183,8 @@ export default class Category extends React.Component {
           </span>
         </div>
 
-        {emojis && emojis.map(emoji => Emoji({ emoji: emoji, ...emojiProps }))}
+        {emojis &&
+          emojis.map((emoji) => Emoji({ emoji: emoji, ...emojiProps }))}
 
         {emojis &&
           !emojis.length && (

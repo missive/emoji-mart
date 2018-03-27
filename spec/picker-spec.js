@@ -30,14 +30,14 @@ describe('Picker', () => {
     })
 
     it('will not show some based upon our filter', () => {
-      subject = render({ emojisToShowFilter: unified => false })
+      subject = render({ emojisToShowFilter: (unified) => false })
       expect(subject.categories.length).toEqual(2)
     })
 
     it('maintains category ids after it is filtered', () => {
-      subject = render({ emojisToShowFilter: emoji => true })
+      subject = render({ emojisToShowFilter: (emoji) => true })
       const categoriesWithIds = subject.categories.filter(
-        category => category.id
+        (category) => category.id,
       )
       expect(categoriesWithIds.length).toEqual(10)
     })

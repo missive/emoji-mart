@@ -9,7 +9,7 @@ const SKINS = ['1F3FA', '1F3FB', '1F3FC', '1F3FD', '1F3FE', '1F3FF']
 
 function unifiedToNative(unified) {
   var unicodes = unified.split('-'),
-    codePoints = unicodes.map(u => `0x${u}`)
+    codePoints = unicodes.map((u) => `0x${u}`)
 
   return stringFromCodePoint.apply(null, codePoints)
 }
@@ -145,7 +145,7 @@ function intersect(a, b) {
   const uniqA = uniq(a)
   const uniqB = uniq(b)
 
-  return uniqA.filter(item => uniqB.indexOf(item) >= 0)
+  return uniqA.filter((item) => uniqB.indexOf(item) >= 0)
 }
 
 function deepMerge(a, b) {

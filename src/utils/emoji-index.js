@@ -13,7 +13,7 @@ for (let emoji in data.emojis) {
     id = short_names[0]
 
   if (emoticons) {
-    emoticons.forEach(emoticon => {
+    emoticons.forEach((emoticon) => {
       if (emoticonsList[emoticon]) {
         return
       }
@@ -27,7 +27,7 @@ for (let emoji in data.emojis) {
 }
 
 function clearCustomEmojis(pool) {
-  customEmojisList.forEach(emoji => {
+  customEmojisList.forEach((emoji) => {
     let emojiId = emoji.id || emoji.short_names[0]
 
     delete pool[emojiId]
@@ -38,7 +38,7 @@ function clearCustomEmojis(pool) {
 function addCustomToPool(custom, pool) {
   if (customEmojisList.length) clearCustomEmojis(pool)
 
-  custom.forEach(emoji => {
+  custom.forEach((emoji) => {
     let emojiId = emoji.id || emoji.short_names[0]
 
     if (emojiId && !pool[emojiId]) {
@@ -53,7 +53,7 @@ function addCustomToPool(custom, pool) {
 
 function search(
   value,
-  { emojisToShowFilter, maxResults, include, exclude, custom = [] } = {}
+  { emojisToShowFilter, maxResults, include, exclude, custom = [] } = {},
 ) {
   if (customEmojisList != custom) addCustomToPool(custom, originalPool)
 
@@ -79,7 +79,7 @@ function search(
     if (include.length || exclude.length) {
       pool = {}
 
-      data.categories.forEach(category => {
+      data.categories.forEach((category) => {
         let isIncluded =
           include && include.length ? include.indexOf(category.id) > -1 : true
         let isExcluded =
@@ -89,7 +89,7 @@ function search(
         }
 
         category.emojis.forEach(
-          emojiId => (pool[emojiId] = data.emojis[emojiId])
+          (emojiId) => (pool[emojiId] = data.emojis[emojiId]),
         )
       })
 
@@ -105,7 +105,7 @@ function search(
     }
 
     allResults = values
-      .map(value => {
+      .map((value) => {
         var aPool = pool,
           aIndex = index,
           length = 0
@@ -153,7 +153,7 @@ function search(
 
         return aIndex.results
       })
-      .filter(a => a)
+      .filter((a) => a)
 
     if (allResults.length > 1) {
       results = intersect.apply(null, allResults)
@@ -166,7 +166,7 @@ function search(
 
   if (results) {
     if (emojisToShowFilter) {
-      results = results.filter(result => emojisToShowFilter(pool[result.id]))
+      results = results.filter((result) => emojisToShowFilter(pool[result.id]))
     }
 
     if (results && results.length > maxResults) {
