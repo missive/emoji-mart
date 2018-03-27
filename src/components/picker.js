@@ -377,14 +377,19 @@ export default class Picker extends React.PureComponent {
 
   handleKeyDown(e) {
     let handled = false
+
     switch (e.keyCode) {
       case 13:
-        handled = true
-        if (this.SEARCH_CATEGORY.emojis) {
-          this.handleEmojiSelect(this.SEARCH_CATEGORY.emojis[0])
+        let emoji
+
+        if (this.SEARCH_CATEGORY.emojis && (emoji = this.SEARCH_CATEGORY.emojis[0])) {
+          this.handleEmojiSelect(emoji)
         }
+
+        handled = true
         break;
     }
+
     if (handled) {
       e.preventDefault()
     }
