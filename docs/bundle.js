@@ -1592,6 +1592,7 @@ var originalPool = {};
 var index = {};
 var emojisList = {};
 var emoticonsList = {};
+var customEmojisList = [];
 
 var _loop = function _loop(emoji) {
   var emojiData = __WEBPACK_IMPORTED_MODULE_0__data__["a" /* default */].emojis[emoji];
@@ -1617,7 +1618,18 @@ for (var emoji in __WEBPACK_IMPORTED_MODULE_0__data__["a" /* default */].emojis)
   _loop(emoji);
 }
 
+function clearCustomEmojis(pool) {
+  customEmojisList.forEach(function (emoji) {
+    var emojiId = emoji.id || emoji.short_names[0];
+
+    delete pool[emojiId];
+    delete emojisList[emojiId];
+  });
+}
+
 function addCustomToPool(custom, pool) {
+  if (customEmojisList.length) clearCustomEmojis(pool);
+
   custom.forEach(function (emoji) {
     var emojiId = emoji.id || emoji.short_names[0];
 
@@ -1626,6 +1638,9 @@ function addCustomToPool(custom, pool) {
       emojisList[emojiId] = Object(__WEBPACK_IMPORTED_MODULE_1____["c" /* getSanitizedData */])(emoji);
     }
   });
+
+  customEmojisList = custom;
+  index = {};
 }
 
 function search(value) {
@@ -1638,7 +1653,7 @@ function search(value) {
   var _ref$custom = _ref.custom;
   var custom = _ref$custom === undefined ? [] : _ref$custom;
 
-  addCustomToPool(custom, originalPool);
+  if (customEmojisList != custom) addCustomToPool(custom, originalPool);
 
   maxResults || (maxResults = 75);
   include || (include = []);
@@ -1941,7 +1956,7 @@ var Example = function (_React$Component) {
           'div',
           { className: 'row' },
           __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__src__["a" /* Picker */], Object(__WEBPACK_IMPORTED_MODULE_0__src_polyfills_extends__["a" /* default */])({}, this.state, {
-            onClick: console.log
+            onSelect: console.log
           }))
         ),
         __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
@@ -23447,8 +23462,10 @@ var Picker = function (_React$PureComponent) {
     _this.handleEmojiOver = _this.handleEmojiOver.bind(_this);
     _this.handleEmojiLeave = _this.handleEmojiLeave.bind(_this);
     _this.handleEmojiClick = _this.handleEmojiClick.bind(_this);
+    _this.handleEmojiSelect = _this.handleEmojiSelect.bind(_this);
     _this.setPreviewRef = _this.setPreviewRef.bind(_this);
     _this.handleSkinChange = _this.handleSkinChange.bind(_this);
+    _this.handleKeyDown = _this.handleKeyDown.bind(_this);
     return _this;
   }
 
@@ -23538,9 +23555,15 @@ var Picker = function (_React$PureComponent) {
   }, {
     key: 'handleEmojiClick',
     value: function handleEmojiClick(emoji, e) {
+      this.props.onClick(emoji, e);
+      this.handleEmojiSelect(emoji);
+    }
+  }, {
+    key: 'handleEmojiSelect',
+    value: function handleEmojiSelect(emoji) {
       var _this3 = this;
 
-      this.props.onClick(emoji, e);
+      this.props.onSelect(emoji);
       if (!this.hideRecent && !this.props.recent) __WEBPACK_IMPORTED_MODULE_11__utils_frequently__["a" /* default */].add(emoji);
 
       var component = this.categoryRefs['category-1'];
@@ -23694,6 +23717,27 @@ var Picker = function (_React$PureComponent) {
       onSkinChange(skin);
     }
   }, {
+    key: 'handleKeyDown',
+    value: function handleKeyDown(e) {
+      var handled = false;
+
+      switch (e.keyCode) {
+        case 13:
+          var emoji = void 0;
+
+          if (this.SEARCH_CATEGORY.emojis && (emoji = this.SEARCH_CATEGORY.emojis[0])) {
+            this.handleEmojiSelect(emoji);
+          }
+
+          handled = true;
+          break;
+      }
+
+      if (handled) {
+        e.preventDefault();
+      }
+    }
+  }, {
     key: 'updateCategoriesSize',
     value: function updateCategoriesSize() {
       for (var i = 0, l = this.categories.length; i < l; i++) {
@@ -23770,7 +23814,11 @@ var Picker = function (_React$PureComponent) {
 
       return __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
         'div',
-        { style: Object(__WEBPACK_IMPORTED_MODULE_0__polyfills_extends__["a" /* default */])({ width: width }, style), className: 'emoji-mart' },
+        {
+          style: Object(__WEBPACK_IMPORTED_MODULE_0__polyfills_extends__["a" /* default */])({ width: width }, style),
+          className: 'emoji-mart',
+          onKeyDown: this.handleKeyDown
+        },
         __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(
           'div',
           { className: 'emoji-mart-bar' },
@@ -23862,6 +23910,7 @@ var Picker = function (_React$PureComponent) {
 
 Picker.defaultProps = {
   onClick: function onClick() {},
+  onSelect: function onSelect() {},
   onSkinChange: function onSkinChange() {},
   emojiSize: 24,
   perLine: 9,
