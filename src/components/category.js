@@ -3,12 +3,14 @@ import PropTypes from 'prop-types'
 
 import frequently from '../utils/frequently'
 import { getData } from '../utils'
-import { Emoji } from '.'
+import { CategoryPropTypes, CategoryDefaultProps } from '../utils/shared-props'
+import NimbleEmoji from './emoji'
 
-export default class Category extends React.Component {
+export default class NimbleCategory extends React.Component {
   constructor(props) {
     super(props)
 
+    this.data = props.data
     this.setContainerRef = this.setContainerRef.bind(this)
     this.setLabelRef = this.setLabelRef.bind(this)
   }
@@ -109,7 +111,7 @@ export default class Category extends React.Component {
 
             return id
           })
-          .filter((id) => !!getData(id))
+          .filter((id) => !!getData(id, null, null, this.data))
       }
 
       if (emojis.length === 0 && frequentlyUsed.length > 0) {
@@ -184,13 +186,14 @@ export default class Category extends React.Component {
         </div>
 
         {emojis &&
-          emojis.map((emoji) => Emoji({ emoji: emoji, ...emojiProps }))}
+          emojis.map((emoji) => NimbleEmoji({ emoji: emoji, data: this.data, ...emojiProps }))}
 
         {emojis &&
           !emojis.length && (
             <div>
               <div>
-                {Emoji({
+                {NimbleEmoji({
+                  data: this.data,
                   ...emojiProps,
                   size: 38,
                   emoji: 'sleuth_or_spy',
@@ -208,17 +211,5 @@ export default class Category extends React.Component {
   }
 }
 
-Category.propTypes = {
-  emojis: PropTypes.array,
-  hasStickyPosition: PropTypes.bool,
-  name: PropTypes.string.isRequired,
-  native: PropTypes.bool.isRequired,
-  perLine: PropTypes.number.isRequired,
-  emojiProps: PropTypes.object.isRequired,
-  recent: PropTypes.arrayOf(PropTypes.string),
-}
-
-Category.defaultProps = {
-  emojis: [],
-  hasStickyPosition: true,
-}
+NimbleCategory.propTypes = { ...CategoryPropTypes, data: PropTypes.object.isRequired }
+NimbleCategory.defaultProps = CategoryDefaultProps

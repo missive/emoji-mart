@@ -1,5 +1,4 @@
 import buildSearch from './build-search'
-import data from '../data'
 import stringFromCodePoint from '../polyfills/stringFromCodePoint'
 
 const _JSON = JSON
@@ -58,7 +57,7 @@ function getSanitizedData() {
   return sanitize(getData(...arguments))
 }
 
-function getData(emoji, skin, set) {
+function getData(emoji, skin, set, data) {
   var emojiData = {}
 
   if (typeof emoji == 'string') {
@@ -68,7 +67,7 @@ function getData(emoji, skin, set) {
       emoji = matches[1]
 
       if (matches[2]) {
-        skin = parseInt(matches[2])
+        skin = parseInt(matches[2], 10)
       }
     }
 

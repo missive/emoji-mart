@@ -2,13 +2,13 @@ import '../vendor/raf-polyfill'
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import data from '../data'
 
 import store from '../utils/store'
 import frequently from '../utils/frequently'
 import { deepMerge, measureScrollbar } from '../utils'
+import { PickerPropTypes, PickerDefaultProps } from '../utils/shared-props'
 
-import { Anchors, Category, Emoji, Preview, Search } from '.'
+import { Anchors, NimbleCategory, NimblePreview, NimbleSearch } from '.'
 
 const I18N = {
   search: 'Search',
@@ -28,7 +28,7 @@ const I18N = {
   },
 }
 
-export default class Picker extends React.PureComponent {
+export default class NimblePicker extends React.PureComponent {
   constructor(props) {
     super(props)
 
@@ -41,6 +41,7 @@ export default class Picker extends React.PureComponent {
       anchor: false,
     }
 
+    this.data = props.data
     this.i18n = deepMerge(I18N, props.i18n)
     this.state = {
       skin: props.skin || store.get('skin') || props.defaultSkin,
@@ -48,7 +49,7 @@ export default class Picker extends React.PureComponent {
     }
 
     this.categories = []
-    let allCategories = [].concat(data.categories)
+    let allCategories = [].concat(this.data.categories)
 
     if (props.custom.length > 0) {
       this.CUSTOM_CATEGORY.emojis = props.custom.map((emoji) => {
@@ -99,7 +100,7 @@ export default class Picker extends React.PureComponent {
         const { emojis } = category
         for (let emojiIndex = 0; emojiIndex < emojis.length; emojiIndex++) {
           const emoji = emojis[emojiIndex]
-          if (props.emojisToShowFilter(data.emojis[emoji] || emoji)) {
+          if (props.emojisToShowFilter(this.data.emojis[emoji] || emoji)) {
             newEmojis.push(emoji)
           }
         }
@@ -474,6 +475,7 @@ export default class Picker extends React.PureComponent {
         <div className="emoji-mart-bar">
           <Anchors
             ref={this.setAnchorsRef}
+            data={this.data}
             i18n={this.i18n}
             color={color}
             categories={this.categories}
@@ -481,9 +483,10 @@ export default class Picker extends React.PureComponent {
           />
         </div>
 
-        <Search
+        <NimbleSearch
           ref={this.setSearchRef}
           onSearch={this.handleSearch}
+          data={this.data}
           i18n={this.i18n}
           emojisToShowFilter={emojisToShowFilter}
           include={include}
@@ -499,7 +502,7 @@ export default class Picker extends React.PureComponent {
         >
           {this.getCategories().map((category, i) => {
             return (
-              <Category
+              <NimbleCategory
                 ref={this.setCategoryRef.bind(this, `category-${i}`)}
                 key={category.name}
                 id={category.id}
@@ -508,6 +511,7 @@ export default class Picker extends React.PureComponent {
                 perLine={perLine}
                 native={native}
                 hasStickyPosition={this.hasStickyPosition}
+                data={this.data}
                 i18n={this.i18n}
                 recent={
                   category.id == this.RECENT_CATEGORY.id ? recent : undefined
@@ -537,8 +541,9 @@ export default class Picker extends React.PureComponent {
 
         {showPreview && (
           <div className="emoji-mart-bar">
-            <Preview
+            <NimblePreview
               ref={this.setPreviewRef}
+              data={this.data}
               title={title}
               emoji={emoji}
               showSkinTones={showSkinTones}
@@ -562,62 +567,5 @@ export default class Picker extends React.PureComponent {
   }
 }
 
-Picker.propTypes = {
-  onClick: PropTypes.func,
-  onSelect: PropTypes.func,
-  onSkinChange: PropTypes.func,
-  perLine: PropTypes.number,
-  emojiSize: PropTypes.number,
-  i18n: PropTypes.object,
-  style: PropTypes.object,
-  title: PropTypes.string,
-  emoji: PropTypes.string,
-  color: PropTypes.string,
-  set: Emoji.propTypes.set,
-  skin: Emoji.propTypes.skin,
-  native: PropTypes.bool,
-  backgroundImageFn: Emoji.propTypes.backgroundImageFn,
-  sheetSize: Emoji.propTypes.sheetSize,
-  emojisToShowFilter: PropTypes.func,
-  showPreview: PropTypes.bool,
-  showSkinTones: PropTypes.bool,
-  emojiTooltip: Emoji.propTypes.tooltip,
-  include: PropTypes.arrayOf(PropTypes.string),
-  exclude: PropTypes.arrayOf(PropTypes.string),
-  recent: PropTypes.arrayOf(PropTypes.string),
-  autoFocus: PropTypes.bool,
-  custom: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      short_names: PropTypes.arrayOf(PropTypes.string).isRequired,
-      emoticons: PropTypes.arrayOf(PropTypes.string),
-      keywords: PropTypes.arrayOf(PropTypes.string),
-      imageUrl: PropTypes.string.isRequired,
-    }),
-  ),
-}
-
-Picker.defaultProps = {
-  onClick: () => {},
-  onSelect: () => {},
-  onSkinChange: () => {},
-  emojiSize: 24,
-  perLine: 9,
-  i18n: {},
-  style: {},
-  title: 'Emoji Mart™',
-  emoji: 'department_store',
-  color: '#ae65c5',
-  set: Emoji.defaultProps.set,
-  skin: null,
-  defaultSkin: Emoji.defaultProps.skin,
-  native: Emoji.defaultProps.native,
-  sheetSize: Emoji.defaultProps.sheetSize,
-  backgroundImageFn: Emoji.defaultProps.backgroundImageFn,
-  emojisToShowFilter: null,
-  showPreview: true,
-  showSkinTones: true,
-  emojiTooltip: Emoji.defaultProps.tooltip,
-  autoFocus: false,
-  custom: [],
-}
+NimblePicker.propTypes = { ...PickerPropTypes, data: PropTypes.object.isRequired }
+NimblePicker.defaultProps = { ...PickerDefaultProps }

@@ -1,4 +1,4 @@
-import emojiIndex from './utils/emoji-index'
+import emojiIndex from './utils/parent-emoji-index'
 import store from './utils/store'
 import frequently from './utils/frequently'
 
