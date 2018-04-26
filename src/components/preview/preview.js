@@ -1,7 +1,9 @@
 import React from 'react'
-import data from '../data'
-import { PreviewPropTypes, PreviewDefaultProps } from '../utils/shared-props'
-import NimblePreview from './preview'
+
+import data from '../../data'
+import NimblePreview from './nimble-preview'
+
+import { PreviewPropTypes, PreviewDefaultProps } from '../../utils/shared-props'
 
 export default class Preview extends React.PureComponent {
   render() {

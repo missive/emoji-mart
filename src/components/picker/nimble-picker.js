@@ -1,14 +1,14 @@
-import '../vendor/raf-polyfill'
+import '../../vendor/raf-polyfill'
 
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import store from '../utils/store'
-import frequently from '../utils/frequently'
-import { deepMerge, measureScrollbar } from '../utils'
-import { PickerPropTypes, PickerDefaultProps } from '../utils/shared-props'
+import store from '../../utils/store'
+import frequently from '../../utils/frequently'
+import { deepMerge, measureScrollbar } from '../../utils'
+import { PickerPropTypes, PickerDefaultProps } from '../../utils/shared-props'
 
-import { Anchors, NimbleCategory, NimblePreview, NimbleSearch } from '.'
+import { Anchors, NimbleCategory, NimblePreview, NimbleSearch } from '..'
 
 const I18N = {
   search: 'Search',

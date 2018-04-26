@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { PreviewPropTypes, PreviewDefaultProps } from '../utils/shared-props'
-import { NimbleEmoji, Skins } from '.'
-import { getData } from '../utils'
+import { getData } from '../../utils'
+import { NimbleEmoji, Skins } from '..'
+import { PreviewPropTypes, PreviewDefaultProps } from '../../utils/shared-props'
 
 export default class NimblePreview extends React.PureComponent {
   constructor(props) {
