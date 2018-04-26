@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import NimbleEmojiIndex from '../../utils/emoji-index'
+import NimbleEmojiIndex from '../../utils/emoji-index/nimble-emoji-index'
 import { SearchPropTypes, SearchDefaultProps } from '../../utils/shared-props'
 
 export default class NimbleSearch extends React.PureComponent {
