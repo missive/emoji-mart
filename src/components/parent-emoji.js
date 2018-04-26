@@ -3,11 +3,17 @@ import data from '../data'
 import { EmojiPropTypes, EmojiDefaultProps } from '../utils/shared-props'
 import NimbleEmoji from './emoji'
 
-export default class Emoji extends React.PureComponent {
-  render() {
-    return <NimbleEmoji {...this.props} {...this.state} />
+const Emoji = (props) => {
+  for (let k in Emoji.defaultProps) {
+    if (props[k] == undefined && Emoji.defaultProps[k] != undefined) {
+      props[k] = Emoji.defaultProps[k]
+    }
   }
+
+  return NimbleEmoji({ ...props })
 }
 
 Emoji.propTypes = EmojiPropTypes
 Emoji.defaultProps = { ...EmojiDefaultProps, data }
+
+export default Emoji
