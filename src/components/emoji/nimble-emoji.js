@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { getData, getSanitizedData, unifiedToNative } from '../utils'
-import { EmojiPropTypes, EmojiDefaultProps } from '../utils/shared-props'
+import { getData, getSanitizedData, unifiedToNative } from '../../utils'
+import { EmojiPropTypes, EmojiDefaultProps } from '../../utils/shared-props'
 
 const SHEET_COLUMNS = 52
 

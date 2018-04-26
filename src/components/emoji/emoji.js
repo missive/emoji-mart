@@ -1,7 +1,9 @@
 import React from 'react'
-import data from '../data'
-import { EmojiPropTypes, EmojiDefaultProps } from '../utils/shared-props'
-import NimbleEmoji from './emoji'
+
+import data from '../../data'
+import NimbleEmoji from './nimble-emoji'
+
+import { EmojiPropTypes, EmojiDefaultProps } from '../../utils/shared-props'
 
 const Emoji = (props) => {
   for (let k in Emoji.defaultProps) {

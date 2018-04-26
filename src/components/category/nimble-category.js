@@ -1,10 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import frequently from '../utils/frequently'
-import { getData } from '../utils'
-import { CategoryPropTypes, CategoryDefaultProps } from '../utils/shared-props'
-import NimbleEmoji from './emoji'
+import frequently from '../../utils/frequently'
+import { getData } from '../../utils'
+import { NimbleEmoji } from '..'
+
+import {
+  CategoryPropTypes,
+  CategoryDefaultProps,
+} from '../../utils/shared-props'
 
 export default class NimbleCategory extends React.Component {
   constructor(props) {

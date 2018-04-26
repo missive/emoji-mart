@@ -1,7 +1,11 @@
 import React from 'react'
-import data from '../data'
-import { CategoryPropTypes, CategoryDefaultProps } from '../utils/shared-props'
-import NimbleCategory from './category'
+import data from '../../data'
+import NimbleCategory from './nimble-category'
+
+import {
+  CategoryPropTypes,
+  CategoryDefaultProps,
+} from '../../utils/shared-props'
 
 export default class Category extends React.Component {
   render() {
