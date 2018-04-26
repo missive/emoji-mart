@@ -4,7 +4,7 @@ var fs = require('fs'),
   inflection = require('inflection'),
   mkdirp = require('mkdirp')
 
-var data = { categories: [], emojis: {}, skins: {}, short_names: {} },
+var data = { categories: [], emojis: {}, skins: {}, aliases: {} },
   categoriesIndex = {}
 
 var categories = [
@@ -68,7 +68,7 @@ emojiData.forEach((datum) => {
       return
     }
 
-    data.short_names[short_name] = datum.short_name
+    data.aliases[short_name] = datum.short_name
   })
 
   datum.short_names = datum.short_names.filter((i) => i !== datum.short_name)
