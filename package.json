@@ -77,7 +77,7 @@
     "prepublishOnly": "npm run build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "prettier": "prettier --write \"{src,spec}/**/*.js\""
+    "prettier": "prettier --write \"{src,scripts,spec}/**/*.js\""
   },
   "size-limit": [
     {

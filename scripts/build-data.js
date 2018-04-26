@@ -1,11 +1,11 @@
 var fs = require('fs'),
-    emojiData = require('emoji-datasource'),
-    emojiLib = require('emojilib'),
-    inflection = require('inflection'),
-    mkdirp = require('mkdirp')
+  emojiData = require('emoji-datasource'),
+  emojiLib = require('emojilib'),
+  inflection = require('inflection'),
+  mkdirp = require('mkdirp')
 
 var data = { categories: [], emojis: {}, skins: {}, short_names: {} },
-    categoriesIndex = {}
+  categoriesIndex = {}
 
 var categories = [
   ['Smileys & People', 'people'],
@@ -26,15 +26,15 @@ categories.forEach((category, i) => {
 
 emojiData.sort((a, b) => {
   var aTest = a.sort_order || a.short_name,
-      bTest = b.sort_order || b.short_name
+    bTest = b.sort_order || b.short_name
 
   return aTest - bTest
 })
 
 emojiData.forEach((datum) => {
   var category = datum.category,
-      keywords = [],
-      categoryIndex
+    keywords = [],
+    categoryIndex
 
   if (!datum.category) {
     throw new Error('“' + datum.short_name + '” doesn’t have a category')
@@ -64,11 +64,14 @@ emojiData.forEach((datum) => {
   }
 
   datum.short_names.forEach((short_name, i) => {
-    if (i == 0) { return }
+    if (i == 0) {
+      return
+    }
+
     data.short_names[short_name] = datum.short_name
   })
 
-  datum.short_names = datum.short_names.filter(i => i !== datum.short_name)
+  datum.short_names = datum.short_names.filter((i) => i !== datum.short_name)
   datum.sheet = [datum.sheet_x, datum.sheet_y]
 
   if (datum.text === '') delete datum.text
@@ -95,11 +98,13 @@ emojiData.forEach((datum) => {
 })
 
 var flags = data.categories[categoriesIndex['Flags']]
-flags.emojis = flags.emojis.filter((flag) => {
-  // Until browsers support Flag UN
-  if (flag == 'flag-un') return
-  return true
-}).sort()
+flags.emojis = flags.emojis
+  .filter((flag) => {
+    // Until browsers support Flag UN
+    if (flag == 'flag-un') return
+    return true
+  })
+  .sort()
 
 const stringified = JSON.stringify(data).replace(/\"([A-Za-z_]+)\":/g, '$1:')
 fs.writeFile('src/data/data.js', `export default ${stringified}`, (err) => {
