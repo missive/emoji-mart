@@ -47,7 +47,7 @@ const EmojiDefaultProps = {
   forceSize: false,
   tooltip: false,
   backgroundImageFn: (set, sheetSize) =>
-  `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/sheets-256/${sheetSize}.png`,
+    `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/sheets-256/${sheetSize}.png`,
   onOver: () => {},
   onLeave: () => {},
   onClick: () => {},
@@ -83,7 +83,7 @@ const PickerPropTypes = {
       emoticons: PropTypes.arrayOf(PropTypes.string),
       keywords: PropTypes.arrayOf(PropTypes.string),
       imageUrl: PropTypes.string.isRequired,
-    })
+    }),
   ),
 }
 
@@ -123,7 +123,6 @@ const PreviewDefaultProps = {
   showSkinTones: true,
   onChange: () => {},
 }
-
 
 const SearchPropTypes = {
   onSearch: PropTypes.func,

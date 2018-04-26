@@ -7,7 +7,7 @@ import NimblePicker from './picker'
 
 export default class Picker extends React.PureComponent {
   render() {
-    return <NimblePicker {...this.props} {...this.state}/>
+    return <NimblePicker {...this.props} {...this.state} />
   }
 }
 

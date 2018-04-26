@@ -5,7 +5,7 @@ import NimbleSearch from './search'
 
 export default class Search extends React.PureComponent {
   render() {
-    return <NimbleSearch {...this.props} {...this.state}/>
+    return <NimbleSearch {...this.props} {...this.state} />
   }
 }
 

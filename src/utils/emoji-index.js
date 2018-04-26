@@ -36,7 +36,7 @@ export default class NimbleEmojiIndex {
   clearCustomEmojis(pool) {
     this.customEmojisList.forEach((emoji) => {
       let emojiId = emoji.id || emoji.short_names[0]
-  
+
       delete pool[emojiId]
       delete emojisList[emojiId]
     })
@@ -53,7 +53,7 @@ export default class NimbleEmojiIndex {
         this.emojis[emojiId] = getSanitizedData(emoji, null, null, this.data)
       }
     })
-  
+
     this.customEmojisList = custom
     this.index = {}
   }
@@ -62,7 +62,8 @@ export default class NimbleEmojiIndex {
     value,
     { emojisToShowFilter, maxResults, include, exclude, custom = [] } = {},
   ) {
-    if (this.customEmojisList != custom) this.addCustomToPool(custom, this.originalPool)
+    if (this.customEmojisList != custom)
+      this.addCustomToPool(custom, this.originalPool)
 
     maxResults || (maxResults = 75)
     include || (include = [])
@@ -90,7 +91,9 @@ export default class NimbleEmojiIndex {
           let isIncluded =
             include && include.length ? include.indexOf(category.id) > -1 : true
           let isExcluded =
-            exclude && exclude.length ? exclude.indexOf(category.id) > -1 : false
+            exclude && exclude.length
+              ? exclude.indexOf(category.id) > -1
+              : false
           if (!isIncluded || isExcluded) {
             return
           }
@@ -173,7 +176,9 @@ export default class NimbleEmojiIndex {
 
     if (results) {
       if (emojisToShowFilter) {
-        results = results.filter((result) => emojisToShowFilter(pool[result.id]))
+        results = results.filter((result) =>
+          emojisToShowFilter(pool[result.id]),
+        )
       }
 
       if (results && results.length > maxResults) {
@@ -184,4 +189,3 @@ export default class NimbleEmojiIndex {
     return results
   }
 }
-

@@ -5,7 +5,7 @@ import NimblePreview from './preview'
 
 export default class Preview extends React.PureComponent {
   render() {
-    return <NimblePreview {...this.props} {...this.state}/>
+    return <NimblePreview {...this.props} {...this.state} />
   }
 }
 

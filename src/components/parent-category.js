@@ -5,7 +5,7 @@ import NimbleCategory from './category'
 
 export default class Category extends React.Component {
   render() {
-    return <NimbleCategory {...this.props} {...this.state}/>
+    return <NimbleCategory {...this.props} {...this.state} />
   }
 }
 

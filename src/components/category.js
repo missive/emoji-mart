@@ -186,7 +186,9 @@ export default class NimbleCategory extends React.Component {
         </div>
 
         {emojis &&
-          emojis.map((emoji) => NimbleEmoji({ emoji: emoji, data: this.data, ...emojiProps }))}
+          emojis.map((emoji) =>
+            NimbleEmoji({ emoji: emoji, data: this.data, ...emojiProps }),
+          )}
 
         {emojis &&
           !emojis.length && (
@@ -211,5 +213,8 @@ export default class NimbleCategory extends React.Component {
   }
 }
 
-NimbleCategory.propTypes = { ...CategoryPropTypes, data: PropTypes.object.isRequired }
+NimbleCategory.propTypes = {
+  ...CategoryPropTypes,
+  data: PropTypes.object.isRequired,
+}
 NimbleCategory.defaultProps = CategoryDefaultProps

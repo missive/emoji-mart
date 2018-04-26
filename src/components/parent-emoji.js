@@ -5,7 +5,7 @@ import NimbleEmoji from './emoji'
 
 export default class Emoji extends React.PureComponent {
   render() {
-    return <NimbleEmoji {...this.props} {...this.state}/>
+    return <NimbleEmoji {...this.props} {...this.state} />
   }
 }
 
