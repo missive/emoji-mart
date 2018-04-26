@@ -1,9 +1,8 @@
-import data from '../data'
-import NimbleEmojiIndex from './emoji-index'
+import data from '../../data'
+import NimbleEmojiIndex from './nimble-emoji-index'
 
 const emojiIndex = new NimbleEmojiIndex(data)
-const emojis = emojiIndex.emojis
-const emoticons = emojiIndex.emoticons
+const { emojis, emoticons } = emojiIndex
 
 function search() {
   return emojiIndex.search(...arguments)
