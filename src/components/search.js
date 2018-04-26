@@ -52,5 +52,8 @@ export default class NimbleSearch extends React.PureComponent {
   }
 }
 
-NimbleSearch.propTypes = { ...SearchPropTypes, data: PropTypes.object.isRequired }
+NimbleSearch.propTypes = {
+  ...SearchPropTypes,
+  data: PropTypes.object.isRequired,
+}
 NimbleSearch.defaultProps = SearchDefaultProps

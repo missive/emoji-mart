@@ -567,5 +567,8 @@ export default class NimblePicker extends React.PureComponent {
   }
 }
 
-NimblePicker.propTypes = { ...PickerPropTypes, data: PropTypes.object.isRequired }
+NimblePicker.propTypes = {
+  ...PickerPropTypes,
+  data: PropTypes.object.isRequired,
+}
 NimblePicker.defaultProps = { ...PickerDefaultProps }

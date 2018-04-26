@@ -41,7 +41,12 @@ export default class NimblePreview extends React.PureComponent {
       return (
         <div className="emoji-mart-preview">
           <div className="emoji-mart-preview-emoji">
-            {NimbleEmoji({ key: emoji.id, emoji: emoji, data: this.data, ...emojiProps })}
+            {NimbleEmoji({
+              key: emoji.id,
+              emoji: emoji,
+              data: this.data,
+              ...emojiProps,
+            })}
           </div>
 
           <div className="emoji-mart-preview-data">
@@ -87,5 +92,8 @@ export default class NimblePreview extends React.PureComponent {
   }
 }
 
-NimblePreview.propTypes = { ...PreviewPropTypes, data: PropTypes.object.isRequired }
+NimblePreview.propTypes = {
+  ...PreviewPropTypes,
+  data: PropTypes.object.isRequired,
+}
 NimblePreview.defaultProps = PreviewDefaultProps
