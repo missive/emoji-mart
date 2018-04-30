@@ -1,10 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import data from '../data'
 
-import { getData, getSanitizedData, unifiedToNative } from '../utils'
+import { getData, getSanitizedData, unifiedToNative } from '../../utils'
+import { uncompress } from '../../utils/data'
+import { EmojiPropTypes, EmojiDefaultProps } from '../../utils/shared-props'
 
 const SHEET_COLUMNS = 52
+
+const _getData = (props) => {
+  var { emoji, skin, set, data } = props
+  return getData(emoji, skin, set, data)
+}
 
 const _getPosition = (props) => {
   var { sheet_x, sheet_y } = _getData(props),
@@ -13,14 +19,9 @@ const _getPosition = (props) => {
   return `${multiply * sheet_x}% ${multiply * sheet_y}%`
 }
 
-const _getData = (props) => {
-  var { emoji, skin, set } = props
-  return getData(emoji, skin, set)
-}
-
 const _getSanitizedData = (props) => {
-  var { emoji, skin, set } = props
-  return getSanitizedData(emoji, skin, set)
+  var { emoji, skin, set, data } = props
+  return getSanitizedData(emoji, skin, set, data)
 }
 
 const _handleClick = (e, props) => {
@@ -73,10 +74,14 @@ const _convertStyleToCSS = (style) => {
   return div.getAttribute('style')
 }
 
-const Emoji = (props) => {
-  for (let k in Emoji.defaultProps) {
-    if (props[k] == undefined && Emoji.defaultProps[k] != undefined) {
-      props[k] = Emoji.defaultProps[k]
+const NimbleEmoji = (props) => {
+  if (props.data.compressed) {
+    uncompress(props.data)
+  }
+
+  for (let k in NimbleEmoji.defaultProps) {
+    if (props[k] == undefined && NimbleEmoji.defaultProps[k] != undefined) {
+      props[k] = NimbleEmoji.defaultProps[k]
     }
   }
 
@@ -119,7 +124,8 @@ const Emoji = (props) => {
       backgroundSize: 'contain',
     }
   } else {
-    let setHasEmoji = _getData(props)[`has_img_${props.set}`]
+    let setHasEmoji =
+      data[`has_img_${props.set}`] == undefined || data[`has_img_${props.set}`]
 
     if (!setHasEmoji) {
       if (props.fallback) {
@@ -163,41 +169,7 @@ const Emoji = (props) => {
   }
 }
 
-Emoji.propTypes = {
-  onOver: PropTypes.func,
-  onLeave: PropTypes.func,
-  onClick: PropTypes.func,
-  fallback: PropTypes.func,
-  backgroundImageFn: PropTypes.func,
-  native: PropTypes.bool,
-  forceSize: PropTypes.bool,
-  tooltip: PropTypes.bool,
-  skin: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
-  sheetSize: PropTypes.oneOf([16, 20, 32, 64]),
-  set: PropTypes.oneOf([
-    'apple',
-    'google',
-    'twitter',
-    'emojione',
-    'messenger',
-    'facebook',
-  ]),
-  size: PropTypes.number.isRequired,
-  emoji: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
-}
+NimbleEmoji.propTypes = { ...EmojiPropTypes, data: PropTypes.object.isRequired }
+NimbleEmoji.defaultProps = EmojiDefaultProps
 
-Emoji.defaultProps = {
-  skin: 1,
-  set: 'apple',
-  sheetSize: 64,
-  native: false,
-  forceSize: false,
-  tooltip: false,
-  backgroundImageFn: (set, sheetSize) =>
-    `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/sheets-256/${sheetSize}.png`,
-  onOver: () => {},
-  onLeave: () => {},
-  onClick: () => {},
-}
-
-export default Emoji
+export default NimbleEmoji

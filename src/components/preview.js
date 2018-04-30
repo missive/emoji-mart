@@ -1,12 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Emoji, Skins } from '.'
 import { getData } from '../utils'
+import { NimbleEmoji, Skins } from '.'
 
 export default class Preview extends React.PureComponent {
   constructor(props) {
     super(props)
+
+    this.data = props.data
     this.state = { emoji: null }
   }
 
@@ -21,7 +23,7 @@ export default class Preview extends React.PureComponent {
       } = this.props
 
     if (emoji) {
-      var emojiData = getData(emoji),
+      var emojiData = getData(emoji, null, null, this.data),
         { emoticons = [] } = emojiData,
         knownEmoticons = [],
         listedEmoticons = []
@@ -38,7 +40,12 @@ export default class Preview extends React.PureComponent {
       return (
         <div className="emoji-mart-preview">
           <div className="emoji-mart-preview-emoji">
-            {Emoji({ key: emoji.id, emoji: emoji, ...emojiProps })}
+            {NimbleEmoji({
+              key: emoji.id,
+              emoji: emoji,
+              data: this.data,
+              ...emojiProps,
+            })}
           </div>
 
           <div className="emoji-mart-preview-data">
@@ -66,7 +73,7 @@ export default class Preview extends React.PureComponent {
           <div className="emoji-mart-preview-emoji">
             {idleEmoji &&
               idleEmoji.length &&
-              Emoji({ emoji: idleEmoji, ...emojiProps })}
+              NimbleEmoji({ emoji: idleEmoji, data: this.data, ...emojiProps })}
           </div>
 
           <div className="emoji-mart-preview-data">

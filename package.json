@@ -60,13 +60,13 @@
     "webpack": "^3.6.0"
   },
   "scripts": {
-    "clean": "rm -rf dist/ dist-es/ src/data/data.js",
+    "clean": "rm -rf dist/ dist-es/",
     "build:data": "node scripts/build-data",
     "build:dist": "npm run build:cjs && npm run build:es",
     "build:cjs": "BABEL_ENV=cjs babel src --out-dir dist --copy-files",
     "build:es": "babel src --out-dir dist-es --copy-files",
     "build:docs": "cp css/emoji-mart.css docs && webpack --config ./docs/webpack.config.js",
-    "build": "npm run clean && npm run build:data && npm run build:dist",
+    "build": "npm run clean && npm run build:dist",
     "watch": "BABEL_ENV=cjs babel src --watch --out-dir dist --copy-files",
     "start": "npm run watch",
     "stats": "webpack --config ./spec/webpack.config.js --json > spec/stats.json",
@@ -77,7 +77,7 @@
     "prepublishOnly": "npm run build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "prettier": "prettier --write \"{src,spec}/**/*.js\""
+    "prettier": "prettier --write \"{src,scripts,spec}/**/*.js\""
   },
   "size-limit": [
     {
