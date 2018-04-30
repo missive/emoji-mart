@@ -1,7 +1,12 @@
 import { getData, getSanitizedData, intersect } from '..'
+import { uncompress } from '../data'
 
 export default class NimbleEmojiIndex {
   constructor(data) {
+    if (data.compressed) {
+      uncompress(data)
+    }
+
     this.data = data || {}
     this.originalPool = {}
     this.index = {}

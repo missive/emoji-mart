@@ -1,11 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { getData } from '../../utils'
-import { NimbleEmoji, Skins } from '..'
-import { PreviewPropTypes, PreviewDefaultProps } from '../../utils/shared-props'
+import { getData } from '../utils'
+import { NimbleEmoji, Skins } from '.'
 
-export default class NimblePreview extends React.PureComponent {
+export default class Preview extends React.PureComponent {
   constructor(props) {
     super(props)
 
@@ -92,8 +91,15 @@ export default class NimblePreview extends React.PureComponent {
   }
 }
 
-NimblePreview.propTypes = {
-  ...PreviewPropTypes,
-  data: PropTypes.object.isRequired,
+Preview.propTypes = {
+  showSkinTones: PropTypes.bool,
+  title: PropTypes.string.isRequired,
+  emoji: PropTypes.string.isRequired,
+  emojiProps: PropTypes.object.isRequired,
+  skinsProps: PropTypes.object.isRequired,
 }
-NimblePreview.defaultProps = PreviewDefaultProps
+
+Preview.defaultProps = {
+  showSkinTones: true,
+  onChange: () => {},
+}

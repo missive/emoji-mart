@@ -1,16 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import frequently from '../../utils/frequently'
-import { getData } from '../../utils'
-import { NimbleEmoji } from '..'
+import frequently from '../utils/frequently'
+import { getData } from '../utils'
+import { NimbleEmoji } from '.'
 
-import {
-  CategoryPropTypes,
-  CategoryDefaultProps,
-} from '../../utils/shared-props'
-
-export default class NimbleCategory extends React.Component {
+export default class Category extends React.Component {
   constructor(props) {
     super(props)
 
@@ -217,8 +212,17 @@ export default class NimbleCategory extends React.Component {
   }
 }
 
-NimbleCategory.propTypes = {
-  ...CategoryPropTypes,
-  data: PropTypes.object.isRequired,
+Category.propTypes = {
+  emojis: PropTypes.array,
+  hasStickyPosition: PropTypes.bool,
+  name: PropTypes.string.isRequired,
+  native: PropTypes.bool.isRequired,
+  perLine: PropTypes.number.isRequired,
+  emojiProps: PropTypes.object.isRequired,
+  recent: PropTypes.arrayOf(PropTypes.string),
 }
-NimbleCategory.defaultProps = CategoryDefaultProps
+
+Category.defaultProps = {
+  emojis: [],
+  hasStickyPosition: true,
+}

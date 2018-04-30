@@ -1,20 +1,5 @@
 import PropTypes from 'prop-types'
 
-const CategoryPropTypes = {
-  emojis: PropTypes.array,
-  hasStickyPosition: PropTypes.bool,
-  name: PropTypes.string.isRequired,
-  native: PropTypes.bool.isRequired,
-  perLine: PropTypes.number.isRequired,
-  emojiProps: PropTypes.object.isRequired,
-  recent: PropTypes.arrayOf(PropTypes.string),
-}
-
-const CategoryDefaultProps = {
-  emojis: [],
-  hasStickyPosition: true,
-}
-
 const EmojiPropTypes = {
   data: PropTypes.object.isRequired,
   onOver: PropTypes.func,
@@ -111,42 +96,9 @@ const PickerDefaultProps = {
   custom: [],
 }
 
-const PreviewPropTypes = {
-  showSkinTones: PropTypes.bool,
-  title: PropTypes.string.isRequired,
-  emoji: PropTypes.string.isRequired,
-  emojiProps: PropTypes.object.isRequired,
-  skinsProps: PropTypes.object.isRequired,
-}
-
-const PreviewDefaultProps = {
-  showSkinTones: true,
-  onChange: () => {},
-}
-
-const SearchPropTypes = {
-  onSearch: PropTypes.func,
-  maxResults: PropTypes.number,
-  emojisToShowFilter: PropTypes.func,
-  autoFocus: PropTypes.bool,
-}
-
-const SearchDefaultProps = {
-  onSearch: () => {},
-  maxResults: 75,
-  emojisToShowFilter: null,
-  autoFocus: false,
-}
-
 export {
-  CategoryPropTypes,
-  CategoryDefaultProps,
   EmojiPropTypes,
   EmojiDefaultProps,
   PickerPropTypes,
   PickerDefaultProps,
-  PreviewPropTypes,
-  PreviewDefaultProps,
-  SearchPropTypes,
-  SearchDefaultProps,
 }

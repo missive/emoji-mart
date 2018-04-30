@@ -1,10 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import NimbleEmojiIndex from '../../utils/emoji-index/nimble-emoji-index'
-import { SearchPropTypes, SearchDefaultProps } from '../../utils/shared-props'
+import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
 
-export default class NimbleSearch extends React.PureComponent {
+export default class Search extends React.PureComponent {
   constructor(props) {
     super(props)
 
@@ -53,8 +52,16 @@ export default class NimbleSearch extends React.PureComponent {
   }
 }
 
-NimbleSearch.propTypes = {
-  ...SearchPropTypes,
-  data: PropTypes.object.isRequired,
+Search.propTypes = {
+  onSearch: PropTypes.func,
+  maxResults: PropTypes.number,
+  emojisToShowFilter: PropTypes.func,
+  autoFocus: PropTypes.bool,
 }
-NimbleSearch.defaultProps = SearchDefaultProps
+
+Search.defaultProps = {
+  onSearch: () => {},
+  maxResults: 75,
+  emojisToShowFilter: null,
+  autoFocus: false,
+}
