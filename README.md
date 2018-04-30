@@ -73,32 +73,36 @@ categories: {
 #### Sheet sizes
 Sheets are served from [unpkg](https://unpkg.com), a global CDN that serves files published to [npm](https://www.npmjs.com).
 
-| Set       | sheetSize | Size     |
-| --------- | --------- | -------- |
-| apple     | 16        | 334 KB   |
-| apple     | 20        | 459 KB   |
-| apple     | 32        | 1.08 MB  |
-| apple     | 64        | 2.94 MB  |
-| emojione  | 16        | 315 KB   |
-| emojione  | 20        | 435 KB   |
-| emojione  | 32        | 1020 KB  |
-| emojione  | 64        | 2.33 MB  |
-| facebook  | 16        | 322 KB   |
-| facebook  | 20        | 439 KB   |
-| facebook  | 32        | 1020 KB  |
-| facebook  | 64        | 2.5 MB   |
-| google    | 16        | 301 KB   |
-| google    | 20        | 409 KB   |
-| google    | 32        | 907 KB   |
-| google    | 64        | 2.17 MB  |
-| messenger | 16        | 325 KB   |
-| messenger | 20        | 449 MB   |
-| messenger | 32        | 1.05 MB  |
-| messenger | 64        | 2.69 MB  |
-| twitter   | 16        | 288 KB   |
-| twitter   | 20        | 389 KB   |
-| twitter   | 32        | 839 KB   |
-| twitter   | 64        | 1.82 MB  |
+| Set       | Size (`sheetSize: 16`) | Size (`sheetSize: 20`) | Size (`sheetSize: 32`) | Size (`sheetSize: 64`) |
+| --------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
+| apple     | 334 KB                 | 459 KB                 | 1.08 MB                | 2.94 MB                |
+| emojione  | 315 KB                 | 435 KB                 | 1020 KB                | 2.33 MB                |
+| facebook  | 322 KB                 | 439 KB                 | 1020 KB                | 2.50 MB                |
+| google    | 301 KB                 | 409 KB                 |  907 KB                | 2.17 MB                |
+| messenger | 325 KB                 | 449 MB                 | 1.05 MB                | 2.69 MB                |
+| twitter   | 288 KB                 | 389 KB                 |  839 KB                | 1.82 MB                |
+
+#### Datasets
+While all sets are available by default, you may want to include only a single set data to reduce the size of your bundle.
+
+| Set       | Size   |
+| --------- | ------ |
+| all       | 551 KB |
+| apple     | 465 KB |
+| emojione  | 226 KB |
+| facebook  | 405 KB |
+| google    | 450 KB |
+| messenger | 197 KB |
+| twitter   | 466 KB |
+
+To use these data files (or any other custom data), use the `NimblePicker` component:
+
+```js
+import data from 'emoji-mart/data/messenger.json'
+import { NimblePicker } from 'emoji-mart'
+
+<NimblePicker set='messenger' data={data} />
+```
 
 #### Examples of `emoji` object:
 ```js
@@ -238,6 +242,15 @@ import { emojiIndex } from 'emoji-mart'
 
 emojiIndex.search('christmas').map((o) => o.native)
 // => [🎄, 🎅🏼, 🔔, 🎁, ⛄️, ❄️]
+```
+
+### With custom data
+```js
+import data from 'emoji-mart/datasets/messenger'
+import { NimbleEmojiIndex } from 'emoji-mart'
+
+let emojiIndex = new NimbleEmojiIndex(data)
+emojiIndex.search('christmas')
 ```
 
 ## Storage

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import data from '../../data'
+import data from '../../../data/all.json'
 import NimbleEmoji from './nimble-emoji'
 
 import { EmojiPropTypes, EmojiDefaultProps } from '../../utils/shared-props'

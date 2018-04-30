@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import SVGs from '../../svgs'
+import SVGs from '../svgs'
 
 export default class Anchors extends React.PureComponent {
   constructor(props) {

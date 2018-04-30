@@ -1,6 +1,6 @@
 import React from 'react'
 
-import data from '../../data'
+import data from '../../../data/all.json'
 import NimblePicker from './nimble-picker'
 
 import { PickerPropTypes, PickerDefaultProps } from '../../utils/shared-props'

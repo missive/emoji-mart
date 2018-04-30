@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { getData, getSanitizedData, unifiedToNative } from '../../utils'
+import { uncompress } from '../../utils/data'
 import { EmojiPropTypes, EmojiDefaultProps } from '../../utils/shared-props'
 
 const SHEET_COLUMNS = 52
@@ -74,6 +75,10 @@ const _convertStyleToCSS = (style) => {
 }
 
 const NimbleEmoji = (props) => {
+  if (props.data.compressed) {
+    uncompress(props.data)
+  }
+
   for (let k in NimbleEmoji.defaultProps) {
     if (props[k] == undefined && NimbleEmoji.defaultProps[k] != undefined) {
       props[k] = NimbleEmoji.defaultProps[k]
@@ -119,7 +124,8 @@ const NimbleEmoji = (props) => {
       backgroundSize: 'contain',
     }
   } else {
-    let setHasEmoji = _getData(props)[`has_img_${props.set}`]
+    let setHasEmoji =
+      data[`has_img_${props.set}`] == undefined || data[`has_img_${props.set}`]
 
     if (!setHasEmoji) {
       if (props.fallback) {

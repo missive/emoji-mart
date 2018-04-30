@@ -6,9 +6,10 @@ import PropTypes from 'prop-types'
 import store from '../../utils/store'
 import frequently from '../../utils/frequently'
 import { deepMerge, measureScrollbar } from '../../utils'
+import { uncompress } from '../../utils/data'
 import { PickerPropTypes, PickerDefaultProps } from '../../utils/shared-props'
 
-import { Anchors, NimbleCategory, NimblePreview, NimbleSearch } from '..'
+import { Anchors, Category, Preview, Search } from '..'
 
 const I18N = {
   search: 'Search',
@@ -39,6 +40,10 @@ export default class NimblePicker extends React.PureComponent {
       name: 'Search',
       emojis: null,
       anchor: false,
+    }
+
+    if (props.data.compressed) {
+      uncompress(props.data)
     }
 
     this.data = props.data
@@ -483,7 +488,7 @@ export default class NimblePicker extends React.PureComponent {
           />
         </div>
 
-        <NimbleSearch
+        <Search
           ref={this.setSearchRef}
           onSearch={this.handleSearch}
           data={this.data}
@@ -502,7 +507,7 @@ export default class NimblePicker extends React.PureComponent {
         >
           {this.getCategories().map((category, i) => {
             return (
-              <NimbleCategory
+              <Category
                 ref={this.setCategoryRef.bind(this, `category-${i}`)}
                 key={category.name}
                 id={category.id}
@@ -541,7 +546,7 @@ export default class NimblePicker extends React.PureComponent {
 
         {showPreview && (
           <div className="emoji-mart-bar">
-            <NimblePreview
+            <Preview
               ref={this.setPreviewRef}
               data={this.data}
               title={title}

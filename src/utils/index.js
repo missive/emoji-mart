@@ -1,4 +1,4 @@
-import buildSearch from './build-search'
+import { buildSearch } from './data'
 import stringFromCodePoint from '../polyfills/stringFromCodePoint'
 
 const _JSON = JSON
@@ -113,7 +113,10 @@ function getData(emoji, skin, set, data) {
       delete emojiData.variations
     }
 
-    if (variationData[`has_img_${set}`]) {
+    if (
+      variationData[`has_img_${set}`] == undefined ||
+      variationData[`has_img_${set}`]
+    ) {
       emojiData.skin_tone = skin
 
       for (let k in variationData) {
