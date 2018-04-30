@@ -85,15 +85,15 @@ Sheets are served from [unpkg](https://unpkg.com), a global CDN that serves file
 #### Datasets
 While all sets are available by default, you may want to include only a single set data to reduce the size of your bundle.
 
-| Set       | Size   |
-| --------- | ------ |
-| all       | 570 KB |
-| apple     | 484 KB |
-| emojione  | 485 KB |
-| facebook  | 421 KB |
-| google    | 483 KB |
-| messenger | 197 KB |
-| twitter   | 484 KB |
+| Set       | Size (on disk) |
+| --------- | -------------- |
+| all       | 570 KB         |
+| apple     | 484 KB         |
+| emojione  | 485 KB         |
+| facebook  | 421 KB         |
+| google    | 483 KB         |
+| messenger | 197 KB         |
+| twitter   | 484 KB         |
 
 To use these data files (or any other custom data), use the `NimblePicker` component:
 
