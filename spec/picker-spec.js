@@ -1,6 +1,8 @@
 import React from 'react'
 import TestUtils from 'react-dom/test-utils'
-import Picker from '../src/components/picker'
+
+import data from '../data/all.json'
+import { NimblePicker } from '../src/components'
 
 const { click } = TestUtils.Simulate
 
@@ -11,11 +13,11 @@ const {
 } = TestUtils
 
 const render = (props = {}) => {
-  const defaultProps = {}
-  return renderIntoDocument(<Picker {...defaultProps} {...props} />)
+  const defaultProps = { data }
+  return renderIntoDocument(<NimblePicker {...defaultProps} {...props} />)
 }
 
-describe('Picker', () => {
+describe('NimblePicker', () => {
   let subject
 
   it('works', () => {

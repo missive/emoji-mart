@@ -1,4 +1,4 @@
-import emojiIndex from '../src/utils/emoji-index'
+import emojiIndex from '../src/utils/emoji-index/emoji-index'
 
 describe('#emojiIndex', () => {
   describe('search', function() {
