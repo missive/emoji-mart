@@ -87,13 +87,13 @@ While all sets are available by default, you may want to include only a single s
 
 | Set       | Size   |
 | --------- | ------ |
-| all       | 551 KB |
-| apple     | 465 KB |
-| emojione  | 226 KB |
-| facebook  | 405 KB |
-| google    | 450 KB |
+| all       | 570 KB |
+| apple     | 484 KB |
+| emojione  | 485 KB |
+| facebook  | 421 KB |
+| google    | 483 KB |
 | messenger | 197 KB |
-| twitter   | 466 KB |
+| twitter   | 484 KB |
 
 To use these data files (or any other custom data), use the `NimblePicker` component:
 
