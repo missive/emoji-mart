@@ -1,175 +1,167 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {Platform, StyleSheet, View, Text, Image, TouchableWithoutFeedback} from 'react-native'
 
 import { getData, getSanitizedData, unifiedToNative } from '../../utils'
 import { uncompress } from '../../utils/data'
 import { EmojiPropTypes, EmojiDefaultProps } from '../../utils/shared-props'
 
-const SHEET_COLUMNS = 52
+const styles = StyleSheet.create({
+  emojiWrapper: {
+    overflow: 'hidden',
+  },
+  labelStyle: {
+    textAlign: 'center',
+    color: '#ae65c5',
+  },
+})
 
-const _getData = (props) => {
-  var { emoji, skin, set, data } = props
-  return getData(emoji, skin, set, data)
-}
+// TODO: Use functional components?
+// const NimbleEmoji = (props) => {
+class NimbleEmoji extends React.PureComponent {
+  static propTypes = { ...EmojiPropTypes, data: PropTypes.object.isRequired }
+  static defaultProps = EmojiDefaultProps
 
-const _getPosition = (props) => {
-  var { sheet_x, sheet_y } = _getData(props),
-    multiply = 100 / (SHEET_COLUMNS - 1)
+  _getImage = props => {
+    const {image, localImages} = this._getData(props)
+    const {skin} = this.props
 
-  return `${multiply * sheet_x}% ${multiply * sheet_y}%`
-}
-
-const _getSanitizedData = (props) => {
-  var { emoji, skin, set, data } = props
-  return getSanitizedData(emoji, skin, set, data)
-}
-
-const _handleClick = (e, props) => {
-  if (!props.onClick) {
-    return
-  }
-  var { onClick } = props,
-    emoji = _getSanitizedData(props)
-
-  onClick(emoji, e)
-}
-
-const _handleOver = (e, props) => {
-  if (!props.onOver) {
-    return
-  }
-  var { onOver } = props,
-    emoji = _getSanitizedData(props)
-
-  onOver(emoji, e)
-}
-
-const _handleLeave = (e, props) => {
-  if (!props.onLeave) {
-    return
-  }
-  var { onLeave } = props,
-    emoji = _getSanitizedData(props)
-
-  onLeave(emoji, e)
-}
-
-const _isNumeric = (value) => {
-  return !isNaN(value - parseFloat(value))
-}
-
-const _convertStyleToCSS = (style) => {
-  let div = document.createElement('div')
-
-  for (let key in style) {
-    let value = style[key]
-
-    if (_isNumeric(value)) {
-      value += 'px'
+    /**
+     * If no localImages param for this emoji and useLocalImages is true
+     * code below could cause problems in the emojiImageFn function.
+     */
+    if (localImages && props.useLocalImages) {
+      return localImages[props.set][(skin || NimbleEmoji.defaultProps.skin) - 1]
     }
 
-    div.style[key] = value
+    return image
   }
 
-  return div.getAttribute('style')
-}
-
-const NimbleEmoji = (props) => {
-  if (props.data.compressed) {
-    uncompress(props.data)
+  _getData = props => {
+    const {emoji, skin, set, data} = props
+    return getData(emoji, skin, set, data)
   }
 
-  for (let k in NimbleEmoji.defaultProps) {
-    if (props[k] == undefined && NimbleEmoji.defaultProps[k] != undefined) {
-      props[k] = NimbleEmoji.defaultProps[k]
+  _getSanitizedData = props => {
+    const {emoji, skin, set, data} = props
+    return getSanitizedData(emoji, skin, set, data)
+  }
+
+  _handlePress = e => {
+    const {onPress} = this.props
+    if (!onPress) {
+      return
     }
+    const emoji = this._getSanitizedData(this.props)
+
+    onPress(emoji, e)
   }
 
-  let data = _getData(props)
-  if (!data) {
-    return null
-  }
-
-  let { unified, custom, short_names, imageUrl } = data,
-    style = {},
-    children = props.children,
-    className = 'emoji-mart-emoji',
-    title = null
-
-  if (!unified && !custom) {
-    return null
-  }
-
-  if (props.tooltip) {
-    title = short_names[0]
-  }
-
-  if (props.native && unified) {
-    className += ' emoji-mart-emoji-native'
-    style = { fontSize: props.size }
-    children = unifiedToNative(unified)
-
-    if (props.forceSize) {
-      style.display = 'inline-block'
-      style.width = props.size
-      style.height = props.size
+  _handleLongPress = e => {
+    const {onLongPress} = this.props
+    if (!onLongPress) {
+      return
     }
-  } else if (custom) {
-    className += ' emoji-mart-emoji-custom'
-    style = {
-      width: props.size,
-      height: props.size,
-      display: 'inline-block',
-      backgroundImage: `url(${imageUrl})`,
-      backgroundSize: 'contain',
-    }
-  } else {
-    let setHasEmoji =
-      data[`has_img_${props.set}`] == undefined || data[`has_img_${props.set}`]
+    const emoji = this._getSanitizedData(this.props)
 
-    if (!setHasEmoji) {
-      if (props.fallback) {
-        return props.fallback(data)
-      } else {
-        return null
+    onLongPress(emoji, e)
+  }
+
+  render() {
+    const props = this.props
+
+    if (props.data.compressed) {
+      uncompress(props.data)
+    }
+
+    for (let k in NimbleEmoji.defaultProps) {
+      if (props[k] == undefined && NimbleEmoji.defaultProps[k] != undefined) {
+        props[k] = NimbleEmoji.defaultProps[k]
       }
-    } else {
+    }
+
+    let data = this._getData(props)
+    if (!data) {
+      return null
+    }
+
+    let { unified, custom, short_names, imageUrl } = data,
+      style = {},
+      children = props.children,
+      className = 'emoji-mart-emoji',
+      title = null,
+      emojiImage
+
+    if (!unified && !custom) {
+      return null
+    }
+
+    if (props.tooltip) {
+      title = short_names[0]
+    }
+
+    if (props.native && unified) {
+      const fontSize = props.size
+      labelStyle = {fontSize}
+      children = unifiedToNative(unified)
+      style.width = props.size + margin
+      style.height = props.size + margin
+    } else if (custom) {
       style = {
         width: props.size,
         height: props.size,
-        display: 'inline-block',
-        backgroundImage: `url(${props.backgroundImageFn(
-          props.set,
-          props.sheetSize,
-        )})`,
-        backgroundSize: `${100 * SHEET_COLUMNS}%`,
-        backgroundPosition: _getPosition(props),
+        margin: noMargin ? 0 : margin / 2,
       }
-    }
-  }
 
-  if (props.html) {
-    style = _convertStyleToCSS(style)
-    return `<span style='${style}' ${
-      title ? `title='${title}'` : ''
-    } class='${className}'>${children || ''}</span>`
-  } else {
-    return (
-      <span
-        key={props.emoji.id || props.emoji}
-        onClick={(e) => _handleClick(e, props)}
-        onMouseEnter={(e) => _handleOver(e, props)}
-        onMouseLeave={(e) => _handleLeave(e, props)}
-        title={title}
-        className={className}
-      >
-        <span style={style}>{children}</span>
-      </span>
+      imageStyle = {
+        width: props.size,
+        height: props.size,
+      }
+
+      emojiImage = <Image style={imageStyle} source={{uri: imageUrl}} />
+    } else {
+      const setHasEmoji = data[`has_img_${props.set}`] == undefined || data[`has_img_${props.set}`]
+
+      if (!setHasEmoji) {
+        if (props.fallback) {
+          return props.fallback(data)
+        } else {
+          return null
+        }
+      }
+
+      style = {
+        width: props.size,
+        height: props.size,
+        margin: noMargin ? 0 : margin / 2,
+      }
+
+      const emojiImageFile = _getImage(props)
+
+      imageStyle = {
+        width: props.size,
+        height: props.size,
+      }
+
+      emojiImage = (
+        <Image style={imageStyle} source={props.emojiImageFn(props.set, emojiImageFile, useLocalImages)} />
+      )
+    }
+
+    const emojiComponent = (
+      <View style={[styles.emojiWrapper, style]}>
+        {emojiImage || <Text style={[styles.labelStyle, labelStyle]}>{children}</Text>}
+      </View>
+    )
+
+    return onPress || onLongPress ? (
+      <TouchableWithoutFeedback onPress={this._handlePress} onLongPress={this._handleLongPress}>
+        {emojiComponent}
+      </TouchableWithoutFeedback>
+    ) : (
+      emojiComponent
     )
   }
 }
-
-NimbleEmoji.propTypes = { ...EmojiPropTypes, data: PropTypes.object.isRequired }
-NimbleEmoji.defaultProps = EmojiDefaultProps
 
 export default NimbleEmoji
