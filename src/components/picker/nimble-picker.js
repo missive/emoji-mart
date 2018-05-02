@@ -464,7 +464,7 @@ export default class NimblePicker extends React.PureComponent {
           modal ? styles.emojiMartModal : null,
         ]}
       >
-        <Search
+        {/* <Search
           ref={this.setSearchRef}
           onSearch={this.handleSearch}
           data={this.data}
@@ -474,7 +474,7 @@ export default class NimblePicker extends React.PureComponent {
           exclude={exclude}
           custom={this.CUSTOM_CATEGORY.emojis}
           autoFocus={autoFocus}
-        />
+        /> */}
 
         <View
           ref={this.setScrollViewRef}
