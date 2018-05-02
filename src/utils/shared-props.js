@@ -10,7 +10,6 @@ const EmojiPropTypes = {
   forceSize: PropTypes.bool,
   tooltip: PropTypes.bool,
   skin: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
-  // sheetSize: PropTypes.oneOf([16, 20, 32, 64]),
   set: PropTypes.oneOf([
     'apple',
     'google',
@@ -29,7 +28,6 @@ const EmojiPropTypes = {
 const EmojiDefaultProps = {
   skin: 1,
   set: 'apple',
-  // sheetSize: 64,
   native: false,
   forceSize: false,
   tooltip: false,
@@ -52,6 +50,7 @@ const PickerPropTypes = {
   onSkinChange: PropTypes.func,
   perLine: PropTypes.number,
   emojiSize: PropTypes.number,
+  anchorSize: PropTypes.number,
   i18n: PropTypes.object,
   style: PropTypes.object,
   title: PropTypes.string,
@@ -61,7 +60,6 @@ const PickerPropTypes = {
   skin: EmojiPropTypes.skin,
   native: PropTypes.bool,
   emojiImageFn: EmojiPropTypes.emojiImageFn,
-  // sheetSize: EmojiPropTypes.sheetSize,
   emojisToShowFilter: PropTypes.func,
   useLocalImages: EmojiPropTypes.useLocalImages,
   showPreview: PropTypes.bool,
@@ -71,6 +69,7 @@ const PickerPropTypes = {
   exclude: PropTypes.arrayOf(PropTypes.string),
   recent: PropTypes.arrayOf(PropTypes.string),
   autoFocus: PropTypes.bool,
+  modal: PropTypes.bool,
   custom: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -80,23 +79,35 @@ const PickerPropTypes = {
       imageUrl: PropTypes.string.isRequired,
     }),
   ),
+  categoryEmojis: PropTypes.shape({
+    recent: PropTypes.string.isRequired,
+    custom: PropTypes.string.isRequired,
+    people: PropTypes.string.isRequired,
+    nature: PropTypes.string.isRequired,
+    foods: PropTypes.string.isRequired,
+    activity: PropTypes.string.isRequired,
+    places: PropTypes.string.isRequired,
+    objects: PropTypes.string.isRequired,
+    symbols: PropTypes.string.isRequired,
+    flags: PropTypes.string.isRequired,
+  })
 }
 
 const PickerDefaultProps = {
   onPress: () => {},
   onSkinChange: () => {},
-  emojiSize: 24,
-  perLine: 9,
+  emojiSize: 30,
+  anchorSize: 24,
+  perLine: 7,
   i18n: {},
   style: {},
   title: 'Emoji Mart™ Native',
   emoji: 'department_store',
   color: '#ae65c5',
   set: EmojiDefaultProps.set,
-  skin: null,
+  skin: Emoji.defaultProps.skin,
   defaultSkin: EmojiDefaultProps.skin,
   native: EmojiDefaultProps.native,
-  // sheetSize: EmojiDefaultProps.sheetSize,
   emojiImageFn: EmojiDefaultProps.emojiImageFn,
   emojisToShowFilter: null,
   useLocalImages: EmojiDefaultProps.useLocalImages,
@@ -104,7 +115,20 @@ const PickerDefaultProps = {
   showSkinTones: false, // After porting <Skins /> component return value to true
   emojiTooltip: EmojiDefaultProps.tooltip,
   autoFocus: false,
+  modal: false,
   custom: [],
+  categoryEmojis: {
+    recent: 'clock3',
+    custom: 'triangular_ruler',
+    people: 'smiley',
+    nature: 'dog',
+    foods: 'taco',
+    activity: 'soccer',
+    places: 'rocket',
+    objects: 'bulb',
+    symbols: 'symbols',
+    flags: 'flag-wales',
+  },
 }
 
 export {
