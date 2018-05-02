@@ -1,5 +1,5 @@
 {
-  "presets": ["babel-preset-react-native-stage-0/decorator-support"],
+  "presets": ["react-native"],
   "plugins": [
     "check-es2015-constants",
     "transform-es2015-arrow-functions",
