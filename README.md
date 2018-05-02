@@ -13,7 +13,7 @@
 ## Components
 ### Picker
 ```jsx
-import { Picker } from 'emoji-mart'
+import { Picker } from 'emoji-mart-native'
 
 <Picker set='emojione' />
 <Picker onSelect={this.addEmoji} />
