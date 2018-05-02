@@ -21,7 +21,9 @@
     "url": "https://github.com/pederjohnsen/emoji-mart-native/issues"
   },
   "homepage": "https://github.com/pederjohnsen/emoji-mart-native",
-  "dependencies": {},
+  "dependencies": {
+    "react-native-svg": "^6.3.1"
+  },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0-0 || ^16.0.0"
   },

@@ -8,6 +8,7 @@ export {
   Emoji,
   NimbleEmoji,
   Category,
+  EmojiButton,
 } from './components'
 
 export { NimbleEmojiIndex } from './utils/emoji-index/nimble-emoji-index'
