@@ -1,9 +1,47 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {StyleSheet View, TouchableWithoutFeedback} from 'react-native'
 
-import SVGs from '../svgs'
+import Emoji from './emoji/emoji'
+
+const styles = StyleSheet.create({
+  anchors: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  anchor: {
+    flex: 1,
+    paddingTop: 13,
+    paddingBottom: 13,
+    paddingLeft: 18,
+    paddingRight: 18,
+    overflow: 'hidden',
+  },
+  anchorBar: {
+    position: 'absolute',
+    bottom: -2,
+    left: 0,
+    right: 0,
+    height: 2,
+  },
+  anchordBarSelected: {
+    bottom: 0,
+  },
+});
 
 export default class Anchors extends React.PureComponent {
+  static propTypes = {
+    categories: PropTypes.array,
+    onAnchorPress: PropTypes.func,
+    emojiProps: PropTypes.object.isRequired,
+    categoryEmojis: PropTypes.object.isRequired,
+  }
+
+  static defaultProps = {
+    categories: [],
+    onAnchorPress: () => {},
+  }
+
   constructor(props) {
     super(props)
 
@@ -15,75 +53,50 @@ export default class Anchors extends React.PureComponent {
       selected: defaultCategory.name,
     }
 
-    this.handleClick = this.handleClick.bind(this)
+    this.handlePress = this.handlePress.bind(this)
   }
 
-  getSVG(id) {
-    this.SVGs || (this.SVGs = {})
+  handlePress(index) {
+    var { categories, onAnchorPress } = this.props
 
-    if (this.SVGs[id]) {
-      return this.SVGs[id]
-    } else {
-      let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-       ${SVGs[id]}
-      </svg>`
-
-      this.SVGs[id] = svg
-      return svg
-    }
-  }
-
-  handleClick(e) {
-    var index = e.currentTarget.getAttribute('data-index')
-    var { categories, onAnchorClick } = this.props
-
-    onAnchorClick(categories[index], index)
+    onAnchorPress(categories[index], index)
   }
 
   render() {
-    var { categories, onAnchorClick, color, i18n } = this.props,
+    var { categories, onAnchorPress, color, i18n, emojiProps, categoryEmojis} = this.props,
       { selected } = this.state
 
     return (
-      <div className="emoji-mart-anchors">
+      <View style={styles.anchors}>
         {categories.map((category, i) => {
           var { id, name, anchor } = category,
-            isSelected = name == selected
+          isSelected = name == selected
 
           if (anchor === false) {
             return null
           }
 
           return (
-            <span
+            <TouchableWithoutFeedback
               key={id}
-              title={i18n.categories[id]}
               data-index={i}
-              onClick={this.handleClick}
-              className={`emoji-mart-anchor ${
-                isSelected ? 'emoji-mart-anchor-selected' : ''
-              }`}
-              style={{ color: isSelected ? color : null }}
+              onClick={() => this.handlePress(i)}
             >
-              <div dangerouslySetInnerHTML={{ __html: this.getSVG(id) }} />
-              <span
-                className="emoji-mart-anchor-bar"
-                style={{ backgroundColor: color }}
-              />
-            </span>
+              <View style={[styles.anchor, isSelected ? styles.anchorSelected : null]}>
+                <Emoji
+                  {...emojiProps}
+                  emoji={categoryEmojis[id]}
+                  onPress={null}
+                  onLongPress={null}
+                />
+                <View
+                  style={[styles.anchorBar, isSelected ? styles.anchorBarSelected : null, {backgroundColor: color}]}
+                />
+              </View>
+            </TouchableWithoutFeedback>
           )
         })}
-      </div>
+      </View>
     )
   }
-}
-
-Anchors.propTypes = {
-  categories: PropTypes.array,
-  onAnchorClick: PropTypes.func,
-}
-
-Anchors.defaultProps = {
-  categories: [],
-  onAnchorClick: () => {},
 }
