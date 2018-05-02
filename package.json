@@ -1,24 +1,26 @@
 {
-  "name": "emoji-mart",
-  "version": "2.6.0",
-  "description": "Customizable Slack-like emoji picker for React",
+  "name": "emoji-mart-native",
+  "version": "0.6.0",
+  "description": "Customizable Slack-like emoji picker for React Native",
   "main": "dist/index.js",
   "module": "dist-es/index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:missive/emoji-mart.git"
+    "url": "git@github.com:pederjohnsen/emoji-mart-native.git"
   },
   "keywords": [
     "react",
+    "native",
+    "react native",
     "emoji",
     "picker"
   ],
   "author": "Etienne Lemay",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/missive/emoji-mart/issues"
+    "url": "https://github.com/pederjohnsen/emoji-mart-native/issues"
   },
-  "homepage": "https://github.com/missive/emoji-mart",
+  "homepage": "https://github.com/pederjohnsen/emoji-mart-native",
   "dependencies": {},
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0-0 || ^16.0.0"
@@ -65,7 +67,6 @@
     "build:dist": "npm run build:cjs && npm run build:es",
     "build:cjs": "BABEL_ENV=cjs babel src --out-dir dist --copy-files",
     "build:es": "babel src --out-dir dist-es --copy-files",
-    "build:docs": "cp css/emoji-mart.css docs && webpack --config ./docs/webpack.config.js",
     "build": "npm run clean && npm run build:dist",
     "watch": "BABEL_ENV=cjs babel src --watch --out-dir dist --copy-files",
     "start": "npm run watch",
