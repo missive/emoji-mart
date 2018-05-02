@@ -36,7 +36,9 @@ const EmojiDefaultProps = {
       return image
     }
 
-    return {uri: `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/64/${image}.png`}
+    return {
+      uri: `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/64/${image}.png`,
+    }
   },
   onPress: () => {},
   onLongPress: () => {},
@@ -90,7 +92,7 @@ const PickerPropTypes = {
     objects: PropTypes.string.isRequired,
     symbols: PropTypes.string.isRequired,
     flags: PropTypes.string.isRequired,
-  })
+  }),
 }
 
 const PickerDefaultProps = {

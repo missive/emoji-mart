@@ -1,5 +1,5 @@
 import React from 'react'
-import Svg, {Path, G, Circle, Rect} from 'react-native-svg'
+import Svg, { Path, G, Circle, Rect } from 'react-native-svg'
 
 export default (
   <Svg width="18" height="18" viewBox="0 0 22 22">

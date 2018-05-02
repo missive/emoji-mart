@@ -18,7 +18,7 @@ import { EmojiPropTypes, EmojiDefaultProps } from '../../utils/shared-props'
 
 export default class Emoji extends React.PureComponent {
   static propTypes = EmojiPropTypes
-  static defaultProps = {...EmojiDefaultProps, data}
+  static defaultProps = { ...EmojiDefaultProps, data }
 
   render() {
     const props = this.props
@@ -29,6 +29,6 @@ export default class Emoji extends React.PureComponent {
       }
     }
 
-    return <NimbleEmoji { ...props } />
+    return <NimbleEmoji {...props} />
   }
 }

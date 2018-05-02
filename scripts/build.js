@@ -49,21 +49,26 @@ module.exports = (options) => {
 
     if (options.sets) {
       var keepEmoji = false
-      datum.localImages = {};
+      datum.localImages = {}
 
       options.sets.forEach((set) => {
         if (keepEmoji) return
 
         var key = `has_img_${set}`
         if (datum[key]) {
-          datum.localImages[set] = [`require('../emojis/img-${set}-64/${datum.image}')`]
+          datum.localImages[set] = [
+            `require('../emojis/img-${set}-64/${datum.image}')`,
+          ]
           keepEmoji = true
 
           // Skin variations
           if (datum.skin_variations) {
             for (let skinKey in datum.skin_variations) {
               var skinVariations = datum.skin_variations[skinKey]
-              if (skinVariations[key]) datum.localImages[set].push(`require('../emojis/img-${set}-64/${skinVariations.image}')`)
+              if (skinVariations[key])
+                datum.localImages[set].push(
+                  `require('../emojis/img-${set}-64/${skinVariations.image}')`,
+                )
             }
           }
         }

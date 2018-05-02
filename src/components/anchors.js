@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {StyleSheet, View, TouchableWithoutFeedback} from 'react-native'
+import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native'
 
 import Emoji from './emoji/emoji'
 
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   anchordBarSelected: {
     bottom: 0,
   },
-});
+})
 
 export default class Anchors extends React.PureComponent {
   static propTypes = {
@@ -63,14 +63,21 @@ export default class Anchors extends React.PureComponent {
   }
 
   render() {
-    var { categories, onAnchorPress, color, i18n, emojiProps, categoryEmojis} = this.props,
+    var {
+        categories,
+        onAnchorPress,
+        color,
+        i18n,
+        emojiProps,
+        categoryEmojis,
+      } = this.props,
       { selected } = this.state
 
     return (
       <View style={styles.anchors}>
         {categories.map((category, i) => {
           var { id, name, anchor } = category,
-          isSelected = name == selected
+            isSelected = name == selected
 
           if (anchor === false) {
             return null
@@ -82,7 +89,12 @@ export default class Anchors extends React.PureComponent {
               data-index={i}
               onClick={() => this.handlePress(i)}
             >
-              <View style={[styles.anchor, isSelected ? styles.anchorSelected : null]}>
+              <View
+                style={[
+                  styles.anchor,
+                  isSelected ? styles.anchorSelected : null,
+                ]}
+              >
                 <Emoji
                   {...emojiProps}
                   emoji={categoryEmojis[id]}
@@ -90,7 +102,11 @@ export default class Anchors extends React.PureComponent {
                   onLongPress={null}
                 />
                 <View
-                  style={[styles.anchorBar, isSelected ? styles.anchorBarSelected : null, {backgroundColor: color}]}
+                  style={[
+                    styles.anchorBar,
+                    isSelected ? styles.anchorBarSelected : null,
+                    { backgroundColor: color },
+                  ]}
                 />
               </View>
             </TouchableWithoutFeedback>

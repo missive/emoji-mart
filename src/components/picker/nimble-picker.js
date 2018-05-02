@@ -2,7 +2,7 @@ import '../../vendor/raf-polyfill'
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import {StyleSheet, View, ScrollView, ToastAndroid} from 'react-native'
+import { StyleSheet, View, ScrollView, ToastAndroid } from 'react-native'
 
 import store from '../../utils/store'
 import frequently from '../../utils/frequently'
@@ -64,7 +64,7 @@ export default class NimblePicker extends React.PureComponent {
     ...PickerPropTypes,
     data: PropTypes.object.isRequired,
   }
-  static defaultProps = {...PickerDefaultProps}
+  static defaultProps = { ...PickerDefaultProps }
 
   constructor(props) {
     super(props)
@@ -183,7 +183,7 @@ export default class NimblePicker extends React.PureComponent {
     this.handleAnchorPress = this.handleAnchorPress.bind(this)
     this.setSearchRef = this.setSearchRef.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
-    this.setScrollViewRef = this.setScrollViewRef.bind(this);
+    this.setScrollViewRef = this.setScrollViewRef.bind(this)
     this.setScrollRef = this.setScrollRef.bind(this)
     this.handleScroll = this.handleScroll.bind(this)
     this.handleScrollPaint = this.handleScrollPaint.bind(this)
@@ -240,9 +240,15 @@ export default class NimblePicker extends React.PureComponent {
   }
 
   handleEmojiLongPress(emoji, e) {
-    this.props.onLongPress(emoji, e);
+    this.props.onLongPress(emoji, e)
 
-    ToastAndroid.showWithGravityAndOffset(emoji.id, ToastAndroid.SHORT, ToastAndroid.BOTTOM, 0, 190)
+    ToastAndroid.showWithGravityAndOffset(
+      emoji.id,
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM,
+      0,
+      190,
+    )
   }
 
   handleScroll() {
@@ -325,7 +331,7 @@ export default class NimblePicker extends React.PureComponent {
     }
 
     this.forceUpdate()
-    this.scroll.scrollTo({y: 0, animated: true})
+    this.scroll.scrollTo({ y: 0, animated: true })
     this.handleScroll()
   }
 
@@ -355,7 +361,7 @@ export default class NimblePicker extends React.PureComponent {
           top -= this.scrollTop
         }
 
-        scroll.scrollTo({y: top, animated: true})
+        scroll.scrollTo({ y: top, animated: true })
       }
     }
 
@@ -451,7 +457,13 @@ export default class NimblePicker extends React.PureComponent {
       { skin } = this.state
 
     return (
-      <View style={[{...style}, styles.emojiMart, modal ? styles.emojiMartModal : null]}>
+      <View
+        style={[
+          { ...style },
+          styles.emojiMart,
+          modal ? styles.emojiMartModal : null,
+        ]}
+      >
         <Search
           ref={this.setSearchRef}
           onSearch={this.handleSearch}

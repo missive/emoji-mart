@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {StyleSheet, View, Text, FlatList} from 'react-native'
+import { StyleSheet, View, Text, FlatList } from 'react-native'
 
 import frequently from '../utils/frequently'
 import { getData } from '../utils'
@@ -112,7 +112,7 @@ export default class Category extends React.Component {
 
   getEmojis() {
     var { name, emojis, recent, perLine, emojiProps } = this.props
-    const {set: emojiSet} = emojiProps;
+    const { set: emojiSet } = emojiProps
 
     if (name == 'Recent') {
       let { custom } = this.props
@@ -140,7 +140,9 @@ export default class Category extends React.Component {
       emojis = emojis.slice(0)
       // TODO: Still needed?
       // Filter out emojis without image here to prevent FlatList rendering empty spaces
-      emojis = emojis.filter(id => id.custom || getData(id)[`has_img_${emojiSet}`])
+      emojis = emojis.filter(
+        (id) => id.custom || getData(id)[`has_img_${emojiSet}`],
+      )
     }
 
     return emojis
@@ -160,40 +162,60 @@ export default class Category extends React.Component {
     })
   }
 
-  flatListKeyExtractor = item => `emoji_${item}`
+  flatListKeyExtractor = (item) => `emoji_${item}`
 
   getFlatListItemLayout = (layoutData, index) => {
-    const {emojiProps} = this.props
-    const {size: emojiSize, margin: emojiMargin, noMargin: emojiNoMargin} = emojiProps
+    const { emojiProps } = this.props
+    const {
+      size: emojiSize,
+      margin: emojiMargin,
+      noMargin: emojiNoMargin,
+    } = emojiProps
 
-    const emojiSizing = (emojiNoMargin ? emojiSize : emojiSize + emojiMargin)
+    const emojiSizing = emojiNoMargin ? emojiSize : emojiSize + emojiMargin
     return {
       length: emojiSizing,
-      offset: (emojiSizing) * index,
+      offset: emojiSizing * index,
       index,
     }
   }
 
-  renderFlatListItem = ({item}) => {
-    const {emojiProps} = this.props
+  renderFlatListItem = ({ item }) => {
+    const { emojiProps } = this.props
 
-    return <NimbleEmoji key={`emoji_${item}`} emoji={item} data={this.data} {...emojiProps} />
+    return (
+      <NimbleEmoji
+        key={`emoji_${item}`}
+        emoji={item}
+        data={this.data}
+        {...emojiProps}
+      />
+    )
   }
 
   render() {
     var { id, name, hasStickyPosition, emojiProps, i18n } = this.props,
       emojis = this.getEmojis()
 
-    const {size: emojiSize, margin: emojiMargin, noMargin: emojiNoMargin} = emojiProps
+    const {
+      size: emojiSize,
+      margin: emojiMargin,
+      noMargin: emojiNoMargin,
+    } = emojiProps
 
-    const emojiSizing = (emojiNoMargin ? emojiSize : emojiSize + emojiMargin)
-    const emojisListWidth = (emojiNoMargin ? perLine * emojiSizing : parLine * emojiSizing + emojiMargin)
+    const emojiSizing = emojiNoMargin ? emojiSize : emojiSize + emojiMargin
+    const emojisListWidth = emojiNoMargin
+      ? perLine * emojiSizing
+      : parLine * emojiSizing + emojiMargin
 
     return !emojis ? null : (
       <View
         ref={this.setContainerRef}
         onLayout={this.onLayout}
-        style={[styles.category, emojis && !emojis.length ? styles.noResults : null]}
+        style={[
+          styles.category,
+          emojis && !emojis.length ? styles.noResults : null,
+        ]}
       >
         <View style={styles.label}>
           <Text style={styles.labelText} ref={this.setLabelRef}>
@@ -209,12 +231,21 @@ export default class Category extends React.Component {
             getItemLayout={this.getFlatListItemLayout}
             renderItem={this.renderFlatListItem}
             numColumns={perLine}
-            columnWrapperStyle={[styles.emojisContainer, {width: emojiListWidth}]}
+            columnWrapperStyle={[
+              styles.emojisContainer,
+              { width: emojiListWidth },
+            ]}
           />
         ) : (
           <View>
             <View>
-              <NimbleEmoji data={this.data} {...emojiProps} emoji="sleuth_or_spy" onPress={null} onLongPress={null} />
+              <NimbleEmoji
+                data={this.data}
+                {...emojiProps}
+                emoji="sleuth_or_spy"
+                onPress={null}
+                onLongPress={null}
+              />
             </View>
 
             <View style={styles.label}>
