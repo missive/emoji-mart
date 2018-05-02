@@ -1,6 +1,6 @@
 {
   "name": "emoji-mart-native",
-  "version": "0.6.0",
+  "version": "0.1.0",
   "description": "Customizable Slack-like emoji picker for React Native",
   "main": "dist/index.js",
   "module": "dist-es/index.js",
@@ -15,7 +15,7 @@
     "emoji",
     "picker"
   ],
-  "author": "Etienne Lemay",
+  "author": "Peder Johnsen",
   "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/pederjohnsen/emoji-mart-native/issues"
