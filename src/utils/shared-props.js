@@ -107,7 +107,7 @@ const PickerDefaultProps = {
   emoji: 'department_store',
   color: '#ae65c5',
   set: EmojiDefaultProps.set,
-  skin: Emoji.defaultProps.skin,
+  skin: EmojiDefaultProps.skin,
   defaultSkin: EmojiDefaultProps.skin,
   native: EmojiDefaultProps.native,
   emojiImageFn: EmojiDefaultProps.emojiImageFn,
