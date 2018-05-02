@@ -114,7 +114,6 @@ module.exports = (options) => {
     delete datum.au
     delete datum.softbank
     delete datum.google
-    delete datum.image
     delete datum.category
     delete datum.sort_order
 
