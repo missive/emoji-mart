@@ -166,10 +166,10 @@ export default class Category extends React.Component {
     const {emojiProps} = this.props
     const {size: emojiSize, margin: emojiMargin, noMargin: emojiNoMargin} = emojiProps
 
-    const size = emojiNoMargin ? emojiSize : emojiSize + emojiMargin
+    const emojiSizing = (emojiNoMargin ? emojiSize : emojiSize + emojiMargin)
     return {
-      length: size,
-      offset: (size) * index,
+      length: emojiSizing,
+      offset: (emojiSizing) * index,
       index,
     }
   }
@@ -184,10 +184,10 @@ export default class Category extends React.Component {
     var { id, name, hasStickyPosition, emojiProps, i18n } = this.props,
       emojis = this.getEmojis()
 
-    const {size: emojiSize, margin: emojiMargin, noMargin: emojiNoMargin}
+    const {size: emojiSize, margin: emojiMargin, noMargin: emojiNoMargin} = emojiProps
 
-    const size = emojiNoMargin ? emojiSize : emojiSize + emojiMargin
-    const emojisListWidth = emojiNoMargin ? perLine * size : parLine * size + emojiMargin
+    const emojiSizing = (emojiNoMargin ? emojiSize : emojiSize + emojiMargin)
+    const emojisListWidth = (emojiNoMargin ? perLine * emojiSizing : parLine * emojiSizing + emojiMargin)
 
     return !emojis ? null : (
       <View

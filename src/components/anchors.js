@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {StyleSheet View, TouchableWithoutFeedback} from 'react-native'
+import {StyleSheet, View, TouchableWithoutFeedback} from 'react-native'
 
 import Emoji from './emoji/emoji'
 

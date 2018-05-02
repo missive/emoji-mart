@@ -22,7 +22,7 @@ export default class EmojiButton extends React.PureComponent {
 
   render() {
     return (
-      <TouchableOpacity onPress{this.props.onButtonPress}>
+      <TouchableOpacity onPress={this.props.onButtonPress}>
         <View style={styles.emojiButton}>{ButtonSvg}</View>
       </TouchableOpacity>
     )

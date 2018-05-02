@@ -333,7 +333,7 @@ export default class NimblePicker extends React.PureComponent {
     this.scrollView.measure((x, y, width, height, pageX, pageY) => {
       this.scrollTop = pageY
 
-      for (let i = 0, l = this.categories,length; i < l, i++) {
+      for (let i = 0, l = this.categories.length; i < l; i++) {
         const component = this.categoryRefs[`category-${i}`]
         if (component && component.container) component.onLayout()
       }
@@ -448,7 +448,7 @@ export default class NimblePicker extends React.PureComponent {
         useLocalImages,
         categoryEmojis,
       } = this.props,
-      { skin } = this.state,
+      { skin } = this.state
 
     return (
       <View style={[{...style}, styles.emojiMart, modal ? styles.emojiMartModal : null]}>
@@ -534,29 +534,28 @@ export default class NimblePicker extends React.PureComponent {
             />
           </div>
         )} */}
-      </View>
-
-      <View style={styles.emojiMartAnchors}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <Anchors
-            ref={this.setAnchorsRef}
-            data={this.data}
-            i18n={this.i18n}
-            color={color}
-            categories={this.categories}
-            onAnchorPress={this.handleAnchorPress}
-            categoryEmojis={categoryEmojis}
-            emojiProps={{
-              native,
-              skin,
-              size: anchorSize,
-              set,
-              forceSize: native,
-              emojiImageFn,
-              useLocalImages,
-            }}
-          />
-        </ScrollView>
+        <View style={styles.emojiMartAnchors}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <Anchors
+              ref={this.setAnchorsRef}
+              data={this.data}
+              i18n={this.i18n}
+              color={color}
+              categories={this.categories}
+              onAnchorPress={this.handleAnchorPress}
+              categoryEmojis={categoryEmojis}
+              emojiProps={{
+                native,
+                skin,
+                size: anchorSize,
+                set,
+                forceSize: native,
+                emojiImageFn,
+                useLocalImages,
+              }}
+            />
+          </ScrollView>
+        </View>
       </View>
     )
   }
