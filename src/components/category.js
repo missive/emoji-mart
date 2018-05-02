@@ -1,26 +1,56 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {StyleSheet, View, Text, FlatList} from 'react-native'
 
 import frequently from '../utils/frequently'
 import { getData } from '../utils'
 import { NimbleEmoji } from '.'
 
+const styles = StyleSheet.create({
+  category: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  label: {
+    paddingLeft: 2,
+    paddingRight: 2,
+    alignSelf: 'flex-start',
+  },
+  labelText: {
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  emojisContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    padding: 2,
+  },
+})
+
 export default class Category extends React.Component {
+  static propTypes = {
+    emojis: PropTypes.array,
+    hasStickyPosition: PropTypes.bool,
+    name: PropTypes.string.isRequired,
+    native: PropTypes.bool.isRequired,
+    perLine: PropTypes.number.isRequired,
+    emojiProps: PropTypes.object.isRequired,
+    recent: PropTypes.arrayOf(PropTypes.string),
+  }
+
+  static defaultProps = {
+    emojis: [],
+    hasStickyPosition: true,
+  }
+
   constructor(props) {
     super(props)
 
     this.data = props.data
     this.setContainerRef = this.setContainerRef.bind(this)
     this.setLabelRef = this.setLabelRef.bind(this)
-  }
-
-  componentDidMount() {
-    this.parent = this.container.parentNode
-
-    this.margin = 0
-    this.minMargin = 0
-
-    this.memoizeSize()
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -64,37 +94,25 @@ export default class Category extends React.Component {
     return shouldUpdate
   }
 
-  memoizeSize() {
-    var { top, height } = this.container.getBoundingClientRect()
-    var { top: parentTop } = this.parent.getBoundingClientRect()
-    var { height: labelHeight } = this.label.getBoundingClientRect()
-
-    this.top = top - parentTop + this.parent.scrollTop
-
-    if (height == 0) {
-      this.maxMargin = 0
-    } else {
-      this.maxMargin = height - labelHeight
-    }
-  }
-
-  handleScroll(scrollTop) {
-    var margin = scrollTop - this.top
-    margin = margin < this.minMargin ? this.minMargin : margin
-    margin = margin > this.maxMargin ? this.maxMargin : margin
-
-    if (margin == this.margin) return
-
-    if (!this.props.hasStickyPosition) {
-      this.label.style.top = `${margin}px`
-    }
-
-    this.margin = margin
-    return true
-  }
+  // TODO: Remove completely?
+  // handleScroll(scrollTop) {
+  //   var margin = scrollTop - this.top
+  //   margin = margin < this.minMargin ? this.minMargin : margin
+  //   margin = margin > this.maxMargin ? this.maxMargin : margin
+  //
+  //   if (margin == this.margin) return
+  //
+  //   if (!this.props.hasStickyPosition) {
+  //     this.label.style.top = `${margin}px`
+  //   }
+  //
+  //   this.margin = margin
+  //   return true
+  // }
 
   getEmojis() {
-    var { name, emojis, recent, perLine } = this.props
+    var { name, emojis, recent, perLine, emojiProps } = this.props
+    const {set: emojiSet} = emojiProps;
 
     if (name == 'Recent') {
       let { custom } = this.props
@@ -120,19 +138,12 @@ export default class Category extends React.Component {
 
     if (emojis) {
       emojis = emojis.slice(0)
+      // TODO: Still needed?
+      // Filter out emojis without image here to prevent FlatList rendering empty spaces
+      emojis = emojis.filter(id => id.custom || getData(id)[`has_img_${emojiSet}`])
     }
 
     return emojis
-  }
-
-  updateDisplay(display) {
-    var emojis = this.getEmojis()
-
-    if (!emojis) {
-      return
-    }
-
-    this.container.style.display = display
   }
 
   setContainerRef(c) {
@@ -143,86 +154,75 @@ export default class Category extends React.Component {
     this.label = c
   }
 
+  onLayout = () => {
+    this.container.measure((x, y, widht, height, pageX, pageY) => {
+      this.top = pageY
+    })
+  }
+
+  flatListKeyExtractor = item => `emoji_${item}`
+
+  getFlatListItemLayout = (layoutData, index) => {
+    const {emojiProps} = this.props
+    const {size: emojiSize, margin: emojiMargin, noMargin: emojiNoMargin} = emojiProps
+
+    const size = emojiNoMargin ? emojiSize : emojiSize + emojiMargin
+    return {
+      length: size,
+      offset: (size) * index,
+      index,
+    }
+  }
+
+  renderFlatListItem = ({item}) => {
+    const {emojiProps} = this.props
+
+    return <NimbleEmoji key={`emoji_${item}`} emoji={item} data={this.data} {...emojiProps} />
+  }
+
   render() {
     var { id, name, hasStickyPosition, emojiProps, i18n } = this.props,
-      emojis = this.getEmojis(),
-      labelStyles = {},
-      labelSpanStyles = {},
-      containerStyles = {}
+      emojis = this.getEmojis()
 
-    if (!emojis) {
-      containerStyles = {
-        display: 'none',
-      }
-    }
+    const {size: emojiSize, margin: emojiMargin, noMargin: emojiNoMargin}
 
-    if (!hasStickyPosition) {
-      labelStyles = {
-        height: 28,
-      }
+    const size = emojiNoMargin ? emojiSize : emojiSize + emojiMargin
+    const emojisListWidth = emojiNoMargin ? perLine * size : parLine * size + emojiMargin
 
-      labelSpanStyles = {
-        position: 'absolute',
-      }
-    }
-
-    return (
-      <div
+    return !emojis ? null : (
+      <View
         ref={this.setContainerRef}
-        className={`emoji-mart-category ${
-          emojis && !emojis.length ? 'emoji-mart-no-results' : ''
-        }`}
-        style={containerStyles}
+        onLayout={this.onLayout}
+        style={[styles.category, emojis && !emojis.length ? styles.noResults : null]}
       >
-        <div
-          style={labelStyles}
-          data-name={name}
-          className="emoji-mart-category-label"
-        >
-          <span style={labelSpanStyles} ref={this.setLabelRef}>
+        <View style={styles.label}>
+          <Text style={styles.labelText} ref={this.setLabelRef}>
             {i18n.categories[id]}
-          </span>
-        </div>
+          </Text>
+        </View>
 
-        {emojis &&
-          emojis.map((emoji) =>
-            NimbleEmoji({ emoji: emoji, data: this.data, ...emojiProps }),
-          )}
+        {emojis.length ? (
+          <FlatList
+            style={styles.sectionFlatList}
+            data={emojis}
+            keyExtractor={this.flatListKeyExtractor}
+            getItemLayout={this.getFlatListItemLayout}
+            renderItem={this.renderFlatListItem}
+            numColumns={perLine}
+            columnWrapperStyle={[styles.emojisContainer, {width: emojiListWidth}]}
+          />
+        ) : (
+          <View>
+            <View>
+              <NimbleEmoji data={this.data} {...emojiProps} emoji="sleuth_or_spy" onPress={null} onLongPress={null} />
+            </View>
 
-        {emojis &&
-          !emojis.length && (
-            <div>
-              <div>
-                {NimbleEmoji({
-                  data: this.data,
-                  ...emojiProps,
-                  size: 38,
-                  emoji: 'sleuth_or_spy',
-                  onOver: null,
-                  onLeave: null,
-                  onClick: null,
-                })}
-              </div>
-
-              <div className="emoji-mart-no-results-label">{i18n.notfound}</div>
-            </div>
-          )}
-      </div>
+            <View style={styles.label}>
+              <Text style={styles.labelText}>{i18n.notfound}</Text>
+            </View>
+          </View>
+        )}
+      </View>
     )
   }
-}
-
-Category.propTypes = {
-  emojis: PropTypes.array,
-  hasStickyPosition: PropTypes.bool,
-  name: PropTypes.string.isRequired,
-  native: PropTypes.bool.isRequired,
-  perLine: PropTypes.number.isRequired,
-  emojiProps: PropTypes.object.isRequired,
-  recent: PropTypes.arrayOf(PropTypes.string),
-}
-
-Category.defaultProps = {
-  emojis: [],
-  hasStickyPosition: true,
 }
