@@ -37,7 +37,7 @@ const EmojiDefaultProps = {
     }
 
     return {
-      uri: `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/64/${image}.png`,
+      uri: `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/64/${image}`,
     }
   },
   onPress: null,

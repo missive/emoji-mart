@@ -29,16 +29,16 @@ class NimbleEmoji extends React.PureComponent {
   static propTypes = { ...EmojiPropTypes, data: PropTypes.object.isRequired }
   static defaultProps = EmojiDefaultProps
 
-  _getImage = (props) => {
-    const { image, localImages } = this._getData(props)
-    const { skin } = this.props
+  _getImage = (data) => {
+    const { image, localImages } = data
+    const { emoji, skin, set, useLocalImages } = this.props
 
     /**
      * If no localImages param for this emoji and useLocalImages is true
      * code below could cause problems in the emojiImageFn function.
      */
-    if (localImages && props.useLocalImages) {
-      return localImages[props.set][(skin || NimbleEmoji.defaultProps.skin) - 1]
+    if (localImages && useLocalImages) {
+      return localImages[set][(skin || NimbleEmoji.defaultProps.skin) - 1]
     }
 
     return image
@@ -75,27 +75,29 @@ class NimbleEmoji extends React.PureComponent {
   }
 
   render() {
-    const props = this.props
-
-    if (props.data.compressed) {
-      uncompress(props.data)
+    if (this.props.data.compressed) {
+      uncompress(this.props.data)
     }
 
-    for (let k in NimbleEmoji.defaultProps) {
-      if (props[k] == undefined && NimbleEmoji.defaultProps[k] != undefined) {
-        props[k] = NimbleEmoji.defaultProps[k]
+    for (const k in NimbleEmoji.defaultProps) {
+      if (
+        this.props[k] == undefined &&
+        NimbleEmoji.defaultProps[k] != undefined
+      ) {
+        this.props[k] = NimbleEmoji.defaultProps[k]
       }
     }
 
-    let data = this._getData(props)
+    let data = this._getData(this.props)
     if (!data) {
       return null
     }
 
     let { unified, custom, short_names, imageUrl } = data,
       style = {},
-      children = props.children,
-      className = 'emoji-mart-emoji',
+      imageStyle = {},
+      labelStyle = {},
+      children = this.props.children,
       title = null,
       emojiImage
 
@@ -103,59 +105,63 @@ class NimbleEmoji extends React.PureComponent {
       return null
     }
 
-    if (props.tooltip) {
+    if (this.props.tooltip) {
       title = short_names[0]
     }
 
-    if (props.native && unified) {
-      const fontSize = props.size
+    if (this.props.native && unified) {
+      const fontSize = this.props.size
       labelStyle = { fontSize }
       children = unifiedToNative(unified)
-      style.width = props.size + props.margin
-      style.height = props.size + props.margin
+      style.width = this.props.size + this.props.margin
+      style.height = this.props.size + this.props.margin
     } else if (custom) {
       style = {
-        width: props.size,
-        height: props.size,
-        margin: props.noMargin ? 0 : props.margin / 2,
+        width: this.props.size,
+        height: this.props.size,
+        margin: this.props.noMargin ? 0 : this.props.margin / 2,
       }
 
       imageStyle = {
-        width: props.size,
-        height: props.size,
+        width: this.props.size,
+        height: this.props.size,
       }
 
       emojiImage = <Image style={imageStyle} source={{ uri: imageUrl }} />
     } else {
       const setHasEmoji =
-        data[`has_img_${props.set}`] == undefined ||
-        data[`has_img_${props.set}`]
+        data[`has_img_${this.props.set}`] == undefined ||
+        data[`has_img_${this.props.set}`]
 
       if (!setHasEmoji) {
-        if (props.fallback) {
-          return props.fallback(data)
+        if (this.props.fallback) {
+          return this.props.fallback(data)
         } else {
           return null
         }
       }
 
       style = {
-        width: props.size,
-        height: props.size,
-        margin: props.noMargin ? 0 : props.margin / 2,
+        width: this.props.size,
+        height: this.props.size,
+        margin: this.props.noMargin ? 0 : this.props.margin / 2,
       }
 
-      const emojiImageFile = this._getImage(props)
+      const emojiImageFile = this._getImage(data)
 
       imageStyle = {
-        width: props.size,
-        height: props.size,
+        width: this.props.size,
+        height: this.props.size,
       }
 
       emojiImage = (
         <Image
           style={imageStyle}
-          source={props.emojiImageFn(props.set, emojiImageFile, props.useLocalImages)}
+          source={this.props.emojiImageFn(
+            this.props.set,
+            emojiImageFile,
+            this.props.useLocalImages,
+          )}
         />
       )
     }
@@ -168,7 +174,7 @@ class NimbleEmoji extends React.PureComponent {
       </View>
     )
 
-    return props.onPress || props.onLongPress ? (
+    return this.props.onPress || this.props.onLongPress ? (
       <TouchableWithoutFeedback
         onPress={this._handlePress}
         onLongPress={this._handleLongPress}
