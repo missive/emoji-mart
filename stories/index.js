@@ -5,7 +5,6 @@ import { action } from '@storybook/addon-actions';
 import { withKnobs, text, boolean, number, select, color } from '@storybook/addon-knobs';
 
 import { Picker, Emoji, emojiIndex } from '../dist';
-import '../css/emoji-mart.css';
 
 const SETS = ['apple', 'google', 'twitter', 'emojione', 'messenger', 'facebook']
 const CUSTOM_EMOJIS = [
