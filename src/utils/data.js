@@ -15,7 +15,7 @@ const mapping = {
   short_names: 'n',
   added_in: 'o',
   image: 'p',
-  localImages: 'q',
+  skin_variations: 'q',
 }
 
 const buildSearch = (emoji) => {
