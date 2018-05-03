@@ -134,6 +134,28 @@ function getData(emoji, skin, set, data) {
   return emojiData
 }
 
+function getEmojiDataFromNative(nativeString) {
+  const skinTones = ['', '🏻', '🏼', '🏽', '🏾', '🏿'];
+
+  let skin;
+  let baseNativeString = nativeString;
+
+  skinTones.forEach(skinTone => {
+    baseNativeString = baseNativeString.replace(skinTone, '');
+    if (nativeString.indexOf(skinTone) > 0) {
+      skin = skinTones.indexOf(skinTone) + 1;
+    }
+  });
+
+  const emojiData = Object.values(emojisList).find(emoji => emoji.native === baseNativeString);
+
+  if (emojiData) {
+    emojiData.skin = skin;
+  }
+
+  return emojiData;
+}
+
 function uniq(arr) {
   return arr.reduce((acc, item) => {
     if (acc.indexOf(item) === -1) {
