@@ -138,11 +138,6 @@ export default class Category extends React.Component {
 
     if (emojis) {
       emojis = emojis.slice(0)
-      // TODO: Still needed?
-      // Filter out emojis without image here to prevent FlatList rendering empty spaces
-      emojis = emojis.filter(
-        (id) => id.custom || getData(id)[`has_img_${emojiSet}`],
-      )
     }
 
     return emojis
