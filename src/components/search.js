@@ -1,6 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Platform, StyleSheet, View, TextInput, TouchableNativeFeedback} from 'react-native'
+import {
+  Platform,
+  StyleSheet,
+  View,
+  TextInput,
+  TouchableNativeFeedback,
+} from 'react-native'
 
 import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
 
@@ -65,7 +71,7 @@ export default class Search extends React.PureComponent {
   }
 
   handleChange(event) {
-    var {value} = event.nativeEvent
+    var { value } = event.nativeEvent
 
     this.props.onSearch(
       this.emojiIndex.search(value, {
@@ -89,20 +95,27 @@ export default class Search extends React.PureComponent {
   render() {
     var { i18n, autoFocus, onPressClose } = this.props
 
-    let background;
+    let background
 
     if (Platform.Version >= 21) {
-      background = TouchableNativeFeedback.SelectableBackgroundBorderless();
+      background = TouchableNativeFeedback.SelectableBackgroundBorderless()
     } else {
-      background = TouchableNativeFeedback.SelectableBackground();
+      background = TouchableNativeFeedback.SelectableBackground()
     }
 
     return (
       <View style={styles.searchContainer}>
         <View style={styles.closeButtonContainer}>
-          <TouchableNativeFeedback onPress={onPressClose} background={background}>
+          <TouchableNativeFeedback
+            onPress={onPressClose}
+            background={background}
+          >
             <View style={[styles.closeButton]}>
-              <Icon style={styles.closeButtonIcon} name="arrow-left" size={24} />
+              <Icon
+                style={styles.closeButtonIcon}
+                name="arrow-left"
+                size={24}
+              />
             </View>
           </TouchableNativeFeedback>
         </View>
