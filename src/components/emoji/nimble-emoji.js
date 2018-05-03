@@ -81,7 +81,7 @@ class NimbleEmoji extends React.PureComponent {
 
     for (const k in NimbleEmoji.defaultProps) {
       if (
-        this.props[k] == undefined &&
+        this.props[k] === undefined &&
         NimbleEmoji.defaultProps[k] != undefined
       ) {
         this.props[k] = NimbleEmoji.defaultProps[k]

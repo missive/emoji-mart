@@ -22,7 +22,7 @@ export default class Emoji extends React.PureComponent {
 
   render() {
     for (const k in Emoji.defaultProps) {
-      if (this.props[k] == undefined && Emoji.defaultProps[k] != undefined) {
+      if (this.props[k] === undefined && Emoji.defaultProps[k] != undefined) {
         this.props[k] = Emoji.defaultProps[k]
       }
     }
