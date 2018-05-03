@@ -20,7 +20,7 @@ const EmojiPropTypes = {
   ]),
   size: PropTypes.number.isRequired,
   emoji: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
-  useLocalImages: PropTypes.bool,
+  useLocalImages: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   margin: PropTypes.number,
   noMargin: PropTypes.bool,
 }
@@ -31,15 +31,7 @@ const EmojiDefaultProps = {
   native: false,
   forceSize: false,
   tooltip: false,
-  emojiImageFn: (set, image, useLocalImages) => {
-    if (useLocalImages) {
-      return image
-    }
-
-    return {
-      uri: `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/64/${image}`,
-    }
-  },
+  emojiImageFn: (image) => image,
   onPress: () => {},
   onLongPress: () => {},
   useLocalImages: false,

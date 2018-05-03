@@ -30,18 +30,16 @@ class NimbleEmoji extends React.PureComponent {
   static defaultProps = EmojiDefaultProps
 
   _getImage = (data) => {
-    const { image, localImages } = data
+    const { image } = data
     const { emoji, skin, set, useLocalImages } = this.props
 
-    /**
-     * If no localImages param for this emoji and useLocalImages is true
-     * code below could cause problems in the emojiImageFn function.
-     */
-    if (localImages && useLocalImages) {
-      return localImages[set][(skin || NimbleEmoji.defaultProps.skin) - 1]
+    let imageSource = {uri: `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/64/${image}`}
+
+    if (useLocalImages && useLocalImages.emojis && useLocalImages.emojis[emoji]) {
+      return useLocalImages.emojis[emoji].localImages[set][(skin || NimbleEmoji.defaultProps.skin) - 1]
     }
 
-    return image
+    return imageSource
   }
 
   _getData = (props) => {
@@ -157,11 +155,7 @@ class NimbleEmoji extends React.PureComponent {
       emojiImage = (
         <Image
           style={imageStyle}
-          source={this.props.emojiImageFn(
-            this.props.set,
-            emojiImageFile,
-            this.props.useLocalImages,
-          )}
+          source={this.props.emojiImageFn(emojiImageFile)}
         />
       )
     }
