@@ -1,9 +1,60 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {Platform, StyleSheet, View, TextInput, TouchableNativeFeedback} from 'react-native'
 
 import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
 
+const styles = StyleSheet.create({
+  searchContainer: {
+    paddingLeft: 5,
+    paddingRight: 10,
+    paddingTop: 2,
+    paddingBottom: 2,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#a2a2a2',
+  },
+  searchInput: {
+    flex: 1,
+  },
+  closeButtonContainer: {
+    width: 44,
+    height: 44,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  closeButton: {
+    width: 28,
+    height: 28,
+    margin: 10,
+    borderRadius: 500,
+  },
+  closeButtonIcon: {
+    marginTop: 1,
+    marginLeft: 2,
+  },
+})
+
 export default class Search extends React.PureComponent {
+  static propTypes = {
+    onSearch: PropTypes.func,
+    onPressClose: PropTypes.func,
+    maxResults: PropTypes.number,
+    emojisToShowFilter: PropTypes.func,
+    autoFocus: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    onSearch: () => {},
+    onPressClose: () => {},
+    maxResults: 75,
+    emojisToShowFilter: null,
+    autoFocus: false,
+  }
+
   constructor(props) {
     super(props)
 
@@ -13,8 +64,8 @@ export default class Search extends React.PureComponent {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange() {
-    var value = this.input.value
+  handleChange(event) {
+    var {value} = event.nativeEvent
 
     this.props.onSearch(
       this.emojiIndex.search(value, {
@@ -36,32 +87,34 @@ export default class Search extends React.PureComponent {
   }
 
   render() {
-    var { i18n, autoFocus } = this.props
+    var { i18n, autoFocus, onPressClose } = this.props
+
+    let background;
+
+    if (Platform.Version >= 21) {
+      background = TouchableNativeFeedback.SelectableBackgroundBorderless();
+    } else {
+      background = TouchableNativeFeedback.SelectableBackground();
+    }
 
     return (
-      <div className="emoji-mart-search">
-        <input
+      <View style={styles.searchContainer}>
+        <View style={styles.closeButtonContainer}>
+          <TouchableNativeFeedback onPress={onPressClose} background={background}>
+            <View style={[styles.closeButton]}>
+              <Icon style={styles.closeButtonIcon} name="arrow-left" size={24} />
+            </View>
+          </TouchableNativeFeedback>
+        </View>
+        <TextInput
+          style={styles.searchInput}
           ref={this.setRef}
-          type="text"
           onChange={this.handleChange}
           placeholder={i18n.search}
           autoFocus={autoFocus}
+          underlineColorAndroid="transparent"
         />
-      </div>
+      </View>
     )
   }
-}
-
-Search.propTypes = {
-  onSearch: PropTypes.func,
-  maxResults: PropTypes.number,
-  emojisToShowFilter: PropTypes.func,
-  autoFocus: PropTypes.bool,
-}
-
-Search.defaultProps = {
-  onSearch: () => {},
-  maxResults: 75,
-  emojisToShowFilter: null,
-  autoFocus: false,
 }
