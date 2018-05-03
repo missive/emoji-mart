@@ -111,13 +111,13 @@ class NimbleEmoji extends React.PureComponent {
       const fontSize = props.size
       labelStyle = { fontSize }
       children = unifiedToNative(unified)
-      style.width = props.size + margin
-      style.height = props.size + margin
+      style.width = props.size + props.margin
+      style.height = props.size + props.margin
     } else if (custom) {
       style = {
         width: props.size,
         height: props.size,
-        margin: noMargin ? 0 : margin / 2,
+        margin: props.noMargin ? 0 : props.margin / 2,
       }
 
       imageStyle = {
@@ -142,10 +142,10 @@ class NimbleEmoji extends React.PureComponent {
       style = {
         width: props.size,
         height: props.size,
-        margin: noMargin ? 0 : margin / 2,
+        margin: props.noMargin ? 0 : props.margin / 2,
       }
 
-      const emojiImageFile = _getImage(props)
+      const emojiImageFile = this._getImage(props)
 
       imageStyle = {
         width: props.size,
@@ -155,7 +155,7 @@ class NimbleEmoji extends React.PureComponent {
       emojiImage = (
         <Image
           style={imageStyle}
-          source={props.emojiImageFn(props.set, emojiImageFile, useLocalImages)}
+          source={props.emojiImageFn(props.set, emojiImageFile, props.useLocalImages)}
         />
       )
     }
@@ -168,7 +168,7 @@ class NimbleEmoji extends React.PureComponent {
       </View>
     )
 
-    return onPress || onLongPress ? (
+    return props.onPress || props.onLongPress ? (
       <TouchableWithoutFeedback
         onPress={this._handlePress}
         onLongPress={this._handleLongPress}
