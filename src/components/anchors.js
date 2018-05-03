@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native'
 
-import Emoji from './emoji/emoji'
+import { NimbleEmoji } from '.'
 
 const styles = StyleSheet.create({
   anchors: {
@@ -49,6 +49,7 @@ export default class Anchors extends React.PureComponent {
       (category) => category.first,
     )[0]
 
+    this.data = props.data
     this.state = {
       selected: defaultCategory.name,
     }
@@ -95,7 +96,8 @@ export default class Anchors extends React.PureComponent {
                   isSelected ? styles.anchorSelected : null,
                 ]}
               >
-                <Emoji
+                <NimbleEmoji
+                  data={this.data}
                   {...emojiProps}
                   emoji={categoryEmojis[id]}
                   onPress={null}

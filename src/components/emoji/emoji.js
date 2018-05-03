@@ -21,14 +21,12 @@ export default class Emoji extends React.PureComponent {
   static defaultProps = { ...EmojiDefaultProps, data }
 
   render() {
-    const props = this.props
-
-    for (let k in Emoji.defaultProps) {
-      if (props[k] == undefined && Emoji.defaultProps[k] != undefined) {
-        props[k] = Emoji.defaultProps[k]
+    for (const k in Emoji.defaultProps) {
+      if (this.props[k] == undefined && Emoji.defaultProps[k] != undefined) {
+        this.props[k] = Emoji.defaultProps[k]
       }
     }
 
-    return <NimbleEmoji {...props} />
+    return <NimbleEmoji {...this.props} />
   }
 }

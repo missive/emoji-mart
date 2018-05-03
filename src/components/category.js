@@ -157,9 +157,11 @@ export default class Category extends React.Component {
   }
 
   onLayout = () => {
-    this.container.measure((x, y, widht, height, pageX, pageY) => {
-      this.top = pageY
-    })
+    if (this.container) {
+      this.container.measure((x, y, widht, height, pageX, pageY) => {
+        this.top = pageY
+      })
+    }
   }
 
   flatListKeyExtractor = (item) => `emoji_${item}`
@@ -194,7 +196,7 @@ export default class Category extends React.Component {
   }
 
   render() {
-    var { id, name, hasStickyPosition, emojiProps, i18n } = this.props,
+    var { id, name, hasStickyPosition, emojiProps, i18n, perLine } = this.props,
       emojis = this.getEmojis()
 
     const {
@@ -206,7 +208,7 @@ export default class Category extends React.Component {
     const emojiSizing = emojiNoMargin ? emojiSize : emojiSize + emojiMargin
     const emojisListWidth = emojiNoMargin
       ? perLine * emojiSizing
-      : parLine * emojiSizing + emojiMargin
+      : perLine * emojiSizing + emojiMargin
 
     return !emojis ? null : (
       <View
@@ -233,7 +235,7 @@ export default class Category extends React.Component {
             numColumns={perLine}
             columnWrapperStyle={[
               styles.emojisContainer,
-              { width: emojiListWidth },
+              { width: emojisListWidth },
             ]}
           />
         ) : (

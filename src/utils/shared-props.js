@@ -40,8 +40,8 @@ const EmojiDefaultProps = {
       uri: `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/64/${image}.png`,
     }
   },
-  onPress: () => {},
-  onLongPress: () => {},
+  onPress: null,
+  onLongPress: null,
   useLocalImages: false,
   margin: 15,
   noMargin: false,
@@ -96,8 +96,8 @@ const PickerPropTypes = {
 }
 
 const PickerDefaultProps = {
-  onPress: () => {},
-  onSkinChange: () => {},
+  onPress: null,
+  onSkinChange: null,
   emojiSize: 30,
   anchorSize: 24,
   perLine: 7,

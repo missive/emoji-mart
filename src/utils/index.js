@@ -135,25 +135,27 @@ function getData(emoji, skin, set, data) {
 }
 
 function getEmojiDataFromNative(nativeString) {
-  const skinTones = ['', '🏻', '🏼', '🏽', '🏾', '🏿'];
+  const skinTones = ['', '🏻', '🏼', '🏽', '🏾', '🏿']
 
-  let skin;
-  let baseNativeString = nativeString;
+  let skin
+  let baseNativeString = nativeString
 
-  skinTones.forEach(skinTone => {
-    baseNativeString = baseNativeString.replace(skinTone, '');
+  skinTones.forEach((skinTone) => {
+    baseNativeString = baseNativeString.replace(skinTone, '')
     if (nativeString.indexOf(skinTone) > 0) {
-      skin = skinTones.indexOf(skinTone) + 1;
+      skin = skinTones.indexOf(skinTone) + 1
     }
-  });
+  })
 
-  const emojiData = Object.values(emojisList).find(emoji => emoji.native === baseNativeString);
+  const emojiData = Object.values(emojisList).find(
+    (emoji) => emoji.native === baseNativeString,
+  )
 
   if (emojiData) {
-    emojiData.skin = skin;
+    emojiData.skin = skin
   }
 
-  return emojiData;
+  return emojiData
 }
 
 function uniq(arr) {
