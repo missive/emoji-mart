@@ -43,7 +43,7 @@ export default class NimbleEmojiIndex {
       let emojiId = emoji.id || emoji.short_names[0]
 
       delete pool[emojiId]
-      delete emojisList[emojiId]
+      delete this.emojis[emojiId]
     })
   }
 
