@@ -88,7 +88,7 @@ export default class Anchors extends React.PureComponent {
             <TouchableWithoutFeedback
               key={id}
               data-index={i}
-              onClick={() => this.handlePress(i)}
+              onPress={() => this.handlePress(i)}
             >
               <View
                 style={[
