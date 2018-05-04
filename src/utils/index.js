@@ -215,6 +215,7 @@ function measureScrollbar() {
 
 export {
   getData,
+  getEmojiDataFromNative,
   getSanitizedData,
   uniq,
   intersect,
