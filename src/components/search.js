@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableNativeFeedback,
 } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
 
