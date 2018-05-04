@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     right: 0,
     height: 2,
   },
-  anchordBarSelected: {
+  anchorBarSelected: {
     bottom: 0,
   },
 })
