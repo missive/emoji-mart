@@ -134,7 +134,7 @@ function getData(emoji, skin, set, data) {
   return emojiData
 }
 
-function getEmojiDataFromNative(nativeString) {
+function getEmojiDataFromNative(nativeString, data) {
   const skinTones = ['', '🏻', '🏼', '🏽', '🏾', '🏿']
 
   let skin
@@ -147,7 +147,7 @@ function getEmojiDataFromNative(nativeString) {
     }
   })
 
-  const emojiData = Object.values(emojisList).find(
+  const emojiData = Object.values(data.emojis).find(
     (emoji) => emoji.native === baseNativeString,
   )
 
@@ -215,6 +215,7 @@ function measureScrollbar() {
 
 export {
   getData,
+  getEmojiDataFromNative,
   getSanitizedData,
   uniq,
   intersect,
