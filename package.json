@@ -1,6 +1,6 @@
 {
   "name": "emoji-mart-native",
-  "version": "0.2-beta",
+  "version": "0.2.0-beta",
   "description": "Customizable Slack-like emoji picker for React Native",
   "main": "dist/index.js",
   "module": "dist-es/index.js",
