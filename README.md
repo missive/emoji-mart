@@ -1,9 +1,9 @@
 <div align="center">
   <br><b>Emoji Mart Native</b> is a Slack-like customizable<br>emoji picker component for React Native ported from <a href="https://github.com/missive/emoji-mart/">[Emoji Mart]</a>
   <br><a href="https://pederjohnsen.github.io/emoji-mart-native">Demo</a> #TODO: Make example RN app • <a href="https://github.com/pederjohnsen/emoji-mart-native/releases">Changelog</a>
-  <br><br>#TODO: Update image<br><img width="338" alt="picker" src="https://user-images.githubusercontent.com/436043/32532554-08be471c-c400-11e7-906a-c745dc3ec630.png">
+  <br><br><img width="338" alt="picker" src="https://user-images.githubusercontent.com/1238485/39626099-823526f0-4f98-11e8-914e-72d9ce91c756.png">
   <br><br><a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com"><img width="30" alt="Missive | Team email, team chat, team tasks, one app" src="https://user-images.githubusercontent.com/436043/32532559-0d15ddfc-c400-11e7-8a24-64d0157d0cb0.png"></a>
-  <br>Brought to you by the <a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com">Missive</a> team
+  <br>Ported from code brought to you by the <a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com">Missive</a> team
 </div>
 
 ## Installation
@@ -48,7 +48,7 @@ import { Picker } from 'emoji-mart-native'
 | **skin** | | | Forces skin color: `1, 2, 3, 4, 5, 6` |
 | **defaultSkin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
 | **style** | | | Inline styles applied to the root element. Useful for positioning |
-| **title** | | `Emoji Mart™` | The title shown when no emojis are hovered |
+| **title** | | `Emoji Mart™ Native` | The title shown when no emojis are hovered |
 
 #### I18n
 ```js
@@ -206,38 +206,6 @@ To have the component render `:shrug:` you would need to:
 />
 ```
 
-#### Using with `dangerouslySetInnerHTML`
-The Emoji component being a [functional component](https://medium.com/missive-app/45-faster-react-functional-components-now-3509a668e69f), you can call it as you would call any function instead of using JSX. Make sure you pass `html: true` for it to return an HTML string.
-
-```js
-<span dangerouslySetInnerHTML={{
-  __html: Emoji({
-    html: true
-    set: 'apple'
-    emoji: '+1'
-    size: 24
-  })
-}}></span>
-```
-
-#### Using with `contentEditable`
-Following the `dangerouslySetInnerHTML` example above, make sure the wrapping `span` sets `contenteditable="false"`.
-
-```js
-<div contentEditable={true}>
-  Looks good to me
-
-  <span contentEditable={false} dangerouslySetInnerHTML={{
-    __html: Emoji({
-      html: true
-      set: 'apple'
-      emoji: '+1'
-      size: 24
-    })
-  }}></span>
-</div>
-```
-
 ## Custom emojis
 You can provide custom emojis which will show up in their own category.
 
@@ -305,23 +273,23 @@ Possible keys are:
 ## Features
 ### Powerful search
 #### Short name, name and keywords
-Not only does **Emoji Mart** return more results than most emoji picker, they’re more accurate and sorted by relevance.
+Not only does **Emoji Mart Native** return more results than most emoji picker, they’re more accurate and sorted by relevance.
 
-<img width="338" alt="summer" src="https://user-images.githubusercontent.com/436043/32532567-179f1be4-c400-11e7-885e-df6e9b52c665.png">
+<img width="338" alt="summer" src="https://user-images.githubusercontent.com/1238485/39626167-c513f456-4f98-11e8-99f4-50f81f8a8aed.png">
 
 #### Emoticons
 The only emoji picker that returns emojis when searching for emoticons.
 
-<img width="338" alt="emoticons" src="https://user-images.githubusercontent.com/436043/32532570-1be0dd28-c400-11e7-90cd-f33396277602.png">
+<img width="338" alt="emoticons" src="https://user-images.githubusercontent.com/1238485/39626180-cea3e0f8-4f98-11e8-90c2-5fae9bea7df6.png">
 
 #### Results intersection
-For better results, **Emoji Mart** split search into words and only returns results matching both terms.
+For better results, **Emoji Mart Native** split search into words and only returns results matching both terms.
 
-<img width="338" alt="high-five" src="https://user-images.githubusercontent.com/436043/32532573-1f4a9d1e-c400-11e7-8656-921bc6c09732.png">
+<img width="338" alt="high-five" src="https://user-images.githubusercontent.com/1238485/39626199-dc63ddb0-4f98-11e8-8481-e6823aa468ed.png">
 
 ### Fully customizable
 #### Anchors color, title and default emoji
-<img width="338" alt="customizable-color" src="https://user-images.githubusercontent.com/436043/32532582-302dc9e4-c400-11e7-9b97-f37c447231ca.png"><br><img width="338" alt="pick-your-emoji" src="https://user-images.githubusercontent.com/436043/32532585-34546faa-c400-11e7-9c9d-fbbe830d4368.png">
+<img width="338" alt="customizable-color" src="https://user-images.githubusercontent.com/1238485/39626209-e55e64a8-4f98-11e8-90ce-58340d92c247.png">
 
 #### Emojis sizes and length
 <img width="296" alt="size-and-length" src="https://user-images.githubusercontent.com/436043/32532590-381f67de-c400-11e7-86f6-328e30d6b116.png">
@@ -341,7 +309,7 @@ Apple / Google / Twitter / EmojiOne / Messenger / Facebook
 <img width="214" alt="sets" src="https://user-images.githubusercontent.com/436043/33786868-d4226e60-dc38-11e7-840a-e4cf490f5f4a.png">
 
 ## Not opinionated
-**Emoji Mart** doesn’t automatically insert anything into a text input, nor does it show or hide itself. It simply returns an `emoji` object. It’s up to the developer to mount/unmount (it’s fast!) and position the picker. You can use the returned object as props for the `EmojiMart.Emoji` component. You could also use `emoji.colons` to insert text into a textarea or `emoji.native` to use the emoji.
+**Emoji Mart Native** doesn’t automatically insert anything into a text input, nor does it show or hide itself. It simply returns an `emoji` object. It’s up to the developer to mount/unmount (it’s fast!) and position the picker. You can use the returned object as props for the `EmojiMart.Emoji` component. You could also use `emoji.colons` to insert text into a textarea or `emoji.native` to use the emoji.
 
 ## Development
 ```sh
