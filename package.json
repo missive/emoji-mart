@@ -69,6 +69,7 @@
   "scripts": {
     "clean": "rm -rf dist/ dist-es/",
     "build:data": "node scripts/build-data",
+    "build:localImagesData": "node scripts/local-images/build-data && BABEL_ENV=cjs babel data/local-images --out-dir data/local-images --copy-files",
     "build:dist": "npm run build:cjs && npm run build:es",
     "build:cjs": "BABEL_ENV=cjs babel src --out-dir dist --copy-files",
     "build:es": "babel src --out-dir dist-es --copy-files",
