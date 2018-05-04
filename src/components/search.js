@@ -7,7 +7,7 @@ import {
   TextInput,
   TouchableNativeFeedback,
 } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
 
@@ -69,10 +69,17 @@ export default class Search extends React.PureComponent {
     this.emojiIndex = new NimbleEmojiIndex(this.data)
     this.setRef = this.setRef.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.pressCancel = this.pressCancel.bind(this)
+
+    this.state = {
+      searchTerm: '',
+    }
   }
 
-  handleChange(event) {
-    var { value } = event.nativeEvent
+  handleChange(value) {
+    this.setState({
+      searchTerm: value,
+    })
 
     this.props.onSearch(
       this.emojiIndex.search(value, {
@@ -85,16 +92,24 @@ export default class Search extends React.PureComponent {
     )
   }
 
+  pressCancel() {
+    this.props.onSearch(null)
+    this.clear()
+  }
+
   setRef(c) {
     this.input = c
   }
 
   clear() {
-    this.input.value = ''
+    this.setState({
+      searchTerm: '',
+    })
   }
 
   render() {
     var { i18n, autoFocus, onPressClose } = this.props
+    var { searchTerm } = this.state
 
     let background
 
@@ -123,11 +138,24 @@ export default class Search extends React.PureComponent {
         <TextInput
           style={styles.searchInput}
           ref={this.setRef}
-          onChange={this.handleChange}
+          value={searchTerm}
+          onChangeText={this.handleChange}
           placeholder={i18n.search}
           autoFocus={autoFocus}
           underlineColorAndroid="transparent"
         />
+        {searchTerm.length > 0 ? (
+          <View style={styles.closeButtonContainer}>
+            <TouchableNativeFeedback
+              onPress={this.pressCancel}
+              background={background}
+            >
+              <View style={[styles.closeButton]}>
+                <Icon style={styles.closeButtonIcon} name="close" size={24} />
+              </View>
+            </TouchableNativeFeedback>
+          </View>
+        ) : null}
       </View>
     )
   }

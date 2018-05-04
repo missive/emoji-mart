@@ -324,9 +324,9 @@ export default class NimblePicker extends React.PureComponent {
       let component = this.categoryRefs[`category-${i}`]
 
       if (component && component.props.name != 'Search') {
-        let display = emojis ? 'none' : 'inherit'
+        let display = emojis ? false : true
         component.forceUpdate()
-        // component.updateDisplay(display)
+        component.updateDisplay(display)
       }
     }
 
@@ -434,6 +434,7 @@ export default class NimblePicker extends React.PureComponent {
     var {
         perLine,
         emojiSize,
+        emojiMargin,
         anchorSize,
         set,
         style,
@@ -464,7 +465,7 @@ export default class NimblePicker extends React.PureComponent {
           modal ? styles.emojiMartModal : null,
         ]}
       >
-        {/* <Search
+        <Search
           ref={this.setSearchRef}
           onSearch={this.handleSearch}
           data={this.data}
@@ -474,7 +475,7 @@ export default class NimblePicker extends React.PureComponent {
           exclude={exclude}
           custom={this.CUSTOM_CATEGORY.emojis}
           autoFocus={autoFocus}
-        /> */}
+        />
 
         <View
           ref={this.setScrollViewRef}
@@ -486,6 +487,7 @@ export default class NimblePicker extends React.PureComponent {
             style={styles.emojiMartScroll}
             contentContainerStyle={styles.emojiMartScrollContent}
             onScroll={this.handleScroll}
+            keyboardShouldPersistTaps="handled"
           >
             {this.getCategories().map((category, i) => (
               <Category
@@ -510,6 +512,7 @@ export default class NimblePicker extends React.PureComponent {
                   native,
                   skin,
                   size: emojiSize,
+                  margin: emojiMargin,
                   set,
                   forceSize: native,
                   tooltip: emojiTooltip,
@@ -547,7 +550,11 @@ export default class NimblePicker extends React.PureComponent {
           </div>
         )} */}
         <View style={styles.emojiMartAnchors}>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled"
+          >
             <Anchors
               ref={this.setAnchorsRef}
               data={this.data}

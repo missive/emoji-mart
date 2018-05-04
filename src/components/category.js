@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 import { StyleSheet, View, Text, FlatList } from 'react-native'
 
 import frequently from '../utils/frequently'
-import { getData } from '../utils'
+import { getData, getSanitizedData } from '../utils'
 import { NimbleEmoji } from '.'
 
 const styles = StyleSheet.create({
   category: {
     flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'flex-start',
     marginTop: 10,
   },
   label: {
@@ -51,6 +52,10 @@ export default class Category extends React.Component {
     this.data = props.data
     this.setContainerRef = this.setContainerRef.bind(this)
     this.setLabelRef = this.setLabelRef.bind(this)
+
+    this.state = {
+      visible: true,
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -143,6 +148,16 @@ export default class Category extends React.Component {
     return emojis
   }
 
+  updateDisplay(visible) {
+    var emojis = this.getEmojis()
+
+    if (!emojis) {
+      return
+    }
+
+    this.setState({ visible })
+  }
+
   setContainerRef(c) {
     this.container = c
   }
@@ -159,7 +174,17 @@ export default class Category extends React.Component {
     }
   }
 
-  flatListKeyExtractor = (item) => `emoji_${item}`
+  _getSanitizedData = (props) => {
+    const { emoji, skin, set } = props
+    return getSanitizedData(emoji, skin, set, this.data)
+  }
+
+  flatListKeyExtractor = (item) => {
+    const { emojiProps } = this.props
+    const emoji = this._getSanitizedData({ emoji: item, ...emojiProps })
+
+    return `${this.props.name}_emoji_${emoji.id}`
+  }
 
   getFlatListItemLayout = (layoutData, index) => {
     const { emojiProps } = this.props
@@ -178,12 +203,13 @@ export default class Category extends React.Component {
   }
 
   renderFlatListItem = ({ item }) => {
-    const { emojiProps } = this.props
+    const { emojiProps, name } = this.props
+    const emoji = this._getSanitizedData({ emoji: item, ...emojiProps })
 
     return (
       <NimbleEmoji
-        key={`emoji_${item}`}
-        emoji={item}
+        key={`${name}_emoji_${emoji.item}`}
+        emoji={emoji}
         data={this.data}
         {...emojiProps}
       />
@@ -192,20 +218,15 @@ export default class Category extends React.Component {
 
   render() {
     var { id, name, hasStickyPosition, emojiProps, i18n, perLine } = this.props,
-      emojis = this.getEmojis()
+      emojis = this.getEmojis(),
+      { visible } = this.state
 
-    const {
-      size: emojiSize,
-      margin: emojiMargin,
-      noMargin: emojiNoMargin,
-    } = emojiProps
+    const { size: emojiSize, margin: emojiMargin } = emojiProps
 
-    const emojiSizing = emojiNoMargin ? emojiSize : emojiSize + emojiMargin
-    const emojisListWidth = emojiNoMargin
-      ? perLine * emojiSizing
-      : perLine * emojiSizing + emojiMargin
+    const emojiSizing = emojiSize + emojiMargin
+    const emojisListWidth = perLine * emojiSizing + emojiMargin
 
-    return !emojis ? null : (
+    return !emojis || !visible ? null : (
       <View
         ref={this.setContainerRef}
         onLayout={this.onLayout}
@@ -222,7 +243,6 @@ export default class Category extends React.Component {
 
         {emojis.length ? (
           <FlatList
-            style={styles.sectionFlatList}
             data={emojis}
             keyExtractor={this.flatListKeyExtractor}
             getItemLayout={this.getFlatListItemLayout}
@@ -232,6 +252,7 @@ export default class Category extends React.Component {
               styles.emojisContainer,
               { width: emojisListWidth },
             ]}
+            keyboardShouldPersistTaps="handled"
           />
         ) : (
           <View>
