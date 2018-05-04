@@ -35,8 +35,8 @@ class NimbleEmoji extends React.PureComponent {
 
     let imageSource = {uri: `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/64/${image}`}
 
-    if (useLocalImages && useLocalImages.emojis && useLocalImages.emojis[emoji]) {
-      return useLocalImages.emojis[emoji].localImages[set][(skin || NimbleEmoji.defaultProps.skin) - 1]
+    if (useLocalImages && useLocalImages[emoji]) {
+      return useLocalImages[emoji].localImages[set][(skin || NimbleEmoji.defaultProps.skin) - 1]
     }
 
     return imageSource
