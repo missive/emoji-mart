@@ -10,7 +10,7 @@ import { deepMerge, measureScrollbar } from '../../utils'
 import { uncompress } from '../../utils/data'
 import { PickerPropTypes, PickerDefaultProps } from '../../utils/shared-props'
 
-import { Anchors, Category, Preview, Search } from '..'
+import { Anchors, Category, Search } from '..'
 
 const I18N = {
   search: 'Search',
@@ -190,7 +190,6 @@ export default class NimblePicker extends React.PureComponent {
     this.handleEmojiPress = this.handleEmojiPress.bind(this)
     this.handleEmojiSelect = this.handleEmojiSelect.bind(this)
     this.handleEmojiLongPress = this.handleEmojiLongPress.bind(this)
-    this.setPreviewRef = this.setPreviewRef.bind(this)
     this.handleSkinChange = this.handleSkinChange.bind(this)
   }
 
@@ -410,10 +409,6 @@ export default class NimblePicker extends React.PureComponent {
     this.search = c
   }
 
-  setPreviewRef(c) {
-    this.preview = c
-  }
-
   setScrollViewRef(c) {
     this.scrollView = c
   }
@@ -444,7 +439,6 @@ export default class NimblePicker extends React.PureComponent {
         native,
         emojiImageFn,
         emojisToShowFilter,
-        showPreview,
         showSkinTones,
         emojiTooltip,
         include,
@@ -526,29 +520,6 @@ export default class NimblePicker extends React.PureComponent {
           </ScrollView>
         </View>
 
-        {/* TODO: Remove completely? */}
-        {/* {showPreview && (
-          <div className="emoji-mart-bar">
-            <Preview
-              ref={this.setPreviewRef}
-              data={this.data}
-              title={title}
-              emoji={emoji}
-              showSkinTones={showSkinTones}
-              emojiProps={{
-                native: native,
-                size: 38,
-                skin: skin,
-                set: set,
-                emojiImageFn: emojiImageFn,
-              }}
-              skinsProps={{
-                skin: skin,
-                onChange: this.handleSkinChange,
-              }}
-            />
-          </div>
-        )} */}
         <View style={styles.emojiMartAnchors}>
           <ScrollView
             horizontal

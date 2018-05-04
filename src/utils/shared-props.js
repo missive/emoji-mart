@@ -59,7 +59,6 @@ const PickerPropTypes = {
   emojiImageFn: EmojiPropTypes.emojiImageFn,
   emojisToShowFilter: PropTypes.func,
   useLocalImages: EmojiPropTypes.useLocalImages,
-  showPreview: PropTypes.bool,
   showSkinTones: PropTypes.bool,
   emojiTooltip: EmojiPropTypes.tooltip,
   include: PropTypes.arrayOf(PropTypes.string),
@@ -111,7 +110,6 @@ const PickerDefaultProps = {
   emojiImageFn: EmojiDefaultProps.emojiImageFn,
   emojisToShowFilter: null,
   useLocalImages: EmojiDefaultProps.useLocalImages,
-  showPreview: false,
   showSkinTones: false, // After porting <Skins /> component return value to true
   emojiTooltip: EmojiDefaultProps.tooltip,
   autoFocus: false,
