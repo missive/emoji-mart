@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#fff',
   },
-  emojiMartModal: {
+  emojiMartFullscreen: {
     zIndex: 1,
     position: 'absolute',
     top: 0,
@@ -446,7 +446,7 @@ export default class NimblePicker extends React.PureComponent {
         exclude,
         recent,
         autoFocus,
-        modal,
+        fullscreen,
         useLocalImages,
         categoryEmojis,
         onPressClose,
@@ -458,7 +458,7 @@ export default class NimblePicker extends React.PureComponent {
         style={[
           { ...style },
           styles.emojiMart,
-          modal ? styles.emojiMartModal : null,
+          fullscreen ? styles.emojiMartFullscreen : null,
         ]}
       >
         <Search

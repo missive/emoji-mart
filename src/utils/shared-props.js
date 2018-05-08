@@ -67,7 +67,7 @@ const PickerPropTypes = {
   exclude: PropTypes.arrayOf(PropTypes.string),
   recent: PropTypes.arrayOf(PropTypes.string),
   autoFocus: PropTypes.bool,
-  modal: PropTypes.bool,
+  fullscreen: PropTypes.bool,
   custom: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -117,7 +117,7 @@ const PickerDefaultProps = {
   showAnchors: false, // TODO: After fixing issues with <Anchors /> component return value to true
   emojiTooltip: EmojiDefaultProps.tooltip,
   autoFocus: false,
-  modal: false,
+  fullscreen: false,
   custom: [],
   categoryEmojis: {
     recent: 'clock3',
