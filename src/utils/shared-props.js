@@ -40,6 +40,7 @@ const EmojiDefaultProps = {
 
 const PickerPropTypes = {
   onClick: PropTypes.func,
+  onSelect: PropTypes.func,
   onSkinChange: PropTypes.func,
   perLine: PropTypes.number,
   emojiSize: PropTypes.number,
@@ -74,6 +75,7 @@ const PickerPropTypes = {
 
 const PickerDefaultProps = {
   onClick: () => {},
+  onSelect: () => {},
   onSkinChange: () => {},
   emojiSize: 24,
   perLine: 9,
