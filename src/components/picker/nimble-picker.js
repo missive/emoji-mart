@@ -449,6 +449,7 @@ export default class NimblePicker extends React.PureComponent {
         modal,
         useLocalImages,
         categoryEmojis,
+        onPressClose,
       } = this.props,
       { skin } = this.state
 
@@ -470,6 +471,7 @@ export default class NimblePicker extends React.PureComponent {
           exclude={exclude}
           custom={this.CUSTOM_CATEGORY.emojis}
           autoFocus={autoFocus}
+          onPressClose={onPressClose}
         />
 
         <View
