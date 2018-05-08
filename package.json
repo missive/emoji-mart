@@ -62,11 +62,10 @@
     "react-dom": "^16.0.0",
     "react-native": "^0.55.3",
     "rimraf": "2.5.2",
-    "size-limit": "^0.11.4",
     "webpack": "^3.6.0"
   },
   "scripts": {
-    "clean": "rm -rf dist/ dist-es/",
+    "clean": "rm -rf dist/",
     "build:data": "node scripts/build-data",
     "build:localImagesData": "node scripts/local-images/build-data && BABEL_ENV=cjs babel data/local-images --out-dir data/local-images --copy-files",
     "build:dist": "npm run build:cjs",
@@ -78,16 +77,10 @@
     "react:clean": "rimraf node_modules/{react,react-dom,react-addons-test-utils}",
     "react:14": "npm run react:clean && npm i react@^0.14 react-dom@^0.14 react-addons-test-utils@^0.14 --save-dev",
     "react:15": "npm run react:clean && npm i react@^15 react-dom@^15 react-addons-test-utils@^15 --save-dev",
-    "test": "NODE_ENV=test karma start && size-limit",
+    "test": "NODE_ENV=test karma start",
     "prepublishOnly": "npm run build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prettier": "prettier --write \"{src,scripts,spec}/**/*.js\""
-  },
-  "size-limit": [
-    {
-      "path": "dist-es/index.js",
-      "limit": "80 KB"
-    }
-  ]
+  }
 }
