@@ -1,5 +1,6 @@
 import { buildSearch } from './data'
 import stringFromCodePoint from '../polyfills/stringFromCodePoint'
+import { uncompress } from './data'
 
 const _JSON = JSON
 
@@ -134,7 +135,11 @@ function getData(emoji, skin, set, data) {
   return emojiData
 }
 
-function getEmojiDataFromNative(nativeString, data) {
+function getEmojiDataFromNative(nativeString, set, data) {
+  if (data.compressed) {
+    uncompress(data)
+  }
+
   const skinTones = ['', '🏻', '🏼', '🏽', '🏾', '🏿']
 
   let skin
@@ -147,15 +152,21 @@ function getEmojiDataFromNative(nativeString, data) {
     }
   })
 
-  const emojiData = Object.values(data.emojis).find(
-    (emoji) => emoji.native === baseNativeString,
-  )
+  const emojiData = Object.values(data.emojis).find((emoji) => {
+    if (emoji.variations && emoji.variations.length) {
+      emoji.unifed = emoji.variations.shift()
+    }
 
-  if (emojiData) {
-    emojiData.skin = skin
+    return unifiedToNative(emoji.unified) === baseNativeString
+  })
+
+  if (!emojiData) {
+    return null
   }
 
-  return emojiData
+  emojiData.id = emojiData.short_names[0]
+
+  return getSanitizedData(emojiData, skin, set, data)
 }
 
 function uniq(arr) {

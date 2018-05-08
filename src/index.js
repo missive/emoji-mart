@@ -1,7 +1,7 @@
 import emojiIndex from './utils/emoji-index/emoji-index'
 import store from './utils/store'
 import frequently from './utils/frequently'
-import {getEmojiDataFromNative} from './utils'
+import { getEmojiDataFromNative } from './utils'
 
 export {
   Picker,
