@@ -71,6 +71,7 @@
     "build:localImagesData": "node scripts/local-images/build-data && BABEL_ENV=cjs babel data/local-images --out-dir data/local-images --copy-files",
     "build:dist": "npm run build:cjs",
     "build:cjs": "BABEL_ENV=cjs babel src --out-dir dist --copy-files",
+    "build": "npm run clean && npm run build:dist",
     "watch": "BABEL_ENV=cjs babel src --watch --out-dir dist --copy-files",
     "start": "npm run watch",
     "stats": "webpack --config ./spec/webpack.config.js --json > spec/stats.json",
