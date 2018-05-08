@@ -35,8 +35,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#fff',
-  },
-  emojiMartFullscreen: {
     zIndex: 1,
     position: 'absolute',
     top: 0,
@@ -446,7 +444,6 @@ export default class NimblePicker extends React.PureComponent {
         exclude,
         recent,
         autoFocus,
-        fullscreen,
         useLocalImages,
         categoryEmojis,
         onPressClose,
@@ -454,13 +451,7 @@ export default class NimblePicker extends React.PureComponent {
       { skin } = this.state
 
     return (
-      <View
-        style={[
-          { ...style },
-          styles.emojiMart,
-          fullscreen ? styles.emojiMartFullscreen : null,
-        ]}
-      >
+      <View style={[{ ...style }, styles.emojiMart]}>
         <Search
           ref={this.setSearchRef}
           onSearch={this.handleSearch}

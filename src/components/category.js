@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
 })
 
 export default class Category extends React.Component {
