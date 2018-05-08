@@ -28,6 +28,11 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     padding: 2,
   },
+  notFound: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 })
 
 export default class Category extends React.Component {
@@ -255,7 +260,7 @@ export default class Category extends React.Component {
             keyboardShouldPersistTaps="handled"
           />
         ) : (
-          <View>
+          <View style={styles.notFound}>
             <View>
               <NimbleEmoji
                 data={this.data}
