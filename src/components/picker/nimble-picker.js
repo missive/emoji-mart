@@ -440,6 +440,7 @@ export default class NimblePicker extends React.PureComponent {
         emojiImageFn,
         emojisToShowFilter,
         showSkinTones,
+        showAnchors,
         emojiTooltip,
         include,
         exclude,
@@ -520,32 +521,34 @@ export default class NimblePicker extends React.PureComponent {
           </ScrollView>
         </View>
 
-        <View style={styles.emojiMartAnchors}>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            keyboardShouldPersistTaps="handled"
-          >
-            <Anchors
-              ref={this.setAnchorsRef}
-              data={this.data}
-              i18n={this.i18n}
-              color={color}
-              categories={this.categories}
-              onAnchorPress={this.handleAnchorPress}
-              categoryEmojis={categoryEmojis}
-              emojiProps={{
-                native,
-                skin,
-                size: anchorSize,
-                set,
-                forceSize: native,
-                emojiImageFn,
-                useLocalImages,
-              }}
-            />
-          </ScrollView>
-        </View>
+        {showAnchors ? (
+          <View style={styles.emojiMartAnchors}>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              keyboardShouldPersistTaps="handled"
+            >
+              <Anchors
+                ref={this.setAnchorsRef}
+                data={this.data}
+                i18n={this.i18n}
+                color={color}
+                categories={this.categories}
+                onAnchorPress={this.handleAnchorPress}
+                categoryEmojis={categoryEmojis}
+                emojiProps={{
+                  native,
+                  skin,
+                  size: anchorSize,
+                  set,
+                  forceSize: native,
+                  emojiImageFn,
+                  useLocalImages,
+                }}
+              />
+            </ScrollView>
+          </View>
+        ) : null}
       </View>
     )
   }
