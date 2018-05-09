@@ -31,12 +31,26 @@ const I18N = {
 }
 
 const styles = StyleSheet.create({
-  emojiMart: {
+  emojiMartBackdrop: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
     zIndex: 1,
     position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  emojiMart: {
+    flexDirection: 'column',
+    width: '90%',
+    height: 250,
+    backgroundColor: '#fff',
+  },
+  emojiMartFullscreen: {
     top: 0,
     right: 0,
     bottom: 0,
@@ -436,98 +450,105 @@ export default class NimblePicker extends React.PureComponent {
       { skin } = this.state
 
     return (
-      <View style={[{ ...style }, styles.emojiMart]}>
-        <Search
-          ref={this.setSearchRef}
-          onSearch={this.handleSearch}
-          data={this.data}
-          i18n={this.i18n}
-          emojisToShowFilter={emojisToShowFilter}
-          include={include}
-          exclude={exclude}
-          custom={this.CUSTOM_CATEGORY.emojis}
-          autoFocus={autoFocus}
-          onPressClose={onPressClose}
-        />
+      <View style={styles.emojiMartBackdrop}>
+        <View style={[{ ...style }, styles.emojiMart]}>
+          <Search
+            ref={this.setSearchRef}
+            onSearch={this.handleSearch}
+            data={this.data}
+            i18n={this.i18n}
+            emojisToShowFilter={emojisToShowFilter}
+            include={include}
+            exclude={exclude}
+            custom={this.CUSTOM_CATEGORY.emojis}
+            autoFocus={autoFocus}
+            onPressClose={onPressClose}
+          />
 
-        <View
-          ref={this.setScrollContainerRef}
-          style={styles.emojiMartScroll}
-        >
-          <ScrollView
-            ref={this.setScrollViewRef}
-            onLayout={this.onScrollViewLayout}
-            onContentSizeChange={this.onScrollViewContentSizeChange}
-            style={styles.emojiMartScroll}
-            contentContainerStyle={styles.emojiMartScrollContent}
-            onScroll={this.onScroll}
-            keyboardShouldPersistTaps="handled"
-          >
-            {this.getCategories().map((category, i) => (
-              <Category
-                ref={this.setCategoryRef.bind(this, `category-${i}`)}
-                key={category.name}
-                id={category.id}
-                name={category.name}
-                emojis={category.emojis}
-                perLine={perLine}
-                native={native}
-                data={this.data}
-                i18n={this.i18n}
-                recent={
-                  category.id == this.RECENT_CATEGORY.id ? recent : undefined
-                }
-                custom={
-                  category.id == this.RECENT_CATEGORY.id
-                    ? this.CUSTOM_CATEGORY.emojis
-                    : undefined
-                }
-                emojiProps={{
-                  native,
-                  skin,
-                  size: emojiSize,
-                  margin: emojiMargin,
-                  set,
-                  forceSize: native,
-                  tooltip: emojiTooltip,
-                  emojiImageFn,
-                  useLocalImages,
-                  onPress: this.handleEmojiPress,
-                  onLongPress: this.handleEmojiLongPress,
-                }}
-              />
-            ))}
-          </ScrollView>
-        </View>
-
-        {showAnchors ? (
-          <View style={styles.emojiMartAnchors}>
+          <View ref={this.setScrollContainerRef} style={styles.emojiMartScroll}>
             <ScrollView
+              ref={this.setScrollViewRef}
+              onLayout={this.onScrollViewLayout}
+              onContentSizeChange={this.onScrollViewContentSizeChange}
+              style={styles.emojiMartScroll}
+              contentContainerStyle={styles.emojiMartScrollContent}
+              onScroll={this.onScroll}
               horizontal
               showsHorizontalScrollIndicator={false}
+              // contentOffset={{
+              //   x: this.state.width * this.state.initialSelectedIndex,
+              //   y: 0,
+              // }}
+              pagingEnabled={true}
+              scrollEventThrottle={100}
               keyboardShouldPersistTaps="handled"
             >
-              <Anchors
-                ref={this.setAnchorsRef}
-                data={this.data}
-                i18n={this.i18n}
-                color={color}
-                categories={this.categories}
-                onAnchorPress={this.handleAnchorPress}
-                categoryEmojis={categoryEmojis}
-                emojiProps={{
-                  native,
-                  skin,
-                  size: anchorSize,
-                  set,
-                  forceSize: native,
-                  emojiImageFn,
-                  useLocalImages,
-                }}
-              />
+              {this.getCategories().map((category, i) => (
+                <Category
+                  ref={this.setCategoryRef.bind(this, `category-${i}`)}
+                  key={category.name}
+                  id={category.id}
+                  name={category.name}
+                  emojis={category.emojis}
+                  perLine={perLine}
+                  native={native}
+                  data={this.data}
+                  i18n={this.i18n}
+                  recent={
+                    category.id == this.RECENT_CATEGORY.id ? recent : undefined
+                  }
+                  custom={
+                    category.id == this.RECENT_CATEGORY.id
+                      ? this.CUSTOM_CATEGORY.emojis
+                      : undefined
+                  }
+                  emojiProps={{
+                    native,
+                    skin,
+                    size: emojiSize,
+                    margin: emojiMargin,
+                    set,
+                    forceSize: native,
+                    tooltip: emojiTooltip,
+                    emojiImageFn,
+                    useLocalImages,
+                    onPress: this.handleEmojiPress,
+                    onLongPress: this.handleEmojiLongPress,
+                  }}
+                />
+              ))}
             </ScrollView>
           </View>
-        ) : null}
+
+          {showAnchors ? (
+            <View style={styles.emojiMartAnchors}>
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                keyboardShouldPersistTaps="handled"
+              >
+                <Anchors
+                  ref={this.setAnchorsRef}
+                  data={this.data}
+                  i18n={this.i18n}
+                  color={color}
+                  categories={this.categories}
+                  onAnchorPress={this.handleAnchorPress}
+                  categoryEmojis={categoryEmojis}
+                  emojiProps={{
+                    native,
+                    skin,
+                    size: anchorSize,
+                    set,
+                    forceSize: native,
+                    emojiImageFn,
+                    useLocalImages,
+                  }}
+                />
+              </ScrollView>
+            </View>
+          ) : null}
+        </View>
       </View>
     )
   }
