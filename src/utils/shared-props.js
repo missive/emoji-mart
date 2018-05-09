@@ -113,7 +113,7 @@ const PickerDefaultProps = {
   emojisToShowFilter: null,
   useLocalImages: EmojiDefaultProps.useLocalImages,
   showSkinTones: false, // TODO: After porting <Skins /> component return value to true?
-  showAnchors: false, // TODO: After fixing issues with <Anchors /> component return value to true
+  showAnchors: true,
   emojiTooltip: EmojiDefaultProps.tooltip,
   autoFocus: false,
   custom: [],

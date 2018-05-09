@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    marginTop: 10,
+    paddingTop: 10,
   },
   label: {
     paddingLeft: 2,
@@ -63,6 +63,11 @@ export default class Category extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.margin = 0
+    this.minMargin = 0
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     var {
         name,
@@ -104,21 +109,21 @@ export default class Category extends React.Component {
     return shouldUpdate
   }
 
-  // TODO: Remove completely?
-  // handleScroll(scrollTop) {
-  //   var margin = scrollTop - this.top
-  //   margin = margin < this.minMargin ? this.minMargin : margin
-  //   margin = margin > this.maxMargin ? this.maxMargin : margin
-  //
-  //   if (margin == this.margin) return
-  //
-  //   if (!this.props.hasStickyPosition) {
-  //     this.label.style.top = `${margin}px`
-  //   }
-  //
-  //   this.margin = margin
-  //   return true
-  // }
+  handleScroll(scrollTop) {
+    var margin = scrollTop - this.top
+    margin = margin < this.minMargin ? this.minMargin : margin
+    margin = margin > this.maxMargin ? this.maxMargin : margin
+
+    if (margin === this.margin) return
+
+    // TODO: Sticky label?
+    // if (!this.props.hasStickyPosition) {
+    //   this.label.style.top = `${margin}px`
+    // }
+
+    this.margin = margin
+    return true
+  }
 
   getEmojis() {
     var { name, emojis, recent, perLine, emojiProps } = this.props
@@ -171,11 +176,15 @@ export default class Category extends React.Component {
     this.label = c
   }
 
-  onLayout = () => {
-    if (this.container) {
-      this.container.measure((x, y, widht, height, pageX, pageY) => {
-        this.top = pageY
-      })
+  onLayout = (event) => {
+    const { y: top, height } = event.nativeEvent.layout
+
+    this.top = top
+
+    if (height === 0) {
+      this.maxMargin = 0
+    } else {
+      this.maxMargin = height
     }
   }
 

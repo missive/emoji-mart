@@ -181,8 +181,9 @@ export default class NimblePicker extends React.PureComponent {
     this.handleAnchorPress = this.handleAnchorPress.bind(this)
     this.setSearchRef = this.setSearchRef.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
+    this.setScrollContainerRef = this.setScrollContainerRef.bind(this)
     this.setScrollViewRef = this.setScrollViewRef.bind(this)
-    this.setScrollRef = this.setScrollRef.bind(this)
+    this.onScroll = this.onScroll.bind(this)
     this.handleScroll = this.handleScroll.bind(this)
     this.handleScrollPaint = this.handleScrollPaint.bind(this)
     this.handleEmojiPress = this.handleEmojiPress.bind(this)
@@ -208,7 +209,6 @@ export default class NimblePicker extends React.PureComponent {
   }
 
   componentDidUpdate() {
-    this.updateCategoriesSize()
     this.handleScroll()
   }
 
@@ -232,7 +232,6 @@ export default class NimblePicker extends React.PureComponent {
     if (component) {
       let maxMargin = component.maxMargin
       component.forceUpdate()
-      component.onLayout()
     }
   }
 
@@ -248,6 +247,11 @@ export default class NimblePicker extends React.PureComponent {
     )
   }
 
+  onScroll(event) {
+    this.scrollViewScrollTop = event.nativeEvent.contentOffset.y
+    this.handleScroll()
+  }
+
   handleScroll() {
     if (!this.waitingForPaint) {
       this.waitingForPaint = true
@@ -258,60 +262,57 @@ export default class NimblePicker extends React.PureComponent {
   handleScrollPaint() {
     this.waitingForPaint = false
 
-    if (!this.scroll) {
+    if (!this.scrollView || !this.props.showAnchors) {
       return
     }
 
-    // TODO: Change active category depending on scroll position.
-    // let activeCategory = null
-    //
-    // if (this.SEARCH_CATEGORY.emojis) {
-    //   activeCategory = this.SEARCH_CATEGORY
-    // } else {
-    //   var target = this.scroll,
-    //     scrollTop = target.scrollTop,
-    //     scrollingDown = scrollTop > (this.scrollTop || 0),
-    //     minTop = 0
-    //
-    //   for (let i = 0, l = this.categories.length; i < l; i++) {
-    //     let ii = scrollingDown ? this.categories.length - 1 - i : i,
-    //       category = this.categories[ii],
-    //       component = this.categoryRefs[`category-${ii}`]
-    //
-    //     if (component) {
-    //       let active = component.handleScroll(scrollTop)
-    //
-    //       if (!minTop || component.top < minTop) {
-    //         if (component.top > 0) {
-    //           minTop = component.top
-    //         }
-    //       }
-    //
-    //       if (active && !activeCategory) {
-    //         activeCategory = category
-    //       }
-    //     }
-    //   }
-    //
-    //   if (scrollTop < minTop) {
-    //     activeCategory = this.categories.filter(
-    //       (category) => !(category.anchor === false),
-    //     )[0]
-    //   } else if (scrollTop + this.clientHeight >= this.scrollHeight) {
-    //     activeCategory = this.categories[this.categories.length - 1]
-    //   }
-    // }
-    //
-    // if (activeCategory) {
-    //   let { anchors } = this,
-    //     { name: categoryName } = activeCategory
-    //
-    //   if (anchors.state.selected != categoryName) {
-    //     anchors.setState({ selected: categoryName })
-    //   }
-    // }
-    //
-    // this.scrollTop = scrollTop
+    let activeCategory = null
+
+    if (this.SEARCH_CATEGORY.emojis) {
+      activeCategory = this.SEARCH_CATEGORY
+    } else {
+      var scrollTop = this.scrollViewScrollTop,
+        minTop = 0
+
+      for (let i = 0, l = this.categories.length; i < l; i++) {
+        let ii = this.categories.length - 1 - i,
+          category = this.categories[ii],
+          component = this.categoryRefs[`category-${ii}`]
+
+        if (component) {
+          let active = component.handleScroll(scrollTop)
+
+          if (!minTop || component.top < minTop) {
+            if (component.top > 0) {
+              minTop = component.top
+            }
+          }
+
+          if (active && !activeCategory) {
+            activeCategory = category
+          }
+        }
+      }
+
+      if (scrollTop < minTop) {
+        activeCategory = this.categories.filter(
+          (category) => !(category.anchor === false),
+        )[0]
+      } else if (scrollTop + this.clientHeight >= this.scrollHeight) {
+        activeCategory = this.categories[this.categories.length - 1]
+      }
+    }
+
+    if (activeCategory) {
+      let { anchors } = this,
+        { name: categoryName } = activeCategory
+
+      if (anchors.state.selected != categoryName) {
+        anchors.setState({ selected: categoryName })
+      }
+    }
+
+    this.scrollTop = scrollTop
   }
 
   handleSearch(emojis) {
@@ -328,24 +329,21 @@ export default class NimblePicker extends React.PureComponent {
     }
 
     this.forceUpdate()
-    this.scroll.scrollTo({ y: 0, animated: true })
+    this.scrollView.scrollTo({ y: 0, animated: true })
     this.handleScroll()
   }
 
-  onScrollViewLayout = () => {
-    this.scrollView.measure((x, y, width, height, pageX, pageY) => {
-      this.scrollTop = pageY
+  onScrollViewLayout = (event) => {
+    this.clientHeight = event.nativeEvent.layout.height
+  }
 
-      for (let i = 0, l = this.categories.length; i < l; i++) {
-        const component = this.categoryRefs[`category-${i}`]
-        if (component && component.container) component.onLayout()
-      }
-    })
+  onScrollViewContentSizeChange = (contentWidth, contentHeight) => {
+    this.scrollHeight = contentHeight
   }
 
   handleAnchorPress(category, i) {
     var component = this.categoryRefs[`category-${i}`],
-      { scroll, anchors } = this,
+      { scrollView, anchors } = this,
       scrollToComponent = null
 
     scrollToComponent = () => {
@@ -355,10 +353,10 @@ export default class NimblePicker extends React.PureComponent {
         if (category.first) {
           top = 0
         } else {
-          top -= this.scrollTop
+          top += 1
         }
 
-        scroll.scrollTo({ y: top, animated: true })
+        scrollView.scrollTo({ y: top, animated: true })
       }
     }
 
@@ -380,19 +378,6 @@ export default class NimblePicker extends React.PureComponent {
     onSkinChange(skin)
   }
 
-  updateCategoriesSize() {
-    for (let i = 0, l = this.categories.length; i < l; i++) {
-      let component = this.categoryRefs[`category-${i}`]
-      if (component) component.onLayout()
-    }
-
-    // if (this.scroll) {
-    //   let target = this.scroll
-    //   this.scrollHeight = target.scrollHeight
-    //   this.clientHeight = target.clientHeight
-    // }
-  }
-
   getCategories() {
     return this.state.firstRender
       ? this.categories.slice(0, 3)
@@ -407,12 +392,12 @@ export default class NimblePicker extends React.PureComponent {
     this.search = c
   }
 
-  setScrollViewRef(c) {
-    this.scrollView = c
+  setScrollContainerRef(c) {
+    this.scrollContainer = c
   }
 
-  setScrollRef(c) {
-    this.scroll = c
+  setScrollViewRef(c) {
+    this.scrollView = c
   }
 
   setCategoryRef(name, c) {
@@ -466,15 +451,16 @@ export default class NimblePicker extends React.PureComponent {
         />
 
         <View
-          ref={this.setScrollViewRef}
-          onLayout={this.onScrollViewLayout}
+          ref={this.setScrollContainerRef}
           style={styles.emojiMartScroll}
         >
           <ScrollView
-            ref={this.setScrollRef}
+            ref={this.setScrollViewRef}
+            onLayout={this.onScrollViewLayout}
+            onContentSizeChange={this.onScrollViewContentSizeChange}
             style={styles.emojiMartScroll}
             contentContainerStyle={styles.emojiMartScrollContent}
-            onScroll={this.handleScroll}
+            onScroll={this.onScroll}
             keyboardShouldPersistTaps="handled"
           >
             {this.getCategories().map((category, i) => (
