@@ -11,8 +11,8 @@ const styles = StyleSheet.create({
   },
   anchor: {
     flex: 1,
-    paddingTop: 13,
-    paddingBottom: 13,
+    paddingTop: 12.5,
+    paddingBottom: 12.5,
     paddingLeft: 18,
     paddingRight: 18,
     overflow: 'hidden',
@@ -53,8 +53,6 @@ export default class Anchors extends React.PureComponent {
     this.state = {
       selected: defaultCategory.name,
     }
-
-    this.handlePress = this.handlePress.bind(this)
   }
 
   handlePress(index) {
@@ -88,7 +86,7 @@ export default class Anchors extends React.PureComponent {
             <TouchableWithoutFeedback
               key={id}
               data-index={i}
-              onPress={() => this.handlePress(i)}
+              onPress={this.handlePress.bind(this, i)}
             >
               <View
                 style={[

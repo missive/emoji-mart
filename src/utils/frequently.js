@@ -54,7 +54,7 @@ function get(perLine) {
     return result
   }
 
-  const quantity = perLine * 4
+  const quantity = perLine * 3
   const frequentlyKeys = []
 
   for (let key in frequently) {
