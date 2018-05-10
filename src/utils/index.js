@@ -206,22 +206,48 @@ function deepMerge(a, b) {
   return o
 }
 
-// https://github.com/sonicdoe/measure-scrollbar
-function measureScrollbar() {
-  if (typeof document == 'undefined') return 0
-  const div = document.createElement('div')
+// https://github.com/lodash/lodash/blob/master/slice.js
+function slice(array, start, end) {
+  let length = array == null ? 0 : array.length
+  if (!length) {
+    return []
+  }
+  start = start == null ? 0 : start
+  end = end === undefined ? length : end
 
-  div.style.width = '100px'
-  div.style.height = '100px'
-  div.style.overflow = 'scroll'
-  div.style.position = 'absolute'
-  div.style.top = '-9999px'
+  if (start < 0) {
+    start = -start > length ? 0 : length + start
+  }
+  end = end > length ? length : end
+  if (end < 0) {
+    end += length
+  }
+  length = start > end ? 0 : (end - start) >>> 0
+  start >>>= 0
 
-  document.body.appendChild(div)
-  const scrollbarWidth = div.offsetWidth - div.clientWidth
-  document.body.removeChild(div)
+  let index = -1
+  const result = new Array(length)
+  while (++index < length) {
+    result[index] = array[index + start]
+  }
+  return result
+}
 
-  return scrollbarWidth
+// https://github.com/lodash/lodash/blob/master/chunk.js
+function chunk(array, size) {
+  size = Math.max(size, 0)
+  const length = array == null ? 0 : array.length
+  if (!length || size < 1) {
+    return []
+  }
+  let index = 0
+  let resIndex = 0
+  const result = new Array(Math.ceil(length / size))
+
+  while (index < length) {
+    result[resIndex++] = slice(array, index, (index += size))
+  }
+  return result
 }
 
 export {
@@ -232,5 +258,6 @@ export {
   intersect,
   deepMerge,
   unifiedToNative,
-  measureScrollbar,
+  slice,
+  chunk,
 }

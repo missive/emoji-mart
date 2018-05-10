@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { StyleSheet, View, Text, FlatList } from 'react-native'
+import { StyleSheet, View, Text, ScrollView } from 'react-native'
 
 import frequently from '../utils/frequently'
-import { getData, getSanitizedData } from '../utils'
+import { getData, getSanitizedData, chunk } from '../utils'
 import { NimbleEmoji } from '.'
 
 const styles = StyleSheet.create({
@@ -11,12 +11,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: 10,
-  },
-  label: {
-    paddingLeft: 2,
-    paddingRight: 2,
-    alignSelf: 'flex-start',
   },
   labelText: {
     fontSize: 15,
@@ -26,9 +20,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    padding: 2,
+    flexWrap: 'wrap',
   },
   notFound: {
+    alignSelf: 'center',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
@@ -56,7 +51,6 @@ export default class Category extends React.Component {
 
     this.data = props.data
     this.setContainerRef = this.setContainerRef.bind(this)
-    this.setLabelRef = this.setLabelRef.bind(this)
 
     this.state = {
       visible: true,
@@ -64,8 +58,8 @@ export default class Category extends React.Component {
   }
 
   componentDidMount() {
-    this.margin = 0
     this.minMargin = 0
+    this.maxMargin = {}
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -109,20 +103,24 @@ export default class Category extends React.Component {
     return shouldUpdate
   }
 
-  handleScroll(scrollTop) {
-    var margin = scrollTop - this.top
-    margin = margin < this.minMargin ? this.minMargin : margin
-    margin = margin > this.maxMargin ? this.maxMargin : margin
+  getMaxMarginValue() {
+    let maxMargin = this.left
 
-    if (margin === this.margin) return
+    for (let key in this.maxMargin) {
+      if (this.maxMargin.hasOwnProperty(key)) maxMargin += this.maxMargin[key]
+    }
 
-    // TODO: Sticky label?
-    // if (!this.props.hasStickyPosition) {
-    //   this.label.style.top = `${margin}px`
-    // }
+    return maxMargin
+  }
 
-    this.margin = margin
-    return true
+  handleScroll(scrollLeft) {
+    const maxMargin = this.getMaxMarginValue()
+
+    if (scrollLeft >= this.left && scrollLeft < maxMargin) {
+      return true
+    }
+
+    return
   }
 
   getEmojis() {
@@ -172,19 +170,17 @@ export default class Category extends React.Component {
     this.container = c
   }
 
-  setLabelRef(c) {
-    this.label = c
-  }
+  onLayout = (index, event) => {
+    const { x: left, width } = event.nativeEvent.layout
 
-  onLayout = (event) => {
-    const { y: top, height } = event.nativeEvent.layout
+    if (index === 0) {
+      this.left = left
+    }
 
-    this.top = top
-
-    if (height === 0) {
-      this.maxMargin = 0
+    if (width === 0) {
+      this.maxMargin[`page-${index}`] = 0
     } else {
-      this.maxMargin = height
+      this.maxMargin[`page-${index}`] = width
     }
   }
 
@@ -193,45 +189,16 @@ export default class Category extends React.Component {
     return getSanitizedData(emoji, skin, set, this.data)
   }
 
-  flatListKeyExtractor = (item) => {
-    const { emojiProps } = this.props
-    const emoji = this._getSanitizedData({ emoji: item, ...emojiProps })
-
-    return `${this.props.name}_emoji_${emoji.id}`
-  }
-
-  getFlatListItemLayout = (layoutData, index) => {
-    const { emojiProps } = this.props
-    const {
-      size: emojiSize,
-      margin: emojiMargin,
-      noMargin: emojiNoMargin,
-    } = emojiProps
-
-    const emojiSizing = emojiNoMargin ? emojiSize : emojiSize + emojiMargin
-    return {
-      length: emojiSizing,
-      offset: emojiSizing * index,
-      index,
-    }
-  }
-
-  renderFlatListItem = ({ item }) => {
-    const { emojiProps, name } = this.props
-    const emoji = this._getSanitizedData({ emoji: item, ...emojiProps })
-
-    return (
-      <NimbleEmoji
-        key={`${name}_emoji_${emoji.item}`}
-        emoji={emoji}
-        data={this.data}
-        {...emojiProps}
-      />
-    )
-  }
-
   render() {
-    var { id, name, hasStickyPosition, emojiProps, i18n, perLine } = this.props,
+    var {
+        id,
+        name,
+        hasStickyPosition,
+        emojiProps,
+        i18n,
+        perLine,
+        rows,
+      } = this.props,
       emojis = this.getEmojis(),
       { visible } = this.state
 
@@ -239,53 +206,71 @@ export default class Category extends React.Component {
 
     const emojiSizing = emojiSize + emojiMargin
     const emojisListWidth = perLine * emojiSizing + emojiMargin
+    const emojisListHeight = rows * emojiSizing + emojiMargin
 
-    return !emojis || !visible ? null : (
-      <View
-        ref={this.setContainerRef}
-        onLayout={this.onLayout}
-        style={[
-          styles.category,
-          emojis && !emojis.length ? styles.noResults : null,
-        ]}
-      >
-        <View style={styles.label}>
-          <Text style={styles.labelText} ref={this.setLabelRef}>
-            {i18n.categories[id]}
-          </Text>
-        </View>
+    const paginatedEmojis = chunk(emojis, perLine * 3)
 
-        {emojis.length ? (
-          <FlatList
-            data={emojis}
-            keyExtractor={this.flatListKeyExtractor}
-            getItemLayout={this.getFlatListItemLayout}
-            renderItem={this.renderFlatListItem}
-            numColumns={perLine}
-            columnWrapperStyle={[
-              styles.emojisContainer,
-              { width: emojisListWidth },
-            ]}
-            keyboardShouldPersistTaps="handled"
-          />
-        ) : (
-          <View style={styles.notFound}>
-            <View>
-              <NimbleEmoji
-                data={this.data}
-                {...emojiProps}
-                emoji="sleuth_or_spy"
-                onPress={null}
-                onLongPress={null}
-              />
+    return !emojis || !visible
+      ? null
+      : [
+          emojis.length ? (
+            paginatedEmojis.map((emojis, i) => (
+              <View
+                onLayout={this.onLayout.bind(this, i)}
+                key={`${name}_emojis_${i}`}
+                style={[
+                  styles.emojisContainer,
+                  {
+                    width: emojisListWidth,
+                    height: emojisListHeight,
+                    padding: emojiMargin / 2,
+                  },
+                ]}
+              >
+                {emojis.map((item, i) => {
+                  const emoji = this._getSanitizedData({
+                    emoji: item,
+                    ...emojiProps,
+                  })
+
+                  return (
+                    <NimbleEmoji
+                      key={`${name}_emoji_${emoji.id}`}
+                      emoji={emoji}
+                      data={this.data}
+                      {...emojiProps}
+                    />
+                  )
+                })}
+              </View>
+            ))
+          ) : (
+            <View
+              key="notFound"
+              style={[
+                styles.notFound,
+                {
+                  width: emojisListWidth,
+                  height: emojisListHeight,
+                  padding: emojiMargin / 2,
+                },
+              ]}
+            >
+              <View>
+                <NimbleEmoji
+                  data={this.data}
+                  {...emojiProps}
+                  emoji="sleuth_or_spy"
+                  onPress={null}
+                  onLongPress={null}
+                />
+              </View>
+
+              <View>
+                <Text style={styles.labelText}>{i18n.notfound}</Text>
+              </View>
             </View>
-
-            <View style={styles.label}>
-              <Text style={styles.labelText}>{i18n.notfound}</Text>
-            </View>
-          </View>
-        )}
-      </View>
-    )
+          ),
+        ]
   }
 }

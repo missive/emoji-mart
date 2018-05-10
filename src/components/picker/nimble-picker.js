@@ -2,11 +2,17 @@ import '../../vendor/raf-polyfill'
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { StyleSheet, View, ScrollView, ToastAndroid } from 'react-native'
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  ToastAndroid,
+  TouchableWithoutFeedback,
+} from 'react-native'
 
 import store from '../../utils/store'
 import frequently from '../../utils/frequently'
-import { deepMerge, measureScrollbar } from '../../utils'
+import { deepMerge } from '../../utils'
 import { uncompress } from '../../utils/data'
 import { PickerPropTypes, PickerDefaultProps } from '../../utils/shared-props'
 
@@ -31,29 +37,43 @@ const I18N = {
 }
 
 const styles = StyleSheet.create({
-  emojiMart: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#fff',
+  emojiMartBackdrop: {
     zIndex: 1,
     position: 'absolute',
     top: 0,
     right: 0,
     bottom: 0,
     left: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  emojiMartPickerContainer: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 2,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+  },
+  emojiMartPicker: {
+    flexShrink: 0,
+    flexDirection: 'column',
+    backgroundColor: '#fff',
+  },
+  emojiMartFullscreen: {
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
   },
   emojiMartScroll: {
-    flex: 1,
-    flexGrow: 1,
-  },
-  emojiMartScrollContent: {
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingBottom: 10,
+    flexShrink: 0,
   },
   emojiMartAnchors: {
     flexShrink: 0,
-    maxHeight: 150,
+    maxHeight: 90,
   },
 })
 
@@ -181,7 +201,6 @@ export default class NimblePicker extends React.PureComponent {
     this.handleAnchorPress = this.handleAnchorPress.bind(this)
     this.setSearchRef = this.setSearchRef.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
-    this.setScrollContainerRef = this.setScrollContainerRef.bind(this)
     this.setScrollViewRef = this.setScrollViewRef.bind(this)
     this.onScroll = this.onScroll.bind(this)
     this.handleScroll = this.handleScroll.bind(this)
@@ -248,7 +267,16 @@ export default class NimblePicker extends React.PureComponent {
   }
 
   onScroll(event) {
-    this.scrollViewScrollTop = event.nativeEvent.contentOffset.y
+    this.selectedIndex = event.nativeEvent.position
+
+    if (this.selectedIndex === undefined) {
+      this.selectedIndex = Math.round(
+        event.nativeEvent.contentOffset.x /
+          event.nativeEvent.layoutMeasurement.width,
+      )
+    }
+
+    this.scrollViewScrollLeft = event.nativeEvent.contentOffset.x
     this.handleScroll()
   }
 
@@ -271,8 +299,7 @@ export default class NimblePicker extends React.PureComponent {
     if (this.SEARCH_CATEGORY.emojis) {
       activeCategory = this.SEARCH_CATEGORY
     } else {
-      var scrollTop = this.scrollViewScrollTop,
-        minTop = 0
+      var scrollLeft = this.scrollViewScrollLeft
 
       for (let i = 0, l = this.categories.length; i < l; i++) {
         let ii = this.categories.length - 1 - i,
@@ -280,26 +307,12 @@ export default class NimblePicker extends React.PureComponent {
           component = this.categoryRefs[`category-${ii}`]
 
         if (component) {
-          let active = component.handleScroll(scrollTop)
-
-          if (!minTop || component.top < minTop) {
-            if (component.top > 0) {
-              minTop = component.top
-            }
-          }
+          let active = component.handleScroll(scrollLeft)
 
           if (active && !activeCategory) {
             activeCategory = category
           }
         }
-      }
-
-      if (scrollTop < minTop) {
-        activeCategory = this.categories.filter(
-          (category) => !(category.anchor === false),
-        )[0]
-      } else if (scrollTop + this.clientHeight >= this.scrollHeight) {
-        activeCategory = this.categories[this.categories.length - 1]
       }
     }
 
@@ -312,7 +325,7 @@ export default class NimblePicker extends React.PureComponent {
       }
     }
 
-    this.scrollTop = scrollTop
+    this.scrollLeft = scrollLeft
   }
 
   handleSearch(emojis) {
@@ -329,16 +342,16 @@ export default class NimblePicker extends React.PureComponent {
     }
 
     this.forceUpdate()
-    this.scrollView.scrollTo({ y: 0, animated: true })
+    this.scrollView.scrollTo({ x: 0, animated: true })
     this.handleScroll()
   }
 
   onScrollViewLayout = (event) => {
-    this.clientHeight = event.nativeEvent.layout.height
+    this.clientWidth = event.nativeEvent.layout.width
   }
 
-  onScrollViewContentSizeChange = (contentWidth, contentHeight) => {
-    this.scrollHeight = contentHeight
+  onScrollViewContentSizeChange = (contentWidth) => {
+    this.scrollWidth = contentWidth
   }
 
   handleAnchorPress(category, i) {
@@ -348,15 +361,13 @@ export default class NimblePicker extends React.PureComponent {
 
     scrollToComponent = () => {
       if (component) {
-        let { top } = component
+        let { left } = component
 
         if (category.first) {
-          top = 0
-        } else {
-          top += 1
+          left = 0
         }
 
-        scrollView.scrollTo({ y: top, animated: true })
+        scrollView.scrollTo({ x: left, animated: true })
       }
     }
 
@@ -392,10 +403,6 @@ export default class NimblePicker extends React.PureComponent {
     this.search = c
   }
 
-  setScrollContainerRef(c) {
-    this.scrollContainer = c
-  }
-
   setScrollViewRef(c) {
     this.scrollView = c
   }
@@ -411,6 +418,7 @@ export default class NimblePicker extends React.PureComponent {
   render() {
     var {
         perLine,
+        rows,
         emojiSize,
         emojiMargin,
         anchorSize,
@@ -435,32 +443,64 @@ export default class NimblePicker extends React.PureComponent {
       } = this.props,
       { skin } = this.state
 
-    return (
-      <View style={[{ ...style }, styles.emojiMart]}>
-        <Search
-          ref={this.setSearchRef}
-          onSearch={this.handleSearch}
-          data={this.data}
-          i18n={this.i18n}
-          emojisToShowFilter={emojisToShowFilter}
-          include={include}
-          exclude={exclude}
-          custom={this.CUSTOM_CATEGORY.emojis}
-          autoFocus={autoFocus}
-          onPressClose={onPressClose}
-        />
+    const emojiSizing = emojiSize + emojiMargin
+    const emojisListWidth = perLine * emojiSizing + emojiMargin
+    const emojisListHeight = rows * emojiSizing + emojiMargin
 
+    return [
+      <TouchableWithoutFeedback
+        key="pickerBackdrop"
+        onPress={onPressClose}
+        style={styles.emojiMartBackdrop}
+      >
+        <View style={styles.emojiMartBackdrop} />
+      </TouchableWithoutFeedback>,
+      <View key="pickerContainer" style={styles.emojiMartPickerContainer}>
         <View
-          ref={this.setScrollContainerRef}
-          style={styles.emojiMartScroll}
+          style={[
+            styles.emojiMartPicker,
+            { ...style },
+            { width: emojisListWidth },
+          ]}
         >
+          <Search
+            ref={this.setSearchRef}
+            onSearch={this.handleSearch}
+            data={this.data}
+            i18n={this.i18n}
+            emojisToShowFilter={emojisToShowFilter}
+            include={include}
+            exclude={exclude}
+            custom={this.CUSTOM_CATEGORY.emojis}
+            autoFocus={autoFocus}
+            onPressClose={onPressClose}
+          />
+
           <ScrollView
             ref={this.setScrollViewRef}
             onLayout={this.onScrollViewLayout}
             onContentSizeChange={this.onScrollViewContentSizeChange}
-            style={styles.emojiMartScroll}
-            contentContainerStyle={styles.emojiMartScrollContent}
+            style={[
+              styles.emojiMartScroll,
+              {
+                width: emojisListWidth,
+                height: emojisListHeight,
+              },
+            ]}
+            // contentContainerStyle={{
+            //   flex: 1,
+            //   width: emojisListWidth,
+            //   height: emojisListHeight,
+            // }}
             onScroll={this.onScroll}
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            // contentOffset={{
+            //   x: this.state.width * this.state.initialSelectedIndex,
+            //   y: 0,
+            // }}
+            scrollEventThrottle={100}
             keyboardShouldPersistTaps="handled"
           >
             {this.getCategories().map((category, i) => (
@@ -471,6 +511,7 @@ export default class NimblePicker extends React.PureComponent {
                 name={category.name}
                 emojis={category.emojis}
                 perLine={perLine}
+                rows={rows}
                 native={native}
                 data={this.data}
                 i18n={this.i18n}
@@ -498,37 +539,37 @@ export default class NimblePicker extends React.PureComponent {
               />
             ))}
           </ScrollView>
-        </View>
 
-        {showAnchors ? (
-          <View style={styles.emojiMartAnchors}>
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              keyboardShouldPersistTaps="handled"
-            >
-              <Anchors
-                ref={this.setAnchorsRef}
-                data={this.data}
-                i18n={this.i18n}
-                color={color}
-                categories={this.categories}
-                onAnchorPress={this.handleAnchorPress}
-                categoryEmojis={categoryEmojis}
-                emojiProps={{
-                  native,
-                  skin,
-                  size: anchorSize,
-                  set,
-                  forceSize: native,
-                  emojiImageFn,
-                  useLocalImages,
-                }}
-              />
-            </ScrollView>
-          </View>
-        ) : null}
-      </View>
-    )
+          {showAnchors ? (
+            <View style={styles.emojiMartAnchors}>
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                keyboardShouldPersistTaps="handled"
+              >
+                <Anchors
+                  ref={this.setAnchorsRef}
+                  data={this.data}
+                  i18n={this.i18n}
+                  color={color}
+                  categories={this.categories}
+                  onAnchorPress={this.handleAnchorPress}
+                  categoryEmojis={categoryEmojis}
+                  emojiProps={{
+                    native,
+                    skin,
+                    size: anchorSize,
+                    set,
+                    forceSize: native,
+                    emojiImageFn,
+                    useLocalImages,
+                  }}
+                />
+              </ScrollView>
+            </View>
+          ) : null}
+        </View>
+      </View>,
+    ]
   }
 }

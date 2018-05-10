@@ -35,7 +35,7 @@ const EmojiDefaultProps = {
   onPress: () => {},
   onLongPress: () => {},
   useLocalImages: false,
-  margin: 15,
+  margin: 14,
   noMargin: false,
 }
 
@@ -46,6 +46,7 @@ const PickerPropTypes = {
   onPressClose: PropTypes.func,
   onSkinChange: PropTypes.func,
   perLine: PropTypes.number,
+  rows: PropTypes.number,
   emojiSize: PropTypes.number,
   emojiMargin: PropTypes.number,
   anchorSize: PropTypes.number,
@@ -100,6 +101,7 @@ const PickerDefaultProps = {
   emojiMargin: EmojiDefaultProps.margin,
   anchorSize: 24,
   perLine: 7,
+  rows: 3,
   i18n: {},
   style: {},
   title: 'Emoji Mart™ Native',
