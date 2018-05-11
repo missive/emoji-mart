@@ -1126,6 +1126,7 @@ var EmojiDefaultProps = {
 
 var PickerPropTypes = {
   onClick: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.func,
+  onSelect: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.func,
   onSkinChange: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.func,
   perLine: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.number,
   emojiSize: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.number,
@@ -1158,6 +1159,7 @@ var PickerPropTypes = {
 
 var PickerDefaultProps = {
   onClick: function onClick() {},
+  onSelect: function onSelect() {},
   onSkinChange: function onSkinChange() {},
   emojiSize: 24,
   perLine: 9,
@@ -1379,17 +1381,19 @@ var NimbleEmojiIndex = function () {
   }, {
     key: 'clearCustomEmojis',
     value: function clearCustomEmojis(pool) {
+      var _this2 = this;
+
       this.customEmojisList.forEach(function (emoji) {
         var emojiId = emoji.id || emoji.short_names[0];
 
         delete pool[emojiId];
-        delete emojisList[emojiId];
+        delete _this2.emojis[emojiId];
       });
     }
   }, {
     key: 'addCustomToPool',
     value: function addCustomToPool(custom, pool) {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.customEmojisList.length) this.clearCustomEmojis(pool);
 
@@ -1397,8 +1401,8 @@ var NimbleEmojiIndex = function () {
         var emojiId = emoji.id || emoji.short_names[0];
 
         if (emojiId && !pool[emojiId]) {
-          pool[emojiId] = Object(__WEBPACK_IMPORTED_MODULE_2____["b" /* getData */])(emoji, null, null, _this2.data);
-          _this2.emojis[emojiId] = Object(__WEBPACK_IMPORTED_MODULE_2____["c" /* getSanitizedData */])(emoji, null, null, _this2.data);
+          pool[emojiId] = Object(__WEBPACK_IMPORTED_MODULE_2____["b" /* getData */])(emoji, null, null, _this3.data);
+          _this3.emojis[emojiId] = Object(__WEBPACK_IMPORTED_MODULE_2____["c" /* getSanitizedData */])(emoji, null, null, _this3.data);
         }
       });
 
@@ -1408,7 +1412,7 @@ var NimbleEmojiIndex = function () {
   }, {
     key: 'search',
     value: function search(value) {
-      var _this3 = this;
+      var _this4 = this;
 
       var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
@@ -1451,7 +1455,7 @@ var NimbleEmojiIndex = function () {
             }
 
             category.emojis.forEach(function (emojiId) {
-              return pool[emojiId] = _this3.data.emojis[emojiId];
+              return pool[emojiId] = _this4.data.emojis[emojiId];
             });
           });
 
@@ -1466,7 +1470,7 @@ var NimbleEmojiIndex = function () {
 
         allResults = values.map(function (value) {
           var aPool = pool,
-              aIndex = _this3.index,
+              aIndex = _this4.index,
               length = 0;
 
           for (var charIndex = 0; charIndex < value.length; charIndex++) {
@@ -1493,7 +1497,7 @@ var NimbleEmojiIndex = function () {
                     var score = subIndex + 1;
                     if (sub == _id) score = 0;
 
-                    aIndex.results.push(_this3.emojis[_id]);
+                    aIndex.results.push(_this4.emojis[_id]);
                     aIndex.pool[_id] = emoji;
 
                     scores[_id] = score;
