@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
     flexShrink: 0,
     flexDirection: 'column',
-    backgroundColor: '#fff',
+    backgroundColor: '#eceff1',
   },
   emojiMartFullscreen: {
     top: 0,
@@ -106,6 +106,8 @@ export default class NimblePicker extends React.PureComponent {
       skin: props.skin || store.get('skin') || props.defaultSkin,
       firstRender: true,
     }
+
+    this.scrollViewScrollLeft = 0
 
     this.categories = []
     let allCategories = [].concat(this.data.categories)
@@ -267,15 +269,6 @@ export default class NimblePicker extends React.PureComponent {
   }
 
   onScroll(event) {
-    this.selectedIndex = event.nativeEvent.position
-
-    if (this.selectedIndex === undefined) {
-      this.selectedIndex = Math.round(
-        event.nativeEvent.contentOffset.x /
-          event.nativeEvent.layoutMeasurement.width,
-      )
-    }
-
     this.scrollViewScrollLeft = event.nativeEvent.contentOffset.x
     this.handleScroll()
   }
@@ -295,12 +288,13 @@ export default class NimblePicker extends React.PureComponent {
     }
 
     let activeCategory = null
+    var scrollLeft = this.scrollViewScrollLeft
 
     if (this.SEARCH_CATEGORY.emojis) {
       activeCategory = this.SEARCH_CATEGORY
+      const component = this.categoryRefs[`category-0`]
+      if (component) component.handleScroll(scrollLeft)
     } else {
-      var scrollLeft = this.scrollViewScrollLeft
-
       for (let i = 0, l = this.categories.length; i < l; i++) {
         let ii = this.categories.length - 1 - i,
           category = this.categories[ii],
@@ -342,7 +336,7 @@ export default class NimblePicker extends React.PureComponent {
     }
 
     this.forceUpdate()
-    this.scrollView.scrollTo({ x: 0, animated: true })
+    if (emojis) this.scrollView.scrollTo({ x: 0, animated: false })
     this.handleScroll()
   }
 
@@ -367,7 +361,7 @@ export default class NimblePicker extends React.PureComponent {
           left = 0
         }
 
-        scrollView.scrollTo({ x: left, animated: true })
+        scrollView.scrollTo({ x: left, animated: false })
       }
     }
 
@@ -376,7 +370,8 @@ export default class NimblePicker extends React.PureComponent {
       this.search.clear()
     }
 
-    scrollToComponent()
+    // setTimeout 0 fixes issue where scrollTo happened before component was fully in view
+    setTimeout(scrollToComponent, 0)
   }
 
   handleSkinChange(skin) {
@@ -413,6 +408,12 @@ export default class NimblePicker extends React.PureComponent {
     }
 
     this.categoryRefs[name] = c
+
+    if (!this.categoryPages) {
+      this.categoryPages = {}
+    }
+
+    this.categoryPages[name] = c ? c.pages : {}
   }
 
   render() {
@@ -487,57 +488,51 @@ export default class NimblePicker extends React.PureComponent {
                 height: emojisListHeight,
               },
             ]}
-            // contentContainerStyle={{
-            //   flex: 1,
-            //   width: emojisListWidth,
-            //   height: emojisListHeight,
-            // }}
             onScroll={this.onScroll}
             horizontal
             pagingEnabled
             showsHorizontalScrollIndicator={false}
-            // contentOffset={{
-            //   x: this.state.width * this.state.initialSelectedIndex,
-            //   y: 0,
-            // }}
             scrollEventThrottle={100}
             keyboardShouldPersistTaps="handled"
           >
-            {this.getCategories().map((category, i) => (
-              <Category
-                ref={this.setCategoryRef.bind(this, `category-${i}`)}
-                key={category.name}
-                id={category.id}
-                name={category.name}
-                emojis={category.emojis}
-                perLine={perLine}
-                rows={rows}
-                native={native}
-                data={this.data}
-                i18n={this.i18n}
-                recent={
-                  category.id == this.RECENT_CATEGORY.id ? recent : undefined
-                }
-                custom={
-                  category.id == this.RECENT_CATEGORY.id
-                    ? this.CUSTOM_CATEGORY.emojis
-                    : undefined
-                }
-                emojiProps={{
-                  native,
-                  skin,
-                  size: emojiSize,
-                  margin: emojiMargin,
-                  set,
-                  forceSize: native,
-                  tooltip: emojiTooltip,
-                  emojiImageFn,
-                  useLocalImages,
-                  onPress: this.handleEmojiPress,
-                  onLongPress: this.handleEmojiLongPress,
-                }}
-              />
-            ))}
+            {this.getCategories().map((category, i) => {
+              return (
+                <Category
+                  ref={this.setCategoryRef.bind(this, `category-${i}`)}
+                  key={category.name}
+                  id={category.id}
+                  name={category.name}
+                  emojis={category.emojis}
+                  perLine={perLine}
+                  rows={rows}
+                  native={native}
+                  data={this.data}
+                  i18n={this.i18n}
+                  recent={
+                    category.id == this.RECENT_CATEGORY.id ? recent : undefined
+                  }
+                  custom={
+                    category.id == this.RECENT_CATEGORY.id
+                      ? this.CUSTOM_CATEGORY.emojis
+                      : undefined
+                  }
+                  initialPosition={this.scrollViewScrollLeft}
+                  emojiProps={{
+                    native,
+                    skin,
+                    size: emojiSize,
+                    margin: emojiMargin,
+                    set,
+                    forceSize: native,
+                    tooltip: emojiTooltip,
+                    emojiImageFn,
+                    useLocalImages,
+                    onPress: this.handleEmojiPress,
+                    onLongPress: this.handleEmojiLongPress,
+                  }}
+                />
+              )
+            })}
           </ScrollView>
 
           {showAnchors ? (

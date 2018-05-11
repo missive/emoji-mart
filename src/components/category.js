@@ -50,7 +50,17 @@ export default class Category extends React.Component {
     super(props)
 
     this.data = props.data
-    this.setContainerRef = this.setContainerRef.bind(this)
+
+    this.active = {}
+    // Set first 2 pages to active
+    if (props.name == 'Recent' || props.name == 'Smileys & People') {
+      this.active['page-0'] = true
+    }
+
+    if (props.name == 'Search') {
+      this.active['page-0'] = true
+      this.active['page-1'] = true
+    }
 
     this.state = {
       visible: true,
@@ -59,6 +69,7 @@ export default class Category extends React.Component {
 
   componentDidMount() {
     this.minMargin = 0
+    this.pagesOffsetLeft = {}
     this.maxMargin = {}
   }
 
@@ -113,8 +124,31 @@ export default class Category extends React.Component {
     return maxMargin
   }
 
+  calculateVisibility(scrollLeft) {
+    if (
+      this.pages &&
+      typeof this.left === 'number' &&
+      scrollLeft % this.width === 0
+    ) {
+      for (let index in this.pages) {
+        const page = parseInt(index) + 1
+        const pageWidth = this.maxMargin[`page-${index}`] || 0
+        const pageLeft =
+          this.pagesOffsetLeft[`page-${index}`] || this.left + index * pageWidth
+
+        this.active[`page-${index}`] =
+          scrollLeft >= pageLeft - pageWidth &&
+          scrollLeft <= pageLeft + pageWidth
+      }
+
+      this.forceUpdate()
+    }
+  }
+
   handleScroll(scrollLeft) {
     const maxMargin = this.getMaxMarginValue()
+
+    this.calculateVisibility(scrollLeft)
 
     if (scrollLeft >= this.left && scrollLeft < maxMargin) {
       return true
@@ -166,22 +200,25 @@ export default class Category extends React.Component {
     this.setState({ visible })
   }
 
-  setContainerRef(c) {
-    this.container = c
+  setPagesRef(index, c) {
+    if (!this.pages) {
+      this.pages = {}
+    }
+
+    this.pages[index] = c
   }
 
   onLayout = (index, event) => {
+    const { initialPosition } = this.props
     const { x: left, width } = event.nativeEvent.layout
 
     if (index === 0) {
       this.left = left
+      this.width = width
     }
 
-    if (width === 0) {
-      this.maxMargin[`page-${index}`] = 0
-    } else {
-      this.maxMargin[`page-${index}`] = width
-    }
+    this.pagesOffsetLeft[`page-${index}`] = left
+    this.maxMargin[`page-${index}`] = width
   }
 
   _getSanitizedData = (props) => {
@@ -208,42 +245,47 @@ export default class Category extends React.Component {
     const emojisListWidth = perLine * emojiSizing + emojiMargin
     const emojisListHeight = rows * emojiSizing + emojiMargin
 
-    const paginatedEmojis = chunk(emojis, perLine * 3)
+    const paginatedEmojis = chunk(emojis, perLine * rows)
 
     return !emojis || !visible
       ? null
       : [
           emojis.length ? (
-            paginatedEmojis.map((emojis, i) => (
-              <View
-                onLayout={this.onLayout.bind(this, i)}
-                key={`${name}_emojis_${i}`}
-                style={[
-                  styles.emojisContainer,
-                  {
-                    width: emojisListWidth,
-                    height: emojisListHeight,
-                    padding: emojiMargin / 2,
-                  },
-                ]}
-              >
-                {emojis.map((item, i) => {
-                  const emoji = this._getSanitizedData({
-                    emoji: item,
-                    ...emojiProps,
-                  })
+            paginatedEmojis.map((emojis, i) => {
+              const pageVisible = this.active[`page-${i}`]
 
-                  return (
-                    <NimbleEmoji
-                      key={`${name}_emoji_${emoji.id}`}
-                      emoji={emoji}
-                      data={this.data}
-                      {...emojiProps}
-                    />
-                  )
-                })}
-              </View>
-            ))
+              return (
+                <View
+                  ref={this.setPagesRef.bind(this, i)}
+                  onLayout={this.onLayout.bind(this, i)}
+                  key={`${name}_emojis_${i}`}
+                  style={[
+                    styles.emojisContainer,
+                    {
+                      width: emojisListWidth,
+                      height: emojisListHeight,
+                      padding: emojiMargin / 2,
+                    },
+                  ]}
+                >
+                  {emojis.map((item, i) => {
+                    const emoji = this._getSanitizedData({
+                      emoji: item,
+                      ...emojiProps,
+                    })
+
+                    return pageVisible ? (
+                      <NimbleEmoji
+                        key={`${name}_emoji_${emoji.id}`}
+                        emoji={emoji}
+                        data={this.data}
+                        {...emojiProps}
+                      />
+                    ) : null
+                  })}
+                </View>
+              )
+            })
           ) : (
             <View
               key="notFound"

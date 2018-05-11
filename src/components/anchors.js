@@ -6,6 +6,9 @@ import { NimbleEmoji } from '.'
 
 const styles = StyleSheet.create({
   anchors: {
+    borderTopWidth: 1,
+    borderTopColor: '#f6f7f8',
+    backgroundColor: '#e4e7e9',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

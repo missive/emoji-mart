@@ -20,8 +20,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#eceff1',
     borderBottomWidth: 1,
-    borderBottomColor: '#a2a2a2',
+    borderBottomColor: '#e0e0e0',
   },
   searchInput: {
     flex: 1,
