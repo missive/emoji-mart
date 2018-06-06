@@ -237,7 +237,8 @@ export default class NimblePicker extends React.PureComponent {
   }
 
   handleEmojiSelect(emoji) {
-    this.props.onSelect(emoji)
+    if (this.props.onSelect) this.props.onSelect(emoji);
+
     if (!this.hideRecent && !this.props.recent) frequently.add(emoji)
 
     var component = this.categoryRefs['category-1']
