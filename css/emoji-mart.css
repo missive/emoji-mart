@@ -144,6 +144,12 @@
   padding-top: 70px;
   color: #858585;
 }
+.emoji-mart-no-results-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
 .emoji-mart-no-results .emoji-mart-category-label {
   display: none;
 }

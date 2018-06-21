@@ -467,6 +467,7 @@ export default class NimblePicker extends React.PureComponent {
         exclude,
         recent,
         autoFocus,
+        notFound,
       } = this.props,
       { skin } = this.state,
       width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
@@ -539,6 +540,7 @@ export default class NimblePicker extends React.PureComponent {
                   onLeave: this.handleEmojiLeave,
                   onClick: this.handleEmojiClick,
                 }}
+                notFound={notFound}
               />
             )
           })}
