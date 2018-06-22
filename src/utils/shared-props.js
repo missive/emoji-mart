@@ -71,6 +71,7 @@ const PickerPropTypes = {
       imageUrl: PropTypes.string.isRequired,
     }),
   ),
+  icons: PropTypes.object,
 }
 
 const PickerDefaultProps = {
@@ -96,6 +97,7 @@ const PickerDefaultProps = {
   emojiTooltip: EmojiDefaultProps.tooltip,
   autoFocus: false,
   custom: [],
+  icons: {},
 }
 
 export {

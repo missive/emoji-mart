@@ -72,9 +72,11 @@
   max-width: 22px;
 }
 
-.emoji-mart-anchors svg {
+.emoji-mart-anchors svg,
+.emoji-mart-anchors img {
   fill: currentColor;
-  max-height: 18px;
+  height: 18px;
+  width: 18px;
 }
 
 .emoji-mart-scroll {
