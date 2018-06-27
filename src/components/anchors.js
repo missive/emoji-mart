@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import SVGs from '../svgs'
+import { categories as icons } from '../svgs'
 
 export default class Anchors extends React.PureComponent {
   constructor(props) {
@@ -16,21 +16,6 @@ export default class Anchors extends React.PureComponent {
     }
 
     this.handleClick = this.handleClick.bind(this)
-  }
-
-  getSVG(id) {
-    this.SVGs || (this.SVGs = {})
-
-    if (this.SVGs[id]) {
-      return this.SVGs[id]
-    } else {
-      let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-       ${SVGs[id]}
-      </svg>`
-
-      this.SVGs[id] = svg
-      return svg
-    }
   }
 
   handleClick(e) {
@@ -65,7 +50,7 @@ export default class Anchors extends React.PureComponent {
               }`}
               style={{ color: isSelected ? color : null }}
             >
-              <div dangerouslySetInnerHTML={{ __html: this.getSVG(id) }} />
+              <div dangerouslySetInnerHTML={{ __html: icons[id] }} />
               <span
                 className="emoji-mart-anchor-bar"
                 style={{ backgroundColor: color }}
