@@ -181,6 +181,11 @@
   text-align: right;
 }
 
+.emoji-mart-preview-skins.custom {
+  right: 10px;
+  text-align: right;
+}
+
 .emoji-mart-preview-name {
   font-size: 14px;
 }
@@ -223,12 +228,18 @@
   background-color: #fff;
 }
 
-.emoji-mart-skin-swatches-opened .emoji-mart-skin-swatch {
+.emoji-mart-skin-swatches.custom {
+  font-size: 0;
+  border: none;
+  background-color: #fff;
+}
+
+.emoji-mart-skin-swatches.opened .emoji-mart-skin-swatch {
   width: 16px;
   padding: 0 2px;
 }
 
-.emoji-mart-skin-swatches-opened .emoji-mart-skin-swatch-selected:after {
+.emoji-mart-skin-swatches.opened .emoji-mart-skin-swatch.selected:after {
   opacity: .75;
 }
 
@@ -248,12 +259,13 @@
 .emoji-mart-skin-swatch:nth-child(5) { transition-delay: .12s }
 .emoji-mart-skin-swatch:nth-child(6) { transition-delay: .15s }
 
-.emoji-mart-skin-swatch-selected {
+.emoji-mart-skin-swatch.selected {
   position: relative;
   width: 16px;
   padding: 0 2px;
 }
-.emoji-mart-skin-swatch-selected:after {
+
+.emoji-mart-skin-swatch.selected:after {
   content: "";
   position: absolute;
   top: 50%; left: 50%;
@@ -266,9 +278,63 @@
   transition: opacity .2s ease-out;
 }
 
+.emoji-mart-skin-swatch.custom {
+  display: inline-block;
+  width: 0;
+  height: 38px;
+  overflow: hidden;
+  vertical-align: middle;
+  transition-property: width, height;
+  transition-duration: .125s;
+  transition-timing-function: ease-out;
+  cursor: default;
+}
+
+.emoji-mart-skin-swatch.custom.selected {
+  position: relative;
+  width: 36px;
+  height: 38px;
+  padding: 0 2px 0 0;
+}
+
+.emoji-mart-skin-swatch.custom.selected:after {
+  content: "";
+  width: 0;
+  height: 0;
+}
+
+.emoji-mart-skin-swatches.custom .emoji-mart-skin-swatch.custom:hover {
+  background-color: #f4f4f4;
+  border-radius: 10%;
+}
+
+.emoji-mart-skin-swatches.custom.opened .emoji-mart-skin-swatch.custom {
+  width: 36px;
+  height: 38px;
+  padding: 0 2px 0 0;
+}
+
+.emoji-mart-skin-swatches.custom.opened .emoji-mart-skin-swatch.custom.selected:after {
+  opacity: .75;
+}
+
+.emoji-mart-skin-text.opened {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+  color: #888;
+  font-size: 11px;
+  padding: 5px 2px;
+  width: 30%;
+  height: 40px;
+  border-radius: 10%;
+  background-color: #fff;
+}
+
 .emoji-mart-skin {
   display: inline-block;
-  width: 100%; padding-top: 100%;
+  width: 100%;
+  padding-top: 100%;
   max-width: 12px;
   border-radius: 100%;
 }

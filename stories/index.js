@@ -41,7 +41,13 @@ storiesOf('Picker', module)
       showPreview={boolean('Show preview', true)}
       showSkinTones={boolean('Show skin tones', true)}
       custom={CUSTOM_EMOJIS}
-    />
+    />))
+    .add('custom-skin-icon', () => (
+      <Picker
+        native={boolean('Unicode', true)}
+        emojiSize={24}
+        skinIcon={text('Skin Preview Icon', 'v')}
+      />
   ));
 
 storiesOf('Emoji', module)
