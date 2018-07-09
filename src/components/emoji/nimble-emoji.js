@@ -74,6 +74,14 @@ const _convertStyleToCSS = (style) => {
   return div.getAttribute('style')
 }
 
+const _getFallback = (props, data) => {
+  if (props.fallback) {
+    return props.fallback(data)
+  }
+
+  return null
+}
+
 const NimbleEmoji = (props) => {
   if (props.data.compressed) {
     uncompress(props.data)
@@ -87,7 +95,7 @@ const NimbleEmoji = (props) => {
 
   let data = _getData(props)
   if (!data) {
-    return null
+    return _getFallback(props, data)
   }
 
   let { unified, custom, short_names, imageUrl } = data,
@@ -97,7 +105,7 @@ const NimbleEmoji = (props) => {
     title = null
 
   if (!unified && !custom) {
-    return null
+    return _getFallback(props, data)
   }
 
   if (props.tooltip) {
@@ -128,11 +136,7 @@ const NimbleEmoji = (props) => {
       data[`has_img_${props.set}`] == undefined || data[`has_img_${props.set}`]
 
     if (!setHasEmoji) {
-      if (props.fallback) {
-        return props.fallback(data)
-      } else {
-        return null
-      }
+      return _getFallback(props, data)
     } else {
       style = {
         width: props.size,
