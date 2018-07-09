@@ -22,6 +22,7 @@ const EmojiPropTypes = {
   ]),
   size: PropTypes.number.isRequired,
   emoji: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  renderAsImage: PropTypes.bool,
 }
 
 const EmojiDefaultProps = {
@@ -36,6 +37,7 @@ const EmojiDefaultProps = {
   onOver: () => {},
   onLeave: () => {},
   onClick: () => {},
+  renderAsImage: false,
 }
 
 const PickerPropTypes = {
