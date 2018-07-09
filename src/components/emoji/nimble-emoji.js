@@ -74,6 +74,14 @@ const _convertStyleToCSS = (style) => {
   return div.getAttribute('style')
 }
 
+const _getFallback = (props, data) => {
+  if (props.fallback) {
+    return props.fallback(data)
+  }
+
+  return null
+}
+
 const NimbleEmoji = (props) => {
   if (props.data.compressed) {
     uncompress(props.data)
@@ -87,7 +95,7 @@ const NimbleEmoji = (props) => {
 
   let data = _getData(props)
   if (!data) {
-    return null
+    return _getFallback(props, data)
   }
 
   let { unified, custom, short_names, imageUrl } = data,
@@ -97,7 +105,7 @@ const NimbleEmoji = (props) => {
     title = null
 
   if (!unified && !custom) {
-    return null
+    return _getFallback(props, data)
   }
 
   if (props.tooltip) {
@@ -128,11 +136,7 @@ const NimbleEmoji = (props) => {
       data[`has_img_${props.set}`] == undefined || data[`has_img_${props.set}`]
 
     if (!setHasEmoji) {
-      if (props.fallback) {
-        return props.fallback(data)
-      } else {
-        return null
-      }
+      return _getFallback(props, data)
     } else {
       style = {
         width: props.size,
@@ -148,12 +152,34 @@ const NimbleEmoji = (props) => {
     }
   }
 
+  // Since we are re-using the background logic for image tag
+  // let's use this 1x1 pixel transparent image to avoid showing a broken image
+  const transparentImage =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR4nGNgAAIAAAUAAXpeqz8='
+
   if (props.html) {
     style = _convertStyleToCSS(style)
-    return `<span style='${style}' ${
-      title ? `title='${title}'` : ''
-    } class='${className}'>${children || ''}</span>`
-  } else {
+    const title = title ? `title=${title}` : ''
+
+    if (props.renderAsImage) {
+      return `
+        <span class='${className}' ${title}>
+          <img
+            src='${transparentImage}'
+            style='${style}' 
+            alt='${props.emoji.id || props.emoji}'
+          />
+          ${children || ''}
+        </span>`
+    }
+
+    return `
+    <span style='${style}' ${title} class='${className}'>
+      ${children || ''}
+    </span>`
+  }
+
+  if (props.renderAsImage) {
     return (
       <span
         key={props.emoji.id || props.emoji}
@@ -163,10 +189,28 @@ const NimbleEmoji = (props) => {
         title={title}
         className={className}
       >
-        <span style={style}>{children}</span>
+        <img
+          alt={props.emoji.id || props.emoji}
+          src={transparentImage}
+          style={style}
+        />
+        {children}
       </span>
     )
   }
+
+  return (
+    <span
+      key={props.emoji.id || props.emoji}
+      onClick={(e) => _handleClick(e, props)}
+      onMouseEnter={(e) => _handleOver(e, props)}
+      onMouseLeave={(e) => _handleLeave(e, props)}
+      title={title}
+      className={className}
+    >
+      <span style={style}>{children}</span>
+    </span>
+  )
 }
 
 NimbleEmoji.propTypes = { ...EmojiPropTypes, data: PropTypes.object.isRequired }
