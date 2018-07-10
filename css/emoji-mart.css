@@ -138,6 +138,10 @@
   font-size: 0;
 }
 
+.emoji-mart-emoji-native {
+  font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Segoe UI", "Apple Color Emoji";
+}
+
 .emoji-mart-no-results {
   font-size: 14px;
   text-align: center;
