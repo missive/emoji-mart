@@ -151,6 +151,7 @@ export default class Category extends React.Component {
         emojiProps,
         i18n,
         notFound,
+        notFoundEmoji,
       } = this.props,
       emojis = this.getEmojis(),
       labelStyles = {},
@@ -199,6 +200,7 @@ export default class Category extends React.Component {
             <NotFound
               i18n={i18n}
               notFound={notFound}
+              notFoundEmoji={notFoundEmoji}
               data={this.data}
               emojiProps={emojiProps}
             />
@@ -217,6 +219,7 @@ Category.propTypes = {
   emojiProps: PropTypes.object.isRequired,
   recent: PropTypes.arrayOf(PropTypes.string),
   notFound: PropTypes.func,
+  notFoundEmoji: PropTypes.string.isRequired,
 }
 
 Category.defaultProps = {

@@ -36,6 +36,7 @@ storiesOf('Picker', module)
       perLine={number('Per line', 9)}
       title={text('Idle text', 'Your Title Here')}
       emoji={text('Idle emoji', 'department_store')}
+      notFoundEmoji={text('Not found emoji', 'sleuth_or_spy')}
       defaultSkin={number('Default skin tone', 1)}
       color={color('Highlight color', '#ae65c5')}
       showPreview={boolean('Show preview', true)}

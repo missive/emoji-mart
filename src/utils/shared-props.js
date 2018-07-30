@@ -72,6 +72,7 @@ const PickerPropTypes = {
     }),
   ),
   notFound: PropTypes.func,
+  notFoundEmoji: PropTypes.string,
 }
 
 const PickerDefaultProps = {
@@ -98,6 +99,7 @@ const PickerDefaultProps = {
   autoFocus: false,
   custom: [],
   notFound: () => {},
+  notFoundEmoji: 'sleuth_or_spy',
 }
 
 export {

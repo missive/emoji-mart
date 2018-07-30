@@ -4,7 +4,7 @@ import { NimbleEmoji } from '.'
 
 export default class NotFound extends React.PureComponent {
   render() {
-    const { data, emojiProps, i18n, notFound } = this.props
+    const { data, emojiProps, i18n, notFound, notFoundEmoji } = this.props
 
     const component = (notFound && notFound()) || (
       <div className="emoji-mart-no-results">
@@ -12,7 +12,7 @@ export default class NotFound extends React.PureComponent {
           data: data,
           ...emojiProps,
           size: 38,
-          emoji: 'sleuth_or_spy',
+          emoji: notFoundEmoji,
           onOver: null,
           onLeave: null,
           onClick: null,
@@ -27,9 +27,6 @@ export default class NotFound extends React.PureComponent {
 
 NotFound.propTypes = {
   notFound: PropTypes.func.isRequired,
+  notFoundString: PropTypes.string.isRequired,
   emojiProps: PropTypes.object.isRequired,
-}
-
-NotFound.defaultProps = {
-  notFound: () => {},
 }
