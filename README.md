@@ -50,6 +50,8 @@ import { Picker } from 'emoji-mart'
 | **defaultSkin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
 | **style** | | | Inline styles applied to the root element. Useful for positioning |
 | **title** | | `Emoji Mart™` | The title shown when no emojis are hovered |
+| **notFoundEmoji** | | `sleuth_or_spy` | The emoji shown when there are no search results |
+| **notFound** | | | [Not Found](#not-found) |
 
 #### I18n
 ```js
@@ -232,6 +234,17 @@ const customEmojis = [
 ]
 
 <Picker custom={customEmojis} />
+```
+
+## Not Found
+You can provide a custom Not Found object which will allow the appearance of the not found search results to change. In this case, we change the default 'sleuth_or_spy' emoji to Octocat when our search finds no results.
+
+```js
+import { Picker } from 'emoji-mart'
+
+const notFound = () => <img src='https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7' />
+
+<Picker notFound={notFound} />
 ```
 
 ## Headless search

@@ -36,12 +36,25 @@ storiesOf('Picker', module)
       perLine={number('Per line', 9)}
       title={text('Idle text', 'Your Title Here')}
       emoji={text('Idle emoji', 'department_store')}
+      notFoundEmoji={text('Not found emoji', 'sleuth_or_spy')}
       defaultSkin={number('Default skin tone', 1)}
       color={color('Highlight color', '#ae65c5')}
       showPreview={boolean('Show preview', true)}
       showSkinTones={boolean('Show skin tones', true)}
       custom={CUSTOM_EMOJIS}
-    />
+    />))
+    .add('with a custom not found image', () => (
+      <Picker
+        notFound={
+          () => <img src='https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7' />
+        }
+      />))
+      .add('with a custom not found SVG', () => (
+        <Picker
+          notFound={
+            () => <svg aria-labelledby="simpleicons-jira-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title id="simpleicons-jira-icon">Jira icon</title><path d="M23.323 11.33L13.001 1 12 0 4.225 7.775.67 11.33a.96.96 0 0 0 0 1.347l7.103 7.103L12 24l7.771-7.771.121-.121 3.431-3.431a.945.945 0 0 0 0-1.347zM12 15.551L8.449 12 12 8.453 15.548 12 12 15.551z"/></svg>
+          }
+        />
   ));
 
 storiesOf('Emoji', module)
