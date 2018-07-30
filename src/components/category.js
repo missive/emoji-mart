@@ -176,9 +176,7 @@ export default class Category extends React.Component {
     return (
       <div
         ref={this.setContainerRef}
-        className={`emoji-mart-category ${
-          emojis && !emojis.length ? 'emoji-mart-no-results' : ''
-        }`}
+        className="emoji-mart-category"
         style={containerStyles}
       >
         <div

@@ -6,8 +6,8 @@ export default class NotFound extends React.PureComponent {
   render() {
     const { data, emojiProps, i18n, notFound } = this.props
 
-    const imageComponent = (notFound && notFound()) || (
-      <div>
+    const component = (notFound && notFound()) || (
+      <div className="emoji-mart-no-results">
         {NimbleEmoji({
           data: data,
           ...emojiProps,
@@ -21,7 +21,7 @@ export default class NotFound extends React.PureComponent {
       </div>
     )
 
-    return <div className="emoji-mart-no-results">{imageComponent}</div>
+    return component
   }
 }
 
