@@ -67,8 +67,8 @@ storiesOf('Emoji', module)
       size={number('Emoji size', 64)}
       skin={number('Skin tone', 1)}
       html={boolean('HTML', false)}
-      fallback={(emoji) => {
-        return `:${emoji.short_names[0]}:`
+      fallback={(emoji, props) => {
+        return emoji ? `:${emoji.short_names[0]}:` : props.emoji
       }}
     />
   ));

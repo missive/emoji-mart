@@ -87,7 +87,11 @@ const NimbleEmoji = (props) => {
 
   let data = _getData(props)
   if (!data) {
-    return null
+    if (props.fallback) {
+      return props.fallback(null, props)
+    } else {
+      return null
+    }
   }
 
   let { unified, custom, short_names, imageUrl } = data,
@@ -97,7 +101,11 @@ const NimbleEmoji = (props) => {
     title = null
 
   if (!unified && !custom) {
-    return null
+    if (props.fallback) {
+      return props.fallback(data, props)
+    } else {
+      return null
+    }
   }
 
   if (props.tooltip) {
@@ -129,7 +137,7 @@ const NimbleEmoji = (props) => {
 
     if (!setHasEmoji) {
       if (props.fallback) {
-        return props.fallback(data)
+        return props.fallback(data, props)
       } else {
         return null
       }

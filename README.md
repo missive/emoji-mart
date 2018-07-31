@@ -160,7 +160,7 @@ import { Emoji } from 'emoji-mart'
 | **onClick** | | | Params: `(emoji, event) => {}` |
 | **onLeave** | | | Params: `(emoji, event) => {}` |
 | **onOver** | | | Params: `(emoji, event) => {}` |
-| [**fallback**](#unsupported-emojis-fallback) | | | Params: `(emoji) => {}` |
+| [**fallback**](#unsupported-emojis-fallback) | | | Params: `(emoji, props) => {}` |
 | **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'emojione'` |
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
 | **backgroundImageFn** | | ```((set, sheetSize) => `https://unpkg.com/emoji-datasource@3.0.0/sheet_${set}_${sheetSize}.png`)``` | A Fn that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
@@ -178,8 +178,8 @@ To have the component render `:shrug:` you would need to:
   set={'messenger'}
   emoji={'shrug'}
   size={24}
-  fallback={(emoji) => {
-    return `:${emoji.short_names[0]}:`
+  fallback={(emoji, props) => {
+    return emoji ? `:${emoji.short_names[0]}:` : props.emoji
   }}
 />
 ```
