@@ -3,7 +3,7 @@ var fs = require('fs'),
   inflection = require('inflection'),
   mkdirp = require('mkdirp')
 
-var { compress } = require('../src/utils/data')
+var { compress } = require('../dist/utils/data')
 
 var categories = [
   ['Smileys & People', 'people'],
