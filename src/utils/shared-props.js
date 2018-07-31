@@ -73,6 +73,7 @@ const PickerPropTypes = {
   ),
   notFound: PropTypes.func,
   notFoundEmoji: PropTypes.string,
+  icons: PropTypes.object,
 }
 
 const PickerDefaultProps = {
@@ -100,6 +101,7 @@ const PickerDefaultProps = {
   custom: [],
   notFound: () => {},
   notFoundEmoji: 'sleuth_or_spy',
+  icons: {},
 }
 
 export {

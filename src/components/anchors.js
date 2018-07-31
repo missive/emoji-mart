@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { categories as icons } from '../svgs'
-
 export default class Anchors extends React.PureComponent {
   constructor(props) {
     super(props)
@@ -26,7 +24,7 @@ export default class Anchors extends React.PureComponent {
   }
 
   render() {
-    var { categories, onAnchorClick, color, i18n } = this.props,
+    var { categories, color, i18n, icons } = this.props,
       { selected } = this.state
 
     return (
@@ -50,7 +48,9 @@ export default class Anchors extends React.PureComponent {
               }`}
               style={{ color: isSelected ? color : null }}
             >
-              <div dangerouslySetInnerHTML={{ __html: icons[id] }} />
+              <div className="emoji-mart-anchor-icon">
+                {icons.categories[id]()}
+              </div>
               <span
                 className="emoji-mart-anchor-bar"
                 style={{ backgroundColor: color }}
@@ -66,9 +66,11 @@ export default class Anchors extends React.PureComponent {
 Anchors.propTypes = {
   categories: PropTypes.array,
   onAnchorClick: PropTypes.func,
+  icons: PropTypes.object,
 }
 
 Anchors.defaultProps = {
   categories: [],
   onAnchorClick: () => {},
+  icons: {},
 }

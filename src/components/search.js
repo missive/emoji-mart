@@ -81,8 +81,9 @@ export default class Search extends React.PureComponent {
           onClick={this.clear}
           onKeyUp={this.handleKeyUp}
           disabled={!isSearching}
-          dangerouslySetInnerHTML={{ __html: icon }}
-        />
+        >
+          {icon()}
+        </button>
       </div>
     )
   }
