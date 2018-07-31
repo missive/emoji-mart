@@ -71,6 +71,8 @@ const PickerPropTypes = {
       imageUrl: PropTypes.string.isRequired,
     }),
   ),
+  notFound: PropTypes.func,
+  notFoundEmoji: PropTypes.string,
   icons: PropTypes.object,
 }
 
@@ -97,6 +99,8 @@ const PickerDefaultProps = {
   emojiTooltip: EmojiDefaultProps.tooltip,
   autoFocus: false,
   custom: [],
+  notFound: () => {},
+  notFoundEmoji: 'sleuth_or_spy',
   icons: {},
 }
 

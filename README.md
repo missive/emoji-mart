@@ -50,6 +50,8 @@ import { Picker } from 'emoji-mart'
 | **defaultSkin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
 | **style** | | | Inline styles applied to the root element. Useful for positioning |
 | **title** | | `Emoji Mart™` | The title shown when no emojis are hovered |
+| **notFoundEmoji** | | `sleuth_or_spy` | The emoji shown when there are no search results |
+| **notFound** | | | [Not Found](#not-found) |
 | **icons** | | `{}` | [Custom icons](#custom-icons) |
 
 #### I18n
@@ -159,7 +161,7 @@ import { Emoji } from 'emoji-mart'
 | **onClick** | | | Params: `(emoji, event) => {}` |
 | **onLeave** | | | Params: `(emoji, event) => {}` |
 | **onOver** | | | Params: `(emoji, event) => {}` |
-| [**fallback**](#unsupported-emojis-fallback) | | | Params: `(emoji) => {}` |
+| [**fallback**](#unsupported-emojis-fallback) | | | Params: `(emoji, props) => {}` |
 | **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'emojione'` |
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
 | **backgroundImageFn** | | ```((set, sheetSize) => `https://unpkg.com/emoji-datasource@3.0.0/sheet_${set}_${sheetSize}.png`)``` | A Fn that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
@@ -177,8 +179,8 @@ To have the component render `:shrug:` you would need to:
   set={'messenger'}
   emoji={'shrug'}
   size={24}
-  fallback={(emoji) => {
-    return `:${emoji.short_names[0]}:`
+  fallback={(emoji, props) => {
+    return emoji ? `:${emoji.short_names[0]}:` : props.emoji
   }}
 />
 ```
@@ -233,6 +235,17 @@ const customEmojis = [
 ]
 
 <Picker custom={customEmojis} />
+```
+
+## Not Found
+You can provide a custom Not Found object which will allow the appearance of the not found search results to change. In this case, we change the default 'sleuth_or_spy' emoji to Octocat when our search finds no results.
+
+```js
+import { Picker } from 'emoji-mart'
+
+const notFound = () => <img src='https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7' />
+
+<Picker notFound={notFound} />
 ```
 
 ## Custom icons

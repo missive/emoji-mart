@@ -3,7 +3,7 @@ import '../../vendor/raf-polyfill'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import SVGs from '../../svgs'
+import * as icons from '../../svgs'
 import store from '../../utils/store'
 import frequently from '../../utils/frequently'
 import { deepMerge, measureScrollbar } from '../../utils'
@@ -30,21 +30,6 @@ const I18N = {
   },
 }
 
-const toSVG = (val) => () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    dangerouslySetInnerHTML={{ __html: val }}
-  />
-)
-
-const ICON_FNS = {
-  categories: Object.keys(SVGs).reduce((acc, cur) => {
-    acc[cur] = toSVG(SVGs[cur])
-    return acc
-  }, {}),
-}
-
 export default class NimblePicker extends React.PureComponent {
   constructor(props) {
     super(props)
@@ -64,7 +49,7 @@ export default class NimblePicker extends React.PureComponent {
 
     this.data = props.data
     this.i18n = deepMerge(I18N, props.i18n)
-    this.icons = deepMerge(ICON_FNS, props.icons)
+    this.icons = deepMerge(icons, props.icons)
     this.state = {
       skin: props.skin || store.get('skin') || props.defaultSkin,
       firstRender: true,
@@ -484,6 +469,8 @@ export default class NimblePicker extends React.PureComponent {
         exclude,
         recent,
         autoFocus,
+        notFound,
+        notFoundEmoji,
       } = this.props,
       { skin } = this.state,
       width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
@@ -557,6 +544,8 @@ export default class NimblePicker extends React.PureComponent {
                   onLeave: this.handleEmojiLeave,
                   onClick: this.handleEmojiClick,
                 }}
+                notFound={notFound}
+                notFoundEmoji={notFoundEmoji}
               />
             )
           })}
