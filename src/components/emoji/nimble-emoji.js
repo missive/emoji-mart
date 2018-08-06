@@ -5,8 +5,6 @@ import { getData, getSanitizedData, unifiedToNative } from '../../utils'
 import { uncompress } from '../../utils/data'
 import { EmojiPropTypes, EmojiDefaultProps } from '../../utils/shared-props'
 
-const SHEET_COLUMNS = 52
-
 const _getData = (props) => {
   var { emoji, skin, set, data } = props
   return getData(emoji, skin, set, data)
@@ -14,9 +12,10 @@ const _getData = (props) => {
 
 const _getPosition = (props) => {
   var { sheet_x, sheet_y } = _getData(props),
-    multiply = 100 / (SHEET_COLUMNS - 1)
+    multiplyX = 100 / (props.sheetColumns - 1),
+    multiplyY = 100 / (props.sheetRows - 1)
 
-  return `${multiply * sheet_x}% ${multiply * sheet_y}%`
+  return `${multiplyX * sheet_x}% ${multiplyY * sheet_y}%`
 }
 
 const _getSanitizedData = (props) => {
@@ -150,7 +149,7 @@ const NimbleEmoji = (props) => {
           props.set,
           props.sheetSize,
         )})`,
-        backgroundSize: `${100 * SHEET_COLUMNS}%`,
+        backgroundSize: `${100 * props.sheetColumns}% ${100 * props.sheetRows}%`,
         backgroundPosition: _getPosition(props),
       }
     }
