@@ -32,7 +32,7 @@ const CUSTOM_EMOJIS = [
 
 storiesOf('Picker', module)
   .addDecorator(withKnobs)
-  .add('default', () => (
+  .add('Default', () => (
     <Picker
       onClick={action('clicked')}
       onSelect={action('selected')}
@@ -51,29 +51,16 @@ storiesOf('Picker', module)
       custom={CUSTOM_EMOJIS}
     />
   ))
-  .add('with a custom not found image', () => (
+
+  .add('Custom “Not found” component', () => (
     <Picker
       notFound={() => (
         <img src="https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7" />
       )}
     />
   ))
-  .add('with a custom not found SVG', () => (
-    <Picker
-      notFound={() => (
-        <svg
-          aria-labelledby="simpleicons-jira-icon"
-          role="img"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <title id="simpleicons-jira-icon">Jira icon</title>
-          <path d="M23.323 11.33L13.001 1 12 0 4.225 7.775.67 11.33a.96.96 0 0 0 0 1.347l7.103 7.103L12 24l7.771-7.771.121-.121 3.431-3.431a.945.945 0 0 0 0-1.347zM12 15.551L8.449 12 12 8.453 15.548 12 12 15.551z" />
-        </svg>
-      )}
-    />
-  ))
-  .add('with-custom-icons', () => (
+
+  .add('Custom category icons', () => (
     <Picker
       custom={CUSTOM_EMOJIS}
       icons={{
@@ -181,9 +168,17 @@ storiesOf('Picker', module)
     />
   ))
 
+  .add('Custom skin emoji', () => (
+    <Picker
+      native={boolean('Unicode', true)}
+      emojiSize={24}
+      skinEmoji={text('Skin Preview Icon', 'v')}
+    />
+  ))
+
 storiesOf('Emoji', module)
   .addDecorator(withKnobs)
-  .add('default', () => (
+  .add('Default', () => (
     <Emoji
       native={boolean('Unicode', true)}
       set={select('Emoji pack', SETS, SETS[0])}
@@ -199,7 +194,7 @@ storiesOf('Emoji', module)
 
 storiesOf('Headless Search', module)
   .addDecorator(withKnobs)
-  .add('default', () => {
+  .add('Default', () => {
     let results = emojiIndex.search(text('Search', 'christmas'), {
       custom: CUSTOM_EMOJIS,
     })

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { getData } from '../utils'
-import { NimbleEmoji, Skins } from '.'
+import { NimbleEmoji, SkinsEmoji, SkinsDot } from '.'
 
 export default class Preview extends React.PureComponent {
   constructor(props) {
@@ -20,6 +20,7 @@ export default class Preview extends React.PureComponent {
         showSkinTones,
         title,
         emoji: idleEmoji,
+        i18n,
       } = this.props
 
     if (emoji) {
@@ -81,8 +82,27 @@ export default class Preview extends React.PureComponent {
           </div>
 
           {showSkinTones && (
-            <div className="emoji-mart-preview-skins">
-              <Skins {...skinsProps} />
+            <div
+              className={`emoji-mart-preview-skins${
+                skinsProps.skinEmoji ? ' custom' : ''
+              }`}
+            >
+              {skinsProps.skinEmoji ? (
+                <SkinsEmoji
+                  skin={skinsProps.skin}
+                  emojiProps={emojiProps}
+                  data={this.data}
+                  skinEmoji={skinsProps.skinEmoji}
+                  i18n={i18n}
+                  onChange={skinsProps.onChange}
+                />
+              ) : (
+                <SkinsDot
+                  skin={skinsProps.skin}
+                  i18n={i18n}
+                  onChange={skinsProps.onChange}
+                />
+              )}
             </div>
           )}
         </div>

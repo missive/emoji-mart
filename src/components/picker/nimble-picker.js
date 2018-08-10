@@ -15,6 +15,7 @@ import { Anchors, Category, Preview, Search } from '..'
 const I18N = {
   search: 'Search',
   notfound: 'No Emoji Found',
+  skintext: 'Choose your default skin tone',
   categories: {
     search: 'Search Results',
     recent: 'Frequently Used',
@@ -471,6 +472,7 @@ export default class NimblePicker extends React.PureComponent {
         exclude,
         recent,
         autoFocus,
+        skinEmoji,
         notFound,
         notFoundEmoji,
       } = this.props,
@@ -574,7 +576,9 @@ export default class NimblePicker extends React.PureComponent {
               skinsProps={{
                 skin: skin,
                 onChange: this.handleSkinChange,
+                skinEmoji: skinEmoji,
               }}
+              i18n={this.i18n}
             />
           </div>
         )}

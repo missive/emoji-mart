@@ -1,15 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { NimbleEmoji } from '.'
+
 export default class Skins extends React.PureComponent {
   constructor(props) {
     super(props)
-
     this.state = {
       opened: false,
     }
-
-    this.handleClick = this.handleClick.bind(this)
   }
 
   handleClick(e) {
@@ -27,42 +26,7 @@ export default class Skins extends React.PureComponent {
   }
 
   render() {
-    const { skin } = this.props
-    const { opened } = this.state
-
-    const skinToneNodes = []
-
-    for (let i = 0; i < 6; i++) {
-      const skinTone = i + 1
-      const selected = skinTone == skin
-
-      skinToneNodes.push(
-        <span
-          key={`skin-tone-${skinTone}`}
-          className={`emoji-mart-skin-swatch ${
-            selected ? 'emoji-mart-skin-swatch-selected' : ''
-          }`}
-        >
-          <span
-            onClick={this.handleClick}
-            data-skin={skinTone}
-            className={`emoji-mart-skin emoji-mart-skin-tone-${skinTone}`}
-          />
-        </span>,
-      )
-    }
-
-    return (
-      <div>
-        <div
-          className={`emoji-mart-skin-swatches ${
-            opened ? 'emoji-mart-skin-swatches-opened' : ''
-          }`}
-        >
-          {skinToneNodes}
-        </div>
-      </div>
-    )
+    return null
   }
 }
 
