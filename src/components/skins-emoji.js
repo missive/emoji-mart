@@ -11,7 +11,7 @@ export default class SkinsEmoji extends Skins {
   }
 
   render() {
-    const { skin, emojiProps, data, skinIcon, i18n } = this.props
+    const { skin, emojiProps, data, skinEmoji, i18n } = this.props
     const { opened } = this.state
     const skinToneNodes = []
 
@@ -30,7 +30,7 @@ export default class SkinsEmoji extends Skins {
             className={`emoji-mart-skin-tone-${skinTone}`}
           >
             {NimbleEmoji({
-              emoji: skinIcon,
+              emoji: skinEmoji,
               data: data,
               skin: skinTone,
               backgroundImageFn: emojiProps.backgroundImageFn,
@@ -62,7 +62,7 @@ SkinsEmoji.propTypes = {
   skin: PropTypes.number.isRequired,
   emojiProps: PropTypes.object.isRequired,
   skinTone: PropTypes.number,
-  skinIcon: PropTypes.string.isRequired,
+  skinEmoji: PropTypes.string.isRequired,
   i18n: PropTypes.object,
 }
 

@@ -472,7 +472,7 @@ export default class NimblePicker extends React.PureComponent {
         exclude,
         recent,
         autoFocus,
-        skinIcon,
+        skinEmoji,
         notFound,
         notFoundEmoji,
       } = this.props,
@@ -576,7 +576,7 @@ export default class NimblePicker extends React.PureComponent {
               skinsProps={{
                 skin: skin,
                 onChange: this.handleSkinChange,
-                skinIcon: skinIcon,
+                skinEmoji: skinEmoji,
               }}
               i18n={this.i18n}
             />

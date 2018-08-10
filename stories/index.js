@@ -184,7 +184,7 @@ storiesOf('Picker', module)
     <Picker
       native={boolean('Unicode', true)}
       emojiSize={24}
-      skinIcon={text('Skin Preview Icon', 'v')}
+      skinEmoji={text('Skin Preview Icon', 'v')}
     />
   ))
 
