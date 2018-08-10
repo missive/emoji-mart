@@ -72,9 +72,11 @@
   max-width: 22px;
 }
 
-.emoji-mart-anchors svg {
+.emoji-mart-anchors svg,
+.emoji-mart-anchors img {
   fill: currentColor;
-  max-height: 18px;
+  height: 18px;
+  width: 18px;
 }
 
 .emoji-mart-scroll {
@@ -87,15 +89,27 @@
 .emoji-mart-search {
   margin-top: 6px;
   padding: 0 6px;
+  position: relative;
 }
+
 .emoji-mart-search input {
   font-size: 16px;
   display: block;
   width: 100%;
-  padding: .2em .6em;
-  border-radius: 25px;
+  padding: 5px 25px 6px 10px;
+  border-radius: 5px;
   border: 1px solid #d9d9d9;
   outline: 0;
+}
+
+.emoji-mart-search-icon {
+  position: absolute;
+  top: 9px;
+  right: 16px;
+  z-index: 2;
+  padding: 0;
+  border: none;
+  background: none;
 }
 
 .emoji-mart-category .emoji-mart-emoji span {
@@ -138,11 +152,21 @@
   font-size: 0;
 }
 
+.emoji-mart-emoji-native {
+  font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Segoe UI", "Apple Color Emoji";
+}
+
 .emoji-mart-no-results {
   font-size: 14px;
   text-align: center;
   padding-top: 70px;
   color: #858585;
+}
+.emoji-mart-no-results-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 .emoji-mart-no-results .emoji-mart-category-label {
   display: none;

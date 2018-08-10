@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import frequently from '../utils/frequently'
 import { getData } from '../utils'
-import { NimbleEmoji } from '.'
+import { NimbleEmoji, NotFound } from '.'
 
 export default class Category extends React.Component {
   constructor(props) {
@@ -144,7 +144,15 @@ export default class Category extends React.Component {
   }
 
   render() {
-    var { id, name, hasStickyPosition, emojiProps, i18n } = this.props,
+    var {
+        id,
+        name,
+        hasStickyPosition,
+        emojiProps,
+        i18n,
+        notFound,
+        notFoundEmoji,
+      } = this.props,
       emojis = this.getEmojis(),
       labelStyles = {},
       labelSpanStyles = {},
@@ -169,9 +177,7 @@ export default class Category extends React.Component {
     return (
       <div
         ref={this.setContainerRef}
-        className={`emoji-mart-category ${
-          emojis && !emojis.length ? 'emoji-mart-no-results' : ''
-        }`}
+        className="emoji-mart-category"
         style={containerStyles}
       >
         <div
@@ -191,21 +197,13 @@ export default class Category extends React.Component {
 
         {emojis &&
           !emojis.length && (
-            <div>
-              <div>
-                {NimbleEmoji({
-                  data: this.data,
-                  ...emojiProps,
-                  size: 38,
-                  emoji: 'sleuth_or_spy',
-                  onOver: null,
-                  onLeave: null,
-                  onClick: null,
-                })}
-              </div>
-
-              <div className="emoji-mart-no-results-label">{i18n.notfound}</div>
-            </div>
+            <NotFound
+              i18n={i18n}
+              notFound={notFound}
+              notFoundEmoji={notFoundEmoji}
+              data={this.data}
+              emojiProps={emojiProps}
+            />
           )}
       </div>
     )
@@ -220,6 +218,8 @@ Category.propTypes = {
   perLine: PropTypes.number.isRequired,
   emojiProps: PropTypes.object.isRequired,
   recent: PropTypes.arrayOf(PropTypes.string),
+  notFound: PropTypes.func,
+  notFoundEmoji: PropTypes.string.isRequired,
 }
 
 Category.defaultProps = {

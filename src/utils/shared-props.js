@@ -12,6 +12,8 @@ const EmojiPropTypes = {
   tooltip: PropTypes.bool,
   skin: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   sheetSize: PropTypes.oneOf([16, 20, 32, 64]),
+  sheetColumns: PropTypes.number,
+  sheetRows: PropTypes.number,
   set: PropTypes.oneOf([
     'apple',
     'google',
@@ -28,6 +30,8 @@ const EmojiDefaultProps = {
   skin: 1,
   set: 'apple',
   sheetSize: 64,
+  sheetColumns: 52,
+  sheetRows: 52,
   native: false,
   forceSize: false,
   tooltip: false,
@@ -72,6 +76,9 @@ const PickerPropTypes = {
     }),
   ),
   skinIcon: PropTypes.string,
+  notFound: PropTypes.func,
+  notFoundEmoji: PropTypes.string,
+  icons: PropTypes.object,
 }
 
 const PickerDefaultProps = {
@@ -98,6 +105,9 @@ const PickerDefaultProps = {
   autoFocus: false,
   custom: [],
   skinIcon: '',
+  notFound: () => {},
+  notFoundEmoji: 'sleuth_or_spy',
+  icons: {},
 }
 
 export {
