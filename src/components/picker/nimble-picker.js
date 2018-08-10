@@ -14,7 +14,7 @@ import { Anchors, Category, Preview, Search } from '..'
 const I18N = {
   search: 'Search',
   notfound: 'No Emoji Found',
-  skintext: 'Choose your default skin tone ',
+  skintext: 'Choose your default skin tone',
   categories: {
     search: 'Search Results',
     recent: 'Frequently Used',
