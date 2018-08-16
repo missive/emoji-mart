@@ -3097,6 +3097,8 @@ var NimblePicker = function (_React$PureComponent) {
               skin: skin,
               set: set,
               sheetSize: sheetSize,
+              sheetColumns: sheetColumns,
+              sheetRows: sheetRows,
               backgroundImageFn: backgroundImageFn
             },
             skinsProps: {
