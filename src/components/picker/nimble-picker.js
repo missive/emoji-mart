@@ -571,6 +571,8 @@ export default class NimblePicker extends React.PureComponent {
                 skin: skin,
                 set: set,
                 sheetSize: sheetSize,
+                sheetColumns: sheetColumns,
+                sheetRows: sheetRows,
                 backgroundImageFn: backgroundImageFn,
               }}
               skinsProps={{
