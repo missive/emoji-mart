@@ -39,6 +39,7 @@ export default class Anchors extends React.PureComponent {
 
           return (
             <span
+              tabIndex={0}
               key={id}
               title={i18n.categories[id]}
               data-index={i}
