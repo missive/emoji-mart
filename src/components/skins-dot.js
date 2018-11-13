@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Skins } from '.'
+import Skins from './skins'
 
 export default class SkinsDot extends Skins {
   constructor(props) {

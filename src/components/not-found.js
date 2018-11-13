@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { NimbleEmoji } from '.'
+
+import NimbleEmoji from './emoji/nimble-emoji'
 
 export default class NotFound extends React.PureComponent {
   render() {

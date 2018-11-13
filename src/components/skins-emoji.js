@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { NimbleEmoji, Skins } from '.'
+import NimbleEmoji from './emoji/nimble-emoji'
+import Skins from './skins'
 
 export default class SkinsEmoji extends Skins {
   constructor(props) {
