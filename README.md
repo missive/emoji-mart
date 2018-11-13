@@ -137,7 +137,7 @@ import { NimblePicker } from 'emoji-mart'
 {
   id: 'octocat',
   name: 'Octocat',
-  colons: ':octocat',
+  colons: ':octocat:',
   text: '',
   emoticons: [],
   custom: true,
