@@ -35,11 +35,13 @@
         font-family: Courier;
       }
 
-      .row + .row {
+      .row + .row,
+      .row-small + .row {
         margin-top: 2em;
       }
 
-      .row-small {
+      .row + .row-small,
+      .row-small + .row-small {
         margin-top: 1em;
       }
 
@@ -51,9 +53,21 @@
         font-size: 21px;
       }
     </style>
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
   </head>
   <body>
-    <div></div>
+    <div class="row" id="picker"></div>
+
+    <div class="row-small">
+      <a class="github-button" href="https://github.com/missive/emoji-mart" data-size="large" data-show-count="true" aria-label="Star missive/emoji-mart on GitHub">Star</a>
+    </div>
+
+    <div class="row">
+      <a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com"><img width="30" alt="Missive | Team email, team chat, team tasks, one app" src="https://user-images.githubusercontent.com/436043/32532559-0d15ddfc-c400-11e7-8a24-64d0157d0cb0.png"></a>
+      <br>Brought to you by the <a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com">Missive</a> team
+    </div>
+
     <script src="./bundle.js"></script>
   </body>
 </html>

@@ -72,18 +72,8 @@ class Example extends React.Component {
           onSelect={console.log}
         />
       </div>
-
-      <div className="row-small">
-        <iframe
-          src='https://ghbtns.com/github-btn.html?user=missive&repo=emoji-mart&type=star&count=true'
-          frameBorder='0'
-          scrolling='0'
-          width='90px'
-          height='20px'
-        ></iframe>
-      </div>
     </div>
   }
 }
 
-ReactDOM.render(<Example />, document.querySelector('div'))
+ReactDOM.render(<Example />, document.querySelector('#picker'))
