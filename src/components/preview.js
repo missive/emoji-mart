@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { getData } from '../utils'
-import { NimbleEmoji, SkinsEmoji, SkinsDot } from '.'
+import NimbleEmoji from './emoji/nimble-emoji'
+import SkinsEmoji from './skins-emoji'
+import SkinsDot from './skins-dot'
 
 export default class Preview extends React.PureComponent {
   constructor(props) {
