@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 
 import frequently from '../utils/frequently'
 import { getData } from '../utils'
-import { NimbleEmoji, NotFound } from '.'
+import NimbleEmoji from './emoji/nimble-emoji'
+import NotFound from './not-found'
 
 export default class Category extends React.Component {
   constructor(props) {
