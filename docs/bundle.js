@@ -24426,7 +24426,6 @@ var Anchors = function (_React$PureComponent) {
           return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
             'span',
             {
-              tabIndex: 0,
               key: id,
               title: i18n.categories[id],
               'data-index': i,
