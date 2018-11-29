@@ -294,6 +294,19 @@ let emojiData = getEmojiDataFromNative('🏊🏽‍♀️', 'apple', data)
 />
 ```
 
+#### Example of `emojiData` object:
+```js
+emojiData: {
+  "id": "woman-swimming",
+  "name": "Woman Swimming",
+  "colons": ":woman-swimming::skin-tone-4:",
+  "emoticons": [],
+  "unified": "1f3ca-1f3fd-200d-2640-fe0f",
+  "skin": 4,
+  "native": "🏊🏽‍♀️"
+}
+```
+
 ### With custom data
 ```js
 import data from 'emoji-mart/datasets/messenger'
