@@ -2,6 +2,7 @@ export { default as emojiIndex } from './utils/emoji-index/emoji-index'
 export { default as NimbleEmojiIndex } from './utils/emoji-index/nimble-emoji-index'
 export { default as store } from './utils/store'
 export { default as frequently } from './utils/frequently'
+export { getEmojiDataFromNative } from './utils'
 
 export { default as Picker } from './components/picker/picker'
 export { default as NimblePicker } from './components/picker/nimble-picker'

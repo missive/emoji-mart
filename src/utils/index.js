@@ -1,5 +1,6 @@
 import { buildSearch } from './data'
 import stringFromCodePoint from '../polyfills/stringFromCodePoint'
+import { uncompress } from './data'
 
 const _JSON = JSON
 
@@ -134,6 +135,40 @@ function getData(emoji, skin, set, data) {
   return emojiData
 }
 
+function getEmojiDataFromNative(nativeString, set, data) {
+    if (data.compressed) {
+        uncompress(data);
+    }
+
+    const skinTones = ['', '🏻', '🏼', '🏽', '🏾', '🏿']
+
+    let skin
+    let baseNativeString = nativeString
+
+    skinTones.forEach((skinTone) => {
+        baseNativeString = baseNativeString.replace(skinTone, '')
+        if (nativeString.indexOf(skinTone) > 0) {
+            skin = skinTones.indexOf(skinTone) + 1
+        }
+    })
+
+    const emojiData = Object.values(data.emojis).find((emoji) => {
+        if (emoji.variations && emoji.variations.length) {
+            emoji.unifed = emoji.variations.shift()
+        }
+
+        return unifiedToNative(emoji.unified) === baseNativeString
+    })
+
+    if (!emojiData) {
+        return null
+    }
+
+    emojiData.id = emojiData.short_names[0]
+
+    return getSanitizedData(emojiData, skin, set, data)
+}
+
 function uniq(arr) {
   return arr.reduce((acc, item) => {
     if (acc.indexOf(item) === -1) {
@@ -191,6 +226,7 @@ function measureScrollbar() {
 
 export {
   getData,
+  getEmojiDataFromNative,
   getSanitizedData,
   uniq,
   intersect,
