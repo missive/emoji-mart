@@ -220,14 +220,14 @@ storiesOf('Get emoji data from Native', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
     let emojiData = getEmojiDataFromNative(
-      text('Unicode', '🤾🏽‍♂️'),
+      text('Unicode', '🏊🏽‍♀️'),
       select('Emoji pack', SETS, SETS[0]),
       data
     )
     if (!emojiData) {
       return (
         <div>
-          Couldn't find emojiData from native string...
+          Couldn`t find any emoji data...
         </div>
       )
     }
@@ -235,7 +235,7 @@ storiesOf('Get emoji data from Native', module)
     return (
       <div>
         <Emoji
-          skin={emojiData.skin || null}
+          skin={emojiData.skin || 0}
           set={select('Emoji pack', SETS, SETS[0])}
           emoji={emojiData}
           size={48}

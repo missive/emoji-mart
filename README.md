@@ -287,7 +287,7 @@ import data from 'emoji-mart/data/all.json'
 let emojiData = getEmojiDataFromNative('🤾🏽‍♂️', 'apple', data)
 
 <Emoji
-  skin={emojiData.skin || null}
+  skin={emojiData.skin || 0}
   set={select('Emoji pack', SETS, SETS[0])}
   emoji={emojiData}
   size={48}
