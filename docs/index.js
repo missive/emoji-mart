@@ -22,6 +22,17 @@ const CUSTOM_EMOJIS = [
     keywords: ['github'],
     imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/shipit.png?v7'
   },
+  {
+    name: 'Test Flag',
+    short_names: ['test'],
+    keywords: ['test', 'flag'],
+    spriteUrl: 'https://unpkg.com/emoji-datasource-twitter@4.0.4/img/twitter/sheets-256/64.png',
+    sheet_x: 1,
+    sheet_y: 1,
+    size: 64,
+    sheetColumns: 52,
+    sheetRows: 52,
+  },
 ]
 
 class Example extends React.Component {
