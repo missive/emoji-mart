@@ -127,8 +127,21 @@ const NimbleEmoji = (props) => {
       width: props.size,
       height: props.size,
       display: 'inline-block',
-      backgroundImage: `url(${imageUrl})`,
-      backgroundSize: 'contain',
+    }
+    if (data.spriteUrl) {
+      style = {
+        ...style,
+        backgroundImage: `url(${data.spriteUrl})`,
+        backgroundSize: `${100 * props.sheetColumns}% ${100 *
+          props.sheetRows}%`,
+        backgroundPosition: _getPosition(props),
+      }
+    } else {
+      style = {
+        ...style,
+        backgroundImage: `url(${imageUrl})`,
+        backgroundSize: 'contain',
+      }
     }
   } else {
     let setHasEmoji =
@@ -149,7 +162,8 @@ const NimbleEmoji = (props) => {
           props.set,
           props.sheetSize,
         )})`,
-        backgroundSize: `${100 * props.sheetColumns}% ${100 * props.sheetRows}%`,
+        backgroundSize: `${100 * props.sheetColumns}% ${100 *
+          props.sheetRows}%`,
         backgroundPosition: _getPosition(props),
       }
     }

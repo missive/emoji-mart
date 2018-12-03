@@ -412,6 +412,27 @@ process.umask = function() { return 0; };
 
 /***/ }),
 /* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var _Object = Object;
+
+/* harmony default export */ __webpack_exports__["a"] = (_Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+});
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -451,27 +472,6 @@ emptyFunction.thatReturnsArgument = function (arg) {
 };
 
 module.exports = emptyFunction;
-
-/***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var _Object = Object;
-
-/* harmony default export */ __webpack_exports__["a"] = (_Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-});
 
 /***/ }),
 /* 10 */
@@ -538,13 +538,15 @@ module.exports = invariant;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_data__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_shared_props__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_extends__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_data__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_shared_props__ = __webpack_require__(17);
+
 
 
 
@@ -558,7 +560,7 @@ var _getData = function _getData(props) {
   var set = props.set;
   var data = props.data;
 
-  return Object(__WEBPACK_IMPORTED_MODULE_2__utils__["b" /* getData */])(emoji, skin, set, data);
+  return Object(__WEBPACK_IMPORTED_MODULE_3__utils__["b" /* getData */])(emoji, skin, set, data);
 };
 
 var _getPosition = function _getPosition(props) {
@@ -578,7 +580,7 @@ var _getSanitizedData = function _getSanitizedData(props) {
   var set = props.set;
   var data = props.data;
 
-  return Object(__WEBPACK_IMPORTED_MODULE_2__utils__["c" /* getSanitizedData */])(emoji, skin, set, data);
+  return Object(__WEBPACK_IMPORTED_MODULE_3__utils__["c" /* getSanitizedData */])(emoji, skin, set, data);
 };
 
 var _handleClick = function _handleClick(e, props) {
@@ -633,7 +635,7 @@ var _convertStyleToCSS = function _convertStyleToCSS(style) {
 
 var NimbleEmoji = function NimbleEmoji(props) {
   if (props.data.compressed) {
-    Object(__WEBPACK_IMPORTED_MODULE_3__utils_data__["b" /* uncompress */])(props.data);
+    Object(__WEBPACK_IMPORTED_MODULE_4__utils_data__["b" /* uncompress */])(props.data);
   }
 
   for (var k in NimbleEmoji.defaultProps) {
@@ -675,7 +677,7 @@ var NimbleEmoji = function NimbleEmoji(props) {
   if (props.native && unified) {
     className += ' emoji-mart-emoji-native';
     style = { fontSize: props.size };
-    children = Object(__WEBPACK_IMPORTED_MODULE_2__utils__["f" /* unifiedToNative */])(unified);
+    children = Object(__WEBPACK_IMPORTED_MODULE_3__utils__["f" /* unifiedToNative */])(unified);
 
     if (props.forceSize) {
       style.display = 'inline-block';
@@ -687,10 +689,20 @@ var NimbleEmoji = function NimbleEmoji(props) {
     style = {
       width: props.size,
       height: props.size,
-      display: 'inline-block',
-      backgroundImage: 'url(' + imageUrl + ')',
-      backgroundSize: 'contain'
+      display: 'inline-block'
     };
+    if (data.spriteUrl) {
+      style = Object(__WEBPACK_IMPORTED_MODULE_0__polyfills_extends__["a" /* default */])({}, style, {
+        backgroundImage: 'url(' + data.spriteUrl + ')',
+        backgroundSize: 100 * props.sheetColumns + '% ' + 100 * props.sheetRows + '%',
+        backgroundPosition: _getPosition(props)
+      });
+    } else {
+      style = Object(__WEBPACK_IMPORTED_MODULE_0__polyfills_extends__["a" /* default */])({}, style, {
+        backgroundImage: 'url(' + imageUrl + ')',
+        backgroundSize: 'contain'
+      });
+    }
   } else {
     var setHasEmoji = data['has_img_' + props.set] == undefined || data['has_img_' + props.set];
 
@@ -716,7 +728,7 @@ var NimbleEmoji = function NimbleEmoji(props) {
     style = _convertStyleToCSS(style);
     return '<span style=\'' + style + '\' ' + (title ? 'title=\'' + title + '\'' : '') + ' class=\'' + className + '\'>' + (children || '') + '</span>';
   } else {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+    return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
       'span',
       {
         key: props.emoji.id || props.emoji,
@@ -732,7 +744,7 @@ var NimbleEmoji = function NimbleEmoji(props) {
         title: title,
         className: className
       },
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
         'span',
         { style: style },
         children
@@ -741,7 +753,7 @@ var NimbleEmoji = function NimbleEmoji(props) {
   }
 };
 
-NimbleEmoji.defaultProps = __WEBPACK_IMPORTED_MODULE_4__utils_shared_props__["a" /* EmojiDefaultProps */];
+NimbleEmoji.defaultProps = __WEBPACK_IMPORTED_MODULE_5__utils_shared_props__["a" /* EmojiDefaultProps */];
 
 /* harmony default export */ __webpack_exports__["a"] = (NimbleEmoji);
 
@@ -1090,7 +1102,7 @@ module.exports = emptyObject;
 
 
 
-var emptyFunction = __webpack_require__(8);
+var emptyFunction = __webpack_require__(9);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -1945,7 +1957,7 @@ function get(perLine) {
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(8);
+var emptyFunction = __webpack_require__(9);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -2236,7 +2248,7 @@ module.exports = function (it) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_extends__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_extends__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polyfills_objectGetPrototypeOf__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__);
@@ -3087,7 +3099,7 @@ var search = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_extends__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_extends__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polyfills_objectGetPrototypeOf__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__);
@@ -3440,7 +3452,7 @@ Skins.defaultProps = {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_polyfills_extends__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_polyfills_extends__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_polyfills_objectGetPrototypeOf__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__);
@@ -3478,6 +3490,16 @@ var CUSTOM_EMOJIS = [{
   short_names: ['shipit', 'squirrel'],
   keywords: ['github'],
   imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/shipit.png?v7'
+}, {
+  name: 'Test Flag',
+  short_names: ['test'],
+  keywords: ['test', 'flag'],
+  spriteUrl: 'https://unpkg.com/emoji-datasource-twitter@4.0.4/img/twitter/sheets-256/64.png',
+  sheet_x: 1,
+  sheet_y: 1,
+  size: 64,
+  sheetColumns: 52,
+  sheetRows: 52
 }];
 
 var Example = function (_React$Component) {
@@ -3572,7 +3594,7 @@ __WEBPACK_IMPORTED_MODULE_7_react_dom___default.a.render(__WEBPACK_IMPORTED_MODU
  This source code is licensed under the MIT license found in the
  LICENSE file in the root directory of this source tree.
 */
-var f=__webpack_require__(12),p=__webpack_require__(14);__webpack_require__(10);var r=__webpack_require__(8);
+var f=__webpack_require__(12),p=__webpack_require__(14);__webpack_require__(10);var r=__webpack_require__(9);
 function t(a){for(var b=arguments.length-1,d="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,e=0;e<b;e++)d+="\x26args[]\x3d"+encodeURIComponent(arguments[e+1]);b=Error(d+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var u={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function v(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}v.prototype.isReactComponent={};v.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?t("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};v.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function w(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}function x(){}x.prototype=v.prototype;var y=w.prototype=new x;y.constructor=w;f(y,v.prototype);y.isPureReactComponent=!0;function z(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}var A=z.prototype=new x;A.constructor=z;f(A,v.prototype);A.unstable_isAsyncReactComponent=!0;A.render=function(){return this.props.children};
@@ -3613,7 +3635,7 @@ var objectAssign$1 = __webpack_require__(12);
 var require$$0 = __webpack_require__(15);
 var emptyObject = __webpack_require__(14);
 var invariant = __webpack_require__(10);
-var emptyFunction = __webpack_require__(8);
+var emptyFunction = __webpack_require__(9);
 var checkPropTypes = __webpack_require__(18);
 
 /**
@@ -5355,7 +5377,7 @@ if (process.env.NODE_ENV === 'production') {
  LICENSE file in the root directory of this source tree.
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(0);__webpack_require__(10);var l=__webpack_require__(20),n=__webpack_require__(12),ba=__webpack_require__(30),ca=__webpack_require__(8),da=__webpack_require__(14),ea=__webpack_require__(31),fa=__webpack_require__(32),ha=__webpack_require__(33),ia=__webpack_require__(34);
+var aa=__webpack_require__(0);__webpack_require__(10);var l=__webpack_require__(20),n=__webpack_require__(12),ba=__webpack_require__(30),ca=__webpack_require__(9),da=__webpack_require__(14),ea=__webpack_require__(31),fa=__webpack_require__(32),ha=__webpack_require__(33),ia=__webpack_require__(34);
 function w(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:w("227");
 function ja(a){switch(a){case "svg":return"http://www.w3.org/2000/svg";case "math":return"http://www.w3.org/1998/Math/MathML";default:return"http://www.w3.org/1999/xhtml"}}
 var ka={Namespaces:{html:"http://www.w3.org/1999/xhtml",mathml:"http://www.w3.org/1998/Math/MathML",svg:"http://www.w3.org/2000/svg"},getIntrinsicNamespace:ja,getChildNamespace:function(a,b){return null==a||"http://www.w3.org/1999/xhtml"===a?ja(b):"http://www.w3.org/2000/svg"===a&&"foreignObject"===b?"http://www.w3.org/1999/xhtml":a}},la=null,oa={};
@@ -5687,7 +5709,7 @@ var _assign = __webpack_require__(12);
 var EventListener = __webpack_require__(30);
 var require$$0 = __webpack_require__(15);
 var hyphenateStyleName = __webpack_require__(50);
-var emptyFunction = __webpack_require__(8);
+var emptyFunction = __webpack_require__(9);
 var camelizeStyleName = __webpack_require__(52);
 var performanceNow = __webpack_require__(54);
 var propTypes = __webpack_require__(3);
@@ -23121,7 +23143,7 @@ module.exports = performance || {};
 
 
 
-var emptyFunction = __webpack_require__(8);
+var emptyFunction = __webpack_require__(9);
 var invariant = __webpack_require__(10);
 var warning = __webpack_require__(15);
 var assign = __webpack_require__(12);
@@ -23671,7 +23693,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
 
 
-var emptyFunction = __webpack_require__(8);
+var emptyFunction = __webpack_require__(9);
 var invariant = __webpack_require__(10);
 var ReactPropTypesSecret = __webpack_require__(19);
 
@@ -24256,7 +24278,7 @@ var _String = String;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_extends__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_extends__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polyfills_objectGetPrototypeOf__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__);
@@ -24465,7 +24487,7 @@ Anchors.defaultProps = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_extends__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_extends__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polyfills_objectGetPrototypeOf__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__);
@@ -24541,7 +24563,7 @@ var NotFound = function (_React$PureComponent) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_extends__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_extends__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polyfills_objectGetPrototypeOf__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__);
@@ -25061,7 +25083,7 @@ Search.defaultProps = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_extends__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polyfills_extends__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_all_json__ = __webpack_require__(21);
