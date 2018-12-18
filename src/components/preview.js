@@ -113,7 +113,7 @@ export default class Preview extends React.PureComponent {
   }
 }
 
-Preview.propTypes = {
+Preview.propTypes /* remove-proptypes */ = {
   showSkinTones: PropTypes.bool,
   title: PropTypes.string.isRequired,
   emoji: PropTypes.string.isRequired,

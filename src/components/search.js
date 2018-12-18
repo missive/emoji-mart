@@ -89,7 +89,7 @@ export default class Search extends React.PureComponent {
   }
 }
 
-Search.propTypes = {
+Search.propTypes /* remove-proptypes */ = {
   onSearch: PropTypes.func,
   maxResults: PropTypes.number,
   emojisToShowFilter: PropTypes.func,

@@ -26,7 +26,7 @@ export default class NotFound extends React.PureComponent {
   }
 }
 
-NotFound.propTypes = {
+NotFound.propTypes /* remove-proptypes */ = {
   notFound: PropTypes.func.isRequired,
   notFoundString: PropTypes.string.isRequired,
   emojiProps: PropTypes.object.isRequired,

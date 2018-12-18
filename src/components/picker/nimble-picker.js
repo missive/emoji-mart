@@ -8,12 +8,13 @@ import store from '../../utils/store'
 import frequently from '../../utils/frequently'
 import { deepMerge, measureScrollbar } from '../../utils'
 import { uncompress } from '../../utils/data'
-import { PickerPropTypes, PickerDefaultProps } from '../../utils/shared-props'
+import { PickerPropTypes } from '../../utils/shared-props'
 
 import Anchors from '../anchors'
 import Category from '../category'
 import Preview from '../preview'
 import Search from '../search'
+import { PickerDefaultProps } from '../../utils/shared-default-props'
 
 const I18N = {
   search: 'Search',
@@ -592,7 +593,7 @@ export default class NimblePicker extends React.PureComponent {
   }
 }
 
-NimblePicker.propTypes = {
+NimblePicker.propTypes /* remove-proptypes */ = {
   ...PickerPropTypes,
   data: PropTypes.object.isRequired,
 }

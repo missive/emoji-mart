@@ -23,7 +23,6 @@
 
     "transform-object-rest-spread",
     "transform-runtime",
-    "transform-react-remove-prop-types",
     [
       "transform-define", "scripts/define.js"
     ],

@@ -365,6 +365,32 @@ Apple / Google / Twitter / EmojiOne / Messenger / Facebook
 ## Not opinionated
 **Emoji Mart** doesn’t automatically insert anything into a text input, nor does it show or hide itself. It simply returns an `emoji` object. It’s up to the developer to mount/unmount (it’s fast!) and position the picker. You can use the returned object as props for the `EmojiMart.Emoji` component. You could also use `emoji.colons` to insert text into a textarea or `emoji.native` to use the emoji.
 
+## Removing prop-types in production
+
+To remove [prop-types](https://github.com/facebook/prop-types) in production, use [babel-plugin-transform-react-remove-prop-types](https://github.com/oliviertassinari/babel-plugin-transform-react-remove-prop-types):
+
+```bash
+npm install --save-dev babel-plugin-transform-react-remove-prop-types
+```
+
+Then add to your `.babelrc`:
+
+```json
+"plugins": [
+  [
+    "transform-react-remove-prop-types",
+    {
+      "removeImport": true,
+      "additionalLibraries": [
+        "../../utils/shared-props"
+      ]
+    }
+  ]
+]
+```
+
+You'll also need to ensure that Babel is transpiling `emoji-mart`, e.g. [by not excluding `node_modules` in `babel-loader`](https://github.com/babel/babel-loader#usage).
+
 ## Development
 ```sh
 $ yarn build
