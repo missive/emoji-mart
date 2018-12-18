@@ -61,9 +61,10 @@
   "scripts": {
     "clean": "rm -rf dist/ dist-es/",
     "build:data": "node scripts/build-data",
-    "build:dist": "npm run build:cjs && npm run build:es",
-    "build:cjs": "BABEL_ENV=cjs babel src --out-dir dist --copy-files",
-    "build:es": "babel src --out-dir dist-es --copy-files",
+    "build:dist": "npm run build:cjs && npm run build:es && npm run build:modern",
+    "build:cjs": "BABEL_ENV=legacy-cjs babel src --out-dir dist --copy-files",
+    "build:es": "BABEL_ENV=legacy-es babel src --out-dir dist-es --copy-files",
+    "build:modern": "babel src --out-dir dist-modern --copy-files",
     "build:docs": "cp css/emoji-mart.css docs && webpack --config ./docs/webpack.config.js",
     "build": "npm run clean && npm run build:dist",
     "watch": "BABEL_ENV=cjs babel src --watch --out-dir dist --copy-files",
