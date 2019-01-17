@@ -120,6 +120,7 @@ const NimbleEmoji = (props) => {
       style.display = 'inline-block'
       style.width = props.size
       style.height = props.size
+      style.wordBreak = 'keep-all'
     }
   } else if (custom) {
     className += ' emoji-mart-emoji-custom'
