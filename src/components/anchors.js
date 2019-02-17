@@ -38,7 +38,7 @@ export default class Anchors extends React.PureComponent {
           }
 
           return (
-            <span
+            <button
               key={id}
               title={i18n.categories[id]}
               data-index={i}
@@ -55,7 +55,7 @@ export default class Anchors extends React.PureComponent {
                 className="emoji-mart-anchor-bar"
                 style={{ backgroundColor: color }}
               />
-            </span>
+            </button>
           )
         })}
       </div>

@@ -176,7 +176,7 @@ const NimbleEmoji = (props) => {
     } class='${className}'>${children || ''}</span>`
   } else {
     return (
-      <span
+      <button
         key={props.emoji.id || props.emoji}
         onClick={(e) => _handleClick(e, props)}
         onMouseEnter={(e) => _handleOver(e, props)}
@@ -185,7 +185,7 @@ const NimbleEmoji = (props) => {
         className={className}
       >
         <span style={style}>{children}</span>
-      </span>
+      </button>
     )
   }
 }
