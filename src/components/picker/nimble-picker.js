@@ -454,7 +454,7 @@ export default class NimblePicker extends React.PureComponent {
   }
 
   render() {
-    var {
+    const {
         perLine,
         emojiSize,
         set,
@@ -478,6 +478,8 @@ export default class NimblePicker extends React.PureComponent {
         skinEmoji,
         notFound,
         notFoundEmoji,
+        emojiClassName,
+        className
       } = this.props,
       { skin } = this.state,
       width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
@@ -485,7 +487,7 @@ export default class NimblePicker extends React.PureComponent {
     return (
       <div
         style={{ width: width, ...style }}
-        className="emoji-mart"
+        className={`emoji-mart ${className ? ' ' + className : ''}`}
         onKeyDown={this.handleKeyDown}
       >
         <div className="emoji-mart-bar">
@@ -552,6 +554,7 @@ export default class NimblePicker extends React.PureComponent {
                   onOver: this.handleEmojiOver,
                   onLeave: this.handleEmojiLeave,
                   onClick: this.handleEmojiClick,
+                  className: emojiClassName,
                 }}
                 notFound={notFound}
                 notFoundEmoji={notFoundEmoji}
@@ -577,6 +580,7 @@ export default class NimblePicker extends React.PureComponent {
                 sheetColumns: sheetColumns,
                 sheetRows: sheetRows,
                 backgroundImageFn: backgroundImageFn,
+                className: emojiClassName,
               }}
               skinsProps={{
                 skin: skin,

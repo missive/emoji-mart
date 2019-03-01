@@ -24,6 +24,7 @@ const EmojiPropTypes = {
   ]),
   size: PropTypes.number.isRequired,
   emoji: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  className: PropTypes.string,
 }
 
 const EmojiDefaultProps = {
@@ -37,9 +38,6 @@ const EmojiDefaultProps = {
   tooltip: false,
   backgroundImageFn: (set, sheetSize) =>
     `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/sheets-256/${sheetSize}.png`,
-  onOver: () => {},
-  onLeave: () => {},
-  onClick: () => {},
 }
 
 const PickerPropTypes = {
@@ -79,12 +77,11 @@ const PickerPropTypes = {
   notFound: PropTypes.func,
   notFoundEmoji: PropTypes.string,
   icons: PropTypes.object,
+  className: PropTypes.string,
+  emojiClassName: PropTypes.string,
 }
 
 const PickerDefaultProps = {
-  onClick: () => {},
-  onSelect: () => {},
-  onSkinChange: () => {},
   emojiSize: 24,
   perLine: 9,
   i18n: {},
@@ -105,7 +102,6 @@ const PickerDefaultProps = {
   autoFocus: false,
   custom: [],
   skinEmoji: '',
-  notFound: () => {},
   notFoundEmoji: 'sleuth_or_spy',
   icons: {},
 }

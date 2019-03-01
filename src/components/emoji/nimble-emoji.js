@@ -99,6 +99,10 @@ const NimbleEmoji = (props) => {
     className = 'emoji-mart-emoji',
     title = null
 
+  if (props.className) {
+    className += ' ' + className
+  }
+
   if (!unified && !custom) {
     if (props.fallback) {
       return props.fallback(data, props)

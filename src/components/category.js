@@ -153,6 +153,7 @@ export default class Category extends React.Component {
         i18n,
         notFound,
         notFoundEmoji,
+        className,
       } = this.props,
       emojis = this.getEmojis(),
       labelStyles = {},
@@ -178,7 +179,7 @@ export default class Category extends React.Component {
     return (
       <div
         ref={this.setContainerRef}
-        className="emoji-mart-category"
+        className={`emoji-mart-category ${className ? ' ' + className : ''}`}
         style={containerStyles}
       >
         <div
@@ -221,6 +222,7 @@ Category.propTypes = {
   recent: PropTypes.arrayOf(PropTypes.string),
   notFound: PropTypes.func,
   notFoundEmoji: PropTypes.string.isRequired,
+  className: PropTypes.string,
 }
 
 Category.defaultProps = {
