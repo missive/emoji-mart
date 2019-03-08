@@ -560,7 +560,7 @@ export default class NimblePicker extends React.PureComponent {
           })}
         </div>
 
-        {showPreview && (
+        {(showPreview || showSkinTones) && (
           <div className="emoji-mart-bar">
             <Preview
               ref={this.setPreviewRef}
@@ -568,6 +568,7 @@ export default class NimblePicker extends React.PureComponent {
               title={title}
               emoji={emoji}
               showSkinTones={showSkinTones}
+              showPreview={showPreview}
               emojiProps={{
                 native: native,
                 size: 38,
