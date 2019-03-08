@@ -392,11 +392,19 @@ Then add to your `.babelrc`:
 You'll also need to ensure that Babel is transpiling `emoji-mart`, e.g. [by not excluding `node_modules` in `babel-loader`](https://github.com/babel/babel-loader#usage).
 
 ## Development
-```sh
-$ yarn build
-$ yarn start
-$ yarn storybook
+
+```bash
+yarn build
 ```
+
+In two separate tabs:
+
+```bash
+yarn start
+yarn storybook
+```
+
+The storybook is hosted at `localhost:6006`, and the code will be built on-the-fly.
 
 ## 🎩 Hat tips!
 Powered by [iamcal/emoji-data](https://github.com/iamcal/emoji-data) and inspired by [iamcal/js-emoji](https://github.com/iamcal/js-emoji).<br>
