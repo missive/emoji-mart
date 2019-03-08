@@ -39,7 +39,7 @@ export default class SkinsDot extends Skins {
   }
 }
 
-SkinsDot.propTypes = {
+SkinsDot.propTypes /* remove-proptypes */ = {
   onChange: PropTypes.func,
   skin: PropTypes.number.isRequired,
   i18n: PropTypes.object,

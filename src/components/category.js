@@ -211,7 +211,7 @@ export default class Category extends React.Component {
   }
 }
 
-Category.propTypes = {
+Category.propTypes /* remove-proptypes */ = {
   emojis: PropTypes.array,
   hasStickyPosition: PropTypes.bool,
   name: PropTypes.string.isRequired,

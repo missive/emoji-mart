@@ -63,7 +63,7 @@ export default class Anchors extends React.PureComponent {
   }
 }
 
-Anchors.propTypes = {
+Anchors.propTypes /* remove-proptypes */ = {
   categories: PropTypes.array,
   onAnchorClick: PropTypes.func,
   icons: PropTypes.object,

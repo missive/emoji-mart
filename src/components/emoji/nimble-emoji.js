@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 
 import { getData, getSanitizedData, unifiedToNative } from '../../utils'
 import { uncompress } from '../../utils/data'
-import { EmojiPropTypes, EmojiDefaultProps } from '../../utils/shared-props'
+import { EmojiPropTypes } from '../../utils/shared-props'
+import { EmojiDefaultProps } from '../../utils/shared-default-props'
 
 const _getData = (props) => {
   var { emoji, skin, set, data } = props
@@ -191,7 +192,10 @@ const NimbleEmoji = (props) => {
   }
 }
 
-NimbleEmoji.propTypes = { ...EmojiPropTypes, data: PropTypes.object.isRequired }
+NimbleEmoji.propTypes /* remove-proptypes */ = {
+  ...EmojiPropTypes,
+  data: PropTypes.object.isRequired,
+}
 NimbleEmoji.defaultProps = EmojiDefaultProps
 
 export default NimbleEmoji
