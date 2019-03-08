@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import * as icons from '../../svgs'
 import store from '../../utils/store'
 import frequently from '../../utils/frequently'
-import { deepMerge, measureScrollbar } from '../../utils'
+import { deepMerge, measureScrollbar, getSanitizedData } from '../../utils'
 import { uncompress } from '../../utils/data'
 import { PickerPropTypes, PickerDefaultProps } from '../../utils/shared-props'
 
@@ -396,7 +396,12 @@ export default class NimblePicker extends React.PureComponent {
 
         if (
           this.SEARCH_CATEGORY.emojis &&
-          (emoji = this.SEARCH_CATEGORY.emojis[0])
+          (emoji = getSanitizedData(
+            this.SEARCH_CATEGORY.emojis[0],
+            this.state.skin,
+            this.props.set,
+            this.props.data,
+          ))
         ) {
           this.handleEmojiSelect(emoji)
         }
