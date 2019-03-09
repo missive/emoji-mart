@@ -100,14 +100,15 @@
   border-radius: 5px;
   border: 1px solid #d9d9d9;
   outline: 0;
+  -webkit-appearance: none;
 }
 
 .emoji-mart-search-icon {
   position: absolute;
-  top: 9px;
-  right: 16px;
+  top: 7px;
+  right: 11px;
   z-index: 2;
-  padding: 0;
+  padding: 2px 5px 1px;
   border: none;
   background: none;
 }
@@ -369,3 +370,17 @@
 .emoji-mart-skin-tone-4 { background-color: #bf8f68 }
 .emoji-mart-skin-tone-5 { background-color: #9b643d }
 .emoji-mart-skin-tone-6 { background-color: #594539 }
+
+/* For screenreaders only, via https://stackoverflow.com/a/19758620 */
+.emoji-mart-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+
