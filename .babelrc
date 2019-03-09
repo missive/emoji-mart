@@ -3,6 +3,21 @@
   "plugins": [
     "check-es2015-constants",
     "transform-object-rest-spread",
+    "transform-runtime",
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "babel-runtime/core-js/object/get-prototype-of": "./src/polyfills/objectGetPrototypeOf",
+          "babel-runtime/helpers/extends": "./src/polyfills/extends",
+          "babel-runtime/helpers/inherits": "./src/polyfills/inherits",
+          "babel-runtime/helpers/createClass": "./src/polyfills/createClass",
+          "babel-runtime/helpers/possibleConstructorReturn": "./src/polyfills/possibleConstructorReturn",
+          "babel-runtime/helpers/classCallCheck": "./src/polyfills/classCallCheck",
+          "babel-runtime/core-js/object/keys": "./src/polyfills/keys"
+        }
+      }
+    ],
     [
       "transform-define", "scripts/define.js"
     ]
@@ -27,22 +42,7 @@
         "transform-es2015-sticky-regex",
         "transform-es2015-template-literals",
         "transform-es2015-unicode-regex",
-        "transform-regenerator",
-        "transform-runtime",
-        [
-          "module-resolver",
-          {
-            "alias": {
-              "babel-runtime/core-js/object/get-prototype-of": "./src/polyfills/objectGetPrototypeOf",
-              "babel-runtime/helpers/extends": "./src/polyfills/extends",
-              "babel-runtime/helpers/inherits": "./src/polyfills/inherits",
-              "babel-runtime/helpers/createClass": "./src/polyfills/createClass",
-              "babel-runtime/helpers/possibleConstructorReturn": "./src/polyfills/possibleConstructorReturn",
-              "babel-runtime/helpers/classCallCheck": "./src/polyfills/classCallCheck",
-              "babel-runtime/core-js/object/keys": "./src/polyfills/keys"
-            }
-          }
-        ]
+        "transform-regenerator"
       ]
     },
     "legacy-cjs": {
