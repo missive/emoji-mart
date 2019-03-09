@@ -76,8 +76,7 @@ export default class Search extends React.PureComponent {
   render() {
     const { i18n, autoFocus } = this.props
     const { icon, id } = this.state
-
-    let inputId = `emoji-mart-search-${id}`
+    const inputId = `emoji-mart-search-${id}`
 
     return (
       <div className="emoji-mart-search">
