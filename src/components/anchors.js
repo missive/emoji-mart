@@ -28,7 +28,7 @@ export default class Anchors extends React.PureComponent {
       { selected } = this.state
 
     return (
-      <div className="emoji-mart-anchors">
+      <nav className="emoji-mart-anchors" aria-label={i18n.categorieslabel}>
         {categories.map((category, i) => {
           var { id, name, anchor } = category,
             isSelected = name == selected
@@ -38,8 +38,9 @@ export default class Anchors extends React.PureComponent {
           }
 
           return (
-            <span
+            <button
               key={id}
+              aria-label={i18n.categories[id]}
               title={i18n.categories[id]}
               data-index={i}
               onClick={this.handleClick}
@@ -55,10 +56,10 @@ export default class Anchors extends React.PureComponent {
                 className="emoji-mart-anchor-bar"
                 style={{ backgroundColor: color }}
               />
-            </span>
+            </button>
           )
         })}
-      </div>
+      </nav>
     )
   }
 }

@@ -49,6 +49,10 @@
   padding: 12px 4px;
   overflow: hidden;
   transition: color .1s ease-out;
+  margin: 0;
+  box-shadow: none;
+  background: none;
+  border: none;
 }
 .emoji-mart-anchor:hover,
 .emoji-mart-anchor-selected {
