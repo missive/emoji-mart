@@ -75,6 +75,14 @@ categories: {
   custom: 'Custom',
 },
 categorieslabel: 'Emoji categories', // Accessible title for the list of categories
+skintones: {
+  1: 'Default Skin Tone',
+  2: 'Light Skin Tone',
+  3: 'Medium-Light Skin Tone',
+  4: 'Medium Skin Tone',
+  5: 'Medium-Dark Skin Tone',
+  6: 'Dark Skin Tone',
+},
 ```
 
 #### Sheet sizes
