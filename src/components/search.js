@@ -49,6 +49,7 @@ export default class Search extends React.PureComponent {
   clear() {
     if (this.input.value == '') return
     this.input.value = ''
+    this.input.focus()
     this.search('')
   }
 
@@ -62,20 +63,13 @@ export default class Search extends React.PureComponent {
     }
   }
 
-  clearIfNotSearching() {
-    const { isSearching } = this.state
-    if (!isSearching) {
-      this.clear()
-    }
-  }
-
   setRef(c) {
     this.input = c
   }
 
   render() {
     const { i18n, autoFocus } = this.props
-    const { icon, id } = this.state
+    const { icon, isSearching, id } = this.state
     const inputId = `emoji-mart-search-${id}`
 
     return (
@@ -97,9 +91,10 @@ export default class Search extends React.PureComponent {
         </label>
         <button
           className="emoji-mart-search-icon"
-          onClick={this.clearIfNotSearching}
+          onClick={this.clear}
           onKeyUp={this.handleKeyUp}
           aria-label={i18n.clear}
+          disabled={!isSearching}
         >
           {icon()}
         </button>

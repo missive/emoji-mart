@@ -100,6 +100,14 @@
   border-radius: 5px;
   border: 1px solid #d9d9d9;
   outline: 0;
+}
+
+.emoji-mart-search input::-webkit-search-decoration,
+.emoji-mart-search input::-webkit-search-cancel-button,
+.emoji-mart-search input::-webkit-search-results-button,
+.emoji-mart-search input::-webkit-search-results-decoration {
+  /* remove webkit/blink styles for <input type="search">
+   * via https://stackoverflow.com/a/9422689 */
   -webkit-appearance: none;
 }
 
