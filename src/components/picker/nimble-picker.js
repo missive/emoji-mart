@@ -20,7 +20,6 @@ const I18N = {
   search: 'Search',
   notfound: 'No Emoji Found',
   skintext: 'Choose your default skin tone',
-  categorieslabel: 'Emoji categories',
   categories: {
     search: 'Search Results',
     recent: 'Frequently Used',
@@ -34,6 +33,7 @@ const I18N = {
     flags: 'Flags',
     custom: 'Custom',
   },
+  categorieslabel: 'Emoji categories', // Accessible title for the list of categories
 }
 
 export default class NimblePicker extends React.PureComponent {

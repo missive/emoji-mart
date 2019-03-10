@@ -60,7 +60,6 @@ import { Picker } from 'emoji-mart'
 search: 'Search',
 notfound: 'No Emoji Found',
 skintext: 'Choose your default skin tone',
-categorieslabel: 'Emoji categories', // Accessible title for the list of categories
 categories: {
   search: 'Search Results',
   recent: 'Frequently Used',
@@ -73,7 +72,8 @@ categories: {
   symbols: 'Symbols',
   flags: 'Flags',
   custom: 'Custom',
-}
+},
+categorieslabel: 'Emoji categories', // Accessible title for the list of categories
 ```
 
 #### Sheet sizes
