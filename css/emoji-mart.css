@@ -102,6 +102,7 @@
   outline: 0;
 }
 
+.emoji-mart-search input,
 .emoji-mart-search input::-webkit-search-decoration,
 .emoji-mart-search input::-webkit-search-cancel-button,
 .emoji-mart-search input::-webkit-search-results-button,
