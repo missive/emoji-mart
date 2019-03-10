@@ -59,6 +59,7 @@ import { Picker } from 'emoji-mart'
 ```js
 search: 'Search',
 clear: 'Clear', // Accessible label on "clear" button
+emojilist: 'List of emoji', // Accessible title for list of emoji
 notfound: 'No Emoji Found',
 skintext: 'Choose your default skin tone',
 categories: {
