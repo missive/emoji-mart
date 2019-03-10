@@ -12,7 +12,7 @@ export default class Search extends React.PureComponent {
     this.state = {
       icon: icons.search,
       isSearching: false,
-      id: ++id
+      id: ++id,
     }
 
     this.data = props.data
@@ -62,7 +62,7 @@ export default class Search extends React.PureComponent {
     }
   }
 
-  clearIfNotSearching () {
+  clearIfNotSearching() {
     const { isSearching } = this.state
     if (!isSearching) {
       this.clear()
@@ -92,10 +92,9 @@ export default class Search extends React.PureComponent {
           * Use a <label> in addition to the placeholder for accessibility, but place it off-screen
           * http://www.maxability.co.in/2016/01/placeholder-attribute-and-why-it-is-not-accessible/
           */}
-        <label
-          className="emoji-mart-sr-only"
-          htmlFor={inputId}
-        >{i18n.search}</label>
+        <label className="emoji-mart-sr-only" htmlFor={inputId}>
+          {i18n.search}
+        </label>
         <button
           className="emoji-mart-search-icon"
           onClick={this.clearIfNotSearching}
