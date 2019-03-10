@@ -171,8 +171,13 @@ function deepMerge(a, b) {
   return o
 }
 
+let scrollbarWidth
+
 // https://github.com/sonicdoe/measure-scrollbar
 function measureScrollbar() {
+  if (typeof scrollbarWidth === 'number') {
+    return scrollbarWidth
+  }
   if (typeof document == 'undefined') return 0
   const div = document.createElement('div')
 
@@ -183,7 +188,7 @@ function measureScrollbar() {
   div.style.top = '-9999px'
 
   document.body.appendChild(div)
-  const scrollbarWidth = div.offsetWidth - div.clientWidth
+  scrollbarWidth = div.offsetWidth - div.clientWidth
   document.body.removeChild(div)
 
   return scrollbarWidth
