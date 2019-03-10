@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import { search as icons } from '../svgs'
 import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
+import { throttleIdleTask } from '../utils/index'
 
 export default class Search extends React.PureComponent {
   constructor(props) {
@@ -15,9 +16,11 @@ export default class Search extends React.PureComponent {
     this.data = props.data
     this.emojiIndex = new NimbleEmojiIndex(this.data)
     this.setRef = this.setRef.bind(this)
-    this.handleChange = this.handleChange.bind(this)
     this.clear = this.clear.bind(this)
     this.handleKeyUp = this.handleKeyUp.bind(this)
+
+    // throttle keyboard input so that typing isn't delayed
+    this.handleChange = throttleIdleTask(this.handleChange.bind(this))
   }
 
   search(value) {
