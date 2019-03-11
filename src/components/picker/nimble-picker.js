@@ -2,6 +2,7 @@ import '../../vendor/raf-polyfill'
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Scrollbars } from 'react-custom-scrollbars'
 
 import * as icons from '../../svgs'
 import store from '../../utils/store'
@@ -287,7 +288,7 @@ export default class NimblePicker extends React.PureComponent {
       activeCategory = this.SEARCH_CATEGORY
     } else {
       var target = this.scroll,
-        scrollTop = target.scrollTop,
+        scrollTop = target.getScrollTop(),
         scrollingDown = scrollTop > (this.scrollTop || 0),
         minTop = 0
 
@@ -364,7 +365,7 @@ export default class NimblePicker extends React.PureComponent {
           top += 1
         }
 
-        scroll.scrollTop = top
+        scroll.scrollTop(top)
       }
     }
 
@@ -518,10 +519,13 @@ export default class NimblePicker extends React.PureComponent {
           autoFocus={autoFocus}
         />
 
-        <div
+        <Scrollbars
           ref={this.setScrollRef}
-          className="emoji-mart-scroll"
           onScroll={this.handleScroll}
+          style={{ height: 270 }}
+          renderThumbVertical={(props) => (
+            <div {...props} className="emoji-mart-scroll-thumb-vertical" />
+          )}
         >
           {this.getCategories().map((category, i) => {
             return (
@@ -564,7 +568,7 @@ export default class NimblePicker extends React.PureComponent {
               />
             )
           })}
-        </div>
+        </Scrollbars>
 
         {(showPreview || showSkinTones) && (
           <div className="emoji-mart-bar">
