@@ -19,7 +19,9 @@
     "url": "https://github.com/missive/emoji-mart/issues"
   },
   "homepage": "https://github.com/missive/emoji-mart",
-  "dependencies": {},
+  "dependencies": {
+    "prop-types": "^15.6.0"
+  },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0-0 || ^16.0.0"
   },
@@ -51,7 +53,6 @@
     "karma-webpack": "^2.0.4",
     "mkdirp": "0.5.1",
     "prettier": "1.11.1",
-    "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "rimraf": "2.5.2",
