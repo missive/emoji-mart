@@ -8,6 +8,14 @@ export default class SkinsDot extends Skins {
     super(props)
 
     this.handleClick = this.handleClick.bind(this)
+    this.handleKeyDown = this.handleKeyDown.bind(this)
+  }
+
+  handleKeyDown(event) {
+    // if either enter or space is pressed, then execute
+    if (event.keyCode === 13 || event.keyCode === 32) {
+      this.handleClick(event)
+    }
   }
 
   render() {
@@ -17,6 +25,7 @@ export default class SkinsDot extends Skins {
 
     for (let skinTone = 1; skinTone <= 6; skinTone++) {
       const selected = skinTone === skin
+      const visible = opened || selected
       skinToneNodes.push(
         <span
           key={`skin-tone-${skinTone}`}
@@ -24,6 +33,15 @@ export default class SkinsDot extends Skins {
         >
           <span
             onClick={this.handleClick}
+            onKeyDown={this.handleKeyDown}
+            role="button"
+            tabindex={visible ? '0' : ''}
+            aria-hidden={!visible}
+            aria-pressed={opened ? !!selected : ''}
+            aria-haspopup={!!selected}
+            aria-expanded={selected ? opened : ''}
+            aria-label={i18n.skintones[skinTone]}
+            title={i18n.skintones[skinTone]}
             data-skin={skinTone}
             className={`emoji-mart-skin emoji-mart-skin-tone-${skinTone}`}
           />
@@ -32,9 +50,12 @@ export default class SkinsDot extends Skins {
     }
 
     return (
-      <div className={`emoji-mart-skin-swatches${opened ? ' opened' : ''}`}>
+      <section
+        className={`emoji-mart-skin-swatches${opened ? ' opened' : ''}`}
+        aria-label={i18n.skintext}
+      >
         {skinToneNodes}
-      </div>
+      </section>
     )
   }
 }
