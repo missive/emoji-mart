@@ -19,6 +19,7 @@ import { PickerDefaultProps } from '../../utils/shared-default-props'
 const I18N = {
   search: 'Search',
   clear: 'Clear', // Accessible label on "clear" button
+  emojilist: 'List of emoji', // Accessible title for list of emoji
   notfound: 'No Emoji Found',
   skintext: 'Choose your default skin tone',
   categories: {
@@ -528,9 +529,10 @@ export default class NimblePicker extends React.PureComponent {
           autoFocus={autoFocus}
         />
 
-        <div
+        <section
           ref={this.setScrollRef}
           className="emoji-mart-scroll"
+          aria-label={this.i18n.emojilist}
           onScroll={this.handleScroll}
         >
           {this.getCategories().map((category, i) => {
@@ -574,7 +576,7 @@ export default class NimblePicker extends React.PureComponent {
               />
             )
           })}
-        </div>
+        </section>
 
         {(showPreview || showSkinTones) && (
           <div className="emoji-mart-bar">

@@ -176,9 +176,10 @@ export default class Category extends React.Component {
     }
 
     return (
-      <div
+      <section
         ref={this.setContainerRef}
         className="emoji-mart-category"
+        aria-label={i18n.categories[id]}
         style={containerStyles}
       >
         <div
@@ -186,7 +187,11 @@ export default class Category extends React.Component {
           data-name={name}
           className="emoji-mart-category-label"
         >
-          <span style={labelSpanStyles} ref={this.setLabelRef}>
+          <span
+            style={labelSpanStyles}
+            ref={this.setLabelRef}
+            aria-hidden={true /* already labeled by the section aria-label */}
+          >
             {i18n.categories[id]}
           </span>
         </div>
@@ -206,7 +211,7 @@ export default class Category extends React.Component {
               emojiProps={emojiProps}
             />
           )}
-      </div>
+      </section>
     )
   }
 }

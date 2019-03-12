@@ -98,6 +98,12 @@ const NimbleEmoji = (props) => {
     style = {},
     children = props.children,
     className = 'emoji-mart-emoji',
+    nativeEmoji = unified && unifiedToNative(unified),
+    // combine the emoji itself and all shortcodes into an accessible label
+    label = [nativeEmoji]
+      .concat(short_names)
+      .filter(Boolean)
+      .join(', '),
     title = null
 
   if (!unified && !custom) {
@@ -115,7 +121,7 @@ const NimbleEmoji = (props) => {
   if (props.native && unified) {
     className += ' emoji-mart-emoji-native'
     style = { fontSize: props.size }
-    children = unifiedToNative(unified)
+    children = nativeEmoji
 
     if (props.forceSize) {
       style.display = 'inline-block'
@@ -173,21 +179,22 @@ const NimbleEmoji = (props) => {
 
   if (props.html) {
     style = _convertStyleToCSS(style)
-    return `<span style='${style}' ${
+    return `<button style='${style}' aria-label='${label}' ${
       title ? `title='${title}'` : ''
-    } class='${className}'>${children || ''}</span>`
+    } class='${className}'>${children || ''}</button>`
   } else {
     return (
-      <span
+      <button
         key={props.emoji.id || props.emoji}
         onClick={(e) => _handleClick(e, props)}
         onMouseEnter={(e) => _handleOver(e, props)}
         onMouseLeave={(e) => _handleLeave(e, props)}
+        aria-label={label}
         title={title}
         className={className}
       >
         <span style={style}>{children}</span>
-      </span>
+      </button>
     )
   }
 }
