@@ -43,7 +43,7 @@ export default class Preview extends React.PureComponent {
 
       return (
         <div className="emoji-mart-preview">
-          <div className="emoji-mart-preview-emoji">
+          <div className="emoji-mart-preview-emoji" aria-hidden="true">
             {NimbleEmoji({
               key: emoji.id,
               emoji: emoji,
@@ -52,7 +52,7 @@ export default class Preview extends React.PureComponent {
             })}
           </div>
 
-          <div className="emoji-mart-preview-data">
+          <div className="emoji-mart-preview-data" aria-hidden="true">
             <div className="emoji-mart-preview-name">{emoji.name}</div>
             <div className="emoji-mart-preview-shortnames">
               {emojiData.short_names.map((short_name) => (
@@ -74,13 +74,13 @@ export default class Preview extends React.PureComponent {
     } else {
       return (
         <div className="emoji-mart-preview">
-          <div className="emoji-mart-preview-emoji">
+          <div className="emoji-mart-preview-emoji" aria-hidden="true">
             {idleEmoji &&
               idleEmoji.length &&
               NimbleEmoji({ emoji: idleEmoji, data: this.data, ...emojiProps })}
           </div>
 
-          <div className="emoji-mart-preview-data">
+          <div className="emoji-mart-preview-data" aria-hidden="true">
             <span className="emoji-mart-title-label">{title}</span>
           </div>
 
