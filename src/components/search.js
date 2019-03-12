@@ -4,12 +4,15 @@ import PropTypes from 'prop-types'
 import { search as icons } from '../svgs'
 import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
 
+let id = 0
+
 export default class Search extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {
       icon: icons.search,
       isSearching: false,
+      id: ++id,
     }
 
     this.data = props.data
@@ -46,6 +49,7 @@ export default class Search extends React.PureComponent {
   clear() {
     if (this.input.value == '') return
     this.input.value = ''
+    this.input.focus()
     this.search('')
   }
 
@@ -64,22 +68,32 @@ export default class Search extends React.PureComponent {
   }
 
   render() {
-    var { i18n, autoFocus } = this.props
-    var { icon, isSearching } = this.state
+    const { i18n, autoFocus } = this.props
+    const { icon, isSearching, id } = this.state
+    const inputId = `emoji-mart-search-${id}`
 
     return (
       <div className="emoji-mart-search">
         <input
+          id={inputId}
           ref={this.setRef}
-          type="text"
+          type="search"
           onChange={this.handleChange}
           placeholder={i18n.search}
           autoFocus={autoFocus}
         />
+        {/*
+          * Use a <label> in addition to the placeholder for accessibility, but place it off-screen
+          * http://www.maxability.co.in/2016/01/placeholder-attribute-and-why-it-is-not-accessible/
+          */}
+        <label className="emoji-mart-sr-only" htmlFor={inputId}>
+          {i18n.search}
+        </label>
         <button
           className="emoji-mart-search-icon"
           onClick={this.clear}
           onKeyUp={this.handleKeyUp}
+          aria-label={i18n.clear}
           disabled={!isSearching}
         >
           {icon()}
