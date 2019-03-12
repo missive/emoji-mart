@@ -34,6 +34,7 @@ const I18N = {
     flags: 'Flags',
     custom: 'Custom',
   },
+  categorieslabel: 'Emoji categories', // Accessible title for the list of categories
 }
 
 export default class NimblePicker extends React.PureComponent {
