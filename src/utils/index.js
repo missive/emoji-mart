@@ -189,6 +189,24 @@ function measureScrollbar() {
   return scrollbarWidth
 }
 
+// Use requestIdleCallback() if available, else fall back to setTimeout().
+// Throttle so as not to run too frequently.
+function throttleIdleTask(func) {
+  const queue =
+    typeof requestIdleCallback === 'function' ? requestIdleCallback : setTimeout
+  const clear =
+    typeof cancelIdleCallback === 'function' ? cancelIdleCallback : clearTimeout
+
+  let id
+
+  return function throttled() {
+    if (id) {
+      clear(id)
+    }
+    id = queue(func)
+  }
+}
+
 export {
   getData,
   getSanitizedData,
@@ -197,4 +215,5 @@ export {
   deepMerge,
   unifiedToNative,
   measureScrollbar,
+  throttleIdleTask,
 }
