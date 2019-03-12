@@ -35,7 +35,7 @@ export default class SkinsDot extends Skins {
             onClick={this.handleClick}
             onKeyDown={this.handleKeyDown}
             role="button"
-            tabindex={visible ? '0' : ''}
+            tabIndex={visible ? '0' : ''}
             aria-hidden={!visible}
             aria-pressed={opened ? !!selected : ''}
             aria-haspopup={!!selected}
