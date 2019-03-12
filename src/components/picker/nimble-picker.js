@@ -408,6 +408,7 @@ export default class NimblePicker extends React.PureComponent {
 
         if (
           this.SEARCH_CATEGORY.emojis &&
+          this.SEARCH_CATEGORY.emojis.length &&
           (emoji = getSanitizedData(
             this.SEARCH_CATEGORY.emojis[0],
             this.state.skin,
