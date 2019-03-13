@@ -55,7 +55,7 @@ storiesOf('Picker', module)
   .add('Custom “Not found” component', () => (
     <Picker
       notFound={() => (
-        <img src="https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7" />
+        <img src="https://github.githubassets.com/images/icons/emoji/octocat.png" />
       )}
     />
   ))
@@ -66,7 +66,7 @@ storiesOf('Picker', module)
       icons={{
         categories: {
           recent: () => (
-            <img src="https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7" />
+            <img src="https://github.githubassets.com/images/icons/emoji/octocat.png" />
           ),
           people: () => (
             <svg
@@ -104,7 +104,7 @@ storiesOf('Picker', module)
             </svg>
           ),
           activity: () => (
-            <img src="https://assets-cdn.github.com/images/icons/emoji/shipit.png?v7" />
+            <img src="https://github.githubassets.com/images/icons/emoji/shipit.png" />
           ),
           places: () => (
             <svg
