@@ -185,7 +185,6 @@ const NimbleEmoji = (props) => {
   } else {
     return (
       <button
-        key={props.emoji.id || props.emoji}
         onClick={(e) => _handleClick(e, props)}
         onMouseEnter={(e) => _handleOver(e, props)}
         onMouseLeave={(e) => _handleLeave(e, props)}
