@@ -32,17 +32,17 @@ export default class SkinsDot extends Skins {
           className={`emoji-mart-skin-swatch${selected ? ' selected' : ''}`}
           aria-label={i18n.skintones[skinTone]}
           aria-hidden={!visible}
-          {...opened && { role: 'menuitem' }}
+          {...opened ? { role: 'menuitem' } : {}}
         >
           <span
             onClick={this.handleClick}
             onKeyDown={this.handleKeyDown}
             role="button"
-            {...selected && {
+            {...selected ? {
               'aria-haspopup': true,
               'aria-expanded': !!opened,
-            }}
-            {...opened && { 'aria-pressed': !!selected }}
+            } : {}}
+            {...opened ? { 'aria-pressed': !!selected } : {}}
             tabIndex={visible ? '0' : ''}
             aria-label={i18n.skintones[skinTone]}
             title={i18n.skintones[skinTone]}
@@ -58,7 +58,7 @@ export default class SkinsDot extends Skins {
         className={`emoji-mart-skin-swatches${opened ? ' opened' : ''}`}
         aria-label={i18n.skintext}
       >
-        <div {...opened && { role: 'menubar' }}>{skinToneNodes}</div>
+        <div {...opened ? { role: 'menubar' } : {}}>{skinToneNodes}</div>
       </section>
     )
   }
