@@ -60,7 +60,7 @@
     "webpack": "^3.6.0"
   },
   "scripts": {
-    "clean": "rm -rf dist/ dist-es/",
+    "clean": "rm -rf dist/ dist-es/ dist-modern/",
     "build:data": "node scripts/build-data",
     "build:dist": "npm run build:cjs && npm run build:es && npm run build:modern",
     "build:cjs": "BABEL_ENV=legacy-cjs babel src --out-dir dist --copy-files",
