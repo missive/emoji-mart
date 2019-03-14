@@ -28,7 +28,8 @@ export default class Search extends React.PureComponent {
 
   componentDidMount() {
     // in some cases (e.g. preact) the input may already be pre-populated
-    if (this.input.value) {
+    // this.input is undefined in Jest tests
+    if (this.input && this.input.value) {
       this.search(this.input.value)
     }
   }
