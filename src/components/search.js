@@ -83,7 +83,7 @@ export default class Search extends React.PureComponent {
     const inputId = `emoji-mart-search-${id}`
 
     return (
-      <div className="emoji-mart-search">
+      <section className="emoji-mart-search" aria-label={i18n.search}>
         <input
           id={inputId}
           ref={this.setRef}
@@ -108,7 +108,7 @@ export default class Search extends React.PureComponent {
         >
           {icon()}
         </button>
-      </div>
+      </section>
     )
   }
 }
