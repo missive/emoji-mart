@@ -1240,7 +1240,13 @@ const PickerPropTypes = {
     short_names: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.arrayOf(__WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.string).isRequired,
     emoticons: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.arrayOf(__WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.string),
     keywords: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.arrayOf(__WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.string),
-    imageUrl: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.string.isRequired
+    imageUrl: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.string,
+    spriteUrl: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.string,
+    sheet_x: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.number,
+    sheet_y: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.number,
+    size: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.number,
+    sheetColumns: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.number,
+    sheetRows: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.number
   })),
   skinEmoji: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.string,
   notFound: __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.func,
@@ -3182,7 +3188,7 @@ class Example extends __WEBPACK_IMPORTED_MODULE_1_react___default.a.Component {
       ),
       __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
         'div',
-        { className: 'row' },
+        { className: 'row sets' },
         ['native', 'apple', 'google', 'twitter', 'emojione', 'messenger', 'facebook'].map(set => {
           var props = { disabled: !this.state.native && set == this.state.set };
 

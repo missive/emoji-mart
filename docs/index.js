@@ -53,7 +53,7 @@ class Example extends React.Component {
         <h1>Emoji Mart 🏬</h1>
       </div>
 
-      <div className="row">
+      <div className="row sets">
         {['native', 'apple', 'google', 'twitter', 'emojione', 'messenger', 'facebook'].map((set) => {
           var props = { disabled: !this.state.native && set == this.state.set }
 
