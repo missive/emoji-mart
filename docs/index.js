@@ -14,13 +14,13 @@ const CUSTOM_EMOJIS = [
     name: 'Octocat',
     short_names: ['octocat'],
     keywords: ['github'],
-    imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'
+    imageUrl: 'https://github.githubassets.com/images/icons/emoji/octocat.png'
   },
   {
     name: 'Squirrel',
     short_names: ['shipit', 'squirrel'],
     keywords: ['github'],
-    imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/shipit.png?v7'
+    imageUrl: 'https://github.githubassets.com/images/icons/emoji/shipit.png'
   },
   {
     name: 'Test Flag',
