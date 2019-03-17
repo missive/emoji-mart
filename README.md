@@ -375,6 +375,13 @@ Apple / Google / Twitter / EmojiOne / Messenger / Facebook
 ## Not opinionated
 **Emoji Mart** doesn’t automatically insert anything into a text input, nor does it show or hide itself. It simply returns an `emoji` object. It’s up to the developer to mount/unmount (it’s fast!) and position the picker. You can use the returned object as props for the `EmojiMart.Emoji` component. You could also use `emoji.colons` to insert text into a textarea or `emoji.native` to use the emoji.
 
+## Usage outside React
+
+**Emoji Mart** can be used with React alternatives such as [Preact](https://preactjs.com/), [Inferno](https://www.infernojs.org/), and [react-lite](https://github.com/Lucifier129/react-lite).
+
+Furthermore, you can use it as a [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) using [remount](https://github.com/rstacruz/remount), meaning that you can use it within any JavaScript framework (or vanilla JS).
+
+For an end-to-end example of how to do this, see [emoji-mart-outside-react](https://github.com/nolanlawson/emoji-mart-outside-react).
 
 ## Optimizing for production
 
