@@ -31,6 +31,7 @@ function sanitize(emoji) {
     return {
       id,
       name,
+      short_names,
       colons,
       emoticons,
       custom,
