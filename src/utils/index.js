@@ -136,37 +136,46 @@ function getData(emoji, skin, set, data) {
 }
 
 function getEmojiDataFromNative(nativeString, set, data) {
-    if (data.compressed) {
-        uncompress(data);
+  if (data.compressed) {
+    uncompress(data);
+  }
+
+  const skinTones = ['', '🏻', '🏼', '🏽', '🏾', '🏿']
+  const skinCodes = ['', '1F3FB', '1F3FC', '1F3FD', '1F3FE', '1F3FF']
+
+  let skin
+  let skinCode
+  let baseNativeString = nativeString
+
+  skinTones.forEach((skinTone) => {
+    if (nativeString.indexOf(skinTone) > 0) {
+      const skinToneIndex = skinTones.indexOf(skinTone)
+      skin = skinToneIndex + 1
+      skinCode = skinCodes[skinToneIndex]
+    }
+  })
+
+  const emojiData = Object.values(data.emojis).find((emoji) => {
+    emoji = JSON.parse(_JSON.stringify(emoji))
+
+    if (emoji.variations && emoji.variations.length) {
+        emoji.unified = emoji.variations.shift()
     }
 
-    const skinTones = ['', '🏻', '🏼', '🏽', '🏾', '🏿']
-
-    let skin
-    let baseNativeString = nativeString
-
-    skinTones.forEach((skinTone) => {
-        baseNativeString = baseNativeString.replace(skinTone, '')
-        if (nativeString.indexOf(skinTone) > 0) {
-            skin = skinTones.indexOf(skinTone) + 1
-        }
-    })
-
-    const emojiData = Object.values(data.emojis).find((emoji) => {
-        if (emoji.variations && emoji.variations.length) {
-            emoji.unifed = emoji.variations.shift()
-        }
-
-        return unifiedToNative(emoji.unified) === baseNativeString
-    })
-
-    if (!emojiData) {
-        return null
+    if (skin && emoji.skin_variations && emoji.skin_variations[skinCode]) {
+      emoji.unified = emoji.skin_variations[skinCode].unified
     }
 
-    emojiData.id = emojiData.short_names[0]
+    return unifiedToNative(emoji.unified) === baseNativeString
+  })
 
-    return getSanitizedData(emojiData, skin, set, data)
+  if (!emojiData) {
+    return null
+  }
+
+  emojiData.id = emojiData.short_names[0]
+
+  return getSanitizedData(emojiData, skin, set, data)
 }
 
 function uniq(arr) {

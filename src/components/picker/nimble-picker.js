@@ -495,6 +495,7 @@ export default class NimblePicker extends React.PureComponent {
         skinEmoji,
         notFound,
         notFoundEmoji,
+        set,
       } = this.props,
       { skin } = this.state,
       width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
@@ -522,6 +523,7 @@ export default class NimblePicker extends React.PureComponent {
           ref={this.setSearchRef}
           onSearch={this.handleSearch}
           data={this.data}
+          set={set}
           i18n={this.i18n}
           emojisToShowFilter={emojisToShowFilter}
           include={include}
