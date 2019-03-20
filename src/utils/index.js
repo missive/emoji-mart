@@ -224,6 +224,26 @@ function measureScrollbar() {
   return scrollbarWidth
 }
 
+// Use requestIdleCallback() if available, else fall back to setTimeout().
+// Throttle so as not to run too frequently.
+function throttleIdleTask(func) {
+  const doIdleTask =
+    typeof requestIdleCallback === 'function' ? requestIdleCallback : setTimeout
+
+  let running = false
+
+  return function throttled() {
+    if (running) {
+      return
+    }
+    running = true
+    doIdleTask(() => {
+      running = false
+      func()
+    })
+  }
+}
+
 export {
   getData,
   getEmojiDataFromNative,
@@ -233,4 +253,5 @@ export {
   deepMerge,
   unifiedToNative,
   measureScrollbar,
+  throttleIdleTask,
 }

@@ -58,7 +58,7 @@ export default class SkinsEmoji extends Skins {
   }
 }
 
-SkinsEmoji.propTypes = {
+SkinsEmoji.propTypes /* remove-proptypes */ = {
   onChange: PropTypes.func,
   skin: PropTypes.number.isRequired,
   emojiProps: PropTypes.object.isRequired,

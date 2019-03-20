@@ -4,7 +4,6 @@ scripts/
 
 src/
 docs/
-spec/
 example/
 karma.conf.js
 yarn.lock

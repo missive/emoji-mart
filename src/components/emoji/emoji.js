@@ -3,7 +3,8 @@ import React from 'react'
 import data from '../../../data/all.json'
 import NimbleEmoji from './nimble-emoji'
 
-import { EmojiPropTypes, EmojiDefaultProps } from '../../utils/shared-props'
+import { EmojiPropTypes } from '../../utils/shared-props'
+import { EmojiDefaultProps } from '../../utils/shared-default-props'
 
 const Emoji = (props) => {
   for (let k in Emoji.defaultProps) {
@@ -15,7 +16,7 @@ const Emoji = (props) => {
   return NimbleEmoji({ ...props })
 }
 
-Emoji.propTypes = EmojiPropTypes
+Emoji.propTypes /* remove-proptypes */ = EmojiPropTypes
 Emoji.defaultProps = { ...EmojiDefaultProps, data }
 
 export default Emoji

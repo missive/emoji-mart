@@ -58,6 +58,7 @@ import { Picker } from 'emoji-mart'
 #### I18n
 ```js
 search: 'Search',
+clear: 'Clear', // Accessible label on "clear" button
 notfound: 'No Emoji Found',
 skintext: 'Choose your default skin tone',
 categories: {
@@ -72,7 +73,16 @@ categories: {
   symbols: 'Symbols',
   flags: 'Flags',
   custom: 'Custom',
-}
+},
+categorieslabel: 'Emoji categories', // Accessible title for the list of categories
+skintones: {
+  1: 'Default Skin Tone',
+  2: 'Light Skin Tone',
+  3: 'Medium-Light Skin Tone',
+  4: 'Medium Skin Tone',
+  5: 'Medium-Dark Skin Tone',
+  6: 'Dark Skin Tone',
+},
 ```
 
 #### Sheet sizes
@@ -141,7 +151,7 @@ import { NimblePicker } from 'emoji-mart'
   text: '',
   emoticons: [],
   custom: true,
-  imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'
+  imageUrl: 'https://github.githubassets.com/images/icons/emoji/octocat.png'
 }
 
 ```
@@ -220,7 +230,7 @@ Following the `dangerouslySetInnerHTML` example above, make sure the wrapping `s
 ```
 
 ## Custom emojis
-You can provide custom emojis which will show up in their own category.
+You can provide custom emojis which will show up in their own category. You can either use a single image as imageUrl or use a spritesheet as shown in the second object.
 
 ```js
 import { Picker } from 'emoji-mart'
@@ -232,7 +242,20 @@ const customEmojis = [
     text: '',
     emoticons: [],
     keywords: ['github'],
-    imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'
+    imageUrl: 'https://github.githubassets.com/images/icons/emoji/octocat.png'
+  },
+  {
+    name: 'Test Flag',
+    short_names: ['test'],
+    text: '',
+    emoticons: [],
+    keywords: ['test', 'flag'],
+    spriteUrl: 'https://unpkg.com/emoji-datasource-twitter@4.0.4/img/twitter/sheets-256/64.png',
+    sheet_x: 1,
+    sheet_y: 1,
+    size: 64,
+    sheetColumns: 52,
+    sheetRows: 52,
   },
 ]
 
@@ -245,7 +268,7 @@ You can provide a custom Not Found object which will allow the appearance of the
 ```js
 import { Picker } from 'emoji-mart'
 
-const notFound = () => <img src='https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7' />
+const notFound = () => <img src='https://github.githubassets.com/images/icons/emoji/octocat.png' />
 
 <Picker notFound={notFound} />
 ```
@@ -258,7 +281,7 @@ import { Picker } from 'emoji-mart'
 
 const customIcons = {
   categories: {
-    recent: () => <img src='https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7' />,
+    recent: () => <img src='https://github.githubassets.com/images/icons/emoji/octocat.png' />,
     foods: () => <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0l6.084 24H8L1.916 0zM21 5h-4l-1-4H4l3 12h3l1 4h13L21 5zM6.563 3h7.875l2 8H8.563l-2-8zm8.832 10l-2.856 1.904L12.063 13h3.332zM19 13l-1.5-6h1.938l2 8H16l3-2z"/></svg>,
     people: () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M3 2l10 6-10 6z"></path></svg>
   }
@@ -382,12 +405,72 @@ Apple / Google / Twitter / EmojiOne / Messenger / Facebook
 ## Not opinionated
 **Emoji Mart** doesn’t automatically insert anything into a text input, nor does it show or hide itself. It simply returns an `emoji` object. It’s up to the developer to mount/unmount (it’s fast!) and position the picker. You can use the returned object as props for the `EmojiMart.Emoji` component. You could also use `emoji.colons` to insert text into a textarea or `emoji.native` to use the emoji.
 
-## Development
-```sh
-$ yarn build
-$ yarn start
-$ yarn storybook
+
+## Optimizing for production
+
+### Modern/ES builds
+
+**Emoji Mart** comes in three flavors:
+
 ```
+dist
+dist-es
+dist-modern
+```
+
+- `dist` is the standard build with the highest level of compatibility.
+- `dist-es` is the same, but uses ES modules for better tree-shaking.
+- `dist-modern` removes features not needed in modern evergreen browsers (i.e. latest Chrome, Edge, Firefox, and Safari).
+
+The default builds are `dist` and `dist-es`. (In Webpack, one or the other will be chosen based on your [resolve main fields](https://webpack.js.org/configuration/resolve/#resolve-mainfields).)
+If you want to use `dist-modern`, you must explicitly import it:
+
+```js
+import { Picker } from 'emoji-mart/dist-modern/index.js'
+```
+
+Using something like Babel, you can transpile the modern build to suit your own needs.
+
+### Removing prop-types
+
+To remove [prop-types](https://github.com/facebook/prop-types) in production, use [babel-plugin-transform-react-remove-prop-types](https://github.com/oliviertassinari/babel-plugin-transform-react-remove-prop-types):
+
+```bash
+npm install --save-dev babel-plugin-transform-react-remove-prop-types
+```
+
+Then add to your `.babelrc`:
+
+```json
+"plugins": [
+  [
+    "transform-react-remove-prop-types",
+    {
+      "removeImport": true,
+      "additionalLibraries": [
+        "../../utils/shared-props"
+      ]
+    }
+  ]
+]
+```
+
+You'll also need to ensure that Babel is transpiling `emoji-mart`, e.g. [by not excluding `node_modules` in `babel-loader`](https://github.com/babel/babel-loader#usage).
+
+## Development
+
+```bash
+yarn build
+```
+
+In two separate tabs:
+
+```bash
+yarn start
+yarn storybook
+```
+
+The storybook is hosted at `localhost:6006`, and the code will be built on-the-fly.
 
 ## 🎩 Hat tips!
 Powered by [iamcal/emoji-data](https://github.com/iamcal/emoji-data) and inspired by [iamcal/js-emoji](https://github.com/iamcal/js-emoji).<br>

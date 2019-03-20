@@ -14,13 +14,24 @@ const CUSTOM_EMOJIS = [
     name: 'Octocat',
     short_names: ['octocat'],
     keywords: ['github'],
-    imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'
+    imageUrl: 'https://github.githubassets.com/images/icons/emoji/octocat.png'
   },
   {
     name: 'Squirrel',
     short_names: ['shipit', 'squirrel'],
     keywords: ['github'],
-    imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/shipit.png?v7'
+    imageUrl: 'https://github.githubassets.com/images/icons/emoji/shipit.png'
+  },
+  {
+    name: 'Test Flag',
+    short_names: ['test'],
+    keywords: ['test', 'flag'],
+    spriteUrl: 'https://unpkg.com/emoji-datasource-twitter@4.0.4/img/twitter/sheets-256/64.png',
+    sheet_x: 1,
+    sheet_y: 1,
+    size: 64,
+    sheetColumns: 52,
+    sheetRows: 52,
   },
 ]
 
@@ -42,7 +53,7 @@ class Example extends React.Component {
         <h1>Emoji Mart 🏬</h1>
       </div>
 
-      <div className="row">
+      <div className="row sets">
         {['native', 'apple', 'google', 'twitter', 'emojione', 'messenger', 'facebook'].map((set) => {
           var props = { disabled: !this.state.native && set == this.state.set }
 

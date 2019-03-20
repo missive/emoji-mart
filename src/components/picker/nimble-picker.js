@@ -6,17 +6,19 @@ import PropTypes from 'prop-types'
 import * as icons from '../../svgs'
 import store from '../../utils/store'
 import frequently from '../../utils/frequently'
-import { deepMerge, measureScrollbar } from '../../utils'
+import { deepMerge, measureScrollbar, getSanitizedData } from '../../utils'
 import { uncompress } from '../../utils/data'
-import { PickerPropTypes, PickerDefaultProps } from '../../utils/shared-props'
+import { PickerPropTypes } from '../../utils/shared-props'
 
 import Anchors from '../anchors'
 import Category from '../category'
 import Preview from '../preview'
 import Search from '../search'
+import { PickerDefaultProps } from '../../utils/shared-default-props'
 
 const I18N = {
   search: 'Search',
+  clear: 'Clear', // Accessible label on "clear" button
   notfound: 'No Emoji Found',
   skintext: 'Choose your default skin tone',
   categories: {
@@ -31,6 +33,15 @@ const I18N = {
     symbols: 'Symbols',
     flags: 'Flags',
     custom: 'Custom',
+  },
+  categorieslabel: 'Emoji categories', // Accessible title for the list of categories
+  skintones: {
+    1: 'Default Skin Tone',
+    2: 'Light Skin Tone',
+    3: 'Medium-Light Skin Tone',
+    4: 'Medium Skin Tone',
+    5: 'Medium-Dark Skin Tone',
+    6: 'Dark Skin Tone',
   },
 }
 
@@ -396,7 +407,13 @@ export default class NimblePicker extends React.PureComponent {
 
         if (
           this.SEARCH_CATEGORY.emojis &&
-          (emoji = this.SEARCH_CATEGORY.emojis[0])
+          this.SEARCH_CATEGORY.emojis.length &&
+          (emoji = getSanitizedData(
+            this.SEARCH_CATEGORY.emojis[0],
+            this.state.skin,
+            this.props.set,
+            this.props.data,
+          ))
         ) {
           this.handleEmojiSelect(emoji)
         }
@@ -483,9 +500,10 @@ export default class NimblePicker extends React.PureComponent {
       width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
 
     return (
-      <div
+      <section
         style={{ width: width, ...style }}
         className="emoji-mart"
+        aria-label={title}
         onKeyDown={this.handleKeyDown}
       >
         <div className="emoji-mart-bar">
@@ -560,7 +578,7 @@ export default class NimblePicker extends React.PureComponent {
           })}
         </div>
 
-        {showPreview && (
+        {(showPreview || showSkinTones) && (
           <div className="emoji-mart-bar">
             <Preview
               ref={this.setPreviewRef}
@@ -568,6 +586,7 @@ export default class NimblePicker extends React.PureComponent {
               title={title}
               emoji={emoji}
               showSkinTones={showSkinTones}
+              showPreview={showPreview}
               emojiProps={{
                 native: native,
                 size: 38,
@@ -587,12 +606,12 @@ export default class NimblePicker extends React.PureComponent {
             />
           </div>
         )}
-      </div>
+      </section>
     )
   }
 }
 
-NimblePicker.propTypes = {
+NimblePicker.propTypes /* remove-proptypes */ = {
   ...PickerPropTypes,
   data: PropTypes.object.isRequired,
 }

@@ -16,8 +16,6 @@ export default class Category extends React.Component {
   }
 
   componentDidMount() {
-    this.parent = this.container.parentNode
-
     this.margin = 0
     this.minMargin = 0
 
@@ -66,11 +64,18 @@ export default class Category extends React.Component {
   }
 
   memoizeSize() {
+    if (!this.container) {
+      // probably this is a test environment, e.g. jest
+      this.top = 0
+      this.maxMargin = 0
+      return
+    }
+    var parent = this.container.parentElement
     var { top, height } = this.container.getBoundingClientRect()
-    var { top: parentTop } = this.parent.getBoundingClientRect()
+    var { top: parentTop } = parent.getBoundingClientRect()
     var { height: labelHeight } = this.label.getBoundingClientRect()
 
-    this.top = top - parentTop + this.parent.scrollTop
+    this.top = top - parentTop + parent.scrollTop
 
     if (height == 0) {
       this.maxMargin = 0
@@ -176,9 +181,10 @@ export default class Category extends React.Component {
     }
 
     return (
-      <div
+      <section
         ref={this.setContainerRef}
         className="emoji-mart-category"
+        aria-label={i18n.categories[id]}
         style={containerStyles}
       >
         <div
@@ -186,15 +192,23 @@ export default class Category extends React.Component {
           data-name={name}
           className="emoji-mart-category-label"
         >
-          <span style={labelSpanStyles} ref={this.setLabelRef}>
+          <span
+            style={labelSpanStyles}
+            ref={this.setLabelRef}
+            aria-hidden={true /* already labeled by the section aria-label */}
+          >
             {i18n.categories[id]}
           </span>
         </div>
 
-        {emojis &&
-          emojis.map((emoji) =>
-            NimbleEmoji({ emoji: emoji, data: this.data, ...emojiProps }),
-          )}
+        <ul className="emoji-mart-category-list">
+          {emojis &&
+            emojis.map((emoji) => (
+              <li key={emoji.id || emoji}>
+                {NimbleEmoji({ emoji: emoji, data: this.data, ...emojiProps })}
+              </li>
+            ))}
+        </ul>
 
         {emojis &&
           !emojis.length && (
@@ -206,12 +220,12 @@ export default class Category extends React.Component {
               emojiProps={emojiProps}
             />
           )}
-      </div>
+      </section>
     )
   }
 }
 
-Category.propTypes = {
+Category.propTypes /* remove-proptypes */ = {
   emojis: PropTypes.array,
   hasStickyPosition: PropTypes.bool,
   name: PropTypes.string.isRequired,

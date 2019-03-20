@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 
 import { search as icons } from '../svgs'
 import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
+import { throttleIdleTask } from '../utils/index'
+
+let id = 0
 
 export default class Search extends React.PureComponent {
   constructor(props) {
@@ -10,14 +13,25 @@ export default class Search extends React.PureComponent {
     this.state = {
       icon: icons.search,
       isSearching: false,
+      id: ++id,
     }
 
     this.data = props.data
     this.emojiIndex = new NimbleEmojiIndex(this.data)
     this.setRef = this.setRef.bind(this)
-    this.handleChange = this.handleChange.bind(this)
     this.clear = this.clear.bind(this)
     this.handleKeyUp = this.handleKeyUp.bind(this)
+
+    // throttle keyboard input so that typing isn't delayed
+    this.handleChange = throttleIdleTask(this.handleChange.bind(this))
+  }
+
+  componentDidMount() {
+    // in some cases (e.g. preact) the input may already be pre-populated
+    // this.input is undefined in Jest tests
+    if (this.input && this.input.value) {
+      this.search(this.input.value)
+    }
   }
 
   search(value) {
@@ -46,6 +60,7 @@ export default class Search extends React.PureComponent {
   clear() {
     if (this.input.value == '') return
     this.input.value = ''
+    this.input.focus()
     this.search('')
   }
 
@@ -64,32 +79,42 @@ export default class Search extends React.PureComponent {
   }
 
   render() {
-    var { i18n, autoFocus } = this.props
-    var { icon, isSearching } = this.state
+    const { i18n, autoFocus } = this.props
+    const { icon, isSearching, id } = this.state
+    const inputId = `emoji-mart-search-${id}`
 
     return (
-      <div className="emoji-mart-search">
+      <section className="emoji-mart-search" aria-label={i18n.search}>
         <input
+          id={inputId}
           ref={this.setRef}
-          type="text"
+          type="search"
           onChange={this.handleChange}
           placeholder={i18n.search}
           autoFocus={autoFocus}
         />
+        {/*
+          * Use a <label> in addition to the placeholder for accessibility, but place it off-screen
+          * http://www.maxability.co.in/2016/01/placeholder-attribute-and-why-it-is-not-accessible/
+          */}
+        <label className="emoji-mart-sr-only" htmlFor={inputId}>
+          {i18n.search}
+        </label>
         <button
           className="emoji-mart-search-icon"
           onClick={this.clear}
           onKeyUp={this.handleKeyUp}
+          aria-label={i18n.clear}
           disabled={!isSearching}
         >
           {icon()}
         </button>
-      </div>
+      </section>
     )
   }
 }
 
-Search.propTypes = {
+Search.propTypes /* remove-proptypes */ = {
   onSearch: PropTypes.func,
   maxResults: PropTypes.number,
   emojisToShowFilter: PropTypes.func,

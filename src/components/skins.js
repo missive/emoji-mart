@@ -30,7 +30,7 @@ export default class Skins extends React.PureComponent {
   }
 }
 
-Skins.propTypes = {
+Skins.propTypes /* remove-proptypes */ = {
   onChange: PropTypes.func,
   skin: PropTypes.number.isRequired,
 }
