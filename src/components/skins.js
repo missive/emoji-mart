@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import NimbleEmoji from './emoji/nimble-emoji'
-
 export default class Skins extends React.PureComponent {
   constructor(props) {
     super(props)
