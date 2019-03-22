@@ -49,7 +49,7 @@
     "inflection": "1.10.0",
     "jest": "^23.0.0",
     "mkdirp": "0.5.1",
-    "prettier": "1.11.1",
+    "prettier": "^1.16.4",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-test-renderer": "^16.8.4",
@@ -76,6 +76,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prettier": "prettier --write \"{src,scripts}/**/*.js\"",
+    "prettier:check": "prettier --check \"{src,scripts}/**/*.js\"",
     "prepare": "npm run build:dist"
   },
   "size-limit": [
