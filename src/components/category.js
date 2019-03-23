@@ -210,16 +210,15 @@ export default class Category extends React.Component {
             ))}
         </ul>
 
-        {emojis &&
-          !emojis.length && (
-            <NotFound
-              i18n={i18n}
-              notFound={notFound}
-              notFoundEmoji={notFoundEmoji}
-              data={this.data}
-              emojiProps={emojiProps}
-            />
-          )}
+        {emojis && !emojis.length && (
+          <NotFound
+            i18n={i18n}
+            notFound={notFound}
+            notFoundEmoji={notFoundEmoji}
+            data={this.data}
+            emojiProps={emojiProps}
+          />
+        )}
       </section>
     )
   }

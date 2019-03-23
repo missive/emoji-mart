@@ -30,7 +30,7 @@ export default _String.fromCodePoint ||
         // http://mathiasbynens.be/notes/javascript-encoding#surrogate-formulae
         codePoint -= 0x10000
         highSurrogate = (codePoint >> 10) + 0xd800
-        lowSurrogate = codePoint % 0x400 + 0xdc00
+        lowSurrogate = (codePoint % 0x400) + 0xdc00
         codeUnits.push(highSurrogate, lowSurrogate)
       }
       if (index + 1 === length || codeUnits.length > MAX_SIZE) {

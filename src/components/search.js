@@ -94,9 +94,9 @@ export default class Search extends React.PureComponent {
           autoFocus={autoFocus}
         />
         {/*
-          * Use a <label> in addition to the placeholder for accessibility, but place it off-screen
-          * http://www.maxability.co.in/2016/01/placeholder-attribute-and-why-it-is-not-accessible/
-          */}
+         * Use a <label> in addition to the placeholder for accessibility, but place it off-screen
+         * http://www.maxability.co.in/2016/01/placeholder-attribute-and-why-it-is-not-accessible/
+         */}
         <label className="emoji-mart-sr-only" htmlFor={inputId}>
           {i18n.search}
         </label>

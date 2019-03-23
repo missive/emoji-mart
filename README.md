@@ -1,6 +1,7 @@
 <div align="center">
   <br><b>Emoji Mart</b> is a Slack-like customizable<br>emoji picker component for React
   <br><a href="https://missive.github.io/emoji-mart">Demo</a> • <a href="https://github.com/missive/emoji-mart/releases">Changelog</a>
+  <br><a href="https://travis-ci.org/nolanlawson/emoji-mart"><img src="https://travis-ci.org/nolanlawson/emoji-mart.svg?branch=master" alt="Build Status"></a>
   <br><br><img width="338" alt="picker" src="https://user-images.githubusercontent.com/436043/43481399-d9b60acc-94d3-11e8-9b3b-e5f2db8f0bd1.png">
   <br><br><a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com"><img width="30" alt="Missive | Team email, team chat, team tasks, one app" src="https://user-images.githubusercontent.com/436043/32532559-0d15ddfc-c400-11e7-8a24-64d0157d0cb0.png"></a>
   <br>Brought to you by the <a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com">Missive</a> team
@@ -405,6 +406,13 @@ Apple / Google / Twitter / EmojiOne / Messenger / Facebook
 ## Not opinionated
 **Emoji Mart** doesn’t automatically insert anything into a text input, nor does it show or hide itself. It simply returns an `emoji` object. It’s up to the developer to mount/unmount (it’s fast!) and position the picker. You can use the returned object as props for the `EmojiMart.Emoji` component. You could also use `emoji.colons` to insert text into a textarea or `emoji.native` to use the emoji.
 
+## Usage outside React
+
+**Emoji Mart** can be used with React alternatives such as [Preact](https://preactjs.com/), [Inferno](https://www.infernojs.org/), and [react-lite](https://github.com/Lucifier129/react-lite).
+
+Furthermore, you can use it as a [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) using [remount](https://github.com/rstacruz/remount), meaning that you can use it within any JavaScript framework (or vanilla JS).
+
+For an end-to-end example of how to do this, see [emoji-mart-outside-react](https://github.com/nolanlawson/emoji-mart-outside-react).
 
 ## Optimizing for production
 
