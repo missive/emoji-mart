@@ -150,9 +150,8 @@ function getEmojiDataFromNative(nativeString, set, data) {
   let skinCode
   let baseNativeString = nativeString
 
-  skinTones.forEach((skinTone) => {
+  skinTones.forEach((skinTone, skinToneIndex) => {
     if (nativeString.indexOf(skinTone) > 0) {
-      const skinToneIndex = skinTones.indexOf(skinTone)
       skin = skinToneIndex + 2
       skinCode = skinCodes[skinToneIndex]
     }
