@@ -214,3 +214,24 @@ storiesOf('Headless Search', module)
       </div>
     )
   })
+
+  .add('Skin tone', () => {
+    let results = emojiIndex.search(text('Search', 'thumbs'), {
+      custom: CUSTOM_EMOJIS,
+    })
+    if (!results) {
+      return null
+    }
+
+    return (
+      <div>
+        {results.map((emoji) => {
+          return (
+            <span key={emoji.id} style={{ marginLeft: '1.4em' }}>
+              <Emoji native={true} emoji={emoji} size={48} />
+            </span>
+          )
+        })}
+      </div>
+    )
+  })
