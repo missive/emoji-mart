@@ -11,7 +11,7 @@ import {
   color,
 } from '@storybook/addon-knobs'
 
-import { Picker, Emoji, emojiIndex, NimbleEmojiIndex } from '../dist'
+import { Picker, Emoji, emojiIndex, NimbleEmojiIndex, getEmojiDataFromNative } from '../dist'
 import data from '../data/all.json'
 import '../css/emoji-mart.css'
 
@@ -239,6 +239,38 @@ storiesOf('Headless Search', module)
             </span>
           )
         })}
+      </div>
+    )
+  })
+
+storiesOf('Get emoji data from Native', module)
+  .addDecorator(withKnobs)
+  .add('Default', () => {
+    const emojiData = getEmojiDataFromNative(
+      text('Unicode', '🏋🏿‍♂️'),
+      select('Emoji pack', SETS, SETS[0]),
+      data
+    )
+    if (!emojiData) {
+      return (
+        <div>
+          Couldn`t find any emoji data from native...
+        </div>
+      )
+    }
+
+    return (
+      <div>
+        <Emoji
+          emoji={emojiData}
+          set={select('Emoji pack', SETS, SETS[0])}
+          skin={emojiData.skin || 1}
+          size={48}
+        />
+
+        <pre>
+          emojiData: {JSON.stringify(emojiData, null, 2)}
+        </pre>
       </div>
     )
   })

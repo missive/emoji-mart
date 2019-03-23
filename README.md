@@ -301,6 +301,36 @@ emojiIndex.search('christmas').map((o) => o.native)
 // => [🎄, 🎅🏼, 🔔, 🎁, ⛄️, ❄️]
 ```
 
+## Get emoji data from Native
+You can get emoji data from native emoji unicode using the `getEmojiDataFromNative` util function.
+
+```js
+import { getEmojiDataFromNative, Emoji } from 'emoji-mart'
+import data from 'emoji-mart/data/all.json'
+
+const emojiData = getEmojiDataFromNative('🏊🏽‍♀️', 'apple', data)
+
+<Emoji
+  emoji={emojiData}
+  set={'apple'}
+  skin={emojiData.skin || 1}
+  size={48}
+/>
+```
+
+#### Example of `emojiData` object:
+```js
+emojiData: {
+  "id": "woman-swimming",
+  "name": "Woman Swimming",
+  "colons": ":woman-swimming::skin-tone-4:",
+  "emoticons": [],
+  "unified": "1f3ca-1f3fd-200d-2640-fe0f",
+  "skin": 4,
+  "native": "🏊🏽‍♀️"
+}
+```
+
 ### With custom data
 ```js
 import data from 'emoji-mart/datasets/messenger'

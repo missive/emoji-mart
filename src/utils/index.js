@@ -1,5 +1,6 @@
 import { buildSearch } from './data'
 import stringFromCodePoint from '../polyfills/stringFromCodePoint'
+import { uncompress } from './data'
 
 const _JSON = JSON
 
@@ -137,6 +138,52 @@ function getData(emoji, skin, set, data) {
   return emojiData
 }
 
+function getEmojiDataFromNative(nativeString, set, data) {
+  if (data.compressed) {
+    uncompress(data)
+  }
+
+  const skinTones = ['🏻', '🏼', '🏽', '🏾', '🏿']
+  const skinCodes = ['1F3FB', '1F3FC', '1F3FD', '1F3FE', '1F3FF']
+
+  let skin
+  let skinCode
+  let baseNativeString = nativeString
+
+  skinTones.forEach((skinTone, skinToneIndex) => {
+    if (nativeString.indexOf(skinTone) > 0) {
+      skin = skinToneIndex + 2
+      skinCode = skinCodes[skinToneIndex]
+    }
+  })
+
+  let emojiData
+
+  for (let id in data.emojis) {
+    let emoji = data.emojis[id]
+
+    let emojiUnified = emoji.unified
+
+    if (emoji.variations && emoji.variations.length) {
+      emojiUnified = emoji.variations.shift()
+    }
+
+    if (skin && emoji.skin_variations && emoji.skin_variations[skinCode]) {
+      emojiUnified = emoji.skin_variations[skinCode].unified
+    }
+
+    if (unifiedToNative(emojiUnified) === baseNativeString) emojiData = emoji
+  }
+
+  if (!emojiData) {
+    return null
+  }
+
+  emojiData.id = emojiData.short_names[0]
+
+  return getSanitizedData(emojiData, skin, set, data)
+}
+
 function uniq(arr) {
   return arr.reduce((acc, item) => {
     if (acc.indexOf(item) === -1) {
@@ -214,6 +261,7 @@ function throttleIdleTask(func) {
 
 export {
   getData,
+  getEmojiDataFromNative,
   getSanitizedData,
   uniq,
   intersect,
