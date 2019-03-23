@@ -140,7 +140,7 @@ function getData(emoji, skin, set, data) {
 
 function getEmojiDataFromNative(nativeString, set, data) {
   if (data.compressed) {
-    uncompress(data);
+    uncompress(data)
   }
 
   const skinTones = ['🏻', '🏼', '🏽', '🏾', '🏿']
@@ -157,7 +157,7 @@ function getEmojiDataFromNative(nativeString, set, data) {
     }
   })
 
-  let emojiData;
+  let emojiData
 
   for (let id in data.emojis) {
     let emoji = data.emojis[id]
@@ -165,7 +165,7 @@ function getEmojiDataFromNative(nativeString, set, data) {
     let emojiUnified = emoji.unified
 
     if (emoji.variations && emoji.variations.length) {
-        emojiUnified = emoji.variations.shift()
+      emojiUnified = emoji.variations.shift()
     }
 
     if (skin && emoji.skin_variations && emoji.skin_variations[skinCode]) {
