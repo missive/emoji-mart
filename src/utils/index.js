@@ -143,8 +143,8 @@ function getEmojiDataFromNative(nativeString, set, data) {
     uncompress(data);
   }
 
-  const skinTones = ['', '🏻', '🏼', '🏽', '🏾', '🏿']
-  const skinCodes = ['', '1F3FB', '1F3FC', '1F3FD', '1F3FE', '1F3FF']
+  const skinTones = ['🏻', '🏼', '🏽', '🏾', '🏿']
+  const skinCodes = ['1F3FB', '1F3FC', '1F3FD', '1F3FE', '1F3FF']
 
   let skin
   let skinCode
@@ -153,7 +153,7 @@ function getEmojiDataFromNative(nativeString, set, data) {
   skinTones.forEach((skinTone) => {
     if (nativeString.indexOf(skinTone) > 0) {
       const skinToneIndex = skinTones.indexOf(skinTone)
-      skin = skinToneIndex + 1
+      skin = skinToneIndex + 2
       skinCode = skinCodes[skinToneIndex]
     }
   })
