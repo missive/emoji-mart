@@ -157,19 +157,23 @@ function getEmojiDataFromNative(nativeString, set, data) {
     }
   })
 
-  const emojiData = Object.values(data.emojis).find((emoji) => {
-    emoji = JSON.parse(_JSON.stringify(emoji))
+  let emojiData;
+
+  for (let id in data.emojis) {
+    let emoji = data.emojis[id]
+
+    let emojiUnified = emoji.unified
 
     if (emoji.variations && emoji.variations.length) {
-        emoji.unified = emoji.variations.shift()
+        emojiUnified = emoji.variations.shift()
     }
 
     if (skin && emoji.skin_variations && emoji.skin_variations[skinCode]) {
-      emoji.unified = emoji.skin_variations[skinCode].unified
+      emojiUnified = emoji.skin_variations[skinCode].unified
     }
 
-    return unifiedToNative(emoji.unified) === baseNativeString
-  })
+    if (unifiedToNative(emojiUnified) === baseNativeString) emojiData = emoji
+  }
 
   if (!emojiData) {
     return null
