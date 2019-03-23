@@ -120,6 +120,7 @@ function getData(emoji, skin, set, data) {
       variationData[`has_img_${set}`]) || !set
     ) {
       emojiData.skin_tone = skin
+
       for (let k in variationData) {
         let v = variationData[k]
         emojiData[k] = v
