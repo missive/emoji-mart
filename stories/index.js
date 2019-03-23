@@ -218,7 +218,7 @@ storiesOf('Headless Search', module)
 
   .add('With skin tone from store', () => {
     const nimbleEmojiIndex = new NimbleEmojiIndex(data)
-    let results = nimbleEmojiIndex.search(text('Search', 'christmas'), {
+    let results = nimbleEmojiIndex.search(text('Search', 'thumbs'), {
       custom: CUSTOM_EMOJIS,
     })
     if (!results) {
