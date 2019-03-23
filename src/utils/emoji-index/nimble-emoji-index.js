@@ -39,7 +39,12 @@ export default class NimbleEmojiIndex {
       if (skin_variations) {
         this.emojis[id] = {}
         for (let skinTone = 1; skinTone <= 6; skinTone++) {
-          this.emojis[id][skinTone] = getSanitizedData({id, skin: skinTone}, skinTone, this.set, this.data)
+          this.emojis[id][skinTone] = getSanitizedData(
+            { id, skin: skinTone },
+            skinTone,
+            this.set,
+            this.data,
+          )
         }
       } else {
         this.emojis[id] = getSanitizedData(id, null, this.set, this.data)
@@ -81,7 +86,7 @@ export default class NimbleEmojiIndex {
     if (this.customEmojisList != custom)
       this.addCustomToPool(custom, this.originalPool)
 
-    const skinTone = store.get('skin') || 1;
+    const skinTone = store.get('skin') || 1
 
     maxResults || (maxResults = 75)
     include || (include = [])

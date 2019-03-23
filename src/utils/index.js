@@ -115,9 +115,9 @@ function getData(emoji, skin, set, data) {
     }
 
     if (
-      (set &&
-      variationData[`has_img_${set}`] == undefined ||
-      variationData[`has_img_${set}`]) || !set
+      (set && variationData[`has_img_${set}`] == undefined) ||
+      variationData[`has_img_${set}`] ||
+      !set
     ) {
       emojiData.skin_tone = skin
 
