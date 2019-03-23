@@ -134,7 +134,7 @@ export default class Category extends React.Component {
   updateDisplay(display) {
     var emojis = this.getEmojis()
 
-    if (!emojis) {
+    if (!emojis || !this.container) {
       return
     }
 
