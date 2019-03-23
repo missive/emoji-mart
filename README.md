@@ -308,7 +308,7 @@ You can get emoji data from native emoji unicode using the `getEmojiDataFromNati
 import { getEmojiDataFromNative, Emoji } from 'emoji-mart'
 import data from 'emoji-mart/data/all.json'
 
-let emojiData = getEmojiDataFromNative('🏊🏽‍♀️', 'apple', data)
+const emojiData = getEmojiDataFromNative('🏊🏽‍♀️', 'apple', data)
 
 <Emoji
   emoji={emojiData}

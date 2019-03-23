@@ -246,7 +246,7 @@ storiesOf('Headless Search', module)
 storiesOf('Get emoji data from Native', module)
   .addDecorator(withKnobs)
   .add('Default', () => {
-    let emojiData = getEmojiDataFromNative(
+    const emojiData = getEmojiDataFromNative(
       text('Unicode', '🏋🏿‍♂️'),
       select('Emoji pack', SETS, SETS[0]),
       data
