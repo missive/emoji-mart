@@ -355,7 +355,9 @@ export default class NimblePicker extends React.PureComponent {
     }
 
     this.forceUpdate()
-    this.scroll.scrollTop = 0
+    if (this.scroll) {
+      this.scroll.scrollTop = 0
+    }
     this.handleScroll()
   }
 
