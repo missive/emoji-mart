@@ -55,7 +55,6 @@ test('with custom emoji and tooltip', () => {
   const subject = render({
     emojiTooltip: true,
     autoFocus: true,
-    // emojisToShowFilter: emoji => emoji.id && emoji.id.startsWith('custom'),
     custom,
   })
   subject.handleSearch(
