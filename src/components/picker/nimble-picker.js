@@ -522,7 +522,6 @@ export default class NimblePicker extends React.PureComponent {
           ref={this.setSearchRef}
           onSearch={this.handleSearch}
           data={this.data}
-          set={set}
           i18n={this.i18n}
           emojisToShowFilter={emojisToShowFilter}
           include={include}
