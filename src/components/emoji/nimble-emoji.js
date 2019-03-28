@@ -177,23 +177,36 @@ const NimbleEmoji = (props) => {
     }
   }
 
+  var Tag = {
+    name: 'span',
+    props: {},
+  }
+
+  if (props.onClick) {
+    Tag.name = 'button'
+    Tag.props = {
+      type: 'button',
+    }
+  }
+
   if (props.html) {
     style = _convertStyleToCSS(style)
-    return `<button style='${style}' aria-label='${label}' ${
+    return `<${Tag.name} style='${style}' aria-label='${label}' ${
       title ? `title='${title}'` : ''
-    } class='${className}'>${children || ''}</button>`
+    } class='${className}'>${children || ''}</${Tag.name}>`
   } else {
     return (
-      <button
+      <Tag.name
         onClick={(e) => _handleClick(e, props)}
         onMouseEnter={(e) => _handleOver(e, props)}
         onMouseLeave={(e) => _handleLeave(e, props)}
         aria-label={label}
         title={title}
         className={className}
+        {...Tag.props}
       >
         <span style={style}>{children}</span>
-      </button>
+      </Tag.name>
     )
   }
 }

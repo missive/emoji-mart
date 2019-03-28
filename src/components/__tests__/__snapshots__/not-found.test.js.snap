@@ -4,7 +4,7 @@ exports[`Renders <NotFound> component 1`] = `
 <div
   className="emoji-mart-no-results"
 >
-  <button
+  <span
     aria-label="🕵️, sleuth_or_spy"
     className="emoji-mart-emoji emoji-mart-emoji-native"
     onClick={[Function]}
@@ -25,7 +25,7 @@ exports[`Renders <NotFound> component 1`] = `
     >
       🕵️
     </span>
-  </button>
+  </span>
   <div
     className="emoji-mart-no-results-label"
   >
