@@ -25,8 +25,9 @@ const _getSanitizedData = (props) => {
 }
 
 const _handleClick = (e, props) => {
-  if (!props.onClick) { return }
-
+  if (!props.onClick) {
+    return
+  }
   var { onClick } = props,
     emoji = _getSanitizedData(props)
 
@@ -34,8 +35,9 @@ const _handleClick = (e, props) => {
 }
 
 const _handleOver = (e, props) => {
-  if (!props.onOver) { return }
-
+  if (!props.onOver) {
+    return
+  }
   var { onOver } = props,
     emoji = _getSanitizedData(props)
 
@@ -43,8 +45,9 @@ const _handleOver = (e, props) => {
 }
 
 const _handleLeave = (e, props) => {
-  if (!props.onLeave) { return }
-
+  if (!props.onLeave) {
+    return
+  }
   var { onLeave } = props,
     emoji = _getSanitizedData(props)
 
