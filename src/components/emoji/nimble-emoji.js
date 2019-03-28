@@ -185,7 +185,7 @@ const NimbleEmoji = (props) => {
   if (props.onClick) {
     Tag.name = 'button'
     Tag.props = {
-      type: 'button'
+      type: 'button',
     }
   }
 
