@@ -1,7 +1,7 @@
 <div align="center">
   <br><b>Emoji Mart</b> is a Slack-like customizable<br>emoji picker component for React
   <br><a href="https://missive.github.io/emoji-mart">Demo</a> • <a href="https://github.com/missive/emoji-mart/releases">Changelog</a>
-  <br><a href="https://travis-ci.org/nolanlawson/emoji-mart"><img src="https://travis-ci.org/nolanlawson/emoji-mart.svg?branch=master" alt="Build Status"></a>
+  <br><a href="https://travis-ci.org/missive/emoji-mart"><img src="https://travis-ci.org/missive/emoji-mart.svg?branch=master" alt="Build Status"></a>
   <br><br><img width="338" alt="picker" src="https://user-images.githubusercontent.com/436043/43481399-d9b60acc-94d3-11e8-9b3b-e5f2db8f0bd1.png">
   <br><br><a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com"><img width="30" alt="Missive | Team email, team chat, team tasks, one app" src="https://user-images.githubusercontent.com/436043/32532559-0d15ddfc-c400-11e7-8a24-64d0157d0cb0.png"></a>
   <br>Brought to you by the <a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com">Missive</a> team
