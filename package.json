@@ -31,6 +31,7 @@
     "@storybook/addon-links": "^3.2.10",
     "@storybook/addon-options": "3.2.10",
     "@storybook/react": "^3.2.11",
+    "auto-changelog": "1.12.0",
     "babel-cli": "^6.0.0",
     "babel-core": "^6.0.0",
     "babel-jest": "^23.6.0",
@@ -58,6 +59,7 @@
     "webpack": "^3.6.0"
   },
   "scripts": {
+    "changelog": "auto-changelog",
     "clean": "rm -rf dist/ dist-es/ dist-modern/",
     "build:data": "node scripts/build-data",
     "build:dist": "npm run build:cjs && npm run build:es && npm run build:modern",
