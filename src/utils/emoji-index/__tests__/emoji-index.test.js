@@ -5,6 +5,7 @@ test('should work', () => {
     {
       id: 'pineapple',
       name: 'Pineapple',
+      short_names: ['pineapple'],
       colons: ':pineapple:',
       emoticons: [],
       unified: '1f34d',
