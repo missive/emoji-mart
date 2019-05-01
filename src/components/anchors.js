@@ -43,7 +43,7 @@ export default class Anchors extends React.PureComponent {
               aria-label={i18n.categories[id]}
               title={i18n.categories[id]}
               data-index={i}
-              type="button"
+              type={'button'}
               onClick={this.handleClick}
               className={`emoji-mart-anchor ${
                 isSelected ? 'emoji-mart-anchor-selected' : ''
