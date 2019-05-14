@@ -179,9 +179,13 @@ export default class NimbleEmojiIndex {
 
               aIndex.results.sort((a, b) => {
                 var aScore = scores[a.id],
-                  bScore = scores[b.id]
+                  bScore = scores[b.id];
 
-                return aScore - bScore
+                if (aScore == bScore) {
+                  return a.id.localeCompare(b.id);
+                } else {
+                  return aScore - bScore;
+                }
               })
             }
 
