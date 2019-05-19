@@ -86,6 +86,8 @@ skintones: {
 },
 ```
 
+**Tip:** You usually do not need to translate the categories and skin tones by youself, because this data and their translations [should be included in the Unicode CLDR](http://cldr.unicode.org/) (the [“Common Locale Data Repository”](https://en.wikipedia.org/wiki/Common_Locale_Data_Repository)). You can look them up and just take them from there.
+
 #### Sheet sizes
 Sheets are served from [unpkg](https://unpkg.com), a global CDN that serves files published to [npm](https://www.npmjs.com).
 
