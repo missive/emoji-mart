@@ -37,6 +37,8 @@ export default class Anchors extends React.PureComponent {
             return null
           }
 
+          const iconId = id.startsWith('custom-') ? 'custom' : id
+
           return (
             <button
               key={id}
@@ -51,7 +53,7 @@ export default class Anchors extends React.PureComponent {
               style={{ color: isSelected ? color : null }}
             >
               <div className="emoji-mart-anchor-icon">
-                {icons.categories[id]()}
+                {icons.categories[iconId]()}
               </div>
               <span
                 className="emoji-mart-anchor-bar"

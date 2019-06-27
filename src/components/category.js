@@ -180,11 +180,13 @@ export default class Category extends React.Component {
       }
     }
 
+    const label = i18n.categories[id] || name
+
     return (
       <section
         ref={this.setContainerRef}
         className="emoji-mart-category"
-        aria-label={i18n.categories[id]}
+        aria-label={label}
         style={containerStyles}
       >
         <div
@@ -197,7 +199,7 @@ export default class Category extends React.Component {
             ref={this.setLabelRef}
             aria-hidden={true /* already labeled by the section aria-label */}
           >
-            {i18n.categories[id]}
+            {label}
           </span>
         </div>
 

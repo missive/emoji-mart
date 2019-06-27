@@ -23,6 +23,7 @@ function sanitize(emoji) {
       emoticons,
       unified,
       custom,
+      customCategory,
       imageUrl,
     } = emoji,
     id = emoji.id || short_names[0],
@@ -36,6 +37,7 @@ function sanitize(emoji) {
       colons,
       emoticons,
       custom,
+      customCategory,
       imageUrl,
     }
   }
