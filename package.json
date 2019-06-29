@@ -47,6 +47,8 @@
     "babel-runtime": "^6.26.0",
     "emoji-datasource": "4.0.4",
     "emojilib": "^2.2.1",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
     "inflection": "1.10.0",
     "jest": "^23.0.0",
     "mkdirp": "0.5.1",
