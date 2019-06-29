@@ -45,7 +45,7 @@ import { Picker } from 'emoji-mart'
 | **backgroundImageFn** | | ```((set, sheetSize) => …)``` | A Fn that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **emojisToShowFilter** | | ```((emoji) => true)``` | A Fn to choose whether an emoji should be displayed or not |
 | **showPreview** | | `true` | Display preview section |
-| **showSkinTones** | | `true` | Display skin tones picker |
+| **showSkinTones** | | `true` | Display skin tones picker. Disable both this and `showPreview` to remove the footer entirely. |
 | **emojiTooltip** | | `false` | Show emojis short name when hovering (title) |
 | **skin** | | | Forces skin color: `1, 2, 3, 4, 5, 6` |
 | **defaultSkin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
