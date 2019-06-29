@@ -204,7 +204,11 @@ export default class Category extends React.Component {
         <ul className="emoji-mart-category-list">
           {emojis &&
             emojis.map((emoji) => (
-              <li key={emoji.id || emoji}>
+              <li
+                key={
+                  (emoji.short_names && emoji.short_names.join('_')) || emoji
+                }
+              >
                 {NimbleEmoji({ emoji: emoji, data: this.data, ...emojiProps })}
               </li>
             ))}
