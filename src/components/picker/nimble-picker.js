@@ -180,12 +180,12 @@ export default class NimblePicker extends React.PureComponent {
     if (props.skin) {
       return {
         ...state,
-        skin: props.skin
+        skin: props.skin,
       }
     } else if (props.defaultSkin && !store.get('skin')) {
       return {
         ...state,
-        skin: props.defaultSkin
+        skin: props.defaultSkin,
       }
     }
     return state
