@@ -176,12 +176,19 @@ export default class NimblePicker extends React.PureComponent {
     this.handleKeyDown = this.handleKeyDown.bind(this)
   }
 
-  componentWillReceiveProps(props) {
+  static getDerivedStateFromProps(props, state) {
     if (props.skin) {
-      this.setState({ skin: props.skin })
+      return {
+        ...state,
+        skin: props.skin
+      }
     } else if (props.defaultSkin && !store.get('skin')) {
-      this.setState({ skin: props.defaultSkin })
+      return {
+        ...state,
+        skin: props.defaultSkin
+      }
     }
+    return state
   }
 
   componentDidMount() {
