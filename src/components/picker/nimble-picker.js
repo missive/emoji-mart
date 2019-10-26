@@ -497,7 +497,7 @@ export default class NimblePicker extends React.PureComponent {
         skinEmoji,
         notFound,
         notFoundEmoji,
-        darkMode
+        darkMode,
       } = this.props,
       { skin } = this.state,
       width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
