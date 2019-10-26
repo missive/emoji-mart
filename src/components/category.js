@@ -158,6 +158,7 @@ export default class Category extends React.Component {
         i18n,
         notFound,
         notFoundEmoji,
+        darkMode
       } = this.props,
       emojis = this.getEmojis(),
       labelStyles = {},
@@ -177,6 +178,8 @@ export default class Category extends React.Component {
 
       labelSpanStyles = {
         position: 'absolute',
+        color: darkMode ? '#fff' : '#000',
+        backgroundColor: darkMode ? '#222' : '#fff'
       }
     }
 
@@ -209,7 +212,7 @@ export default class Category extends React.Component {
                   (emoji.short_names && emoji.short_names.join('_')) || emoji
                 }
               >
-                {NimbleEmoji({ emoji: emoji, data: this.data, ...emojiProps })}
+                {NimbleEmoji({ emoji: emoji, data: this.data, ...emojiProps }, darkMode)}
               </li>
             ))}
         </ul>

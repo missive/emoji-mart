@@ -74,7 +74,7 @@ const _convertStyleToCSS = (style) => {
   return div.getAttribute('style')
 }
 
-const NimbleEmoji = (props) => {
+const NimbleEmoji = (props, darkMode) => {
   if (props.data.compressed) {
     uncompress(props.data)
   }
@@ -97,7 +97,7 @@ const NimbleEmoji = (props) => {
   let { unified, custom, short_names, imageUrl } = data,
     style = {},
     children = props.children,
-    className = 'emoji-mart-emoji',
+    className = `emoji-mart-emoji ${darkMode && 'emoji-mart-emoji-dark'}`,
     nativeEmoji = unified && unifiedToNative(unified),
     // combine the emoji itself and all shortcodes into an accessible label
     label = [nativeEmoji]
