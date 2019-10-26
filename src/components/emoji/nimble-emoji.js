@@ -97,7 +97,9 @@ const NimbleEmoji = (props, darkMode) => {
   let { unified, custom, short_names, imageUrl } = data,
     style = {},
     children = props.children,
-    className = `emoji-mart-emoji ${darkMode && 'emoji-mart-emoji-dark'}`,
+    className = darkMode
+      ? 'emoji-mart-emoji emoji-mart-emoji-dark'
+      : 'emoji-mart-emoji',
     nativeEmoji = unified && unifiedToNative(unified),
     // combine the emoji itself and all shortcodes into an accessible label
     label = [nativeEmoji]
