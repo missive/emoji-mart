@@ -175,12 +175,6 @@ export default class Category extends React.Component {
       labelStyles = {
         height: 28,
       }
-
-      labelSpanStyles = {
-        position: 'absolute',
-        color: darkMode ? '#fff' : '#000',
-        backgroundColor: darkMode ? '#222' : '#fff',
-      }
     }
 
     return (
@@ -196,7 +190,11 @@ export default class Category extends React.Component {
           className="emoji-mart-category-label"
         >
           <span
-            style={labelSpanStyles}
+            className={
+              darkMode
+                ? 'emoji-mart-category-label-span emoji-mart-dark-bg'
+                : 'emoji-mart-category-label-span'
+            }
             ref={this.setLabelRef}
             aria-hidden={true /* already labeled by the section aria-label */}
           >

@@ -160,11 +160,13 @@
   top: 0;
 }
 
-.emoji-mart-category-label span {
+.emoji-mart-category-label-span {
   display: block;
   width: 100%;
   font-weight: 500;
   padding: 5px 6px;
+  background-color: #fff;
+  color: #000;
 }
 
 .emoji-mart-category-list {
