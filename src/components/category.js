@@ -192,7 +192,7 @@ export default class Category extends React.Component {
           <span
             className={
               darkMode
-                ? 'emoji-mart-category-label-span emoji-mart-dark-bg'
+                ? 'emoji-mart-category-label-span emoji-mart-category-label-span-dark'
                 : 'emoji-mart-category-label-span'
             }
             ref={this.setLabelRef}
