@@ -191,7 +191,7 @@ export default class NimblePicker extends React.PureComponent {
       this.setState({ gender: props.gender })
     } else if (!store.get('gender')) {
       this.setState({ gender: props.defaultGender })
-  }
+    }
   }
 
   componentDidMount() {
@@ -496,31 +496,31 @@ export default class NimblePicker extends React.PureComponent {
 
   render() {
     var {
-        perLine,
-        emojiSize,
-        set,
-        sheetSize,
-        sheetColumns,
-        sheetRows,
-        style,
-        title,
-        emoji,
-        color,
-        native,
-        backgroundImageFn,
-        emojisToShowFilter,
-        showPreview,
-        showSkinTones,
-        emojiTooltip,
-        include,
-        exclude,
-        recent,
-        autoFocus,
-        skinEmoji,
-        notFound,
-        notFoundEmoji,
+      perLine,
+      emojiSize,
+      set,
+      sheetSize,
+      sheetColumns,
+      sheetRows,
+      style,
+      title,
+      emoji,
+      color,
+      native,
+      backgroundImageFn,
+      emojisToShowFilter,
+      showPreview,
+      showSkinTones,
+      emojiTooltip,
+      include,
+      exclude,
+      recent,
+      autoFocus,
+      skinEmoji,
+      notFound,
+      notFoundEmoji,
       quickFilter
-      } = this.props,
+    } = this.props,
       { skin, gender } = this.state,
       width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
 
@@ -591,7 +591,7 @@ export default class NimblePicker extends React.PureComponent {
                 id={category.id}
                 name={category.name}
                 emojis={category.emojis}
-                genderFilter={category.gendered ? genderFilters[gender] : undefined}
+                genderFilter={quickFilter && category.id === 'people' ? genderFilters[gender] : 0}
                 perLine={perLine}
                 native={native}
                 hasStickyPosition={this.hasStickyPosition}

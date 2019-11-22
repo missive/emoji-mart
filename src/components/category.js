@@ -24,14 +24,14 @@ export default class Category extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     var {
-        name,
-        perLine,
-        native,
-        hasStickyPosition,
-        emojis,
-        emojiProps,
+      name,
+      perLine,
+      native,
+      hasStickyPosition,
+      emojis,
+      emojiProps,
       genderFilter
-      } = this.props,
+    } = this.props,
       { skin, size, set } = emojiProps,
       {
         perLine: nextPerLine,
@@ -106,28 +106,28 @@ export default class Category extends React.Component {
   getRecentEmojis() {
     var { emojis, recent, perLine } = this.props
 
-      let { custom } = this.props
-      let frequentlyUsed = recent || frequently.get(perLine)
+    let { custom } = this.props
+    let frequentlyUsed = recent || frequently.get(perLine)
 
-      if (frequentlyUsed.length) {
-        emojis = frequentlyUsed
-          .map((id) => {
-            const emoji = custom.filter((e) => e.id === id)[0]
-            if (emoji) {
-              return emoji
-            }
+    if (frequentlyUsed.length) {
+      emojis = frequentlyUsed
+        .map((id) => {
+          const emoji = custom.filter((e) => e.id === id)[0]
+          if (emoji) {
+            return emoji
+          }
 
-            return id
-          })
-          .filter((id) => !!getData(id, null, null, this.data))
-      }
+          return id
+        })
+        .filter((id) => !!getData(id, null, null, this.data))
+    }
 
-      if (emojis.length === 0 && frequentlyUsed.length > 0) {
-        return null
-      }
+    if (emojis.length === 0 && frequentlyUsed.length > 0) {
+      return null
+    }
 
     return emojis
-    }
+  }
 
   getEmojis(emojis) {
     if (emojis) {
@@ -161,22 +161,23 @@ export default class Category extends React.Component {
 
   render() {
     var {
-        id,
-        name,
-        hasStickyPosition,
-        emojiProps,
-        i18n,
-        notFound,
-        notFoundEmoji,
+      id,
+      name,
+      hasStickyPosition,
+      emojiProps,
+      i18n,
+      notFound,
+      notFoundEmoji,
       emojis
-      } = this.props,
-      emojis = this.getEmojis(),
+    } = this.props,
       labelStyles = {},
       labelSpanStyles = {},
       containerStyles = {}
 
     if (name == 'Recent') emojis = this.getRecentEmojis()
     emojis = this.getEmojis(emojis)
+
+    if (!emojis) {
       containerStyles = {
         display: 'none',
       }
