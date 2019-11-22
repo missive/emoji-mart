@@ -30,6 +30,7 @@ export default class Category extends React.Component {
         hasStickyPosition,
         emojis,
         emojiProps,
+      genderFilter
       } = this.props,
       { skin, size, set } = emojiProps,
       {
@@ -38,8 +39,10 @@ export default class Category extends React.Component {
         hasStickyPosition: nextHasStickyPosition,
         emojis: nextEmojis,
         emojiProps: nextEmojiProps,
+        genderFilter: nextGenderFilter
       } = nextProps,
       { skin: nextSkin, size: nextSize, set: nextSet } = nextEmojiProps,
+
       shouldUpdate = false
 
     if (name == 'Recent' && perLine != nextPerLine) {
@@ -55,7 +58,8 @@ export default class Category extends React.Component {
       size != nextSize ||
       native != nextNative ||
       set != nextSet ||
-      hasStickyPosition != nextHasStickyPosition
+      hasStickyPosition != nextHasStickyPosition ||
+      (genderFilter != nextGenderFilter)
     ) {
       shouldUpdate = true
     }
@@ -99,10 +103,9 @@ export default class Category extends React.Component {
     return true
   }
 
-  getEmojis() {
-    var { name, emojis, recent, perLine } = this.props
+  getRecentEmojis() {
+    var { emojis, recent, perLine } = this.props
 
-    if (name == 'Recent') {
       let { custom } = this.props
       let frequentlyUsed = recent || frequently.get(perLine)
 
@@ -122,10 +125,17 @@ export default class Category extends React.Component {
       if (emojis.length === 0 && frequentlyUsed.length > 0) {
         return null
       }
+
+    return emojis
     }
 
+  getEmojis(emojis) {
     if (emojis) {
       emojis = emojis.slice(0)
+    }
+
+    if (emojis && this.props.genderFilter) {
+      emojis = emojis.filter(this.props.genderFilter)
     }
 
     return emojis
@@ -158,13 +168,15 @@ export default class Category extends React.Component {
         i18n,
         notFound,
         notFoundEmoji,
+      emojis
       } = this.props,
       emojis = this.getEmojis(),
       labelStyles = {},
       labelSpanStyles = {},
       containerStyles = {}
 
-    if (!emojis) {
+    if (name == 'Recent') emojis = this.getRecentEmojis()
+    emojis = this.getEmojis(emojis)
       containerStyles = {
         display: 'none',
       }
@@ -238,6 +250,7 @@ Category.propTypes /* remove-proptypes */ = {
   recent: PropTypes.arrayOf(PropTypes.string),
   notFound: PropTypes.func,
   notFoundEmoji: PropTypes.string.isRequired,
+  genderFilter: PropTypes.func,
 }
 
 Category.defaultProps = {
