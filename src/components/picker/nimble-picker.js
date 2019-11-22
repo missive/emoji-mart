@@ -591,7 +591,7 @@ export default class NimblePicker extends React.PureComponent {
                 id={category.id}
                 name={category.name}
                 emojis={category.emojis}
-                genderFilter={quickFilter && category.id === 'people' ? genderFilters[gender] : 0}
+                genderFilter={quickFilter && category.id === 'people' ? genderFilters[gender] : undefined}
                 perLine={perLine}
                 native={native}
                 hasStickyPosition={this.hasStickyPosition}
