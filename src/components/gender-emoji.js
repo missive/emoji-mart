@@ -12,9 +12,8 @@ export default class GenderEmoji extends React.PureComponent {
   }
 
   handleClick(index) {
-    const {emojiProps, onChange} = this.props
-    if (index !== emojiProps.gender)
-      onChange(index)
+    const { emojiProps, onChange } = this.props
+    if (index !== emojiProps.gender) onChange(index)
   }
 
   render() {
@@ -24,10 +23,12 @@ export default class GenderEmoji extends React.PureComponent {
       <div
         className={`emoji-mart-skin-swatches emoji-mart-gender custom opened`}
       >
-        {emojis.map((emoji, index) => 
+        {emojis.map((emoji, index) => (
           <span
             key={`gender-${index}`}
-            className={`emoji-mart-skin-swatch custom${index===emojiProps.gender ? ' selected' : ''}`}
+            className={`emoji-mart-skin-swatch custom${
+              index === emojiProps.gender ? ' selected' : ''
+            }`}
           >
             <span onClick={() => this.handleClick(index)}>
               {NimbleEmoji({
@@ -39,11 +40,11 @@ export default class GenderEmoji extends React.PureComponent {
                 // set: emojiProps.set,
                 // sheetSize: emojiProps.sheetSize,
                 // size: emojiProps.size,
-                ...emojiProps
+                ...emojiProps,
               })}
             </span>
           </span>
-        )}
+        ))}
       </div>
     )
   }
@@ -56,5 +57,5 @@ GenderEmoji.propTypes /* remove-proptypes */ = {
 }
 
 GenderEmoji.defaultProps = {
-  onChange: () => { },
+  onChange: () => {},
 }

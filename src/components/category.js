@@ -24,14 +24,14 @@ export default class Category extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     var {
-      name,
-      perLine,
-      native,
-      hasStickyPosition,
-      emojis,
-      emojiProps,
-      genderFilter
-    } = this.props,
+        name,
+        perLine,
+        native,
+        hasStickyPosition,
+        emojis,
+        emojiProps,
+        genderFilter,
+      } = this.props,
       { skin, size, set } = emojiProps,
       {
         perLine: nextPerLine,
@@ -39,10 +39,9 @@ export default class Category extends React.Component {
         hasStickyPosition: nextHasStickyPosition,
         emojis: nextEmojis,
         emojiProps: nextEmojiProps,
-        genderFilter: nextGenderFilter
+        genderFilter: nextGenderFilter,
       } = nextProps,
       { skin: nextSkin, size: nextSize, set: nextSet } = nextEmojiProps,
-
       shouldUpdate = false
 
     if (name == 'Recent' && perLine != nextPerLine) {
@@ -59,7 +58,7 @@ export default class Category extends React.Component {
       native != nextNative ||
       set != nextSet ||
       hasStickyPosition != nextHasStickyPosition ||
-      (genderFilter != nextGenderFilter)
+      genderFilter != nextGenderFilter
     ) {
       shouldUpdate = true
     }
@@ -161,15 +160,15 @@ export default class Category extends React.Component {
 
   render() {
     var {
-      id,
-      name,
-      hasStickyPosition,
-      emojiProps,
-      i18n,
-      notFound,
-      notFoundEmoji,
-      emojis
-    } = this.props,
+        id,
+        name,
+        hasStickyPosition,
+        emojiProps,
+        i18n,
+        notFound,
+        notFoundEmoji,
+        emojis,
+      } = this.props,
       labelStyles = {},
       labelSpanStyles = {},
       containerStyles = {}

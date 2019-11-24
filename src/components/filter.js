@@ -19,7 +19,7 @@ export default class Filter extends React.PureComponent {
       <section className="emoji-mart-filter" aria-label={i18n.filter}>
         <GenderEmoji
           gender={0}
-          emojis={["man", "woman"]}
+          emojis={['man', 'woman']}
           emojiProps={emojiProps}
           data={data}
           onChange={onGenderChange}
@@ -37,7 +37,6 @@ export default class Filter extends React.PureComponent {
           i18n={i18n}
           onChange={skinsProps.onChange}
         /> */}
-
       </section>
     )
   }
@@ -48,5 +47,5 @@ Filter.propTypes /* remove-proptypes */ = {
 }
 
 Filter.defaultProps = {
-  onGenderChange: () => { },
+  onGenderChange: () => {},
 }

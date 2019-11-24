@@ -401,7 +401,7 @@ export default class NimblePicker extends React.PureComponent {
   }
 
   handleGenderChange(gender) {
-    console.log("gender changed", gender);
+    // console.log('gender changed', gender)
 
     var newState = { gender: gender }
     const { onGenderChange } = this.props
@@ -519,7 +519,7 @@ export default class NimblePicker extends React.PureComponent {
       skinEmoji,
       notFound,
       notFoundEmoji,
-      quickFilter
+      quickFilter,
     } = this.props,
       { skin, gender } = this.state,
       width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
@@ -555,7 +555,7 @@ export default class NimblePicker extends React.PureComponent {
           autoFocus={autoFocus}
         />
 
-        {quickFilter &&
+        {quickFilter && (
           <Filter
             ref={this.setSearchRef}
             data={this.data}
@@ -576,7 +576,7 @@ export default class NimblePicker extends React.PureComponent {
               backgroundImageFn: backgroundImageFn,
             }}
           />
-        }
+        )}
 
         <div
           ref={this.setScrollRef}
@@ -591,7 +591,11 @@ export default class NimblePicker extends React.PureComponent {
                 id={category.id}
                 name={category.name}
                 emojis={category.emojis}
-                genderFilter={quickFilter && category.id === 'people' ? genderFilters[gender] : undefined}
+                genderFilter={
+                  quickFilter && category.id === 'people'
+                    ? genderFilters[gender]
+                    : undefined
+                }
                 perLine={perLine}
                 native={native}
                 hasStickyPosition={this.hasStickyPosition}
