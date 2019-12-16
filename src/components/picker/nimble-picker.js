@@ -418,9 +418,9 @@ export default class NimblePicker extends React.PureComponent {
           ))
         ) {
           this.handleEmojiSelect(emoji)
+          handled = true
         }
 
-        handled = true
         break
     }
 
