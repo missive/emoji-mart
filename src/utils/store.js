@@ -44,12 +44,12 @@ function get(key) {
     if (!isLocalStorageSupported) return
     try {
       var value = window.localStorage[`${NAMESPACE}.${key}`]
+
+      if (value) {
+        return JSON.parse(value)
+      }
     } catch (e) {
       return
-    }
-
-    if (value) {
-      return JSON.parse(value)
     }
   }
 }
