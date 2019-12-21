@@ -79,7 +79,7 @@ export default class Search extends React.PureComponent {
   }
 
   render() {
-    const { i18n, autoFocus } = this.props
+    const { i18n, autoFocus, darkMode } = this.props
     const { icon, isSearching, id } = this.state
     const inputId = `emoji-mart-search-${id}`
 
@@ -92,6 +92,14 @@ export default class Search extends React.PureComponent {
           onChange={this.handleChange}
           placeholder={i18n.search}
           autoFocus={autoFocus}
+          style={
+            darkMode
+              ? {
+                  backgroundColor: '#2f2f2f',
+                  color: '#fff',
+                }
+              : {}
+          }
         />
         {/*
          * Use a <label> in addition to the placeholder for accessibility, but place it off-screen
