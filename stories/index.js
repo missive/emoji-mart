@@ -39,6 +39,7 @@ storiesOf('Picker', module)
       onSelect={action('selected')}
       onSkinChange={action('skin changed')}
       native={boolean('Unicode', true)}
+      darkMode={boolean('Dark mode', false)}
       set={select('Emoji pack', SETS, SETS[0])}
       emojiSize={number('Emoji size', 24)}
       perLine={number('Per line', 9)}
