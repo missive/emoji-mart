@@ -4,11 +4,6 @@
   line-height: 1.15;
 }
 
-.emoji-mart-dark-bg{
-  color: #fff !important;
-  background-color: #222 !important;
-}
-
 .emoji-mart {
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
   font-size: 16px;
@@ -148,10 +143,6 @@
   border-radius: 100%;
 }
 
-.emoji-mart-category .emoji-mart-emoji-dark:hover:before{
-  background-color: #444;
-}
-
 .emoji-mart-category-label {
   z-index: 2;
   position: relative;
@@ -160,17 +151,13 @@
   top: 0;
 }
 
-.emoji-mart-category-label-span {
+.emoji-mart-category-label span {
   display: block;
   width: 100%;
   font-weight: 500;
   padding: 5px 6px;
-  background-color: rgb(255, 255, 255, 0.95);
-  color: #000;
-}
-
-.emoji-mart-category-label-span-dark {
-  background-color: rgba(0, 0, 0, 0.95) !important;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, .95);
 }
 
 .emoji-mart-category-list {
@@ -426,4 +413,29 @@
   border: 0;
 }
 
+/*
+ * Dark mode styles
+ */
 
+.emoji-mart-dark {
+  color: #fff;
+  background-color: #222;
+}
+
+.emoji-mart-dark .emoji-mart-search input {
+  background-color: #2f2f2f;
+  color: #fff;
+}
+
+.emoji-mart-dark .emoji-mart-search-icon svg {
+  fill: #fff;
+}
+
+.emoji-mart-dark .emoji-mart-category .emoji-mart-emoji:hover:before {
+  background-color: #444;
+}
+
+.emoji-mart-dark .emoji-mart-category-label span {
+  background-color: #222;
+  color: #fff;
+}

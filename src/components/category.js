@@ -158,7 +158,6 @@ export default class Category extends React.Component {
         i18n,
         notFound,
         notFoundEmoji,
-        darkMode,
       } = this.props,
       emojis = this.getEmojis(),
       labelStyles = {},
@@ -175,6 +174,10 @@ export default class Category extends React.Component {
       labelStyles = {
         height: 28,
       }
+
+      labelSpanStyles = {
+        position: 'absolute',
+      }
     }
 
     return (
@@ -190,11 +193,7 @@ export default class Category extends React.Component {
           className="emoji-mart-category-label"
         >
           <span
-            className={
-              darkMode
-                ? 'emoji-mart-category-label-span emoji-mart-category-label-span-dark'
-                : 'emoji-mart-category-label-span'
-            }
+            style={labelSpanStyles}
             ref={this.setLabelRef}
             aria-hidden={true /* already labeled by the section aria-label */}
           >
@@ -210,10 +209,7 @@ export default class Category extends React.Component {
                   (emoji.short_names && emoji.short_names.join('_')) || emoji
                 }
               >
-                {NimbleEmoji(
-                  { emoji: emoji, data: this.data, ...emojiProps },
-                  darkMode,
-                )}
+                {NimbleEmoji({ emoji: emoji, data: this.data, ...emojiProps })}
               </li>
             ))}
         </ul>
