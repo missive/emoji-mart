@@ -303,6 +303,15 @@ emojiIndex.search('christmas').map((o) => o.native)
 // => [🎄, 🎅🏼, 🔔, 🎁, ⛄️, ❄️]
 ```
 
+### With custom data
+```js
+import data from 'emoji-mart/datasets/messenger'
+import { NimbleEmojiIndex } from 'emoji-mart'
+
+let emojiIndex = new NimbleEmojiIndex(data)
+emojiIndex.search('christmas')
+```
+
 ## Get emoji data from Native
 You can get emoji data from native emoji unicode using the `getEmojiDataFromNative` util function.
 
@@ -331,15 +340,6 @@ emojiData: {
   "skin": 4,
   "native": "🏊🏽‍♀️"
 }
-```
-
-### With custom data
-```js
-import data from 'emoji-mart/datasets/messenger'
-import { NimbleEmojiIndex } from 'emoji-mart'
-
-let emojiIndex = new NimbleEmojiIndex(data)
-emojiIndex.search('christmas')
 ```
 
 ## Storage
