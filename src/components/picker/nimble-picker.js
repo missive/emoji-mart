@@ -505,13 +505,12 @@ export default class NimblePicker extends React.PureComponent {
     return (
       <section
         style={{ width: width, ...style }}
-        className={`emoji-mart ${darkMode && 'emoji-mart-dark-bg'}`}
+        className={`emoji-mart ${darkMode && 'emoji-mart-dark'}`}
         aria-label={title}
         onKeyDown={this.handleKeyDown}
       >
         <div className="emoji-mart-bar">
           <Anchors
-            darkMode={darkMode}
             ref={this.setAnchorsRef}
             data={this.data}
             i18n={this.i18n}
@@ -523,7 +522,6 @@ export default class NimblePicker extends React.PureComponent {
         </div>
 
         <Search
-          darkMode={darkMode}
           ref={this.setSearchRef}
           onSearch={this.handleSearch}
           data={this.data}
@@ -543,7 +541,6 @@ export default class NimblePicker extends React.PureComponent {
           {this.getCategories().map((category, i) => {
             return (
               <Category
-                darkMode={darkMode}
                 ref={this.setCategoryRef.bind(this, `category-${i}`)}
                 key={category.name}
                 id={category.id}
