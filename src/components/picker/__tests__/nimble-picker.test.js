@@ -57,7 +57,40 @@ test('with custom emoji and tooltip', () => {
     autoFocus: true,
     custom,
   })
+  expect(subject.categories.length).toEqual(11)
+  expect(subject.categories[10].name).toEqual('Custom')
   subject.handleSearch(
     new NimbleEmojiIndex(subject.data).search('custom_', { custom }),
   )
+})
+
+test('with custom categories', () => {
+  const custom = [
+    {
+      id: 'custom_name',
+      name: 'custom_name',
+      short_names: ['custom_name'],
+      text: '',
+      emoticons: [],
+      keywords: ['custom_name'],
+      imageUrl: 'https://example.com/emoji',
+      custom: true,
+      customCategory: 'Category 1',
+    },
+    {
+      id: 'custom_name2',
+      name: 'custom_name2',
+      short_names: ['custom_name2'],
+      text: '',
+      emoticons: [],
+      keywords: ['custom_name2'],
+      imageUrl: 'https://example.com/emoji',
+      custom: true,
+      customCategory: 'Category 2',
+    },
+  ]
+  const subject = render({ custom })
+  expect(subject.categories.length).toEqual(12)
+  expect(subject.categories[10].name).toEqual('Category 1')
+  expect(subject.categories[11].name).toEqual('Category 2')
 })

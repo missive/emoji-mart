@@ -22,7 +22,6 @@ const CUSTOM_EMOJIS = [
     short_names: ['octocat'],
     keywords: ['github'],
     imageUrl: 'https://github.githubassets.com/images/icons/emoji/octocat.png',
-    customCategory: 'GitHub',
   },
   {
     name: 'Squirrel',
@@ -31,6 +30,12 @@ const CUSTOM_EMOJIS = [
     imageUrl: 'https://github.githubassets.com/images/icons/emoji/shipit.png',
   },
 ]
+
+const CUSTOM_EMOJIS_WITH_CATEGORIES = CUSTOM_EMOJIS.map(emoji => {
+  return Object.assign({}, emoji, {
+    customCategory: emoji.name === 'Squirrel' ? 'Mammals' : 'Mollusks'
+  })
+})
 
 storiesOf('Picker', module)
   .addDecorator(withKnobs)
@@ -60,6 +65,12 @@ storiesOf('Picker', module)
       notFound={() => (
         <img src="https://github.githubassets.com/images/icons/emoji/octocat.png" />
       )}
+    />
+  ))
+
+  .add('Custom categories', () => (
+    <Picker
+      custom={CUSTOM_EMOJIS_WITH_CATEGORIES}
     />
   ))
 
