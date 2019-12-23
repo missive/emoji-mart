@@ -8,25 +8,26 @@ const CUSTOM_EMOJIS = [
     name: 'Party Parrot',
     short_names: ['parrot'],
     keywords: ['party'],
-    imageUrl: './images/parrot.gif'
+    imageUrl: './images/parrot.gif',
   },
   {
     name: 'Octocat',
     short_names: ['octocat'],
     keywords: ['github'],
-    imageUrl: 'https://github.githubassets.com/images/icons/emoji/octocat.png'
+    imageUrl: 'https://github.githubassets.com/images/icons/emoji/octocat.png',
   },
   {
     name: 'Squirrel',
     short_names: ['shipit', 'squirrel'],
     keywords: ['github'],
-    imageUrl: 'https://github.githubassets.com/images/icons/emoji/shipit.png'
+    imageUrl: 'https://github.githubassets.com/images/icons/emoji/shipit.png',
   },
   {
     name: 'Test Flag',
     short_names: ['test'],
     keywords: ['test', 'flag'],
-    spriteUrl: 'https://unpkg.com/emoji-datasource-twitter@4.0.4/img/twitter/sheets-256/64.png',
+    spriteUrl:
+      'https://unpkg.com/emoji-datasource-twitter@4.0.4/img/twitter/sheets-256/64.png',
     sheet_x: 1,
     sheet_y: 1,
     size: 64,
@@ -48,42 +49,54 @@ class Example extends React.Component {
   }
 
   render() {
-    return <div>
-      <div className="row">
-        <h1>Emoji Mart 🏬</h1>
+    return (
+      <div>
+        <div className="row">
+          <h1>Emoji Mart 🏬</h1>
+        </div>
+
+        <div className="row sets">
+          {[
+            'native',
+            'apple',
+            'google',
+            'twitter',
+            'emojione',
+            'messenger',
+            'facebook',
+          ].map((set) => {
+            var props = {
+              disabled: !this.state.native && set == this.state.set,
+            }
+
+            if (set == 'native' && this.state.native) {
+              props.disabled = true
+            }
+
+            return (
+              <button
+                key={set}
+                value={set}
+                onClick={() => {
+                  if (set == 'native') {
+                    this.setState({ native: true })
+                  } else {
+                    this.setState({ set: set, native: false })
+                  }
+                }}
+                {...props}
+              >
+                {set}
+              </button>
+            )
+          })}
+        </div>
+
+        <div className="row">
+          <Picker {...this.state} onSelect={console.log} />
+        </div>
       </div>
-
-      <div className="row sets">
-        {['native', 'apple', 'google', 'twitter', 'emojione', 'messenger', 'facebook'].map((set) => {
-          var props = { disabled: !this.state.native && set == this.state.set }
-
-          if (set == 'native' && this.state.native) {
-            props.disabled = true
-          }
-
-          return <button
-            key={set}
-            value={set}
-            onClick={() => {
-              if (set == 'native') {
-                this.setState({ native: true })
-              } else {
-                this.setState({ set: set, native: false })
-              }
-            }}
-            {...props}>
-            {set}
-          </button>
-        })}
-      </div>
-
-      <div className="row">
-        <Picker
-          {...this.state}
-          onSelect={console.log}
-        />
-      </div>
-    </div>
+    )
   }
 }
 
