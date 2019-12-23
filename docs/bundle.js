@@ -3401,8 +3401,11 @@ class Example extends __WEBPACK_IMPORTED_MODULE_1_react___default.a.Component {
       __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
         'div',
         { className: 'row sets' },
+        'Set:\xA0',
         ['native', 'apple', 'google', 'twitter', 'emojione', 'messenger', 'facebook'].map(set => {
-          var props = { disabled: !this.state.native && set == this.state.set };
+          var props = {
+            disabled: !this.state.native && set == this.state.set
+          };
 
           if (set == 'native' && this.state.native) {
             props.disabled = true;
@@ -3427,10 +3430,43 @@ class Example extends __WEBPACK_IMPORTED_MODULE_1_react___default.a.Component {
       ),
       __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
         'div',
+        { className: 'row-small sets' },
+        'Theme:\xA0',
+        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+          'button',
+          {
+            disabled: this.state.darkMode == undefined,
+            onClick: () => {
+              this.setState({ darkMode: undefined });
+            }
+          },
+          'auto'
+        ),
+        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+          'button',
+          {
+            disabled: this.state.darkMode == false,
+            onClick: () => {
+              this.setState({ darkMode: false });
+            }
+          },
+          'light'
+        ),
+        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+          'button',
+          {
+            disabled: this.state.darkMode,
+            onClick: () => {
+              this.setState({ darkMode: true });
+            }
+          },
+          'dark'
+        )
+      ),
+      __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+        'div',
         { className: 'row' },
-        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__src__["a" /* Picker */], Object(__WEBPACK_IMPORTED_MODULE_0__src_polyfills_extends__["a" /* default */])({}, this.state, {
-          onSelect: console.log
-        }))
+        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__src__["a" /* Picker */], Object(__WEBPACK_IMPORTED_MODULE_0__src_polyfills_extends__["a" /* default */])({}, this.state, { onSelect: console.log }))
       )
     );
   }

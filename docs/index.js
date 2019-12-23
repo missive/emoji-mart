@@ -56,6 +56,7 @@ class Example extends React.Component {
         </div>
 
         <div className="row sets">
+          Set: 
           {[
             'native',
             'apple',
@@ -90,6 +91,37 @@ class Example extends React.Component {
               </button>
             )
           })}
+        </div>
+
+        <div className="row-small sets">
+          Theme: 
+
+          <button
+            disabled={this.state.darkMode == undefined}
+            onClick={() => {
+              this.setState({ darkMode: undefined })
+            }}
+          >
+            auto
+          </button>
+
+          <button
+            disabled={this.state.darkMode == false}
+            onClick={() => {
+              this.setState({ darkMode: false })
+            }}
+          >
+            light
+          </button>
+
+          <button
+            disabled={this.state.darkMode}
+            onClick={() => {
+              this.setState({ darkMode: true })
+            }}
+          >
+            dark
+          </button>
         </div>
 
         <div className="row">
