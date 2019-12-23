@@ -37,7 +37,6 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 0 6px;
-  color: #858585;
   line-height: 0;
 }
 
@@ -45,6 +44,7 @@
   position: relative;
   display: block;
   flex: 1 1 auto;
+  color: #858585;
   text-align: center;
   padding: 12px 4px;
   overflow: hidden;
@@ -78,7 +78,7 @@
 
 .emoji-mart-anchors svg,
 .emoji-mart-anchors img {
-  fill: #858585;
+  fill: currentColor;
   height: 18px;
   width: 18px;
 }
