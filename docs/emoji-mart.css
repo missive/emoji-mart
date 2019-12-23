@@ -37,7 +37,6 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 0 6px;
-  color: #858585;
   line-height: 0;
 }
 
@@ -45,6 +44,7 @@
   position: relative;
   display: block;
   flex: 1 1 auto;
+  color: #858585;
   text-align: center;
   padding: 12px 4px;
   overflow: hidden;
@@ -54,7 +54,9 @@
   background: none;
   border: none;
 }
+.emoji-mart-anchor:focus { outline: 0 }
 .emoji-mart-anchor:hover,
+.emoji-mart-anchor:focus,
 .emoji-mart-anchor-selected {
   color: #464646;
 }
@@ -78,7 +80,7 @@
 
 .emoji-mart-anchors svg,
 .emoji-mart-anchors img {
-  fill: #858585;
+  fill: currentColor;
   height: 18px;
   width: 18px;
 }
@@ -449,4 +451,10 @@
 .emoji-mart-dark .emoji-mart-skin-swatches {
   border-color: #555453;
   background-color: #222;
+}
+
+.emoji-mart-dark .emoji-mart-anchor:hover,
+.emoji-mart-dark .emoji-mart-anchor:focus,
+.emoji-mart-dark .emoji-mart-anchor-selected {
+  color: #bfbfbf;
 }
