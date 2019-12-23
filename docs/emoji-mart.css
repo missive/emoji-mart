@@ -413,4 +413,29 @@
   border: 0;
 }
 
+/*
+ * Dark mode styles
+ */
 
+.emoji-mart-dark {
+  color: #fff;
+  background-color: #222;
+}
+
+.emoji-mart-dark .emoji-mart-search input {
+  background-color: #2f2f2f;
+  color: #fff;
+}
+
+.emoji-mart-dark .emoji-mart-search-icon svg {
+  fill: #fff;
+}
+
+.emoji-mart-dark .emoji-mart-category .emoji-mart-emoji:hover:before {
+  background-color: #444;
+}
+
+.emoji-mart-dark .emoji-mart-category-label span {
+  background-color: #222;
+  color: #fff;
+}
