@@ -105,7 +105,9 @@ export default class NimblePicker extends React.PureComponent {
         this.CUSTOM.push(customEmoji)
       })
 
-      allCategories.push(...Object.values(customCategories))
+      allCategories = allCategories.concat(
+        Object.keys(customCategories).map((key) => customCategories[key]),
+      )
     }
 
     this.hideRecent = true
