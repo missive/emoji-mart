@@ -77,11 +77,12 @@
     "react:15": "npm run react:clean && npm i react@^15 react-dom@^15 react-addons-test-utils@^15 --save-dev",
     "test": "npm run clean && jest",
     "test:size": "size-limit",
+    "test:ssr": "node test/ssr.js",
     "prepublishOnly": "npm run build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "prettier": "prettier --write \"{src,scripts}/**/*.js\"",
-    "prettier:check": "prettier --check \"{src,scripts}/**/*.js\"",
+    "prettier": "prettier --write \"{src,scripts,test}/**/*.js\"",
+    "prettier:check": "prettier --check \"{src,scripts,test}/**/*.js\"",
     "prepare": "npm run build:dist"
   },
   "size-limit": [
