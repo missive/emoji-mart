@@ -90,6 +90,7 @@
   will-change: transform; /* avoids "repaints on scroll" in mobile Chrome */
 }
 
+/* CSS for quickFilter */
 .emoji-mart-filter {
   margin-top: 6px;
   padding: 0 0px;
@@ -99,12 +100,13 @@
 .emoji-mart-filter .emoji-mart-gender,
 .emoji-mart-filter .emoji-mart-skin-swatches {
   display: inline-block;
-  padding: 0;
 }
 .emoji-mart-filter .emoji-mart-skin-swatches {
   margin-left: 6px;
 }
-
+.emoji-mart-filter .emoji-mart-gender {
+  padding: 0;
+}
 .emoji-mart-filter .emoji-mart-gender .emoji-mart-emoji {
   padding: 3px 6px;
 }
@@ -120,6 +122,7 @@
   opacity: 1;
   transition: opacity .2s ease-out;
 }
+
 
 .emoji-mart-search {
   margin-top: 6px;

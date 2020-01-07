@@ -1,11 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { search as icons } from '../svgs'
-import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
-import { throttleIdleTask } from '../utils/index'
-
-import SkinsEmoji from './skins-emoji'
 import GenderEmoji from './gender-emoji'
 import SkinsDot from './skins-dot'
 
@@ -44,7 +39,9 @@ export default class Filter extends React.PureComponent {
 
 Filter.propTypes /* remove-proptypes */ = {
   onGenderChange: PropTypes.func,
-}
+  emojiProps: PropTypes.object.isRequired,
+  skinsProps: PropTypes.object.isRequired,
+};
 
 Filter.defaultProps = {
   onGenderChange: () => {},
