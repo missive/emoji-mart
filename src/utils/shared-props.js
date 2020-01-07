@@ -11,7 +11,7 @@ const EmojiPropTypes = {
   forceSize: PropTypes.bool,
   tooltip: PropTypes.bool,
   skin: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
-  gender: PropTypes.oneOf([0,1]),
+  gender: PropTypes.oneOf([0, 1]),
   sheetSize: PropTypes.oneOf([16, 20, 32, 64]),
   sheetColumns: PropTypes.number,
   sheetRows: PropTypes.number,

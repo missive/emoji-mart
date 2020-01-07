@@ -41,7 +41,7 @@ Filter.propTypes /* remove-proptypes */ = {
   onGenderChange: PropTypes.func,
   emojiProps: PropTypes.object.isRequired,
   skinsProps: PropTypes.object.isRequired,
-};
+}
 
 Filter.defaultProps = {
   onGenderChange: () => {},
