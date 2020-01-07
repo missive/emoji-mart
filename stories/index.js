@@ -40,7 +40,6 @@ storiesOf('Picker', module)
       onSkinChange={action('skin changed')}
       onGenderChange={action('gender changed')}
       native={boolean('Unicode', true)}
-      quickFilter={boolean('Quick Filter', true)}
       set={select('Emoji pack', SETS, SETS[0])}
       emojiSize={number('Emoji size', 24)}
       perLine={number('Per line', 9)}
@@ -49,6 +48,7 @@ storiesOf('Picker', module)
       notFoundEmoji={text('Not found emoji', 'sleuth_or_spy')}
       defaultSkin={number('Default skin tone', 1)}
       color={color('Highlight color', '#ae65c5')}
+      showFilter={boolean('Show filter', true)}
       showPreview={boolean('Show preview', true)}
       showSkinTones={boolean('Show skin tones', true)}
       custom={CUSTOM_EMOJIS}

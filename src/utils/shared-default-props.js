@@ -33,6 +33,7 @@ const PickerDefaultProps = {
   emojisToShowFilter: null,
   showPreview: true,
   showSkinTones: true,
+  showFilter: true,
   emojiTooltip: EmojiDefaultProps.tooltip,
   autoFocus: false,
   custom: [],

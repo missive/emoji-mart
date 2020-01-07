@@ -519,7 +519,7 @@ export default class NimblePicker extends React.PureComponent {
         skinEmoji,
         notFound,
         notFoundEmoji,
-        quickFilter,
+        showFilter,
       } = this.props,
       { skin, gender } = this.state,
       width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
@@ -555,7 +555,7 @@ export default class NimblePicker extends React.PureComponent {
           autoFocus={autoFocus}
         />
 
-        {quickFilter && (
+        {showFilter && (
           <Filter
             ref={this.setSearchRef}
             data={this.data}
@@ -592,7 +592,7 @@ export default class NimblePicker extends React.PureComponent {
                 name={category.name}
                 emojis={category.emojis}
                 genderFilter={
-                  quickFilter && category.id === 'people'
+                  showFilter && category.id === 'people'
                     ? genderFilters[gender]
                     : undefined
                 }

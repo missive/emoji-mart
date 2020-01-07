@@ -45,6 +45,7 @@ const PickerPropTypes = {
   backgroundImageFn: EmojiPropTypes.backgroundImageFn,
   sheetSize: EmojiPropTypes.sheetSize,
   emojisToShowFilter: PropTypes.func,
+  showFilter: PropTypes.bool,
   showPreview: PropTypes.bool,
   showSkinTones: PropTypes.bool,
   emojiTooltip: EmojiPropTypes.tooltip,
