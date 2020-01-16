@@ -220,7 +220,7 @@ export default class NimblePicker extends React.PureComponent {
     if (props.gender) {
       return {
         ...state,
-        gender: props.gender
+        gender: props.gender,
       }
     } else if (props.defaultGender && !store.get('gender')) {
       return {
