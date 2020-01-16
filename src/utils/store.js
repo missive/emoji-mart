@@ -1,9 +1,9 @@
 var NAMESPACE = 'emoji-mart'
 
-const _JSON = JSON
-
 var isLocalStorageSupported =
   typeof window !== 'undefined' && 'localStorage' in window
+
+const _JSON = JSON // don't let babel include all of core-js for stringify/parse
 
 let getter
 let setter
@@ -44,12 +44,12 @@ function get(key) {
     if (!isLocalStorageSupported) return
     try {
       var value = window.localStorage[`${NAMESPACE}.${key}`]
+
+      if (value) {
+        return _JSON.parse(value)
+      }
     } catch (e) {
       return
-    }
-
-    if (value) {
-      return JSON.parse(value)
     }
   }
 }

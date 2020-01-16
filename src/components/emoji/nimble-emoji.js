@@ -149,6 +149,8 @@ const NimbleEmoji = (props) => {
         ...style,
         backgroundImage: `url(${imageUrl})`,
         backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
       }
     }
   } else {

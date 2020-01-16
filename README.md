@@ -2,7 +2,7 @@
   <br><b>Emoji Mart</b> is a Slack-like customizable<br>emoji picker component for React
   <br><a href="https://missive.github.io/emoji-mart">Demo</a> • <a href="https://github.com/missive/emoji-mart/blob/master/CHANGELOG.md">Changelog</a>
   <br><br><a href="https://travis-ci.org/missive/emoji-mart"><img src="https://travis-ci.org/missive/emoji-mart.svg?branch=master" alt="Build Status"></a>
-  <br><br><img width="338" alt="picker" src="https://user-images.githubusercontent.com/436043/43481399-d9b60acc-94d3-11e8-9b3b-e5f2db8f0bd1.png">
+  <br><br><img width="420" alt="picker" src="https://user-images.githubusercontent.com/436043/71363432-1b69d000-2567-11ea-9416-88446025e03c.png">
   <br><br><a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com"><img width="30" alt="Missive | Team email, team chat, team tasks, one app" src="https://user-images.githubusercontent.com/436043/32532559-0d15ddfc-c400-11e7-8a24-64d0157d0cb0.png"></a>
   <br>Brought to you by the <a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com">Missive</a> team
 </div>
@@ -29,6 +29,7 @@ import { Picker } from 'emoji-mart'
 | **autoFocus** | | `false` | Auto focus the search input when mounted |
 | **color** | | `#ae65c5` | The top bar anchors select and hover color |
 | **emoji** | | `department_store` | The emoji shown when no emojis are hovered, set to an empty string to show nothing |
+| **darkMode** | | varies | Dark mode (boolean). `true` by default if the browser reports [`prefers-color-scheme: dark`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme). |
 | **include** | | `[]` | Only load included categories. Accepts [I18n categories keys](#i18n). Order will be respected, except for the `recent` category which will always be the first. |
 | **exclude** | | `[]` | Don't load excluded categories. Accepts [I18n categories keys](#i18n). |
 | **custom** | | `[]` | [Custom emojis](#custom-emojis) |
@@ -246,7 +247,8 @@ const customEmojis = [
     text: '',
     emoticons: [],
     keywords: ['github'],
-    imageUrl: 'https://github.githubassets.com/images/icons/emoji/octocat.png'
+    imageUrl: 'https://github.githubassets.com/images/icons/emoji/octocat.png',
+    customCategory: 'GitHub'
   },
   {
     name: 'Test Flag',
@@ -265,6 +267,9 @@ const customEmojis = [
 
 <Picker custom={customEmojis} />
 ```
+
+The `customCategory` string is optional. If you include it, then the custom emoji will be shown in whatever
+categories you define. If you don't include it, then there will just be one category called "Custom."
 
 ## Not Found
 You can provide a custom Not Found object which will allow the appearance of the not found search results to change. In this case, we change the default 'sleuth_or_spy' emoji to Octocat when our search finds no results.
@@ -304,6 +309,15 @@ emojiIndex.search('christmas').map((o) => o.native)
 // => [🎄, 🎅🏼, 🔔, 🎁, ⛄️, ❄️]
 ```
 
+### With custom data
+```js
+import data from 'emoji-mart/datasets/messenger'
+import { NimbleEmojiIndex } from 'emoji-mart'
+
+let emojiIndex = new NimbleEmojiIndex(data)
+emojiIndex.search('christmas')
+```
+
 ## Get emoji data from Native
 You can get emoji data from native emoji unicode using the `getEmojiDataFromNative` util function.
 
@@ -332,15 +346,6 @@ emojiData: {
   "skin": 4,
   "native": "🏊🏽‍♀️"
 }
-```
-
-### With custom data
-```js
-import data from 'emoji-mart/datasets/messenger'
-import { NimbleEmojiIndex } from 'emoji-mart'
-
-let emojiIndex = new NimbleEmojiIndex(data)
-emojiIndex.search('christmas')
 ```
 
 ## Storage

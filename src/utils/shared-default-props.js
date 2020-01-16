@@ -34,6 +34,10 @@ const PickerDefaultProps = {
   showPreview: true,
   showSkinTones: true,
   showFilter: true,
+  darkMode: !!(
+    typeof matchMedia === 'function' &&
+    matchMedia('(prefers-color-scheme: dark)').matches
+  ),
   emojiTooltip: EmojiDefaultProps.tooltip,
   autoFocus: false,
   custom: [],

@@ -39,3 +39,13 @@ test('can search for woman-facepalming', () => {
     'woman-facepalming',
   ])
 })
+
+test('emojiIndex exports emojis', () => {
+  const emojis = emojiIndex.emojis
+  expect(emojis['thinking_face'].native).toEqual('\ud83e\udd14')
+})
+
+test('emojiIndex exports emoticons', () => {
+  const emoticons = emojiIndex.emoticons
+  expect(emoticons[':)']).toEqual('slightly_smiling_face')
+})
