@@ -118,7 +118,7 @@ function getData(emoji, skin, set, data) {
       if (!variationData.variations && emojiData.variations) {
         delete emojiData.variations
       }
-  
+
       if (
         (set &&
           (variationData[`has_img_${set}`] == undefined ||
@@ -126,7 +126,7 @@ function getData(emoji, skin, set, data) {
         !set
       ) {
         emojiData.skin_tone = skin
-  
+
         for (let k in variationData) {
           let v = variationData[k]
           emojiData[k] = v
