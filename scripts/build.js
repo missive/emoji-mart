@@ -85,7 +85,7 @@ module.exports = (options) => {
       datum.keywords = emojiLib.lib[datum.short_name].keywords
     }
 
-    if (datum.category && datum.category != 'Skin Tones') {
+    if (datum.category != 'Skin Tones') {
       categoryIndex = categoriesIndex[category]
       data.categories[categoryIndex].emojis.push(datum.short_name)
       data.emojis[datum.short_name] = datum
