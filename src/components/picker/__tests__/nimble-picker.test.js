@@ -15,7 +15,7 @@ function render(props = {}) {
 
 test('shows 10 categories by default', () => {
   const subject = render()
-  expect(subject.categories.length).toEqual(10)
+  expect(subject.categories.length).toEqual(11)
 })
 
 test('will not show some categories based upon our filter', () => {
@@ -26,7 +26,7 @@ test('will not show some categories based upon our filter', () => {
 test('maintains category ids after it is filtered', () => {
   const subject = render({ emojisToShowFilter: () => true })
   const categoriesWithIds = subject.categories.filter((category) => category.id)
-  expect(categoriesWithIds.length).toEqual(10)
+  expect(categoriesWithIds.length).toEqual(11)
 })
 
 test('with custom emoji and tooltip', () => {
@@ -57,8 +57,8 @@ test('with custom emoji and tooltip', () => {
     autoFocus: true,
     custom,
   })
-  expect(subject.categories.length).toEqual(11)
-  expect(subject.categories[10].name).toEqual('Custom')
+  expect(subject.categories.length).toEqual(12)
+  expect(subject.categories[11].name).toEqual('Custom')
   subject.handleSearch(
     new NimbleEmojiIndex(subject.data).search('custom_', { custom }),
   )
@@ -90,7 +90,7 @@ test('with custom categories', () => {
     },
   ]
   const subject = render({ custom })
-  expect(subject.categories.length).toEqual(12)
-  expect(subject.categories[10].name).toEqual('Category 1')
-  expect(subject.categories[11].name).toEqual('Category 2')
+  expect(subject.categories.length).toEqual(13)
+  expect(subject.categories[11].name).toEqual('Category 1')
+  expect(subject.categories[12].name).toEqual('Category 2')
 })
