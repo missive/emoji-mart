@@ -62,8 +62,6 @@ class Example extends React.Component {
             'apple',
             'google',
             'twitter',
-            'emojione',
-            'messenger',
             'facebook',
           ].map((set) => {
             var props = {

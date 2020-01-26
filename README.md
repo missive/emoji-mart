@@ -17,7 +17,7 @@
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
 
-<Picker set='emojione' />
+<Picker set='apple' />
 <Picker onSelect={this.addEmoji} />
 <Picker title='Pick your emoji…' emoji='point_up' />
 <Picker style={{ position: 'absolute', bottom: '20px', right: '20px' }} />
@@ -41,7 +41,7 @@ import { Picker } from 'emoji-mart'
 | **perLine** | | `9` | Number of emojis per line. While there’s no minimum or maximum, this will affect the picker’s width. This will set *Frequently Used* length as well (`perLine * 4`) |
 | **i18n** | | [`{…}`](#i18n) | [An object](#i18n) containing localized strings |
 | **native** | | `false` | Renders the native unicode emoji |
-| **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'emojione', 'messenger', 'facebook'` |
+| **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'facebook'` |
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
 | **backgroundImageFn** | | ```((set, sheetSize) => …)``` | A Fn that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **emojisToShowFilter** | | ```((emoji) => true)``` | A Fn to choose whether an emoji should be displayed or not |
@@ -66,7 +66,8 @@ skintext: 'Choose your default skin tone',
 categories: {
   search: 'Search Results',
   recent: 'Frequently Used',
-  people: 'Smileys & People',
+  smileys: 'Smileys & Emotion',
+  people: 'People & Body',
   nature: 'Animals & Nature',
   foods: 'Food & Drink',
   activity: 'Activity',
@@ -94,33 +95,29 @@ Sheets are served from [unpkg](https://unpkg.com), a global CDN that serves file
 
 | Set       | Size (`sheetSize: 16`) | Size (`sheetSize: 20`) | Size (`sheetSize: 32`) | Size (`sheetSize: 64`) |
 | --------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
-| apple     | 334 KB                 | 459 KB                 | 1.08 MB                | 2.94 MB                |
-| emojione  | 315 KB                 | 435 KB                 | 1020 KB                | 2.33 MB                |
-| facebook  | 322 KB                 | 439 KB                 | 1020 KB                | 2.50 MB                |
-| google    | 301 KB                 | 409 KB                 |  907 KB                | 2.17 MB                |
-| messenger | 325 KB                 | 449 KB                 | 1.05 MB                | 2.69 MB                |
-| twitter   | 288 KB                 | 389 KB                 |  839 KB                | 1.82 MB                |
+| apple     | 407 KB                 | 561 KB                 | 1.34 MB                | 3.60 MB                |
+| facebook  | 416 KB                 | 579 KB                 | 1.38 MB                | 3.68 MB                |
+| google    | 362 KB                 | 489 KB                 | 1.12 MB                | 2.78 MB                |
+| twitter   | 361 KB                 | 485 KB                 | 1.05 MB                | 2.39 MB                |
 
 #### Datasets
 While all sets are available by default, you may want to include only a single set data to reduce the size of your bundle.
 
 | Set       | Size (on disk) |
 | --------- | -------------- |
-| all       | 570 KB         |
-| apple     | 484 KB         |
-| emojione  | 485 KB         |
-| facebook  | 421 KB         |
-| google    | 483 KB         |
-| messenger | 197 KB         |
-| twitter   | 484 KB         |
+| all       | 611 KB         |
+| apple     | 548 KB         |
+| facebook  | 468 KB         |
+| google    | 518 KB         |
+| twitter   | 517 KB         |
 
 To use these data files (or any other custom data), use the `NimblePicker` component:
 
 ```js
-import data from 'emoji-mart/data/messenger.json'
+import data from 'emoji-mart/data/google.json'
 import { NimblePicker } from 'emoji-mart'
 
-<NimblePicker set='messenger' data={data} />
+<NimblePicker set='google' data={data} />
 ```
 
 #### Examples of `emoji` object:
@@ -166,7 +163,7 @@ import { Emoji } from 'emoji-mart'
 
 <Emoji emoji={{ id: 'santa', skin: 3 }} size={16} />
 <Emoji emoji=':santa::skin-tone-3:' size={16} />
-<Emoji emoji='santa' set='emojione' size={16} />
+<Emoji emoji='santa' set='apple' size={16} />
 ```
 
 | Prop | Required | Default | Description |
@@ -178,7 +175,7 @@ import { Emoji } from 'emoji-mart'
 | **onLeave** | | | Params: `(emoji, event) => {}` |
 | **onOver** | | | Params: `(emoji, event) => {}` |
 | [**fallback**](#unsupported-emojis-fallback) | | | Params: `(emoji, props) => {}` |
-| **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter', 'emojione'` |
+| **set** | | `apple` | The emoji set: `'apple', 'google', 'twitter'` |
 | **sheetSize** | | `64` | The emoji [sheet size](#sheet-sizes): `16, 20, 32, 64` |
 | **backgroundImageFn** | | ```((set, sheetSize) => `https://unpkg.com/emoji-datasource@3.0.0/sheet_${set}_${sheetSize}.png`)``` | A Fn that returns that image sheet to use for emojis. Useful for avoiding a request if you have the sheet locally. |
 | **skin** | | `1` | Skin color: `1, 2, 3, 4, 5, 6` |
@@ -186,13 +183,13 @@ import { Emoji } from 'emoji-mart'
 | [**html**](#using-with-dangerouslysetinnerhtml) | | `false` | Returns an HTML string to use with `dangerouslySetInnerHTML` |
 
 #### Unsupported emojis fallback
-Certain sets don’t support all emojis (i.e. Messenger & Facebook don’t support `:shrug:`). By default the Emoji component will not render anything so that the emojis’ don’t take space in the picker when not available. When using the standalone Emoji component, you can however render anything you want by providing the `fallback` props.
+Certain sets don’t support all emojis. By default the Emoji component will not render anything so that the emojis’ don’t take space in the picker when not available. When using the standalone Emoji component, you can however render anything you want by providing the `fallback` props.
 
 To have the component render `:shrug:` you would need to:
 
 ```js
 <Emoji
-  set={'messenger'}
+  set={'apple'}
   emoji={'shrug'}
   size={24}
   fallback={(emoji, props) => {
@@ -310,7 +307,7 @@ emojiIndex.search('christmas').map((o) => o.native)
 
 ### With custom data
 ```js
-import data from 'emoji-mart/datasets/messenger'
+import data from 'emoji-mart/datasets/apple'
 import { NimbleEmojiIndex } from 'emoji-mart'
 
 let emojiIndex = new NimbleEmojiIndex(data)
@@ -406,7 +403,7 @@ It can however be overwritten as per user preference.
 <img width="98" alt="customizable-skin" src="https://user-images.githubusercontent.com/436043/32532883-2c620e7c-c402-11e7-976c-50d32be0566c.png">
 
 #### Multiple sets supported
-Apple / Google / Twitter / EmojiOne / Messenger / Facebook
+Apple / Google / Twitter / Facebook
 
 <img width="214" alt="sets" src="https://user-images.githubusercontent.com/436043/33786868-d4226e60-dc38-11e7-840a-e4cf490f5f4a.png">
 
