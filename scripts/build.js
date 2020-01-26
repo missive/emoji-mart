@@ -6,7 +6,7 @@ var fs = require('fs'),
 var { compress } = require('../dist/utils/data')
 
 var categories = [
-  ['Smileys & Emotion', 'people'],
+  ['Smileys & Emotion', 'smileys'],
   ['People & Body', 'people'],
   ['Animals & Nature', 'nature'],
   ['Food & Drink', 'foods'],
