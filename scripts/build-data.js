@@ -1,5 +1,5 @@
 const build = require('./build')
-const sets = ['apple', 'emojione', 'facebook', 'google', 'messenger', 'twitter']
+const sets = ['apple', 'facebook', 'google', 'twitter']
 
 build({ output: 'data/all.json' })
 
