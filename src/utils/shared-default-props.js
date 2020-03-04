@@ -37,6 +37,7 @@ const PickerDefaultProps = {
   ),
   emojiTooltip: EmojiDefaultProps.tooltip,
   autoFocus: false,
+  disableFrequentEmojiSort: false,
   custom: [],
   skinEmoji: '',
   notFound: () => {},
