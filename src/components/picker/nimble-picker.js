@@ -289,7 +289,7 @@ export default class NimblePicker extends React.PureComponent {
     var component = this.categoryRefs['category-1']
     if (component) {
       let maxMargin = component.maxMargin
-      if (!this.props.disableFrequentEmojiSort){
+      if (!this.props.disableFrequentEmojiSort) {
         component.forceUpdate()
       }
 
