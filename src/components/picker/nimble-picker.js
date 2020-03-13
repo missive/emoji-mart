@@ -1,5 +1,3 @@
-import '../../vendor/raf-polyfill'
-
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -293,7 +291,7 @@ export default class NimblePicker extends React.PureComponent {
       let maxMargin = component.maxMargin
       component.forceUpdate()
 
-      window.requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
         if (!this.scroll) return
         component.memoizeSize()
         if (maxMargin == component.maxMargin) return
@@ -311,7 +309,7 @@ export default class NimblePicker extends React.PureComponent {
   handleScroll() {
     if (!this.waitingForPaint) {
       this.waitingForPaint = true
-      window.requestAnimationFrame(this.handleScrollPaint)
+      requestAnimationFrame(this.handleScrollPaint)
     }
   }
 
@@ -415,7 +413,7 @@ export default class NimblePicker extends React.PureComponent {
       this.handleSearch(null)
       this.search.clear()
 
-      window.requestAnimationFrame(scrollToComponent)
+      requestAnimationFrame(scrollToComponent)
     } else {
       scrollToComponent()
     }
