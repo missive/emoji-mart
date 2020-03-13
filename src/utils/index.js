@@ -5,8 +5,6 @@ import { uncompress } from './data'
 const COLONS_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/
 const SKINS = ['1F3FA', '1F3FB', '1F3FC', '1F3FD', '1F3FE', '1F3FF']
 
-const _JSON = JSON // don't let babel include all of core-js for stringify/parse
-
 function unifiedToNative(unified) {
   var unicodes = unified.split('-'),
     codePoints = unicodes.map((u) => `0x${u}`)
@@ -109,7 +107,7 @@ function getData(emoji, skin, set, data) {
   emojiData.variations || (emojiData.variations = [])
 
   if (emojiData.skin_variations && skin > 1) {
-    emojiData = _JSON.parse(_JSON.stringify(emojiData))
+    emojiData = JSON.parse(JSON.stringify(emojiData))
 
     var skinKey = SKINS[skin - 1],
       variationData = emojiData.skin_variations[skinKey]
@@ -134,7 +132,7 @@ function getData(emoji, skin, set, data) {
   }
 
   if (emojiData.variations && emojiData.variations.length) {
-    emojiData = _JSON.parse(_JSON.stringify(emojiData))
+    emojiData = JSON.parse(JSON.stringify(emojiData))
     emojiData.unified = emojiData.variations.shift()
   }
 
