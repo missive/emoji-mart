@@ -24,6 +24,7 @@ const PickerDefaultProps = {
   emoji: 'department_store',
   color: '#ae65c5',
   set: EmojiDefaultProps.set,
+  theme: 'light',
   skin: null,
   defaultSkin: EmojiDefaultProps.skin,
   native: EmojiDefaultProps.native,
@@ -32,10 +33,6 @@ const PickerDefaultProps = {
   emojisToShowFilter: null,
   showPreview: true,
   showSkinTones: true,
-  darkMode: !!(
-    typeof matchMedia === 'function' &&
-    matchMedia('(prefers-color-scheme: dark)').matches
-  ),
   emojiTooltip: EmojiDefaultProps.tooltip,
   useButton: EmojiDefaultProps.useButton,
   autoFocus: false,

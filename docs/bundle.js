@@ -1539,6 +1539,7 @@ var PickerPropTypes = {
   showSkinTones: _propTypes["default"].bool,
   emojiTooltip: EmojiPropTypes.tooltip,
   useButton: EmojiPropTypes.useButton,
+  theme: _propTypes["default"].oneOf(['auto', 'light', 'dark']),
   include: _propTypes["default"].arrayOf(_propTypes["default"].string),
   exclude: _propTypes["default"].arrayOf(_propTypes["default"].string),
   recent: _propTypes["default"].arrayOf(_propTypes["default"].string),
@@ -1602,6 +1603,7 @@ var PickerDefaultProps = {
   emoji: 'department_store',
   color: '#ae65c5',
   set: EmojiDefaultProps.set,
+  theme: 'light',
   skin: null,
   defaultSkin: EmojiDefaultProps.skin,
   "native": EmojiDefaultProps["native"],
@@ -1610,7 +1612,6 @@ var PickerDefaultProps = {
   emojisToShowFilter: null,
   showPreview: true,
   showSkinTones: true,
-  darkMode: !!(typeof matchMedia === 'function' && matchMedia('(prefers-color-scheme: dark)').matches),
   emojiTooltip: EmojiDefaultProps.tooltip,
   useButton: EmojiDefaultProps.useButton,
   autoFocus: false,
@@ -2621,6 +2622,8 @@ function (_React$PureComponent) {
     _this.setPreviewRef = _this.setPreviewRef.bind((0, _assertThisInitialized2["default"])(_this));
     _this.handleSkinChange = _this.handleSkinChange.bind((0, _assertThisInitialized2["default"])(_this));
     _this.handleKeyDown = _this.handleKeyDown.bind((0, _assertThisInitialized2["default"])(_this));
+    _this.handleDarkMatchMediaChange = _this.handleDarkMatchMediaChange.bind((0, _assertThisInitialized2["default"])(_this));
+    _this.state.theme = _this.getPreferredTheme();
     return _this;
   }
 
@@ -2650,6 +2653,10 @@ function (_React$PureComponent) {
       this.SEARCH_CATEGORY.emojis = null;
       clearTimeout(this.leaveTimeout);
       clearTimeout(this.firstRenderTimeout);
+
+      if (this.darkMatchMedia) {
+        this.darkMatchMedia.removeListener(this.handleDarkMatchMediaChange);
+      }
     }
   }, {
     key: "testStickyPosition",
@@ -2660,6 +2667,27 @@ function (_React$PureComponent) {
         return stickyTestElement.style.position = "".concat(prefix, "sticky");
       });
       this.hasStickyPosition = !!stickyTestElement.style.position.length;
+    }
+  }, {
+    key: "getPreferredTheme",
+    value: function getPreferredTheme() {
+      if (this.props.theme != 'auto') return this.props.theme;
+      if (typeof matchMedia !== 'function') return _sharedDefaultProps.PickerDefaultProps.theme;
+
+      if (!this.darkMatchMedia) {
+        this.darkMatchMedia = matchMedia('(prefers-color-scheme: dark)');
+        this.darkMatchMedia.addListener(this.handleDarkMatchMediaChange);
+      }
+
+      if (this.darkMatchMedia.media.match(/^not/)) return _sharedDefaultProps.PickerDefaultProps.theme;
+      return this.darkMatchMedia.matches ? 'dark' : 'light';
+    }
+  }, {
+    key: "handleDarkMatchMediaChange",
+    value: function handleDarkMatchMediaChange() {
+      this.setState({
+        theme: this.getPreferredTheme()
+      });
     }
   }, {
     key: "handleEmojiOver",
@@ -2972,14 +3000,15 @@ function (_React$PureComponent) {
           skinEmoji = _this$props.skinEmoji,
           notFound = _this$props.notFound,
           notFoundEmoji = _this$props.notFoundEmoji,
-          darkMode = _this$props.darkMode,
-          skin = this.state.skin,
+          _this$state = this.state,
+          skin = _this$state.skin,
+          theme = _this$state.theme,
           width = perLine * (emojiSize + 12) + 12 + 2 + (0, _utils.measureScrollbar)();
       return _react["default"].createElement("section", {
         style: _objectSpread({
           width: width
         }, style),
-        className: "emoji-mart ".concat(darkMode ? 'emoji-mart-dark' : ''),
+        className: "emoji-mart emoji-mart-".concat(theme),
         "aria-label": title,
         onKeyDown: this.handleKeyDown
       }, _react["default"].createElement("div", {
@@ -3708,6 +3737,7 @@ class Example extends __WEBPACK_IMPORTED_MODULE_1_react___default.a.Component {
     this.state = {
       native: true,
       set: 'apple',
+      theme: 'auto',
       emoji: 'point_up',
       title: 'Pick your emoji…',
       custom: CUSTOM_EMOJIS,
@@ -3747,28 +3777,17 @@ class Example extends __WEBPACK_IMPORTED_MODULE_1_react___default.a.Component {
       }, props), set);
     })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
       className: "row-small sets"
-    }, "Theme:\xA0", __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", {
-      disabled: this.state.darkMode == undefined,
-      onClick: () => {
-        this.setState({
-          darkMode: undefined
-        });
-      }
-    }, "auto"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", {
-      disabled: this.state.darkMode == false,
-      onClick: () => {
-        this.setState({
-          darkMode: false
-        });
-      }
-    }, "light"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", {
-      disabled: this.state.darkMode,
-      onClick: () => {
-        this.setState({
-          darkMode: true
-        });
-      }
-    }, "dark")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+    }, "Theme:\xA0", ['auto', 'light', 'dark'].map(theme => {
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("button", {
+        key: theme,
+        disabled: theme == this.state.theme,
+        onClick: () => {
+          this.setState({
+            theme
+          });
+        }
+      }, theme);
+    })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
       className: "row"
     }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__dist__["Picker"], __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_extends___default()({}, this.state, {
       onSelect: console.log

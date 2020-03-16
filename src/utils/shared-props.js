@@ -41,6 +41,7 @@ const PickerPropTypes = {
   showSkinTones: PropTypes.bool,
   emojiTooltip: EmojiPropTypes.tooltip,
   useButton: EmojiPropTypes.useButton,
+  theme: PropTypes.oneOf(['auto', 'light', 'dark']),
   include: PropTypes.arrayOf(PropTypes.string),
   exclude: PropTypes.arrayOf(PropTypes.string),
   recent: PropTypes.arrayOf(PropTypes.string),

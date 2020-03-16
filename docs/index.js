@@ -42,6 +42,7 @@ class Example extends React.Component {
     this.state = {
       native: true,
       set: 'apple',
+      theme: 'auto',
       emoji: 'point_up',
       title: 'Pick your emoji…',
       custom: CUSTOM_EMOJIS,
@@ -88,30 +89,19 @@ class Example extends React.Component {
 
         <div className="row-small sets">
           Theme: 
-          <button
-            disabled={this.state.darkMode == undefined}
-            onClick={() => {
-              this.setState({ darkMode: undefined })
-            }}
-          >
-            auto
-          </button>
-          <button
-            disabled={this.state.darkMode == false}
-            onClick={() => {
-              this.setState({ darkMode: false })
-            }}
-          >
-            light
-          </button>
-          <button
-            disabled={this.state.darkMode}
-            onClick={() => {
-              this.setState({ darkMode: true })
-            }}
-          >
-            dark
-          </button>
+          {['auto', 'light', 'dark'].map((theme) => {
+            return (
+              <button
+                key={theme}
+                disabled={theme == this.state.theme}
+                onClick={() => {
+                  this.setState({ theme })
+                }}
+              >
+                {theme}
+              </button>
+            )
+          })}
         </div>
 
         <div className="row">

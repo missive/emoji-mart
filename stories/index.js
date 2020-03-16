@@ -21,6 +21,7 @@ import {
 import data from '../data/all.json'
 import '../css/emoji-mart.css'
 
+const THEMES = ['auto', 'light', 'dark']
 const SETS = ['apple', 'google', 'twitter', 'facebook']
 const CUSTOM_EMOJIS = [
   {
@@ -51,7 +52,7 @@ storiesOf('Picker', module)
       onSelect={action('selected')}
       onSkinChange={action('skin changed')}
       native={boolean('Unicode', true)}
-      darkMode={boolean('Dark mode', false)}
+      theme={select('Theme', THEMES, THEMES[0])}
       set={select('Emoji pack', SETS, SETS[0])}
       emojiSize={number('Emoji size', 24)}
       perLine={number('Per line', 9)}

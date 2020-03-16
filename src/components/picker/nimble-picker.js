@@ -196,6 +196,9 @@ export default class NimblePicker extends React.PureComponent {
     this.setPreviewRef = this.setPreviewRef.bind(this)
     this.handleSkinChange = this.handleSkinChange.bind(this)
     this.handleKeyDown = this.handleKeyDown.bind(this)
+    this.handleDarkMatchMediaChange = this.handleDarkMatchMediaChange.bind(this)
+
+    this.state.theme = this.getPreferredTheme()
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -232,6 +235,10 @@ export default class NimblePicker extends React.PureComponent {
 
     clearTimeout(this.leaveTimeout)
     clearTimeout(this.firstRenderTimeout)
+
+    if (this.darkMatchMedia) {
+      this.darkMatchMedia.removeListener(this.handleDarkMatchMediaChange)
+    }
   }
 
   testStickyPosition() {
@@ -244,6 +251,23 @@ export default class NimblePicker extends React.PureComponent {
     )
 
     this.hasStickyPosition = !!stickyTestElement.style.position.length
+  }
+
+  getPreferredTheme() {
+    if (this.props.theme != 'auto') return this.props.theme
+    if (typeof matchMedia !== 'function') return PickerDefaultProps.theme
+
+    if (!this.darkMatchMedia) {
+      this.darkMatchMedia = matchMedia('(prefers-color-scheme: dark)')
+      this.darkMatchMedia.addListener(this.handleDarkMatchMediaChange)
+    }
+
+    if (this.darkMatchMedia.media.match(/^not/)) return PickerDefaultProps.theme
+    return this.darkMatchMedia.matches ? 'dark' : 'light'
+  }
+
+  handleDarkMatchMediaChange() {
+    this.setState({ theme: this.getPreferredTheme() })
   }
 
   handleEmojiOver(emoji) {
@@ -529,15 +553,14 @@ export default class NimblePicker extends React.PureComponent {
         skinEmoji,
         notFound,
         notFoundEmoji,
-        darkMode,
       } = this.props,
-      { skin } = this.state,
+      { skin, theme } = this.state,
       width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
 
     return (
       <section
         style={{ width: width, ...style }}
-        className={`emoji-mart ${darkMode ? 'emoji-mart-dark' : ''}`}
+        className={`emoji-mart emoji-mart-${theme}`}
         aria-label={title}
         onKeyDown={this.handleKeyDown}
       >
