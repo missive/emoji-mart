@@ -1041,7 +1041,7 @@ var NimbleEmoji = function NimbleEmoji(props) {
     props: {}
   };
 
-  if (props.onClick) {
+  if (props.onClick && props.useButton) {
     Tag.name = 'button';
     Tag.props = {
       type: 'button'
@@ -1508,6 +1508,7 @@ var EmojiPropTypes = {
   "native": _propTypes["default"].bool,
   forceSize: _propTypes["default"].bool,
   tooltip: _propTypes["default"].bool,
+  useButton: _propTypes["default"].bool,
   skin: _propTypes["default"].oneOf([1, 2, 3, 4, 5, 6]),
   sheetSize: _propTypes["default"].oneOf([16, 20, 32, 64]),
   sheetColumns: _propTypes["default"].number,
@@ -1537,10 +1538,12 @@ var PickerPropTypes = {
   showPreview: _propTypes["default"].bool,
   showSkinTones: _propTypes["default"].bool,
   emojiTooltip: EmojiPropTypes.tooltip,
+  useButton: EmojiPropTypes.useButton,
   include: _propTypes["default"].arrayOf(_propTypes["default"].string),
   exclude: _propTypes["default"].arrayOf(_propTypes["default"].string),
   recent: _propTypes["default"].arrayOf(_propTypes["default"].string),
   autoFocus: _propTypes["default"].bool,
+  enableFrequentEmojiSort: _propTypes["default"].bool,
   custom: _propTypes["default"].arrayOf(_propTypes["default"].shape({
     name: _propTypes["default"].string.isRequired,
     short_names: _propTypes["default"].arrayOf(_propTypes["default"].string).isRequired,
@@ -1581,6 +1584,7 @@ var EmojiDefaultProps = {
   "native": false,
   forceSize: false,
   tooltip: false,
+  useButton: true,
   backgroundImageFn: function backgroundImageFn(set, sheetSize) {
     return "https://unpkg.com/emoji-datasource-".concat(set, "@").concat("5.0.1", "/img/").concat(set, "/sheets-256/").concat(sheetSize, ".png");
   }
@@ -1608,7 +1612,9 @@ var PickerDefaultProps = {
   showSkinTones: true,
   darkMode: !!(typeof matchMedia === 'function' && matchMedia('(prefers-color-scheme: dark)').matches),
   emojiTooltip: EmojiDefaultProps.tooltip,
+  useButton: EmojiDefaultProps.useButton,
   autoFocus: false,
+  enableFrequentEmojiSort: false,
   custom: [],
   skinEmoji: '',
   notFound: function notFound() {},
@@ -2712,7 +2718,11 @@ function (_React$PureComponent) {
 
       if (component) {
         var maxMargin = component.maxMargin;
-        component.forceUpdate();
+
+        if (this.props.enableFrequentEmojiSort) {
+          component.forceUpdate();
+        }
+
         requestAnimationFrame(function () {
           if (!_this3.scroll) return;
           component.memoizeSize();
@@ -2954,6 +2964,7 @@ function (_React$PureComponent) {
           showPreview = _this$props.showPreview,
           showSkinTones = _this$props.showSkinTones,
           emojiTooltip = _this$props.emojiTooltip,
+          useButton = _this$props.useButton,
           include = _this$props.include,
           exclude = _this$props.exclude,
           recent = _this$props.recent,
@@ -3020,6 +3031,7 @@ function (_React$PureComponent) {
             forceSize: _native,
             tooltip: emojiTooltip,
             backgroundImageFn: backgroundImageFn,
+            useButton: useButton,
             onOver: _this4.handleEmojiOver,
             onLeave: _this4.handleEmojiLeave,
             onClick: _this4.handleEmojiClick
@@ -3698,7 +3710,8 @@ class Example extends __WEBPACK_IMPORTED_MODULE_1_react___default.a.Component {
       set: 'apple',
       emoji: 'point_up',
       title: 'Pick your emoji…',
-      custom: CUSTOM_EMOJIS
+      custom: CUSTOM_EMOJIS,
+      useButton: false
     };
   }
 
