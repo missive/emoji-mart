@@ -41,7 +41,7 @@
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.0",
     "babel-plugin-transform-define": "^2.0.0",
-    "emoji-datasource": "4.0.4",
+    "emoji-datasource": "5.0.1",
     "emojilib": "^2.2.1",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
@@ -84,7 +84,7 @@
   "size-limit": [
     {
       "path": "dist-es/index.js",
-      "limit": "80 KB"
+      "limit": "82 KB"
     }
   ]
 }
