@@ -55,11 +55,11 @@ storiesOf('Picker', module)
       theme={select('Theme', THEMES, THEMES[0])}
       set={select('Emoji pack', SETS, SETS[0])}
       emojiSize={number('Emoji size', 24)}
-      perLine={number('Per line', 9)}
+      perLine={number('Per line', 9, { min: 6 })}
       title={text('Idle text', 'Your Title Here')}
       emoji={text('Idle emoji', 'department_store')}
       notFoundEmoji={text('Not found emoji', 'sleuth_or_spy')}
-      defaultSkin={number('Default skin tone', 1)}
+      defaultSkin={number('Default skin tone', 1, { min: 1, max: 6 })}
       color={color('Highlight color', '#ae65c5')}
       showPreview={boolean('Show preview', true)}
       showSkinTones={boolean('Show skin tones', true)}
