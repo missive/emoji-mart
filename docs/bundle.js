@@ -2509,7 +2509,6 @@ function (_React$PureComponent) {
     _this.i18n = (0, _utils.deepMerge)(I18N, props.i18n);
     _this.icons = (0, _utils.deepMerge)(icons, props.icons);
     _this.state = {
-      skin: props.skin || _store["default"].get('skin') || props.defaultSkin,
       firstRender: true
     };
     _this.categories = [];
@@ -2623,7 +2622,6 @@ function (_React$PureComponent) {
     _this.handleSkinChange = _this.handleSkinChange.bind((0, _assertThisInitialized2["default"])(_this));
     _this.handleKeyDown = _this.handleKeyDown.bind((0, _assertThisInitialized2["default"])(_this));
     _this.handleDarkMatchMediaChange = _this.handleDarkMatchMediaChange.bind((0, _assertThisInitialized2["default"])(_this));
-    _this.state.theme = _this.getPreferredTheme();
     return _this;
   }
 
@@ -2672,6 +2670,7 @@ function (_React$PureComponent) {
     key: "getPreferredTheme",
     value: function getPreferredTheme() {
       if (this.props.theme != 'auto') return this.props.theme;
+      if (this.state.theme) return this.state.theme;
       if (typeof matchMedia !== 'function') return _sharedDefaultProps.PickerDefaultProps.theme;
 
       if (!this.darkMatchMedia) {
@@ -2686,7 +2685,7 @@ function (_React$PureComponent) {
     key: "handleDarkMatchMediaChange",
     value: function handleDarkMatchMediaChange() {
       this.setState({
-        theme: this.getPreferredTheme()
+        theme: this.darkMatchMedia.matches ? 'dark' : 'light'
       });
     }
   }, {
@@ -2999,11 +2998,10 @@ function (_React$PureComponent) {
           autoFocus = _this$props.autoFocus,
           skinEmoji = _this$props.skinEmoji,
           notFound = _this$props.notFound,
-          notFoundEmoji = _this$props.notFoundEmoji,
-          _this$state = this.state,
-          skin = _this$state.skin,
-          theme = _this$state.theme,
-          width = perLine * (emojiSize + 12) + 12 + 2 + (0, _utils.measureScrollbar)();
+          notFoundEmoji = _this$props.notFoundEmoji;
+      var width = perLine * (emojiSize + 12) + 12 + 2 + (0, _utils.measureScrollbar)();
+      var theme = this.getPreferredTheme();
+      var skin = this.props.skin || this.state.skin || _store["default"].get('skin') || this.props.defaultSkin;
       return _react["default"].createElement("section", {
         style: _objectSpread({
           width: width
@@ -3094,21 +3092,6 @@ function (_React$PureComponent) {
         },
         i18n: this.i18n
       })));
-    }
-  }], [{
-    key: "getDerivedStateFromProps",
-    value: function getDerivedStateFromProps(props, state) {
-      if (props.skin) {
-        return _objectSpread({}, state, {
-          skin: props.skin
-        });
-      } else if (props.defaultSkin && !_store["default"].get('skin')) {
-        return _objectSpread({}, state, {
-          skin: props.defaultSkin
-        });
-      }
-
-      return state;
     }
   }]);
   return NimblePicker;
@@ -3706,8 +3689,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 const CUSTOM_EMOJIS = [{
   name: 'Party Parrot',
-  short_names: ['parrot'],
-  keywords: ['party'],
+  short_names: ['party_parrot'],
+  keywords: ['party', 'parrot'],
   imageUrl: './images/parrot.gif'
 }, {
   name: 'Octocat',
@@ -3719,16 +3702,6 @@ const CUSTOM_EMOJIS = [{
   short_names: ['shipit', 'squirrel'],
   keywords: ['github'],
   imageUrl: 'https://github.githubassets.com/images/icons/emoji/shipit.png'
-}, {
-  name: 'Test Flag',
-  short_names: ['test'],
-  keywords: ['test', 'flag'],
-  spriteUrl: 'https://unpkg.com/emoji-datasource-twitter@4.0.4/img/twitter/sheets-256/64.png',
-  sheet_x: 1,
-  sheet_y: 1,
-  size: 64,
-  sheetColumns: 52,
-  sheetRows: 52
 }];
 
 class Example extends __WEBPACK_IMPORTED_MODULE_1_react___default.a.Component {
