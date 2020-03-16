@@ -63,6 +63,7 @@ storiesOf('Picker', module)
       showPreview={boolean('Show preview', true)}
       showSkinTones={boolean('Show skin tones', true)}
       enableFrequentEmojiSort={boolean('Enable frequent sort', false)}
+      useButton={false}
       custom={CUSTOM_EMOJIS}
     />
   ))

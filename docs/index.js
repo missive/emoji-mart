@@ -45,6 +45,7 @@ class Example extends React.Component {
       emoji: 'point_up',
       title: 'Pick your emoji…',
       custom: CUSTOM_EMOJIS,
+      useButton: false,
     }
   }
 

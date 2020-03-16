@@ -184,7 +184,7 @@ const NimbleEmoji = (props) => {
     props: {},
   }
 
-  if (props.onClick) {
+  if (props.onClick && props.useButton) {
     Tag.name = 'button'
     Tag.props = {
       type: 'button',

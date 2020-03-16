@@ -7,6 +7,7 @@ const EmojiDefaultProps = {
   native: false,
   forceSize: false,
   tooltip: false,
+  useButton: true,
   backgroundImageFn: (set, sheetSize) =>
     `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/sheets-256/${sheetSize}.png`,
 }
@@ -36,6 +37,7 @@ const PickerDefaultProps = {
     matchMedia('(prefers-color-scheme: dark)').matches
   ),
   emojiTooltip: EmojiDefaultProps.tooltip,
+  useButton: EmojiDefaultProps.useButton,
   autoFocus: false,
   enableFrequentEmojiSort: false,
   custom: [],

@@ -48,6 +48,7 @@ import { Picker } from 'emoji-mart'
 | **showPreview** | | `true` | Display preview section |
 | **showSkinTones** | | `true` | Display skin tones picker. Disable both this and `showPreview` to remove the footer entirely. |
 | **emojiTooltip** | | `false` | Show emojis short name when hovering (title) |
+| **useButton** | | `true` | When clickable, render emojis with a `<button>`. Some browsers have issues rendering certain emojis on a button, so you might want to disable this. It is better for accessibility to use buttons. |
 | **skin** | | | Forces skin color: `1, 2, 3, 4, 5, 6` |
 | **defaultSkin** | | `1` | Default skin color: `1, 2, 3, 4, 5, 6` |
 | **skinEmoji** | | | The emoji used to pick a skin tone. Uses an emoji-less skin tone picker by default |
