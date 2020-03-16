@@ -24769,6 +24769,7 @@ function (_Skins) {
     value: function handleKeyDown(event) {
       // if either enter or space is pressed, then execute
       if (event.keyCode === 13 || event.keyCode === 32) {
+        event.preventDefault();
         this.handleClick(event);
       }
     }
