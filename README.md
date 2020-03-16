@@ -34,6 +34,7 @@ import { Picker } from 'emoji-mart'
 | **exclude** | | `[]` | Don't load excluded categories. Accepts [I18n categories keys](#i18n). |
 | **custom** | | `[]` | [Custom emojis](#custom-emojis) |
 | **recent** | | | Pass your own frequently used emojis as array of string IDs |
+| **enableFrequentEmojiSort** | | `false` | Instantly sort “Frequently Used” category |
 | **emojiSize** | | `24` | The emoji width and height |
 | **onClick** | | | Params: `(emoji, event) => {}`. Not called when emoji is selected with `enter` |
 | **onSelect** | | | Params: `(emoji) => {}`  |
