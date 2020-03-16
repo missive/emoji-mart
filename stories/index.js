@@ -56,6 +56,7 @@ storiesOf('Picker', module)
       color={color('Highlight color', '#ae65c5')}
       showPreview={boolean('Show preview', true)}
       showSkinTones={boolean('Show skin tones', true)}
+      enableFrequentEmojiSort={boolean('Enable frequent sort', false)}
       custom={CUSTOM_EMOJIS}
     />
   ))
