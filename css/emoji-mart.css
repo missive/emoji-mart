@@ -87,6 +87,7 @@
 
 .emoji-mart-scroll {
   overflow-y: scroll;
+  overflow-x: hidden; /* prevents system emojis with bigger width from displaying a scroll bar, see https://github.com/missive/emoji-mart/issues/409 */
   height: 270px;
   padding: 0 6px 6px 6px;
   will-change: transform; /* avoids "repaints on scroll" in mobile Chrome */
