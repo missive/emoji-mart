@@ -64,10 +64,7 @@ export default class NimblePicker extends React.PureComponent {
     this.data = props.data
     this.i18n = deepMerge(I18N, props.i18n)
     this.icons = deepMerge(icons, props.icons)
-    this.state = {
-      skin: props.skin || store.get('skin') || props.defaultSkin,
-      firstRender: true,
-    }
+    this.state = { firstRender: true }
 
     this.categories = []
     let allCategories = [].concat(this.data.categories)
@@ -197,23 +194,6 @@ export default class NimblePicker extends React.PureComponent {
     this.handleSkinChange = this.handleSkinChange.bind(this)
     this.handleKeyDown = this.handleKeyDown.bind(this)
     this.handleDarkMatchMediaChange = this.handleDarkMatchMediaChange.bind(this)
-
-    this.state.theme = this.getPreferredTheme()
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    if (props.skin) {
-      return {
-        ...state,
-        skin: props.skin,
-      }
-    } else if (props.defaultSkin && !store.get('skin')) {
-      return {
-        ...state,
-        skin: props.defaultSkin,
-      }
-    }
-    return state
   }
 
   componentDidMount() {
@@ -255,6 +235,7 @@ export default class NimblePicker extends React.PureComponent {
 
   getPreferredTheme() {
     if (this.props.theme != 'auto') return this.props.theme
+    if (this.state.theme) return this.state.theme
     if (typeof matchMedia !== 'function') return PickerDefaultProps.theme
 
     if (!this.darkMatchMedia) {
@@ -267,7 +248,7 @@ export default class NimblePicker extends React.PureComponent {
   }
 
   handleDarkMatchMediaChange() {
-    this.setState({ theme: this.getPreferredTheme() })
+    this.setState({ theme: this.darkMatchMedia.matches ? 'dark' : 'light' })
   }
 
   handleEmojiOver(emoji) {
@@ -529,33 +510,39 @@ export default class NimblePicker extends React.PureComponent {
 
   render() {
     var {
-        perLine,
-        emojiSize,
-        set,
-        sheetSize,
-        sheetColumns,
-        sheetRows,
-        style,
-        title,
-        emoji,
-        color,
-        native,
-        backgroundImageFn,
-        emojisToShowFilter,
-        showPreview,
-        showSkinTones,
-        emojiTooltip,
-        useButton,
-        include,
-        exclude,
-        recent,
-        autoFocus,
-        skinEmoji,
-        notFound,
-        notFoundEmoji,
-      } = this.props,
-      { skin, theme } = this.state,
-      width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
+      perLine,
+      emojiSize,
+      set,
+      sheetSize,
+      sheetColumns,
+      sheetRows,
+      style,
+      title,
+      emoji,
+      color,
+      native,
+      backgroundImageFn,
+      emojisToShowFilter,
+      showPreview,
+      showSkinTones,
+      emojiTooltip,
+      useButton,
+      include,
+      exclude,
+      recent,
+      autoFocus,
+      skinEmoji,
+      notFound,
+      notFoundEmoji,
+    } = this.props
+
+    var width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
+    var theme = this.getPreferredTheme()
+    var skin =
+      this.props.skin ||
+      this.state.skin ||
+      store.get('skin') ||
+      this.props.defaultSkin
 
     return (
       <section
