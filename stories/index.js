@@ -56,6 +56,7 @@ storiesOf('Picker', module)
       color={color('Highlight color', '#ae65c5')}
       showPreview={boolean('Show preview', true)}
       showSkinTones={boolean('Show skin tones', true)}
+      enableFrequentEmojiSort={boolean('Enable frequent sort', false)}
       custom={CUSTOM_EMOJIS}
     />
   ))
@@ -71,28 +72,6 @@ storiesOf('Picker', module)
   .add('Custom categories', () => (
     <Picker
       custom={CUSTOM_EMOJIS_WITH_CATEGORIES}
-    />
-  ))
-
-  .add('Pause Frequent Emoji Sort', () => (
-    <Picker
-      disableFrequentEmojiSort={boolean('Unicode', true)}
-      onClick={action('clicked')}
-      onSelect={action('selected')}
-      onSkinChange={action('skin changed')}
-      native={boolean('Unicode', true)}
-      darkMode={boolean('Dark mode', false)}
-      set={select('Emoji pack', SETS, SETS[0])}
-      emojiSize={number('Emoji size', 24)}
-      perLine={number('Per line', 9)}
-      title={text('Idle text', 'Your Title Here')}
-      emoji={text('Idle emoji', 'department_store')}
-      notFoundEmoji={text('Not found emoji', 'sleuth_or_spy')}
-      defaultSkin={number('Default skin tone', 1)}
-      color={color('Highlight color', '#ae65c5')}
-      showPreview={boolean('Show preview', true)}
-      showSkinTones={boolean('Show skin tones', true)}
-      custom={CUSTOM_EMOJIS}
     />
   ))
 
