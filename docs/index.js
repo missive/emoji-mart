@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { Picker, Emoji } from '../src'
+import { Picker, Emoji } from '../dist'
 
 const CUSTOM_EMOJIS = [
   {
@@ -57,13 +57,7 @@ class Example extends React.Component {
 
         <div className="row sets">
           Set: 
-          {[
-            'native',
-            'apple',
-            'google',
-            'twitter',
-            'facebook',
-          ].map((set) => {
+          {['native', 'apple', 'google', 'twitter', 'facebook'].map((set) => {
             var props = {
               disabled: !this.state.native && set == this.state.set,
             }
@@ -93,7 +87,6 @@ class Example extends React.Component {
 
         <div className="row-small sets">
           Theme: 
-
           <button
             disabled={this.state.darkMode == undefined}
             onClick={() => {
@@ -102,7 +95,6 @@ class Example extends React.Component {
           >
             auto
           </button>
-
           <button
             disabled={this.state.darkMode == false}
             onClick={() => {
@@ -111,7 +103,6 @@ class Example extends React.Component {
           >
             light
           </button>
-
           <button
             disabled={this.state.darkMode}
             onClick={() => {
