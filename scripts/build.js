@@ -119,6 +119,18 @@ module.exports = (options) => {
     })
     .sort()
 
+  // Merge “Smileys & Emotion” and “People & Body” into a single category
+  let smileys = data.categories[0]
+  let people = data.categories[1]
+  let smileysAndPeople = { id: 'people', name: 'Smileys & People' }
+  smileysAndPeople.emojis = []
+    .concat(smileys.emojis.slice(0, 114))
+    .concat(people.emojis)
+    .concat(smileys.emojis.slice(114))
+
+  data.categories.unshift(smileysAndPeople)
+  data.categories.splice(1, 2)
+
   fs.writeFile(options.output, JSON.stringify(data), (err) => {
     if (err) throw err
   })
