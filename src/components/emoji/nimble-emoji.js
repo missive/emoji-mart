@@ -212,6 +212,7 @@ const NimbleEmoji = (props) => {
   } else {
     return (
       <Tag.name
+        id={`emoji-mart-${props.emoji}`}
         onKeyDown={(e) => _handleKeyDown(e, props)}
         onClick={(e) => _handleClick(e, props)}
         onMouseEnter={(e) => _handleOver(e, props)}
