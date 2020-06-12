@@ -312,13 +312,13 @@ export default class NimblePicker extends React.PureComponent {
     let emojiIndex
     const lastEmojiIndex = getLastEmojiIndex(categoryIndex)
 
-    switch (e.keyCode) {
-      case 9: // tab
+    switch (e.key) {
+      case 'Tab':
         // Focus on first category anchor
         this.anchors.buttons.firstChild.focus()
         return
 
-      case 37: // left arrow
+      case 'ArrowLeft':
         newRow = row
         newColumn = column - 1
         // Get Emoji at (row, column - 1) or (row - 1, lastColumn)
@@ -333,7 +333,7 @@ export default class NimblePicker extends React.PureComponent {
         }
         break
 
-      case 38: // up arrow
+      case 'ArrowUp':
         newRow = row - 1
         newColumn = column
         // Get Emoji at (row - 1, column)
@@ -369,7 +369,7 @@ export default class NimblePicker extends React.PureComponent {
         }
         break
 
-      case 39: // right arrow
+      case 'ArrowRight':
         newRow = row
         newColumn = column + 1
         // Get Emoji at (row, column + 1) or on (row + 1, 0)
@@ -384,7 +384,7 @@ export default class NimblePicker extends React.PureComponent {
         }
         break
 
-      case 40: // down arrow
+      case 'ArrowDown':
         newRow = row + 1
         newColumn = column
         // Get Emoji at (row + 1, column)
@@ -596,8 +596,8 @@ export default class NimblePicker extends React.PureComponent {
   handleKeyDown(e) {
     let handled = false
 
-    switch (e.keyCode) {
-      case 13: // enter
+    switch (e.key) {
+      case 'Enter':
         let emoji
 
         if (
@@ -615,12 +615,13 @@ export default class NimblePicker extends React.PureComponent {
         }
         break
 
-      case 27: // escape
+      case 'Escape':
+        // Jump to search text input
         this.search.input.focus()
         handled = true
         break
 
-      case 40: // down arrow
+      case 'ArrowDown':
         const activeCategory = this.anchors.state.selected
         const activeCategoryIndex = this.categories.findIndex(
           ({ name }) => name === activeCategory,
@@ -635,7 +636,6 @@ export default class NimblePicker extends React.PureComponent {
         break
 
       default:
-        // console.log(this.search)
         break
     }
 
