@@ -241,7 +241,7 @@ function measureScrollbar() {
   const scrollbarWidth = div.offsetWidth - div.clientWidth
   document.body.removeChild(div)
 
-  return cachedScrollbarWidth = scrollbarWidth
+  return (cachedScrollbarWidth = scrollbarWidth)
 }
 
 // Use requestIdleCallback() if available, else fall back to setTimeout().

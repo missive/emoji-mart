@@ -467,8 +467,7 @@ export default class NimblePicker extends React.PureComponent {
 
   updateCategoriesSize(inAnimationFrame) {
     if (!inAnimationFrame) {
-      if (this.updateCategoriesRequested)
-        return
+      if (this.updateCategoriesRequested) return
 
       this.updateCategoriesRequested = true
       requestAnimationFrame(() => this.updateCategoriesSize(true))
