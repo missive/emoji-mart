@@ -64,7 +64,7 @@ export default class NimblePicker extends React.PureComponent {
     this.data = props.data
     this.i18n = deepMerge(I18N, props.i18n)
     this.icons = deepMerge(icons, props.icons)
-    this.state = { firstRender: true }
+    this.state = { firstRender: true, emoji: null }
 
     this.categories = []
     let allCategories = [].concat(this.data.categories)
@@ -178,7 +178,7 @@ export default class NimblePicker extends React.PureComponent {
     }
 
     this.categories.unshift(this.SEARCH_CATEGORY)
-
+    this.getEmojiIndex = this.getEmojiIndex.bind(this)
     this.setAnchorsRef = this.setAnchorsRef.bind(this)
     this.handleAnchorClick = this.handleAnchorClick.bind(this)
     this.setSearchRef = this.setSearchRef.bind(this)
@@ -190,6 +190,7 @@ export default class NimblePicker extends React.PureComponent {
     this.handleEmojiLeave = this.handleEmojiLeave.bind(this)
     this.handleEmojiClick = this.handleEmojiClick.bind(this)
     this.handleEmojiSelect = this.handleEmojiSelect.bind(this)
+    this.handleEmojiKeyDown = this.handleEmojiKeyDown.bind(this)
     this.setPreviewRef = this.setPreviewRef.bind(this)
     this.handleSkinChange = this.handleSkinChange.bind(this)
     this.handleKeyDown = this.handleKeyDown.bind(this)
@@ -247,6 +248,11 @@ export default class NimblePicker extends React.PureComponent {
     return this.darkMatchMedia.matches ? 'dark' : 'light'
   }
 
+  getEmojiIndex(row, column) {
+    const { perLine } = this.props
+    return row * perLine + column
+  }
+
   handleDarkMatchMediaChange() {
     this.setState({ theme: this.darkMatchMedia.matches ? 'dark' : 'light' })
   }
@@ -267,7 +273,7 @@ export default class NimblePicker extends React.PureComponent {
       }
     }
 
-    preview.setState({ emoji })
+    this.setState({ emoji })
     clearTimeout(this.leaveTimeout)
   }
 
@@ -278,8 +284,159 @@ export default class NimblePicker extends React.PureComponent {
     }
 
     this.leaveTimeout = setTimeout(() => {
-      preview.setState({ emoji: null })
+      this.setState({ emoji: null })
     }, 16)
+  }
+
+  handleEmojiKeyDown(e, _, { category, row, column }) {
+    const { perLine } = this.props
+    const categoryIndex = this.categories.findIndex(({ id }) => id === category)
+
+    const getEmojiInCategory = (categoryIndex) => {
+      const emojisInCategory =
+        categoryIndex === 1
+          ? frequently.get(perLine)
+          : this.categories[categoryIndex].emojis
+      return emojisInCategory
+    }
+
+    const getLastEmojiIndex = (categoryIndex) => {
+      const emojisInCategory = getEmojiInCategory(categoryIndex)
+      const lastEmojiIndex = emojisInCategory.length - 1
+      return lastEmojiIndex
+    }
+
+    let newRow
+    let newColumn
+    let newCategoryIndex = categoryIndex
+    let emojiIndex
+    const lastEmojiIndex = getLastEmojiIndex(categoryIndex)
+
+    switch (e.key) {
+      case 'Tab':
+        // Focus on first category anchor
+        this.anchors.buttons.firstChild.focus()
+        return
+
+      case 'ArrowLeft':
+        newRow = row
+        newColumn = column - 1
+        // Get Emoji at (row, column - 1) or (row - 1, lastColumn)
+        emojiIndex = this.getEmojiIndex(newRow, newColumn)
+        if (emojiIndex < 0) {
+          newCategoryIndex = categoryIndex - 1
+          if (newCategoryIndex < 1) {
+            return
+          }
+          // Get last Emoji in previous category
+          emojiIndex = getLastEmojiIndex(newCategoryIndex)
+        }
+        break
+
+      case 'ArrowUp':
+        newRow = row - 1
+        newColumn = column
+        // Get Emoji at (row - 1, column)
+        emojiIndex = this.getEmojiIndex(newRow, newColumn)
+        if (emojiIndex < 0) {
+          newCategoryIndex = categoryIndex - 1
+          if (newCategoryIndex < 1) {
+            return
+          }
+          let numOfItemsOnLastRow =
+            getEmojiInCategory(newCategoryIndex).length % perLine
+
+          if (numOfItemsOnLastRow === 0) {
+            // If last row of previous category is full
+            // Get Emoji in previous category at (lastRow, column)
+            newRow =
+              Math.floor(
+                getEmojiInCategory(newCategoryIndex).length / perLine,
+              ) - 1
+            emojiIndex = this.getEmojiIndex(newRow, newColumn)
+          } else if (newColumn >= numOfItemsOnLastRow) {
+            // If last row of previous category doesn't have items above current item
+            // Get last Emoji in previous category
+            emojiIndex = getLastEmojiIndex(newCategoryIndex)
+          } else {
+            // If last row of previous category has items above current item
+            // Get Emoji in previous category at (lastRow, column)
+            newRow = Math.floor(
+              getEmojiInCategory(newCategoryIndex).length / perLine,
+            )
+            emojiIndex = this.getEmojiIndex(newRow, newColumn)
+          }
+        }
+        break
+
+      case 'ArrowRight':
+        newRow = row
+        newColumn = column + 1
+        // Get Emoji at (row, column + 1) or on (row + 1, 0)
+        emojiIndex = this.getEmojiIndex(newRow, newColumn)
+        if (emojiIndex > lastEmojiIndex) {
+          newCategoryIndex = categoryIndex + 1
+          if (newCategoryIndex >= this.categories.length) {
+            return
+          }
+          // Get first Emoji in next category
+          emojiIndex = 0
+        }
+        break
+
+      case 'ArrowDown':
+        newRow = row + 1
+        newColumn = column
+        // Get Emoji at (row + 1, column)
+        emojiIndex = this.getEmojiIndex(newRow, newColumn)
+        if (emojiIndex > lastEmojiIndex) {
+          newCategoryIndex = categoryIndex + 1
+          if (newCategoryIndex >= this.categories.length) {
+            return
+          }
+          // Get Emoji in next category at (0, column)
+          emojiIndex = this.getEmojiIndex(0, newColumn)
+        }
+        break
+      default:
+        return
+    }
+
+    e.preventDefault()
+    e.stopPropagation()
+
+    const emojis = getEmojiInCategory(newCategoryIndex)
+    const categoryRef = this.categoryRefs[`category-${newCategoryIndex}`]
+    const cells = categoryRef.emojiTableRef.querySelectorAll('button')
+    const emojiEl = cells[emojiIndex]
+    const emoji = emojis[emojiIndex]
+
+    emojiEl.focus()
+
+    const emojiToPreview = getSanitizedData(
+      emoji,
+      this.state.skin,
+      this.props.set,
+      this.props.data,
+    )
+
+    var { preview } = this
+    if (!preview) {
+      return
+    }
+
+    const emojiData = this.CUSTOM.filter(
+      (customEmoji) => customEmoji.id === emojiToPreview.id,
+    )[0]
+
+    for (let key in emojiData) {
+      if (emojiData.hasOwnProperty(key)) {
+        emoji[key] = emojiData[key]
+      }
+    }
+
+    this.setState({ emoji: emojiToPreview })
+    clearTimeout(this.leaveTimeout)
   }
 
   handleEmojiClick(emoji, e) {
@@ -439,8 +596,8 @@ export default class NimblePicker extends React.PureComponent {
   handleKeyDown(e) {
     let handled = false
 
-    switch (e.keyCode) {
-      case 13:
+    switch (e.key) {
+      case 'Enter':
         let emoji
 
         if (
@@ -456,7 +613,29 @@ export default class NimblePicker extends React.PureComponent {
           this.handleEmojiSelect(emoji)
           handled = true
         }
+        break
 
+      case 'Escape':
+        // Jump to search text input
+        this.search.input.focus()
+        handled = true
+        break
+
+      case 'ArrowDown':
+        const activeCategory = this.anchors.state.selected
+        const activeCategoryIndex = this.categories.findIndex(
+          ({ name }) => name === activeCategory,
+        )
+        const { container } = this.categoryRefs[
+          `category-${activeCategoryIndex}`
+        ]
+
+        const firstEmoji = container.querySelector('button')
+        firstEmoji.focus()
+        handled = true
+        break
+
+      default:
         break
     }
 
@@ -518,7 +697,7 @@ export default class NimblePicker extends React.PureComponent {
       sheetRows,
       style,
       title,
-      emoji,
+      emoji: idleEmoji,
       color,
       native,
       backgroundImageFn,
@@ -535,6 +714,9 @@ export default class NimblePicker extends React.PureComponent {
       notFound,
       notFoundEmoji,
     } = this.props
+
+    const { emoji } = this.state
+    const pickerId = 'emoji-mart-picker'
 
     var width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
     var theme = this.getPreferredTheme()
@@ -569,13 +751,16 @@ export default class NimblePicker extends React.PureComponent {
           data={this.data}
           i18n={this.i18n}
           emojisToShowFilter={emojisToShowFilter}
+          emoji={emoji}
           include={include}
           exclude={exclude}
           custom={this.CUSTOM}
           autoFocus={autoFocus}
+          pickerId={pickerId}
         />
 
         <div
+          id={pickerId}
           ref={this.setScrollRef}
           className="emoji-mart-scroll"
           onScroll={this.handleScroll}
@@ -616,6 +801,7 @@ export default class NimblePicker extends React.PureComponent {
                   onOver: this.handleEmojiOver,
                   onLeave: this.handleEmojiLeave,
                   onClick: this.handleEmojiClick,
+                  onKeyDown: this.handleEmojiKeyDown,
                 }}
                 notFound={notFound}
                 notFoundEmoji={notFoundEmoji}
@@ -631,6 +817,7 @@ export default class NimblePicker extends React.PureComponent {
               data={this.data}
               title={title}
               emoji={emoji}
+              idleEmoji={idleEmoji}
               showSkinTones={showSkinTones}
               showPreview={showPreview}
               emojiProps={{
