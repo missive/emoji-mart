@@ -288,7 +288,7 @@ export default class NimblePicker extends React.PureComponent {
     }, 16)
   }
 
-  handleEmojiKeyDown(e, _, { category, row, column }) {
+  handleEmojiKeyDown(e, currentEmoji, { category, row, column }) {
     const { perLine } = this.props
     const categoryIndex = this.categories.findIndex(({ id }) => id === category)
 
@@ -313,6 +313,11 @@ export default class NimblePicker extends React.PureComponent {
     const lastEmojiIndex = getLastEmojiIndex(categoryIndex)
 
     switch (e.key) {
+      case 'Enter':
+        this.handleEmojiSelect(currentEmoji)
+        e.stopPropagation()
+        return
+
       case 'Tab':
         // Focus on first category anchor
         this.anchors.buttons.firstChild.focus()
@@ -611,7 +616,6 @@ export default class NimblePicker extends React.PureComponent {
           ))
         ) {
           this.handleEmojiSelect(emoji)
-          handled = true
         }
         break
 
