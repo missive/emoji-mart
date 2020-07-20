@@ -15,7 +15,10 @@ export default class Preview extends React.PureComponent {
 
   componentDidUpdate(prevProps) {
     if (prevProps.emoji && !this.props.emoji) {
-      this.props.onShowSkin()
+      this.props.onHidePreview()
+    }
+    if (!prevProps.emoji && this.props.emoji) {
+      this.props.onShowPreview()
     }
   }
 
@@ -124,7 +127,8 @@ export default class Preview extends React.PureComponent {
 }
 
 Preview.propTypes = {
-  onShowSkin: PropTypes.func.isRequired,
+  onShowPreview: PropTypes.func.isRequired,
+  onHidePreview: PropTypes.func.isRequired,
   showSkinTones: PropTypes.bool,
   title: PropTypes.string.isRequired,
   idleEmoji: PropTypes.string.isRequired,
