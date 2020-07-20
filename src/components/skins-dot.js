@@ -17,7 +17,7 @@ export default class SkinsDot extends Skins {
     this.handleKeyDown = this.handleKeyDown.bind(this)
     this.handleSkinKeyDown = this.handleSkinKeyDown.bind(this)
     this.setSkinTonesRef = this.setSkinTonesRef.bind(this)
-
+    this.onClose = this.onClose.bind(this)
     this.skinTones = null
   }
 
@@ -47,13 +47,10 @@ export default class SkinsDot extends Skins {
       case 'Enter':
       case 'Space':
         this.handleClick(e)
-        this.setState({ opened: false }, () => {
-          this.skinTones.focus()
-        })
-        e.stopPropagation()
+        this.onClose(e)
 
       case 'Escape':
-        this.setState({ opened: false })
+        this.onClose(e)
 
       default:
         break
@@ -64,6 +61,12 @@ export default class SkinsDot extends Skins {
     this.skinTones = c
   }
 
+  onClose(e) {
+    this.setState({ opened: false }, () => {
+      this.skinTones.focus()
+    })
+    e.stopPropagation()
+  }
   render() {
     const { skin, i18n } = this.props
     const { opened } = this.state
@@ -81,7 +84,12 @@ export default class SkinsDot extends Skins {
           {...(opened ? { role: 'menuitem' } : {})}
         >
           <span
-            onClick={this.handleClick}
+            onClick={(e) => {
+              if (opened) {
+                this.handleClick(e)
+                this.onClose(e)
+              }
+            }}
             onKeyDown={(e) => this.handleSkinKeyDown(e, skinTone)}
             tabIndex={opened ? '0' : '-1'}
             role="button"
@@ -109,7 +117,6 @@ export default class SkinsDot extends Skins {
         <div
           {...(opened ? { role: 'menubar' } : {})}
           tabIndex={'0'}
-          onFocus={() => console.log('focus')}
           onClick={this.handleMenuClick}
           onKeyDown={this.handleKeyDown}
           ref={this.setSkinTonesRef}
