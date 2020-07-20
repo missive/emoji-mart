@@ -52,7 +52,6 @@ export default class SkinsDot extends Skins {
 
       case 'Tab':
         e.preventDefault()
-        e.stopPropagation()
         if (e.shiftKey) {
           selectLeft()
         } else {
@@ -75,6 +74,7 @@ export default class SkinsDot extends Skins {
       default:
         break
     }
+    e.stopPropagation()
   }
 
   setSkinTonesRef(c) {
