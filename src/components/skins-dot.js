@@ -68,6 +68,7 @@ export default class SkinsDot extends Skins {
         break
 
       case 'Escape':
+        e.preventDefault()
         this.onClose(e)
         break
 
