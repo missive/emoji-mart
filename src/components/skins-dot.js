@@ -35,22 +35,41 @@ export default class SkinsDot extends Skins {
   }
 
   handleSkinKeyDown(e, skin) {
+    const selectLeft = () =>
+      focusOnElementBySkin(this.skinTones, skin - 1 < 1 ? 6 : skin - 1)
+
+    const selectRight = () =>
+      focusOnElementBySkin(this.skinTones, skin + 1 > 6 ? 1 : skin + 1)
+
     switch (e.key) {
       case 'ArrowLeft':
-        focusOnElementBySkin(this.skinTones, skin - 1 < 1 ? 6 : skin - 1)
+        selectLeft()
         break
 
       case 'ArrowRight':
-        focusOnElementBySkin(this.skinTones, skin + 1 > 6 ? 1 : skin + 1)
+        selectRight()
+        break
+
+      case 'Tab':
+        e.preventDefault()
+        e.stopPropagation()
+        if (e.shiftKey) {
+          selectLeft()
+        } else {
+          selectRight()
+        }
+
         break
 
       case 'Enter':
       case 'Space':
         this.handleClick(e)
         this.onClose(e)
+        break
 
       case 'Escape':
         this.onClose(e)
+        break
 
       default:
         break
@@ -67,6 +86,7 @@ export default class SkinsDot extends Skins {
     })
     e.stopPropagation()
   }
+
   render() {
     const { skin, i18n } = this.props
     const { opened } = this.state
