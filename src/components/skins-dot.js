@@ -3,6 +3,11 @@ import PropTypes from 'prop-types'
 
 import Skins from './skins'
 
+const focusOnElementBySkin = (el, skin) => {
+  const currentSkinEl = el.querySelector(`[data-skin="${skin}"]`)
+  currentSkinEl.focus()
+}
+
 export default class SkinsDot extends Skins {
   constructor(props) {
     super(props)
@@ -18,10 +23,10 @@ export default class SkinsDot extends Skins {
 
   handleMenuClick() {
     const { skin } = this.props
-    const currentSkinEl = this.skinTones.querySelector(`[data-skin="${skin}"]`)
-    currentSkinEl.focus()
-    this.setState({ opened: !this.state.opened })
+    focusOnElementBySkin(this.skinTones, skin)
+    this.setState({ opened: true })
   }
+
   handleKeyDown(event) {
     if (event.keyCode === 13) {
       event.preventDefault()
@@ -29,11 +34,29 @@ export default class SkinsDot extends Skins {
     }
   }
 
-  handleSkinKeyDown(event) {
-    // if either enter or space is pressed, then execute
-    if (event.keyCode === 13 || event.keyCode === 32) {
-      event.preventDefault()
-      this.handleClick(event)
+  handleSkinKeyDown(e, skin) {
+    switch (e.key) {
+      case 'ArrowLeft':
+        focusOnElementBySkin(this.skinTones, skin - 1 < 1 ? 6 : skin - 1)
+        break
+
+      case 'ArrowRight':
+        focusOnElementBySkin(this.skinTones, skin + 1 > 6 ? 1 : skin + 1)
+        break
+
+      case 'Enter':
+      case 'Space':
+        this.handleClick(e)
+        this.setState({ opened: false }, () => {
+          this.skinTones.focus()
+        })
+        e.stopPropagation()
+
+      case 'Escape':
+        this.setState({ opened: false })
+
+      default:
+        break
     }
   }
 
@@ -59,8 +82,8 @@ export default class SkinsDot extends Skins {
         >
           <span
             onClick={this.handleClick}
-            onKeyDown={this.handleSkinKeyDown}
-            tabIndex={opened ? '0' : ''}
+            onKeyDown={(e) => this.handleSkinKeyDown(e, skinTone)}
+            tabIndex={opened ? '0' : '-1'}
             role="button"
             {...(selected
               ? {
@@ -85,7 +108,8 @@ export default class SkinsDot extends Skins {
       >
         <div
           {...(opened ? { role: 'menubar' } : {})}
-          tabIndex={opened ? '' : '0'}
+          tabIndex={'0'}
+          onFocus={() => console.log('focus')}
           onClick={this.handleMenuClick}
           onKeyDown={this.handleKeyDown}
           ref={this.setSkinTonesRef}
