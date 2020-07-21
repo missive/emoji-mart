@@ -32,6 +32,7 @@ export default class SkinsDot extends Skins {
       event.preventDefault()
       this.handleMenuClick(event)
     }
+    event.stopPropagation()
   }
 
   handleSkinKeyDown(e, skin) {
@@ -67,7 +68,6 @@ export default class SkinsDot extends Skins {
         break
 
       case 'Escape':
-        e.preventDefault()
         this.onClose(e)
         break
 

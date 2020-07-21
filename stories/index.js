@@ -69,13 +69,17 @@ storiesOf('Picker', module)
     />
   ))
 
-  .add('Custom “Not found” component', () => (
-    <Picker
-      notFound={() => (
-        <img src="https://github.githubassets.com/images/icons/emoji/octocat.png" />
-      )}
-    />
-  ))
+  .add('Custom “Not found” component', () => {
+    const ref = useRef(null)
+    return (
+      <Picker
+        ref={ref}
+        notFound={() => (
+          <img src="https://github.githubassets.com/images/icons/emoji/octocat.png" />
+        )}
+      />
+    )
+  })
 
   .add('Custom categories', () => (
     <Picker custom={CUSTOM_EMOJIS_WITH_CATEGORIES} />

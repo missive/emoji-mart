@@ -43,7 +43,7 @@ const I18N = {
   },
 }
 
-export default class NimblePicker extends React.PureComponent {
+class NimblePicker extends React.PureComponent {
   constructor(props) {
     super(props)
 
@@ -179,6 +179,9 @@ export default class NimblePicker extends React.PureComponent {
 
     this.categories.unshift(this.SEARCH_CATEGORY)
     this.getEmojiIndex = this.getEmojiIndex.bind(this)
+    this.getEmojiElement = this.getEmojiElement.bind(this)
+    this.getEmojiToPreview = this.getEmojiToPreview.bind(this)
+    this.getEmojisInCategory = this.getEmojisInCategory.bind(this)
     this.setAnchorsRef = this.setAnchorsRef.bind(this)
     this.handleAnchorClick = this.handleAnchorClick.bind(this)
     this.setSearchRef = this.setSearchRef.bind(this)
@@ -248,6 +251,46 @@ export default class NimblePicker extends React.PureComponent {
     return this.darkMatchMedia.matches ? 'dark' : 'light'
   }
 
+  getEmojiElement(categoryIndex, emojiIndex) {
+    const categoryRef = this.categoryRefs[`category-${categoryIndex}`]
+    const cells = categoryRef.emojiTableRef.querySelectorAll('button')
+    return cells[emojiIndex]
+  }
+
+  getEmojiToPreview(categoryIndex, emojiIndex) {
+    const emojis = this.getEmojisInCategory(categoryIndex)
+    const emoji = emojis[emojiIndex]
+
+    const emojiToPreview = getSanitizedData(
+      emoji,
+      this.state.skin,
+      this.props.set,
+      this.props.data,
+    )
+
+    var { preview } = this
+    if (!preview) {
+      return
+    }
+
+    const emojiData = this.CUSTOM.filter(
+      (customEmoji) => customEmoji.id === emojiToPreview.id,
+    )[0]
+
+    for (let key in emojiData) {
+      if (emojiData.hasOwnProperty(key)) {
+        emoji[key] = emojiData[key]
+      }
+    }
+
+    this.setState({ emoji: emojiToPreview })
+  }
+
+  getEmojisInCategory(categoryIndex) {
+    return categoryIndex === 1
+      ? frequently.get(this.props.perLine)
+      : this.categories[categoryIndex].emojis
+  }
   getEmojiIndex(row, column) {
     const { perLine } = this.props
     return row * perLine + column
@@ -292,16 +335,8 @@ export default class NimblePicker extends React.PureComponent {
     const { perLine } = this.props
     const categoryIndex = this.categories.findIndex(({ id }) => id === category)
 
-    const getEmojiInCategory = (categoryIndex) => {
-      const emojisInCategory =
-        categoryIndex === 1
-          ? frequently.get(perLine)
-          : this.categories[categoryIndex].emojis
-      return emojisInCategory
-    }
-
     const getLastEmojiIndex = (categoryIndex) => {
-      const emojisInCategory = getEmojiInCategory(categoryIndex)
+      const emojisInCategory = this.getEmojisInCategory(categoryIndex)
       const lastEmojiIndex = emojisInCategory.length - 1
       return lastEmojiIndex
     }
@@ -350,14 +385,14 @@ export default class NimblePicker extends React.PureComponent {
             return
           }
           let numOfItemsOnLastRow =
-            getEmojiInCategory(newCategoryIndex).length % perLine
+            this.getEmojisInCategory(newCategoryIndex).length % perLine
 
           if (numOfItemsOnLastRow === 0) {
             // If last row of previous category is full
             // Get Emoji in previous category at (lastRow, column)
             newRow =
               Math.floor(
-                getEmojiInCategory(newCategoryIndex).length / perLine,
+                this.getEmojisInCategory(newCategoryIndex).length / perLine,
               ) - 1
             emojiIndex = this.getEmojiIndex(newRow, newColumn)
           } else if (newColumn >= numOfItemsOnLastRow) {
@@ -368,7 +403,7 @@ export default class NimblePicker extends React.PureComponent {
             // If last row of previous category has items above current item
             // Get Emoji in previous category at (lastRow, column)
             newRow = Math.floor(
-              getEmojiInCategory(newCategoryIndex).length / perLine,
+              this.getEmojisInCategory(newCategoryIndex).length / perLine,
             )
             emojiIndex = this.getEmojiIndex(newRow, newColumn)
           }
@@ -411,37 +446,9 @@ export default class NimblePicker extends React.PureComponent {
     e.preventDefault()
     e.stopPropagation()
 
-    const emojis = getEmojiInCategory(newCategoryIndex)
-    const categoryRef = this.categoryRefs[`category-${newCategoryIndex}`]
-    const cells = categoryRef.emojiTableRef.querySelectorAll('button')
-    const emojiEl = cells[emojiIndex]
-    const emoji = emojis[emojiIndex]
-
+    const emojiEl = this.getEmojiElement(newCategoryIndex, emojiIndex)
     emojiEl.focus()
-
-    const emojiToPreview = getSanitizedData(
-      emoji,
-      this.state.skin,
-      this.props.set,
-      this.props.data,
-    )
-
-    var { preview } = this
-    if (!preview) {
-      return
-    }
-
-    const emojiData = this.CUSTOM.filter(
-      (customEmoji) => customEmoji.id === emojiToPreview.id,
-    )[0]
-
-    for (let key in emojiData) {
-      if (emojiData.hasOwnProperty(key)) {
-        emoji[key] = emojiData[key]
-      }
-    }
-
-    this.setState({ emoji: emojiToPreview })
+    this.getEmojiToPreview(newCategoryIndex, emojiIndex)
     clearTimeout(this.leaveTimeout)
   }
 
@@ -587,6 +594,10 @@ export default class NimblePicker extends React.PureComponent {
     } else {
       scrollToComponent()
     }
+
+    const emojiEl = this.getEmojiElement(i, 0)
+    emojiEl.focus()
+    this.getEmojiToPreview(i, 0)
   }
 
   handleSkinChange(skin) {
@@ -604,24 +615,15 @@ export default class NimblePicker extends React.PureComponent {
 
     switch (e.key) {
       case 'Enter':
-        let emoji
-
-        if (
-          this.SEARCH_CATEGORY.emojis &&
-          this.SEARCH_CATEGORY.emojis.length &&
-          (emoji = getSanitizedData(
-            this.SEARCH_CATEGORY.emojis[0],
-            this.state.skin,
-            this.props.set,
-            this.props.data,
-          ))
-        ) {
-          this.handleEmojiSelect(emoji)
+        if (this.SEARCH_CATEGORY.emojis && this.SEARCH_CATEGORY.emojis.length) {
+          const emojiEl = this.getEmojiElement(0, 0)
+          emojiEl.focus()
+          this.getEmojiToPreview(0, 0)
+          handled = true
         }
         break
 
       case 'Escape':
-        console.log('here')
         // Jump to search text input
         this.search.input.focus()
         handled = true
@@ -647,6 +649,7 @@ export default class NimblePicker extends React.PureComponent {
 
     if (handled) {
       e.preventDefault()
+      e.stopPropagation()
     }
   }
 
@@ -738,6 +741,7 @@ export default class NimblePicker extends React.PureComponent {
         className={`emoji-mart emoji-mart-${theme}`}
         aria-label={title}
         onKeyDown={this.handleKeyDown}
+        ref={this.props.wrapperRef}
       >
         <div className="emoji-mart-bar">
           <Anchors
@@ -857,3 +861,5 @@ NimblePicker.propTypes /* remove-proptypes */ = {
   data: PropTypes.object.isRequired,
 }
 NimblePicker.defaultProps = { ...PickerDefaultProps }
+
+export default NimblePicker
