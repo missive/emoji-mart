@@ -634,12 +634,9 @@ class NimblePicker extends React.PureComponent {
         const activeCategoryIndex = this.categories.findIndex(
           ({ name }) => name === activeCategory,
         )
-        const { container } = this.categoryRefs[
-          `category-${activeCategoryIndex}`
-        ]
-
-        const firstEmoji = container.querySelector('button')
-        firstEmoji.focus()
+        const emojiEl = this.getEmojiElement(activeCategoryIndex, 0)
+        emojiEl.focus()
+        this.getEmojiToPreview(activeCategoryIndex, 0)
         handled = true
         break
 

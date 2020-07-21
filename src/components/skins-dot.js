@@ -109,6 +109,8 @@ export default class SkinsDot extends Skins {
               if (opened) {
                 this.handleClick(e)
                 this.onClose(e)
+              } else {
+                this.handleMenuClick(e)
               }
             }}
             onKeyDown={(e) => this.handleSkinKeyDown(e, skinTone)}
@@ -138,7 +140,6 @@ export default class SkinsDot extends Skins {
         <div
           {...(opened ? { role: 'menubar' } : {})}
           tabIndex={'0'}
-          onClick={this.handleMenuClick}
           onKeyDown={this.handleKeyDown}
           ref={this.setSkinTonesRef}
         >
