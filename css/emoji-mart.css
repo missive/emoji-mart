@@ -397,6 +397,7 @@
   padding-top: 100%;
   max-width: 12px;
   border-radius: 100%;
+  cursor: pointer;
 }
 
 .emoji-mart-skin-tone-1 { background-color: #ffc93a }

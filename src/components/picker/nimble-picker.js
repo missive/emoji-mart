@@ -738,7 +738,6 @@ class NimblePicker extends React.PureComponent {
         className={`emoji-mart emoji-mart-${theme}`}
         aria-label={title}
         onKeyDown={this.handleKeyDown}
-        ref={this.props.wrapperRef}
       >
         <div className="emoji-mart-bar">
           <Anchors
