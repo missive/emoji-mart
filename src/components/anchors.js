@@ -41,7 +41,7 @@ export default class Anchors extends React.PureComponent {
 
           return (
             <button
-              key={iconId}
+              key={id}
               aria-label={i18n.categories[iconId]}
               title={i18n.categories[iconId]}
               data-index={i}
