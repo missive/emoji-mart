@@ -65,7 +65,9 @@ export default class Search extends React.PureComponent {
   }
 
   handleChange() {
-    this.search(this.input.value)
+    if (this.input) {
+      this.search(this.input.value)
+    }
   }
 
   handleKeyUp(e) {
