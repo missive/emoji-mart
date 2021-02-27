@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 #### [v3.0.1](https://github.com/missive/emoji-mart/compare/v3.0.0...v3.0.1)
 
-> February 24 2020
+> February 24 2021
 
 ##### Fixes 🐛
 - Safely access search input #419
