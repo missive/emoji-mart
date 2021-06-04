@@ -46,6 +46,7 @@
     "enzyme-adapter-react-16": "^1.11.2",
     "inflection": "1.10.0",
     "jest": "^24.9.0",
+    "lodash": "^4.17.21",
     "mkdirp": "0.5.1",
     "prettier": "^1.16.4",
     "react": "^16.0.0",
