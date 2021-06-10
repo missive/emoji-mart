@@ -3991,10 +3991,10 @@ elliptic@^6.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
-emoji-datasource@6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/emoji-datasource/-/emoji-datasource-6.0.1.tgz#0fd25101104cf16ddf36819237f4f174ec85a01f"
-  integrity sha512-kvkqTjdeXhVKwT2242jGhK18EpevORCTTBETDhByWOEVGwn5X+W5jvBioo+wrAnR7inUzydJ4gKUU5SQGjUG6A==
+emoji-datasource@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/emoji-datasource/-/emoji-datasource-7.0.0.tgz#6d53b184472443b266cbdc0e5fe6a9f0923cd39e"
+  integrity sha512-9T8FTayA2RfJpNyRzfsC5sjfHfKGaYsLNljgnw3dJKwgsEfxOUpXB7VuiNCNpYqMiX8+5HkGxSiP7PiyqCin/w==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
