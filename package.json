@@ -40,7 +40,7 @@
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.0",
     "babel-plugin-transform-define": "^2.0.0",
-    "emoji-datasource": "^7.0.0",
+    "emoji-datasource": "^7.0.1",
     "emojilib": "^3.0.2",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
