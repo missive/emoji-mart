@@ -598,7 +598,7 @@ export default class NimblePicker extends React.PureComponent {
             columnWidth={36}
             rowHeight={36}
             height={264}
-            width={(perLine + 1) * 36}
+            width={perLine * 36 + 10}
             rowCount={rowCount}
             onScroll={this.handleScrollPaint(titleIndexes)}
           >
