@@ -490,6 +490,7 @@ export default class NimblePicker extends React.PureComponent {
 
   setSearchRef(c) {
     this.search = c
+    this.props.setSearchRef(c)
   }
 
   setPreviewRef(c) {
