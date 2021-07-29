@@ -58,6 +58,7 @@ import { Picker } from 'emoji-mart'
 | **notFoundEmoji** | | `sleuth_or_spy` | The emoji shown when there are no search results |
 | **notFound** | | | [Not Found](#not-found) |
 | **icons** | | `{}` | [Custom icons](#custom-icons) |
+| **setSearchRef** | | | You can pass a function to that sets search ref |
 
 #### I18n
 ```js
