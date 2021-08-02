@@ -16,6 +16,8 @@ const _getPosition = (props) => {
     multiplyX = 100 / (props.sheetColumns - 1),
     multiplyY = 100 / (props.sheetRows - 1)
 
+  console.log('emoji', props.emoji, 'sheet_x', sheet_x, 'sheet_y', sheet_y, 'multiplyX', multiplyX, 'multiplyY', multiplyY)
+
   return `${multiplyX * sheet_x}% ${multiplyY * sheet_y}%`
 }
 
@@ -140,9 +142,9 @@ const NimbleEmoji = (props) => {
       style = {
         ...style,
         backgroundImage: `url(${data.spriteUrl})`,
-        backgroundSize: `${100 * props.sheetColumns}% ${100 *
-          props.sheetRows}%`,
-        backgroundPosition: _getPosition(props),
+        backgroundSize: `${100 * data.sheetColumns}% ${100 *
+          data.sheetRows}%`,
+        backgroundPosition: _getPosition(data),
       }
     } else {
       style = {
