@@ -12,11 +12,14 @@ const _getData = (props) => {
 }
 
 const _getPosition = (props) => {
-  var { sheet_x, sheet_y } = _getData(props),
-    multiplyX = 100 / (props.sheetColumns - 1),
-    multiplyY = 100 / (props.sheetRows - 1)
+  const { sheet_x, sheet_y, sheetColumns:dataSheetColumns, sheetRows:dataSheetRows } = _getData(props)
 
-  console.log('emoji', props.emoji, 'sheet_x', sheet_x, 'sheet_y', sheet_y, 'multiplyX', multiplyX, 'multiplyY', multiplyY)
+  const sheetColumns = dataSheetColumns || props.sheetColumns
+  const sheetRows = dataSheetRows || props.sheetRows
+  const multiplyX = 100 / (sheetColumns - 1)
+  const multiplyY = 100 / (sheetRows - 1)
+
+  // console.log('emoji', props.emoji, 'sheet_x', sheet_x, 'sheet_y', sheet_y, 'multiplyX', multiplyX, 'multiplyY', multiplyY)
 
   return `${multiplyX * sheet_x}% ${multiplyY * sheet_y}%`
 }

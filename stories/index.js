@@ -36,6 +36,22 @@ const CUSTOM_EMOJIS = [
     keywords: ['github'],
     imageUrl: 'https://github.githubassets.com/images/icons/emoji/shipit.png',
   },
+  {
+    name: 'jQuery',
+    short_names: ['jquery'],
+    text: '',
+    emoticon: [],
+    keywords: ['library', 'javascript', 'developers'],
+    customCategory: 'developers',
+    highResImageUrl: '/logos/jquery.svg',
+    sheetColumns: 36,
+    sheetRows: 35,
+    sheet_x: 24,
+    sheet_y: 6,
+    size: 24,
+    spriteUrl:
+      'https://emojination-c10fiz32h-yagudaev.vercel.app/images/logos-spritesheet.png',
+  },
 ]
 
 const CUSTOM_EMOJIS_WITH_CATEGORIES = CUSTOM_EMOJIS.map((emoji) => {
