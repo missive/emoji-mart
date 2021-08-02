@@ -19,9 +19,9 @@ const _getPosition = (props) => {
   const multiplyX = 100 / (sheetColumns - 1)
   const multiplyY = 100 / (sheetRows - 1)
 
-  if (spriteUrl) {
-    console.log('custom emoji', props.emoji, 'sheet_x', sheet_x, 'sheet_y', sheet_y, 'multiplyX', multiplyX, 'multiplyY', multiplyY)
-  }
+  // if (spriteUrl) {
+  //   console.log('custom emoji', props.emoji, 'sheet_x', sheet_x, 'sheet_y', sheet_y, 'multiplyX', multiplyX, 'multiplyY', multiplyY)
+  // }
 
   return `${multiplyX * sheet_x}% ${multiplyY * sheet_y}%`
 }
