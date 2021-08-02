@@ -144,7 +144,7 @@ const NimbleEmoji = (props) => {
         backgroundImage: `url(${data.spriteUrl})`,
         backgroundSize: `${100 * data.sheetColumns}% ${100 *
           data.sheetRows}%`,
-        backgroundPosition: _getPosition(data),
+        backgroundPosition: _getPosition({ ...props, ...data }),
       }
     } else {
       style = {
