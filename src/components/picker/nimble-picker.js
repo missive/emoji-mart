@@ -367,7 +367,7 @@ export default class NimblePicker extends React.PureComponent {
     const scrollToComponent = () => {
       gridRef.current.scrollToItem({
         columnIndex: itemPosition.col,
-        rowIndex: itemPosition.row + 6,
+        rowIndex: itemPosition.row ? itemPosition.row + 6 : 0,
       })
     }
 
