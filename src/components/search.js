@@ -16,8 +16,9 @@ export default class Search extends React.PureComponent {
       id: ++id,
     }
 
+    this.i18n = props.i18n
     this.data = props.data
-    this.emojiIndex = new NimbleEmojiIndex(this.data)
+    this.emojiIndex = new NimbleEmojiIndex(this.data, this.i18n)
     this.setRef = this.setRef.bind(this)
     this.clear = this.clear.bind(this)
     this.handleKeyUp = this.handleKeyUp.bind(this)

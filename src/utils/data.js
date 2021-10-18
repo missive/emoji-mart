@@ -14,6 +14,17 @@ const mapping = {
   added_in: 'o',
 }
 
+const applyI18nToEmoji = (emoji, id, i18n) => {
+  if (i18n && i18n.emojis) {
+    const i18nProps = i18n.emojis[id]
+    if (i18nProps) {
+      for (let key in i18nProps) {
+        emoji[key] = i18nProps[key]
+      }
+    }
+  }
+}
+
 const buildSearch = (emoji) => {
   const search = []
 
@@ -74,7 +85,7 @@ const compress = (emoji) => {
   }
 }
 
-const uncompress = (data) => {
+const uncompress = (data, i18n) => {
   data.compressed = false
 
   for (let id in data.emojis) {
@@ -84,6 +95,8 @@ const uncompress = (data) => {
       emoji[key] = emoji[mapping[key]]
       delete emoji[mapping[key]]
     }
+
+    applyI18nToEmoji(emoji, id, i18n)
 
     if (!emoji.short_names) emoji.short_names = []
     emoji.short_names.unshift(id)
@@ -101,4 +114,12 @@ const uncompress = (data) => {
   }
 }
 
-export { buildSearch, compress, uncompress }
+const mergeI18nToEmojis = (data, i18n) => {
+  for (let id in data.emojis) {
+    const emoji = data.emojis[id]
+    applyI18nToEmoji(emoji, id, i18n)
+    emoji.search = buildSearch(emoji)
+  }
+}
+
+export { buildSearch, compress, uncompress, mergeI18nToEmojis }

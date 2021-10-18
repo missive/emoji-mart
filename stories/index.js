@@ -44,6 +44,15 @@ const CUSTOM_EMOJIS_WITH_CATEGORIES = CUSTOM_EMOJIS.map((emoji) => {
   })
 })
 
+const I18N = {
+  emojis: {
+    '1234': {
+      name: 'Símbolo de entrada para números',
+      keywords: ['numero', 'simbolo']
+    }
+  }
+}
+
 storiesOf('Picker', module)
   .addDecorator(withKnobs)
   .add('Default', () => (
@@ -207,6 +216,8 @@ storiesOf('Picker', module)
       skinEmoji={text('Skin Preview Icon', 'v')}
     />
   ))
+
+  .add('I18n to Emoji', () => <Picker i18n={I18N} />)
 
 storiesOf('Emoji', module)
   .addDecorator(withKnobs)

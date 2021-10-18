@@ -6,3 +6,4 @@ dist-modern/
 stats.json
 report.html
 package-lock.json
+storybook-static/

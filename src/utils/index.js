@@ -1,6 +1,6 @@
 import { buildSearch } from './data'
 import stringFromCodePoint from '../polyfills/stringFromCodePoint'
-import { uncompress } from './data'
+import { uncompress, mergeI18nToEmojis } from './data'
 
 const COLONS_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/
 const SKINS = ['1F3FA', '1F3FB', '1F3FC', '1F3FD', '1F3FE', '1F3FF']
@@ -60,7 +60,7 @@ function getSanitizedData() {
   return sanitize(getData(...arguments))
 }
 
-function getData(emoji, skin, set, data) {
+function getData(emoji, skin, set, data, i18n) {
   var emojiData = {}
 
   if (typeof emoji == 'string') {
@@ -141,9 +141,12 @@ function getData(emoji, skin, set, data) {
   return emojiData
 }
 
-function getEmojiDataFromNative(nativeString, set, data) {
+function getEmojiDataFromNative(nativeString, set, data, i18n) {
   if (data.compressed) {
-    uncompress(data)
+    uncompress(data, i18n)
+  }
+  else {
+    mergeI18nToEmojis(data, i18n)
   }
 
   const skinTones = ['🏻', '🏼', '🏽', '🏾', '🏿']
@@ -203,18 +206,26 @@ function intersect(a, b) {
   return uniqA.filter((item) => uniqB.indexOf(item) >= 0)
 }
 
+function get(data, prop) {
+  if(data && data[prop]) {
+    return data[prop]
+  }
+}
+
 function deepMerge(a, b) {
-  var o = {}
+  let o = {}
 
   for (let key in a) {
-    let originalValue = a[key],
-      value = originalValue
+    o[key] = a[key]
+  }
 
-    if (b.hasOwnProperty(key)) {
-      value = b[key]
+  for (let key in b) {
+    let originalValue = get(a, key), value = b[key]
+
+    if(Array.isArray(value)) {
+      value = (originalValue || []).concat(value)
     }
-
-    if (typeof value === 'object') {
+    else if (typeof value === 'object') {
       value = deepMerge(originalValue, value)
     }
 

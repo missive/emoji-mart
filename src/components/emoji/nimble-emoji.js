@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { getData, getSanitizedData, unifiedToNative } from '../../utils'
-import { uncompress } from '../../utils/data'
+import { uncompress, mergeI18nToEmojis } from '../../utils/data'
 import { EmojiPropTypes } from '../../utils/shared-props'
 import { EmojiDefaultProps } from '../../utils/shared-default-props'
 
@@ -76,7 +76,10 @@ const _convertStyleToCSS = (style) => {
 
 const NimbleEmoji = (props) => {
   if (props.data.compressed) {
-    uncompress(props.data)
+    uncompress(props.data, props.i18n)
+  }
+  else {
+    mergeI18nToEmojis(props.data, props.i18n)
   }
 
   for (let k in NimbleEmoji.defaultProps) {

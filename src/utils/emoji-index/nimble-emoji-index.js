@@ -1,11 +1,14 @@
 import { getData, getSanitizedData, intersect } from '..'
-import { uncompress } from '../data'
+import { uncompress, mergeI18nToEmojis } from '../data'
 import store from '../store'
 
 export default class NimbleEmojiIndex {
-  constructor(data, set) {
+  constructor(data, set, i18n = {}) {
     if (data.compressed) {
-      uncompress(data)
+      uncompress(data, i18n)
+    }
+    else {
+      mergeI18nToEmojis(data, i18n)
     }
 
     this.data = data || {}

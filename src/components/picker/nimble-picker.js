@@ -5,7 +5,7 @@ import * as icons from '../../svgs'
 import store from '../../utils/store'
 import frequently from '../../utils/frequently'
 import { deepMerge, measureScrollbar, getSanitizedData } from '../../utils'
-import { uncompress } from '../../utils/data'
+import { uncompress, mergeI18nToEmojis } from '../../utils/data'
 import { PickerPropTypes } from '../../utils/shared-props'
 
 import Anchors from '../anchors'
@@ -41,6 +41,7 @@ const I18N = {
     5: 'Medium-Dark Skin Tone',
     6: 'Dark Skin Tone',
   },
+  emojis: {}
 }
 
 export default class NimblePicker extends React.PureComponent {
@@ -57,14 +58,17 @@ export default class NimblePicker extends React.PureComponent {
       anchor: false,
     }
 
-    if (props.data.compressed) {
-      uncompress(props.data)
-    }
-
     this.data = props.data
     this.i18n = deepMerge(I18N, props.i18n)
     this.icons = deepMerge(icons, props.icons)
     this.state = { firstRender: true }
+
+    if (this.data.compressed) {
+      uncompress(this.data, this.i18n)
+    }
+    else {
+      mergeI18nToEmojis(this.data, this.i18n)
+    }
 
     this.categories = []
     let allCategories = [].concat(this.data.categories)
@@ -451,6 +455,7 @@ export default class NimblePicker extends React.PureComponent {
             this.state.skin,
             this.props.set,
             this.props.data,
+            this.props.i18n
           ))
         ) {
           this.handleEmojiSelect(emoji)
