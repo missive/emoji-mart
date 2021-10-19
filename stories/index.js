@@ -48,7 +48,7 @@ const I18N = {
   emojis: {
     '1234': {
       name: 'Símbolo de entrada para números',
-      keywords: ['numero', 'simbolo']
+      keywords: ['numero', 'símbolo']
     }
   }
 }

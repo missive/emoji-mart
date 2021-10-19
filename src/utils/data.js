@@ -1,3 +1,5 @@
+const { remove: removeDiacritics } = require('diacritics')
+
 const mapping = {
   name: 'a',
   unified: 'b',
@@ -49,7 +51,9 @@ const buildSearch = (emoji) => {
   addToSearch(emoji.keywords, false)
   addToSearch(emoji.emoticons, false)
 
-  return search.join(',')
+  const withoutDiacritics = search.map((s) => removeDiacritics(s))
+
+  return search.concat(withoutDiacritics).join(',')
 }
 
 const compress = (emoji) => {
