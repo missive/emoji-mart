@@ -152,6 +152,13 @@ const NimbleEmoji = (props) => {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
       }
+      if(props.lazy){
+        delete style.backgroundImage
+        delete style.backgroundSize
+        delete style.backgroundRepeat
+        delete style.backgroundPosition
+        style.objectFit = 'contain'
+      }
     }
   } else {
     let setHasEmoji =
@@ -207,7 +214,18 @@ const NimbleEmoji = (props) => {
         className={className}
         {...Tag.props}
       >
-        <span style={style}>{children}</span>
+        {
+          custom && !data.spriteUrl && props.lazy
+          ?
+          <img
+            style={style}
+            className="lazy"
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP89B8AAukB8/71MdcAAAAASUVORK5CYII="
+            data-src={imageUrl}
+          />
+          :
+          <span style={style}>{children}</span>
+        }
       </Tag.name>
     )
   }

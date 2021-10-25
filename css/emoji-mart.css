@@ -137,7 +137,7 @@
 }
 
 .emoji-mart-category .emoji-mart-emoji:hover:before {
-  z-index: 0;
+  z-index: -1;
   content: "";
   position: absolute;
   top: 0; left: 0;

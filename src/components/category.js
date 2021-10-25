@@ -5,6 +5,7 @@ import frequently from '../utils/frequently'
 import { getData } from '../utils'
 import NimbleEmoji from './emoji/nimble-emoji'
 import NotFound from './not-found'
+import 'intersection-observer'
 
 export default class Category extends React.Component {
   constructor(props) {
@@ -13,6 +14,17 @@ export default class Category extends React.Component {
     this.data = props.data
     this.setContainerRef = this.setContainerRef.bind(this)
     this.setLabelRef = this.setLabelRef.bind(this)
+
+    this.imageObserver = new window.IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const image = entry.target;
+          image.src = image.dataset.src;
+          image.classList.remove("lazy");
+          this.imageObserver.unobserve(image);
+        }
+      });
+    });
   }
 
   componentDidMount() {
@@ -20,6 +32,17 @@ export default class Category extends React.Component {
     this.minMargin = 0
 
     this.memoizeSize()
+
+    this.lazyloadImages = []
+    this.lazyload()
+  }
+
+  componentDidUpdate() {
+    this.lazyload()
+  }
+
+  componentWillUnmount() {
+    this.removeLazyloadObserver()
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -47,7 +70,8 @@ export default class Category extends React.Component {
     }
 
     if (name == 'Search') {
-      shouldUpdate = !(emojis == nextEmojis)
+      // shouldUpdate = !(emojis == nextEmojis)
+      shouldUpdate = true
     }
 
     if (
@@ -82,6 +106,21 @@ export default class Category extends React.Component {
     } else {
       this.maxMargin = height - labelHeight
     }
+  }
+
+  lazyload() {
+    this.removeLazyloadObserver()
+    this.lazyloadImages = this.container.querySelectorAll(".lazy");
+
+    this.lazyloadImages.forEach((image) => {
+      this.imageObserver.observe(image);
+    });
+  }
+
+  removeLazyloadObserver() {
+    this.lazyloadImages.forEach((image) => {
+      this.imageObserver.unobserve(image);
+    })
   }
 
   handleScroll(scrollTop) {
@@ -211,7 +250,7 @@ export default class Category extends React.Component {
                   (emoji.short_names && emoji.short_names.join('_')) || emoji
                 }
               >
-                {NimbleEmoji({ emoji: emoji, data: this.data, ...emojiProps })}
+                {NimbleEmoji({ emoji: emoji, data: this.data, ...emojiProps, lazy: true })}
               </li>
             ))}
         </ul>
