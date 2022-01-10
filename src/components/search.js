@@ -94,6 +94,7 @@ export default class Search extends React.PureComponent {
           onChange={this.handleChange}
           placeholder={i18n.search}
           autoFocus={autoFocus}
+          autoComplete="off"
         />
         {/*
          * Use a <label> in addition to the placeholder for accessibility, but place it off-screen
