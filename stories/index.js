@@ -13,12 +13,14 @@ import {
 
 import {
   Picker,
+  NimblePicker,
   Emoji,
   emojiIndex,
   NimbleEmojiIndex,
   getEmojiDataFromNative,
 } from '../dist'
 import data from '../data/all.json'
+import dataTwitter from '../data/twitter.json'
 import '../css/emoji-mart.css'
 
 const THEMES = ['auto', 'light', 'dark']
@@ -78,7 +80,12 @@ storiesOf('Picker', module)
   ))
 
   .add('Custom categories', () => (
-    <Picker custom={CUSTOM_EMOJIS_WITH_CATEGORIES} />
+    <NimblePicker
+      custom={CUSTOM_EMOJIS_WITH_CATEGORIES}
+      data={dataTwitter}
+      set="twitter"
+      theme="dark"
+    />
   ))
 
   .add('Custom category icons', () => (

@@ -442,6 +442,8 @@ export default class NimblePicker extends React.PureComponent {
   handleEmojiClick(emoji, e) {
     this.props.onClick(emoji, e)
     this.handleEmojiSelect(emoji)
+    this.search.clear()
+    this.anchors.setState({ selected: 'Recent' })
   }
 
   handleEmojiSelect(emoji) {
@@ -596,23 +598,24 @@ export default class NimblePicker extends React.PureComponent {
   handleKeyDown(e) {
     let handled = false
 
+    const { perLine } = this.props
+
+    const getEmojiInCategory = (categoryIndex) => {
+      const emojisInCategory =
+        categoryIndex === 1
+          ? frequently.get(perLine)
+          : this.categories[categoryIndex].emojis
+      return emojisInCategory
+    }
+
     switch (e.key) {
       case 'Enter':
         let emoji
 
-        if (
-          this.SEARCH_CATEGORY.emojis &&
-          this.SEARCH_CATEGORY.emojis.length &&
-          (emoji = getSanitizedData(
-            this.SEARCH_CATEGORY.emojis[0],
-            this.state.skin,
-            this.props.set,
-            this.props.data,
-          ))
-        ) {
-          this.handleEmojiSelect(emoji)
-          handled = true
-        }
+        this.handleEmojiSelect(this.state.emoji)
+        this.search.clear()
+        this.anchors.setState({ selected: 'Recent' })
+        handled = true
         break
 
       case 'Escape':
@@ -622,16 +625,27 @@ export default class NimblePicker extends React.PureComponent {
         break
 
       case 'ArrowDown':
+        debugger
         const activeCategory = this.anchors.state.selected
         const activeCategoryIndex = this.categories.findIndex(
           ({ name }) => name === activeCategory,
         )
-        const { container } = this.categoryRefs[
-          `category-${activeCategoryIndex}`
-        ]
 
-        const firstEmoji = container.querySelector('button')
-        firstEmoji.focus()
+        const emojis = getEmojiInCategory(activeCategoryIndex)
+        const categoryRef = this.categoryRefs[`category-${activeCategoryIndex}`]
+        const cells = categoryRef.emojiTableRef.querySelectorAll('button')
+        const emojiEl = cells[0]
+        const firstEmoji = emojis[0]
+
+        emojiEl.focus()
+
+        const emojiToPreview = getSanitizedData(
+          firstEmoji,
+          this.state.skin,
+          this.props.set,
+          this.props.data,
+        )
+        this.setState({ emoji: emojiToPreview })
         handled = true
         break
 
