@@ -11,20 +11,19 @@ export default class Preview extends React.PureComponent {
     super(props)
 
     this.data = props.data
-    this.state = { emoji: null }
   }
 
   render() {
-    var { emoji } = this.state,
-      {
-        emojiProps,
-        skinsProps,
-        showSkinTones,
-        title,
-        emoji: idleEmoji,
-        i18n,
-        showPreview,
-      } = this.props
+    const {
+      emoji,
+      emojiProps,
+      idleEmoji,
+      skinsProps,
+      showSkinTones,
+      title,
+      i18n,
+      showPreview,
+    } = this.props
 
     if (emoji && showPreview) {
       var emojiData = getData(emoji, null, null, this.data),
@@ -77,7 +76,11 @@ export default class Preview extends React.PureComponent {
           <div className="emoji-mart-preview-emoji" aria-hidden="true">
             {idleEmoji &&
               idleEmoji.length &&
-              NimbleEmoji({ emoji: idleEmoji, data: this.data, ...emojiProps })}
+              NimbleEmoji({
+                emoji: idleEmoji,
+                data: this.data,
+                ...emojiProps,
+              })}
           </div>
 
           <div className="emoji-mart-preview-data" aria-hidden="true">
@@ -117,7 +120,8 @@ export default class Preview extends React.PureComponent {
 Preview.propTypes /* remove-proptypes */ = {
   showSkinTones: PropTypes.bool,
   title: PropTypes.string.isRequired,
-  emoji: PropTypes.string.isRequired,
+  idleEmoji: PropTypes.string.isRequired,
+  emoji: PropTypes.object.isRequired,
   emojiProps: PropTypes.object.isRequired,
   skinsProps: PropTypes.object.isRequired,
 }
