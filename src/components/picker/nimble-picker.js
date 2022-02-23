@@ -600,7 +600,17 @@ export default class NimblePicker extends React.PureComponent {
       case 'Enter':
         let emoji
 
+        // PANTA: HACK! Since this library isn't really keeping track of individual emojis' active state
+        //        we have to do it like this. Very hacky, but whatever.
+        const focusedButton = this.scroll.querySelector('button:focus')
+        if (focusedButton) {
+          // If there is a focused button, click it
+          focusedButton.click()
+          handled = true
+        }
+
         if (
+          !handled &&
           this.SEARCH_CATEGORY.emojis &&
           this.SEARCH_CATEGORY.emojis.length &&
           (emoji = getSanitizedData(
@@ -612,15 +622,6 @@ export default class NimblePicker extends React.PureComponent {
         ) {
           this.handleEmojiSelect(emoji)
           handled = true
-        } else {
-          // PANTA: HACK! Since this library isn't really keeping track of individual emojis' active state
-          //        we have to do it like this. Very hacky, but whatever.
-          const focusedButton = this.scroll.querySelector('button:focus')
-          if (focusedButton) {
-            // If there is a focused button, click it
-            focusedButton.click()
-            handled = true
-          }
         }
         break
 
