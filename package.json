@@ -1,12 +1,13 @@
 {
-  "name": "emoji-mart",
+  "name": "panta82-emoji-mart",
   "version": "3.0.0",
   "description": "Customizable Slack-like emoji picker for React",
   "main": "dist/index.js",
   "module": "dist-es/index.js",
+  "private": false,
   "repository": {
     "type": "git",
-    "url": "git@github.com:missive/emoji-mart.git"
+    "url": "git@github.com:panta82/emoji-mart.git"
   },
   "keywords": [
     "react",
@@ -18,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/missive/emoji-mart/issues"
   },
-  "homepage": "https://github.com/missive/emoji-mart",
+  "homepage": "https://github.com/panta82/emoji-mart",
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "prop-types": "^15.6.0"

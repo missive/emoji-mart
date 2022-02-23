@@ -1,3 +1,11 @@
+Fork of emoji mart to support better keyboard navigation.
+
+Forked from: https://github.com/pingboard/emoji-mart
+
+Published to npm under @panta/emoji-mart
+
+
+----------------------
 <div align="center">
   <br><b>Emoji Mart</b> is a Slack-like customizable<br>emoji picker component for React
   <br><a href="https://missive.github.io/emoji-mart">Demo</a> • <a href="https://github.com/missive/emoji-mart/blob/master/CHANGELOG.md">Changelog</a>
