@@ -2,8 +2,13 @@ Fork of emoji mart to support better keyboard navigation.
 
 Forked from: https://github.com/pingboard/emoji-mart
 
-Published to npm under @panta/emoji-mart
+Published to npm under https://www.npmjs.com/package/panta82-emoji-mart
 
+Best install under alias to be able to use typings:
+```
+npm install --save emoji-mart@npm:panta82-emoji-mart
+npm install --save-dev @types/emoji-mart
+```
 
 ----------------------
 <div align="center">
