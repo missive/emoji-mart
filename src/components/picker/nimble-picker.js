@@ -440,7 +440,7 @@ export default class NimblePicker extends React.PureComponent {
     let handled = false
 
     switch (e.keyCode) {
-      case 13:
+      case 13: // enter
         let emoji
 
         if (
