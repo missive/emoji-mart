@@ -395,7 +395,6 @@ export default class NimblePicker extends React.PureComponent {
       this.scroll.scrollTop = 0
     }
     this.handleScroll()
-    debugger
   }
 
   handleAnchorClick(category, i) {
