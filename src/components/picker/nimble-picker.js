@@ -395,6 +395,7 @@ export default class NimblePicker extends React.PureComponent {
       this.scroll.scrollTop = 0
     }
     this.handleScroll()
+    debugger
   }
 
   handleAnchorClick(category, i) {
@@ -479,6 +480,7 @@ export default class NimblePicker extends React.PureComponent {
   }
 
   getCategories() {
+    // on first render it only renders the first 3 categories?
     return this.state.firstRender
       ? this.categories.slice(0, 3)
       : this.categories
@@ -534,6 +536,7 @@ export default class NimblePicker extends React.PureComponent {
       skinEmoji,
       notFound,
       notFoundEmoji,
+      initialSearch,
     } = this.props
 
     var width = perLine * (emojiSize + 12) + 12 + 2 + measureScrollbar()
@@ -573,6 +576,7 @@ export default class NimblePicker extends React.PureComponent {
           exclude={exclude}
           custom={this.CUSTOM}
           autoFocus={autoFocus}
+          initialSearch={initialSearch}
         />
 
         <div

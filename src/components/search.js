@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { search as icons } from '../svgs'
 import NimbleEmojiIndex from '../utils/emoji-index/nimble-emoji-index'
 import { throttleIdleTask } from '../utils/index'
+import delay from 'lodash/delay'
 
 let id = 0
 
@@ -31,6 +32,27 @@ export default class Search extends React.PureComponent {
     // this.input is undefined in Jest tests
     if (this.input && this.input.value) {
       this.search(this.input.value)
+    }
+
+    const { initialSearch } = this.props
+    if (initialSearch) {
+      this.updateSearch(initialSearch)
+    }
+  }
+
+  updateSearch(value) {
+    // hack for updating value on mount so categories are in the dom before search
+    delay(() => {
+      if (this.input) {
+        this.input.value = value
+      }
+      this.search(value)
+    }, 200)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.initialSearch !== this.props.initialSearch) {
+      this.updateSearch(this.props.initialSearch)
     }
   }
 

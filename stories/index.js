@@ -223,6 +223,7 @@ storiesOf('Picker', module)
       skinEmoji={text('Skin Preview Icon', 'v')}
     />
   ))
+  .add('Initial search', () => <Picker initialSearch={text('search', 'cat')} />)
 
 storiesOf('Emoji', module)
   .addDecorator(withKnobs)
