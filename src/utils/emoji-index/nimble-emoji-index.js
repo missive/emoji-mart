@@ -5,6 +5,7 @@ import store from '../store'
 export default class NimbleEmojiIndex {
   constructor(data, set) {
     if (data.compressed) {
+      // mutates data to uncompressed
       uncompress(data)
     }
 
@@ -83,11 +84,13 @@ export default class NimbleEmojiIndex {
     value,
     { emojisToShowFilter, maxResults, include, exclude, custom = [] } = {},
   ) {
+    // adds custom emojis to search
     if (this.customEmojisList != custom)
       this.addCustomToPool(custom, this.originalPool)
 
     const skinTone = store.get('skin') || 1
 
+    // initialize default values, can be done in options
     maxResults || (maxResults = 75)
     include || (include = [])
     exclude || (exclude = [])
@@ -103,10 +106,12 @@ export default class NimbleEmojiIndex {
       var values = value.toLowerCase().split(/[\s|,|\-|_]+/),
         allResults = []
 
+      // only support 2 keywords? probably otherwise no results when intersecting
       if (values.length > 2) {
         values = [values[0], values[1]]
       }
 
+      // limit searching to only certain categories
       if (include.length || exclude.length) {
         pool = {}
 
@@ -137,39 +142,55 @@ export default class NimbleEmojiIndex {
         }
       }
 
+      // loop through keywords
       allResults = values
         .map((value) => {
           var aPool = pool,
             aIndex = this.index,
             length = 0
 
+          // loop over each character in keyword
           for (let charIndex = 0; charIndex < value.length; charIndex++) {
             const char = value[charIndex]
             length++
 
+            // get documents with indexed character
+            // looks like the index is used to optimize the subsequent searches
             aIndex[char] || (aIndex[char] = {})
             aIndex = aIndex[char]
 
+            // if no results cached from previous searches, perform a search for the character
             if (!aIndex.results) {
               let scores = {}
 
               aIndex.results = []
               aIndex.pool = {}
 
+              // only search based on the id attribute
               for (let id in aPool) {
                 let emoji = aPool[id],
+                  // has a field called search where data.js adds all the searchable fields
                   { search } = emoji,
                   sub = value.substr(0, length),
                   subIndex = search.indexOf(sub)
 
                 if (subIndex != -1) {
+                  // scoring is done based on how close the character is to the start of the search field
+                  // this means that the first fields to be added are higher priority
+                  // and string occuring later naturally have a lower priority.
+                  // A lower score means higher priority
                   let score = subIndex + 1
                   if (sub == id) score = 0
 
+                  // multiple skin tons can match too, picks a single one
                   if (this.emojis[id] && this.emojis[id][skinTone]) {
-                    aIndex.results.push(this.emojis[id][skinTone])
+                    aIndex.results.push({
+                      ...this.emojis[id][skinTone],
+                      score,
+                      search,
+                    })
                   } else {
-                    aIndex.results.push(this.emojis[id])
+                    aIndex.results.push({ ...this.emojis[id], score, search })
                   }
                   aIndex.pool[id] = emoji
 
@@ -192,6 +213,7 @@ export default class NimbleEmojiIndex {
             aPool = aIndex.pool
           }
 
+          // results don't include the score
           return aIndex.results
         })
         .filter((a) => a)
@@ -205,6 +227,7 @@ export default class NimbleEmojiIndex {
       }
     }
 
+    // filter results down to maxResults and custom filtering
     if (results) {
       if (emojisToShowFilter) {
         results = results.filter((result) =>
