@@ -149,7 +149,7 @@ export default class NimbleEmojiIndex {
             aIndex = this.index,
             length = 0
 
-          // loop over each character in keyword
+          // loop over each character in keyword creating a continuous range
           for (let charIndex = 0; charIndex < value.length; charIndex++) {
             const char = value[charIndex]
             length++
@@ -216,6 +216,7 @@ export default class NimbleEmojiIndex {
           // results don't include the score
           return aIndex.results
         })
+        // remove no results from the array
         .filter((a) => a)
 
       if (allResults.length > 1) {

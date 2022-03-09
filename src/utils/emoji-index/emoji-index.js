@@ -9,4 +9,4 @@ function search() {
   return emojiIndex.search(...arguments)
 }
 
-export default { search, emojis, emoticons }
+export default { search, emojis, emoticons, data: emojiIndex.data }
