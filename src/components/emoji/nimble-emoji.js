@@ -179,6 +179,10 @@ const NimbleEmoji = (props) => {
     }
   }
 
+  if (props.className) {
+    className += ` ${props.className}`
+  }
+
   var Tag = {
     name: 'span',
     props: {},
@@ -193,9 +197,8 @@ const NimbleEmoji = (props) => {
 
   if (props.html) {
     style = _convertStyleToCSS(style)
-    return `<${Tag.name} style='${style}' aria-label='${label}' ${
-      title ? `title='${title}'` : ''
-    } class='${className}'>${children || ''}</${Tag.name}>`
+    return `<${Tag.name} style='${style}' aria-label='${label}' ${title ? `title='${title}'` : ''
+      } class='${className}'>${children || ''}</${Tag.name}>`
   } else {
     return (
       <Tag.name

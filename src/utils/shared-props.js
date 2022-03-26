@@ -18,6 +18,7 @@ const EmojiPropTypes = {
   set: PropTypes.oneOf(['apple', 'google', 'twitter', 'facebook']),
   size: PropTypes.number.isRequired,
   emoji: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  className: PropTypes.string,
 }
 
 const PickerPropTypes = {
