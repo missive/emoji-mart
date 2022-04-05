@@ -64,14 +64,15 @@ export default class Category extends React.Component {
   }
 
   memoizeSize() {
-    if (!this.container) {
+    const containerRect = this.container && this.container.getBoundingClientRect()
+    if (!containerRect) {
       // probably this is a test environment, e.g. jest
       this.top = 0
       this.maxMargin = 0
       return
     }
     var parent = this.container.parentElement
-    var { top, height } = this.container.getBoundingClientRect()
+    var { top, height } = containerRect
     var { top: parentTop } = parent.getBoundingClientRect()
     var { height: labelHeight } = this.label.getBoundingClientRect()
 
