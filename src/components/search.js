@@ -108,6 +108,7 @@ export default class Search extends React.PureComponent {
           onKeyUp={this.handleKeyUp}
           aria-label={i18n.clear}
           disabled={!isSearching}
+          type="button"
         >
           {icon()}
         </button>
