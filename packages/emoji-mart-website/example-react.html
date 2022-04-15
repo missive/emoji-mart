@@ -1,0 +1,36 @@
+<extends
+  src="layout.html"
+  locals='{ "exampleName": "React", "exampleFile": "example-react.html" }'
+>
+  <block name="script">
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+
+    <script type="module">
+      import data from '@emoji-mart/data/sets/14/native.json'
+      import * as EmojiMart from 'emoji-mart'
+      const e = React.createElement
+
+      const Picker = (props) => {
+        const ref = React.createRef()
+
+        React.useEffect(() => {
+          const parent = ref.current
+          new EmojiMart.Picker({ ...props, parent })
+        }, [])
+
+        return e('div', { ref })
+      }
+
+      const container = document.querySelector('#picker')
+      const root = ReactDOM.createRoot(container)
+      root.render(e(Picker, { data, onEmojiSelect: console.log }))
+    </script>
+  </block>
+</extends>

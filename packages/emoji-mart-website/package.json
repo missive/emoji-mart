@@ -1,0 +1,13 @@
+{
+  "name": "@emoji-mart/website",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "devDependencies": {
+    "posthtml-extend": "0.6.2",
+    "posthtml-include": "1.7.2"
+  }
+}

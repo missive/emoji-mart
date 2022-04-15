@@ -1,0 +1,303 @@
+<extends src="layout.html" locals='{ "exampleName": "", "exampleFile": "" }'>
+  <block name="content" type="append">
+    <div id="options">
+      <div class="flex flex-middle">
+        Set: <span class="select flex flex-grow"
+          ><select id="set" class="flex-grow">
+            <optgroup label="Unicode">
+              <option value="native">Native</option>
+            </optgroup>
+            <optgroup label="Images">
+              <option value="apple">Apple</option>
+              <option value="facebook">Facebook</option>
+              <option value="google">Google</option>
+              <option value="twitter">Twitter</option>
+            </optgroup></select
+          ><em-emoji id="arrow_down_small"
+        /></span>
+      </div>
+
+      <div class="flex flex-middle">
+        Theme: <span class="select flex flex-grow"
+          ><select id="theme" class="flex-grow">
+            <optgroup label="System">
+              <option value="auto">Auto</option>
+            </optgroup>
+            <optgroup label="Themes">
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </optgroup></select
+          ><em-emoji id="arrow_down_small"
+        /></span>
+      </div>
+
+      <div class="flex flex-middle">
+        Icons: <span class="select flex flex-grow"
+          ><select id="icons" class="flex-grow">
+            <option value="auto">Auto</option>
+            <option value="outline">Outline</option>
+            <option value="solid">Solid</option></select
+          ><em-emoji id="arrow_down_small"
+        /></span>
+      </div>
+
+      <div class="flex flex-middle">
+        Emoji version: <span class="select flex flex-grow"
+          ><select id="version" class="flex-grow">
+            <option value="14">14.0</option>
+            <option value="13.1">13.1</option>
+            <option value="13.0">13.0</option>
+            <option value="12.1">12.1</option>
+            <option value="12.0">12.0</option>
+            <option value="11.0">11.0</option>
+            <option value="5.0">5.0</option>
+            <option value="4.0">4.0</option>
+            <option value="3.0">3.0</option>
+            <option value="2.0">2.0</option>
+            <option value="1.0">1.0</option></select
+          ><em-emoji id="arrow_down_small"
+        /></span>
+      </div>
+
+      <div class="flex flex-middle">
+        Locale (UI): <span class="select flex flex-grow"
+          ><select id="locale" class="flex-grow">
+            <option value="en">English</option>
+            <option value="fr">Français</option></select
+          ><em-emoji id="arrow_down_small"
+        /></span>
+      </div>
+
+      <div class="flex flex-middle">
+        Auto focus: <span class="select flex flex-grow"
+          ><select id="autoFocus" class="flex-grow">
+            <option value="false">False</option>
+            <option value="true">True</option></select
+          ><em-emoji id="arrow_down_small"
+        /></span>
+      </div>
+
+      <div class="flex flex-middle">
+        Nav position: <span class="select flex flex-grow"
+          ><select id="navPosition" class="flex-grow">
+            <option value="top">Top</option>
+            <option value="bottom">Bottom</option>
+            <option value="none">None</option></select
+          ><em-emoji id="arrow_down_small"
+        /></span>
+      </div>
+
+      <div class="flex flex-middle">
+        Preview position: <span class="select flex flex-grow"
+          ><select id="previewPosition" class="flex-grow">
+            <option value="bottom">Bottom</option>
+            <option value="top">Top</option>
+            <option value="none">None</option></select
+          ><em-emoji id="arrow_down_small"
+        /></span>
+      </div>
+
+      <div class="flex flex-middle">
+        Sticky search: <span class="select flex flex-grow"
+          ><select id="stickySearch" class="flex-grow">
+            <option value="true">True</option>
+            <option value="false">False</option></select
+          ><em-emoji id="arrow_down_small"
+        /></span>
+      </div>
+
+      <div>
+        <button title="Reset" id="reset">
+          <span><em-emoji id="broom" fallback="🧹" /></span>
+        </button>
+      </div>
+    </div>
+
+    <dialog id="dialog">
+      <form method="dialog">
+        <p>
+          <label class="flex">
+            <span style="padding-top: 10px">Choose image: </span>
+            <input type="file" accept="image/*" class="flex-grow" />
+            <input name="src" type="hidden" />
+          </label>
+        </p>
+        <p>
+          <label class="flex">
+            <span style="padding-top: 8px">Give it a name: </span>
+            <span class="flex flex-column flex-grow">
+              <input name="name" type="text" class="flex-grow" />
+              <input name="id" type="text" readonly />
+            </span>
+          </label>
+        </p>
+        <div class="flex">
+          <button value="cancel">
+            <em-emoji id="no_entry_sign" />
+          </button>
+          <button value="confirm" class="flex-grow">
+            <em-emoji id="white_check_mark" />
+          </button>
+        </div>
+      </form>
+    </dialog>
+  </block>
+
+  <block name="script">
+    <script type="module">
+      import data from '@emoji-mart/data/sets/14/native.json'
+      import * as EmojiMart from 'emoji-mart'
+
+      const reset = document.querySelector('#reset')
+      reset.addEventListener('click', () => {
+        localStorage.clear()
+        window.location.reload(true)
+      })
+
+      const selects = document.querySelectorAll('#options select')
+      for (let select of selects) {
+        const storageValue = localStorage[select.id]
+        if (storageValue) {
+          select.value = storageValue
+          select.classList.add('modified')
+        }
+
+        select.addEventListener('change', () => {
+          const defaultValue = select.querySelector('option').value
+          if (select.value == defaultValue) {
+            delete localStorage[select.id]
+          } else {
+            localStorage[select.id] = select.value
+          }
+
+          window.location.reload(true)
+        })
+      }
+
+      const custom = JSON.parse(localStorage.custom || '[]')
+      const dialog = document.querySelector('dialog')
+      const form = dialog.querySelector('form')
+      const imageInput = dialog.querySelector('input[type="file"]')
+      const srcInput = dialog.querySelector('input[name="src"]')
+      const nameInput = dialog.querySelector('input[name="name"]')
+      const idInput = dialog.querySelector('input[name="id"]')
+
+      let customImage = null
+      let customName = null
+      let customId = null
+
+      if (typeof dialog.showModal === 'function') {
+        nameInput.addEventListener('input', (e) => {
+          const { value } = e.target
+          const id = value
+            .toLowerCase()
+            .replace(/\W+/g, '_')
+            .replace(/^_|_$/, '')
+
+          idInput.value = value ? `:${id}:` : ''
+        })
+
+        imageInput.addEventListener('change', (e) => {
+          const file = e.target.files[0]
+
+          const done = ({ name, src }) => {
+            srcInput.value = src
+            nameInput.value = name
+              .replace(/\.\w+/, '')
+              .replace(/^\w/, (c) => c.toUpperCase())
+
+            nameInput.dispatchEvent(new Event('input'))
+          }
+
+          if (file) {
+            const reader = new FileReader()
+            reader.readAsDataURL(file)
+            reader.onloadend = () => {
+              const { name } = file
+              const src = reader.result
+
+              done({ name, src })
+            }
+          } else {
+            done({ name: '', src: '' })
+          }
+        })
+
+        dialog.addEventListener('close', (e) => {
+          if (e.target.returnValue == 'confirm') {
+            const data = new FormData(form)
+
+            const emoji = {
+              name: data.get('name'),
+              id: data.get('id').replace(/:/g, ''),
+              skins: [{ src: data.get('src') }],
+            }
+
+            if (!emoji.name || !emoji.id || !emoji.skins[0].src) {
+              return
+            }
+
+            custom.push(emoji)
+            localStorage.custom = JSON.stringify(custom)
+            window.location.reload(true)
+          }
+
+          form.reset()
+          srcInput.value = ''
+        })
+      } else {
+        dialog.hidden = true
+      }
+
+      const elem = new EmojiMart.Picker({
+        parent: document.querySelector('#picker'),
+        data: localStorage.set || localStorage.version ? undefined : data,
+        autoFocus: localStorage.autoFocus,
+        set: localStorage.set,
+        theme: localStorage.theme,
+        icons: localStorage.icons,
+        emojiVersion: localStorage.version,
+        locale: localStorage.locale,
+        navPosition: localStorage.navPosition,
+        previewPosition: localStorage.previewPosition,
+        stickySearch: localStorage.stickySearch,
+        onEmojiSelect: console.log,
+        custom: [
+          {
+            emojis: [
+              {
+                id: 'octocat',
+                name: 'Octocat',
+                keywords: ['github'],
+                skins: [
+                  { src: new URL('./assets/octocat.png', import.meta.url) },
+                ],
+              },
+              {
+                id: 'shipit',
+                name: 'Squirrel',
+                keywords: ['github'],
+                skins: [
+                  { src: new URL('./assets/shipit.png', import.meta.url) },
+                ],
+              },
+              {
+                id: 'party_parrot',
+                name: 'Party Parrot',
+                keywords: ['dance', 'dancing'],
+                skins: [
+                  { src: new URL('./assets/parrot.gif', import.meta.url) },
+                ],
+              },
+            ].concat(custom),
+          },
+        ],
+        onAddCustomEmoji: dialog.hidden
+          ? undefined
+          : () => {
+              dialog.showModal()
+            },
+      })
+    </script>
+  </block>
+</extends>

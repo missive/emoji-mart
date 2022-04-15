@@ -1,0 +1,7 @@
+.*
+*.config.js
+*.lock
+
+src/
+docs/
+scripts/

@@ -1,0 +1,42 @@
+<extends
+  src="layout.html"
+  locals='{ "exampleName": "Emoji component", "exampleFile": "example-emoji-component.html" }'
+>
+  <block name="content">
+    <div>
+      The quick <em-emoji id="runner" size="2em" /> brown fox
+      <em-emoji id="fox_face" set="twitter" size="2em" />
+      <em-emoji id="fox_face" set="facebook" size="2em" />
+      <em-emoji id="fox_face" set="google" size="2em" /> jumps over the lazy
+      <em-emoji id="sloth" set="facebook" size="2em" /> dog
+      <em-emoji id="dog" set="google" size="2em" />.
+    </div>
+    <div style="text-align: center">
+      <em-emoji id="party_parrot" size="64" />
+    </div>
+  </block>
+  <block name="script">
+    <script type="module">
+      import data from '@emoji-mart/data/sets/14/twitter.json'
+      import * as EmojiMart from 'emoji-mart'
+
+      EmojiMart.init({
+        data,
+        custom: [
+          {
+            emojis: [
+              {
+                id: 'party_parrot',
+                name: 'Party Parrot',
+                keywords: ['dance', 'dancing'],
+                skins: [
+                  { src: new URL('./assets/parrot.gif', import.meta.url) },
+                ],
+              },
+            ],
+          },
+        ],
+      })
+    </script>
+  </block>
+</extends>

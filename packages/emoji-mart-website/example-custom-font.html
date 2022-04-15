@@ -1,0 +1,26 @@
+<extends
+  src="layout.html"
+  locals='{ "exampleName": "Custom font", "exampleFile": "example-custom-font.html" }'
+>
+  <block name="content" type="append">
+    <style>
+      @font-face {
+        font-family: 'EmojiMart';
+        src: url('./assets/seguiemj.ttf') format('truetype');
+      }
+    </style>
+  </block>
+
+  <block name="script">
+    <script type="module">
+      import data from '@emoji-mart/data/sets/13.1/native.json'
+      import * as EmojiMart from 'emoji-mart'
+
+      const elem = new EmojiMart.Picker({
+        parent: document.querySelector('#picker'),
+        data: data,
+        noCountryFlags: true,
+      })
+    </script>
+  </block>
+</extends>

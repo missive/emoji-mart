@@ -1,0 +1,27 @@
+<extends
+  src="layout.html"
+  locals='{ "exampleName": "Categories", "exampleFile": "example-categories.html" }'
+>
+  <block name="script">
+    <script type="module">
+      import data from '@emoji-mart/data/sets/14/native.json'
+      import * as EmojiMart from 'emoji-mart'
+
+      const elem = new EmojiMart.Picker({
+        parent: document.querySelector('#picker'),
+        data: data,
+        categories: [
+          'activity',
+          // 'flags',
+          // 'foods',
+          // 'frequent',
+          'nature',
+          // 'objects',
+          'people',
+          // 'places',
+          // 'symbols',
+        ],
+      })
+    </script>
+  </block>
+</extends>

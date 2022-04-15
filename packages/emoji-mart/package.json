@@ -1,0 +1,55 @@
+{
+  "name": "emoji-mart",
+  "version": "5.0.0",
+  "description": "Emoji picker for the web",
+  "license": "BSD-3-Clause",
+  "homepage": "https://missive.github.io/emoji-mart",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/missive/emoji-mart",
+    "directory": "packages/emoji-mart"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "type": "module",
+  "source": "src/index.js",
+  "main": "dist/index.js",
+  "targets": {
+    "main": {
+      "includeNodeModules": true
+    }
+  },
+  "keywords": [
+    "emoji",
+    "emoticons",
+    "emoji-picker",
+    "web-component",
+    "twemoji"
+  ],
+  "scripts": {
+    "build": "parcel build",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@parcel/transformer-inline-string": "2.3.2",
+    "@parcel/transformer-sass": "2.3.2",
+    "autoprefixer": "10.4.4",
+    "parcel": "2.3.2",
+    "preact": "10.6.4"
+  },
+  "alias": {
+    "react": "preact/compat",
+    "react-dom/test-utils": "preact/test-utils",
+    "react-dom": "preact/compat",
+    "react/jsx-runtime": "preact/jsx-runtime",
+    "@components/**": "./src/components/$1",
+    "@helpers": "./src/helpers/index.js",
+    "@config": "./src/config.js",
+    "@icons": "./src/icons.js",
+    "@utils": "./src/utils.js"
+  },
+  "files": [
+    "/dist"
+  ]
+}

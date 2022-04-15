@@ -1,0 +1,25 @@
+<extends
+  src="layout.html"
+  locals='{ "exampleName": "Slack colors", "exampleFile": "example-slack-colors.html" }'
+>
+  <block name="script">
+    <script type="module">
+      import data from '@emoji-mart/data/sets/14/native.json'
+      import * as EmojiMart from 'emoji-mart'
+
+      const elem = new EmojiMart.Picker({
+        parent: document.querySelector('#picker'),
+        data: data,
+        emojiButtonRadius: '6px',
+        emojiButtonColors: [
+          'rgba(155,223,88,.7)',
+          'rgba(149,211,254,.7)',
+          'rgba(247,233,34,.7)',
+          'rgba(238,166,252,.7)',
+          'rgba(255,213,143,.7)',
+          'rgba(211,209,255,.7)',
+        ],
+      })
+    </script>
+  </block>
+</extends>

@@ -1,0 +1,19 @@
+<extends src="layout.html" locals='{ "exampleName": "", "exampleFile": " " }'>
+  <block name="content">
+    <ul>
+      <li><a href="./example-categories.html">Categories</a></li>
+      <li><a href="./example-custom-font.html">Custom font</a></li>
+      <li><a href="./example-emoji-component.html">Emoji component</a></li>
+      <li><a href="./example-react.html">React</a></li>
+      <li><a href="./example-slack-colors.html">Slack colors</a></li>
+    </ul>
+  </block>
+  <block name="script">
+    <script type="module">
+      import data from '@emoji-mart/data/sets/14/native.json'
+      import * as EmojiMart from 'emoji-mart'
+
+      EmojiMart.init({ data })
+    </script>
+  </block>
+</extends>

@@ -1,0 +1,23 @@
+{
+  "name": "@emoji-mart/monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace packages/emoji-mart-website",
+    "build": "npm run build --workspace packages/emoji-mart",
+    "build:data": "npm run build --workspace packages/emoji-mart-data",
+    "build:website": "npm run build --workspace packages/emoji-mart-website"
+  },
+  "devDependencies": {
+    "prettier": "2.5.1"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "always"
+  }
+}
