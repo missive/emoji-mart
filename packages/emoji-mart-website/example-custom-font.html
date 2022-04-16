@@ -14,9 +14,9 @@
   <block name="script">
     <script type="module">
       import data from '@emoji-mart/data/sets/13.1/native.json'
-      import * as EmojiMart from 'emoji-mart'
+      import { Picker } from 'emoji-mart'
 
-      const elem = new EmojiMart.Picker({
+      new Picker({
         parent: document.querySelector('#picker'),
         data: data,
         noCountryFlags: true,

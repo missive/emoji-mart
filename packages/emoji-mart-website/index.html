@@ -145,8 +145,9 @@
 
   <block name="script">
     <script type="module">
-      import data from '@emoji-mart/data/sets/14/native.json'
+      import data from '@emoji-mart/data'
       import * as EmojiMart from 'emoji-mart'
+      window.EmojiMart = EmojiMart
 
       const reset = document.querySelector('#reset')
       reset.addEventListener('click', () => {

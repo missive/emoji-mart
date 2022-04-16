@@ -9,6 +9,7 @@
     "url": "https://github.com/missive/emoji-mart",
     "directory": "packages/emoji-mart-data"
   },
+  "main": "sets/14/native.json",
   "scripts": {
     "build": "node ./build.js"
   },

@@ -10,10 +10,10 @@
   </block>
   <block name="script">
     <script type="module">
-      import data from '@emoji-mart/data/sets/14/native.json'
-      import * as EmojiMart from 'emoji-mart'
+      import data from '@emoji-mart/data'
+      import { init } from 'emoji-mart'
 
-      EmojiMart.init({ data })
+      init({ data })
     </script>
   </block>
 </extends>

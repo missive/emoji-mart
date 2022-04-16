@@ -18,9 +18,9 @@
   <block name="script">
     <script type="module">
       import data from '@emoji-mart/data/sets/14/twitter.json'
-      import * as EmojiMart from 'emoji-mart'
+      import { init } from 'emoji-mart'
 
-      EmojiMart.init({
+      init({
         data,
         custom: [
           {

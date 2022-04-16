@@ -13,16 +13,17 @@
     ></script>
 
     <script type="module">
-      import data from '@emoji-mart/data/sets/14/native.json'
-      import * as EmojiMart from 'emoji-mart'
+      import data from '@emoji-mart/data'
+      import { Picker } from 'emoji-mart'
+
       const e = React.createElement
 
-      const Picker = (props) => {
+      const EmojiPicker = (props) => {
         const ref = React.createRef()
 
         React.useEffect(() => {
           const parent = ref.current
-          new EmojiMart.Picker({ ...props, parent })
+          new Picker({ ...props, data, parent })
         }, [])
 
         return e('div', { ref })
@@ -30,7 +31,7 @@
 
       const container = document.querySelector('#picker')
       const root = ReactDOM.createRoot(container)
-      root.render(e(Picker, { data, onEmojiSelect: console.log }))
+      root.render(e(EmojiPicker, { onEmojiSelect: console.log }))
     </script>
   </block>
 </extends>
