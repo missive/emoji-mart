@@ -1,0 +1,46 @@
+<extends
+  src="layout.html"
+  locals='{ "exampleName": "Headless search", "exampleFile": "example-headless-search.html" }'
+>
+  <block name="content">
+    <div style="text-align: center">
+      <input type="text" id="search" value="christmas" autofocus />
+      <div id="results" style="font-size: 2em; margin-top: 10px"></div>
+    </div>
+  </block>
+
+  <block name="script">
+    <script type="module">
+      import data from '@emoji-mart/data'
+      import { init, SearchIndex } from 'emoji-mart'
+
+      init({ data })
+
+      const input = document.querySelector('#search')
+      const results = document.querySelector('#results')
+
+      async function search(value) {
+        const searchResults = await SearchIndex.search(value)
+
+        if (searchResults) {
+          if (!searchResults.length) {
+            results.innerHTML = 'No results'
+          } else {
+            results.innerHTML = searchResults
+              .map((e) => e.skins[0].native)
+              .join(' ')
+          }
+        } else {
+          results.innerHTML = 'Type something'
+        }
+      }
+
+      input.addEventListener('input', (e) => {
+        search(e.target.value)
+      })
+
+      input.select()
+      search(input.value)
+    </script>
+  </block>
+</extends>
