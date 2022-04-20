@@ -99,13 +99,13 @@ async function _init(props, element) {
   const { data, i18n, emojiVersion, set, locale } = pickerProps
 
   Data =
-    data ||
+    (typeof data === 'function' ? await data() : data) ||
     (await fetchJSON(
       `https://cdn.jsdelivr.net/npm/@emoji-mart/data@latest/sets/${emojiVersion}/${set}.json`,
     ))
 
   I18n =
-    i18n ||
+    (typeof i18n === 'function' ? await i18n() : i18n) ||
     (locale == 'en'
       ? i18n_en
       : await fetchJSON(

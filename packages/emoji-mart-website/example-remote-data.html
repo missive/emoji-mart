@@ -1,0 +1,21 @@
+<extends
+  src="layout.html"
+  locals='{ "exampleName": "Remote data", "exampleFile": "example-remote-data.html" }'
+>
+  <block name="script">
+    <script type="module">
+      import { Picker } from 'emoji-mart'
+
+      new Picker({
+        parent: document.querySelector('#picker'),
+        data: async () => {
+          const response = await fetch(
+            `https://cdn.jsdelivr.net/npm/@emoji-mart/data/sets/14/native.json`,
+          )
+
+          return response.json()
+        },
+      })
+    </script>
+  </block>
+</extends>
