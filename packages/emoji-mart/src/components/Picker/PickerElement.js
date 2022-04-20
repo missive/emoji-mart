@@ -9,8 +9,9 @@ export default class PickerElement extends HTMLElement {
     this.props = props
 
     this.setShadow()
-    if (props.parent) {
-      props.parent.appendChild(this)
+    if (props.parent || props.ref) {
+      const parent = props.parent || (props.ref && props.ref.current)
+      if (parent) parent.appendChild(this)
     }
   }
 

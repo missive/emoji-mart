@@ -26,8 +26,7 @@
         const ref = useRef()
 
         useEffect(() => {
-          const parent = ref.current
-          new Picker({ ...props, data, parent })
+          new Picker({ ...props, data, ref })
         }, [])
 
         const styles = {
