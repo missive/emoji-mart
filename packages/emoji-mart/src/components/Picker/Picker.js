@@ -655,6 +655,7 @@ export default class Picker extends Component {
             width: this.props.emojiButtonSize,
             height: this.props.emojiButtonSize,
             fontSize: this.props.emojiSize,
+            lineHeight: 0,
           }}
         >
           <div

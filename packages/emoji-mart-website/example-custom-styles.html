@@ -1,0 +1,43 @@
+<extends
+  src="layout.html"
+  locals='{ "exampleName": "Custom styles", "exampleFile": "example-custom-styles.html" }'
+>
+  <block name="content" type="append">
+    <style>
+      em-emoji-picker {
+        --background-rgb: 85, 170, 255;
+        --border-radius: 24px;
+        --category-icon-size: 24px;
+        --color-border-hover: rgba(0, 0, 0, 0.1);
+        --color-border: rgba(0, 0, 0, 0.05);
+        --font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+        --font-size: 20px;
+        --rgb-accent: 255, 105, 180;
+        --rgb-background: 262, 240, 283;
+        --rgb-color: 102, 51, 153;
+        --rgb-input: 255, 235, 235;
+        --shadow: 5px 5px 15px -8px rebeccapurple;
+
+        height: 50vh;
+        min-height: 400px;
+        max-height: 800px;
+      }
+    </style>
+  </block>
+
+  <block name="script">
+    <script type="module">
+      import data from '@emoji-mart/data'
+      import { Picker } from 'emoji-mart'
+
+      new Picker({
+        parent: document.querySelector('#picker'),
+        data: data,
+        emojiButtonSize: 50,
+        emojiSize: 38,
+        emojiButtonColors: ['rgba(102, 51, 153, .2)'],
+        icons: 'solid',
+      })
+    </script>
+  </block>
+</extends>
