@@ -101,7 +101,7 @@ async function _init(props, element) {
   Data =
     data ||
     (await fetchJSON(
-      `https://cdn.jsdelivr.net/npm/@emoji-mart/data@1.0.0/sets/${emojiVersion}/${set}.json`,
+      `https://cdn.jsdelivr.net/npm/@emoji-mart/data@latest/sets/${emojiVersion}/${set}.json`,
     ))
 
   I18n =
@@ -109,7 +109,7 @@ async function _init(props, element) {
     (locale == 'en'
       ? i18n_en
       : await fetchJSON(
-          `https://cdn.jsdelivr.net/npm/@emoji-mart/data@1.0.0/i18n/${locale}.json`,
+          `https://cdn.jsdelivr.net/npm/@emoji-mart/data@latest/i18n/${locale}.json`,
         ))
 
   if (pickerProps.maxFrequentRows) {
