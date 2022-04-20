@@ -177,6 +177,14 @@ async function _init(props, element) {
   for (const category of Data.categories) {
     let i = category.emojis.length
 
+    const { categoryIcons } = props
+    if (categoryIcons) {
+      const icon = categoryIcons[category.id]
+      if (icon && !category.icon) {
+        category.icon = icon
+      }
+    }
+
     while (i--) {
       const emoji = Data.emojis[category.emojis[i]]
       let ignore = false
