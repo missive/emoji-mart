@@ -11,27 +11,45 @@
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
       crossorigin
     ></script>
+    <script src="https://unpkg.com/htm@latest" crossorigin></script>
 
     <script type="module">
       import data from '@emoji-mart/data'
       import { Picker } from 'emoji-mart'
 
-      const e = React.createElement
+      const { createElement, useEffect, useRef } = React
+      const { createRoot } = ReactDOM
 
-      const EmojiPicker = (props) => {
-        const ref = React.createRef()
+      const html = htm.bind(createElement)
 
-        React.useEffect(() => {
+      const Example = (props) => {
+        const ref = useRef()
+
+        useEffect(() => {
           const parent = ref.current
           new Picker({ ...props, data, parent })
         }, [])
 
-        return e('div', { ref })
+        const styles = {
+          emojis: { textAlign: 'center' },
+        }
+
+        return html`<div>
+          <div ref=${ref}></div>
+          <br />
+          <div style=${styles.emojis}>
+            <em-emoji shortcodes=":+1::skin-tone-2:" size="20px" />
+            <em-emoji shortcodes=":+1::skin-tone-3:" size="30px" />
+            <em-emoji shortcodes=":+1::skin-tone-4:" size="40px" />
+            <em-emoji shortcodes=":+1::skin-tone-5:" size="30px" />
+            <em-emoji shortcodes=":+1::skin-tone-6:" size="20px" />
+          </div>
+        </div>`
       }
 
       const container = document.querySelector('#picker')
-      const root = ReactDOM.createRoot(container)
-      root.render(e(EmojiPicker, { onEmojiSelect: console.log }))
+      const root = createRoot(container)
+      root.render(html`<${Example} />`)
     </script>
   </block>
 </extends>
