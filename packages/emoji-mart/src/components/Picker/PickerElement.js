@@ -1,27 +1,12 @@
 import { render } from 'preact'
 
 import { init } from '@config'
+import { ShadowElement } from '@components/HTMLElement'
 import { Picker, PickerStyles } from '.'
 
-export default class PickerElement extends HTMLElement {
-  constructor(props = {}) {
-    super()
-    this.props = props
-
-    this.setShadow()
-    if (props.parent || props.ref) {
-      const parent = props.parent || (props.ref && props.ref.current)
-      if (parent) parent.appendChild(this)
-    }
-  }
-
-  setShadow() {
-    this.attachShadow({ mode: 'open' })
-
-    const style = document.createElement('style')
-    style.textContent = PickerStyles
-
-    this.shadowRoot.insertBefore(style, this.shadowRoot.firstChild)
+export default class PickerElement extends ShadowElement {
+  constructor(props) {
+    super(props, { styles: PickerStyles })
   }
 
   async connectedCallback() {
