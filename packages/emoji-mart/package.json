@@ -29,7 +29,7 @@
   ],
   "scripts": {
     "build": "parcel build --no-autoinstall",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "yarn build"
   },
   "devDependencies": {
     "@parcel/transformer-inline-string": "2.3.2",

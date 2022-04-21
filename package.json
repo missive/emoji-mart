@@ -6,10 +6,10 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "npm run dev --workspace packages/emoji-mart-website",
-    "build": "npm run build --workspace packages/emoji-mart",
-    "build:data": "npm run build --workspace packages/emoji-mart-data",
-    "build:website": "npm run build --workspace packages/emoji-mart-website"
+    "dev": "yarn workspace @emoji-mart/website dev",
+    "build": "yarn workspace emoji-mart build",
+    "build:data": "yarn workspace @emoji-mart/data build",
+    "build:website": "yarn workspace @emoji-mart/website build"
   },
   "devDependencies": {
     "prettier": "2.5.1"
@@ -19,5 +19,8 @@
     "singleQuote": true,
     "trailingComma": "all",
     "arrowParens": "always"
+  },
+  "engines": {
+    "yarn": ">=1"
   }
 }
