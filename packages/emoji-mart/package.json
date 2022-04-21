@@ -28,7 +28,7 @@
     "twemoji"
   ],
   "scripts": {
-    "build": "parcel build",
+    "build": "parcel build --no-autoinstall",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
