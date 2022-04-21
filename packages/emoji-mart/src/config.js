@@ -95,8 +95,10 @@ export function init(options) {
 }
 
 async function _init(props, element) {
+  const { data, i18n } = props
+
   const pickerProps = getProps(props, element)
-  const { data, i18n, emojiVersion, set, locale } = pickerProps
+  const { emojiVersion, set, locale } = pickerProps
 
   Data =
     (typeof data === 'function' ? await data() : data) ||
@@ -122,11 +124,11 @@ async function _init(props, element) {
     }
   }
 
-  if (pickerProps.custom) {
-    for (let i in pickerProps.custom) {
+  if (props.custom) {
+    for (let i in props.custom) {
       i = parseInt(i)
-      const category = pickerProps.custom[i]
-      const prevCategory = pickerProps.custom[i - 1]
+      const category = props.custom[i]
+      const prevCategory = props.custom[i - 1]
 
       if (!category.emojis || !category.emojis.length) continue
 
@@ -168,9 +170,10 @@ async function _init(props, element) {
 
   let latestVersionSupport = null
   let noCountryFlags = null
-  if (pickerProps.set == 'native') {
+  if (set == 'native') {
     latestVersionSupport = NativeSupport.latestVersion()
-    noCountryFlags = props.noCountryFlags || NativeSupport.noCountryFlags()
+    noCountryFlags =
+      pickerProps.noCountryFlags || NativeSupport.noCountryFlags()
   }
 
   Data.emoticons = {}
@@ -285,19 +288,10 @@ function getProps(props, element) {
     return value
   }
 
-  const Props = {
-    element: element,
-    data: props.data,
-    custom: props.custom,
-    i18n: props.i18n,
-    onEmojiSelect: props.onEmojiSelect,
-    onClickOutside: props.onClickOutside,
-    onAddCustomEmoji: props.onAddCustomEmoji,
-  }
-
+  const _props = {}
   for (let k in DEFAULT_PROPS) {
-    Props[k] = get(k)
+    _props[k] = get(k)
   }
 
-  return Props
+  return _props
 }

@@ -4,7 +4,7 @@ import { init } from '@config'
 import { Picker, PickerStyles } from '.'
 
 export default class PickerElement extends HTMLElement {
-  constructor(props) {
+  constructor(props = {}) {
     super()
     this.props = props
 
@@ -26,8 +26,15 @@ export default class PickerElement extends HTMLElement {
 
   async connectedCallback() {
     const pickerProps = await init(this.props, this)
-    const props = { ...pickerProps }
-    props.element = this
+    const { onEmojiSelect, onClickOutside, onAddCustomEmoji } = this.props
+
+    const props = {
+      ...pickerProps,
+      element: this,
+      onEmojiSelect,
+      onClickOutside,
+      onAddCustomEmoji,
+    }
 
     render(<Picker {...props} />, this.shadowRoot)
   }

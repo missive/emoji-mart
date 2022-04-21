@@ -8,19 +8,23 @@ export default class EmojiElement extends HTMLElement {
     super()
     this.props = props
 
-    if (props.parent) {
-      props.parent.appendChild(this)
+    if (props.parent || props.ref) {
+      const parent = props.parent || (props.ref && props.ref.current)
+      if (parent) parent.appendChild(this)
     }
   }
 
   async connectedCallback() {
     const pickerProps = await init()
-    const props = { ...pickerProps }
-    props.id = this.getAttribute('id')
-    props.set = this.getAttribute('set') || props.set
-    props.size = this.getAttribute('size')
-    props.fallback = this.getAttribute('fallback')
-    props.shortcodes = this.getAttribute('shortcodes')
+
+    const props = {
+      ...pickerProps,
+      id: this.getAttribute('id'),
+      set: this.getAttribute('set') || pickerProps.set,
+      size: this.getAttribute('size'),
+      fallback: this.getAttribute('fallback'),
+      shortcodes: this.getAttribute('shortcodes'),
+    }
 
     render(<Emoji {...props} />, this)
   }
