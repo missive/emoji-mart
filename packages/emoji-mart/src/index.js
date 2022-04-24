@@ -3,4 +3,4 @@ export { EmojiElement as Emoji } from '@components/Emoji'
 
 export { SearchIndex } from '@helpers'
 
-export { init } from '@config'
+export { init, Data, I18n } from '@config'
