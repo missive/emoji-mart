@@ -177,6 +177,7 @@ async function _init(props, element) {
   }
 
   Data.emoticons = {}
+  Data.natives = {}
   for (const category of Data.categories) {
     let i = category.emojis.length
 
@@ -210,6 +211,7 @@ async function _init(props, element) {
       emoji.search =
         ',' +
         [
+          [emoji.id, false],
           [emoji.name, true],
           [emoji.keywords, false],
           [emoji.emoticons, false],
@@ -224,7 +226,6 @@ async function _init(props, element) {
               })
               .flat()
           })
-          .concat(emoji.skins.map((skin) => skin && skin.native))
           .flat()
           .filter((a) => a && a.trim())
           .join(',')
@@ -240,6 +241,12 @@ async function _init(props, element) {
       for (const skin of emoji.skins) {
         if (!skin) continue
         skinIndex++
+
+        const { native } = skin
+        if (native) {
+          Data.natives[native] = emoji.id
+          emoji.search += `,${native}`
+        }
 
         const skinShortcodes = skinIndex == 1 ? '' : `:skin-tone-${skinIndex}:`
         skin.shortcodes = `:${emoji.id}:${skinShortcodes}`

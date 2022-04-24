@@ -7,7 +7,11 @@ function get(emojiId) {
     return emojiId
   }
 
-  return Data.emojis[emojiId] || Data.emojis[Data.aliases[emojiId]]
+  return (
+    Data.emojis[emojiId] ||
+    Data.emojis[Data.aliases[emojiId]] ||
+    Data.emojis[Data.natives[emojiId]]
+  )
 }
 
 let Pool = null
