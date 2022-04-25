@@ -9,7 +9,9 @@
     "dev": "yarn workspace @emoji-mart/website dev",
     "build": "yarn workspace emoji-mart build",
     "build:data": "yarn workspace @emoji-mart/data build",
-    "build:website": "yarn workspace @emoji-mart/website build"
+    "build:website": "yarn workspace @emoji-mart/website build",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write ."
   },
   "devDependencies": {
     "prettier": "2.5.1"
