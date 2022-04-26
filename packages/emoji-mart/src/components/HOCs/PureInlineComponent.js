@@ -1,7 +1,6 @@
-// import { PureComponent } from 'preact/compat'
-import { Component } from 'preact'
+import { PureComponent } from 'preact/compat'
 
-export default class PureInlineComponent extends Component {
+export default class PureInlineComponent extends PureComponent {
   shouldComponentUpdate(nextProps) {
     for (let k in nextProps) {
       if (k == 'children') continue
