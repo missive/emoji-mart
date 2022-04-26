@@ -27,3 +27,19 @@ jobs:
 
       - run: yarn install
       - run: yarn prettier
+
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: nodenv/actions/node-version@v2.0.10
+        id: nodenv
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '${{ steps.nodenv.outputs.node-version }}'
+          cache: 'yarn'
+
+      - run: yarn install
+      - run: yarn test

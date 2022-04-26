@@ -1,8 +1,8 @@
-export Store from './store.js'
+export { default as Store } from './store.js'
 
-export NativeSupport from './native-support.js'
-export FrequentlyUsed from './frequently-used.js'
-export SearchIndex from './search-index.js'
+export { default as NativeSupport } from './native-support.js'
+export { default as FrequentlyUsed } from './frequently-used.js'
+export { default as SearchIndex } from './search-index.js'
 
 export const SafeFlags = [
   'checkered_flag',

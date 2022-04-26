@@ -11,9 +11,12 @@
     "build:data": "yarn workspace @emoji-mart/data build",
     "build:website": "yarn workspace @emoji-mart/website build",
     "prettier": "prettier --check .",
-    "prettier:fix": "prettier --write ."
+    "prettier:fix": "prettier --write .",
+    "test": "yarn node --experimental-vm-modules $(yarn bin jest)"
   },
   "devDependencies": {
+    "jest": "28.0.0",
+    "jest-environment-jsdom": "28.0.0",
     "prettier": "2.5.1"
   },
   "prettier": {
