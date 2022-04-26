@@ -1,5 +1,5 @@
 import i18n_en from '@emoji-mart/data/i18n/en.json'
-import { FrequentlyUsed, NativeSupport, SafeFlags } from '@helpers'
+import { FrequentlyUsed, NativeSupport, SafeFlags } from './helpers'
 
 export let I18n = null
 export let Data = null

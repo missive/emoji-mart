@@ -1,14 +1,13 @@
 import { Component, createRef } from 'preact'
-import { useState, useRef } from 'preact/hooks'
 
-import { deepEqual, sleep } from '@utils'
-import { Data, I18n } from '@config'
-import { SearchIndex, Store, FrequentlyUsed } from '@helpers'
-import Icons from '@icons'
+import { deepEqual, sleep } from '../../utils'
+import { Data, I18n } from '../../config'
+import { SearchIndex, Store, FrequentlyUsed } from '../../helpers'
+import Icons from '../../icons'
 
-import { Emoji } from '@components/Emoji'
-import { Navigation } from '@components/Navigation'
-import { PureInlineComponent } from '@components/HOCs'
+import { Emoji } from '../Emoji'
+import { Navigation } from '../Navigation'
+import { PureInlineComponent } from '../HOCs'
 
 const Performance = {
   rowsPerRender: 10,

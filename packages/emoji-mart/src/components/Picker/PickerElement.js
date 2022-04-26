@@ -1,7 +1,7 @@
 import { render } from 'preact'
 
-import { init } from '@config'
-import { ShadowElement } from '@components/HTMLElement'
+import { init } from '../../config'
+import { ShadowElement } from '../HTMLElement'
 import { Picker, PickerStyles } from '.'
 
 export default class PickerElement extends ShadowElement {

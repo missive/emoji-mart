@@ -1,5 +1,5 @@
-import { Data } from '@config'
-import { SearchIndex } from '@helpers'
+import { Data } from '../../config'
+import { SearchIndex } from '../../helpers'
 
 export default function Emoji(props) {
   let { id, skin, shortcodes, emoji } = props

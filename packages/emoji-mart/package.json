@@ -42,12 +42,7 @@
     "react": "preact/compat",
     "react-dom/test-utils": "preact/test-utils",
     "react-dom": "preact/compat",
-    "react/jsx-runtime": "preact/jsx-runtime",
-    "@components/**": "./src/components/$1",
-    "@helpers": "./src/helpers/index.js",
-    "@config": "./src/config.js",
-    "@icons": "./src/icons.js",
-    "@utils": "./src/utils.js"
+    "react/jsx-runtime": "preact/jsx-runtime"
   },
   "files": [
     "/dist"

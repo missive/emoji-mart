@@ -1,4 +1,4 @@
-import { Store } from '@helpers'
+import { Store } from '../helpers'
 
 const DEFAULTS = [
   '+1',
