@@ -96,9 +96,10 @@
                 >
                 team
               </p>
+              <audio id="coin-audio" src="./assets/coin.mp3"></audio>
               <script type="module">
                 const coinBox = document.querySelector('#coin-box')
-                const coinURL = new URL('./assets/coin.mp3', import.meta.url)
+                const coinAudio = document.querySelector('#coin-audio')
 
                 coinBox.addEventListener('mousedown', () => {
                   const coin = document.createElement('span')
@@ -107,7 +108,7 @@
 
                   coinBox.appendChild(coin)
 
-                  const audio = new Audio(coinURL)
+                  const audio = new Audio(coinAudio.src)
                   audio.currentTime = 0.25
                   audio.volume = 0.33
                   audio.play()

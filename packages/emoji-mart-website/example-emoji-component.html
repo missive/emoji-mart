@@ -18,6 +18,9 @@
     </div>
   </block>
   <block name="script">
+    <div hidden>
+      <img id="img-parrot" src="./assets/parrot.gif" />
+    </div>
     <script type="module">
       import data from '@emoji-mart/data/sets/14/twitter.json'
       import { init } from 'emoji-mart'
@@ -31,9 +34,7 @@
                 id: 'party_parrot',
                 name: 'Party Parrot',
                 keywords: ['dance', 'dancing'],
-                skins: [
-                  { src: new URL('./assets/parrot.gif', import.meta.url) },
-                ],
+                skins: [{ src: document.querySelector('#img-parrot').src }],
               },
             ],
           },
