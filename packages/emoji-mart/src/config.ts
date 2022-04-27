@@ -15,7 +15,8 @@ async function fetchJSON(src) {
   return await response.json()
 }
 
-let promise = null
+let promise: Promise<void> | null = null
+let initiated = false
 let initCallback = null
 
 export function init(options) {

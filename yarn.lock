@@ -1340,6 +1340,17 @@
     "@parcel/source-map" "^2.0.0"
     "@parcel/ts-utils" "2.5.0"
 
+"@parcel/transformer-typescript-types@2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-typescript-types/-/transformer-typescript-types-2.5.0.tgz#5f22ed88f1d439a95abd976b9d94f67b961c4541"
+  integrity sha512-O+v+vEvgQDj5U1O8C12nYeU9kYOdYaznobWgE21WYSPEV2JD9ppaJVTDoNTI5Lx58gmjc1hndY169o6N6RaV6A==
+  dependencies:
+    "@parcel/diagnostic" "2.5.0"
+    "@parcel/plugin" "2.5.0"
+    "@parcel/source-map" "^2.0.0"
+    "@parcel/ts-utils" "2.5.0"
+    nullthrows "^1.1.1"
+
 "@parcel/ts-utils@2.5.0":
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/@parcel/ts-utils/-/ts-utils-2.5.0.tgz#fc3b80c85f284f0b0889695ef59c17642cede6f2"

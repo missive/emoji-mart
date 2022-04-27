@@ -1,4 +1,4 @@
-export function deepEqual(a, b) {
+export function deepEqual(a: any, b: any): boolean {
   return (
     Array.isArray(a) &&
     Array.isArray(b) &&

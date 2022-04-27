@@ -2,7 +2,6 @@ import { render } from 'preact'
 
 import { init, getProps } from '../../config'
 import { HTMLElement } from '../HTMLElement'
-import { Emoji } from '.'
 import EmojiProps from './EmojiProps'
 
 export default class EmojiElement extends HTMLElement {

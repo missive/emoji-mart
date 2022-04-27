@@ -14,6 +14,10 @@
   "module": "dist/module.js",
   "global": "dist/browser.js",
   "browserslist": "defaults",
+  "workspaces": [
+    "packages/*"
+  ],
+  "type": "module",
   "types": "dist/index.d.ts",
   "targets": {
     "main": {
@@ -40,6 +44,7 @@
     "check": "tsc --noEmit"
   },
   "devDependencies": {
+    "@parcel/transformer-typescript-types": "2.5.0",
     "@parcel/transformer-inline-string": "2.5.0",
     "@parcel/transformer-typescript-tsc": "2.5.0",
     "@parcel/transformer-sass": "2.5.0",
