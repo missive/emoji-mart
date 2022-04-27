@@ -1,2 +1,2 @@
-export Emoji from './Emoji.js'
-export EmojiElement from './EmojiElement.js'
+export { default as Emoji } from './Emoji.js'
+export { default as EmojiElement } from './EmojiElement.js'

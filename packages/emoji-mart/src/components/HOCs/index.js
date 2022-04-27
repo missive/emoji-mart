@@ -1,1 +1,1 @@
-export PureInlineComponent from './PureInlineComponent.js'
+export { default as PureInlineComponent } from './PureInlineComponent.js'
