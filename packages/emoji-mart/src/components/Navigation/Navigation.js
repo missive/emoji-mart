@@ -71,6 +71,7 @@ export default class Mavigation extends PureComponent {
                 title={title}
                 type="button"
                 class="flex flex-grow flex-center"
+                onMouseDown={(e) => e.preventDefault()}
                 onClick={() => {
                   this.props.onClick({ category, i })
                 }}
