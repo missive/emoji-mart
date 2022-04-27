@@ -80,6 +80,13 @@ export default class Picker extends Component {
 
     this.shadowRoot = this.base.parentNode
     document.addEventListener('click', this.handleClickOutside)
+
+    if (this.props.autoFocus) {
+      const { searchInput } = this.refs
+      if (searchInput.current) {
+        searchInput.current.focus()
+      }
+    }
   }
 
   initTheme(theme) {
@@ -689,7 +696,6 @@ export default class Picker extends Component {
           <div class="search relative flex-grow">
             <input
               type="search"
-              autoFocus={this.props.autoFocus}
               ref={this.refs.searchInput}
               placeholder={I18n.search}
               onClick={this.handleSearchClick}
