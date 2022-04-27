@@ -14,6 +14,7 @@
   "module": "dist/module.js",
   "global": "dist/browser.js",
   "browserslist": "defaults",
+  "types": "dist/index.d.ts",
   "targets": {
     "main": {
       "includeNodeModules": true
@@ -35,14 +36,16 @@
   ],
   "scripts": {
     "build": "parcel build --no-autoinstall",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn build",
+    "check": "tsc --noEmit"
   },
   "devDependencies": {
-    "@parcel/transformer-inline-string": "2.3.2",
-    "@parcel/transformer-sass": "2.3.2",
+    "@parcel/transformer-inline-string": "2.5.0",
+    "@parcel/transformer-typescript-tsc": "2.5.0",
+    "@parcel/transformer-sass": "2.5.0",
     "autoprefixer": "10.4.4",
     "is-emoji-supported": "0.0.5",
-    "parcel": "2.3.2",
+    "parcel": "2.5.0",
     "preact": "10.6.4"
   },
   "alias": {
