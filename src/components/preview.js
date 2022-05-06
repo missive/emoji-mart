@@ -121,7 +121,7 @@ Preview.propTypes /* remove-proptypes */ = {
   showSkinTones: PropTypes.bool,
   title: PropTypes.string.isRequired,
   idleEmoji: PropTypes.string.isRequired,
-  emoji: PropTypes.object.isRequired,
+  emoji: PropTypes.object,
   emojiProps: PropTypes.object.isRequired,
   skinsProps: PropTypes.object.isRequired,
 }
