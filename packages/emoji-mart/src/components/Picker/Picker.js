@@ -94,6 +94,10 @@ export default class Picker extends Component {
 
     return darkMedia.matches ? 'dark' : 'light'
   }
+  
+  componentWillUnmount(){
+      this.handleClickOutside&&document.removeEventListener('click', this.handleClickOutside)
+  };
 
   handleClickOutside = (e) => {
     const { element } = this.props
