@@ -1,6 +1,6 @@
 {
-  "name": "panta82-emoji-mart",
-  "version": "3.0.1003",
+  "name": "emoji-mart",
+  "version": "3.0.1",
   "description": "Customizable Slack-like emoji picker for React",
   "main": "dist/index.js",
   "module": "dist-es/index.js",
@@ -25,7 +25,7 @@
     "prop-types": "^15.6.0"
   },
   "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0-0 || ^16.0.0"
+    "react": "^0.14.0 || ^15.0.0-0 || ^16.0.0 || ^17.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",

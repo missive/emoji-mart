@@ -51,8 +51,8 @@ export default class Anchors extends React.PureComponent {
           return (
             <button
               key={id}
-              aria-label={i18n.categories[id]}
-              title={i18n.categories[id]}
+              aria-label={i18n.categories[iconId]}
+              title={i18n.categories[iconId]}
               data-index={i}
               type={'button'}
               onClick={this.handleClick}

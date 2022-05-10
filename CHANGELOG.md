@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+#### [v3.0.1](https://github.com/missive/emoji-mart/compare/v3.0.0...v3.0.1)
+
+> February 24 2021
+
+##### Fixes 🐛
+- Safely access search input #419
+- Custom category aria-label #480
+
+##### Chores 🧹
+- React v17 support #475
+
 #### [v3.0.0](https://github.com/missive/emoji-mart/compare/v2.11.2...v3.0.0)
 
 > March 16 2020
