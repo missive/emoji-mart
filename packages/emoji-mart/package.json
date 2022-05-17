@@ -14,9 +14,6 @@
   "module": "dist/module.js",
   "global": "dist/browser.js",
   "browserslist": "defaults",
-  "workspaces": [
-    "packages/*"
-  ],
   "type": "module",
   "types": "dist/index.d.ts",
   "targets": {
