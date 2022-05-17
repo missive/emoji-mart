@@ -9,9 +9,6 @@
     "url": "https://github.com/missive/emoji-mart",
     "directory": "packages/emoji-mart"
   },
-  "workspaces": [
-    "packages/*"
-  ],
   "type": "module",
   "source": "src/index.js",
   "main": "dist/index.js",
