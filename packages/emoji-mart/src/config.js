@@ -191,21 +191,25 @@ async function _init(props, element) {
 
     while (i--) {
       const emoji = Data.emojis[category.emojis[i]]
-      let ignore = false
+      const ignore = () => {
+        category.emojis.splice(i, 1)
+      }
+
+      if (!emoji) {
+        ignore()
+        continue
+      }
 
       if (latestVersionSupport && emoji.version > latestVersionSupport) {
-        ignore = true
+        ignore()
+        continue
       }
 
       if (noCountryFlags && category.id == 'flags') {
         if (!SafeFlags.includes(emoji.id)) {
-          ignore = true
+          ignore()
+          continue
         }
-      }
-
-      if (ignore) {
-        category.emojis.splice(i, 1)
-        continue
       }
 
       emoji.search =
