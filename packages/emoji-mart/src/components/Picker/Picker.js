@@ -640,7 +640,9 @@ export default class Picker extends Component {
           </div>
         </div>
 
-        {!emoji && this.renderSkinToneButton()}
+        {!emoji &&
+          this.props.skinTonePosition == 'preview' &&
+          this.renderSkinToneButton()}
       </div>
     )
   }
@@ -728,7 +730,9 @@ export default class Picker extends Component {
             )}
           </div>
 
-          {this.props.previewPosition == 'none' && this.renderSkinToneButton()}
+          {(this.props.previewPosition == 'none' ||
+            this.props.skinTonePosition == 'search') &&
+            this.renderSkinToneButton()}
         </div>
       </div>
     )
@@ -841,6 +845,10 @@ export default class Picker extends Component {
   }
 
   renderSkinToneButton() {
+    if (this.props.skinTonePosition == 'none') {
+      return null
+    }
+
     return (
       <div
         class="flex flex-auto flex-center flex-middle"
@@ -878,7 +886,10 @@ export default class Picker extends Component {
       right: baseRect.right - skinToneButtonRect.right - 3,
     }
 
-    if (this.props.previewPosition == 'bottom') {
+    if (
+      this.props.previewPosition == 'bottom' &&
+      this.props.skinTonePosition == 'preview'
+    ) {
       position.bottom = baseRect.bottom - skinToneButtonRect.top + 6
     } else {
       position.top = skinToneButtonRect.bottom - baseRect.top + 3

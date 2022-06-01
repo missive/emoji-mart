@@ -67,6 +67,10 @@ const DEFAULT_PROPS = {
     value: 1,
     choices: [1, 2, 3, 4, 5, 6],
   },
+  skinTonePosition: {
+    value: 'preview',
+    choices: ['preview', 'search', 'none'],
+  },
   stickySearch: {
     deprecated: true,
     value: true,

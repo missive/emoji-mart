@@ -113,6 +113,16 @@
         /></span>
       </div>
 
+      <div class="flex flex-middle">
+        Skin tone position:&nbsp;<span class="select flex flex-grow"
+          ><select id="skinTonePosition" class="flex-grow">
+            <option value="preview">Preview</option>
+            <option value="search">Search</option>
+            <option value="none">None</option></select
+          ><em-emoji id="arrow_down_small"
+        /></span>
+      </div>
+
       <div>
         <button title="Reset" id="reset">
           <span><em-emoji id="broom" fallback="🧹" /></span>
@@ -274,6 +284,7 @@
         navPosition: localStorage.navPosition,
         previewPosition: localStorage.previewPosition,
         searchPosition: localStorage.searchPosition,
+        skinTonePosition: localStorage.skinTonePosition,
         onEmojiSelect: console.log,
         custom: [
           {
