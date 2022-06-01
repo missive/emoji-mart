@@ -55,6 +55,10 @@ const DEFAULT_PROPS = {
     value: 'bottom',
     choices: ['top', 'bottom', 'none'],
   },
+  searchPosition: {
+    value: 'sticky',
+    choices: ['sticky', 'static', 'none'],
+  },
   set: {
     value: 'native',
     choices: ['native', 'apple', 'facebook', 'google', 'twitter'],
@@ -64,6 +68,7 @@ const DEFAULT_PROPS = {
     choices: [1, 2, 3, 4, 5, 6],
   },
   stickySearch: {
+    deprecated: true,
     value: true,
   },
   theme: {

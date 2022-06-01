@@ -72,6 +72,17 @@ export default class Picker extends Component {
 
       this.refs.categories.set(category.id, { root: createRef(), rows })
     }
+
+    if (
+      this.props.stickySearch == false &&
+      this.props.searchPosition == 'sticky'
+    ) {
+      console.warn(
+        '[EmojiMart] Deprecation warning: `stickySearch` has been renamed `searchPosition`.',
+      )
+
+      this.props.searchPosition = 'static'
+    }
   }
 
   componentDidMount() {
@@ -941,7 +952,7 @@ export default class Picker extends Component {
       >
         {this.props.previewPosition == 'top' && this.renderPreview()}
         {this.props.navPosition == 'top' && this.renderNav()}
-        {this.props.stickySearch && (
+        {this.props.searchPosition == 'sticky' && (
           <div class="padding-lr">{this.renderSearch()}</div>
         )}
 
@@ -951,7 +962,7 @@ export default class Picker extends Component {
               width: this.props.perLine * this.props.emojiButtonSize,
             }}
           >
-            {!this.props.stickySearch && this.renderSearch()}
+            {this.props.searchPosition == 'static' && this.renderSearch()}
             {this.renderSearchResults()}
             {this.renderCategories()}
 

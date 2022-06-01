@@ -104,10 +104,11 @@
       </div>
 
       <div class="flex flex-middle">
-        Sticky search:&nbsp;<span class="select flex flex-grow"
-          ><select id="stickySearch" class="flex-grow">
-            <option value="true">True</option>
-            <option value="false">False</option></select
+        Search position:&nbsp;<span class="select flex flex-grow"
+          ><select id="searchPosition" class="flex-grow">
+            <option value="sticky">Sticky</option>
+            <option value="static">Static</option>
+            <option value="none">None</option></select
           ><em-emoji id="arrow_down_small"
         /></span>
       </div>
@@ -272,7 +273,7 @@
         locale: localStorage.locale,
         navPosition: localStorage.navPosition,
         previewPosition: localStorage.previewPosition,
-        stickySearch: localStorage.stickySearch,
+        searchPosition: localStorage.searchPosition,
         onEmojiSelect: console.log,
         custom: [
           {
