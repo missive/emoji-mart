@@ -20,15 +20,22 @@ export default function Emoji(props) {
 
   const emojiSkin = emoji.skins[skin - 1] || emoji.skins[0]
 
-  const src =
+  const imageSrc =
     emojiSkin.src ||
     (props.set != 'native' && !props.spritesheet
-      ? `https://cdn.jsdelivr.net/npm/emoji-datasource-${props.set}@14.0.0/img/${props.set}/64/${emojiSkin.unified}.png`
+      ? typeof props.getImageURL === 'function'
+        ? props.getImageURL(props.set, emojiSkin.unified)
+        : `https://cdn.jsdelivr.net/npm/emoji-datasource-${props.set}@14.0.0/img/${props.set}/64/${emojiSkin.unified}.png`
       : undefined)
+
+  const spritesheetSrc =
+    typeof props.getSpritesheetURL === 'function'
+      ? props.getSpritesheetURL(props.set)
+      : `https://cdn.jsdelivr.net/npm/emoji-datasource-${props.set}@14.0.0/img/${props.set}/sheets-256/64.png`
 
   return (
     <span class="emoji-mart-emoji" data-emoji-set={props.set}>
-      {src ? (
+      {imageSrc ? (
         <img
           style={{
             height: props.size || '1em',
@@ -38,7 +45,7 @@ export default function Emoji(props) {
             top: '.1em',
           }}
           alt={emojiSkin.native || emojiSkin.shortcodes}
-          src={src}
+          src={imageSrc}
         />
       ) : props.set == 'native' ? (
         <span
@@ -56,7 +63,7 @@ export default function Emoji(props) {
             display: 'block',
             width: props.size,
             height: props.size,
-            backgroundImage: `url(https://cdn.jsdelivr.net/npm/emoji-datasource-${props.set}@14.0.0/img/${props.set}/sheets-256/64.png)`,
+            backgroundImage: `url(${spritesheetSrc})`,
             backgroundSize: `${100 * Data.sheet.cols}% ${
               100 * Data.sheet.rows
             }%`,
