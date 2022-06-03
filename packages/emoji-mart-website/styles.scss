@@ -4,7 +4,7 @@
   --background-color: #f4f4f4;
   --dark-background-color: rgba(0,0,0, .04);
   --select-background-color: #fff;
-  --color-border: rgba(0, 0, 0, .05);
+  --input-color: rgba(0, 0, 0, .05);
 
   --light-shadow: rgba(255,255,255, .6);
   --shadow-color: 0deg 0% 0%;
@@ -22,7 +22,7 @@
     --background-color: #202124;
     --dark-background-color: rgba(0,0,0, .1);
     --select-background-color: rgb(21, 22, 23);
-    --color-border: rgba(255, 255, 255, .1);
+    --input-color: rgba(255, 255, 255, .1);
     --light-shadow: rgba(255,255,255, .02);
   }
 
@@ -52,7 +52,7 @@ input {
   outline: 0;
   padding: 10px;
   border-radius: 10px;
-  background-color: var(--color-border);
+  background-color: var(--input-color);
   transition-duration: var(--duration);
   transition-property: background-color, box-shadow;
   transition-timing-function: var(--easing);
@@ -74,7 +74,7 @@ dialog {
   padding: 1em;
   color: inherit;
   border-radius: 10px;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--input-color);
   background-color: var(--select-background-color);
 
   p { margin: 1em 0 }
