@@ -1,0 +1,29 @@
+{
+  "search": "Buscar",
+  "search_no_results_1": "Vaya!",
+  "search_no_results_2": "Ese emoji no se pudo encontrar",
+  "pick": "Elige un emoji…",
+  "add_custom": "Añadir emoji personalizado",
+  "categories": {
+    "activity": "Actividades",
+    "custom": "Personalizados",
+    "flags": "Banderas",
+    "foods": "Comida y Bebida",
+    "frequent": "Usados con frecuencia",
+    "nature": "Animales y Naturaleza",
+    "objects": "Objetos",
+    "people": "Emoticonos y Personas",
+    "places": "Viajes y Destinos",
+    "search": "Resultados de la búsqueda",
+    "symbols": "Símbolos"
+  },
+  "skins": {
+    "choose": "Elige el tono de piel predeterminado",
+    "1": "Sin tono",
+    "2": "Claro",
+    "3": "Medio-Claro",
+    "4": "Medio",
+    "5": "Medio-Oscuro",
+    "6": "Oscuro"
+  }
+}
