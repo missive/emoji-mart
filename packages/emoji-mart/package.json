@@ -15,6 +15,7 @@
   "type": "module",
   "source": "src/index.js",
   "main": "dist/index.js",
+  "browserslist": "defaults",
   "targets": {
     "main": {
       "includeNodeModules": true
