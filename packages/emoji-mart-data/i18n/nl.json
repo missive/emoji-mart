@@ -1,0 +1,29 @@
+{
+  "search": "Zoek",
+  "search_no_results_1": "Mislukt!",
+  "search_no_results_2": "Die emoji werd niet gevonden",
+  "pick": "Kies een emoji…",
+  "add_custom": "Voeg eigen emoji toe",
+  "categories": {
+    "activity": "Activiteit",
+    "custom": "Eigen",
+    "flags": "Vlaggen",
+    "foods": "Eten & Drinken",
+    "frequent": "Vaak gebruikt",
+    "nature": "Dieren & Natuur",
+    "objects": "Voorwerpen",
+    "people": "Smileys & Mensen",
+    "places": "Reizen & Plaatsen",
+    "search": "Zoek resultaten",
+    "symbols": "Symbolen"
+  },
+  "skins": {
+    "choose": "Kies standaard huidskleur",
+    "1": "Standaard",
+    "2": "Licht",
+    "3": "Medium-Licht",
+    "4": "Medium",
+    "5": "Medium-Donker",
+    "6": "Donker"
+  }
+}
