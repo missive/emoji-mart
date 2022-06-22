@@ -34,6 +34,7 @@ const DEFAULT_PROPS = {
       'en',
       'de',
       'es',
+      'fa',
       'fr',
       'it',
       'ja',
