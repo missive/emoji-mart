@@ -30,7 +30,7 @@ const DEFAULT_PROPS = {
   },
   locale: {
     value: 'en',
-    choices: ['en', 'de', 'fr', 'it', 'pl', 'pt', 'ru', 'zh'],
+    choices: ['en', 'de', 'fr', 'it', 'pl', 'pt', 'ru', 'zh', 'ja'],
   },
   maxFrequentRows: {
     value: 4,
