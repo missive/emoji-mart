@@ -100,6 +100,10 @@ export default class Picker extends Component {
     }
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleClickOutside)
+  }
+
   initTheme(theme) {
     if (theme != 'auto') return theme
 
