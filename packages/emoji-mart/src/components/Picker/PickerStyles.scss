@@ -102,9 +102,13 @@
 .padding-small-b { padding-bottom: var(--padding-small)}
 .padding-small-lr { padding-left: var(--padding-small); padding-right: var(--padding-small)}
 .margin { margin: var(--padding) }
+.margin-r { margin-right: var(--padding) }
 .margin-l { margin-left: var(--padding) }
 .margin-small-l { margin-left: var(--padding-small) }
 .margin-small-lr { margin-left: var(--padding-small); margin-right: var(--padding-small); }
+
+.align-l { text-align: left }
+.align-r { text-align: right }
 
 .color-a { color: var(--color-a) }
 .color-b { color: var(--color-b) }
