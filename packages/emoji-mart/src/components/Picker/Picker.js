@@ -39,6 +39,8 @@ export default class Picker extends Component {
       skinToneRadio: createRef(),
     }
 
+    this.dir = I18n.rtl ? 'rtl' : 'ltr'
+
     this.grid = []
     this.grid.setsize = 0
 
@@ -590,6 +592,7 @@ export default class Picker extends Component {
       <div
         id="preview"
         class="flex flex-middle"
+        dir={this.dir}
         data-position={this.props.previewPosition}
       >
         <div class="flex flex-middle flex-grow">
@@ -618,9 +621,9 @@ export default class Picker extends Component {
             />
           </div>
 
-          <div class="margin-l">
+          <div class={`margin-${this.dir[0]}`}>
             {emoji ? (
-              <div class="padding-r">
+              <div class={`padding-${this.dir[2]} align-${this.dir[0]}`}>
                 <div class="ellipsis" style={{ fontSize: '1.1em' }}>
                   {emoji.name}
                 </div>
@@ -629,7 +632,7 @@ export default class Picker extends Component {
                 </div>
               </div>
             ) : noSearchResults ? (
-              <div class="padding-r">
+              <div class={`padding-${this.dir[2]} align-${this.dir[0]}`}>
                 <div class="ellipsis" style={{ fontSize: '1.1em' }}>
                   {I18n.search_no_results_1}
                 </div>
@@ -708,10 +711,16 @@ export default class Picker extends Component {
   }
 
   renderSearch() {
+    const renderSkinTone =
+      this.props.previewPosition == 'none' ||
+      this.props.skinTonePosition == 'search'
+
     return (
       <div>
         <div class="spacer"></div>
         <div class="flex flex-middle">
+          {renderSkinTone && this.dir == 'rtl' && this.renderSkinToneButton()}
+
           <div class="search relative flex-grow">
             <input
               type="search"
@@ -736,9 +745,7 @@ export default class Picker extends Component {
             )}
           </div>
 
-          {(this.props.previewPosition == 'none' ||
-            this.props.skinTonePosition == 'search') &&
-            this.renderSkinToneButton()}
+          {renderSkinTone && this.dir == 'ltr' && this.renderSkinToneButton()}
         </div>
       </div>
     )
@@ -750,10 +757,12 @@ export default class Picker extends Component {
 
     return (
       <div class="category" ref={this.refs.search}>
-        <div class="sticky padding-small">{I18n.categories.search}</div>
+        <div class={`sticky padding-small align-${this.dir[0]}`}>
+          {I18n.categories.search}
+        </div>
         <div>
           {!searchResults.length ? (
-            <div class="padding-small">
+            <div class={`padding-small align-${this.dir[0]}`}>
               {this.props.onAddCustomEmoji && (
                 <a onClick={this.props.onAddCustomEmoji}>{I18n.add_custom}</a>
               )}
@@ -798,7 +807,7 @@ export default class Picker extends Component {
               class="category"
               ref={root}
             >
-              <div class="sticky padding-small">
+              <div class={`sticky padding-small align-${this.dir[0]}`}>
                 {category.name || I18n.categories[category.id]}
               </div>
               <div
@@ -888,8 +897,12 @@ export default class Picker extends Component {
     const skinToneButtonRect = skinToneButton.getBoundingClientRect()
     const baseRect = this.base.getBoundingClientRect()
 
-    const position = {
-      right: baseRect.right - skinToneButtonRect.right - 3,
+    const position = {}
+
+    if (this.dir == 'ltr') {
+      position.right = baseRect.right - skinToneButtonRect.right - 3
+    } else {
+      position.left = skinToneButtonRect.left - baseRect.left - 3
     }
 
     if (
@@ -906,6 +919,7 @@ export default class Picker extends Component {
       <div
         ref={this.refs.menu}
         role="radiogroup"
+        dir={this.dir}
         aria-label={I18n.skins.choose}
         class="menu hidden"
         data-position={position.top ? 'top' : 'bottom'}
