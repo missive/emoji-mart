@@ -82,6 +82,10 @@ export default class Picker extends Component {
     document.addEventListener('click', this.handleClickOutside)
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleClickOutside)
+  }
+
   initTheme(theme) {
     if (theme != 'auto') return theme
 
@@ -94,10 +98,6 @@ export default class Picker extends Component {
 
     return darkMedia.matches ? 'dark' : 'light'
   }
-  
-  componentWillUnmount(){
-      this.handleClickOutside&&document.removeEventListener('click', this.handleClickOutside)
-  };
 
   handleClickOutside = (e) => {
     const { element } = this.props
