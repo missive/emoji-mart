@@ -32,6 +32,7 @@ const DEFAULT_PROPS = {
     value: 'en',
     choices: [
       'en',
+      'ar',
       'de',
       'es',
       'fa',
