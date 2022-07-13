@@ -74,10 +74,9 @@ render(<EmojiPicker onEmojiSelect={console.log} />, document.querySelector('#pic
 ### Browser
 ```html
 <script type="module">
-  import data from 'https://cdn.jsdelivr.net/npm/@emoji-mart/data'
   import * as EmojiMart from 'https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/index.js'
 
-  const picker = new EmojiMart.Picker({ data, onEmojiSelect: console.log })
+  const picker = new EmojiMart.Picker({ onEmojiSelect: console.log })
   document.querySelector('#picker').appendChild(picker)
 </script>
 ```
