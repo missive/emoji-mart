@@ -9,9 +9,6 @@
     "url": "https://github.com/missive/emoji-mart",
     "directory": "packages/emoji-mart"
   },
-  "workspaces": [
-    "packages/*"
-  ],
   "type": "module",
   "source": "src/index.js",
   "main": "dist/index.js",
@@ -38,7 +35,8 @@
     "autoprefixer": "10.4.4",
     "is-emoji-supported": "0.0.5",
     "parcel": "2.3.2",
-    "preact": "10.6.4"
+    "preact": "10.6.4",
+    "node-fetch": "3.2.9"
   },
   "alias": {
     "react": "preact/compat",

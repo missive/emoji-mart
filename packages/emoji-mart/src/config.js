@@ -104,13 +104,13 @@ async function fetchJSON(src) {
 let promise = null
 let initiated = false
 let initCallback = null
-export function init(options) {
+export function init(options = {}) {
   promise ||
     (promise = new Promise((resolve) => {
       initCallback = resolve
     }))
 
-  if (options && !initiated) {
+  if (!initiated) {
     initiated = true
     _init(options)
   }
