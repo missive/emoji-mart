@@ -1,4 +1,7 @@
-export default class HTMLElement extends window.HTMLElement {
+const WindowHTMLElement =
+  typeof window !== 'undefined' ? window.HTMLElement : Object
+
+export default class HTMLElement extends WindowHTMLElement {
   constructor(props = {}) {
     super()
     this.props = props

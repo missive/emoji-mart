@@ -33,6 +33,9 @@ export default class PickerElement extends ShadowElement {
   }
 }
 
-if (!customElements.get('em-emoji-picker')) {
+if (
+  typeof customElements !== 'undefined' &&
+  !customElements.get('em-emoji-picker')
+) {
   customElements.define('em-emoji-picker', PickerElement)
 }

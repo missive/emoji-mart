@@ -29,6 +29,6 @@ export default class EmojiElement extends HTMLElement {
   }
 }
 
-if (!customElements.get('em-emoji')) {
+if (typeof customElements !== 'undefined' && !customElements.get('em-emoji')) {
   customElements.define('em-emoji', EmojiElement)
 }
