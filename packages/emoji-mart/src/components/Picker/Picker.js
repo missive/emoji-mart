@@ -90,9 +90,9 @@ export default class Picker extends Component {
   componentDidMount() {
     this.observeCategories()
     this.observeRows()
+    this.register()
 
     this.shadowRoot = this.base.parentNode
-    document.addEventListener('click', this.handleClickOutside)
 
     if (this.props.autoFocus) {
       const { searchInput } = this.refs
@@ -103,6 +103,14 @@ export default class Picker extends Component {
   }
 
   componentWillUnmount() {
+    this.unregister()
+  }
+
+  register() {
+    document.addEventListener('click', this.handleClickOutside)
+  }
+
+  unregister() {
     document.removeEventListener('click', this.handleClickOutside)
   }
 

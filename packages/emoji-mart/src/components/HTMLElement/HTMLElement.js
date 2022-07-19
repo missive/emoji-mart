@@ -7,7 +7,10 @@ export default class HTMLElement extends WindowHTMLElement {
     this.props = props
 
     if (props.parent || props.ref) {
-      const parent = props.parent || (props.ref && props.ref.current)
+      let ref = null
+      const parent = props.parent || (ref = props.ref && props.ref.current)
+
+      if (ref) ref.innerHTML = ''
       if (parent) parent.appendChild(this)
     }
   }

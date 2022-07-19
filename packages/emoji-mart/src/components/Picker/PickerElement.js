@@ -9,8 +9,14 @@ export default class PickerElement extends ShadowElement {
     super(props, { styles: PickerStyles })
   }
 
+  setComponent = (component) => {
+    this.component = component
+  }
+
   async connectedCallback() {
     const pickerProps = await init(this.props, this)
+    if (this.disconnected) return
+
     const {
       onEmojiSelect,
       onClickOutside,
@@ -22,6 +28,7 @@ export default class PickerElement extends ShadowElement {
     const props = {
       ...pickerProps,
       element: this,
+      ref: this.setComponent,
       onEmojiSelect,
       onClickOutside,
       onAddCustomEmoji,
@@ -30,6 +37,14 @@ export default class PickerElement extends ShadowElement {
     }
 
     render(<Picker {...props} />, this.shadowRoot)
+  }
+
+  disconnectedCallback() {
+    this.disconnected = true
+
+    if (this.component) {
+      this.component.unregister()
+    }
   }
 }
 
