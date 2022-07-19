@@ -12,12 +12,10 @@ if (!globalThis.fetch) {
 }
 
 describe('init', () => {
-  it('treats 0 arguments the same as an empty options object', async () => {
-    const result0 = await init()
-    const result1 = await init({})
+  it('is not a no-op when 0 arguments are passed', async () => {
+    const result = await init()
 
-    expect(result0).toEqual(result1)
-    expect(result0.autoFocus).toBe(false)
-    expect(result0.theme).toBe('auto')
+    expect(result.autoFocus).toBe(false)
+    expect(result.theme).toBe('auto')
   })
 })
