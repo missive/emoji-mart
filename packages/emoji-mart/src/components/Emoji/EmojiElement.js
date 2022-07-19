@@ -15,19 +15,24 @@ export default class EmojiElement extends HTMLElement {
       emoji = SearchIndex.get(native)
     }
 
-    const skinString = this.getAttribute('skin')
-    let skin = parseInt(skinString)
-    if (Number.isNaN(skin)) skin = null
-
     const props = {
       ...pickerProps,
       emoji: emoji,
       id: this.getAttribute('id'),
-      skin,
       set: this.getAttribute('set') || pickerProps.set,
       size: this.getAttribute('size'),
       fallback: this.getAttribute('fallback'),
       shortcodes: this.getAttribute('shortcodes'),
+    }
+
+    // Do not set props.skin if the `native` attribute was used
+    if (!emoji) {
+      const skinString = this.getAttribute('skin')
+      let skin = parseInt(skinString)
+
+      if (!Number.isNaN(skin)) {
+        props.skin = skin
+      }
     }
 
     render(<Emoji {...props} />, this)
