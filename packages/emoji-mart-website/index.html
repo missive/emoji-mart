@@ -278,7 +278,7 @@
         dialog.hidden = true
       }
 
-      const elem = new EmojiMart.Picker({
+      window.picker = new EmojiMart.Picker({
         parent: document.querySelector('#picker'),
         data: localStorage.set || localStorage.version ? undefined : data,
         autoFocus: localStorage.autoFocus,

@@ -6,14 +6,20 @@ import { Emoji } from '.'
 import EmojiProps from './EmojiProps'
 
 export default class EmojiElement extends HTMLElement {
+  static Props = EmojiProps
+
   constructor(props) {
     super(props)
   }
 
   async connectedCallback() {
     const props = getProps(this.props, EmojiProps, this)
-    await init()
+    props.element = this
+    props.ref = (component) => {
+      this.component = component
+    }
 
+    await init()
     render(<Emoji {...props} />, this)
   }
 }

@@ -19,9 +19,15 @@ export default class Picker extends Component {
 
     this.state = {
       pos: [-1, -1],
+      visibleRows: { 0: true },
+      ...this.getInitialState(props),
+    }
+  }
+
+  getInitialState(props = this.props) {
+    return {
       skin: Store.get('skin') || props.skin,
       theme: this.initTheme(props.theme),
-      visibleRows: { 0: true },
     }
   }
 
@@ -102,6 +108,19 @@ export default class Picker extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    let initalState = null
+
+    for (const k in nextProps) {
+      this.props[k] = nextProps[k]
+
+      if (k in this.state) {
+        initalState || (initalState = this.getInitialState())
+        this.setState({ [k]: initalState[k] })
+      }
+    }
+  }
+
   componentWillUnmount() {
     this.unregister()
   }
@@ -117,14 +136,17 @@ export default class Picker extends Component {
   initTheme(theme) {
     if (theme != 'auto') return theme
 
-    const darkMedia = matchMedia('(prefers-color-scheme: dark)')
-    if (darkMedia.media.match(/^not/)) return 'light'
+    if (!this.darkMedia) {
+      this.darkMedia = matchMedia('(prefers-color-scheme: dark)')
+      if (this.darkMedia.media.match(/^not/)) return 'light'
 
-    darkMedia.addListener(() => {
-      this.setState({ theme: darkMedia.matches ? 'dark' : 'light' })
-    })
+      this.darkMedia.addListener(() => {
+        if (this.props.theme != 'auto') return
+        this.setState({ theme: this.darkMedia.matches ? 'dark' : 'light' })
+      })
+    }
 
-    return darkMedia.matches ? 'dark' : 'light'
+    return this.darkMedia.matches ? 'dark' : 'light'
   }
 
   handleClickOutside = (e) => {

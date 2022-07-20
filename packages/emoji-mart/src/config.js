@@ -206,41 +206,41 @@ async function _init(props) {
 export function getProps(props, defaultProps, element) {
   props || (props = {})
 
-  function get(propName) {
-    const defaults = defaultProps[propName]
-    let value =
-      (element && element.getAttribute(propName)) || props[propName] || null
-
-    if (!defaults) {
-      return value
-    }
-
-    if (
-      value != null &&
-      defaults.value &&
-      typeof defaults.value != typeof value
-    ) {
-      if (typeof defaults.value == 'boolean') {
-        value = value == 'false' ? false : true
-      } else {
-        value = defaults.value.constructor(value)
-      }
-    }
-
-    if (
-      value == null ||
-      (defaults.choices && defaults.choices.indexOf(value) == -1)
-    ) {
-      value = defaults.value
-    }
-
-    return value
-  }
-
   const _props = {}
   for (let k in defaultProps) {
-    _props[k] = get(k)
+    _props[k] = getProp(k, props, defaultProps, element)
   }
 
   return _props
+}
+
+export function getProp(propName, props, defaultProps, element) {
+  const defaults = defaultProps[propName]
+  let value =
+    (element && element.getAttribute(propName)) || props[propName] || null
+
+  if (!defaults) {
+    return value
+  }
+
+  if (
+    value != null &&
+    defaults.value &&
+    typeof defaults.value != typeof value
+  ) {
+    if (typeof defaults.value == 'boolean') {
+      value = value == 'false' ? false : true
+    } else {
+      value = defaults.value.constructor(value)
+    }
+  }
+
+  if (
+    value == null ||
+    (defaults.choices && defaults.choices.indexOf(value) == -1)
+  ) {
+    value = defaults.value
+  }
+
+  return value
 }
