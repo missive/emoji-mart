@@ -2,10 +2,11 @@ import { Data } from '../../config'
 import { SearchIndex } from '../../helpers'
 
 export default function Emoji(props) {
-  let { id, skin, shortcodes, emoji } = props
+  let { id, skin, emoji } = props
 
-  if (!emoji && !id && shortcodes) {
-    const matches = shortcodes.match(SearchIndex.SHORTCODES_REGEX)
+  if (props.shortcodes) {
+    const matches = props.shortcodes.match(SearchIndex.SHORTCODES_REGEX)
+
     if (matches) {
       id = matches[1]
 
@@ -15,7 +16,7 @@ export default function Emoji(props) {
     }
   }
 
-  emoji || (emoji = SearchIndex.get(id))
+  emoji || (emoji = SearchIndex.get(id || props.native))
   if (!emoji) return props.fallback
 
   const emojiSkin = emoji.skins[skin - 1] || emoji.skins[0]

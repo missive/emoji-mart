@@ -1,29 +1,18 @@
 import { render } from 'preact'
 
-import { init } from '../../config'
-import { SearchIndex } from '../../helpers'
+import { init, getProps } from '../../config'
 import { HTMLElement } from '../HTMLElement'
 import { Emoji } from '.'
+import EmojiProps from './EmojiProps'
 
 export default class EmojiElement extends HTMLElement {
+  constructor(props) {
+    super(props)
+  }
+
   async connectedCallback() {
-    const pickerProps = await init()
-
-    const native = this.getAttribute('native')
-    let emoji = null
-    if (native) {
-      emoji = SearchIndex.get(native)
-    }
-
-    const props = {
-      ...pickerProps,
-      emoji: emoji,
-      id: this.getAttribute('id'),
-      set: this.getAttribute('set') || pickerProps.set,
-      size: this.getAttribute('size'),
-      fallback: this.getAttribute('fallback'),
-      shortcodes: this.getAttribute('shortcodes'),
-    }
+    const props = getProps(this.props, EmojiProps, this)
+    await init()
 
     render(<Emoji {...props} />, this)
   }

@@ -1,100 +1,9 @@
 import i18n_en from '@emoji-mart/data/i18n/en.json'
+import PickerProps from './components/Picker/PickerProps'
 import { FrequentlyUsed, NativeSupport, SafeFlags } from './helpers'
 
 export let I18n = null
 export let Data = null
-
-const DEFAULT_PROPS = {
-  autoFocus: {
-    value: false,
-  },
-  emojiButtonColors: {
-    value: null,
-  },
-  emojiButtonRadius: {
-    value: '100%',
-  },
-  emojiButtonSize: {
-    value: 36,
-  },
-  emojiSize: {
-    value: 24,
-  },
-  emojiVersion: {
-    value: 14,
-    choices: [1, 2, 3, 4, 5, 11, 12, 12.1, 13, 13.1, 14],
-  },
-  icons: {
-    value: 'auto',
-    choices: ['auto', 'outline', 'solid'],
-  },
-  locale: {
-    value: 'en',
-    choices: [
-      'en',
-      'ar',
-      'de',
-      'es',
-      'fa',
-      'fr',
-      'it',
-      'ja',
-      'nl',
-      'pl',
-      'pt',
-      'ru',
-      'uk',
-      'zh',
-    ],
-  },
-  maxFrequentRows: {
-    value: 4,
-  },
-  navPosition: {
-    value: 'top',
-    choices: ['top', 'bottom', 'none'],
-  },
-  noCountryFlags: {
-    value: false,
-  },
-  noResultsEmoji: {
-    value: null,
-  },
-  perLine: {
-    value: 9,
-  },
-  previewEmoji: {
-    value: null,
-  },
-  previewPosition: {
-    value: 'bottom',
-    choices: ['top', 'bottom', 'none'],
-  },
-  searchPosition: {
-    value: 'sticky',
-    choices: ['sticky', 'static', 'none'],
-  },
-  set: {
-    value: 'native',
-    choices: ['native', 'apple', 'facebook', 'google', 'twitter'],
-  },
-  skin: {
-    value: 1,
-    choices: [1, 2, 3, 4, 5, 6],
-  },
-  skinTonePosition: {
-    value: 'preview',
-    choices: ['preview', 'search', 'none'],
-  },
-  stickySearch: {
-    deprecated: true,
-    value: true,
-  },
-  theme: {
-    value: 'auto',
-    choices: ['auto', 'light', 'dark'],
-  },
-}
 
 async function fetchJSON(src) {
   const response = await fetch(src)
@@ -104,6 +13,7 @@ async function fetchJSON(src) {
 let promise = null
 let initiated = false
 let initCallback = null
+
 export function init(options) {
   promise ||
     (promise = new Promise((resolve) => {
@@ -118,28 +28,28 @@ export function init(options) {
   return promise
 }
 
-async function _init(props, element) {
-  const { data, i18n } = props
-
-  const pickerProps = getProps(props, element)
-  const { emojiVersion, set, locale } = pickerProps
+async function _init(props) {
+  let { emojiVersion, set, locale } = props
+  emojiVersion || (emojiVersion = PickerProps.emojiVersion.value)
+  set || (set = PickerProps.set.value)
+  locale || (locale = PickerProps.locale.value)
 
   Data =
-    (typeof data === 'function' ? await data() : data) ||
+    (typeof props.data === 'function' ? await props.data() : props.data) ||
     (await fetchJSON(
       `https://cdn.jsdelivr.net/npm/@emoji-mart/data@latest/sets/${emojiVersion}/${set}.json`,
     ))
 
   I18n =
-    (typeof i18n === 'function' ? await i18n() : i18n) ||
+    (typeof props.i18n === 'function' ? await props.i18n() : props.i18n) ||
     (locale == 'en'
       ? i18n_en
       : await fetchJSON(
           `https://cdn.jsdelivr.net/npm/@emoji-mart/data@latest/i18n/${locale}.json`,
         ))
 
-  if (pickerProps.maxFrequentRows) {
-    const emojis = FrequentlyUsed.get(pickerProps)
+  if (props.maxFrequentRows) {
+    const emojis = FrequentlyUsed.get(props)
     if (emojis.length) {
       Data.categories.unshift({
         id: 'frequent',
@@ -196,8 +106,7 @@ async function _init(props, element) {
   let noCountryFlags = null
   if (set == 'native') {
     latestVersionSupport = NativeSupport.latestVersion()
-    noCountryFlags =
-      pickerProps.noCountryFlags || NativeSupport.noCountryFlags()
+    noCountryFlags = props.noCountryFlags || NativeSupport.noCountryFlags()
   }
 
   Data.emoticons = {}
@@ -291,15 +200,20 @@ async function _init(props, element) {
     emoji.aliases.push(alias)
   }
 
-  initCallback(pickerProps)
+  initCallback()
 }
 
-function getProps(props, element) {
+export function getProps(props, defaultProps, element) {
   props || (props = {})
 
   function get(propName) {
-    const defaults = DEFAULT_PROPS[propName]
-    let value = (element && element.getAttribute(propName)) || props[propName]
+    const defaults = defaultProps[propName]
+    let value =
+      (element && element.getAttribute(propName)) || props[propName] || null
+
+    if (!defaults) {
+      return value
+    }
 
     if (
       value != null &&
@@ -324,7 +238,7 @@ function getProps(props, element) {
   }
 
   const _props = {}
-  for (let k in DEFAULT_PROPS) {
+  for (let k in defaultProps) {
     _props[k] = get(k)
   }
 
