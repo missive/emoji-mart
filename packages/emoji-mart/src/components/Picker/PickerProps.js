@@ -87,6 +87,7 @@ export default {
 
   // Data
   categories: null,
+  custom: null,
   categoryIcons: null,
   data: null,
   i18n: null,
