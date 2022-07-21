@@ -9,12 +9,20 @@
     "url": "https://github.com/missive/emoji-mart",
     "directory": "packages/emoji-mart"
   },
-  "type": "module",
   "source": "src/index.js",
-  "main": "dist/index.js",
+  "main": "dist/main.js",
+  "module": "dist/module.js",
+  "global": "dist/browser.js",
   "browserslist": "defaults",
   "targets": {
     "main": {
+      "includeNodeModules": true
+    },
+    "module": {
+      "includeNodeModules": true
+    },
+    "global": {
+      "source": "src/browser.js",
       "includeNodeModules": true
     }
   },

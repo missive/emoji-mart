@@ -73,12 +73,15 @@ render(<EmojiPicker onEmojiSelect={console.log} />, document.querySelector('#pic
 
 ### Browser
 ```html
-<script type="module">
-  import * as EmojiMart from 'https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/index.js'
+<body>
+  <div id="picker"></div>
 
-  const picker = new EmojiMart.Picker({ onEmojiSelect: console.log })
-  document.querySelector('#picker').appendChild(picker)
-</script>
+  <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
+  <script>
+    const picker = new EmojiMart.Picker({ onEmojiSelect: console.log })
+    document.querySelector('#picker').appendChild(picker)
+  </script>
+</body>
 ```
 
 ## 🗺 Internationalization
