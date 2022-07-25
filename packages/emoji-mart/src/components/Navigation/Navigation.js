@@ -7,7 +7,7 @@ const THEME_ICONS = {
   dark: 'solid',
 }
 
-export default class Mavigation extends PureComponent {
+export default class Navigation extends PureComponent {
   constructor() {
     super()
 
