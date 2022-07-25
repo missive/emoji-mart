@@ -217,7 +217,10 @@ export function getProps(props, defaultProps, element) {
 export function getProp(propName, props, defaultProps, element) {
   const defaults = defaultProps[propName]
   let value =
-    (element && element.getAttribute(propName)) || props[propName] || null
+    (element && element.getAttribute(propName)) ||
+    (props[propName] != null && props[propName] != undefined
+      ? props[propName]
+      : null)
 
   if (!defaults) {
     return value
