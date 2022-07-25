@@ -66,7 +66,7 @@ async function _init(props) {
 
       if (!category.emojis || !category.emojis.length) continue
 
-      category.id = `custom_${i + 1}`
+      category.id || (category.id = `custom_${i + 1}`)
       category.name || (category.name = I18n.categories.custom)
 
       if (prevCategory && !category.icon) {
