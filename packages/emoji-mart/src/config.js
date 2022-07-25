@@ -11,7 +11,6 @@ async function fetchJSON(src) {
 }
 
 let promise = null
-let initiated = false
 let initCallback = null
 
 export function init(options) {
@@ -20,8 +19,7 @@ export function init(options) {
       initCallback = resolve
     }))
 
-  if (options && !initiated) {
-    initiated = true
+  if (options) {
     _init(options)
   }
 
@@ -34,28 +32,43 @@ async function _init(props) {
   set || (set = PickerProps.set.value)
   locale || (locale = PickerProps.locale.value)
 
-  Data =
-    (typeof props.data === 'function' ? await props.data() : props.data) ||
-    (await fetchJSON(
-      `https://cdn.jsdelivr.net/npm/@emoji-mart/data@latest/sets/${emojiVersion}/${set}.json`,
-    ))
+  if (!Data) {
+    Data =
+      (typeof props.data === 'function' ? await props.data() : props.data) ||
+      (await fetchJSON(
+        `https://cdn.jsdelivr.net/npm/@emoji-mart/data@latest/sets/${emojiVersion}/${set}.json`,
+      ))
 
-  I18n =
-    (typeof props.i18n === 'function' ? await props.i18n() : props.i18n) ||
-    (locale == 'en'
-      ? i18n_en
-      : await fetchJSON(
-          `https://cdn.jsdelivr.net/npm/@emoji-mart/data@latest/i18n/${locale}.json`,
-        ))
+    Data.emoticons = {}
+    Data.natives = {}
 
-  if (props.maxFrequentRows) {
-    const emojis = FrequentlyUsed.get(props)
-    if (emojis.length) {
-      Data.categories.unshift({
-        id: 'frequent',
-        emojis: emojis,
-      })
+    Data.categories.unshift({
+      id: 'frequent',
+      emojis: [],
+    })
+
+    for (const alias in Data.aliases) {
+      const emojiId = Data.aliases[alias]
+      const emoji = Data.emojis[emojiId]
+      if (!emoji) continue
+
+      emoji.aliases || (emoji.aliases = [])
+      emoji.aliases.push(alias)
     }
+  } else {
+    Data.categories = Data.categories.filter((c) => {
+      return !c.name
+    })
+  }
+
+  if (!I18n) {
+    I18n =
+      (typeof props.i18n === 'function' ? await props.i18n() : props.i18n) ||
+      (locale == 'en'
+        ? i18n_en
+        : await fetchJSON(
+            `https://cdn.jsdelivr.net/npm/@emoji-mart/data@latest/i18n/${locale}.json`,
+          ))
   }
 
   if (props.custom) {
@@ -77,7 +90,7 @@ async function _init(props) {
 
       const ids = []
       for (const emoji of category.emojis) {
-        if (Data.emojis[emoji.id]) {
+        if (ids.indexOf(emoji.id) > -1) {
           continue
         }
 
@@ -109,10 +122,18 @@ async function _init(props) {
     noCountryFlags = props.noCountryFlags || NativeSupport.noCountryFlags()
   }
 
-  Data.emoticons = {}
-  Data.natives = {}
-  for (const category of Data.categories) {
-    let i = category.emojis.length
+  let categoryIndex = Data.categories.length
+  while (categoryIndex--) {
+    const category = Data.categories[categoryIndex]
+
+    if (category.id == 'frequent') {
+      category.emojis = FrequentlyUsed.get(props)
+    }
+
+    if (!category.emojis || !category.emojis.length) {
+      Data.categories.splice(categoryIndex, 1)
+      continue
+    }
 
     const { categoryIcons } = props
     if (categoryIcons) {
@@ -122,10 +143,11 @@ async function _init(props) {
       }
     }
 
-    while (i--) {
-      const emoji = Data.emojis[category.emojis[i]]
+    let emojiIndex = category.emojis.length
+    while (emojiIndex--) {
+      const emoji = Data.emojis[category.emojis[emojiIndex]]
       const ignore = () => {
-        category.emojis.splice(i, 1)
+        category.emojis.splice(emojiIndex, 1)
       }
 
       if (!emoji) {
@@ -145,59 +167,53 @@ async function _init(props) {
         }
       }
 
-      emoji.search =
-        ',' +
-        [
-          [emoji.id, false],
-          [emoji.name, true],
-          [emoji.keywords, false],
-          [emoji.emoticons, false],
-        ]
-          .map(([strings, split]) => {
-            if (!strings) return
-            return (Array.isArray(strings) ? strings : [strings])
-              .map((string) => {
-                return (split ? string.split(/[-|_|\s]+/) : [string]).map((s) =>
-                  s.toLowerCase(),
-                )
-              })
-              .flat()
-          })
-          .flat()
-          .filter((a) => a && a.trim())
-          .join(',')
+      if (!emoji.search) {
+        emoji.search =
+          ',' +
+          [
+            [emoji.id, false],
+            [emoji.name, true],
+            [emoji.keywords, false],
+            [emoji.emoticons, false],
+          ]
+            .map(([strings, split]) => {
+              if (!strings) return
+              return (Array.isArray(strings) ? strings : [strings])
+                .map((string) => {
+                  return (split ? string.split(/[-|_|\s]+/) : [string]).map(
+                    (s) => s.toLowerCase(),
+                  )
+                })
+                .flat()
+            })
+            .flat()
+            .filter((a) => a && a.trim())
+            .join(',')
 
-      if (emoji.emoticons) {
-        for (const emoticon of emoji.emoticons) {
-          if (Data.emoticons[emoticon]) continue
-          Data.emoticons[emoticon] = emoji.id
-        }
-      }
-
-      let skinIndex = 0
-      for (const skin of emoji.skins) {
-        if (!skin) continue
-        skinIndex++
-
-        const { native } = skin
-        if (native) {
-          Data.natives[native] = emoji.id
-          emoji.search += `,${native}`
+        if (emoji.emoticons) {
+          for (const emoticon of emoji.emoticons) {
+            if (Data.emoticons[emoticon]) continue
+            Data.emoticons[emoticon] = emoji.id
+          }
         }
 
-        const skinShortcodes = skinIndex == 1 ? '' : `:skin-tone-${skinIndex}:`
-        skin.shortcodes = `:${emoji.id}:${skinShortcodes}`
+        let skinIndex = 0
+        for (const skin of emoji.skins) {
+          if (!skin) continue
+          skinIndex++
+
+          const { native } = skin
+          if (native) {
+            Data.natives[native] = emoji.id
+            emoji.search += `,${native}`
+          }
+
+          const skinShortcodes =
+            skinIndex == 1 ? '' : `:skin-tone-${skinIndex}:`
+          skin.shortcodes = `:${emoji.id}:${skinShortcodes}`
+        }
       }
     }
-  }
-
-  for (const alias in Data.aliases) {
-    const emojiId = Data.aliases[alias]
-    const emoji = Data.emojis[emojiId]
-    if (!emoji) continue
-
-    emoji.aliases || (emoji.aliases = [])
-    emoji.aliases.push(alias)
   }
 
   initCallback()

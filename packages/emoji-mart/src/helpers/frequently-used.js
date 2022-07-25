@@ -34,6 +34,8 @@ function add(emoji) {
 }
 
 function get({ maxFrequentRows, perLine }) {
+  if (!maxFrequentRows) return []
+
   Index || (Index = Store.get('frequently'))
   let emojiIds = []
 
