@@ -1,6 +1,7 @@
 import { init, Data } from '../config'
 
 const SHORTCODES_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/
+let Pool = null
 
 function get(emojiId) {
   if (emojiId.id) {
@@ -14,7 +15,10 @@ function get(emojiId) {
   )
 }
 
-let Pool = null
+function reset() {
+  Pool = null
+}
+
 async function search(value, { maxResults } = {}) {
   if (!value || !value.trim().length) return null
   maxResults || (maxResults = 90)
@@ -75,4 +79,4 @@ async function search(value, { maxResults } = {}) {
   return results
 }
 
-export default { search, get, SHORTCODES_REGEX }
+export default { search, get, reset, SHORTCODES_REGEX }

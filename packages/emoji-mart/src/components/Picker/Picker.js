@@ -1,7 +1,7 @@
 import { Component, createRef } from 'preact'
 
 import { deepEqual, sleep } from '../../utils'
-import { Data, I18n } from '../../config'
+import { Data, I18n, init } from '../../config'
 import { SearchIndex, Store, FrequentlyUsed } from '../../helpers'
 import Icons from '../../icons'
 
@@ -32,10 +32,9 @@ export default class Picker extends Component {
   }
 
   componentWillMount() {
-    const { categories } = Data
-
+    this.observers = []
+    this.dir = I18n.rtl ? 'rtl' : 'ltr'
     this.refs = {
-      categories: new Map(),
       menu: createRef(),
       navigation: createRef(),
       scroll: createRef(),
@@ -45,7 +44,95 @@ export default class Picker extends Component {
       skinToneRadio: createRef(),
     }
 
-    this.dir = I18n.rtl ? 'rtl' : 'ltr'
+    this.initGrid()
+
+    if (
+      this.props.stickySearch == false &&
+      this.props.searchPosition == 'sticky'
+    ) {
+      console.warn(
+        '[EmojiMart] Deprecation warning: `stickySearch` has been renamed `searchPosition`.',
+      )
+
+      this.props.searchPosition = 'static'
+    }
+  }
+
+  componentDidMount() {
+    this.register()
+
+    this.shadowRoot = this.base.parentNode
+
+    if (this.props.autoFocus) {
+      const { searchInput } = this.refs
+      if (searchInput.current) {
+        searchInput.current.focus()
+      }
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let initalState = null
+
+    for (const k in nextProps) {
+      this.props[k] = nextProps[k]
+
+      if (k === 'custom' || k === 'categories') {
+        this.reset()
+      } else if (k in this.state) {
+        initalState || (initalState = this.getInitialState())
+        this.setState({ [k]: initalState[k] })
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    this.unregister()
+  }
+
+  reset() {
+    init(this.props)
+
+    this.initGrid()
+    this.unobserve()
+
+    this.forceUpdate(() => {
+      this.observeCategories()
+      this.observeRows()
+    })
+  }
+
+  register() {
+    document.addEventListener('click', this.handleClickOutside)
+    this.observe()
+  }
+
+  unregister() {
+    document.removeEventListener('click', this.handleClickOutside)
+    this.unobserve()
+  }
+
+  observe() {
+    this.observeCategories()
+    this.observeRows()
+  }
+
+  unobserve() {
+    for (const observer of this.observers) {
+      observer.disconnect()
+    }
+  }
+
+  initGrid() {
+    const { categories } = Data
+
+    this.refs.categories = new Map()
+
+    const navKey = Data.categories.map((category) => category.id).join(',')
+    if (this.navKey && this.navKey != navKey) {
+      this.refs.scroll.current && (this.refs.scroll.current.scrollTop = 0)
+    }
+    this.navKey = navKey
 
     this.grid = []
     this.grid.setsize = 0
@@ -79,62 +166,6 @@ export default class Picker extends Component {
       }
 
       this.refs.categories.set(category.id, { root: createRef(), rows })
-    }
-
-    if (
-      this.props.stickySearch == false &&
-      this.props.searchPosition == 'sticky'
-    ) {
-      console.warn(
-        '[EmojiMart] Deprecation warning: `stickySearch` has been renamed `searchPosition`.',
-      )
-
-      this.props.searchPosition = 'static'
-    }
-  }
-
-  componentDidMount() {
-    this.observers = []
-    this.observeCategories()
-    this.observeRows()
-    this.register()
-
-    this.shadowRoot = this.base.parentNode
-
-    if (this.props.autoFocus) {
-      const { searchInput } = this.refs
-      if (searchInput.current) {
-        searchInput.current.focus()
-      }
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    let initalState = null
-
-    for (const k in nextProps) {
-      this.props[k] = nextProps[k]
-
-      if (k in this.state) {
-        initalState || (initalState = this.getInitialState())
-        this.setState({ [k]: initalState[k] })
-      }
-    }
-  }
-
-  componentWillUnmount() {
-    this.unregister()
-  }
-
-  register() {
-    document.addEventListener('click', this.handleClickOutside)
-  }
-
-  unregister() {
-    document.removeEventListener('click', this.handleClickOutside)
-
-    for (const observer of this.observers) {
-      observer.disconnect()
     }
   }
 
@@ -612,6 +643,7 @@ export default class Picker extends Component {
   renderNav() {
     return (
       <Navigation
+        key={this.navKey}
         ref={this.refs.navigation}
         icons={this.props.icons}
         theme={this.state.theme}

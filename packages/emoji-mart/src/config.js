@@ -1,6 +1,11 @@
 import i18n_en from '@emoji-mart/data/i18n/en.json'
 import PickerProps from './components/Picker/PickerProps'
-import { FrequentlyUsed, NativeSupport, SafeFlags } from './helpers'
+import {
+  FrequentlyUsed,
+  NativeSupport,
+  SafeFlags,
+  SearchIndex,
+} from './helpers'
 
 export let I18n = null
 export let Data = null
@@ -57,7 +62,10 @@ async function _init(props) {
     }
   } else {
     Data.categories = Data.categories.filter((c) => {
-      return !c.name
+      const isCustom = !!c.name
+      if (!isCustom) return true
+
+      return false
     })
   }
 
@@ -123,6 +131,7 @@ async function _init(props) {
   }
 
   let categoryIndex = Data.categories.length
+  let resetSearchIndex = false
   while (categoryIndex--) {
     const category = Data.categories[categoryIndex]
 
@@ -168,6 +177,7 @@ async function _init(props) {
       }
 
       if (!emoji.search) {
+        resetSearchIndex = true
         emoji.search =
           ',' +
           [
@@ -214,6 +224,10 @@ async function _init(props) {
         }
       }
     }
+  }
+
+  if (resetSearchIndex) {
+    SearchIndex.reset()
   }
 
   initCallback()
