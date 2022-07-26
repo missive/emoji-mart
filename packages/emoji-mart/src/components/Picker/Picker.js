@@ -94,6 +94,7 @@ export default class Picker extends Component {
   }
 
   componentDidMount() {
+    this.observers = []
     this.observeCategories()
     this.observeRows()
     this.register()
@@ -131,6 +132,10 @@ export default class Picker extends Component {
 
   unregister() {
     document.removeEventListener('click', this.handleClickOutside)
+
+    for (const observer of this.observers) {
+      observer.disconnect()
+    }
   }
 
   initTheme(theme) {
@@ -231,6 +236,8 @@ export default class Picker extends Component {
     for (const { root } of this.refs.categories.values()) {
       observer.observe(root.current)
     }
+
+    this.observers.push(observer)
   }
 
   observeRows() {
@@ -265,6 +272,8 @@ export default class Picker extends Component {
         }
       }
     }
+
+    this.observers.push(observer)
   }
 
   preventDefault(e) {
