@@ -40,7 +40,6 @@ export default class HTMLElement extends WindowHTMLElement {
     if (this.component.componentWillReceiveProps) {
       this.component.componentWillReceiveProps({ [attr]: value })
     } else {
-      console.log(this.component)
       this.component.props[attr] = value
       this.component.forceUpdate()
     }

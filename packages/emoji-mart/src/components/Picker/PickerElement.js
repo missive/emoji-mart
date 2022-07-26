@@ -24,8 +24,6 @@ export default class PickerElement extends ShadowElement {
   }
 
   disconnectedCallback() {
-    this.disconnected = true
-
     if (this.component) {
       this.component.unregister()
     }
