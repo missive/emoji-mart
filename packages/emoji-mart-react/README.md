@@ -19,4 +19,4 @@ function App() {
 ```
 
 ## 📚 Documentation
-See https://github.com/missive/emoji-mart#-react
+See https://github.com/missive/emoji-mart#react
