@@ -114,6 +114,7 @@ import Picker from '@emoji-mart/react'
 
 const custom = [
   {
+    id: 'github',
     name: 'GitHub',
     emojis: [
       {
@@ -134,6 +135,7 @@ const custom = [
     ],
   },
   {
+    id: 'gifs',
     name: 'GIFs',
     emojis: [
       {
