@@ -16,6 +16,8 @@
     "test": "yarn node --experimental-vm-modules $(yarn bin jest)"
   },
   "devDependencies": {
+    "@babel/core": "7.18.9",
+    "@babel/plugin-transform-modules-commonjs": "7.18.6",
     "jest": "28.0.0",
     "jest-environment-jsdom": "28.0.0",
     "prettier": "2.5.1"
