@@ -9,6 +9,7 @@
     "dev": "yarn workspace @emoji-mart/website dev",
     "build": "yarn workspace emoji-mart build",
     "build:data": "yarn workspace @emoji-mart/data build",
+    "build:react": "yarn workspace @emoji-mart/react build",
     "build:website": "yarn workspace @emoji-mart/website build",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
