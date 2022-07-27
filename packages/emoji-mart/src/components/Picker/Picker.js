@@ -800,6 +800,7 @@ export default class Picker extends Component {
               onClick={this.handleSearchClick}
               onInput={this.handleSearchInput}
               onKeyDown={this.handleSearchKeyDown}
+              autoComplete="off"
             ></input>
             <span class="icon loupe flex">{Icons.search.loupe}</span>
             {this.state.searchResults && (
