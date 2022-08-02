@@ -136,7 +136,11 @@ async function _init(props) {
     const category = Data.categories[categoryIndex]
 
     if (category.id == 'frequent') {
-      category.emojis = FrequentlyUsed.get(props)
+      let { maxFrequentRows, perLine } = props
+      maxFrequentRows || (maxFrequentRows = PickerProps.maxFrequentRows.value)
+      perLine || (perLine = PickerProps.perLine.value)
+
+      category.emojis = FrequentlyUsed.get({ maxFrequentRows, perLine })
     }
 
     if (!category.emojis || !category.emojis.length) {
