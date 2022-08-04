@@ -5,7 +5,17 @@ export default {
   id: '',
   native: '',
   shortcodes: '',
-  size: '',
+  size: {
+    value: '',
+    transform: (value) => {
+      // If the value is a number, then we assume it’s a pixel value.
+      if (!/\D/.test(value)) {
+        return `${value}px`
+      }
+
+      return value
+    },
+  },
 
   // Shared
   set: PickerProps.set,

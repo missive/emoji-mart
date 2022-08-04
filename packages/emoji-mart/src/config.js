@@ -272,6 +272,10 @@ export function getProp(propName, props, defaultProps, element) {
     }
   }
 
+  if (defaults.transform && value) {
+    value = defaults.transform(value)
+  }
+
   if (
     value == null ||
     (defaults.choices && defaults.choices.indexOf(value) == -1)
