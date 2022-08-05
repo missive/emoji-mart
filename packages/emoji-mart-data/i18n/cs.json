@@ -1,0 +1,29 @@
+{
+  "search": "Vyhledat",
+  "search_no_results_1": "Ale ne!",
+  "search_no_results_2": "Emoji nebylo nalezeno",
+  "pick": "Vyberte emoji…",
+  "add_custom": "Přidat vlastní emoji",
+  "categories": {
+    "activity": "Aktivity",
+    "custom": "Vlastní",
+    "flags": "Vlajky",
+    "foods": "Jídlo a pití",
+    "frequent": "Často používané",
+    "nature": "Zvířata a příroda",
+    "objects": "Objekty",
+    "people": "Smajlíci a lidé",
+    "places": "Cestování a místa",
+    "search": "Výsledky vyhledávání",
+    "symbols": "Symboly"
+  },
+  "skins": {
+    "choose": "Vyberte výchozí odstín pleti",
+    "1": "Výchozí",
+    "2": "Světlý",
+    "3": "Středně světlý",
+    "4": "Střední",
+    "5": "Středně tmavý",
+    "6": "Tmavý"
+  }
+}
