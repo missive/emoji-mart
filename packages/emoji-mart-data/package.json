@@ -13,6 +13,7 @@
   "scripts": {
     "build": "node ./build.js"
   },
+  "sideEffects": false,
   "devDependencies": {
     "emoji-datasource": "14.0.0",
     "emojilib": "3.0.6",
