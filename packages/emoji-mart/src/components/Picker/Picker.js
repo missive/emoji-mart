@@ -968,7 +968,11 @@ export default class Picker extends Component {
     const emoji = this.getEmojiByPos(this.state.pos)
     const contents = emoji ? emoji.name : ''
 
-    return <div aria-live="polite">{contents}</div>
+    return (
+      <div aria-live="polite" class="sr-only">
+        {contents}
+      </div>
+    )
   }
 
   renderSkins() {
