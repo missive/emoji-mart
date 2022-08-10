@@ -964,6 +964,17 @@ export default class Picker extends Component {
     )
   }
 
+  renderLiveRegion() {
+    const emoji = this.getEmojiByPos(this.state.pos)
+    const contents = emoji ? emoji.name : ''
+
+    return (
+      <div aria-live="polite" class="sr-only">
+        {contents}
+      </div>
+    )
+  }
+
   renderSkins() {
     const skinToneButton = this.refs.skinToneButton.current
     const skinToneButtonRect = skinToneButton.getBoundingClientRect()
@@ -1076,6 +1087,7 @@ export default class Picker extends Component {
         {this.props.navPosition == 'bottom' && this.renderNav()}
         {this.props.previewPosition == 'bottom' && this.renderPreview()}
         {this.state.showSkins && this.renderSkins()}
+        {this.renderLiveRegion()}
       </section>
     )
   }
