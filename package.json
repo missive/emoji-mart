@@ -18,10 +18,20 @@
   "devDependencies": {
     "@babel/core": "7.18.9",
     "@babel/plugin-transform-modules-commonjs": "7.18.6",
+    "@parcel/packager-ts": "2.5.0",
+    "@parcel/transformer-inline-string": "2.5.0",
+    "@parcel/transformer-sass": "2.5.0",
+    "@parcel/transformer-typescript-tsc": "2.5.0",
+    "@parcel/transformer-typescript-types": "2.5.0",
+    "autoprefixer": "10.4.4",
+    "is-emoji-supported": "0.0.5",
     "jest": "28.0.0",
     "jest-environment-jsdom": "28.0.0",
+    "parcel": "2.5.0",
+    "postcss": "8.4.13",
+    "preact": "10.6.4",
     "prettier": "2.5.1",
-    "typescript": "^4.5.5"
+    "typescript": "4.6.4"
   },
   "prettier": {
     "semi": false,
