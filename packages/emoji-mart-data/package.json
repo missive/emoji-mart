@@ -2,7 +2,7 @@
   "name": "@emoji-mart/data",
   "version": "1.0.4",
   "description": "Data for Emoji Mart; the emoji picker for the web.",
-  "license": "BSD-3-Clause",
+  "license": "MIT",
   "homepage": "https://missiveapp.com/open/emoji-mart",
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
   },
   "files": [
     "/i18n",
-    "/sets"
+    "/sets",
+    "LICENSE"
   ]
 }

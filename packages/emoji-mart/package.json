@@ -2,7 +2,7 @@
   "name": "emoji-mart",
   "version": "5.2.0",
   "description": "Emoji picker for the web",
-  "license": "BSD-3-Clause",
+  "license": "MIT",
   "homepage": "https://missiveapp.com/open/emoji-mart",
   "repository": {
     "type": "git",
@@ -52,6 +52,7 @@
     "react/jsx-runtime": "preact/jsx-runtime"
   },
   "files": [
-    "/dist"
+    "/dist",
+    "LICENSE"
   ]
 }
