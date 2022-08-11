@@ -203,6 +203,28 @@ Then you can use the emoji component in your HTML / JSX.
 | **set** | `native` | The emoji set: `native`, `apple`, `facebook`, `google`, `twitter` |
 | **skin** | `1` | The emoji skin tone: `1`, `2`, `3`, `4`, `5`, `6` |
 
+## 🕵️‍♀️ Headless search
+You can search without the Picker. Just like the emoji component, `data` needs to be initialized first in order to use the search index. It can also be used to return emoji data when providing a native emoji.
+
+```js
+import data from '@emoji-mart/data'
+import { init, SearchIndex } from 'emoji-mart'
+
+init({ data })
+
+async function search(value) {
+  const emojis = await SearchIndex.search(value)
+  const results = emojis.map((emoji) => {
+    return emoji.skins[0].native
+  })
+
+  console.log(results)
+}
+
+search('christmas') // => ['🎄', '🇨🇽', '🧑‍🎄', '🔔', '🤶', '🎁', '☃️', '❄️', '🎅', '⛄']
+search('🤞🏼') // => ['🤞']
+```
+
 ## 🗺 Internationalization
 EmojiMart UI supports [multiple languages](https://github.com/missive/emoji-mart/tree/main/packages/emoji-mart-data/i18n), feel free to open a PR if yours is missing.
 
