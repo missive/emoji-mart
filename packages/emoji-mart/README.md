@@ -6,6 +6,16 @@
   <br>Brought to you by the <a title="Team email, team chat, team tasks, one app" href="https://missiveapp.com">Missive</a> team
 </div>
 
+## 📖 Table of Contents
+- [💾 Data](#-data)
+- [🏪 Picker](#-picker)
+- [🙃 Emoji component](#-emoji-component)
+- [🕵️‍♀️ Headless search](#%EF%B8%8F%EF%B8%8F-headless-search)
+- [🗺 Internationalization](#-internationalization)
+- [📚 Examples](#-examples)
+- [🤓 Built for modern browsers](#-built-for-modern-browsers)
+- [🛠 Development](#-development)
+
 ## 💾 Data
 
 Data required for the picker to work has been completely decoupled from the library. That gives developers the flexibility to better control their app bundle size and let them choose how and when this data is loaded. Data can be:
