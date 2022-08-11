@@ -123,7 +123,8 @@ function buildData({ set, version } = {}) {
       .flat()
       .filter((word, i, words) => {
         return (
-          words.indexOf(word) === i && name.toLowerCase().indexOf(word) == -1
+          words.indexOf(word) === i &&
+          name.toLowerCase().split(/\s/).indexOf(word) == -1
         )
       })
 
