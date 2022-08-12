@@ -9,7 +9,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "isolatedModules": true,
-    "strict": true,
+    "strict": false,
     "skipLibCheck": true,
     "resolveJsonModule": true
   },
