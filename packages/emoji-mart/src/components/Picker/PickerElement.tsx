@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { render } from 'preact'
 
 import { init, getProps } from '../../config'

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { init, Data } from '../config'
 
 const SHORTCODES_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/

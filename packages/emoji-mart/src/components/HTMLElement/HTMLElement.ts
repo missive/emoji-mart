@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { getProp } from '../../config'
 
 const WindowHTMLElement =
