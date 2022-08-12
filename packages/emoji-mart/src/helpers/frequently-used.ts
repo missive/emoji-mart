@@ -21,7 +21,7 @@ const DEFAULTS = [
 
 let Index: any | null = null
 
-function add(emoji: {id: string}) {
+function add(emoji: { id: string }) {
   Index || (Index = Store.get('frequently') || {})
 
   const emojiId = emoji.id || emoji
