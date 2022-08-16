@@ -1,0 +1,29 @@
+{
+  "search": "Hae",
+  "search_no_results_1": "Voi ei!",
+  "search_no_results_2": "Hakemaasi emojia ei löytynyt",
+  "pick": "Valitse emoji…",
+  "add_custom": "Lisää räätälöity emoji",
+  "categories": {
+    "activity": "Toiminta",
+    "custom": "Räätälöity",
+    "flags": "Liput",
+    "foods": "Ruoka & Juoma",
+    "frequent": "Usein käytetyt",
+    "nature": "Eläimet & Luonto",
+    "objects": "Esineet",
+    "people": "Hymiöt & Ihmiset",
+    "places": "Matkustelu & Paikat",
+    "search": "Hakutulokset",
+    "symbols": "Symbolit"
+  },
+  "skins": {
+    "choose": "Valitse oletusihonväri",
+    "1": "Oletus",
+    "2": "Vaalea",
+    "3": "Keskivaalea",
+    "4": "Keskimmäinen",
+    "5": "Keskitumma",
+    "6": "Tumma"
+  }
+}
