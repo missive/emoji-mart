@@ -13,7 +13,7 @@
     "build:website": "yarn workspace @emoji-mart/website build",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
-    "test": "yarn node --experimental-vm-modules $(yarn bin jest)"
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "7.18.9",
