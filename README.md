@@ -25,7 +25,7 @@ Data required for the picker to work has been completely decoupled from the libr
 - **Cons:** Slower initial page load (bigger file to load)
 
 ```sh
-yarn install @emoji-mart/data
+yarn add @emoji-mart/data
 ```
 
 ```js
