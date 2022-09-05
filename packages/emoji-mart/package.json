@@ -41,7 +41,6 @@
     "@parcel/transformer-inline-string": "2.3.2",
     "@parcel/transformer-sass": "2.3.2",
     "autoprefixer": "10.4.4",
-    "is-emoji-supported": "0.0.5",
     "parcel": "2.3.2",
     "preact": "10.6.4"
   },
