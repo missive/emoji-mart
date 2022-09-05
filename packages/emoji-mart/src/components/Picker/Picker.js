@@ -72,31 +72,46 @@ export default class Picker extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let initalState = null
+    this.nextState || (this.nextState = {})
 
     for (const k in nextProps) {
-      this.props[k] = nextProps[k]
-
-      if (k === 'custom' || k === 'categories') {
-        this.reset()
-      } else if (k in this.state) {
-        initalState || (initalState = this.getInitialState())
-        this.setState({ [k]: initalState[k] })
-      }
+      this.nextState[k] = nextProps[k]
     }
+
+    clearTimeout(this.nextStateTimer)
+    this.nextStateTimer = setTimeout(() => {
+      let requiresGridReset = false
+
+      for (const k in this.nextState) {
+        this.props[k] = this.nextState[k]
+
+        if (k === 'custom' || k === 'categories') {
+          requiresGridReset = true
+        }
+      }
+
+      delete this.nextState
+      const nextState = this.getInitialState()
+
+      if (requiresGridReset) {
+        return this.reset(nextState)
+      }
+
+      this.setState(nextState)
+    })
   }
 
   componentWillUnmount() {
     this.unregister()
   }
 
-  async reset() {
+  async reset(nextState = {}) {
     await init(this.props)
 
     this.initGrid()
     this.unobserve()
 
-    this.forceUpdate(() => {
+    this.setState(nextState, () => {
       this.observeCategories()
       this.observeRows()
     })
