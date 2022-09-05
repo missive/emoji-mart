@@ -10,9 +10,17 @@ import {
 export let I18n = null
 export let Data = null
 
+const fetchCache = {}
 async function fetchJSON(src) {
+  if (fetchCache[src]) {
+    return fetchCache[src]
+  }
+
   const response = await fetch(src)
-  return await response.json()
+  const json = await response.json()
+
+  fetchCache[src] = json
+  return json
 }
 
 let promise = null
@@ -69,15 +77,13 @@ async function _init(props) {
     })
   }
 
-  if (!I18n) {
-    I18n =
-      (typeof props.i18n === 'function' ? await props.i18n() : props.i18n) ||
-      (locale == 'en'
-        ? i18n_en
-        : await fetchJSON(
-            `https://cdn.jsdelivr.net/npm/@emoji-mart/data@latest/i18n/${locale}.json`,
-          ))
-  }
+  I18n =
+    (typeof props.i18n === 'function' ? await props.i18n() : props.i18n) ||
+    (locale == 'en'
+      ? i18n_en
+      : await fetchJSON(
+          `https://cdn.jsdelivr.net/npm/@emoji-mart/data@latest/i18n/${locale}.json`,
+        ))
 
   if (props.custom) {
     for (let i in props.custom) {
