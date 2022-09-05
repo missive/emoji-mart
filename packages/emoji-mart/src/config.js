@@ -96,17 +96,9 @@ async function _init(props) {
 
       Data.categories.push(category)
 
-      const ids = []
       for (const emoji of category.emojis) {
-        if (ids.indexOf(emoji.id) > -1) {
-          continue
-        }
-
         Data.emojis[emoji.id] = emoji
-        ids.push(emoji.id)
       }
-
-      category.emojis = ids
     }
   }
 
@@ -158,7 +150,9 @@ async function _init(props) {
 
     let emojiIndex = category.emojis.length
     while (emojiIndex--) {
-      const emoji = Data.emojis[category.emojis[emojiIndex]]
+      const emojiId = category.emojis[emojiIndex]
+      const emoji = emojiId.id ? emojiId : Data.emojis[emojiId]
+
       const ignore = () => {
         category.emojis.splice(emojiIndex, 1)
       }
