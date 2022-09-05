@@ -90,8 +90,8 @@ export default class Picker extends Component {
     this.unregister()
   }
 
-  reset() {
-    init(this.props)
+  async reset() {
+    await init(this.props)
 
     this.initGrid()
     this.unobserve()
