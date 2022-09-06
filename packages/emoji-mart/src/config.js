@@ -25,8 +25,9 @@ async function fetchJSON(src) {
 
 let promise = null
 let initCallback = null
+let initialized = false
 
-export function init(options) {
+export function init(options, { caller } = {}) {
   promise ||
     (promise = new Promise((resolve) => {
       initCallback = resolve
@@ -34,12 +35,18 @@ export function init(options) {
 
   if (options) {
     _init(options)
+  } else if (caller && !initialized) {
+    console.warn(
+      `\`${caller}\` requires data to be initialized first. Promise will be pending until \`init\` is called.`,
+    )
   }
 
   return promise
 }
 
 async function _init(props) {
+  initialized = true
+
   let { emojiVersion, set, locale } = props
   emojiVersion || (emojiVersion = PickerProps.emojiVersion.value)
   set || (set = PickerProps.set.value)
