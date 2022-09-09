@@ -16,7 +16,13 @@ export async function sleep(frames = 1) {
 }
 
 export function getEmojiData(emoji, { skinIndex } = {}) {
-  const skin = emoji.skins[skinIndex] || emoji.skins[0]
+  const skin =
+    emoji.skins[skinIndex] ||
+    (() => {
+      skinIndex = 0
+      return emoji.skins[skinIndex]
+    })()
+
   const emojiData = {
     id: emoji.id,
     name: emoji.name,
@@ -24,6 +30,10 @@ export function getEmojiData(emoji, { skinIndex } = {}) {
     unified: skin.unified,
     keywords: emoji.keywords,
     shortcodes: skin.shortcodes || emoji.shortcodes,
+  }
+
+  if (emoji.skins.length > 1) {
+    emojiData.skin = skinIndex + 1
   }
 
   if (skin.src) {

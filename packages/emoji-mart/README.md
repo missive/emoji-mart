@@ -252,6 +252,7 @@ getEmojiDataFromNative('🤞🏿').then(console.log)
   name: 'Crossed Fingers',
   native: '🤞🏿',
   shortcodes: ':crossed_fingers::skin-tone-6:',
+  skin: 6,
   unified: '1f91e-1f3ff',
 } */
 ```
