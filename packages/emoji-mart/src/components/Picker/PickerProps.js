@@ -31,6 +31,7 @@ export default {
       'de',
       'es',
       'fa',
+      'fi',
       'fr',
       'it',
       'ja',
