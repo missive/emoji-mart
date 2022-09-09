@@ -1,6 +1,6 @@
 import { Component, createRef } from 'preact'
 
-import { deepEqual, sleep } from '../../utils'
+import { deepEqual, sleep, getEmojiData } from '../../utils'
 import { Data, I18n, init } from '../../config'
 import { SearchIndex, Store, FrequentlyUsed } from '../../helpers'
 import Icons from '../../icons'
@@ -586,27 +586,7 @@ export default class Picker extends Component {
     }
 
     if (emoji) {
-      const skin = emoji.skins[this.state.skin - 1] || emoji.skins[0]
-      const emojiData = {
-        id: emoji.id,
-        name: emoji.name,
-        native: skin.native,
-        unified: skin.unified,
-        keywords: emoji.keywords,
-        shortcodes: skin.shortcodes || emoji.shortcodes,
-      }
-
-      if (skin.src) {
-        emojiData.src = skin.src
-      }
-
-      if (emoji.aliases && emoji.aliases.length) {
-        emojiData.aliases = emoji.aliases
-      }
-
-      if (emoji.emoticons && emoji.emoticons.length) {
-        emojiData.emoticons = emoji.emoticons
-      }
+      const emojiData = getEmojiData(emoji, { skinIndex: this.state.skin - 1 })
 
       if (this.props.maxFrequentRows) {
         FrequentlyUsed.add(emojiData, this.props)
