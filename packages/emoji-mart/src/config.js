@@ -142,7 +142,11 @@ async function _init(props) {
 
     if (category.id == 'frequent') {
       let { maxFrequentRows, perLine } = props
-      maxFrequentRows || (maxFrequentRows = PickerProps.maxFrequentRows.value)
+
+      maxFrequentRows =
+        maxFrequentRows >= 0
+          ? maxFrequentRows
+          : PickerProps.maxFrequentRows.value
       perLine || (perLine = PickerProps.perLine.value)
 
       category.emojis = FrequentlyUsed.get({ maxFrequentRows, perLine })
