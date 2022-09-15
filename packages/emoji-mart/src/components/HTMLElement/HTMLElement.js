@@ -1,7 +1,9 @@
 import { getProp } from '../../config'
 
 const WindowHTMLElement =
-  typeof window !== 'undefined' ? window.HTMLElement : Object
+  typeof window !== 'undefined' && window.HTMLElement !== undefined
+    ? window.HTMLElement
+    : Object
 
 export default class HTMLElement extends WindowHTMLElement {
   static get observedAttributes() {
