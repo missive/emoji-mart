@@ -26,7 +26,7 @@ export default class Picker extends Component {
 
   getInitialState(props = this.props) {
     return {
-      skin: Store.get('skin') || props.skin,
+      skin: props.skin || Store.get('skin'),
       theme: this.initTheme(props.theme),
     }
   }
@@ -632,7 +632,12 @@ export default class Picker extends Component {
     this.closeSkins()
 
     this.setState({ skin, tempSkin: null })
-    Store.set('skin', skin)
+
+    if (this.props.onSkinSelect) {
+      this.props.onSkinSelect(skin)
+    } else {
+      Store.set('skin', skin)
+    }
   }
 
   renderNav() {
