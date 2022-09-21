@@ -93,6 +93,7 @@ function App() {
 | **onEmojiSelect** | `null` | | Callback when an emoji is selected |
 | **onClickOutside** | `null` | | Callback when a click outside of the picker happens |
 | **onAddCustomEmoji** | `null` | | Callback when the *Add custom emoji* button is clicked. The button will only be displayed if this callback is provided. It is displayed when search returns no results. |
+| **onSkinSelect** | `null` | | Callback when the user chooses a skin tone. If not provided, skin tone choice is stored in localstorage. |
 | **autoFocus** | `false` | | Whether the picker should automatically focus on the search input |
 | **categoryIcons** | `{}` | | [Custom category icons](#custom-category-icons) |
 | **emojiButtonColors** | `[]` | i.e. `#f00`, `pink`, `rgba(155,223,88,.7)` | An array of color that affects the hover background color |
@@ -104,7 +105,7 @@ function App() {
 | **locale** | `en` | `en`, `ar`, `de`, `es`, `fa`, `fr`, `it`, `ja`, `nl`, `pl`, `pt`, `ru`, `uk`, `zh` | The locale to use for the picker |
 | **maxFrequentRows** | `4` | | The maximum number of frequent rows to show. `0` will disable frequent category |
 | **navPosition** | `top` | `top`, `bottom`, `none` | The position of the navigation bar |
-| **noCountryFlags** | `false` | | Whether to show country flags or not. If not provided, tbhis is handled automatically (Windows doesn’t support country flags) |
+| **noCountryFlags** | `false` | | Whether to show country flags or not. If not provided, this is handled automatically (Windows doesn’t support country flags) |
 | **noResultsEmoji** | `cry` | | The id of the emoji to use for the no results emoji |
 | **perLine** | `9` | | The number of emojis to show per line |
 | **previewEmoji** | `point_up` | | The id of the emoji to use for the preview when not hovering any emoji. `point_up` when preview position is bottom and `point_down` when preview position is top. |
