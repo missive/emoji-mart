@@ -40,6 +40,7 @@ export default {
       'pl',
       'pt',
       'ru',
+      'tr',
       'uk',
       'zh',
     ],
