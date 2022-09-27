@@ -115,6 +115,7 @@ function App() {
 | **skinTonePosition** | `preview` | `preview`, `search`, `none` | The position of the skin tone selector |
 | **theme** | `auto` | `auto`, `light`, `dark` | The color theme of the picker |
 | **getSpritesheetURL** | `null` | | A function that returns the URL of the spritesheet to use for the picker. It should be compatible with the data provided. |
+| **searchInputRef** | `null` | | Optional ref to pass to the search input |
 
 ### Custom emojis
 You can use custom emojis by providing an array of categories and their emojis. Emojis also support multiple skin tones and can be GIFs or SVGs.
