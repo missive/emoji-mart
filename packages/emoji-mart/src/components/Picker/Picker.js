@@ -965,6 +965,7 @@ export default class Picker extends Component {
         <button
           type="button"
           ref={this.refs.skinToneButton}
+          part="skin-tone-button"
           class="skin-tone-button flex flex-auto flex-center flex-middle"
           aria-selected={this.state.showSkins ? '' : undefined}
           aria-label={I18n.skins.choose}
