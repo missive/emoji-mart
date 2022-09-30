@@ -86,6 +86,8 @@ export default {
     value: 'auto',
     choices: ['auto', 'light', 'dark'],
   },
+  skinToneEmoji: null,
+  skinToneLabel: null,
 
   // Data
   categories: null,

@@ -112,6 +112,8 @@ function App() {
 | **searchPosition** | `sticky` | `sticky`, `static`, `none` | The position of the search input |
 | **set** | `native` | `native`, `apple`, `facebook`, `google`, `twitter` | The set of emojis to use for the picker. `native` being the most performant, others rely on spritesheets. |
 | **skin** | `1` | `1`, `2`, `3`, `4`, `5`, `6` | The emojis skin tone |
+| **skinToneEmoji** | `null` | ID of emoji to render for skin tone chooser button |
+| **skinToneLabel** | `null` | Optional label to render next to skin tone chooser button |
 | **skinTonePosition** | `preview` | `preview`, `search`, `none` | The position of the skin tone selector |
 | **theme** | `auto` | `auto`, `light`, `dark` | The color theme of the picker |
 | **getSpritesheetURL** | `null` | | A function that returns the URL of the spritesheet to use for the picker. It should be compatible with the data provided. |

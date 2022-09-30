@@ -926,6 +926,23 @@ export default class Picker extends Component {
     )
   }
 
+  renderSkinToneIcon(skin) {
+    if (this.props.skinToneEmoji) {
+      return (
+        <Emoji
+          id={this.props.skinToneEmoji}
+          set={this.props.set}
+          size={this.props.emojiSize}
+          skin={skin}
+          spritesheet={true}
+          getSpritesheetURL={this.props.getSpritesheetURL}
+        />
+      )
+    }
+
+    return <span class={`skin-tone skin-tone-${skin}`}></span>
+  }
+
   renderSkinToneButton() {
     if (this.props.skinTonePosition == 'none') {
       return null
@@ -936,10 +953,15 @@ export default class Picker extends Component {
         class="flex flex-auto flex-center flex-middle"
         style={{
           position: 'relative',
-          width: this.props.emojiButtonSize,
-          height: this.props.emojiButtonSize,
+          width: this.props.skinToneLabel ? 'auto' : this.props.emojiButtonSize,
+          height: this.props.skinToneLabel
+            ? 'auto'
+            : this.props.emojiButtonSize,
         }}
       >
+        {this.props.skinToneLabel && (
+          <span class="skin-tone-button-label">{this.props.skinToneLabel}</span>
+        )}
         <button
           type="button"
           ref={this.refs.skinToneButton}
@@ -953,7 +975,7 @@ export default class Picker extends Component {
             height: this.props.emojiSize,
           }}
         >
-          <span class={`skin-tone skin-tone-${this.state.skin}`}></span>
+          {this.renderSkinToneIcon(this.state.skin)}
         </button>
       </div>
     )
@@ -1037,7 +1059,7 @@ export default class Picker extends Component {
                 onMouseLeave={() => this.handleSkinMouseOver()}
                 class="option flex flex-grow flex-middle"
               >
-                <span class={`skin-tone skin-tone-${skin}`}></span>
+                {this.renderSkinToneIcon(this.state.skin)}
                 <span class="margin-small-lr">{I18n.skins[skin]}</span>
               </button>
             </div>
