@@ -334,7 +334,8 @@ export default class Picker extends Component {
   }
 
   handleSearchInput = async () => {
-    const input = this.props.searchInputRef?.current ?? this.refs.searchInput.current
+    const input =
+      this.props.searchInputRef?.current ?? this.refs.searchInput.current
     if (!input) return
 
     const { value } = input
@@ -418,7 +419,8 @@ export default class Picker extends Component {
   }
 
   clearSearch = () => {
-    const input = this.props.searchInputRef?.current ?? this.refs.searchInput.current
+    const input =
+      this.props.searchInputRef?.current ?? this.refs.searchInput.current
     if (!input) return
 
     input.value = ''
@@ -428,7 +430,8 @@ export default class Picker extends Component {
   }
 
   unfocusSearch() {
-    const input = this.props.searchInputRef?.current ?? this.refs.searchInput.current
+    const input =
+      this.props.searchInputRef?.current ?? this.refs.searchInput.current
     if (!input) return
 
     input.blur()
