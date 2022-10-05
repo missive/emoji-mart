@@ -1,6 +1,34 @@
 import { Data } from '../../config'
 import { SearchIndex } from '../../helpers'
 
+const getImageSrc = (props, emojiSkin) => {
+  if (props.set === 'native' || props.spritesheet) {
+    return undefined
+  }
+
+  if (typeof props.getImageURL === 'function') {
+    return props.getImageURL(props.set, emojiSkin.unified)
+  }
+
+  if (typeof props.imageURL === 'string') {
+    return props.imageURL
+  }
+
+  return `https://cdn.jsdelivr.net/npm/emoji-datasource-${props.set}@14.0.0/img/${props.set}/64/${emojiSkin.unified}.png`
+}
+
+const getSpritesheetSrc = (props) => {
+  if (typeof props.getSpritesheetURL === 'function') {
+    return props.getSpritesheetURL(props.set)
+  }
+
+  if (typeof props.spritesheetURL === 'string') {
+    return props.spritesheetURL
+  }
+
+  return `https://cdn.jsdelivr.net/npm/emoji-datasource-${props.set}@14.0.0/img/${props.set}/sheets-256/64.png`
+}
+
 export default function Emoji(props) {
   let { id, skin, emoji } = props
 
@@ -21,18 +49,8 @@ export default function Emoji(props) {
 
   const emojiSkin = emoji.skins[skin - 1] || emoji.skins[0]
 
-  const imageSrc =
-    emojiSkin.src ||
-    (props.set != 'native' && !props.spritesheet
-      ? typeof props.getImageURL === 'function'
-        ? props.getImageURL(props.set, emojiSkin.unified)
-        : `https://cdn.jsdelivr.net/npm/emoji-datasource-${props.set}@14.0.0/img/${props.set}/64/${emojiSkin.unified}.png`
-      : undefined)
-
-  const spritesheetSrc =
-    typeof props.getSpritesheetURL === 'function'
-      ? props.getSpritesheetURL(props.set)
-      : `https://cdn.jsdelivr.net/npm/emoji-datasource-${props.set}@14.0.0/img/${props.set}/sheets-256/64.png`
+  const imageSrc = getImageSrc(props, emojiSkin)
+  const spritesheetSrc = getSpritesheetSrc(props)
 
   return (
     <span class="emoji-mart-emoji" data-emoji-set={props.set}>
