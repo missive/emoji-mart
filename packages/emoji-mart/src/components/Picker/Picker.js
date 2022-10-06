@@ -265,12 +265,6 @@ export default class Picker extends Component {
       }
 
       const ratios = [...visibleCategories]
-
-      const lastCategory = ratios[ratios.length - 1]
-      if (lastCategory[1] == 1) {
-        return setFocusedCategory(lastCategory[0])
-      }
-
       for (const [id, ratio] of ratios) {
         if (ratio) {
           setFocusedCategory(id)
@@ -863,6 +857,7 @@ export default class Picker extends Component {
         style={{
           visibility: hidden ? 'hidden' : undefined,
           display: hidden ? 'none' : undefined,
+          height: '100%',
         }}
       >
         {categories.map((category) => {
@@ -1069,13 +1064,12 @@ export default class Picker extends Component {
           <div
             style={{
               width: this.props.perLine * this.props.emojiButtonSize,
+              height: '100%',
             }}
           >
             {this.props.searchPosition == 'static' && this.renderSearch()}
             {this.renderSearchResults()}
             {this.renderCategories()}
-
-            <div class="spacer"></div>
           </div>
         </div>
 
