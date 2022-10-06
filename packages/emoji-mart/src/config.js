@@ -75,6 +75,8 @@ async function _init(props) {
       emoji.aliases || (emoji.aliases = [])
       emoji.aliases.push(alias)
     }
+
+    Data.originalCategories = Data.categories
   } else {
     Data.categories = Data.categories.filter((c) => {
       const isCustom = !!c.name
@@ -116,7 +118,7 @@ async function _init(props) {
   }
 
   if (props.categories) {
-    Data.categories = Data.categories
+    Data.categories = Data.originalCategories
       .filter((c) => {
         return props.categories.indexOf(c.id) != -1
       })
