@@ -2,6 +2,10 @@ import { Data } from '../../config'
 import { SearchIndex } from '../../helpers'
 
 const getImageSrc = (props, emojiSkin) => {
+  if (emojiSkin.src) {
+    return emojiSkin.src;
+  }
+
   if (props.set === 'native' || props.spritesheet) {
     return undefined
   }
