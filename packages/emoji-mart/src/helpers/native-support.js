@@ -45,7 +45,9 @@ const isEmojiSupported = (() => {
   let ctx = null
   try {
     if (!navigator.userAgent.includes('jsdom')) {
-      ctx = document.createElement('canvas').getContext('2d')
+      ctx = document
+        .createElement('canvas')
+        .getContext('2d', { willReadFrequently: true })
     }
   } catch {}
 
