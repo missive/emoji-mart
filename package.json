@@ -11,7 +11,7 @@
     "build:data": "yarn workspace @emoji-mart/data build",
     "build:react": "yarn workspace @emoji-mart/react build",
     "build:website": "yarn workspace @emoji-mart/website build",
-    "check:types": "yarn workspace emoji-mart check:types",
+    "check:types": "tsc",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "test": "jest"

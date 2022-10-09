@@ -10,8 +10,8 @@
     "isolatedModules": true,
     "strict": false,
     "skipLibCheck": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "noEmit": true
   },
-  "include": ["src"],
   "exclude": ["node_modules", "dist"]
 }

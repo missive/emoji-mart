@@ -36,7 +36,6 @@
   ],
   "scripts": {
     "build": "parcel build --no-autoinstall",
-    "check:types": "tsc --noEmit",
     "prepublishOnly": "yarn build"
   },
   "devDependencies": {
