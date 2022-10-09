@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    "target": "es2020",
     "module": "commonjs",
     "allowJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "experimentalDecorators": true,
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "isolatedModules": true,
@@ -13,6 +12,6 @@
     "skipLibCheck": true,
     "resolveJsonModule": true
   },
-  "include": ["src/**/*.ts", "src/**/*.scss"],
+  "include": ["src"],
   "exclude": ["node_modules", "dist"]
 }
