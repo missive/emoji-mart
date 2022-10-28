@@ -45,4 +45,12 @@ export default class HTMLElement extends WindowHTMLElement {
       this.component.forceUpdate()
     }
   }
+
+  disconnectedCallback() {
+    this.disconnected = true
+
+    if (this.component && this.component.unregister) {
+      this.component.unregister()
+    }
+  }
 }

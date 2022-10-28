@@ -21,13 +21,9 @@ export default class PickerElement extends ShadowElement {
     }
 
     await init(props)
-    render(<Picker {...props} />, this.shadowRoot)
-  }
+    if (this.disconnected) return
 
-  disconnectedCallback() {
-    if (this.component) {
-      this.component.unregister()
-    }
+    render(<Picker {...props} />, this.shadowRoot)
   }
 }
 

@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { Component, createRef } from 'preact'
 
-import { deepEqual, sleep } from '../../utils'
+import { deepEqual, sleep, getEmojiData } from '../../utils'
 import { Data, I18n, init } from '../../config'
 import { SearchIndex, Store, FrequentlyUsed } from '../../helpers'
 import Icons from '../../icons'
@@ -73,31 +73,46 @@ export default class Picker extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let initalState = null
+    this.nextState || (this.nextState = {})
 
     for (const k in nextProps) {
-      this.props[k] = nextProps[k]
-
-      if (k === 'custom' || k === 'categories') {
-        this.reset()
-      } else if (k in this.state) {
-        initalState || (initalState = this.getInitialState())
-        this.setState({ [k]: initalState[k] })
-      }
+      this.nextState[k] = nextProps[k]
     }
+
+    clearTimeout(this.nextStateTimer)
+    this.nextStateTimer = setTimeout(() => {
+      let requiresGridReset = false
+
+      for (const k in this.nextState) {
+        this.props[k] = this.nextState[k]
+
+        if (k === 'custom' || k === 'categories') {
+          requiresGridReset = true
+        }
+      }
+
+      delete this.nextState
+      const nextState = this.getInitialState()
+
+      if (requiresGridReset) {
+        return this.reset(nextState)
+      }
+
+      this.setState(nextState)
+    })
   }
 
   componentWillUnmount() {
     this.unregister()
   }
 
-  reset() {
-    init(this.props)
+  async reset(nextState = {}) {
+    await init(this.props)
 
     this.initGrid()
     this.unobserve()
 
-    this.forceUpdate(() => {
+    this.setState(nextState, () => {
       this.observeCategories()
       this.observeRows()
     })
@@ -251,12 +266,6 @@ export default class Picker extends Component {
       }
 
       const ratios = [...visibleCategories]
-
-      const lastCategory = ratios[ratios.length - 1]
-      if (lastCategory[1] == 1) {
-        return setFocusedCategory(lastCategory[0])
-      }
-
       for (const [id, ratio] of ratios) {
         if (ratio) {
           setFocusedCategory(id)
@@ -572,27 +581,7 @@ export default class Picker extends Component {
     }
 
     if (emoji) {
-      const skin = emoji.skins[this.state.skin - 1] || emoji.skins[0]
-      const emojiData = {
-        id: emoji.id,
-        name: emoji.name,
-        native: skin.native,
-        unified: skin.unified,
-        keywords: emoji.keywords,
-        shortcodes: skin.shortcodes || emoji.shortcodes,
-      }
-
-      if (skin.src) {
-        emojiData.src = skin.src
-      }
-
-      if (emoji.aliases && emoji.aliases.length) {
-        emojiData.aliases = emoji.aliases
-      }
-
-      if (emoji.emoticons && emoji.emoticons.length) {
-        emojiData.emoticons = emoji.emoticons
-      }
+      const emojiData = getEmojiData(emoji, { skinIndex: this.state.skin - 1 })
 
       if (this.props.maxFrequentRows) {
         FrequentlyUsed.add(emojiData, this.props)
@@ -869,6 +858,7 @@ export default class Picker extends Component {
         style={{
           visibility: hidden ? 'hidden' : undefined,
           display: hidden ? 'none' : undefined,
+          height: '100%',
         }}
       >
         {categories.map((category) => {
@@ -1075,13 +1065,12 @@ export default class Picker extends Component {
           <div
             style={{
               width: this.props.perLine * this.props.emojiButtonSize,
+              height: '100%',
             }}
           >
             {this.props.searchPosition == 'static' && this.renderSearch()}
             {this.renderSearchResults()}
             {this.renderCategories()}
-
-            <div class="spacer"></div>
           </div>
         </div>
 

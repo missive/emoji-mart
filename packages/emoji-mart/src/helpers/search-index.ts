@@ -20,11 +20,11 @@ function reset() {
   Pool = null
 }
 
-async function search(value, { maxResults } = {}) {
+async function search(value, { maxResults, caller } = {}) {
   if (!value || !value.trim().length) return null
   maxResults || (maxResults = 90)
 
-  await init()
+  await init(null, { caller: caller || 'SearchIndex.search' })
 
   const values = value
     .toLowerCase()

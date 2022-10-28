@@ -11,16 +11,25 @@ import {
 export let I18n = null
 export let Data = null
 
+const fetchCache = {}
 async function fetchJSON(src) {
+  if (fetchCache[src]) {
+    return fetchCache[src]
+  }
+
   const response = await fetch(src)
-  return await response.json()
+  const json = await response.json()
+
+  fetchCache[src] = json
+  return json
 }
 
 let promise: Promise<void> | null = null
 let initiated = false
 let initCallback = null
+let initialized = false
 
-export function init(options) {
+export function init(options, { caller } = {}) {
   promise ||
     (promise = new Promise((resolve) => {
       initCallback = resolve
@@ -28,12 +37,18 @@ export function init(options) {
 
   if (options) {
     _init(options)
+  } else if (caller && !initialized) {
+    console.warn(
+      `\`${caller}\` requires data to be initialized first. Promise will be pending until \`init\` is called.`,
+    )
   }
 
   return promise
 }
 
 async function _init(props) {
+  initialized = true
+
   let { emojiVersion, set, locale } = props
   emojiVersion || (emojiVersion = PickerProps.emojiVersion.value)
   set || (set = PickerProps.set.value)
@@ -62,6 +77,8 @@ async function _init(props) {
       emoji.aliases || (emoji.aliases = [])
       emoji.aliases.push(alias)
     }
+
+    Data.originalCategories = Data.categories
   } else {
     Data.categories = Data.categories.filter((c) => {
       const isCustom = !!c.name
@@ -71,15 +88,13 @@ async function _init(props) {
     })
   }
 
-  if (!I18n) {
-    I18n =
-      (typeof props.i18n === 'function' ? await props.i18n() : props.i18n) ||
-      (locale == 'en'
-        ? i18n_en
-        : await fetchJSON(
-            `https://cdn.jsdelivr.net/npm/@emoji-mart/data@latest/i18n/${locale}.json`,
-          ))
-  }
+  I18n =
+    (typeof props.i18n === 'function' ? await props.i18n() : props.i18n) ||
+    (locale == 'en'
+      ? i18n_en
+      : await fetchJSON(
+          `https://cdn.jsdelivr.net/npm/@emoji-mart/data@latest/i18n/${locale}.json`,
+        ))
 
   if (props.custom) {
     for (let i in props.custom) {
@@ -98,22 +113,14 @@ async function _init(props) {
 
       Data.categories.push(category)
 
-      const ids = []
       for (const emoji of category.emojis) {
-        if (ids.indexOf(emoji.id) > -1) {
-          continue
-        }
-
         Data.emojis[emoji.id] = emoji
-        ids.push(emoji.id)
       }
-
-      category.emojis = ids
     }
   }
 
   if (props.categories) {
-    Data.categories = Data.categories
+    Data.categories = Data.originalCategories
       .filter((c) => {
         return props.categories.indexOf(c.id) != -1
       })
@@ -139,7 +146,11 @@ async function _init(props) {
 
     if (category.id == 'frequent') {
       let { maxFrequentRows, perLine } = props
-      maxFrequentRows || (maxFrequentRows = PickerProps.maxFrequentRows.value)
+
+      maxFrequentRows =
+        maxFrequentRows >= 0
+          ? maxFrequentRows
+          : PickerProps.maxFrequentRows.value
       perLine || (perLine = PickerProps.perLine.value)
 
       category.emojis = FrequentlyUsed.get({ maxFrequentRows, perLine })
@@ -160,7 +171,9 @@ async function _init(props) {
 
     let emojiIndex = category.emojis.length
     while (emojiIndex--) {
-      const emoji = Data.emojis[category.emojis[emojiIndex]]
+      const emojiId = category.emojis[emojiIndex]
+      const emoji = emojiId.id ? emojiId : Data.emojis[emojiId]
+
       const ignore = () => {
         category.emojis.splice(emojiIndex, 1)
       }

@@ -1,6 +1,6 @@
 {
   "name": "emoji-mart",
-  "version": "5.2.1",
+  "version": "5.2.2",
   "description": "Emoji picker for the web",
   "license": "MIT",
   "homepage": "https://missiveapp.com/open/emoji-mart",
@@ -44,7 +44,6 @@
     "@parcel/transformer-sass": "2.5.0",
     "@parcel/transformer-typescript-types": "2.5.0",
     "autoprefixer": "10.4.4",
-    "is-emoji-supported": "0.0.5",
     "parcel": "2.5.0",
     "postcss": "8.4.13",
     "preact": "10.6.4",

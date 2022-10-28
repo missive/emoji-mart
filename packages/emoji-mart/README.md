@@ -11,6 +11,7 @@
 - [🏪 Picker](#-picker)
 - [🙃 Emoji component](#-emoji-component)
 - [🕵️‍♀️ Headless search](#%EF%B8%8F%EF%B8%8F-headless-search)
+- [🔬 Get emoji data from native](#-get-emoji-data-from-native)
 - [🗺 Internationalization](#-internationalization)
 - [📚 Examples](#-examples)
 - [🤓 Built for modern browsers](#-built-for-modern-browsers)
@@ -25,7 +26,7 @@ Data required for the picker to work has been completely decoupled from the libr
 - **Cons:** Slower initial page load (bigger file to load)
 
 ```sh
-yarn install @emoji-mart/data
+yarn add @emoji-mart/data
 ```
 
 ```js
@@ -214,7 +215,7 @@ Then you can use the emoji component in your HTML / JSX.
 | **skin** | `1` | The emoji skin tone: `1`, `2`, `3`, `4`, `5`, `6` |
 
 ## 🕵️‍♀️ Headless search
-You can search without the Picker. Just like the emoji component, `data` needs to be initialized first in order to use the search index. It can also be used to return emoji data when providing a native emoji.
+You can search without the Picker. Just like the emoji component, `data` needs to be initialized first in order to use the search index.
 
 ```js
 import data from '@emoji-mart/data'
@@ -232,7 +233,28 @@ async function search(value) {
 }
 
 search('christmas') // => ['🎄', '🇨🇽', '🧑‍🎄', '🔔', '🤶', '🎁', '☃️', '❄️', '🎅', '⛄']
-search('🤞🏼') // => ['🤞']
+```
+
+## 🔬 Get emoji data from native
+You can get emoji data from a native emoji. This is useful if you want to get the emoji ID from a native emoji. Just like the emoji component, `data` needs to be initialized first in order to retrieve the emoji data.
+
+```js
+import data from '@emoji-mart/data'
+import { init, getEmojiDataFromNative } from 'emoji-mart'
+
+init({ data })
+
+getEmojiDataFromNative('🤞🏿').then(console.log)
+/* {
+  aliases: ['hand_with_index_and_middle_fingers_crossed'],
+  id: 'crossed_fingers',
+  keywords: ['hand', 'with', 'index', 'and', 'middle', 'good', 'lucky'],
+  name: 'Crossed Fingers',
+  native: '🤞🏿',
+  shortcodes: ':crossed_fingers::skin-tone-6:',
+  skin: 6,
+  unified: '1f91e-1f3ff',
+} */
 ```
 
 ## 🗺 Internationalization
