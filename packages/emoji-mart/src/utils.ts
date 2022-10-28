@@ -15,7 +15,7 @@ export async function sleep(frames = 1) {
   }
 }
 
-export function getEmojiData(emoji, { skinIndex } = {}) {
+export function getEmojiData(emoji, { skinIndex = 0 } = {}) {
   const skin =
     emoji.skins[skinIndex] ||
     (() => {
@@ -23,7 +23,7 @@ export function getEmojiData(emoji, { skinIndex } = {}) {
       return emoji.skins[skinIndex]
     })()
 
-  const emojiData = {
+  const emojiData: any = {
     id: emoji.id,
     name: emoji.name,
     native: skin.native,
