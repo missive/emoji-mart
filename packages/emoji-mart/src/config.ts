@@ -1,3 +1,4 @@
+// @ts-nocheck
 import i18n_en from '@emoji-mart/data/i18n/en.json'
 import PickerProps from './components/Picker/PickerProps'
 import {
@@ -23,7 +24,8 @@ async function fetchJSON(src) {
   return json
 }
 
-let promise = null
+let promise: Promise<void> | null = null
+let initiated = false
 let initCallback = null
 let initialized = false
 

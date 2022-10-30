@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Store } from '../helpers'
 
 const DEFAULTS = [
@@ -18,9 +19,9 @@ const DEFAULTS = [
   'heart',
 ]
 
-let Index = null
+let Index: any | null = null
 
-function add(emoji) {
+function add(emoji: { id: string }) {
   Index || (Index = Store.get('frequently') || {})
 
   const emojiId = emoji.id || emoji

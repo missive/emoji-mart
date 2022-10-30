@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Component, createRef } from 'preact'
 
 import { deepEqual, sleep, getEmojiData } from '../../utils'

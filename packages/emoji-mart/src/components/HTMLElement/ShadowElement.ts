@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { HTMLElement } from '.'
 
 export default class ShadowElement extends HTMLElement {
