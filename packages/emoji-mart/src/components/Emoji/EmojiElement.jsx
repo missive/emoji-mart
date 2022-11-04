@@ -20,6 +20,8 @@ export default class EmojiElement extends HTMLElement {
     }
 
     await init()
+    if (this.disconnected) return
+
     render(<Emoji {...props} />, this)
   }
 }

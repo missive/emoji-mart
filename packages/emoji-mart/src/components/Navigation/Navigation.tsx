@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { PureComponent } from 'preact/compat'
 import { Data, I18n } from '../../config'
 import Icons from '../../icons'

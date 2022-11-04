@@ -1,3 +1,4 @@
+// @ts-nocheck
 import i18n_en from '@emoji-mart/data/i18n/en.json'
 import PickerProps from './components/Picker/PickerProps'
 import {
@@ -23,7 +24,8 @@ async function fetchJSON(src) {
   return json
 }
 
-let promise = null
+let promise: Promise<void> | null = null
+let initiated = false
 let initCallback = null
 let initialized = false
 
@@ -75,6 +77,8 @@ async function _init(props) {
       emoji.aliases || (emoji.aliases = [])
       emoji.aliases.push(alias)
     }
+
+    Data.originalCategories = Data.categories
   } else {
     Data.categories = Data.categories.filter((c) => {
       const isCustom = !!c.name
@@ -116,7 +120,7 @@ async function _init(props) {
   }
 
   if (props.categories) {
-    Data.categories = Data.categories
+    Data.categories = Data.originalCategories
       .filter((c) => {
         return props.categories.indexOf(c.id) != -1
       })
@@ -142,7 +146,11 @@ async function _init(props) {
 
     if (category.id == 'frequent') {
       let { maxFrequentRows, perLine } = props
-      maxFrequentRows || (maxFrequentRows = PickerProps.maxFrequentRows.value)
+
+      maxFrequentRows =
+        maxFrequentRows >= 0
+          ? maxFrequentRows
+          : PickerProps.maxFrequentRows.value
       perLine || (perLine = PickerProps.perLine.value)
 
       category.emojis = FrequentlyUsed.get({ maxFrequentRows, perLine })

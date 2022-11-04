@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { getProp } from '../../config'
 
 const WindowHTMLElement = window?.HTMLElement ?? Object
@@ -41,6 +42,14 @@ export default class HTMLElement extends WindowHTMLElement {
     } else {
       this.component.props[attr] = value
       this.component.forceUpdate()
+    }
+  }
+
+  disconnectedCallback() {
+    this.disconnected = true
+
+    if (this.component && this.component.unregister) {
+      this.component.unregister()
     }
   }
 }
