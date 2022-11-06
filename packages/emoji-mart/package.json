@@ -9,7 +9,8 @@
     "url": "https://github.com/missive/emoji-mart",
     "directory": "packages/emoji-mart"
   },
-  "source": "src/index.js",
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
   "main": "dist/main.js",
   "module": "dist/module.js",
   "global": "dist/browser.js",
@@ -38,17 +39,14 @@
     "prepublishOnly": "yarn build"
   },
   "devDependencies": {
-    "@parcel/transformer-inline-string": "2.3.2",
-    "@parcel/transformer-sass": "2.3.2",
-    "autoprefixer": "10.4.4",
-    "parcel": "2.3.2",
     "preact": "10.6.4"
   },
   "alias": {
     "react": "preact/compat",
     "react-dom/test-utils": "preact/test-utils",
     "react-dom": "preact/compat",
-    "react/jsx-runtime": "preact/jsx-runtime"
+    "react/jsx-runtime": "preact/jsx-runtime",
+    "preact/jsx-dev-runtime": "preact/jsx-runtime"
   },
   "files": [
     "/dist",

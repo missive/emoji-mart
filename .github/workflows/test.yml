@@ -27,6 +27,7 @@ jobs:
 
       - run: yarn install
       - run: yarn prettier
+      - run: yarn check:types
 
   tests:
     runs-on: ubuntu-latest

@@ -1,0 +1,29 @@
+{
+  "search": "Arama",
+  "search_no_results_1": "Oh hayır!",
+  "search_no_results_2": "Bu emoji bulunamadı",
+  "pick": "Bir emoji seçin…",
+  "add_custom": "Özel emoji ekle",
+  "categories": {
+    "activity": "Aktivite",
+    "custom": "Özel",
+    "flags": "Bayraklar",
+    "foods": "Yiyecek & İçecek",
+    "frequent": "Sık kullanılanlar",
+    "nature": "Hayvanlar & Doğa",
+    "objects": "Nesneler",
+    "people": "Suratlar & İnsanlar",
+    "places": "Seyahat & Yerler",
+    "search": "Arama sonuçları",
+    "symbols": "Semboller"
+  },
+  "skins": {
+    "choose": "Varsayılan cilt tonunu seçiniz",
+    "1": "Normal",
+    "2": "Açık",
+    "3": "Orta Açık",
+    "4": "Orta",
+    "5": "Orta Koyu",
+    "6": "Koyu"
+  }
+}

@@ -27,6 +27,7 @@ export default {
     choices: [
       'en',
       'ar',
+      'be',
       'cs',
       'de',
       'es',
@@ -41,6 +42,7 @@ export default {
       'pt',
       'ru',
       'sa',
+      'tr',
       'uk',
       'zh',
     ],

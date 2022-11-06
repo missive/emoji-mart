@@ -318,6 +318,10 @@ button {
 }
 
 .category {
+  &:last-child {
+    min-height: calc(100% + 1px);
+  }
+
   button {
     position: relative;
     font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
