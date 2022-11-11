@@ -1,7 +1,10 @@
 // @ts-nocheck
 import { getProp } from '../../config'
 
-const WindowHTMLElement = window?.HTMLElement ?? Object
+const WindowHTMLElement =
+  typeof window !== 'undefined' && window.HTMLElement
+    ? window.HTMLElement
+    : Object
 
 export default class HTMLElement extends WindowHTMLElement {
   static get observedAttributes() {

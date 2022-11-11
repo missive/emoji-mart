@@ -395,7 +395,7 @@ export default class Picker extends Component {
 
       case 'Enter':
         e.preventDefault()
-        this.handleEmojiClick({ pos: this.state.pos })
+        this.handleEmojiClick({ e, pos: this.state.pos })
         break
 
       case 'Escape':
@@ -573,7 +573,7 @@ export default class Picker extends Component {
     this.setState({ pos: pos || [-1, -1], keyboard: false })
   }
 
-  handleEmojiClick({ emoji, pos }) {
+  handleEmojiClick({ e, emoji, pos }) {
     if (!this.props.onEmojiSelect) return
 
     if (!emoji && pos) {
@@ -587,7 +587,7 @@ export default class Picker extends Component {
         FrequentlyUsed.add(emojiData, this.props)
       }
 
-      this.props.onEmojiSelect(emojiData)
+      this.props.onEmojiSelect(emojiData, e)
     }
   }
 
@@ -736,7 +736,7 @@ export default class Picker extends Component {
           type="button"
           class="flex flex-center flex-middle"
           tabindex="-1"
-          onClick={() => this.handleEmojiClick({ emoji })}
+          onClick={(e) => this.handleEmojiClick({ e, emoji })}
           onMouseEnter={() => this.handleEmojiOver(pos)}
           onMouseLeave={() => this.handleEmojiOver()}
           style={{
