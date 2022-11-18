@@ -745,97 +745,96 @@
     "@lezer/lr" "^0.15.4"
     json5 "^2.2.1"
 
-"@parcel/bundler-default@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/bundler-default/-/bundler-default-2.8.0.tgz#ddb10283bf2ea7cb01161c68bbaf9bd79992480f"
-  integrity sha512-OvDDhxX4LwfGe7lYVMbJMzqNcDk8ydOqNw0Hra9WPgl0m5gju/eVIbDvot3JXp5F96FmV36uCxdODJhKTNoAzQ==
+"@parcel/bundler-default@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/bundler-default/-/bundler-default-2.6.2.tgz#bfa1be22af985ba2d6dbf1890a36ad4553f819d4"
+  integrity sha512-XIa3had/MIaTGgRFkHApXwytYs77k4geaNcmlb6nzmAABcYjW1CLYh83Zt0AbzLFsDT9ZcRY3u2UjhNf6efSaw==
   dependencies:
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/graph" "2.8.0"
-    "@parcel/hash" "2.8.0"
-    "@parcel/plugin" "2.8.0"
-    "@parcel/utils" "2.8.0"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/hash" "2.6.2"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/utils" "2.6.2"
     nullthrows "^1.1.1"
 
-"@parcel/cache@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/cache/-/cache-2.8.0.tgz#8e4763aaba8914b04db273bcd889a6ba3daf0ee5"
-  integrity sha512-k945hrafMDR2wyCKyZYgwypeLLuZWce6FzhgunI4taBUeVnNCcpFAWzbfOVQ39SqZTGDqG3MNT+VuehssHXxyg==
+"@parcel/cache@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/cache/-/cache-2.6.2.tgz#66163c8f8ac4aac865c4b9eb2197b0d9e6f91a74"
+  integrity sha512-hhJ6AsEGybeQZd9c/GYqfcKTgZKQXu3Xih6TlnP3gdR3KZoJOnb40ovHD1yYg4COvfcXThKP1cVJ18J6rcv3IA==
   dependencies:
-    "@parcel/fs" "2.8.0"
-    "@parcel/logger" "2.8.0"
-    "@parcel/utils" "2.8.0"
+    "@parcel/fs" "2.6.2"
+    "@parcel/logger" "2.6.2"
+    "@parcel/utils" "2.6.2"
     lmdb "2.5.2"
 
-"@parcel/codeframe@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/codeframe/-/codeframe-2.8.0.tgz#b7c9297d14e9ee6bd96b8725126be59cf77fd6e5"
-  integrity sha512-821d+KVcpEvJNMj9WMC39xXZK6zvRS/HUjQag2f3DkcRcZwk1uXJZdW6p1EB7C3e4e/0KSK3NTSVGEvbOSR+9w==
+"@parcel/codeframe@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/codeframe/-/codeframe-2.6.2.tgz#01a7ae97fdb66457e6704c87cc6031085e539e6e"
+  integrity sha512-oFlHr6HCaYYsB4SHkU+gn9DKtbzvv3/4NdwMX0/6NAKyYVI7inEsXyPGw2Bbd2ZCFatW9QJZUETF0etvh5AEfQ==
   dependencies:
     chalk "^4.1.0"
 
-"@parcel/compressor-raw@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/compressor-raw/-/compressor-raw-2.8.0.tgz#fbd267465c5425b65ce1fe437ae1ec69c5ace34c"
-  integrity sha512-tM49t0gDQnwJbrDCeoCn9LRc8inZ/TSPQTttJTfcmFHHFqEllI0ZDVG0AiQw5NOMQbBLYiKun1adXn8pkcPLEA==
+"@parcel/compressor-raw@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/compressor-raw/-/compressor-raw-2.6.2.tgz#6fec2654c7767a2fef042a37246549d41ee8a586"
+  integrity sha512-P3c8jjV5HVs+fNDjhvq7PtHXNm687nit1iwTS5VAt+ScXKhKBhoIJ56q+9opcw0jnXVjAAgZqcRZ50oAJBGdKw==
   dependencies:
-    "@parcel/plugin" "2.8.0"
+    "@parcel/plugin" "2.6.2"
 
-"@parcel/config-default@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/config-default/-/config-default-2.8.0.tgz#15482a8ef411d353a59af16fdfe0894761b12a56"
-  integrity sha512-j9g50QNSLjuNpY0TP01EgGJPxWNes9d+e8+N07Z5Wv0u+UUnJ2uIOpo7PVn7ullOGhm1f9lP4KsJenu5gWb+cg==
+"@parcel/config-default@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/config-default/-/config-default-2.6.2.tgz#0a1af0ce9a431771851c05fc821da13c8d878b7e"
+  integrity sha512-kuZFY0rhaioCRX2LqxaMM2ylui6ms/nmdVxuceP4/SAWi/9duc+y1lG2a1zGNShbc6OEgpdQr/W/jxdYM7NJDw==
   dependencies:
-    "@parcel/bundler-default" "2.8.0"
-    "@parcel/compressor-raw" "2.8.0"
-    "@parcel/namer-default" "2.8.0"
-    "@parcel/optimizer-css" "2.8.0"
-    "@parcel/optimizer-htmlnano" "2.8.0"
-    "@parcel/optimizer-image" "2.8.0"
-    "@parcel/optimizer-svgo" "2.8.0"
-    "@parcel/optimizer-terser" "2.8.0"
-    "@parcel/packager-css" "2.8.0"
-    "@parcel/packager-html" "2.8.0"
-    "@parcel/packager-js" "2.8.0"
-    "@parcel/packager-raw" "2.8.0"
-    "@parcel/packager-svg" "2.8.0"
-    "@parcel/reporter-dev-server" "2.8.0"
-    "@parcel/resolver-default" "2.8.0"
-    "@parcel/runtime-browser-hmr" "2.8.0"
-    "@parcel/runtime-js" "2.8.0"
-    "@parcel/runtime-react-refresh" "2.8.0"
-    "@parcel/runtime-service-worker" "2.8.0"
-    "@parcel/transformer-babel" "2.8.0"
-    "@parcel/transformer-css" "2.8.0"
-    "@parcel/transformer-html" "2.8.0"
-    "@parcel/transformer-image" "2.8.0"
-    "@parcel/transformer-js" "2.8.0"
-    "@parcel/transformer-json" "2.8.0"
-    "@parcel/transformer-postcss" "2.8.0"
-    "@parcel/transformer-posthtml" "2.8.0"
-    "@parcel/transformer-raw" "2.8.0"
-    "@parcel/transformer-react-refresh-wrap" "2.8.0"
-    "@parcel/transformer-svg" "2.8.0"
+    "@parcel/bundler-default" "2.6.2"
+    "@parcel/compressor-raw" "2.6.2"
+    "@parcel/namer-default" "2.6.2"
+    "@parcel/optimizer-css" "2.6.2"
+    "@parcel/optimizer-htmlnano" "2.6.2"
+    "@parcel/optimizer-image" "2.6.2"
+    "@parcel/optimizer-svgo" "2.6.2"
+    "@parcel/optimizer-terser" "2.6.2"
+    "@parcel/packager-css" "2.6.2"
+    "@parcel/packager-html" "2.6.2"
+    "@parcel/packager-js" "2.6.2"
+    "@parcel/packager-raw" "2.6.2"
+    "@parcel/packager-svg" "2.6.2"
+    "@parcel/reporter-dev-server" "2.6.2"
+    "@parcel/resolver-default" "2.6.2"
+    "@parcel/runtime-browser-hmr" "2.6.2"
+    "@parcel/runtime-js" "2.6.2"
+    "@parcel/runtime-react-refresh" "2.6.2"
+    "@parcel/runtime-service-worker" "2.6.2"
+    "@parcel/transformer-babel" "2.6.2"
+    "@parcel/transformer-css" "2.6.2"
+    "@parcel/transformer-html" "2.6.2"
+    "@parcel/transformer-image" "2.6.2"
+    "@parcel/transformer-js" "2.6.2"
+    "@parcel/transformer-json" "2.6.2"
+    "@parcel/transformer-postcss" "2.6.2"
+    "@parcel/transformer-posthtml" "2.6.2"
+    "@parcel/transformer-raw" "2.6.2"
+    "@parcel/transformer-react-refresh-wrap" "2.6.2"
+    "@parcel/transformer-svg" "2.6.2"
 
-"@parcel/core@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/core/-/core-2.8.0.tgz#fe97ea2d0eb4504f149ecc7fbb0dcfe2d66a20b9"
-  integrity sha512-udzbe3jjbpfKlRE9pdlROAa+lvAjS1L/AzN6r2j1y/Fsn7ze/NfvnCFw6o2YNIrXg002aQ7M1St/x1fdGfmVKA==
+"@parcel/core@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/core/-/core-2.6.2.tgz#c46d26e2f47967d80f08484f20d31fee7b90e888"
+  integrity sha512-JlKS3Ux0ngmdooSBbzQLShHJdsapF9E7TGMo1hFaHRquZip/DaqzvysYrgMJlDuCoLArciq5ei7ZKzGeK9zexA==
   dependencies:
     "@mischnic/json-sourcemap" "^0.1.0"
-    "@parcel/cache" "2.8.0"
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/events" "2.8.0"
-    "@parcel/fs" "2.8.0"
-    "@parcel/graph" "2.8.0"
-    "@parcel/hash" "2.8.0"
-    "@parcel/logger" "2.8.0"
-    "@parcel/package-manager" "2.8.0"
-    "@parcel/plugin" "2.8.0"
-    "@parcel/source-map" "^2.1.1"
-    "@parcel/types" "2.8.0"
-    "@parcel/utils" "2.8.0"
-    "@parcel/workers" "2.8.0"
+    "@parcel/cache" "2.6.2"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/events" "2.6.2"
+    "@parcel/fs" "2.6.2"
+    "@parcel/graph" "2.6.2"
+    "@parcel/hash" "2.6.2"
+    "@parcel/logger" "2.6.2"
+    "@parcel/package-manager" "2.6.2"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/source-map" "^2.0.0"
+    "@parcel/types" "2.6.2"
+    "@parcel/utils" "2.6.2"
+    "@parcel/workers" "2.6.2"
     abortcontroller-polyfill "^1.1.9"
     base-x "^3.0.8"
     browserslist "^4.6.6"
@@ -847,487 +846,493 @@
     nullthrows "^1.1.1"
     semver "^5.7.1"
 
-"@parcel/diagnostic@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/diagnostic/-/diagnostic-2.8.0.tgz#716b4230ca16e0cfa9e46235b95fbf5623d824be"
-  integrity sha512-ERnk0zDvm0jQUSj1M+2PLiwVC6nWrtuFEuye6VGuxRDcp9NHbz6gwApeEYxFkPsb3TQPhNjnXXm5nmAw1bpWWw==
+"@parcel/css@^1.10.1":
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/@parcel/css/-/css-1.14.0.tgz#233750a1e3648b3746f27c2d8f3fd85a2290e512"
+  integrity sha512-r5tJWe6NF6lesfPw1N3g7N7WUKpHqi2ONnw9wl5ccSGGIxkmgcPaPQxfvmhdjXvQnktSuIOR0HjQXVXu+/en/w==
+  dependencies:
+    lightningcss "^1.14.0"
+
+"@parcel/diagnostic@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/diagnostic/-/diagnostic-2.6.2.tgz#da3fca0d82bc012f49288c963024edd089ca9f41"
+  integrity sha512-3ODSBkKVihENU763z1/1DhGAWFhYWRxOCOShC72KXp+GFnSgGiBsxclu8NBa/N948Rzp8lqQI8U1nLcKkh0O/w==
   dependencies:
     "@mischnic/json-sourcemap" "^0.1.0"
     nullthrows "^1.1.1"
 
-"@parcel/events@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/events/-/events-2.8.0.tgz#c3130456432786bd4b71a98c5908a44f1935f6eb"
-  integrity sha512-xqSZYY3oONM4IZm9+vhyFqX+KFIl145veIczUikwGJlcJZQfAAw736syPx6ecpB+m1EVg3AlvJWy7Lmel4Ak+Q==
+"@parcel/events@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/events/-/events-2.6.2.tgz#97a1059d1eb93df8d3d426b6b150f829f70f543b"
+  integrity sha512-IaCjOeA5ercdFVi1EZOmUHhGfIysmCUgc2Th9hMugSFO0I3GzRsBcAdP6XPfWm+TV6sQ/qZRfdk/drUxoAupnw==
 
-"@parcel/fs-search@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/fs-search/-/fs-search-2.8.0.tgz#e9669681b618511df928215b60bf9c39ba206bc3"
-  integrity sha512-yo7/Y8DCFlhOlIBb5SsRDTkM+7g0DY9sK57iw3hn2z1tGoIiIRptrieImFYSizs7HfDwDY/PMLfORmUdoReDzQ==
+"@parcel/fs-search@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/fs-search/-/fs-search-2.6.2.tgz#6343a5da4f0753c96c004d6951897f83160c4d45"
+  integrity sha512-4STid1zqtGnmGjHD/2TG2g/zPDiCTtE3IAS24QYH3eiUAz2uoKGgEqd2tZbZ2yI96jtCuIhC1bzVu8Hbykls7w==
   dependencies:
     detect-libc "^1.0.3"
 
-"@parcel/fs@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/fs/-/fs-2.8.0.tgz#70915a9b81174b9ee7c793e1f0850b97ff060e4a"
-  integrity sha512-v3DbJlpl8v2/VRlZPw7cy+0myi0YfLblGZcwDvqIsWS35qyxD2rmtYV8u1BusonbgmJeaKiopSECmJkumt0jCw==
+"@parcel/fs@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/fs/-/fs-2.6.2.tgz#c3f4ab9f88df6c1416af7c2a7a31b68ced862a16"
+  integrity sha512-mIhqdF3tjgeoIGqW7Nc/xfM2ClID7o8livwUe5lpQEP+ZaIBiMigXs6ckv3WToCACK+3uylrSD2A/HmlhrxMqQ==
   dependencies:
-    "@parcel/fs-search" "2.8.0"
-    "@parcel/types" "2.8.0"
-    "@parcel/utils" "2.8.0"
-    "@parcel/watcher" "^2.0.7"
-    "@parcel/workers" "2.8.0"
+    "@parcel/fs-search" "2.6.2"
+    "@parcel/types" "2.6.2"
+    "@parcel/utils" "2.6.2"
+    "@parcel/watcher" "^2.0.0"
+    "@parcel/workers" "2.6.2"
 
-"@parcel/graph@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/graph/-/graph-2.8.0.tgz#39856a62e131285205f5e82a0d102106157b274e"
-  integrity sha512-JvAyvBpGmhZ30bi+hStQr52eu+InfJBoiN9Z/32byIWhXEl02EAOwfsPqAe+FGCsdgXnnCGg5F9ZCqwzZ9dwbw==
+"@parcel/graph@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/graph/-/graph-2.6.2.tgz#fe777666c6fa09cb89b1570932459a4b5e90b6aa"
+  integrity sha512-DPH4G/RBFJWayIN2fnhDXqhUw75n7k15YsGzdDKiXuwwz4wMOjoL4cyrI6zOf1SIyh3guRmeTYJ4jjPzwrLYww==
   dependencies:
-    "@parcel/utils" "2.8.0"
+    "@parcel/utils" "2.6.2"
     nullthrows "^1.1.1"
 
-"@parcel/hash@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/hash/-/hash-2.8.0.tgz#cc8408f9b2b80bac414c0ef27bdf549f3de1c64d"
-  integrity sha512-KV1+96t7Nukth5K7ldUXjVr8ZTH9Dohl49K0Tc+5Qkysif0OxwcDtpVDmcnrUnWmqdBX0AdoLY0Q2Nnly89n/w==
+"@parcel/hash@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/hash/-/hash-2.6.2.tgz#485e31323036abdf3648ba7f8816985296f358ba"
+  integrity sha512-tFB+cJU1Wqag6WyJgsmx3nx+xhmjcNZqtWh/MtK1lHNnZdDRk6bjr7SapnygBwruz+SmSt5bbdVThcpk2dRCcA==
   dependencies:
     detect-libc "^1.0.3"
     xxhash-wasm "^0.4.2"
 
-"@parcel/logger@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/logger/-/logger-2.8.0.tgz#f7fab99e61f12530561e0cf3d900fea1ebf0b386"
-  integrity sha512-W+7rKsLxLUX6xRmP8PhGWcG48PqrzTPeMWpgSds5nXxAHEFh4cYbkwPKGoTU65a9xUDVyqNreHNIKyizgwAZHQ==
+"@parcel/logger@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/logger/-/logger-2.6.2.tgz#c99eed0e1ed13ac0c25f5e57355ab1bf5b3eda21"
+  integrity sha512-Sz5YGCj1DbEiX0/G8Uw97LLZ0uEK+qtWcRAkHNpJpeMiSqDiRNevxXltz42EcLo+oCh4d4wyiVzwi9mNwzhS/Q==
   dependencies:
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/events" "2.8.0"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/events" "2.6.2"
 
-"@parcel/markdown-ansi@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/markdown-ansi/-/markdown-ansi-2.8.0.tgz#3116f2bd1b28faee7f178a455060f4ab617492df"
-  integrity sha512-xItzXmc3btFhJXsIbE946iaqE6STd2xe5H0zSIaZVXEeucCtMzcd4hxRELquxPstlrAOrrp/lrRpbAlMhso9iA==
+"@parcel/markdown-ansi@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/markdown-ansi/-/markdown-ansi-2.6.2.tgz#7511f6d32688f8d150828cdd1162774c102070e3"
+  integrity sha512-N/h9J4eibhc+B+krzvPMzFUWL37GudBIZBa7XSLkcuH6MnYYfh6rrMvhIyyESwk6VkcZNVzAeZrGQqxEs0dHDQ==
   dependencies:
     chalk "^4.1.0"
 
-"@parcel/namer-default@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/namer-default/-/namer-default-2.8.0.tgz#61221423058db71b6677e9c87282bd0dc94d0ca2"
-  integrity sha512-cVCx2kJA/Bv7O9pVad1UOibaybR/B+QdWV8Ols8HH4lC2gyjLBXEIR0uuPSEbkGwMEcofG6zA3MwsoPa6r5lBg==
+"@parcel/namer-default@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/namer-default/-/namer-default-2.6.2.tgz#8034fb23d2013ae00e5b73e9f887553bef498075"
+  integrity sha512-mp7bx/BQaIuohmZP0uE+gAmDBzzH0Yu8F4yCtE611lc6i0mou+nWRhzyKLNC/ieuI8DB3BFh2QQKeTxJn4W0qg==
   dependencies:
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/plugin" "2.8.0"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/plugin" "2.6.2"
     nullthrows "^1.1.1"
 
-"@parcel/node-resolver-core@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/node-resolver-core/-/node-resolver-core-2.8.0.tgz#71ffb9db7f7af08d895d538304ca2c96041440b5"
-  integrity sha512-cECSh08NSRt1csmmMeKxlnO6ZhXRTuRijkHKFa4iG5hPL+3Cu04YGhuK/QWlP5vNCPVrH3ISlhzlPU5fAi/nEg==
+"@parcel/node-resolver-core@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/node-resolver-core/-/node-resolver-core-2.6.2.tgz#46381572e2829cd6b9424ea1cfd8c1330ab9ff4f"
+  integrity sha512-4b2L5QRYlTybvv3+TIRtwg4PPJXy+cRShCBa8eu1K0Fj297Afe8MOZrcVV+RIr2KPMIRXcIJoqDmOhyci/DynA==
   dependencies:
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/utils" "2.8.0"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/utils" "2.6.2"
     nullthrows "^1.1.1"
     semver "^5.7.1"
 
-"@parcel/optimizer-css@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/optimizer-css/-/optimizer-css-2.8.0.tgz#9efa56909d6e65a7550f14d7feebadd7735bc3ab"
-  integrity sha512-T5r3gZVm1xFw6l//iLkzLDUvFzNTUvL5kAtyU5gS5yH/dg7eCS09Km/c2anViQnmXwFUt7zIlBovj1doxAVNSw==
+"@parcel/optimizer-css@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/optimizer-css/-/optimizer-css-2.6.2.tgz#ae6be6c889ccd19de4868f2e4813e1c9356e4061"
+  integrity sha512-rjTQ9bOokUzzKDYpwMQxDtPqRcMljcTVvod5GT5azGnw1EbwNv30vqnTu81+sEMyttHydzYrKAM15UGV/JYu1Q==
   dependencies:
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/plugin" "2.8.0"
-    "@parcel/source-map" "^2.1.1"
-    "@parcel/utils" "2.8.0"
+    "@parcel/css" "^1.10.1"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/source-map" "^2.0.0"
+    "@parcel/utils" "2.6.2"
     browserslist "^4.6.6"
-    lightningcss "^1.16.1"
     nullthrows "^1.1.1"
 
-"@parcel/optimizer-htmlnano@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/optimizer-htmlnano/-/optimizer-htmlnano-2.8.0.tgz#a10950bb3153568db47db3f5f94f671c7e1ff4e6"
-  integrity sha512-NxEKTRvue/WAU+XbQGfNIU6c7chDekdkwwv9YnCxHEOhnBu4Ok+2tdmCtPuA+4UUNszGxXlaHMnqSrjmqX2S6Q==
+"@parcel/optimizer-htmlnano@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/optimizer-htmlnano/-/optimizer-htmlnano-2.6.2.tgz#4ca52869708cd154f6eae09012748e769d51f214"
+  integrity sha512-Doi2hDmsQHLwuBo6w5gvw5u6GBDz8FhkzAlitfG3C96lZxEw2eu0vquY4Li8lbZT9MBNs8zuYiD1QW8sdlv9hA==
   dependencies:
-    "@parcel/plugin" "2.8.0"
+    "@parcel/plugin" "2.6.2"
     htmlnano "^2.0.0"
     nullthrows "^1.1.1"
     posthtml "^0.16.5"
     svgo "^2.4.0"
 
-"@parcel/optimizer-image@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/optimizer-image/-/optimizer-image-2.8.0.tgz#bffd0c967372cbeb75987a845b1f687c1ccc5dbf"
-  integrity sha512-66eSoCCGZVRiY6U4OqqYrhQcBcHI9cOkIEbxadZYOF4cJhsskjUDJR0jLb4j2PE6QxUNYlyj5OglQqRLwhz7vA==
+"@parcel/optimizer-image@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/optimizer-image/-/optimizer-image-2.6.2.tgz#2917f493014ae1b32580c0b8cf5c77bfe17b6949"
+  integrity sha512-XwFk43s8Dar4N+wXOkpKkeXf1vtu3PSu4ic+M9J0EwNKElrktQ0+paLYmwwp7Xv0tZbRedLAROomUxdXqEMupg==
   dependencies:
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/plugin" "2.8.0"
-    "@parcel/utils" "2.8.0"
-    "@parcel/workers" "2.8.0"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/utils" "2.6.2"
+    "@parcel/workers" "2.6.2"
     detect-libc "^1.0.3"
 
-"@parcel/optimizer-svgo@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/optimizer-svgo/-/optimizer-svgo-2.8.0.tgz#cd5289c956bd23bfe58ef63e1a680f751a8afcff"
-  integrity sha512-qQzM32CzJJuniFaTZDspVn/Vtz/PJ/f89+FckLpWZJVWNihgwTHC1/F0YTDH8g6czNw5ZijwQ3xBVuJQYyIXsQ==
+"@parcel/optimizer-svgo@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/optimizer-svgo/-/optimizer-svgo-2.6.2.tgz#e68cbc3d99694adb671244b6df435e1d311ca033"
+  integrity sha512-X2wPy1VeT2d9oUCue/vAXX907kmLf0o+w0LHghhbApuXjkvJNS2Vz182HIo1rtcS0RH5k3lXxUV0OPQjOC7BOw==
   dependencies:
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/plugin" "2.8.0"
-    "@parcel/utils" "2.8.0"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/utils" "2.6.2"
     svgo "^2.4.0"
 
-"@parcel/optimizer-terser@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/optimizer-terser/-/optimizer-terser-2.8.0.tgz#b6a025e37874ecd0b38fb3e64452151642361cea"
-  integrity sha512-slS6GWQ3u418WtJmlqlA5Njljcq4OaEdDDR2ifEwltG8POv+hsvD5AAoM2XB0GJwY97TQtdMbBu2DuDF3yM/1Q==
+"@parcel/optimizer-terser@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/optimizer-terser/-/optimizer-terser-2.6.2.tgz#3361e2fd51bfdf6736f1e85afb9d6bed207cdb60"
+  integrity sha512-ZSEVQ3G3zOiVPeHvH+BrHegZybrQj9kWQAaAA92leSqbvf6UaX4xqXbGRg2OttNFtbGYBzIl28Zm4t2SLeUIuA==
   dependencies:
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/plugin" "2.8.0"
-    "@parcel/source-map" "^2.1.1"
-    "@parcel/utils" "2.8.0"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/source-map" "^2.0.0"
+    "@parcel/utils" "2.6.2"
     nullthrows "^1.1.1"
     terser "^5.2.0"
 
-"@parcel/package-manager@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/package-manager/-/package-manager-2.8.0.tgz#9486cb66e263e156bdbc064fea65756019203be3"
-  integrity sha512-n4FgerAX1lTKKTgxmiocnos47Y+b0L60iwU6Q4cC2n4KQNRuNyfhxFXwWcqHstR9wa72JgPaDgo4k0l3Bk8FZw==
+"@parcel/package-manager@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/package-manager/-/package-manager-2.6.2.tgz#003e8326adf95f85b2a40bb5e5f24a735d58f114"
+  integrity sha512-xGMqTgnwTE3rgzYwUZMKxR8fzmP5iSYz/gj2H8FR3pEmwh/8xCMtNjTSth+hPVGuqgRZ6JxwpfdY/fXdZ61ViQ==
   dependencies:
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/fs" "2.8.0"
-    "@parcel/logger" "2.8.0"
-    "@parcel/types" "2.8.0"
-    "@parcel/utils" "2.8.0"
-    "@parcel/workers" "2.8.0"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/fs" "2.6.2"
+    "@parcel/logger" "2.6.2"
+    "@parcel/types" "2.6.2"
+    "@parcel/utils" "2.6.2"
+    "@parcel/workers" "2.6.2"
     semver "^5.7.1"
 
-"@parcel/packager-css@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/packager-css/-/packager-css-2.8.0.tgz#28f1e17506765d094bad4a7129677941553eb8d9"
-  integrity sha512-tv/Bto0P6fXjqQ9uCZ8/6b/+38Zr/N2MC7/Nbflzww/lp0k2+kkE9MVJJDr5kST/SzTBRrhbDo+yTbtdZikJYg==
+"@parcel/packager-css@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/packager-css/-/packager-css-2.6.2.tgz#1b8119888f7278612b18b6d08f623e3309b45190"
+  integrity sha512-zifJqgNUtLZoJ2oeFeLz6OFOBy8FNlVGtGtOqTJZN1SeYd94xNYyeUTwnSsOh2OEDs6HJhggL3o4uEmpM1s9GA==
   dependencies:
-    "@parcel/plugin" "2.8.0"
-    "@parcel/source-map" "^2.1.1"
-    "@parcel/utils" "2.8.0"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/source-map" "^2.0.0"
+    "@parcel/utils" "2.6.2"
     nullthrows "^1.1.1"
 
-"@parcel/packager-html@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/packager-html/-/packager-html-2.8.0.tgz#838037f1f6e1f6d242ed03510bf54ef9ab16f158"
-  integrity sha512-4x09v/bt767rxwGTuEw82CjheoOtIKNu4sx1gqwQOz9QowKPniXOIaD+0XmLiARdzRErucf0sL19QHfNcPAhUw==
+"@parcel/packager-html@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/packager-html/-/packager-html-2.6.2.tgz#ed3e6862bfe419472c68ec81f46cf6f825694051"
+  integrity sha512-NTJoKcqApMgFOpulok4Ru9QW3BD7d5931ymoow9/bmgDwvJNh2SOMHVx6lqzKRU5x+wlShpYfDur4zOipRev8g==
   dependencies:
-    "@parcel/plugin" "2.8.0"
-    "@parcel/types" "2.8.0"
-    "@parcel/utils" "2.8.0"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/types" "2.6.2"
+    "@parcel/utils" "2.6.2"
     nullthrows "^1.1.1"
     posthtml "^0.16.5"
 
-"@parcel/packager-js@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/packager-js/-/packager-js-2.8.0.tgz#e2e1da84a0b233a4341b79a6002bee3621f3c50a"
-  integrity sha512-Tn2EtWM1TEdj4t5pt0QjBDzqrXrfRTL3WsdMipZwDSuX04KS0jedJINHjh46HOMwyfJxLbUg3xkGX7F5mYQj5g==
+"@parcel/packager-js@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/packager-js/-/packager-js-2.6.2.tgz#16257b343480490adea619671b56d9cd02c8302a"
+  integrity sha512-fm5rKWtaExR0W+UEKWivXNPysRFxuBCdskdxDByb1J1JeGMvp7dJElbi8oXDAQM4MnM5EyG7cg47SlMZNTLm4A==
   dependencies:
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/hash" "2.8.0"
-    "@parcel/plugin" "2.8.0"
-    "@parcel/source-map" "^2.1.1"
-    "@parcel/utils" "2.8.0"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/hash" "2.6.2"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/source-map" "^2.0.0"
+    "@parcel/utils" "2.6.2"
     globals "^13.2.0"
     nullthrows "^1.1.1"
 
-"@parcel/packager-raw@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/packager-raw/-/packager-raw-2.8.0.tgz#12d025565d7578cc3a405bc52ddd18eaa315ff7e"
-  integrity sha512-s3VniER3X2oNTlfytBGIQF+UZFVNLFWuVu1IkZ8Wg6uYQffrExDlbNDcmFCDcfvcejL3Ch5igP+L6N00f6+wAQ==
+"@parcel/packager-raw@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/packager-raw/-/packager-raw-2.6.2.tgz#67f136cc8b404edeb4092ea5f56d277e0e60d0c6"
+  integrity sha512-Rl3ZkMtMjb+LEvRowijDD8fibUAS6rWK0/vZQMk9cDNYCP2gCpZayLk0HZIGxneeTbosf/0sbngHq4VeRQOnQA==
   dependencies:
-    "@parcel/plugin" "2.8.0"
+    "@parcel/plugin" "2.6.2"
 
-"@parcel/packager-svg@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/packager-svg/-/packager-svg-2.8.0.tgz#811098830098b74cddb7b3d22d414d7ef8b9e42a"
-  integrity sha512-+BSpdPiNjlAne28nOjG2AyiOejAehe/+X9MxL2FIpPP7UBLNc2ekaM0mDTR5iY45YtZa57oyErBT/U6wZ1TCjw==
+"@parcel/packager-svg@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/packager-svg/-/packager-svg-2.6.2.tgz#fa21e605640f71a59cc3f5095531d7bed368df77"
+  integrity sha512-FrGlwtiMs7YBWoVA3vCNHlBcghVYueKzimvufl4r287g1iEmq59pchCqpi6rW83O/mnpUQg9mpP+BmXxuvjLNg==
   dependencies:
-    "@parcel/plugin" "2.8.0"
-    "@parcel/types" "2.8.0"
-    "@parcel/utils" "2.8.0"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/types" "2.6.2"
+    "@parcel/utils" "2.6.2"
     posthtml "^0.16.4"
 
-"@parcel/packager-ts@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/packager-ts/-/packager-ts-2.8.0.tgz#fc41a239036a7e72e39041e781ec630a4b5fa6ec"
-  integrity sha512-NIDE/NwRfnIN+71s1HE/pM8/ZI3eg4aGGHKXscULRQWkD1aaUY9RdXzO0jH0ADb1wPIaKRILTZXBx3haEpe3Eg==
+"@parcel/packager-ts@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/packager-ts/-/packager-ts-2.6.2.tgz#82a324803c5f98871bb26777cf51bcb936cd306d"
+  integrity sha512-PDy2jfg0pjOyWNw44t/EhP3DtiAWDcbvqvOjg35lIa99BKZV1V8j8n6FaTlK6htVHwVVJoBMlUmCOf5dHNyUDA==
   dependencies:
-    "@parcel/plugin" "2.8.0"
+    "@parcel/plugin" "2.6.2"
 
-"@parcel/plugin@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/plugin/-/plugin-2.8.0.tgz#eb6acbb17110ecba4d3c283fc073ffa9531ac0b6"
-  integrity sha512-Tsf+7nDg7KauvTVY6rGc7CmgJruKSwJ54KJ9s5nYFFP9nfwmyqbayCi9xOxicWU9zIHfuF5Etwf17lcA0oAvzw==
+"@parcel/plugin@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/plugin/-/plugin-2.6.2.tgz#d4c8cc558e962e4dfb7154a7f0a023f6abad07ac"
+  integrity sha512-wbbWsM23Pr+8xtLSvf+UopXdVYlpKCCx6PuuZaZcKo+9IcDCWoGXD4M8Kkz14qBmkFn5uM00mULUqmVdSibB2w==
   dependencies:
-    "@parcel/types" "2.8.0"
+    "@parcel/types" "2.6.2"
 
-"@parcel/reporter-cli@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/reporter-cli/-/reporter-cli-2.8.0.tgz#d725b790108322e822f2b1bce189fe1da7873057"
-  integrity sha512-ea4/Lp+2jDbzb/tfTgUKzYU51FK8wcewDoYNr06uL+wvx/vzYIDG0jHfzaOTasREnm7ECDr1Zu2Iknrgk1STqQ==
+"@parcel/reporter-cli@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/reporter-cli/-/reporter-cli-2.6.2.tgz#df971ce40164f2d6bd77dd6342203aa0052d9753"
+  integrity sha512-5BWMtQRSXVXMlB/BOkCf8NVLh3qcQVMrj6owuekmqLi/GGC+kGZovzA6YrofVIdNHcoxOZwTIYwjoU3ibJ6yAA==
   dependencies:
-    "@parcel/plugin" "2.8.0"
-    "@parcel/types" "2.8.0"
-    "@parcel/utils" "2.8.0"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/types" "2.6.2"
+    "@parcel/utils" "2.6.2"
     chalk "^4.1.0"
     term-size "^2.2.1"
 
-"@parcel/reporter-dev-server@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/reporter-dev-server/-/reporter-dev-server-2.8.0.tgz#bb4795f8e021a9784e96e872d6a7ca311a8b76b9"
-  integrity sha512-wg6hUrQ8vUmvlP2fg8YEzYndmq7hWZ21ZgBv4So1Z65I+Qav85Uox7bjGLCSJwEAjdjFKfhV9RGULGzqh8vcAQ==
+"@parcel/reporter-dev-server@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/reporter-dev-server/-/reporter-dev-server-2.6.2.tgz#73e82c7bd6bbe47de61b2170ac9b7799c4e850fd"
+  integrity sha512-5QtL3ETMFL161jehlIK6rjBM+Pqk5cMhr60s9yLYqE1GY4M4gMj+Act+FXViyM6gmMA38cPxDvUsxTKBYXpFCw==
   dependencies:
-    "@parcel/plugin" "2.8.0"
-    "@parcel/utils" "2.8.0"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/utils" "2.6.2"
 
-"@parcel/resolver-default@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/resolver-default/-/resolver-default-2.8.0.tgz#51c5449976e6f08a0d444a382c304eec1f5d7018"
-  integrity sha512-kO5W+O3Ql6NXNFS6lvfSSt1R+PxO1atNLYxZdVSM6+QQxRMiztfqzZs//RM+oUp+af6muDSUPlNs+RORX0fing==
+"@parcel/resolver-default@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/resolver-default/-/resolver-default-2.6.2.tgz#b417fb4f9713f5bdeceab737ae1dacb8322f2778"
+  integrity sha512-Lo5sWb5QkjWvdBr+TdmAF6Mszb/sMldBBatc1osQTkHXCy679VMH+lfyiWxHbwK+F1pmdMeBJpYcMxvrgT8EsA==
   dependencies:
-    "@parcel/node-resolver-core" "2.8.0"
-    "@parcel/plugin" "2.8.0"
+    "@parcel/node-resolver-core" "2.6.2"
+    "@parcel/plugin" "2.6.2"
 
-"@parcel/runtime-browser-hmr@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/runtime-browser-hmr/-/runtime-browser-hmr-2.8.0.tgz#cc97b975caffc4c0d40e3dbeecb0ea412e8f0d64"
-  integrity sha512-zV5wGGvm1cDwWAzkwPUaKh6inWYKxq67YWY4G396PXLMxddM9SQC1c7iFM60OPnD4A+BMOLOy7N6//20h15Dlg==
+"@parcel/runtime-browser-hmr@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/runtime-browser-hmr/-/runtime-browser-hmr-2.6.2.tgz#121fe22b5df6b7a8591a23632146c008448240a5"
+  integrity sha512-M4X0+7dyfdI6smwGUGjGXb8Ns3HX7ZrTemyq4Gc7zp7P/5gWjR8i9eISz46sXmF9bf01a/4dKZpoCC9un1pH1g==
   dependencies:
-    "@parcel/plugin" "2.8.0"
-    "@parcel/utils" "2.8.0"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/utils" "2.6.2"
 
-"@parcel/runtime-js@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/runtime-js/-/runtime-js-2.8.0.tgz#082d576b8319e1222b6010d6c5ff6da9d5483118"
-  integrity sha512-IwT1rX8ZamoYZv0clfswZemfXcIfk+YXwNsqXwzzh6TaMGagj/ZZl1llkn7ERQFq4EoLEoDGGkxqsrJjBp9NDQ==
+"@parcel/runtime-js@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/runtime-js/-/runtime-js-2.6.2.tgz#cc46ec03d4fe2a4832cd7709431afba857bd37e0"
+  integrity sha512-0S3JFwgvs6FmEx2dHta9R0Sfu8vCnFAm4i7Y4efGHtAcTrF2CHjyiz4/hG+RQGJ70eoWW463Q+8qt6EKbkaOBQ==
   dependencies:
-    "@parcel/plugin" "2.8.0"
-    "@parcel/utils" "2.8.0"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/utils" "2.6.2"
     nullthrows "^1.1.1"
 
-"@parcel/runtime-react-refresh@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/runtime-react-refresh/-/runtime-react-refresh-2.8.0.tgz#3d91f739f04f6dc0a2adafe48c523d7ef6cf26c4"
-  integrity sha512-a6uuZWkl+mJur2WLZKmpEqq1P06tvRwqGefYbE26DWpwXwU9dLpfnv/nT0hqCmVDHd2TkMyCffolSmq1vY05ew==
+"@parcel/runtime-react-refresh@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/runtime-react-refresh/-/runtime-react-refresh-2.6.2.tgz#4504cea4468fbeabf4a94c99a991251c7cd04c59"
+  integrity sha512-DJTm5D/tUAGZm0o3ndDOPbKwdYrobuvm4jvkPq31LdEUqVvyuzBAMlqQFHc1yJEJDRRWOIQwQP9Y0NQbJmXFfg==
   dependencies:
-    "@parcel/plugin" "2.8.0"
-    "@parcel/utils" "2.8.0"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/utils" "2.6.2"
     react-error-overlay "6.0.9"
     react-refresh "^0.9.0"
 
-"@parcel/runtime-service-worker@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/runtime-service-worker/-/runtime-service-worker-2.8.0.tgz#6e65b8ff76d51a729edd8b98a3de25f7d55162b8"
-  integrity sha512-Q3Q2O/axQbFi/5Z+BidLB3qhmYdZLTMDagZtsmyH7CktDkZVNV/0UoOGYlqoK06T4cww3XjLSEomXbBu9TlQKQ==
+"@parcel/runtime-service-worker@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/runtime-service-worker/-/runtime-service-worker-2.6.2.tgz#f1ea3e768f8ae9d2f5ec119db020595933185393"
+  integrity sha512-9jV+RwVEeDUI5+eLy8j1tapTNoHHGOY2+JUprcObQkQ8fux7KltQBJWFhpkUdGtz5LTCNXtj9tdycFtS5lmSzg==
   dependencies:
-    "@parcel/plugin" "2.8.0"
-    "@parcel/utils" "2.8.0"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/utils" "2.6.2"
     nullthrows "^1.1.1"
 
-"@parcel/source-map@^2.1.1":
+"@parcel/source-map@^2.0.0":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@parcel/source-map/-/source-map-2.1.1.tgz#fb193b82dba6dd62cc7a76b326f57bb35000a782"
   integrity sha512-Ejx1P/mj+kMjQb8/y5XxDUn4reGdr+WyKYloBljpppUy8gs42T+BNoEOuRYqDVdgPc6NxduzIDoJS9pOFfV5Ew==
   dependencies:
     detect-libc "^1.0.3"
 
-"@parcel/transformer-babel@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-babel/-/transformer-babel-2.8.0.tgz#f173a4284d9a15f63001f6c9efb1294ce6bca7a2"
-  integrity sha512-ie+wFe9pucdnRyX2PTN9amOHrhr/IOwUEAfTz/3dPydOYCuX7ErEngCpI9fBzdYE2AV6/noEwC2Mjeoyz9mT2A==
+"@parcel/transformer-babel@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-babel/-/transformer-babel-2.6.2.tgz#0ad994cb4ec4127e544b10e70c884409270f26a6"
+  integrity sha512-R3qdfhnZhVhsDB8+0wC3CU86dmqx5DwxcTo10Wd1VbA6fiLRSGd4+ZrxJRg491mFTedgtTrUeO6LNYAmMFpCbQ==
   dependencies:
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/plugin" "2.8.0"
-    "@parcel/source-map" "^2.1.1"
-    "@parcel/utils" "2.8.0"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/source-map" "^2.0.0"
+    "@parcel/utils" "2.6.2"
     browserslist "^4.6.6"
     json5 "^2.2.0"
     nullthrows "^1.1.1"
     semver "^5.7.0"
 
-"@parcel/transformer-css@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-css/-/transformer-css-2.8.0.tgz#68fe6434e86bdaaad1174878881cdc3cab0a8d0a"
-  integrity sha512-jCMQSfsxCoepblBAHCYMuNWNPQlqasoD6PfNftMdTlv12aUcnjNIYO9600TVLTL799CrEohljbXcfFn6hDGVWw==
+"@parcel/transformer-css@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-css/-/transformer-css-2.6.2.tgz#57470cd55ba2693e1e949c4872d59404745b9f52"
+  integrity sha512-6lsMdwBUgAyTcd7OIz2lG56jobptGkaRogDmbGFDhmuq/tQ/ZrNElUFmDVeh5cELQlByvj/Qh32cUMnsiMsk3g==
   dependencies:
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/plugin" "2.8.0"
-    "@parcel/source-map" "^2.1.1"
-    "@parcel/utils" "2.8.0"
+    "@parcel/css" "^1.10.1"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/source-map" "^2.0.0"
+    "@parcel/utils" "2.6.2"
     browserslist "^4.6.6"
-    lightningcss "^1.16.1"
     nullthrows "^1.1.1"
 
-"@parcel/transformer-html@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-html/-/transformer-html-2.8.0.tgz#ae5a1e2695b3c7954923ed76aa47ca2315f2705b"
-  integrity sha512-KLcZCWSIItZ1s12Sav3uvfTrwhX92craN9u7V3qUs8ld7ompTKsCdnf+gYmeCyISb5yiFDyYBvTGc1bOXvaDRQ==
+"@parcel/transformer-html@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-html/-/transformer-html-2.6.2.tgz#015037625b2036951d6182e7d1b3fb2dec930049"
+  integrity sha512-DEGv0Gd8BVAO/QZuXRg+A6YieVpIub7YT8xTNA/6vCIAl++y2hYyo9NF2j2xnooYbzW7zd7uDEFawOSd40lxig==
   dependencies:
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/hash" "2.8.0"
-    "@parcel/plugin" "2.8.0"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/hash" "2.6.2"
+    "@parcel/plugin" "2.6.2"
     nullthrows "^1.1.1"
     posthtml "^0.16.5"
     posthtml-parser "^0.10.1"
     posthtml-render "^3.0.0"
     semver "^5.7.1"
 
-"@parcel/transformer-image@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-image/-/transformer-image-2.8.0.tgz#b71862bcb18b53aeb81fa0ecc733ae260a49907a"
-  integrity sha512-hJGsZxGlGEkiUvN8kCxA4DhB6/WrHzcIlZZYEgEien9pLctyc6np6idjdcyudPAhH3LwBPkiyeUfCvLAOA1zkA==
+"@parcel/transformer-image@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-image/-/transformer-image-2.6.2.tgz#aed1d3ac50f80441fbf6b08e2c1e3c92e58851e4"
+  integrity sha512-i2Ug6exFaX64M10Qsq4vza5NP0iRW+aIcao4uGvPHP6d36a0oUfT6tJsOLHh3sDj2ihT8RVJL2TRavSX17TjUA==
   dependencies:
-    "@parcel/plugin" "2.8.0"
-    "@parcel/utils" "2.8.0"
-    "@parcel/workers" "2.8.0"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/workers" "2.6.2"
     nullthrows "^1.1.1"
 
-"@parcel/transformer-inline-string@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-inline-string/-/transformer-inline-string-2.8.0.tgz#1dfa2150c6850319452380589f5341c6e8272179"
-  integrity sha512-YBBgolTygr93hos4f5/xkM8VqP+Wc2exeXOyJfVCJJEaSVseXVdF8JtuZLlrcqOkw+ZC3nJtD4CEu+Glz9zCRg==
+"@parcel/transformer-inline-string@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-inline-string/-/transformer-inline-string-2.6.2.tgz#bda552fed9faa1fb2afbbe9f26d963b1a2e6470c"
+  integrity sha512-g+qUjzaLc9i6lxhMb32kjD5fSRTVkKT3+sxETSJGYus/3HhgcLUED2rVHTGMsPj2UX5B5oLKXrnE+P+vfji3HQ==
   dependencies:
-    "@parcel/plugin" "2.8.0"
+    "@parcel/plugin" "2.6.2"
 
-"@parcel/transformer-js@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-js/-/transformer-js-2.8.0.tgz#d8e4afe227c0f1751f4a58a9cb6f495c0327f192"
-  integrity sha512-C5WTkDRiJGBB9tZa1mBsZwsqZjYEKkOa4mdVym3dMokwhFLUga8WtK7kGw4fmXIq41U8ip4orywj+Rd4mvGVWg==
+"@parcel/transformer-js@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-js/-/transformer-js-2.6.2.tgz#905285b5d6d8047d0420641dee257ee93bac69d8"
+  integrity sha512-uhXAMTjE/Q61amflV8qVpb73mj+mIdXIMH0cSks1/gDIAxcgIvWvrE14P4TvY6zJ1q1iRJRIRUN6cFSXqjjLSA==
   dependencies:
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/plugin" "2.8.0"
-    "@parcel/source-map" "^2.1.1"
-    "@parcel/utils" "2.8.0"
-    "@parcel/workers" "2.8.0"
-    "@swc/helpers" "^0.4.12"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/source-map" "^2.0.0"
+    "@parcel/utils" "2.6.2"
+    "@parcel/workers" "2.6.2"
+    "@swc/helpers" "^0.4.2"
     browserslist "^4.6.6"
     detect-libc "^1.0.3"
     nullthrows "^1.1.1"
     regenerator-runtime "^0.13.7"
     semver "^5.7.1"
 
-"@parcel/transformer-json@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-json/-/transformer-json-2.8.0.tgz#c83f0845bf6d2018a2b20780c0250212b36532ca"
-  integrity sha512-Pp5gROSMpzFDEI6KA2APuSpft6eXZxFgTPV6Xx9pElqseod3iL5+RnpMNV/nv76Ai2bcMEiafus5Pb09vjHgbQ==
+"@parcel/transformer-json@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-json/-/transformer-json-2.6.2.tgz#37a5c3f4571c81e1a5f2d0c77f266b56e3866ad5"
+  integrity sha512-QGcIIvbPF/u10ihYvQhxXqb2QMXWSzcBxJrOSIXIl74TUGrWX05D5LmjDA/rzm/n/kvRnBkFNP60R/smYb8x+Q==
   dependencies:
-    "@parcel/plugin" "2.8.0"
+    "@parcel/plugin" "2.6.2"
     json5 "^2.2.0"
 
-"@parcel/transformer-postcss@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-postcss/-/transformer-postcss-2.8.0.tgz#65ed22973c26da9f9a481ec95211014dbd668a13"
-  integrity sha512-45Ij+cgwXprd1sCLmaMIlCbPz3eEwolGHizgZmXl5l4yjlE2wGyzodhxLpBk1PWu7OxxWRbLnJIlvMYf7Vfw0g==
+"@parcel/transformer-postcss@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-postcss/-/transformer-postcss-2.6.2.tgz#6d613889b73b70ccd912a411c9b272bcf984b4dd"
+  integrity sha512-yauLUofKnb09tzgg8FE33aDrbqgOgQtGyWfyiKWnoV1j8XTRu/t6R7e2qRysgNsm9Ghzxe1G83iJSli1MGTErA==
   dependencies:
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/hash" "2.8.0"
-    "@parcel/plugin" "2.8.0"
-    "@parcel/utils" "2.8.0"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/hash" "2.6.2"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/utils" "2.6.2"
     clone "^2.1.1"
     nullthrows "^1.1.1"
     postcss-value-parser "^4.2.0"
     semver "^5.7.1"
 
-"@parcel/transformer-posthtml@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-posthtml/-/transformer-posthtml-2.8.0.tgz#d2690d19b8ad14dba91012fca95684ae017d7590"
-  integrity sha512-KrkKBFDW5PNZpr2Ha711eIABQOiJQKvfwfVs3CVpJK5wSADkappDk7CQ0mISPjhamFJ6xx/sNsi7e871I8R9lg==
+"@parcel/transformer-posthtml@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-posthtml/-/transformer-posthtml-2.6.2.tgz#751ac1d520d42df40ab3d21f2bfe078545295cfb"
+  integrity sha512-Ly9znYdBnGLDmlyhKQJOekrs35w7fKTSxZ60B3nTtpwSFC/AMr3nv9kPTVi8KDRp2Kh1ahxQlfBIYHCa0RfkXA==
   dependencies:
-    "@parcel/plugin" "2.8.0"
-    "@parcel/utils" "2.8.0"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/utils" "2.6.2"
     nullthrows "^1.1.1"
     posthtml "^0.16.5"
     posthtml-parser "^0.10.1"
     posthtml-render "^3.0.0"
     semver "^5.7.1"
 
-"@parcel/transformer-raw@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-raw/-/transformer-raw-2.8.0.tgz#2b973e280ef9f681a278d6fe19434887678ee92b"
-  integrity sha512-uEbj+kE70vg2Gmdji/AIXPK13s5aQRw7X+xWs3vNpY2oymyMRHbfx1izJFWBh+kxu6Yo6q6qsekkh2rNHEHIUA==
+"@parcel/transformer-raw@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-raw/-/transformer-raw-2.6.2.tgz#a77ffaa26d59fcf79b5094c1319b6f0922fffe7e"
+  integrity sha512-CsofYq5g9Zj/FNmhya2R7Xp3WHlzz34mEdN69bds3azRYHCrl/TS33xXcp/9J+74SEIY1Ufh552o1cM3fnSrDQ==
   dependencies:
-    "@parcel/plugin" "2.8.0"
+    "@parcel/plugin" "2.6.2"
 
-"@parcel/transformer-react-refresh-wrap@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-react-refresh-wrap/-/transformer-react-refresh-wrap-2.8.0.tgz#d89ed23e08ba7780f06f0794a7ee2dd4322b2b77"
-  integrity sha512-d7G6wBdlwVXLkhC7EO/3UkUOfEOJvsIsQUCEujsrdFF+nfBElXw/TZ+KP8UkmrwMdD0spU/8cKoTyi5k19vt6w==
+"@parcel/transformer-react-refresh-wrap@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-react-refresh-wrap/-/transformer-react-refresh-wrap-2.6.2.tgz#680a3c724d8ada39a637a10f8cb7fdc33aa138eb"
+  integrity sha512-7EE68ebISz+oAHm64ZJbz6uJQT4aOoB8QiK3PvuY6+RsP7aK4/FEHGM1afW49KrZbP4lWjloEkcJm/88DfBiGw==
   dependencies:
-    "@parcel/plugin" "2.8.0"
-    "@parcel/utils" "2.8.0"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/utils" "2.6.2"
     react-refresh "^0.9.0"
 
-"@parcel/transformer-sass@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-sass/-/transformer-sass-2.8.0.tgz#94fd2603f80e160ec51c2e96d1c4edfdb72f5716"
-  integrity sha512-DtjbC+4G7pdTaUgIesCoL67hiU88tC5LL4xHH0XspA9DmlFehJsDHOWc2q/pGfI22/Ck0eTOwNcMeYdkE0gCDw==
+"@parcel/transformer-sass@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-sass/-/transformer-sass-2.6.2.tgz#fd8587cc3796508f7ba1b8daabb27bc215982042"
+  integrity sha512-8Nev5rY67qFIFaRceQiFLa08oUk10iru28gi8/rURPuMvXKg+jIz6zqfIdxT8ZVxbqkFdqI1eVCc+Lelspn15A==
   dependencies:
-    "@parcel/plugin" "2.8.0"
-    "@parcel/source-map" "^2.1.1"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/source-map" "^2.0.0"
     sass "^1.38.0"
 
-"@parcel/transformer-svg@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-svg/-/transformer-svg-2.8.0.tgz#d34ef03445e88e5740ae35b209ce6bde9d79f1aa"
-  integrity sha512-8S6yZoUTCbHOnuWY3M50fscTpI8414945I44fmed+C1e36TnWem8FifuVtGkRZeR8pokF453lmmwWG1eH/4U3w==
+"@parcel/transformer-svg@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-svg/-/transformer-svg-2.6.2.tgz#62795cfbc5ea083d0bd825d77ff0df3b717f05f9"
+  integrity sha512-s7e/DVte2OT+jUL10+g2+l/y/MqxAb8Avw1asRH0683iEVj6GGS/K4KnHN8WagLwnS6Fb3/InVrzxtb0YKUt2w==
   dependencies:
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/hash" "2.8.0"
-    "@parcel/plugin" "2.8.0"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/hash" "2.6.2"
+    "@parcel/plugin" "2.6.2"
     nullthrows "^1.1.1"
     posthtml "^0.16.5"
     posthtml-parser "^0.10.1"
     posthtml-render "^3.0.0"
     semver "^5.7.1"
 
-"@parcel/transformer-typescript-types@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-typescript-types/-/transformer-typescript-types-2.8.0.tgz#2f583e651d7ae19ccf15ee88fdc9bb0a71410115"
-  integrity sha512-np7HTfEylyJO7Uc6vMTQDhKmIbKyzGi81otpm74t86CUqlSoecXL/IuifTAAaHdhZv7WSNR3AOtmSa8geMVUCA==
+"@parcel/transformer-typescript-types@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-typescript-types/-/transformer-typescript-types-2.6.2.tgz#73c4834f4171c1f53bb14d98a6dfb88c340fe53e"
+  integrity sha512-p2Ctikbnfof/GbWE67Fg0VlKkTYfbDujxHuk+qAm7XXGZe48dOc7l7CQ7swvapkUWkL3rKtsLAf3HecLz4D10Q==
   dependencies:
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/plugin" "2.8.0"
-    "@parcel/source-map" "^2.1.1"
-    "@parcel/ts-utils" "2.8.0"
-    "@parcel/utils" "2.8.0"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/plugin" "2.6.2"
+    "@parcel/source-map" "^2.0.0"
+    "@parcel/ts-utils" "2.6.2"
+    "@parcel/utils" "2.6.2"
     nullthrows "^1.1.1"
 
-"@parcel/ts-utils@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/ts-utils/-/ts-utils-2.8.0.tgz#5110150aa255b5bf5e0dd4f8d6d276329009d491"
-  integrity sha512-DoSpJfckv8JmVAffS95EurbaLtp+bryyJTcXQfEI2fQVQBnXW8K92cxvIj8MtC+xQW22J/3/PZ+d0HRxmbxT1w==
+"@parcel/ts-utils@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/ts-utils/-/ts-utils-2.6.2.tgz#a132f876bf399ac61c2bfe75a29248cab6f015a9"
+  integrity sha512-PqmjyBYIa56bSjeumJj/tEFooYOBePw8PVi9dU1dkuJoBtDJl/+s/GPW2JnupaplKnlEtX8ag922vjua4A9gsg==
   dependencies:
     nullthrows "^1.1.1"
 
-"@parcel/types@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/types/-/types-2.8.0.tgz#2e654d3381aad23ae5ec5f262287fd69f1744100"
-  integrity sha512-DeN3vCnVl9onjtyWxpbP7LwRslVEko4kBaM7yILsuQjEnXmaIOsqIf6FQJOUOPBtQTFFNeQQ2qyf5XoO/rkJ8g==
+"@parcel/types@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/types/-/types-2.6.2.tgz#216313bcaf625e59a2bd525a00c3b1f6701b0d92"
+  integrity sha512-MV8BFpCIs2jMUvK2RHqzkoiuOQ//JIbrD1zocA2YRW3zuPL/iABvbAABJoXpoPCKikVWOoCWASgBfWQo26VvJQ==
   dependencies:
-    "@parcel/cache" "2.8.0"
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/fs" "2.8.0"
-    "@parcel/package-manager" "2.8.0"
-    "@parcel/source-map" "^2.1.1"
-    "@parcel/workers" "2.8.0"
+    "@parcel/cache" "2.6.2"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/fs" "2.6.2"
+    "@parcel/package-manager" "2.6.2"
+    "@parcel/source-map" "^2.0.0"
+    "@parcel/workers" "2.6.2"
     utility-types "^3.10.0"
 
-"@parcel/utils@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/utils/-/utils-2.8.0.tgz#0524609dd19ac70c9f28fb4e273c266d9ecb5541"
-  integrity sha512-r4ACsGtW7zkMUIgwQyOVtPAFiy8L81gbz4tMIRSqyQKnkW7oEHcQ3uN1/LPxj2yfkyQLmhJxmtptLUy9j53rcw==
+"@parcel/utils@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/utils/-/utils-2.6.2.tgz#18d68a56330be8db59c269163b77617043ba8e3a"
+  integrity sha512-Ug7hpRxjgbY5AopW55nY7MmGMVmwmN+ihfCmxJkBUoESTG/3iq8uME7GjyOgW5DkQc2K7q62i8y8N0wCJT1u4Q==
   dependencies:
-    "@parcel/codeframe" "2.8.0"
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/hash" "2.8.0"
-    "@parcel/logger" "2.8.0"
-    "@parcel/markdown-ansi" "2.8.0"
-    "@parcel/source-map" "^2.1.1"
+    "@parcel/codeframe" "2.6.2"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/hash" "2.6.2"
+    "@parcel/logger" "2.6.2"
+    "@parcel/markdown-ansi" "2.6.2"
+    "@parcel/source-map" "^2.0.0"
     chalk "^4.1.0"
 
-"@parcel/watcher@^2.0.7":
+"@parcel/watcher@^2.0.0":
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/@parcel/watcher/-/watcher-2.0.7.tgz#c95fe1370e8c6237cb9729c9c075264acc7e21a5"
   integrity sha512-gc3hoS6e+2XdIQ4HHljDB1l0Yx2EWh/sBBtCEFNKGSMlwASWeAQsOY/fPbxOBcZ/pg0jBh4Ga+4xHlZc4faAEQ==
@@ -1335,15 +1340,15 @@
     node-addon-api "^3.2.1"
     node-gyp-build "^4.3.0"
 
-"@parcel/workers@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@parcel/workers/-/workers-2.8.0.tgz#75f72a6717e3d479ff9293c6c41c78b2147f7352"
-  integrity sha512-vAzoC/wPHLQnyy9P/TrSPftY8F3MhZqPTFi681mxVtLWA3t7wiNlw1zDVKRDP8m5XS1yQOr8Q56CAHyRexhc8g==
+"@parcel/workers@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@parcel/workers/-/workers-2.6.2.tgz#2cae07db7a752295f11c2952b5026e426e38b19b"
+  integrity sha512-wBgUjJQm+lDd12fPRUmk09+ujTA9DgwPdqylSFK0OtI/yT6A+2kArUqjp8IwWo2tCJXoMzXBne2XQIWKqMiN4Q==
   dependencies:
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/logger" "2.8.0"
-    "@parcel/types" "2.8.0"
-    "@parcel/utils" "2.8.0"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/logger" "2.6.2"
+    "@parcel/types" "2.6.2"
+    "@parcel/utils" "2.6.2"
     chrome-trace-event "^1.0.2"
     nullthrows "^1.1.1"
 
@@ -1371,10 +1376,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@swc/helpers@^0.4.12":
-  version "0.4.12"
-  resolved "https://registry.yarnpkg.com/@swc/helpers/-/helpers-0.4.12.tgz#203243e78cff3c87c081c97ae548ab33e2503573"
-  integrity sha512-R6RmwS9Dld5lNvwKlPn62+piU+WDG1sMfsnfJioXCciyko/gZ0DQ4Mqglhq1iGU1nQ/RcGkAwfMH+elMSkJH3Q==
+"@swc/helpers@^0.4.2":
+  version "0.4.13"
+  resolved "https://registry.yarnpkg.com/@swc/helpers/-/helpers-0.4.13.tgz#321376f6ee5f63f69828656ab93dfeb826e1f95a"
+  integrity sha512-WOoZMSqpmUgL72xOeaWcU9IG7C6t5Wh1e8NGpSyBvmN5BSCXleK4/PLS6Oko1i/Lvn/yGYOv62bxlfsDvmRurg==
   dependencies:
     tslib "^2.4.0"
 
@@ -3087,7 +3092,7 @@ lightningcss-win32-x64-msvc@1.16.1:
   resolved "https://registry.yarnpkg.com/lightningcss-win32-x64-msvc/-/lightningcss-win32-x64-msvc-1.16.1.tgz#7546b4dca78314b1d2701ed220cb6e50b8c6b5ca"
   integrity sha512-Djy+UzlTtJMayVJU3eFuUW5Gdo+zVTNPJhlYw25tNC9HAoMCkIdSDDrGsWEdEyibEV7xwB8ySTmLuxilfhBtgg==
 
-lightningcss@^1.16.1:
+lightningcss@^1.14.0:
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/lightningcss/-/lightningcss-1.16.1.tgz#b5a16632b6824d023af2fb7d35b1c6fc42608bc6"
   integrity sha512-zU8OTaps3VAodmI2MopfqqOQQ4A9L/2Eo7xoTH/4fNkecy6ftfiGwbbRMTQqtIqJjRg3f927e+lnyBBPhucY1Q==
@@ -3403,21 +3408,21 @@ p-try@^2.0.0:
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.2.0.tgz#cb2868540e313d61de58fafbe35ce9004d5540e6"
   integrity sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==
 
-parcel@2.8.0:
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/parcel/-/parcel-2.8.0.tgz#93461bb6c42c9b8979a933dec17626e6bc3b5eb9"
-  integrity sha512-p7Fo75CeMw5HC1luovYpBjzPbAJv/Gn7lxcs4f0LxcwBCWbkQ73zHgJXJQqnM38qQABEYEiQq6000+j+k5U/Mw==
+parcel@2.6.2:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/parcel/-/parcel-2.6.2.tgz#4585208880f42b24935c7d3ad167dcd42f8174eb"
+  integrity sha512-q6hrD3rm9M4S/VBVTcOs3pl55cnRwWfco7n8hZoAqnInWjWB+Khu92LRBMerMBTdE15Y+lJhWrXNdimDYstfhQ==
   dependencies:
-    "@parcel/config-default" "2.8.0"
-    "@parcel/core" "2.8.0"
-    "@parcel/diagnostic" "2.8.0"
-    "@parcel/events" "2.8.0"
-    "@parcel/fs" "2.8.0"
-    "@parcel/logger" "2.8.0"
-    "@parcel/package-manager" "2.8.0"
-    "@parcel/reporter-cli" "2.8.0"
-    "@parcel/reporter-dev-server" "2.8.0"
-    "@parcel/utils" "2.8.0"
+    "@parcel/config-default" "2.6.2"
+    "@parcel/core" "2.6.2"
+    "@parcel/diagnostic" "2.6.2"
+    "@parcel/events" "2.6.2"
+    "@parcel/fs" "2.6.2"
+    "@parcel/logger" "2.6.2"
+    "@parcel/package-manager" "2.6.2"
+    "@parcel/reporter-cli" "2.6.2"
+    "@parcel/reporter-dev-server" "2.6.2"
+    "@parcel/utils" "2.6.2"
     chalk "^4.1.0"
     commander "^7.0.0"
     get-port "^4.2.0"
