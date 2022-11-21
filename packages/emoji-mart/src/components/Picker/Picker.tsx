@@ -702,7 +702,10 @@ export default class Picker extends Component {
                 </div>
               </div>
             ) : (
-              <div class="color-c" style={{ fontSize: 21 }}>
+              <div
+                class="color-c"
+                style={{ fontSize: this.props.emojiPreviewSize }}
+              >
                 {I18n.pick}
               </div>
             )}
