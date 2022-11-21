@@ -14,6 +14,9 @@ export default {
   emojiSize: {
     value: 24,
   },
+  emojiPreviewSize: {
+    value: 14,
+  },
   emojiVersion: {
     value: 14,
     choices: [1, 2, 3, 4, 5, 11, 12, 12.1, 13, 13.1, 14],
