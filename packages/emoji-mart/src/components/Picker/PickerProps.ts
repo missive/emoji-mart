@@ -2,6 +2,9 @@ export default {
   autoFocus: {
     value: false,
   },
+  dynamicWidth: {
+    value: false,
+  },
   emojiButtonColors: {
     value: null,
   },
