@@ -7,10 +7,19 @@
 </div>
 
 ## 📖 Table of Contents
+- [📖 Table of Contents](#-table-of-contents)
 - [💾 Data](#-data)
+  - [Bundled directly into your codebase](#bundled-directly-into-your-codebase)
+  - [Fetched remotely](#fetched-remotely)
 - [🏪 Picker](#-picker)
+  - [React](#react)
+  - [Browser](#browser)
+  - [Options / Props](#options--props)
+  - [Custom emojis](#custom-emojis)
+  - [Custom category icons](#custom-category-icons)
 - [🙃 Emoji component](#-emoji-component)
-- [🕵️‍♀️ Headless search](#%EF%B8%8F%EF%B8%8F-headless-search)
+  - [Attributes / Props](#attributes--props)
+- [🕵️‍♀️ Headless search](#️️-headless-search)
 - [🔬 Get emoji data from native](#-get-emoji-data-from-native)
 - [🗺 Internationalization](#-internationalization)
 - [📚 Examples](#-examples)
@@ -110,6 +119,7 @@ function App() {
 | **perLine** | `9` | | The number of emojis to show per line |
 | **previewEmoji** | `point_up` | | The id of the emoji to use for the preview when not hovering any emoji. `point_up` when preview position is bottom and `point_down` when preview position is top. |
 | **previewPosition** | `bottom` | `top`, `bottom`, `none` | The position of the preview |
+| **rtl** | `false` | | Whether the Right to Left style or not |
 | **searchPosition** | `sticky` | `sticky`, `static`, `none` | The position of the search input |
 | **set** | `native` | `native`, `apple`, `facebook`, `google`, `twitter` | The set of emojis to use for the picker. `native` being the most performant, others rely on spritesheets. |
 | **skin** | `1` | `1`, `2`, `3`, `4`, `5`, `6` | The emojis skin tone |
