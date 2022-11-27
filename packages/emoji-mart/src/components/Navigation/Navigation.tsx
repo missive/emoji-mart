@@ -54,7 +54,7 @@ export default class Navigation extends PureComponent {
     let selectedCategoryIndex = null
 
     return (
-      <nav id="nav" class="padding" data-position={this.props.position}>
+      <nav id="nav" class="padding" data-position={this.props.position} dir={this.props.dir}>
         <div class="flex relative">
           {this.categories.map((category, i) => {
             const title = category.name || I18n.categories[category.id]
@@ -87,7 +87,7 @@ export default class Navigation extends PureComponent {
             style={{
               width: `${100 / this.categories.length}%`,
               opacity: selectedCategoryIndex == null ? 0 : 1,
-              transform: `translateX(${selectedCategoryIndex * 100}%)`,
+              transform: this.props.dir === 'rtl' ? `scaleX(-1) translateX(${selectedCategoryIndex * 100}%)` : `translateX(${selectedCategoryIndex * 100}%)`,
             }}
           ></div>
         </div>

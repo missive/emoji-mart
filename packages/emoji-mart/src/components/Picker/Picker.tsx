@@ -36,7 +36,7 @@ export default class Picker extends Component {
   }
 
   componentWillMount() {
-    this.dir = I18n.rtl ? 'rtl' : 'ltr'
+    this.dir = I18n.rtl || this.props.rtl ? 'rtl' : 'ltr'
     this.refs = {
       menu: createRef(),
       navigation: createRef(),
@@ -676,6 +676,7 @@ export default class Picker extends Component {
         ref={this.refs.navigation}
         icons={this.props.icons}
         theme={this.state.theme}
+        dir={this.dir}
         unfocused={!!this.state.searchResults}
         position={this.props.navPosition}
         onClick={this.handleCategoryClick}
@@ -1103,6 +1104,7 @@ export default class Picker extends Component {
       <section
         id="root"
         class="flex flex-column"
+        dir={this.dir}
         data-emoji-set={this.props.set}
         data-theme={this.state.theme}
         data-menu={this.state.showSkins ? '' : undefined}
