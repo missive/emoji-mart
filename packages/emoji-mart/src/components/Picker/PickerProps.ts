@@ -2,6 +2,9 @@ export default {
   autoFocus: {
     value: false,
   },
+  dynamicWidth: {
+    value: false,
+  },
   emojiButtonColors: {
     value: null,
   },
@@ -37,6 +40,7 @@ export default {
       'hi',
       'it',
       'ja',
+      'kr',
       'nl',
       'pl',
       'pt',
