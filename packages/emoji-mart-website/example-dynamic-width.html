@@ -1,0 +1,25 @@
+<extends
+  src="layout.html"
+  locals='{ "exampleName": "Dynamic width", "exampleFile": "example-dynamic-width.html" }'
+>
+  <block name="script">
+    <style>
+      em-emoji-picker {
+        width: 400px;
+        min-width: 250px;
+        resize: horizontal;
+        overflow: auto;
+      }
+    </style>
+    <script type="module">
+      import data from '@emoji-mart/data'
+      import { Picker } from 'emoji-mart'
+
+      new Picker({
+        parent: document.querySelector('#picker'),
+        data: data,
+        dynamicWidth: true,
+      })
+    </script>
+  </block>
+</extends>
