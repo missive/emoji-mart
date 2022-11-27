@@ -40,6 +40,7 @@ export default {
       'hi',
       'it',
       'ja',
+      'kr',
       'nl',
       'pl',
       'pt',
