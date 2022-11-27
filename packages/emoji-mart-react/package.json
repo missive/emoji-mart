@@ -9,7 +9,8 @@
     "url": "https://github.com/missive/emoji-mart",
     "directory": "packages/emoji-mart-react"
   },
-  "source": "react.js",
+  "source": "react.tsx",
+  "types": "dist/index.d.ts",
   "main": "dist/main.js",
   "module": "dist/module.js",
   "scripts": {
