@@ -451,6 +451,10 @@ button {
 .skin-tone-5 { background-color: #a46134 }
 .skin-tone-6 { background-color: #5d4437 }
 
+[data-index] {
+  justify-content: space-between;
+}
+
 [data-emoji-set="twitter"] {
   .skin-tone:after {
     border-color: rgba(0,0,0, .5);
