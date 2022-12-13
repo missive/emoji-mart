@@ -7,7 +7,6 @@
 </div>
 
 ## 📖 Table of Contents
-
 - [💾 Data](#-data)
 - [🏪 Picker](#-picker)
 - [🙃 Emoji component](#-emoji-component)
