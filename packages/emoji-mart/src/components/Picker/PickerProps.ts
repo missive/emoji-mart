@@ -75,9 +75,6 @@ export default {
     value: 'bottom',
     choices: ['top', 'bottom', 'none'],
   },
-  rtl: {
-    value: false,
-  },
   searchPosition: {
     value: 'sticky',
     choices: ['sticky', 'static', 'none'],

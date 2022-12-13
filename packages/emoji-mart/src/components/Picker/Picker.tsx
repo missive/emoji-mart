@@ -36,7 +36,7 @@ export default class Picker extends Component {
   }
 
   componentWillMount() {
-    this.dir = I18n.rtl || this.props.rtl ? 'rtl' : 'ltr'
+    this.dir = I18n.rtl ? 'rtl' : 'ltr'
     this.refs = {
       menu: createRef(),
       navigation: createRef(),
