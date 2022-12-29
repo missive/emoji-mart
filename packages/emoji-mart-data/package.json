@@ -24,6 +24,7 @@
   "files": [
     "/i18n",
     "/sets",
+    "index.d.ts",
     "LICENSE"
   ]
 }
