@@ -1,6 +1,6 @@
 {
   "name": "@emoji-mart/react",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "React wrapper for Emoji Mart; the emoji picker for the web.",
   "license": "MIT",
   "homepage": "https://missiveapp.com/open/emoji-mart",
