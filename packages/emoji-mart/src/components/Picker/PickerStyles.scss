@@ -292,6 +292,11 @@ button {
   position: relative;
   padding: calc(var(--padding) + 4px) var(--padding);
   padding-right: var(--sidebar-width);
+
+  .placeholder{
+    font-size: 21px;
+    font-size: var(--em-preview-placeholder-font-size);
+  }
 }
 
 #nav, #preview {

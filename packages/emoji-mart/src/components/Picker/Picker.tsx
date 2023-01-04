@@ -741,12 +741,7 @@ export default class Picker extends Component {
                 </div>
               </div>
             ) : (
-              <div
-                class="color-c"
-                style={{ fontSize: this.props.previewPlaceholderFontSize }}
-              >
-                {I18n.pick}
-              </div>
+              <div class="color-c placeholder">{I18n.pick}</div>
             )}
           </div>
         </div>
