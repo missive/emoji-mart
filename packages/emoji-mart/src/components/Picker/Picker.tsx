@@ -219,7 +219,7 @@ export default class Picker extends Component {
       }
 
       if (this.props.onClickOutside) {
-        this.props.onClickOutside()
+        this.props.onClickOutside(e)
       }
     }
   }
