@@ -693,6 +693,11 @@ export default class Picker extends Component {
         id="preview"
         class="flex flex-middle"
         dir={this.dir}
+        style={{
+          width: this.props.dynamicWidth
+            ? '100%'
+            : this.props.perLine * this.props.emojiButtonSize,
+        }}
         data-position={this.props.previewPosition}
       >
         <div class="flex flex-middle flex-grow">
