@@ -294,8 +294,7 @@ button {
   padding-right: var(--sidebar-width);
 
   .placeholder{
-    font-size: 21px;
-    font-size: var(--em-preview-placeholder-font-size);
+    font-size: var(--em-preview-placeholder-font-size, 21px);
   }
 }
 
