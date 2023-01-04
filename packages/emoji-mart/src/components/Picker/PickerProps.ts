@@ -75,9 +75,6 @@ export default {
     value: 'bottom',
     choices: ['top', 'bottom', 'none'],
   },
-  previewPlaceholderFontSize: {
-    value: 21,
-  },
   searchPosition: {
     value: 'sticky',
     choices: ['sticky', 'static', 'none'],
