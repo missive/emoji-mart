@@ -723,20 +723,13 @@ export default class Picker extends Component {
           </div>
 
           <div class={`margin-${this.dir[0]}`}>
-            {emoji ? (
-              <div class={`padding-${this.dir[2]} align-${this.dir[0]}`}>
-                <div class="preview-title ellipsis">{emoji.name}</div>
-                <div class="preview-subtitle ellipsis color-c">
-                  {emoji.skins[0].shortcodes}
-                </div>
-              </div>
-            ) : noSearchResults ? (
+            {emoji || noSearchResults ? (
               <div class={`padding-${this.dir[2]} align-${this.dir[0]}`}>
                 <div class="preview-title ellipsis">
-                  {I18n.search_no_results_1}
+                  {emoji ? emoji.name : I18n.search_no_results_1}
                 </div>
                 <div class="preview-subtitle ellipsis color-c">
-                  {I18n.search_no_results_2}
+                  {emoji ? emoji.skins[0].shortcodes : I18n.search_no_results_2}
                 </div>
               </div>
             ) : (
