@@ -676,6 +676,7 @@ export default class Picker extends Component {
         ref={this.refs.navigation}
         icons={this.props.icons}
         theme={this.state.theme}
+        dir={this.dir}
         unfocused={!!this.state.searchResults}
         position={this.props.navPosition}
         onClick={this.handleCategoryClick}
@@ -819,8 +820,6 @@ export default class Picker extends Component {
       <div>
         <div class="spacer"></div>
         <div class="flex flex-middle">
-          {renderSkinTone && this.dir == 'rtl' && this.renderSkinToneButton()}
-
           <div class="search relative flex-grow">
             <input
               type="search"
@@ -846,7 +845,7 @@ export default class Picker extends Component {
             )}
           </div>
 
-          {renderSkinTone && this.dir == 'ltr' && this.renderSkinToneButton()}
+          {renderSkinTone && this.renderSkinToneButton()}
         </div>
       </div>
     )
@@ -1105,6 +1104,7 @@ export default class Picker extends Component {
       <section
         id="root"
         class="flex flex-column"
+        dir={this.dir}
         style={{
           width: this.props.dynamicWidth
             ? '100%'
