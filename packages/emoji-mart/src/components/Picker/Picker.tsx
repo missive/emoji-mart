@@ -676,6 +676,7 @@ export default class Picker extends Component {
         ref={this.refs.navigation}
         icons={this.props.icons}
         theme={this.state.theme}
+        dir={this.dir}
         unfocused={!!this.state.searchResults}
         position={this.props.navPosition}
         onClick={this.handleCategoryClick}
@@ -815,8 +816,6 @@ export default class Picker extends Component {
       <div>
         <div class="spacer"></div>
         <div class="flex flex-middle">
-          {renderSkinTone && this.dir == 'rtl' && this.renderSkinToneButton()}
-
           <div class="search relative flex-grow">
             <input
               type="search"
@@ -842,7 +841,7 @@ export default class Picker extends Component {
             )}
           </div>
 
-          {renderSkinTone && this.dir == 'ltr' && this.renderSkinToneButton()}
+          {renderSkinTone && this.renderSkinToneButton()}
         </div>
       </div>
     )
@@ -1095,10 +1094,18 @@ export default class Picker extends Component {
   }
 
   render() {
+    const lineWidth = this.props.perLine * this.props.emojiButtonSize
+
     return (
       <section
         id="root"
         class="flex flex-column"
+        dir={this.dir}
+        style={{
+          width: this.props.dynamicWidth
+            ? '100%'
+            : `calc(${lineWidth}px + (var(--padding) + var(--sidebar-width)))`,
+        }}
         data-emoji-set={this.props.set}
         data-theme={this.state.theme}
         data-menu={this.state.showSkins ? '' : undefined}
@@ -1112,9 +1119,7 @@ export default class Picker extends Component {
         <div ref={this.refs.scroll} class="scroll flex-grow padding-lr">
           <div
             style={{
-              width: this.props.dynamicWidth
-                ? '100%'
-                : this.props.perLine * this.props.emojiButtonSize,
+              width: this.props.dynamicWidth ? '100%' : lineWidth,
               height: '100%',
             }}
           >

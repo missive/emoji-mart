@@ -144,6 +144,11 @@ a {
 
 .spacer { height: 10px }
 
+[dir="rtl"] .scroll {
+  padding-left: 0;
+  padding-right: var(--padding);
+}
+
 .scroll {
   overflow: auto;
   overflow-x: hidden;
@@ -192,6 +197,22 @@ a {
   font-weight: 500;
   background-color: rgba(var(--em-rgb-background), .9);
   backdrop-filter: blur(4px);
+}
+
+[dir="rtl"] .search {
+  input[type="search"] {
+    padding: 10px 2.2em 10px 2em;
+  }
+
+  .loupe { 
+    right: .7em;
+    left: auto;
+  }
+  
+  .delete { 
+    left: .7em;
+    right: auto;
+  }
 }
 
 .search {
@@ -275,6 +296,11 @@ button {
   svg, img {
     width: var(--category-icon-size);
     height: var(--category-icon-size);
+  }
+
+  &[dir="rtl"] .bar {
+    right: 0;
+    left: auto;
   }
 
   .bar {
