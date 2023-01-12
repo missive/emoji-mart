@@ -46,6 +46,10 @@
 
   --sidebar-width: 16px;
 
+  --preview-placeholder-size: 21px;
+  --preview-title-size: 1.1em;
+  --preview-subtitle-size: .9em;
+
   --duration: 225ms;
   --duration-fast: 125ms;
   --duration-instant: 50ms;
@@ -318,6 +322,10 @@ button {
   position: relative;
   padding: calc(var(--padding) + 4px) var(--padding);
   padding-right: var(--sidebar-width);
+
+  .preview-placeholder { font-size: var(--preview-placeholder-size) }
+  .preview-title { font-size: var(--preview-title-size) }
+  .preview-subtitle { font-size: var(--preview-subtitle-size) }
 }
 
 #nav, #preview {
