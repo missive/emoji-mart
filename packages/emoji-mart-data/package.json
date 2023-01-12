@@ -1,6 +1,6 @@
 {
   "name": "@emoji-mart/data",
-  "version": "1.0.6",
+  "version": "1.1.1",
   "description": "Data for Emoji Mart; the emoji picker for the web.",
   "license": "MIT",
   "homepage": "https://missiveapp.com/open/emoji-mart",
@@ -10,6 +10,7 @@
     "directory": "packages/emoji-mart-data"
   },
   "main": "sets/14/native.json",
+  "types": "index.d.ts",
   "scripts": {
     "build": "node ./build.js"
   },
@@ -23,6 +24,7 @@
   "files": [
     "/i18n",
     "/sets",
+    "index.d.ts",
     "LICENSE"
   ]
 }

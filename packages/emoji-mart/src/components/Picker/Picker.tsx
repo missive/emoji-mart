@@ -18,8 +18,11 @@ export default class Picker extends Component {
   constructor(props) {
     super()
 
+    this.observers = []
+
     this.state = {
       pos: [-1, -1],
+      perLine: this.initDynamicPerLine(props),
       visibleRows: { 0: true },
       ...this.getInitialState(props),
     }
@@ -33,7 +36,6 @@ export default class Picker extends Component {
   }
 
   componentWillMount() {
-    this.observers = []
     this.dir = I18n.rtl ? 'rtl' : 'ltr'
     this.refs = {
       menu: createRef(),
@@ -133,10 +135,17 @@ export default class Picker extends Component {
     this.observeRows()
   }
 
-  unobserve() {
+  unobserve({ except = [] } = {}) {
+    if (!Array.isArray(except)) {
+      except = [except]
+    }
+
     for (const observer of this.observers) {
+      if (except.includes(observer)) continue
       observer.disconnect()
     }
+
+    this.observers = [].concat(except)
   }
 
   initGrid() {
@@ -173,7 +182,7 @@ export default class Picker extends Component {
       let row = addRow(rows, category)
 
       for (let emoji of category.emojis) {
-        if (row.length == this.props.perLine) {
+        if (row.length == this.getPerLine()) {
           row = addRow(rows, category)
         }
 
@@ -210,7 +219,7 @@ export default class Picker extends Component {
       }
 
       if (this.props.onClickOutside) {
-        this.props.onClickOutside()
+        this.props.onClickOutside(e)
       }
     }
   }
@@ -233,6 +242,36 @@ export default class Picker extends Component {
 
       this.closeSkins()
     }
+  }
+
+  initDynamicPerLine(props = this.props) {
+    if (!props.dynamicWidth) return
+    const { element, emojiButtonSize } = props
+
+    const calculatePerLine = () => {
+      const { width } = element.getBoundingClientRect()
+      return Math.floor(width / emojiButtonSize)
+    }
+
+    const observer = new ResizeObserver(() => {
+      this.unobserve({ except: observer })
+      this.setState({ perLine: calculatePerLine() }, () => {
+        this.initGrid()
+        this.forceUpdate(() => {
+          this.observeCategories()
+          this.observeRows()
+        })
+      })
+    })
+
+    observer.observe(element)
+    this.observers.push(observer)
+
+    return calculatePerLine()
+  }
+
+  getPerLine() {
+    return this.state.perLine || this.props.perLine
   }
 
   getEmojiByPos([p1, p2]) {
@@ -349,7 +388,7 @@ export default class Picker extends Component {
     let row = null
 
     for (let emoji of searchResults) {
-      if (!grid.length || row.length == this.props.perLine) {
+      if (!grid.length || row.length == this.getPerLine()) {
         row = []
         row.__categoryId = 'search'
         row.__index = grid.length
@@ -395,7 +434,7 @@ export default class Picker extends Component {
 
       case 'Enter':
         e.preventDefault()
-        this.handleEmojiClick({ pos: this.state.pos })
+        this.handleEmojiClick({ e, pos: this.state.pos })
         break
 
       case 'Escape':
@@ -573,7 +612,7 @@ export default class Picker extends Component {
     this.setState({ pos: pos || [-1, -1], keyboard: false })
   }
 
-  handleEmojiClick({ emoji, pos }) {
+  handleEmojiClick({ e, emoji, pos }) {
     if (!this.props.onEmojiSelect) return
 
     if (!emoji && pos) {
@@ -587,7 +626,7 @@ export default class Picker extends Component {
         FrequentlyUsed.add(emojiData, this.props)
       }
 
-      this.props.onEmojiSelect(emojiData)
+      this.props.onEmojiSelect(emojiData, e)
     }
   }
 
@@ -736,7 +775,7 @@ export default class Picker extends Component {
           type="button"
           class="flex flex-center flex-middle"
           tabindex="-1"
-          onClick={() => this.handleEmojiClick({ emoji })}
+          onClick={(e) => this.handleEmojiClick({ e, emoji })}
           onMouseEnter={() => this.handleEmojiOver(pos)}
           onMouseLeave={() => this.handleEmojiOver()}
           style={{
@@ -852,6 +891,7 @@ export default class Picker extends Component {
   renderCategories() {
     const { categories } = Data
     const hidden = !!this.state.searchResults
+    const perLine = this.getPerLine()
 
     return (
       <div
@@ -889,9 +929,13 @@ export default class Picker extends Component {
                     return null
                   }
 
-                  const start = i * this.props.perLine
-                  const end = start + this.props.perLine
+                  const start = i * perLine
+                  const end = start + perLine
                   const emojiIds = category.emojis.slice(start, end)
+
+                  if (emojiIds.length < perLine) {
+                    emojiIds.push(...new Array(perLine - emojiIds.length))
+                  }
 
                   return (
                     <div
@@ -903,6 +947,17 @@ export default class Picker extends Component {
                     >
                       {visible &&
                         emojiIds.map((emojiId, ii) => {
+                          if (!emojiId) {
+                            return (
+                              <div
+                                style={{
+                                  width: this.props.emojiButtonSize,
+                                  height: this.props.emojiButtonSize,
+                                }}
+                              ></div>
+                            )
+                          }
+
                           const emoji = SearchIndex.get(emojiId)
 
                           return this.renderEmojiButton(emoji, {
@@ -1044,12 +1099,16 @@ export default class Picker extends Component {
   }
 
   render() {
+    const lineWidth = this.props.perLine * this.props.emojiButtonSize
+
     return (
       <section
         id="root"
         class="flex flex-column"
         style={{
-          width: this.props.perLine * this.props.emojiButtonSize + (12 + 16),
+          width: this.props.dynamicWidth
+            ? '100%'
+            : `calc(${lineWidth}px + (var(--padding) + var(--sidebar-width)))`,
         }}
         data-emoji-set={this.props.set}
         data-theme={this.state.theme}
@@ -1064,7 +1123,7 @@ export default class Picker extends Component {
         <div ref={this.refs.scroll} class="scroll flex-grow padding-lr">
           <div
             style={{
-              width: this.props.perLine * this.props.emojiButtonSize,
+              width: this.props.dynamicWidth ? '100%' : lineWidth,
               height: '100%',
             }}
           >

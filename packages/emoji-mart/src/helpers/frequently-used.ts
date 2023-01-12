@@ -91,4 +91,4 @@ function get({ maxFrequentRows, perLine }) {
   return emojiIds
 }
 
-export default { add, get }
+export default { add, get, DEFAULTS }

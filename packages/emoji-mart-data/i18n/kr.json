@@ -1,0 +1,29 @@
+{
+  "search": "검색",
+  "search_no_results_1": "어머나!",
+  "search_no_results_2": "결과를 찾을 수 없어요",
+  "pick": "이모지 선택하기",
+  "add_custom": "이모지 추가하기",
+  "categories": {
+    "activity": "활동",
+    "custom": "커스텀",
+    "flags": "깃발",
+    "foods": "음식 및 음료",
+    "frequent": "자주 사용하는 항목",
+    "nature": "동물 및 자연",
+    "objects": "사물",
+    "people": "스마일리 및 사람",
+    "places": "여행 및 장소",
+    "search": "검색 결과",
+    "symbols": "기호"
+  },
+  "skins": {
+    "choose": "기준 피부색 선택하기",
+    "1": "표준",
+    "2": "밝은 피부색",
+    "3": "약간 밝은 피부색",
+    "4": "중간 피부색",
+    "5": "약간 어두운 피부색",
+    "6": "어두운 피부색"
+  }
+}

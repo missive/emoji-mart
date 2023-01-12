@@ -39,11 +39,9 @@ export default function Emoji(props) {
       {imageSrc ? (
         <img
           style={{
-            height: props.size || '1em',
-            width: 'auto',
+            maxWidth: props.size || '1em',
+            maxHeight: props.size || '1em',
             display: 'inline-block',
-            position: 'relative',
-            top: '.1em',
           }}
           alt={emojiSkin.native || emojiSkin.shortcodes}
           src={imageSrc}
