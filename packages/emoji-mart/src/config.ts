@@ -195,6 +195,11 @@ async function _init(props) {
         }
       }
 
+      if (props.exceptEmojis.includes(emoji.id)) {
+        ignore()
+        continue
+      }
+
       if (!emoji.search) {
         resetSearchIndex = true
         emoji.search =
