@@ -178,7 +178,7 @@ async function _init(props) {
         category.emojis.splice(emojiIndex, 1)
       }
 
-      if (!emoji) {
+      if (!emoji || props.exceptEmojis.includes(emoji.id)) {
         ignore()
         continue
       }
@@ -193,11 +193,6 @@ async function _init(props) {
           ignore()
           continue
         }
-      }
-
-      if (props.exceptEmojis.includes(emoji.id)) {
-        ignore()
-        continue
       }
 
       if (!emoji.search) {
