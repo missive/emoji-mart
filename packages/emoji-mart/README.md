@@ -95,14 +95,15 @@ function App() {
 | **onAddCustomEmoji** | `null` | | Callback when the *Add custom emoji* button is clicked. The button will only be displayed if this callback is provided. It is displayed when search returns no results. |
 | **autoFocus** | `false` | | Whether the picker should automatically focus on the search input |
 | **categoryIcons** | `{}` | | [Custom category icons](#custom-category-icons) |
+| **dynamicWidth** | `false` | | Whether the picker should calculate `perLine` dynamically based on the width of `<em-emoji-picker>`. When enabled, `perLine` is ignored |
 | **emojiButtonColors** | `[]` | i.e. `#f00`, `pink`, `rgba(155,223,88,.7)` | An array of color that affects the hover background color |
 | **emojiButtonRadius** | `100%` | i.e. `6px`, `1em`, `100%` | The radius of the emoji buttons |
 | **emojiButtonSize** | `36` | | The size of the emoji buttons |
 | **emojiSize** | `24` | | The size of the emojis (inside the buttons) |
 | **emojiVersion** | `14` | `1`, `2`, `3`, `4`, `5`, `11`, `12`, `12.1`, `13`, `13.1`, `14` | The version of the emoji data to use. Latest version supported in `@emoji-mart/data` is currently [14](https://emojipedia.org/emoji-14.0) |
-| **exceptEmojis** | `[]` | | The list of emoji ids that want to be except showing from emojis list |
+| **exceptEmojis** | `[]` | | List of emoji IDs that will be excluded from the picker |
 | **icons** | `auto` | `auto`, `outline`, `solid` | The type of icons to use for the picker. `outline` with light theme and `solid` with dark theme. |
-| **locale** | `en` | `en`, `ar`, `de`, `es`, `fa`, `fr`, `it`, `ja`, `nl`, `pl`, `pt`, `ru`, `uk`, `zh` | The locale to use for the picker |
+| **locale** | `en` | `en`, `ar`, `be`, `cs`, `de`, `es`, `fa`, `fi`, `fr`, `hi`, `it`, `ja`, `kr`, `nl`, `pl`, `pt`, `ru`, `sa`, `tr`, `uk`, `vi`, `zh` | The locale to use for the picker |
 | **maxFrequentRows** | `4` | | The maximum number of frequent rows to show. `0` will disable frequent category |
 | **navPosition** | `top` | `top`, `bottom`, `none` | The position of the navigation bar |
 | **noCountryFlags** | `false` | | Whether to show country flags or not. If not provided, tbhis is handled automatically (Windows doesn’t support country flags) |
