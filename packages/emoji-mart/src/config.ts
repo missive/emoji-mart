@@ -178,7 +178,7 @@ async function _init(props) {
         category.emojis.splice(emojiIndex, 1)
       }
 
-      if (!emoji) {
+      if (!emoji || props.exceptEmojis.includes(emoji.id)) {
         ignore()
         continue
       }

@@ -100,6 +100,7 @@ function App() {
 | **emojiButtonSize** | `36` | | The size of the emoji buttons |
 | **emojiSize** | `24` | | The size of the emojis (inside the buttons) |
 | **emojiVersion** | `14` | `1`, `2`, `3`, `4`, `5`, `11`, `12`, `12.1`, `13`, `13.1`, `14` | The version of the emoji data to use. Latest version supported in `@emoji-mart/data` is currently [14](https://emojipedia.org/emoji-14.0) |
+| **exceptEmojis** | `[]` | | The list of emoji ids that want to be except showing from emojis list |
 | **icons** | `auto` | `auto`, `outline`, `solid` | The type of icons to use for the picker. `outline` with light theme and `solid` with dark theme. |
 | **locale** | `en` | `en`, `ar`, `de`, `es`, `fa`, `fr`, `it`, `ja`, `nl`, `pl`, `pt`, `ru`, `uk`, `zh` | The locale to use for the picker |
 | **maxFrequentRows** | `4` | | The maximum number of frequent rows to show. `0` will disable frequent category |
