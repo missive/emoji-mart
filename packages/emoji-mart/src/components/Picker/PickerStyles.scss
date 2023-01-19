@@ -11,6 +11,10 @@
   --font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
   --font-size: 15px;
 
+  --preview-placeholder-size: 21px;
+  --preview-title-size: 1.1em;
+  --preview-subtitle-size: .9em;
+
   --shadow-color: 0deg 0% 0%;
   --shadow:
     0.3px 0.5px 2.7px hsl(var(--shadow-color) / 0.14),
@@ -45,10 +49,6 @@
   --padding-small: calc(var(--padding) / 2);
 
   --sidebar-width: 16px;
-
-  --preview-placeholder-size: 21px;
-  --preview-title-size: 1.1em;
-  --preview-subtitle-size: .9em;
 
   --duration: 225ms;
   --duration-fast: 125ms;
