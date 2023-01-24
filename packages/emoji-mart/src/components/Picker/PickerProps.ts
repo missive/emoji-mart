@@ -40,6 +40,7 @@ export default {
       'fa',
       'fi',
       'fr',
+      'guj',
       'hi',
       'it',
       'ja',
