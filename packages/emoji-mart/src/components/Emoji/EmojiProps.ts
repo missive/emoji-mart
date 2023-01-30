@@ -1,4 +1,4 @@
-import PickerProps from '../Picker/PickerProps'
+import { defaultPickerProps } from '../Picker/PickerProps'
 
 export default {
   fallback: '',
@@ -18,6 +18,6 @@ export default {
   },
 
   // Shared
-  set: PickerProps.set,
-  skin: PickerProps.skin,
+  set: defaultPickerProps.set,
+  skin: defaultPickerProps.skin,
 }
