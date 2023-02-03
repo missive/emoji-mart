@@ -9,6 +9,8 @@ export type PickerCategory =
   | 'symbols'
   | 'flags'
 
+export type PickerTheme = 'auto' | 'light' | 'dark'
+
 export interface PickerProps {
   /**
    * Data to use for the picker
@@ -33,17 +35,17 @@ export interface PickerProps {
   /**
    * Callback when an emoji is selected
    */
-  onEmojiSelect?: () => void
+  onEmojiSelect?: (emojiData, e: MouseEvent) => void
 
   /**
    * Callback when a click outside of the picker happens
    */
-  onClickOutside?: () => void
+  onClickOutside?: (e: MouseEvent) => void
 
   /**
    * Callback when the Add custom emoji button is clicked. The button will only be displayed if this callback is provided. It is displayed when search returns no results.
    */
-  onAddCustomEmoji?: () => void
+  onAddCustomEmoji?: (e: MouseEvent) => void
 
   /**
    * Whether the picker should automatically focus on the search input
@@ -158,12 +160,12 @@ export interface PickerProps {
   /**
    * The color theme of the picker
    */
-  theme?: 'auto' | 'light' | 'dark'
+  theme?: PickerTheme
 
   /**
    * A function that returns the URL of the spritesheet to use for the picker. It should be compatible with the data provided.
    */
-  getSpritesheetURL?: () => string
+  getSpritesheetURL?: (set: string) => string
 }
 
 export const defaultPickerProps = {

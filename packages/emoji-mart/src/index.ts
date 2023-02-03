@@ -7,3 +7,5 @@ export { FrequentlyUsed, SafeFlags, SearchIndex, Store } from './helpers'
 export { init, Data, I18n } from './config'
 
 export { getEmojiDataFromNative } from './utils'
+
+export * from './types'

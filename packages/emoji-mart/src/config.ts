@@ -7,9 +7,10 @@ import {
   SafeFlags,
   SearchIndex,
 } from './helpers'
+import type { EmojiData } from './types'
 
 export let I18n = null
-export let Data = null
+export let Data: EmojiData | null = null
 
 const fetchCache = {}
 async function fetchJSON(src) {
@@ -29,7 +30,13 @@ let initiated = false
 let initCallback = null
 let initialized = false
 
-export function init(options, { caller } = {}) {
+interface InitOptions {
+  emojiVersion?: number
+  set?: string
+  locale?: string
+}
+
+export function init(options: InitOptions, { caller } = {}): Promise<void> {
   promise ||
     (promise = new Promise((resolve) => {
       initCallback = resolve
@@ -46,7 +53,7 @@ export function init(options, { caller } = {}) {
   return promise
 }
 
-async function _init(props) {
+async function _init(props: InitOptions) {
   initialized = true
 
   let { emojiVersion, set, locale } = props

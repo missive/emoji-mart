@@ -1,8 +1,9 @@
 // @ts-nocheck
 import { init, Data } from '../config'
+import type { EmojiDataItem } from '../types'
 
 const SHORTCODES_REGEX = /^(?:\:([^\:]+)\:)(?:\:skin-tone-(\d)\:)?$/
-let Pool = null
+let Pool: EmojiDataItem[] = null
 
 function get(emojiId) {
   if (emojiId.id) {
@@ -20,7 +21,10 @@ function reset() {
   Pool = null
 }
 
-async function search(value, { maxResults, caller } = {}) {
+async function search(
+  value: string,
+  { maxResults, caller }: { maxResults: number; caller: string } = {},
+): Promise<EmojiDataItem[]> {
   if (!value || !value.trim().length) return null
   maxResults || (maxResults = 90)
 
@@ -37,7 +41,8 @@ async function search(value, { maxResults, caller } = {}) {
   if (!values.length) return
 
   let pool = Pool || (Pool = Object.values(Data.emojis))
-  let results, scores
+  let results: EmojiDataItem[]
+  let scores: Record<string, number>
 
   for (const value of values) {
     if (!pool.length) break

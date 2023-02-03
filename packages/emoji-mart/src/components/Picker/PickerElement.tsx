@@ -14,7 +14,7 @@ export default class PickerElement extends ShadowElement {
   }
 
   async connectedCallback() {
-    const props = getProps(this.props, defaultPickerProps, this)
+    const props: PickerProps = getProps(this.props, defaultPickerProps, this)
     props.element = this
     props.ref = (component) => {
       this.component = component
