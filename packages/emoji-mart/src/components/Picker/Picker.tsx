@@ -9,12 +9,24 @@ import Icons from '../../icons'
 import { Emoji } from '../Emoji'
 import { Navigation } from '../Navigation'
 import { PureInlineComponent } from '../HOCs'
+import { PickerProps, PickerTheme } from './PickerProps'
 
 const Performance = {
   rowsPerRender: 10,
 }
 
-export default class Picker extends Component {
+type EmojiGrid = EmojiRow[]
+
+type EmojiRow = EmojiDataItem[] & {
+  __categoryId: string
+  __index: number
+}
+
+interface PickerState {
+  searchResults: EmojiGrid
+}
+
+export default class Picker extends Component<PickerProps, PickerState> {
   constructor(props) {
     super()
 
@@ -194,7 +206,7 @@ export default class Picker extends Component {
     }
   }
 
-  initTheme(theme) {
+  initTheme(theme: PickerTheme) {
     if (theme != 'auto') return theme
 
     if (!this.darkMedia) {
@@ -210,7 +222,7 @@ export default class Picker extends Component {
     return this.darkMedia.matches ? 'dark' : 'light'
   }
 
-  handleClickOutside = (e) => {
+  handleClickOutside = (e: MouseEvent) => {
     const { element } = this.props
 
     if (e.target != element) {
@@ -383,9 +395,9 @@ export default class Picker extends Component {
     }
 
     const pos = input.selectionStart == input.value.length ? [0, 0] : [-1, -1]
-    const grid = []
+    const grid: EmojiGrid = []
     grid.setsize = searchResults.length
-    let row = null
+    let row: EmojiRow = null
 
     for (let emoji of searchResults) {
       if (!grid.length || row.length == this.getPerLine()) {

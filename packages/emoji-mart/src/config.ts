@@ -1,15 +1,16 @@
 // @ts-nocheck
 import i18n_en from '@emoji-mart/data/i18n/en.json'
-import PickerProps from './components/Picker/PickerProps'
+import { defaultPickerProps } from './components/Picker/PickerProps'
 import {
   FrequentlyUsed,
   NativeSupport,
   SafeFlags,
   SearchIndex,
 } from './helpers'
+import type { EmojiData } from './types'
 
 export let I18n = null
-export let Data = null
+export let Data: EmojiData | null = null
 
 const fetchCache = {}
 async function fetchJSON(src) {
@@ -29,7 +30,13 @@ let initiated = false
 let initCallback = null
 let initialized = false
 
-export function init(options, { caller } = {}) {
+interface InitOptions {
+  emojiVersion?: number
+  set?: string
+  locale?: string
+}
+
+export function init(options: InitOptions, { caller } = {}): Promise<void> {
   promise ||
     (promise = new Promise((resolve) => {
       initCallback = resolve
@@ -46,13 +53,13 @@ export function init(options, { caller } = {}) {
   return promise
 }
 
-async function _init(props) {
+async function _init(props: InitOptions) {
   initialized = true
 
   let { emojiVersion, set, locale } = props
-  emojiVersion || (emojiVersion = PickerProps.emojiVersion.value)
-  set || (set = PickerProps.set.value)
-  locale || (locale = PickerProps.locale.value)
+  emojiVersion || (emojiVersion = defaultPickerProps.emojiVersion.value)
+  set || (set = defaultPickerProps.set.value)
+  locale || (locale = defaultPickerProps.locale.value)
 
   if (!Data) {
     Data =
@@ -150,8 +157,8 @@ async function _init(props) {
       maxFrequentRows =
         maxFrequentRows >= 0
           ? maxFrequentRows
-          : PickerProps.maxFrequentRows.value
-      perLine || (perLine = PickerProps.perLine.value)
+          : defaultPickerProps.maxFrequentRows.value
+      perLine || (perLine = defaultPickerProps.perLine.value)
 
       category.emojis = FrequentlyUsed.get({ maxFrequentRows, perLine })
     }
