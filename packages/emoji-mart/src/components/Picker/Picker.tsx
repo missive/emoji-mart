@@ -898,17 +898,19 @@ export default class Picker extends Component {
               class="category"
               ref={root}
             >
-              {
-                categoryGapStatus === 'normal'?customerCategoryGap?
-                  (
-                    <div dangerouslySetInnerHTML={{__html:customerCategoryGap}}/>
-                  ):
-                  (
-                    <div class={`sticky padding-small align-${this.dir[0]}`}>
-                      {category.name || I18n.categories[category.id]}
-                    </div>
-                  ):<></>
-              }
+              {categoryGapStatus === 'normal' ? (
+                customerCategoryGap ? (
+                  <div
+                    dangerouslySetInnerHTML={{ __html: customerCategoryGap }}
+                  />
+                ) : (
+                  <div class={`sticky padding-small align-${this.dir[0]}`}>
+                    {category.name || I18n.categories[category.id]}
+                  </div>
+                )
+              ) : (
+                <></>
+              )}
               <div
                 class="relative"
                 style={{

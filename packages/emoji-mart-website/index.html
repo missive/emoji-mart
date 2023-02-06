@@ -92,15 +92,19 @@
         Category Gap:&nbsp;<span class="select flex flex-grow"
           ><select id="categoryGapStatus" class="flex-grow">
             <option value="normal">Normal</option>
-            <option value="none">None</option>
-            </select
+            <option value="none">None</option></select
           ><em-emoji id="arrow_down_small"></em-emoji
         ></span>
       </div>
 
       <div class="flex flex-middle">
         Customer Category Gap:&nbsp;<span class="select flex flex-grow"></span>
-        <input id="customerCategoryGap" type="text" placeholder="enter html string,blur will work" style="min-width:240px"/>
+        <input
+          id="customerCategoryGap"
+          type="text"
+          placeholder="enter html string,blur will work"
+          style="min-width: 240px"
+        />
       </div>
 
       <div class="flex flex-middle">
@@ -226,10 +230,12 @@
         })
       }
 
-      const customerCategoryGapInputDom = document.getElementById('customerCategoryGap');
-      customerCategoryGapInputDom.addEventListener('blur',(e)=>{
+      const customerCategoryGapInputDom = document.getElementById(
+        'customerCategoryGap',
+      )
+      customerCategoryGapInputDom.addEventListener('blur', (e) => {
         const { value } = e.target
-        localStorage['customerCategoryGap'] = value;
+        localStorage['customerCategoryGap'] = value
         window.location.reload(true)
       })
 
