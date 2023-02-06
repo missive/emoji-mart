@@ -89,6 +89,24 @@
       </div>
 
       <div class="flex flex-middle">
+        Category Gap:&nbsp;<span class="select flex flex-grow"
+          ><select id="categoryGapStatus" class="flex-grow">
+            <option value="normal">Normal</option>
+            <option value="none">None</option>
+            </select
+          ><em-emoji id="arrow_down_small"></em-emoji
+        ></span>
+      </div>
+
+      <div class="flex flex-middle">
+        Customer Category Gap:&nbsp;<span class="select flex flex-grow"
+          >
+          <input id="customerCategoryGap"
+           type="text" placeholder="enter html string,blur will work" style="min-width:240px"/>
+          <!-- <div style="color:red">gaping</div> -->
+      </div>
+
+      <div class="flex flex-middle">
         Auto focus:&nbsp;<span class="select flex flex-grow"
           ><select id="autoFocus" class="flex-grow">
             <option value="false">False</option>
@@ -211,6 +229,13 @@
         })
       }
 
+      const customerCategoryGapInputDom = document.getElementById('customerCategoryGap');
+      customerCategoryGapInputDom.addEventListener('blur',(e)=>{
+        const { value } = e.target
+        localStorage['customerCategoryGap'] = value;
+        window.location.reload(true)
+      })
+
       const custom = JSON.parse(localStorage.custom || '[]')
       const dialog = document.querySelector('dialog')
       const form = dialog.querySelector('form')
@@ -297,6 +322,8 @@
         locale: localStorage.locale,
         navPosition: localStorage.navPosition,
         previewPosition: localStorage.previewPosition,
+        categoryGapStatus: localStorage.categoryGapStatus,
+        customerCategoryGap: localStorage.customerCategoryGap,
         searchPosition: localStorage.searchPosition,
         skinTonePosition: localStorage.skinTonePosition,
         onEmojiSelect: console.log,

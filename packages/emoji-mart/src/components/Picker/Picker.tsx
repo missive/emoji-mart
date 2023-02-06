@@ -880,7 +880,7 @@ export default class Picker extends Component {
     const { categories } = Data
     const hidden = !!this.state.searchResults
     const perLine = this.getPerLine()
-
+    const { categoryGapStatus, customerCategoryGap } = this.props
     return (
       <div
         style={{
@@ -898,9 +898,17 @@ export default class Picker extends Component {
               class="category"
               ref={root}
             >
-              <div class={`sticky padding-small align-${this.dir[0]}`}>
-                {category.name || I18n.categories[category.id]}
-              </div>
+              {
+                categoryGapStatus === 'normal'?customerCategoryGap?
+                  (
+                    <div dangerouslySetInnerHTML={{__html:customerCategoryGap}}/>
+                  ):
+                  (
+                    <div class={`sticky padding-small align-${this.dir[0]}`}>
+                      {category.name || I18n.categories[category.id]}
+                    </div>
+                  ):<></>
+              }
               <div
                 class="relative"
                 style={{

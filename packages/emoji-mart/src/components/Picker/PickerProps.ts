@@ -2,6 +2,13 @@ export default {
   autoFocus: {
     value: false,
   },
+  categoryGapStatus:{
+    value: 'normal',
+    choices:['normal','none'],
+  },
+  customerCategoryGap:{
+    value: '',
+  },
   dynamicWidth: {
     value: false,
   },
