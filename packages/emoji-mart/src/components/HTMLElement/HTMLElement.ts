@@ -12,7 +12,6 @@ export default class HTMLElement extends WindowHTMLElement {
   }
 
   constructor(props = {}) {
-    super()
     this.props = props
 
     if (props.parent || props.ref) {
