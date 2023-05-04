@@ -136,7 +136,12 @@ async function _init(props) {
   let noCountryFlags = null
   if (set == 'native') {
     latestVersionSupport = NativeSupport.latestVersion()
-    noCountryFlags = props.noCountryFlags || NativeSupport.noCountryFlags()
+    
+    if (typeof props.noCountryFlags === "undefined"){
+      noCountryFlags = NativeSupport.noCountryFlags()
+    } else {
+      noCountryFlags = props.noCountryFlags
+    }
   }
 
   let categoryIndex = Data.categories.length

@@ -63,7 +63,7 @@ export default {
     choices: ['top', 'bottom', 'none'],
   },
   noCountryFlags: {
-    value: false,
+    value: undefined,
   },
   noResultsEmoji: {
     value: null,
