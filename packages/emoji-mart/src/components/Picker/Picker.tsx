@@ -339,9 +339,8 @@ export default class Picker extends Component {
       },
       {
         root: this.refs.scroll.current,
-        rootMargin: `${
-          this.props.emojiButtonSize * (Performance.rowsPerRender + 5)
-        }px 0px ${this.props.emojiButtonSize * Performance.rowsPerRender}px`,
+        rootMargin: `${this.props.emojiButtonSize * (Performance.rowsPerRender + 5)
+          }px 0px ${this.props.emojiButtonSize * Performance.rowsPerRender}px`,
       },
     )
 
@@ -711,9 +710,9 @@ export default class Picker extends Component {
                 noSearchResults
                   ? this.props.noResultsEmoji || 'cry'
                   : this.props.previewEmoji ||
-                    (this.props.previewPosition == 'top'
-                      ? 'point_down'
-                      : 'point_up')
+                  (this.props.previewPosition == 'top'
+                    ? 'point_down'
+                    : 'point_up')
               }
               set={this.props.set}
               size={this.props.emojiButtonSize}
@@ -783,8 +782,8 @@ export default class Picker extends Component {
               borderRadius: this.props.emojiButtonRadius,
               backgroundColor: this.props.emojiButtonColors
                 ? this.props.emojiButtonColors[
-                    (posinset - 1) % this.props.emojiButtonColors.length
-                  ]
+                (posinset - 1) % this.props.emojiButtonColors.length
+                ]
                 : undefined,
             }}
           ></div>

@@ -1,7 +1,4 @@
-<extends
-  src="layout.html"
-  locals='{ "exampleName": "Custom styles", "exampleFile": "example-custom-styles.html" }'
->
+<extends src="layout.html" locals='{ "exampleName": "Custom styles", "exampleFile": "example-custom-styles.html" }'>
   <block name="content" type="append">
     <style>
       em-emoji-picker {
@@ -23,7 +20,7 @@
         max-height: 800px;
       }
 
-      em-emoji-picker::part(search){
+      em-emoji-picker::part(search) {
         background-color: pink;
       }
     </style>
