@@ -51,6 +51,7 @@ export default {
       'sa',
       'tr',
       'uk',
+      'uz',
       'vi',
       'zh',
     ],
