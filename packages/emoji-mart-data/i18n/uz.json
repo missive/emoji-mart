@@ -1,0 +1,29 @@
+{
+  "search": "Qidiring",
+  "search_no_results_1": "Voy!",
+  "search_no_results_2": "Bunaqa emoji topilmadi",
+  "pick": "Emojini tanlang",
+  "add_custom": "Maxsus emoji qo'shing",
+  "categories": {
+    "activity": "Faoliyat",
+    "custom": "Maxsus",
+    "flags": "Bayroqlar",
+    "foods": "Taom va ichimliklar",
+    "frequent": "Tez-tez foydalaniladiganlar",
+    "nature": "Havyonlar va tabiat",
+    "objects": "Buyumlar",
+    "people": "Smayliklar",
+    "places": "Sayohat va joylar",
+    "search": "Qidiruv natijalari",
+    "symbols": "Ramzlar"
+  },
+  "skins": {
+    "choose": "Odatiy teri rangi",
+    "1": "Odatiy",
+    "2": "Oq",
+    "3": "O'rtacha oq",
+    "4": "O'rtacha",
+    "5": "O'rtacha qora",
+    "6": "Qora"
+  }
+}
