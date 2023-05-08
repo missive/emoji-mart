@@ -89,6 +89,7 @@ export default class Navigation extends PureComponent {
 
           <div
             class="bar"
+            part="nav-bar"
             style={{
               width: `${100 / this.categories.length}%`,
               opacity: selectedCategoryIndex == null ? 0 : 1,
