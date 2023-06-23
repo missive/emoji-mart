@@ -106,7 +106,7 @@ function App() {
 | **locale** | `en` | `en`, `ar`, `be`, `cs`, `de`, `es`, `fa`, `fi`, `fr`, `hi`, `it`, `ja`, `kr`, `nl`, `pl`, `pt`, `ru`, `sa`, `tr`, `uk`, `vi`, `zh` | The locale to use for the picker |
 | **maxFrequentRows** | `4` | | The maximum number of frequent rows to show. `0` will disable frequent category |
 | **navPosition** | `top` | `top`, `bottom`, `none` | The position of the navigation bar |
-| **noCountryFlags** | `false` | | Whether to show country flags or not. If not provided, tbhis is handled automatically (Windows doesn’t support country flags) |
+| **noCountryFlags** | `false` | | Whether to show country flags or not. If not provided, this is handled automatically (Windows doesn’t support country flags) |
 | **noResultsEmoji** | `cry` | | The id of the emoji to use for the no results emoji |
 | **perLine** | `9` | | The number of emojis to show per line |
 | **previewEmoji** | `point_up` | | The id of the emoji to use for the preview when not hovering any emoji. `point_up` when preview position is bottom and `point_down` when preview position is top. |
