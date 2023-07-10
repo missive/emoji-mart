@@ -43,7 +43,7 @@ export default {
       'hi',
       'it',
       'ja',
-      'kr',
+      'ko',
       'nl',
       'pl',
       'pt',
