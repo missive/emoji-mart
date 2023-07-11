@@ -16,10 +16,10 @@
   },
   "sideEffects": false,
   "devDependencies": {
-    "emoji-datasource": "14.0.0",
-    "emojilib": "3.0.6",
-    "inflection": "1.13.2",
-    "unicode-emoji-json": "0.3.1"
+    "emoji-datasource": "15.0.1",
+    "emojilib": "3.0.10",
+    "inflection": "2.0.1",
+    "unicode-emoji-json": "0.4.0"
   },
   "files": [
     "/i18n",
