@@ -12,7 +12,7 @@ export default class HTMLElement extends WindowHTMLElement {
   }
 
   constructor(props = {}) {
-    if(WindowHTMLElement === Object){
+    if (WindowHTMLElement === Object) {
       super()
     }
 
