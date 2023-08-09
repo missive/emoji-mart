@@ -8,6 +8,7 @@
 
   --border-radius: 10px;
   --category-icon-size: 18px;
+  --cursor: pointer;
   --font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
   --font-size: 15px;
 
@@ -68,8 +69,8 @@
   background-color: rgb(var(--em-rgb-background));
 
   &[data-menu] {
-    button { cursor: auto }
-    .menu button { cursor: pointer }
+    button { cursor: var(--cursor) }
+    .menu button { cursor: var(--cursor) }
   }
 }
 
@@ -136,7 +137,7 @@
 }
 
 a {
-  cursor: pointer;
+  cursor: var(--cursor);
   color: rgb(var(--em-rgb-accent));
 
   &:hover { text-decoration: underline }
@@ -274,7 +275,7 @@ svg {
 
 button {
   appearance: none;
-  cursor: pointer;
+  cursor: var(--cursor);
   color: currentColor;
   border: 0;
   background-color: transparent;
