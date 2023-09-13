@@ -48,6 +48,7 @@ export default class Picker extends Component {
     }
 
     this.initGrid()
+    this.handleSearchValue()
 
     if (
       this.props.stickySearch == false &&
@@ -59,6 +60,39 @@ export default class Picker extends Component {
 
       this.props.searchPosition = 'static'
     }
+  }
+
+  // Rewritten
+  async handleSearchValue() {
+    const value = this.props.searchValue
+    const searchResults = await SearchIndex.search(value)
+    const afterRender = () => {
+      if (!this.refs.scroll.current) return
+      this.refs.scroll.current.scrollTop = 0
+    }
+
+    if (!searchResults) {
+      return this.setState({ searchResults, pos: [-1, -1] }, afterRender)
+    }
+
+    const pos = [0, 0]
+    const grid = []
+    grid.setsize = searchResults.length
+    let row = null
+
+    for (let emoji of searchResults) {
+      if (!grid.length || row.length == this.getPerLine()) {
+        row = []
+        row.__categoryId = 'search'
+        row.__index = grid.length
+        grid.push(row)
+      }
+
+      row.push(emoji)
+    }
+
+    this.ignoreMouse()
+    this.setState({ searchResults: grid, pos }, afterRender)
   }
 
   componentDidMount() {

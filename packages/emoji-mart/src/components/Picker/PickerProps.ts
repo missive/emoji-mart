@@ -118,4 +118,7 @@ export default {
     deprecated: true,
     value: true,
   },
+
+  // Rewritten
+  searchValue: null,
 }
