@@ -106,7 +106,7 @@ export default class Picker extends Component {
 
   componentWillUnmount() {
     this.unregister()
-    this.darkMedia?.removeEventListener(this.darkMediaCallback);
+    this.darkMedia?.removeListener(this.darkMediaCallback);
   }
 
   async reset(nextState = {}) {
