@@ -106,7 +106,7 @@ export default class Picker extends Component {
 
   componentWillUnmount() {
     this.unregister()
-    this.darkMedia?.removeListener(this.darkMediaCallback);
+    this.darkMedia?.removeListener(this.darkMediaCallback)
   }
 
   async reset(nextState = {}) {
@@ -207,7 +207,7 @@ export default class Picker extends Component {
       this.darkMedia = matchMedia('(prefers-color-scheme: dark)')
       if (this.darkMedia.media.match(/^not/)) return 'light'
 
-      this.darkMedia.addListener(this.darkMediaCallback);
+      this.darkMedia.addListener(this.darkMediaCallback)
     }
 
     return this.darkMedia.matches ? 'dark' : 'light'
