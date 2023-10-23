@@ -80,21 +80,24 @@ async function _init(props) {
 
     Data.originalCategories = Data.categories
   } else {
-    Data.categories = Data.categories.filter((c) => {
-      const isCustom = !!c.name
-      if (!isCustom) return true
+    // Data.categories = Data.categories.filter((c) => {
+    //   const isCustom = !!c.name
+    //   if (!isCustom) return true
 
-      return false
-    })
+    //   return false
+    // })
   }
 
-  I18n =
-    (typeof props.i18n === 'function' ? await props.i18n() : props.i18n) ||
-    (locale == 'en'
-      ? i18n_en
-      : await fetchJSON(
-          `https://cdn.jsdelivr.net/npm/@emoji-mart/data@latest/i18n/${locale}.json`,
-        ))
+  if (!I18n) {
+    I18n =
+      (typeof props.i18n === 'function' ? await props.i18n() : props.i18n) ||
+      (locale == 'en'
+        ? i18n_en
+        : await fetchJSON(
+            `https://cdn.jsdelivr.net/npm/@emoji-mart/data@latest/i18n/${locale}.json`,
+          ))    
+  }
+
 
   if (props.custom) {
     for (let i in props.custom) {
