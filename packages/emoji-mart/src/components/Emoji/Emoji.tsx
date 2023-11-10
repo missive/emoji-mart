@@ -2,7 +2,7 @@ import { Data } from '../../config'
 import { SearchIndex } from '../../helpers'
 
 export default function Emoji(props) {
-  let { id, skin, emoji } = props
+  let { id, skin, emoji, imageURL, spritesheetURL, fallbackImageURL, fallbackSpritesheetURL } = props
 
   if (props.shortcodes) {
     const matches = props.shortcodes.match(SearchIndex.SHORTCODES_REGEX)
@@ -24,15 +24,11 @@ export default function Emoji(props) {
   const imageSrc =
     emojiSkin.src ||
     (props.set != 'native' && !props.spritesheet
-      ? typeof props.getImageURL === 'function'
-        ? props.getImageURL(props.set, emojiSkin.unified)
-        : `https://cdn.jsdelivr.net/npm/emoji-datasource-${props.set}@14.0.0/img/${props.set}/64/${emojiSkin.unified}.png`
-      : undefined)
-
-  const spritesheetSrc =
-    typeof props.getSpritesheetURL === 'function'
-      ? props.getSpritesheetURL(props.set)
-      : `https://cdn.jsdelivr.net/npm/emoji-datasource-${props.set}@14.0.0/img/${props.set}/sheets-256/64.png`
+      ? (imageURL !== null) ?
+        ? imageURL.replace("emojiskin-unified", emojiSkin.unified)
+  : fallbackImageURL.replace("emojiskin-unified", emojiSkin.unified) : undefined)
+  
+  const spritesheetSrc = spritesheetURL !== null ? spritesheetURL: fallbackSpritesheetURL
 
   return (
     <span class="emoji-mart-emoji" data-emoji-set={props.set}>

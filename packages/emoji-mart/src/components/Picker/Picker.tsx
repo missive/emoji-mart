@@ -692,7 +692,7 @@ export default class Picker extends Component {
     return (
       <div
         id="preview"
-        class="flex flex-middle"
+  class="flex flex-middle"
         dir={this.dir}
         data-position={this.props.previewPosition}
       >
@@ -718,7 +718,10 @@ export default class Picker extends Component {
               size={this.props.emojiButtonSize}
               skin={this.state.tempSkin || this.state.skin}
               spritesheet={true}
-              getSpritesheetURL={this.props.getSpritesheetURL}
+              imageURL={this.props.imageURL}
+              spritesheetURL={this.props.spritesheetURL}
+              fallbackImageURL={this.props.fallbackImageURL}
+              fallbackSpritesheetURL={this.props.fallbackSpritesheetURL}
             />
           </div>
 
@@ -763,7 +766,7 @@ export default class Picker extends Component {
           data-keyboard={this.state.keyboard}
           title={this.props.previewPosition == 'none' ? emoji.name : undefined}
           type="button"
-          class="flex flex-center flex-middle"
+  class="flex flex-center flex-middle"
           tabindex="-1"
           onClick={(e) => this.handleEmojiClick({ e, emoji })}
           onMouseEnter={() => this.handleEmojiOver(pos)}
@@ -793,7 +796,10 @@ export default class Picker extends Component {
             size={this.props.emojiSize}
             skin={skin}
             spritesheet={true}
-            getSpritesheetURL={this.props.getSpritesheetURL}
+            imageURL={this.props.imageURL}
+            spritesheetURL={this.props.spritesheetURL}
+            fallbackImageURL={this.props.fallbackImageURL}
+            fallbackSpritesheetURL={this.props.fallbackSpritesheetURL}
           />
         </button>
       </PureInlineComponent>
