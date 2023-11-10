@@ -692,7 +692,7 @@ export default class Picker extends Component {
     return (
       <div
         id="preview"
-  class="flex flex-middle"
+        class="flex flex-middle"
         dir={this.dir}
         data-position={this.props.previewPosition}
       >
