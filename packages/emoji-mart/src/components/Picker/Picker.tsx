@@ -718,7 +718,10 @@ export default class Picker extends Component {
               size={this.props.emojiButtonSize}
               skin={this.state.tempSkin || this.state.skin}
               spritesheet={true}
-              getSpritesheetURL={this.props.getSpritesheetURL}
+              imageURL={this.props.imageURL}
+              spritesheetURL={this.props.spritesheetURL}
+              fallbackImageURL={this.props.fallbackImageURL}
+              fallbackSpritesheetURL={this.props.fallbackSpritesheetURL}
             />
           </div>
 
@@ -793,7 +796,10 @@ export default class Picker extends Component {
             size={this.props.emojiSize}
             skin={skin}
             spritesheet={true}
-            getSpritesheetURL={this.props.getSpritesheetURL}
+            imageURL={this.props.imageURL}
+            spritesheetURL={this.props.spritesheetURL}
+            fallbackImageURL={this.props.fallbackImageURL}
+            fallbackSpritesheetURL={this.props.fallbackSpritesheetURL}
           />
         </button>
       </PureInlineComponent>

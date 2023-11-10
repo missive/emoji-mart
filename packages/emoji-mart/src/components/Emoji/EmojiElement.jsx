@@ -14,6 +14,11 @@ export default class EmojiElement extends HTMLElement {
 
   async connectedCallback() {
     const props = getProps(this.props, EmojiProps, this)
+    // These aren't needed at this point; including them only bloats the resulting HTML
+    this.removeAttribute('imageurl')
+    this.removeAttribute('spritesheeturl')
+    this.removeAttribute('fallbackimageurl')
+    this.removeAttribute('fallbackspritesheeturl')
     props.element = this
     props.ref = (component) => {
       this.component = component

@@ -105,10 +105,12 @@ export default {
   custom: null,
   data: null,
   i18n: null,
+  imageURL: null,
+  spritesheetURL: null,
+  fallbackImageURL: null,
+  fallbackSpritesheetURL: null,
 
   // Callbacks
-  getImageURL: null,
-  getSpritesheetURL: null,
   onAddCustomEmoji: null,
   onClickOutside: null,
   onEmojiSelect: null,

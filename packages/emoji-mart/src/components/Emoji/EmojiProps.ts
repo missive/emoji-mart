@@ -20,4 +20,9 @@ export default {
   // Shared
   set: PickerProps.set,
   skin: PickerProps.skin,
+  // Added to ensure the Emoji object can access these parameters
+  imageURL: PickerProps.imageURL,
+  spritesheetURL: PickerProps.spritesheetURL,
+  fallbackImageURL: PickerProps.fallbackImageURL,
+  fallbackSpritesheetURL: PickerProps.fallbackSpritesheetURL,
 }
