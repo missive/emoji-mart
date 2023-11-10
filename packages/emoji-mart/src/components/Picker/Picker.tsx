@@ -766,7 +766,7 @@ export default class Picker extends Component {
           data-keyboard={this.state.keyboard}
           title={this.props.previewPosition == 'none' ? emoji.name : undefined}
           type="button"
-  class="flex flex-center flex-middle"
+          class="flex flex-center flex-middle"
           tabindex="-1"
           onClick={(e) => this.handleEmojiClick({ e, emoji })}
           onMouseEnter={() => this.handleEmojiOver(pos)}
