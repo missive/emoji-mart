@@ -23,10 +23,10 @@ export default class EmojiElement extends HTMLElement {
     props.ref = (component) => {
       this.component = component
     }
-    
+
     await init()
     if (this.disconnected) return
-    
+
     render(<Emoji {...props} />, this)
   }
 }
