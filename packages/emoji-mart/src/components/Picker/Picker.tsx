@@ -127,7 +127,7 @@ export default class Picker extends Component {
 
   unregister() {
     document.removeEventListener('click', this.handleClickOutside)
-    this.darkMedia?.removeListener(this.darkMediaCallback)
+    this.darkMedia?.removeEventListener('change', this.darkMediaCallback)
     this.unobserve()
   }
 
@@ -207,7 +207,7 @@ export default class Picker extends Component {
       this.darkMedia = matchMedia('(prefers-color-scheme: dark)')
       if (this.darkMedia.media.match(/^not/)) return 'light'
 
-      this.darkMedia.addListener(this.darkMediaCallback)
+      this.darkMedia.addEventListener('change', this.darkMediaCallback)
     }
 
     return this.darkMedia.matches ? 'dark' : 'light'
