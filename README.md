@@ -7,10 +7,19 @@
 </div>
 
 ## 📖 Table of Contents
+- [� Table of Contents](#-table-of-contents)
 - [💾 Data](#-data)
+  - [Bundled directly into your codebase](#bundled-directly-into-your-codebase)
+  - [Fetched remotely](#fetched-remotely)
 - [🏪 Picker](#-picker)
+  - [React](#react)
+  - [Browser](#browser)
+  - [Options / Props](#options--props)
+  - [Custom emojis](#custom-emojis)
+  - [Custom category icons](#custom-category-icons)
 - [🙃 Emoji component](#-emoji-component)
-- [🕵️‍♀️ Headless search](#%EF%B8%8F%EF%B8%8F-headless-search)
+  - [Attributes / Props](#attributes--props)
+- [🕵️‍♀️ Headless search](#️️-headless-search)
 - [🔬 Get emoji data from native](#-get-emoji-data-from-native)
 - [🗺 Internationalization](#-internationalization)
 - [📚 Examples](#-examples)
@@ -34,6 +43,9 @@ import data from '@emoji-mart/data'
 import { Picker } from 'emoji-mart'
 
 new Picker({ data })
+
+// with options
+new Picker({ data, icons: 'solid' })
 ```
 
 ### Fetched remotely
@@ -194,6 +206,9 @@ import data from '@emoji-mart/data'
 import { init } from 'emoji-mart'
 
 init({ data })
+
+// with options
+new Picker({ data, exceptEmojis: ['smile'] })
 ```
 
 Then you can use the emoji component in your HTML / JSX.
