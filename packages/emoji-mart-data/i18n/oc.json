@@ -1,0 +1,29 @@
+{
+  "search": "Cercar",
+  "search_no_results_1": "Oh non !",
+  "search_no_results_2": "Impossible de trobar aqueste emoji",
+  "pick": "Causir un emoji…",
+  "add_custom": "Apondre un emoji personalizat",
+  "categories": {
+    "activity": "Activitat",
+    "custom": "Personalizats",
+    "flags": "Drapèus",
+    "foods": "Beure e manjar",
+    "frequent": "Sovent utilizats",
+    "nature": "Animals e natura",
+    "objects": "Objèctes",
+    "people": "Risetas e gents",
+    "places": "Viatges e lòcs",
+    "search": "Resultats de recèrca",
+    "symbols": "Simbòls"
+  },
+  "skins": {
+    "choose": "Causir un tint de pèl",
+    "1": "Predeterminat",
+    "2": "Clar",
+    "3": "Mejan clar",
+    "4": "Mejan",
+    "5": "Mejan escur",
+    "6": "Escur"
+  }
+}
