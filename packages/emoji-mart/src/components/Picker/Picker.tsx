@@ -127,6 +127,7 @@ export default class Picker extends Component {
 
   unregister() {
     document.removeEventListener('click', this.handleClickOutside)
+    this.darkMedia?.removeEventListener('change', this.darkMediaCallback)
     this.unobserve()
   }
 
@@ -194,6 +195,11 @@ export default class Picker extends Component {
     }
   }
 
+  darkMediaCallback = () => {
+    if (this.props.theme != 'auto') return
+    this.setState({ theme: this.darkMedia.matches ? 'dark' : 'light' })
+  }
+
   initTheme(theme) {
     if (theme != 'auto') return theme
 
@@ -201,10 +207,7 @@ export default class Picker extends Component {
       this.darkMedia = matchMedia('(prefers-color-scheme: dark)')
       if (this.darkMedia.media.match(/^not/)) return 'light'
 
-      this.darkMedia.addListener(() => {
-        if (this.props.theme != 'auto') return
-        this.setState({ theme: this.darkMedia.matches ? 'dark' : 'light' })
-      })
+      this.darkMedia.addEventListener('change', this.darkMediaCallback)
     }
 
     return this.darkMedia.matches ? 'dark' : 'light'
