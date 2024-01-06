@@ -1,0 +1,29 @@
+{
+  "search": "Søg",
+  "search_no_results_1": "Åh nej!",
+  "search_no_results_2": "Emojien blev ikke fundet",
+  "pick": "Vælg en emoji…",
+  "add_custom": "Tilføj custom emoji",
+  "categories": {
+    "activity": "Aktivitet",
+    "custom": "Custom",
+    "flags": "Flag",
+    "foods": "Mad & drikke",
+    "frequent": "Ofte brugt",
+    "nature": "Dyr & Natur",
+    "objects": "Objekter",
+    "people": "Smileyer og mennesker",
+    "places": "Rejser og steder",
+    "search": "Søgeresultater",
+    "symbols": "Symboler"
+  },
+  "skins": {
+    "choose": "Vælg standard hudfarve",
+    "1": "Standard",
+    "2": "Lys",
+    "3": "Mellem-Lys",
+    "4": "Mellem",
+    "5": "Mellem-Mørk",
+    "6": "Mørk"
+  }
+}
