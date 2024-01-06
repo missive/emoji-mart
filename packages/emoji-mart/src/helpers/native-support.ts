@@ -1,5 +1,6 @@
 const CACHE = new Map()
 const VERSIONS = [
+  { v: 15, emoji: '🫨' },
   { v: 14, emoji: '🫠' },
   { v: 13.1, emoji: '😶‍🌫️' },
   { v: 13, emoji: '🥸' },
