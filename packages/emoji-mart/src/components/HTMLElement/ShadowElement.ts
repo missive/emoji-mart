@@ -19,6 +19,10 @@ export default class ShadowElement extends HTMLElement {
     const style = document.createElement('style')
     style.textContent = styles
 
+    Object.entries(this.props.styleProps || {}).forEach(([key, value]) => {
+      style.setAttribute(key, value)
+    })
+
     this.shadowRoot.insertBefore(style, this.shadowRoot.firstChild)
   }
 }
