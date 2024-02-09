@@ -153,10 +153,9 @@ async function _init(props) {
           : PickerProps.maxFrequentRows.value
       perLine || (perLine = PickerProps.perLine.value)
 
-      if(customFrequentlyUsed?.enabled)
+      if (customFrequentlyUsed?.enabled)
         category.emojis = customFrequentlyUsed.values
-      else
-        category.emojis = FrequentlyUsed.get({ maxFrequentRows, perLine })
+      else category.emojis = FrequentlyUsed.get({ maxFrequentRows, perLine })
     }
 
     if (!category.emojis || !category.emojis.length) {

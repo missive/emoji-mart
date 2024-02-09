@@ -105,7 +105,7 @@ export default {
   custom: null,
   data: null,
   i18n: null,
-  customFrequentlyUsed:{enabled: false, values: []},
+  customFrequentlyUsed: { enabled: false, values: [] },
 
   // Callbacks
   getImageURL: null,
