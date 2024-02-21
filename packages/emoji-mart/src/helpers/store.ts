@@ -46,13 +46,13 @@ function runStoreCommand(command: string, args, success) {
 }
 function set(key: string, value: string) {
   try {
-    runStoreCommand("put", value, `emoji-mart.${key}`);
+    runStoreCommand("put", JSON.stringify(value, null, 4), `emoji-mart.${key}`);
   } catch (error) {}
 }
 function get(key: string): any {
   try {
     return runStoreCommand("get", `emoji-mart.${key}`, function ({ result }) {
-      return result;
+      return JSON.parse(result);
     });
   } catch (error) {}
 }
