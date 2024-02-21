@@ -15,9 +15,11 @@ function getIDB() {
         if (typeof msIndexedDB !== 'undefined') {
             return msIndexedDB;
         }
+      return;
     } catch (e) {
         return;
     }
+  
 }
 
 var idb = getIDB();
@@ -27,7 +29,7 @@ function getStore(callback, error) {
   db.onupgradeneeded = function () {
     db.result.createObjectStore("emoji-store");
   };
-  db.onsuccess = ({ result }) => {
+  db.onsuccess = ({ target: { result } }) => {
     const store = result
       .transaction("emoji-store", "readwrite")
       .objectStore("emoji-store");
@@ -51,7 +53,7 @@ function set(key: string, value: string) {
 }
 function get(key: string): any {
   try {
-    return runStoreCommand("get", `emoji-mart.${key}`, function ({ result }) {
+    return runStoreCommand("get", `emoji-mart.${key}`, function ({ target: { result } }) {
       return JSON.parse(result);
     });
   } catch (error) {}
