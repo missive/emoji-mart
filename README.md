@@ -7,10 +7,19 @@
 </div>
 
 ## 📖 Table of Contents
+- [� Table of Contents](#-table-of-contents)
 - [💾 Data](#-data)
+  - [Bundled directly into your codebase](#bundled-directly-into-your-codebase)
+  - [Fetched remotely](#fetched-remotely)
 - [🏪 Picker](#-picker)
+  - [React](#react)
+  - [Browser](#browser)
+  - [Options / Props](#options--props)
+  - [Custom emojis](#custom-emojis)
+  - [Custom category icons](#custom-category-icons)
 - [🙃 Emoji component](#-emoji-component)
-- [🕵️‍♀️ Headless search](#%EF%B8%8F%EF%B8%8F-headless-search)
+  - [Attributes / Props](#attributes--props)
+- [🕵️‍♀️ Headless search](#️️-headless-search)
 - [🔬 Get emoji data from native](#-get-emoji-data-from-native)
 - [🗺 Internationalization](#-internationalization)
 - [📚 Examples](#-examples)
@@ -103,7 +112,7 @@ function App() {
 | **emojiVersion** | `14` | `1`, `2`, `3`, `4`, `5`, `11`, `12`, `12.1`, `13`, `13.1`, `14` | The version of the emoji data to use. Latest version supported in `@emoji-mart/data` is currently [14](https://emojipedia.org/emoji-14.0) |
 | **exceptEmojis** | `[]` | | List of emoji IDs that will be excluded from the picker |
 | **icons** | `auto` | `auto`, `outline`, `solid` | The type of icons to use for the picker. `outline` with light theme and `solid` with dark theme. |
-| **locale** | `en` | `en`, `ar`, `be`, `cs`, `de`, `es`, `fa`, `fi`, `fr`, `hi`, `it`, `ja`, `ko`, `nl`, `pl`, `pt`, `ru`, `sa`, `tr`, `uk`, `vi`, `zh` | The locale to use for the picker |
+| **locale** | `en` | `en`, `ar`, `be`, `cs`, `de`, `es`, `fa`, `fi`, `fr`, `hi`, `it`, `ja`, `kr`, `nl`, `pl`, `pt`, `ru`, `sa`, `tr`, `uk`, `vi`, `zh` | The locale to use for the picker |
 | **maxFrequentRows** | `4` | | The maximum number of frequent rows to show. `0` will disable frequent category |
 | **navPosition** | `top` | `top`, `bottom`, `none` | The position of the navigation bar |
 | **noCountryFlags** | `false` | | Whether to show country flags or not. If not provided, tbhis is handled automatically (Windows doesn’t support country flags) |
