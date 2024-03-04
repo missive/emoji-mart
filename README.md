@@ -260,7 +260,10 @@ getEmojiDataFromNative('🤞🏿').then(console.log)
 ```
 
 ## 🗺 Internationalization
-EmojiMart UI supports [multiple languages](https://github.com/missive/emoji-mart/tree/main/packages/emoji-mart-data/i18n), feel free to open a PR if yours is missing.
+
+### UI 
+
+The EmojiMart UI supports [multiple languages](https://github.com/missive/emoji-mart/tree/main/packages/emoji-mart-data/i18n), feel free to open a PR if yours is missing.
 
 ```js
 import i18n from '@emoji-mart/data/i18n/fr.json'
@@ -270,6 +273,30 @@ new Picker({ i18n })
 ```
 
 Given the small file size, English is built-in and doesn’t need to be provided.
+
+### Emoji data
+
+The emoji data (the one you use via ```import data from '@emoji-mart/data'```) is always in english. 
+
+If you want to have a localized search and picker, you can follow the steps provided by @baumerdev in
+[this issue](https://github.com/missive/emoji-mart/issues/830#issuecomment-1834316042):
+
+For example, to get a german (de) data file:
+
+1. Download https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-annotations-full/annotations/de/annotations.json and save it as ./cldr/de-full.json
+2. Download https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-annotations-derived-full/annotationsDerived/de/annotations.json and save it as ./cldr/de-derived.json
+3. Download https://raw.githubusercontent.com/missive/emoji-mart/main/packages/emoji-mart-data/sets/14/native.json and save it as ./data.json
+4. Download https://raw.githubusercontent.com/missive/emoji-mart/main/i18n/convert.mjs and save it as ./convert.mjs
+5. Run node convert.mjs
+6. You now have a file data-de.json that you can import, see the example above beginning with import dataDE from "data-de.json";
+
+```
+import dataDE from 'data-de.json';
+...
+<Picker data={dataDE} locale='de' />
+```
+
+If you need any other language, you have to replace the de in the URLs, file names and within the convert script.
 
 ## 📚 Examples
 
