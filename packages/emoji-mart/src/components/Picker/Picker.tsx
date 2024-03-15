@@ -3,7 +3,7 @@ import { Component, createRef } from 'preact'
 
 import { deepEqual, sleep, getEmojiData } from '../../utils'
 import { Data, I18n, init } from '../../config'
-import { SearchIndex, Store, FrequentlyUsed } from '../../helpers'
+import { SearchIndex, Store, FrequentlyUsed, UserAgent } from '../../helpers'
 import Icons from '../../icons'
 
 import { Emoji } from '../Emoji'
@@ -776,6 +776,12 @@ export default class Picker extends Component {
             height: this.props.emojiButtonSize,
             fontSize: this.props.emojiSize,
             lineHeight: 0,
+            backfaceVisibility:
+              UserAgent.isMacOs &&
+              UserAgent.chromeVersion > 0 &&
+              UserAgent.chromeVersion < 121
+                ? 'hidden'
+                : undefined,
           }}
         >
           <div
