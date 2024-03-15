@@ -3,6 +3,7 @@ export { default as Store } from './store'
 export { default as NativeSupport } from './native-support'
 export { default as FrequentlyUsed } from './frequently-used'
 export { default as SearchIndex } from './search-index'
+export { default as UserAgent } from './user-agent'
 
 export const SafeFlags = [
   'checkered_flag',
