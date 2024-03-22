@@ -9,17 +9,17 @@
     "url": "https://github.com/missive/emoji-mart",
     "directory": "packages/emoji-mart-data"
   },
-  "main": "sets/15/native.json",
+  "main": "sets/15.1/native.json",
   "types": "index.d.ts",
   "scripts": {
     "build": "node ./build.js"
   },
   "sideEffects": false,
   "devDependencies": {
-    "emoji-datasource": "15.0.1",
-    "emojilib": "3.0.10",
+    "emoji-datasource": "15.1.0",
+    "emojilib": "3.0.11",
     "inflection": "2.0.1",
-    "unicode-emoji-json": "0.4.0"
+    "unicode-emoji-json": "0.6.0"
   },
   "files": [
     "/i18n",
