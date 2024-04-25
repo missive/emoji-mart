@@ -222,6 +222,8 @@ if (!DRY_RUN) {
 }
 
 for (let version of VERSIONS) {
+  buildData({ version })
+
   for (let set of SETS) {
     buildData({ set, version })
   }
