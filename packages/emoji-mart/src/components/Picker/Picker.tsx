@@ -625,7 +625,10 @@ export default class Picker extends Component {
     if (emoji) {
       const emojiData = getEmojiData(emoji, { skinIndex: this.state.skin - 1 })
 
-      if (this.props.maxFrequentRows) {
+      if (
+        !this.props.customFrequentlyUsed?.enabled &&
+        this.props.maxFrequentRows
+      ) {
         FrequentlyUsed.add(emojiData, this.props)
       }
 
