@@ -94,6 +94,9 @@ export default {
     value: 'preview',
     choices: ['preview', 'search', 'none'],
   },
+  styleProps: {
+    value: {},
+  },
   theme: {
     value: 'auto',
     choices: ['auto', 'light', 'dark'],
