@@ -695,6 +695,7 @@ export default class Picker extends Component {
     return (
       <div
         id="preview"
+        part="preview"
         class="flex flex-middle"
         dir={this.dir}
         data-position={this.props.previewPosition}
@@ -815,6 +816,7 @@ export default class Picker extends Component {
           <div class="search relative flex-grow">
             <input
               type="search"
+              part="search"
               ref={this.refs.searchInput}
               placeholder={I18n.search}
               onClick={this.handleSearchClick}
@@ -826,6 +828,7 @@ export default class Picker extends Component {
             {this.state.searchResults && (
               <button
                 title="Clear"
+                part="clear"
                 aria-label="Clear"
                 type="button"
                 class="icon delete flex"
@@ -1038,6 +1041,7 @@ export default class Picker extends Component {
     return (
       <div
         ref={this.refs.menu}
+        part="skin-tone-menu"
         role="radiogroup"
         dir={this.dir}
         aria-label={I18n.skins.choose}
@@ -1054,6 +1058,7 @@ export default class Picker extends Component {
               <input
                 type="radio"
                 name="skin-tone"
+                part="skin-tone-input"
                 value={skin}
                 aria-label={I18n.skins[skin]}
                 ref={checked ? this.refs.skinToneRadio : null}
@@ -1095,6 +1100,7 @@ export default class Picker extends Component {
     return (
       <section
         id="root"
+        part="root"
         class="flex flex-column"
         dir={this.dir}
         style={{
@@ -1112,7 +1118,11 @@ export default class Picker extends Component {
           <div class="padding-lr">{this.renderSearch()}</div>
         )}
 
-        <div ref={this.refs.scroll} class="scroll flex-grow padding-lr">
+        <div
+          ref={this.refs.scroll}
+          class="scroll flex-grow padding-lr"
+          part="scroll"
+        >
           <div
             style={{
               width: this.props.dynamicWidth ? '100%' : lineWidth,
