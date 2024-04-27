@@ -1,0 +1,29 @@
+{
+  "search": "Sök",
+  "search_no_results_1": "Åh nej!",
+  "search_no_results_2": "Den emojin kunde inte hittas",
+  "pick": "Välj en emoji…",
+  "add_custom": "Lägg till en anpassad emoji",
+  "categories": {
+    "activity": "Aktivitet",
+    "custom": "Anpassade",
+    "flags": "Flaggor",
+    "foods": "Mat & Dryck",
+    "frequent": "Ofta använd",
+    "nature": "Djur & Natur",
+    "objects": "Föremål",
+    "people": "Smileys & människor",
+    "places": "Resor & platser",
+    "search": "Sökresultat",
+    "symbols": "Symboler"
+  },
+  "skins": {
+    "choose": "Välj standard hudton",
+    "1": "Standard",
+    "2": "Ljus",
+    "3": "Medium-Ljus",
+    "4": "Medium",
+    "5": "Medium-mörk",
+    "6": "Mörk"
+  }
+}
