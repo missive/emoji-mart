@@ -89,6 +89,8 @@ function App() {
 | **data** | `{}` | | Data to use for the picker |
 | **i18n** | `{}` | | Localization data to use for the picker |
 | **categories** | `[]` | `frequent`, `people`, `nature`, `foods`, `activity`, `places`, `objects`, `symbols`, `flags` | Categories to show in the picker. Order is respected.  |
+| **categoryGapStatus** | `normal` | `normal`, `none` | Whether to hide the category middle space.  |
+| **customerCategoryGap** | `` | `` | custom category gap html.  |
 | **custom** | `[]` | | [Custom emojis](#custom-emojis) |
 | **onEmojiSelect** | `null` | | Callback when an emoji is selected |
 | **onClickOutside** | `null` | | Callback when a click outside of the picker happens |
