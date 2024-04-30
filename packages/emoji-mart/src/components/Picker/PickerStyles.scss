@@ -234,6 +234,7 @@ a {
     transition-duration: var(--duration);
     transition-property: background-color, box-shadow;
     transition-timing-function: var(--easing);
+    font-size: 16px;
 
     &::placeholder {
       color: inherit;
