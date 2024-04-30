@@ -1,13 +1,16 @@
 {
-  "name": "emoji-mart",
+  "name": "@campsite-software/emoji-mart",
   "version": "5.6.0",
   "description": "Emoji picker for the web",
   "license": "MIT",
-  "homepage": "https://missiveapp.com/open/emoji-mart",
+  "homepage": "https://github.com/campsite/emoji-mart",
   "repository": {
     "type": "git",
-    "url": "https://github.com/missive/emoji-mart",
+    "url": "https://github.com/campsite/emoji-mart",
     "directory": "packages/emoji-mart"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "source": "src/index.ts",
   "types": "dist/index.d.ts",
