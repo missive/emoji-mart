@@ -47,6 +47,7 @@ export function init(options, { caller } = {}) {
 }
 
 async function _init(props) {
+  console.log('init', Data)
   initialized = true
 
   let { emojiVersion, set, locale } = props
@@ -249,6 +250,7 @@ async function _init(props) {
   }
 
   if (resetSearchIndex) {
+    console.log('init reset search index')
     SearchIndex.reset()
   }
 

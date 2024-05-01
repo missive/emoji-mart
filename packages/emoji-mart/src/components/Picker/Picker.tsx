@@ -97,6 +97,7 @@ export default class Picker extends Component {
       const nextState = this.getInitialState()
 
       if (requiresGridReset) {
+        console.log('picker requires grid reset')
         return this.reset(nextState)
       }
 
@@ -109,6 +110,7 @@ export default class Picker extends Component {
   }
 
   async reset(nextState = {}) {
+    console.log('picker reset init')
     await init(this.props)
 
     this.initGrid()

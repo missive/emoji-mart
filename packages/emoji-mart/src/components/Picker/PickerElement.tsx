@@ -20,6 +20,8 @@ export default class PickerElement extends ShadowElement {
       this.component = component
     }
 
+    console.log('picker connected callback', props)
+
     await init(props)
     if (this.disconnected) return
 

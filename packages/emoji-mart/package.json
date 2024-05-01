@@ -1,6 +1,6 @@
 {
   "name": "@campsite-software/emoji-mart",
-  "version": "5.6.0",
+  "version": "5.6.1-reactive-store.1",
   "description": "Emoji picker for the web",
   "license": "MIT",
   "homepage": "https://github.com/campsite/emoji-mart",
