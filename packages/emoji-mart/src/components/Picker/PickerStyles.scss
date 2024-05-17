@@ -312,7 +312,7 @@ button {
     transition: transform var(--duration) var(--easing);
   }
 
-  button[aria-selected] {
+  button[aria-selected="true"] {
     color: rgb(var(--em-rgb-accent));
   }
 }

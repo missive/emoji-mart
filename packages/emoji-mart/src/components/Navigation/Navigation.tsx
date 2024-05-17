@@ -60,7 +60,7 @@ export default class Navigation extends PureComponent {
         data-position={this.props.position}
         dir={this.props.dir}
       >
-        <div class="flex relative">
+        <div class="flex relative" role="tablist">
           {this.categories.map((category, i) => {
             const title = category.name || I18n.categories[category.id]
             const selected =
@@ -73,10 +73,11 @@ export default class Navigation extends PureComponent {
             return (
               <button
                 aria-label={title}
-                aria-selected={selected || undefined}
+                aria-selected={selected ? 'true' : 'false'}
                 title={title}
                 type="button"
                 class="flex flex-grow flex-center"
+                role="tab"
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => {
                   this.props.onClick({ category, i })
