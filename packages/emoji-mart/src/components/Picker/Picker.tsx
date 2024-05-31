@@ -656,6 +656,8 @@ export default class Picker extends Component {
     if (!this.state.showSkins) return
     this.setState({ showSkins: null, tempSkin: null })
 
+    this.refs.skinToneButton.current.focus()
+
     this.base.removeEventListener('click', this.handleBaseClick)
     this.base.removeEventListener('keydown', this.handleBaseKeydown)
   }
