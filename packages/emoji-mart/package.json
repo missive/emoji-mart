@@ -13,6 +13,7 @@
   "types": "dist/index.d.ts",
   "main": "dist/main.js",
   "module": "dist/module.js",
+  "type": "module",
   "global": "dist/browser.js",
   "browserslist": "defaults",
   "targets": {
