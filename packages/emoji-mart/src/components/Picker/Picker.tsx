@@ -607,7 +607,13 @@ export default class Picker extends Component {
   }
 
   handleCategoryClick = ({ category, i }) => {
-    this.scrollTo(i == 0 ? { row: -1 } : { categoryId: category.id })
+    if (this.state.searchResults) {
+      this.clearSearch()
+    }
+    this.unfocusSearch()
+    setTimeout(() => {
+      this.scrollTo(i == 0 ? { row: -1 } : { categoryId: category.id })
+    })
   }
 
   handleEmojiOver(pos) {
