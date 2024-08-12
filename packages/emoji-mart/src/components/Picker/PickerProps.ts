@@ -49,6 +49,7 @@ export default {
       'pt',
       'ru',
       'sa',
+      'th',
       'tr',
       'uk',
       'vi',
