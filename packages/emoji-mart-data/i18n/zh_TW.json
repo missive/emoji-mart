@@ -1,0 +1,29 @@
+{
+  "search": "搜尋",
+  "search_no_results_1": "糟糕！",
+  "search_no_results_2": "找不到這個表情符號",
+  "pick": "選擇一個表情符號…",
+  "add_custom": "新增自訂表情符號",
+  "categories": {
+    "activity": "活動",
+    "custom": "自訂",
+    "flags": "旗幟",
+    "foods": "食物與飲料",
+    "frequent": "常用",
+    "nature": "動物與自然",
+    "objects": "物件",
+    "people": "笑臉與人物",
+    "places": "旅行與地點",
+    "search": "搜尋結果",
+    "symbols": "符號"
+  },
+  "skins": {
+    "choose": "選擇預設膚色",
+    "1": "預設",
+    "2": "淺色",
+    "3": "淺中色",
+    "4": "中色",
+    "5": "深中色",
+    "6": "深色"
+  }
+}
