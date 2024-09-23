@@ -24,6 +24,7 @@ export default {
   exceptEmojis: {
     value: [],
   },
+  filterEmojis: undefined,
   icons: {
     value: 'auto',
     choices: ['auto', 'outline', 'solid'],

@@ -180,7 +180,8 @@ async function _init(props) {
 
       if (
         !emoji ||
-        (props.exceptEmojis && props.exceptEmojis.includes(emoji.id))
+        (props.exceptEmojis && props.exceptEmojis.includes(emoji.id)) ||
+        (props.filterEmojis && !props.filterEmojis(emoji))
       ) {
         ignore()
         continue
