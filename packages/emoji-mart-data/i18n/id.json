@@ -1,0 +1,29 @@
+{
+  "search": "Cari",
+  "search_no_results_1": "Oh tidak!",
+  "search_no_results_2": "Emoji itu tidak dapat ditemukan",
+  "pick": "Pilih emoji…",
+  "add_custom": "Tambahkan emoji kustom",
+  "categories": {
+    "activity": "Aktivitas",
+    "custom": "Kustom",
+    "flags": "Bendera",
+    "foods": "Makanan & Minuman",
+    "frequent": "Sering digunakan",
+    "nature": "Hewan & Alam",
+    "objects": "Benda",
+    "people": "Emoji & Orang",
+    "places": "Perjalanan & Tempat",
+    "search": "Hasil Pencarian",
+    "symbols": "Simbol"
+  },
+  "skins": {
+    "choose": "Pilih warna kulit default",
+    "1": "Default",
+    "2": "Terang",
+    "3": "Agak Terang",
+    "4": "Sedang",
+    "5": "Agak Gelap",
+    "6": "Gelap"
+  }
+}

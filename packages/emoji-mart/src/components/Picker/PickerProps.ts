@@ -41,6 +41,7 @@ export default {
       'fi',
       'fr',
       'hi',
+      'id',
       'it',
       'ja',
       'ko',
