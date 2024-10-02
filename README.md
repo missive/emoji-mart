@@ -84,39 +84,39 @@ function App() {
 ```
 
 ### Options / Props
-| Option | Default | Choices | Description |
-| ------ | ------- | ------- | ----------- |
-| **data** | `{}` | | Data to use for the picker |
-| **i18n** | `{}` | | Localization data to use for the picker |
-| **categories** | `[]` | `frequent`, `people`, `nature`, `foods`, `activity`, `places`, `objects`, `symbols`, `flags` | Categories to show in the picker. Order is respected.  |
-| **custom** | `[]` | | [Custom emojis](#custom-emojis) |
-| **onEmojiSelect** | `null` | | Callback when an emoji is selected |
-| **onClickOutside** | `null` | | Callback when a click outside of the picker happens |
-| **onAddCustomEmoji** | `null` | | Callback when the *Add custom emoji* button is clicked. The button will only be displayed if this callback is provided. It is displayed when search returns no results. |
-| **autoFocus** | `false` | | Whether the picker should automatically focus on the search input |
-| **categoryIcons** | `{}` | | [Custom category icons](#custom-category-icons) |
-| **dynamicWidth** | `false` | | Whether the picker should calculate `perLine` dynamically based on the width of `<em-emoji-picker>`. When enabled, `perLine` is ignored |
-| **emojiButtonColors** | `[]` | i.e. `#f00`, `pink`, `rgba(155,223,88,.7)` | An array of color that affects the hover background color |
-| **emojiButtonRadius** | `100%` | i.e. `6px`, `1em`, `100%` | The radius of the emoji buttons |
-| **emojiButtonSize** | `36` | | The size of the emoji buttons |
-| **emojiSize** | `24` | | The size of the emojis (inside the buttons) |
-| **emojiVersion** | `14` | `1`, `2`, `3`, `4`, `5`, `11`, `12`, `12.1`, `13`, `13.1`, `14` | The version of the emoji data to use. Latest version supported in `@emoji-mart/data` is currently [14](https://emojipedia.org/emoji-14.0) |
-| **exceptEmojis** | `[]` | | List of emoji IDs that will be excluded from the picker |
-| **icons** | `auto` | `auto`, `outline`, `solid` | The type of icons to use for the picker. `outline` with light theme and `solid` with dark theme. |
-| **locale** | `en` | `en`, `ar`, `be`, `cs`, `de`, `es`, `fa`, `fi`, `fr`, `hi`, `it`, `ja`, `ko`, `nl`, `pl`, `pt`, `ru`, `sa`, `tr`, `uk`, `vi`, `zh` | The locale to use for the picker |
-| **maxFrequentRows** | `4` | | The maximum number of frequent rows to show. `0` will disable frequent category |
-| **navPosition** | `top` | `top`, `bottom`, `none` | The position of the navigation bar |
-| **noCountryFlags** | `false` | | Whether to show country flags or not. If not provided, tbhis is handled automatically (Windows doesn’t support country flags) |
-| **noResultsEmoji** | `cry` | | The id of the emoji to use for the no results emoji |
-| **perLine** | `9` | | The number of emojis to show per line |
-| **previewEmoji** | `point_up` | | The id of the emoji to use for the preview when not hovering any emoji. `point_up` when preview position is bottom and `point_down` when preview position is top. |
-| **previewPosition** | `bottom` | `top`, `bottom`, `none` | The position of the preview |
-| **searchPosition** | `sticky` | `sticky`, `static`, `none` | The position of the search input |
-| **set** | `native` | `native`, `apple`, `facebook`, `google`, `twitter` | The set of emojis to use for the picker. `native` being the most performant, others rely on spritesheets. |
-| **skin** | `1` | `1`, `2`, `3`, `4`, `5`, `6` | The emojis skin tone |
-| **skinTonePosition** | `preview` | `preview`, `search`, `none` | The position of the skin tone selector |
-| **theme** | `auto` | `auto`, `light`, `dark` | The color theme of the picker |
-| **getSpritesheetURL** | `null` | | A function that returns the URL of the spritesheet to use for the picker. It should be compatible with the data provided. |
+| Option | Default | Choices                                                                                                                              | Description |
+| ------ | ------- |--------------------------------------------------------------------------------------------------------------------------------------| ----------- |
+| **data** | `{}` |                                                                                                                                      | Data to use for the picker |
+| **i18n** | `{}` |                                                                                                                                      | Localization data to use for the picker |
+| **categories** | `[]` | `frequent`, `people`, `nature`, `foods`, `activity`, `places`, `objects`, `symbols`, `flags`                                         | Categories to show in the picker. Order is respected.  |
+| **custom** | `[]` |                                                                                                                                      | [Custom emojis](#custom-emojis) |
+| **onEmojiSelect** | `null` |                                                                                                                                      | Callback when an emoji is selected |
+| **onClickOutside** | `null` |                                                                                                                                      | Callback when a click outside of the picker happens |
+| **onAddCustomEmoji** | `null` |                                                                                                                                      | Callback when the *Add custom emoji* button is clicked. The button will only be displayed if this callback is provided. It is displayed when search returns no results. |
+| **autoFocus** | `false` |                                                                                                                                      | Whether the picker should automatically focus on the search input |
+| **categoryIcons** | `{}` |                                                                                                                                      | [Custom category icons](#custom-category-icons) |
+| **dynamicWidth** | `false` |                                                                                                                                      | Whether the picker should calculate `perLine` dynamically based on the width of `<em-emoji-picker>`. When enabled, `perLine` is ignored |
+| **emojiButtonColors** | `[]` | i.e. `#f00`, `pink`, `rgba(155,223,88,.7)`                                                                                           | An array of color that affects the hover background color |
+| **emojiButtonRadius** | `100%` | i.e. `6px`, `1em`, `100%`                                                                                                            | The radius of the emoji buttons |
+| **emojiButtonSize** | `36` |                                                                                                                                      | The size of the emoji buttons |
+| **emojiSize** | `24` |                                                                                                                                      | The size of the emojis (inside the buttons) |
+| **emojiVersion** | `14` | `1`, `2`, `3`, `4`, `5`, `11`, `12`, `12.1`, `13`, `13.1`, `14`                                                                      | The version of the emoji data to use. Latest version supported in `@emoji-mart/data` is currently [14](https://emojipedia.org/emoji-14.0) |
+| **exceptEmojis** | `[]` |                                                                                                                                      | List of emoji IDs that will be excluded from the picker |
+| **icons** | `auto` | `auto`, `outline`, `solid`                                                                                                           | The type of icons to use for the picker. `outline` with light theme and `solid` with dark theme. |
+| **locale** | `en` | `en`, `ar`, `be`, `cs`, `de`, `es`, `fa`, `fi`, `fr`, `hi`, `it`, `ja`, `ko`, `nl`, `pl`, `pt`, `ru`, `sa`, `tr`, `uk`, `vi`, `zh`, `af` | The locale to use for the picker |
+| **maxFrequentRows** | `4` |                                                                                                                                      | The maximum number of frequent rows to show. `0` will disable frequent category |
+| **navPosition** | `top` | `top`, `bottom`, `none`                                                                                                              | The position of the navigation bar |
+| **noCountryFlags** | `false` |                                                                                                                                      | Whether to show country flags or not. If not provided, tbhis is handled automatically (Windows doesn’t support country flags) |
+| **noResultsEmoji** | `cry` |                                                                                                                                      | The id of the emoji to use for the no results emoji |
+| **perLine** | `9` |                                                                                                                                      | The number of emojis to show per line |
+| **previewEmoji** | `point_up` |                                                                                                                                      | The id of the emoji to use for the preview when not hovering any emoji. `point_up` when preview position is bottom and `point_down` when preview position is top. |
+| **previewPosition** | `bottom` | `top`, `bottom`, `none`                                                                                                              | The position of the preview |
+| **searchPosition** | `sticky` | `sticky`, `static`, `none`                                                                                                           | The position of the search input |
+| **set** | `native` | `native`, `apple`, `facebook`, `google`, `twitter`                                                                                   | The set of emojis to use for the picker. `native` being the most performant, others rely on spritesheets. |
+| **skin** | `1` | `1`, `2`, `3`, `4`, `5`, `6`                                                                                                         | The emojis skin tone |
+| **skinTonePosition** | `preview` | `preview`, `search`, `none`                                                                                                          | The position of the skin tone selector |
+| **theme** | `auto` | `auto`, `light`, `dark`                                                                                                              | The color theme of the picker |
+| **getSpritesheetURL** | `null` |                                                                                                                                      | A function that returns the URL of the spritesheet to use for the picker. It should be compatible with the data provided. |
 
 ### Custom emojis
 You can use custom emojis by providing an array of categories and their emojis. Emojis also support multiple skin tones and can be GIFs or SVGs.
