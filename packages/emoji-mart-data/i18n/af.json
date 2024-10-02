@@ -1,0 +1,29 @@
+{
+  "search": "Soek",
+  "search_no_results_1": "O nee!",
+  "search_no_results_2": "Hierdie emoji kan nie gevind word nie",
+  "pick": "Kies 'n emoji…",
+  "add_custom": "Voeg 'n persoonlike emoji by",
+  "categories": {
+    "activity": "Aktiwiteite",
+    "custom": "Persoonlik",
+    "flags": "Vlae",
+    "foods": "Kos & Drinkgoed",
+    "frequent": "Gereeld gebruik",
+    "nature": "Diere & Natuur",
+    "objects": "Objekte",
+    "people": "Smileys & Mense",
+    "places": "Reise & Plekke",
+    "search": "Soekresultate",
+    "symbols": "Simboliek"
+  },
+  "skins": {
+    "choose": "Kies 'n velkleur",
+    "1": "Verstek",
+    "2": "Lig",
+    "3": "Medium-lig",
+    "4": "Medium",
+    "5": "Medium-donker",
+    "6": "Donker"
+  }
+}
