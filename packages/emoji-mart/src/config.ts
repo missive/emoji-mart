@@ -97,6 +97,7 @@ async function _init(props) {
         ))
 
   if (props.custom) {
+    Data.customCategories = []
     for (let i in props.custom) {
       i = parseInt(i)
       const category = props.custom[i]
@@ -112,6 +113,7 @@ async function _init(props) {
       }
 
       Data.categories.push(category)
+      Data.customCategories.push(category)
 
       for (const emoji of category.emojis) {
         Data.emojis[emoji.id] = emoji
@@ -121,6 +123,11 @@ async function _init(props) {
 
   if (props.categories) {
     Data.categories = Data.originalCategories
+      .concat(
+        typeof Data.customCategories !== 'undefined'
+          ? Data.customCategories
+          : [],
+      )
       .filter((c) => {
         return props.categories.indexOf(c.id) != -1
       })
