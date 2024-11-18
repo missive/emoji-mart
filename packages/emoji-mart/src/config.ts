@@ -212,7 +212,7 @@ async function _init(props) {
               if (!strings) return
               return (Array.isArray(strings) ? strings : [strings])
                 .map((string) => {
-                  return (split ? string.split(/[-|_|\s]+/) : [string]).map(
+                  return (split ? string.split(/[-|_|\s()]+/) : [string]).map(
                     (s) => s.toLowerCase(),
                   )
                 })
