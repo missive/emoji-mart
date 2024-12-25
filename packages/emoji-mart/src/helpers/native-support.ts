@@ -83,7 +83,7 @@ const isEmojiSupported = (() => {
     let i = 0
 
     // Search the first visible pixel
-    for (; i < count && !a[i + 3]; i += 4);
+    for (; i < count && a[i + 3] < 255; i += 4);
 
     // No visible pixel
     if (i >= count) {
