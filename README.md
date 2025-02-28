@@ -100,7 +100,7 @@ function App() {
 | **emojiButtonRadius** | `100%` | i.e. `6px`, `1em`, `100%` | The radius of the emoji buttons |
 | **emojiButtonSize** | `36` | | The size of the emoji buttons |
 | **emojiSize** | `24` | | The size of the emojis (inside the buttons) |
-| **emojiVersion** | `14` | `1`, `2`, `3`, `4`, `5`, `11`, `12`, `12.1`, `13`, `13.1`, `14` | The version of the emoji data to use. Latest version supported in `@emoji-mart/data` is currently [14](https://emojipedia.org/emoji-14.0) |
+| **emojiVersion** | `15` | `1`, `2`, `3`, `4`, `5`, `11`, `12`, `12.1`, `13`, `13.1`, `14` | The version of the emoji data to use. Latest version supported in `@emoji-mart/data` is currently [15](https://emojipedia.org/emoji-15.0) |
 | **exceptEmojis** | `[]` | | List of emoji IDs that will be excluded from the picker |
 | **icons** | `auto` | `auto`, `outline`, `solid` | The type of icons to use for the picker. `outline` with light theme and `solid` with dark theme. |
 | **locale** | `en` | `en`, `ar`, `be`, `cs`, `de`, `es`, `fa`, `fi`, `fr`, `hi`, `it`, `ja`, `ko`, `nl`, `pl`, `pt`, `ru`, `sa`, `tr`, `uk`, `vi`, `zh` | The locale to use for the picker |
