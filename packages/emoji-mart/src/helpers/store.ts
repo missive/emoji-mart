@@ -1,4 +1,4 @@
-function set(key: string, value: string) {
+function set(key: string, value: any) {
   try {
     window.localStorage[`emoji-mart.${key}`] = JSON.stringify(value)
   } catch (error) {}
