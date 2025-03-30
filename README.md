@@ -271,6 +271,34 @@ new Picker({ i18n })
 
 Given the small file size, English is built-in and doesn’t need to be provided.
 
+## 💾 Data Store
+By default EmojiMart will store user chosen skin and frequently used emojis in `localStorage`. That can however be overwritten if you can overwrite imports, should you want to store these in your own storage:
+
+```js
+import { Store } from 'emoji-mart'
+
+/**
+ * Retrieves a stored value by key.
+ * @param {string} key - The key of the stored value.
+ * @returns {any} The retrieved value.
+ */
+Store.get = (key) => {
+    console.info(`Value was requested for '${key}'`);
+    // Get from your own storage (sync)
+    return // ...
+};
+
+/**
+ * Stores a value under a specific key.
+ * @param {string} key - The key to store the value under.
+ * @param {any} value - The value to store.
+ */
+Store.set = (key, value) => {
+    console.info("Saving", value, `in '${key}'`);
+    // Persist in your own storage 
+}
+```
+
 ## 📚 Examples
 
 - [Categories](https://missiveapp.com/open/emoji-mart/example-categories.html)
