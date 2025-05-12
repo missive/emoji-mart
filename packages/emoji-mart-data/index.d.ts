@@ -17,6 +17,7 @@ export interface Emoji {
   skins: Skin[]
   version: number
   emoticons?: string[]
+  search?: string
 }
 
 export interface Skin {
@@ -24,6 +25,7 @@ export interface Skin {
   native: string
   x?: number
   y?: number
+  shortcodes: string
 }
 
 export interface Sheet {
