@@ -94,7 +94,11 @@ async function _init(props) {
       ? i18n_en
       : await fetchJSON(
           `https://cdn.jsdelivr.net/npm/@emoji-mart/data@latest/i18n/${locale}.json`,
-        ))
+        ).catch((error) => {
+          console.warn(`Failed to fetch i18n data for locale "${locale}":`, error)
+          console.warn(`Falling back to English locale`)
+          return i18n_en
+        }))
 
   if (props.custom) {
     for (let i in props.custom) {
