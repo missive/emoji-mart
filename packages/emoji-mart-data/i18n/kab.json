@@ -1,0 +1,29 @@
+{
+  "search": "Nadi",
+  "search_no_results_1": "Uh, ala !",
+  "search_no_results_2": "Imujit-nni ur-d yettwaf ara",
+  "pick": "Fren imujit…",
+  "add_custom": "Rnu imujit udmawan",
+  "categories": {
+    "activity": "Irmad",
+    "custom": "Udmawan",
+    "flags": "Anayen",
+    "foods": "Učči akked tissit",
+    "frequent": "Wid yettusqedcen s waṭas",
+    "nature": "Iɣersiwen d ugama",
+    "objects": "Isental",
+    "people": "Acmumeḥ & Imdanen",
+    "places": "Assikel akked imeḍqan",
+    "search": "Igmad n unadi",
+    "symbols": "Izamulen"
+  },
+  "skins": {
+    "choose": "Fren ini n uglim",
+    "1": "Amezwer",
+    "2": "Aceɛlal",
+    "3": "Aceɛlal acemlax",
+    "4": "Acemlax",
+    "5": "Ubrik aqesḥan",
+    "6": "Ubrik"
+  }
+}
