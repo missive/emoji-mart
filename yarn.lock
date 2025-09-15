@@ -2079,20 +2079,20 @@ emittery@^0.10.2:
   resolved "https://registry.yarnpkg.com/emittery/-/emittery-0.10.2.tgz#902eec8aedb8c41938c46e9385e9db7e03182933"
   integrity sha512-aITqOwnLanpHLNXZJENbOgjUBeHocD+xsSJmNrjovKBW5HbSpW3d1pEls7GFQPUWXiwG9+0P4GtHfEqC/4M0Iw==
 
-emoji-datasource@14.0.0:
-  version "14.0.0"
-  resolved "https://registry.yarnpkg.com/emoji-datasource/-/emoji-datasource-14.0.0.tgz#99529a62f3a86546fc670c09b672ddc9f24f3d44"
-  integrity sha512-SoOv0lSa+9/2X9ulSRDhu2u1zAOaOv5vtMY3OYUDcQCoReEh0/3eQAMuBM9LyD7Hy3G4K7mDPDqVeHUWvy7cow==
+emoji-datasource@15.0.1:
+  version "15.0.1"
+  resolved "https://registry.yarnpkg.com/emoji-datasource/-/emoji-datasource-15.0.1.tgz#6cc7676e4d48d7559c2e068ffcacf84ec653584c"
+  integrity sha512-aF5Q6LCKXzJzpG4K0ETiItuzz0xLYxNexR9qWw45/shuuEDWZkOIbeGHA23uopOSYA/LmeZIXIFsySCx+YKg2g==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"
   integrity sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==
 
-emojilib@3.0.6:
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/emojilib/-/emojilib-3.0.6.tgz#09cb2d3bbf5df832a3842bbd0fc8a713db70fd54"
-  integrity sha512-/fjPG5+oTHzHDQhXwovBrggTNhOB6r2Ms1+e9ZX84kYov/5YK1b9Jk4f6uho8C9CmWkQzjTJXrphNkP27+7TqQ==
+emojilib@3.0.10:
+  version "3.0.10"
+  resolved "https://registry.yarnpkg.com/emojilib/-/emojilib-3.0.10.tgz#e2f9baaee5fabbc1e011ebd3aa2761b65e4da02f"
+  integrity sha512-VQtCRroFykPTJaoEBEGFg5tI+rEluabjuaVDDbSftDtiRJ5GuqRG/LGV1mmDzkJP4bh5rzuEBOafMN68/YXQcQ==
 
 entities@^2.0.0:
   version "2.2.0"
@@ -2440,10 +2440,10 @@ imurmurhash@^0.1.4:
   resolved "https://registry.yarnpkg.com/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"
   integrity sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==
 
-inflection@1.13.2:
-  version "1.13.2"
-  resolved "https://registry.yarnpkg.com/inflection/-/inflection-1.13.2.tgz#15e8c797c6c3dadf31aa658f8df8a4ea024798b0"
-  integrity sha512-cmZlljCRTBFouT8UzMzrGcVEvkv6D/wBdcdKG7J1QH5cXjtU75Dm+P27v9EKu/Y43UYyCJd1WC4zLebRrC8NBw==
+inflection@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/inflection/-/inflection-2.0.1.tgz#bdf3a4c05d4275f41234910cbbe9a102ac72c99b"
+  integrity sha512-wzkZHqpb4eGrOKBl34xy3umnYHx8Si5R1U4fwmdxLo5gdH6mEK8gclckTj/qWqy4Je0bsDYe/qazZYuO7xe3XQ==
 
 inflight@^1.0.4:
   version "1.0.6"
@@ -4032,10 +4032,10 @@ typescript@4.6.4:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.4.tgz#caa78bbc3a59e6a5c510d35703f6a09877ce45e9"
   integrity sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==
 
-unicode-emoji-json@0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/unicode-emoji-json/-/unicode-emoji-json-0.3.1.tgz#495ddf9a3483da91d25a1a4817249f4b3a5ab03f"
-  integrity sha512-qA76zUIfOMSj+rdd8XAz/SpuubjTqoy2uW+dHrUVZivIvzMYzs7lNlbLMG4R32KB8SFwtVUJYQzbAafjBYDSuw==
+unicode-emoji-json@0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/unicode-emoji-json/-/unicode-emoji-json-0.4.0.tgz#021dd9a917b8af90756cf1eba21fda7b8e0ee5af"
+  integrity sha512-lVNOwh2AnmbwqtSrEVjAWKQoVzWgyWmXVqPuPkPfKb0tnA0+uYN/4ILCTdy9IRj/+3drAVhmjwjNJQr2dhCwnA==
 
 universalify@^0.1.2:
   version "0.1.2"

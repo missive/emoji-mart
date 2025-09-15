@@ -7,7 +7,7 @@ const unicodeEmoji = require('unicode-emoji-json')
 
 const DRY_RUN = process.argv.indexOf('--dry') != -1
 
-const VERSIONS = [1, 2, 3, 4, 5, 11, 12, 12.1, 13, 13.1, 14]
+const VERSIONS = [1, 2, 3, 4, 5, 11, 12, 12.1, 13, 13.1, 14, 15]
 const SKINS = ['1F3FB', '1F3FC', '1F3FD', '1F3FE', '1F3FF']
 const SETS = ['native', 'apple', 'facebook', 'google', 'twitter']
 const CATEGORIES = [
@@ -222,6 +222,8 @@ if (!DRY_RUN) {
 }
 
 for (let version of VERSIONS) {
+  buildData({ version })
+
   for (let set of SETS) {
     buildData({ set, version })
   }

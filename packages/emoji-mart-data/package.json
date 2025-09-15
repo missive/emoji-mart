@@ -1,6 +1,6 @@
 {
   "name": "@emoji-mart/data",
-  "version": "1.1.2",
+  "version": "1.2.1",
   "description": "Data for Emoji Mart; the emoji picker for the web.",
   "license": "MIT",
   "homepage": "https://missiveapp.com/open/emoji-mart",
@@ -9,17 +9,17 @@
     "url": "https://github.com/missive/emoji-mart",
     "directory": "packages/emoji-mart-data"
   },
-  "main": "sets/14/native.json",
+  "main": "sets/15/native.json",
   "types": "index.d.ts",
   "scripts": {
     "build": "node ./build.js"
   },
   "sideEffects": false,
   "devDependencies": {
-    "emoji-datasource": "14.0.0",
-    "emojilib": "3.0.6",
-    "inflection": "1.13.2",
-    "unicode-emoji-json": "0.3.1"
+    "emoji-datasource": "15.0.1",
+    "emojilib": "3.0.10",
+    "inflection": "2.0.1",
+    "unicode-emoji-json": "0.4.0"
   },
   "files": [
     "/i18n",
