@@ -27,6 +27,8 @@
     "6": "黑色"
   },
   "a11y": {
-    "available_emojis": "可用表情符号"
+    "available_emojis": "可用表情符号",
+    "skin_tone_menu_collapsed": "已折叠",
+    "skin_tone_menu_expanded": "已展开"
   }
 }

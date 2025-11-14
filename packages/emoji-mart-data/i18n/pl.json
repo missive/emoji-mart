@@ -25,5 +25,9 @@
     "4": "Średni",
     "5": "Średnio-ciemny",
     "6": "Ciemny"
+  },
+  "a11y": {
+    "skin_tone_menu_collapsed": "zwinięte",
+    "skin_tone_menu_expanded": "rozwinięte"
   }
 }

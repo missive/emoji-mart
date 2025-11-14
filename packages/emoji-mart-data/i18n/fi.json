@@ -25,5 +25,9 @@
     "4": "Keskimmäinen",
     "5": "Keskitumma",
     "6": "Tumma"
+  },
+  "a11y": {
+    "skin_tone_menu_collapsed": "pienennetty",
+    "skin_tone_menu_expanded": "laajennettu"
   }
 }

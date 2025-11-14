@@ -30,6 +30,8 @@
     "available_emojis": "Available emojis",
     "emojis_found_plural": "emojis found",
     "emoji_found_singular": "emoji found",
-    "search_input_aria_label": "Search emojis"
+    "search_input_aria_label": "Search emojis",
+    "skin_tone_menu_collapsed": "collapsed",
+    "skin_tone_menu_expanded": "expanded"
   }
 }

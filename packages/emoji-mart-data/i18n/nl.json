@@ -25,5 +25,9 @@
     "4": "Medium",
     "5": "Medium-Donker",
     "6": "Donker"
+  },
+  "a11y": {
+    "skin_tone_menu_collapsed": "ingeklapt",
+    "skin_tone_menu_expanded": "uitgeklapt"
   }
 }

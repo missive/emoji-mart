@@ -25,5 +25,9 @@
     "4": "중간 피부색",
     "5": "약간 어두운 피부색",
     "6": "어두운 피부색"
+  },
+  "a11y": {
+    "skin_tone_menu_collapsed": "접힘",
+    "skin_tone_menu_expanded": "펼침"
   }
 }

@@ -27,6 +27,8 @@
     "6": "Tmavý"
   },
   "a11y": {
-    "available_emojis": "Dostupné emoji"
+    "available_emojis": "Dostupné emoji",
+    "skin_tone_menu_collapsed": "sbalené",
+    "skin_tone_menu_expanded": "rozbalené"
   }
 }

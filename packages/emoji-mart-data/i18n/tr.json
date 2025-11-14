@@ -25,5 +25,9 @@
     "4": "Orta",
     "5": "Orta Koyu",
     "6": "Koyu"
+  },
+  "a11y": {
+    "skin_tone_menu_collapsed": "daraltıldı",
+    "skin_tone_menu_expanded": "genişletildi"
   }
 }

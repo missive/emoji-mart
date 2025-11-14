@@ -27,5 +27,9 @@
     "4": "متوسط",
     "5": "داكن متوسط",
     "6": "داكن"
+  },
+  "a11y": {
+    "skin_tone_menu_collapsed": "مطوي",
+    "skin_tone_menu_expanded": "موسع"
   }
 }

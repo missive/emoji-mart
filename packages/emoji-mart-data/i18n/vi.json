@@ -27,6 +27,8 @@
     "6": "Tối"
   },
   "a11y": {
-    "available_emojis": "Biểu tượng cảm xúc có sẵn"
+    "available_emojis": "Biểu tượng cảm xúc có sẵn",
+    "skin_tone_menu_collapsed": "thu gọn",
+    "skin_tone_menu_expanded": "mở rộng"
   }
 }

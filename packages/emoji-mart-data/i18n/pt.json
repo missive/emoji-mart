@@ -27,6 +27,8 @@
     "6": "Escura"
   },
   "a11y": {
-    "available_emojis": "Emojis disponíveis"
+    "available_emojis": "Emojis disponíveis",
+    "skin_tone_menu_collapsed": "recolhido",
+    "skin_tone_menu_expanded": "expandido"
   }
 }

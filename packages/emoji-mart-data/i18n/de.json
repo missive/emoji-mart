@@ -27,6 +27,8 @@
     "6": "Dunkel"
   },
   "a11y": {
-    "available_emojis": "Verfügbare Emojis"
+    "available_emojis": "Verfügbare Emojis",
+    "skin_tone_menu_collapsed": "eingeklappt",
+    "skin_tone_menu_expanded": "ausgeklappt"
   }
 }

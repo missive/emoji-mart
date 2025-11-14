@@ -25,5 +25,9 @@
     "4": "Moyen",
     "5": "Moyen-foncé",
     "6": "Foncé"
+  },
+  "a11y": {
+    "skin_tone_menu_collapsed": "réduit",
+    "skin_tone_menu_expanded": "développé"
   }
 }

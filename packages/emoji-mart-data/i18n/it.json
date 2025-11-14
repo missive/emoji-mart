@@ -25,5 +25,9 @@
     "4": "Medio",
     "5": "Medio-scuro",
     "6": "Scuro"
+  },
+  "a11y": {
+    "skin_tone_menu_collapsed": "compressa",
+    "skin_tone_menu_expanded": "espansa"
   }
 }

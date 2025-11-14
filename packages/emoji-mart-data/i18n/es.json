@@ -25,5 +25,9 @@
     "4": "Medio",
     "5": "Medio-Oscuro",
     "6": "Oscuro"
+  },
+  "a11y": {
+    "skin_tone_menu_collapsed": "contraído",
+    "skin_tone_menu_expanded": "expandido"
   }
 }

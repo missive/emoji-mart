@@ -25,5 +25,9 @@
     "4": "肌色",
     "5": "やや濃い肌色",
     "6": "濃い肌色"
+  },
+  "a11y": {
+    "skin_tone_menu_collapsed": "折りたたみ",
+    "skin_tone_menu_expanded": "展開"
   }
 }

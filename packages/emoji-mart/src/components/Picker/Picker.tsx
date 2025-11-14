@@ -1068,7 +1068,15 @@ export default class Picker extends Component {
       return null
     }
 
-    const ariaSkinToneShown = this.state.showSkins ? 'true' : 'false'
+    const isSkinToneMenuOpen = !!this.state.showSkins
+    const ariaSkinToneShown = isSkinToneMenuOpen ? 'true' : 'false'
+    const skinToneA11y = I18n && I18n.a11y
+    const skinToneStateLabel = isSkinToneMenuOpen
+      ? (skinToneA11y && skinToneA11y.skin_tone_menu_expanded) || 'expanded'
+      : (skinToneA11y && skinToneA11y.skin_tone_menu_collapsed) || 'collapsed'
+    const skinToneButtonLabel = `${I18n.skins.choose}, ${
+      I18n.skins[this.state.skin]
+    }, ${skinToneStateLabel}`
 
     return (
       <div
@@ -1087,7 +1095,7 @@ export default class Picker extends Component {
           aria-expanded={ariaSkinToneShown}
           aria-controls="skin-tone-options"
           aria-haspopup="true"
-          aria-label={`${I18n.skins.choose}, ${I18n.skins[this.state.skin]}`}
+          aria-label={skinToneButtonLabel}
           title={I18n.skins.choose}
           onClick={this.openSkins}
           style={{

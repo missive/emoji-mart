@@ -27,5 +27,9 @@
     "4": "میانه",
     "5": "میانه-تاریک",
     "6": "تاریک"
+  },
+  "a11y": {
+    "skin_tone_menu_collapsed": "جمع‌شده",
+    "skin_tone_menu_expanded": "گسترده"
   }
 }
