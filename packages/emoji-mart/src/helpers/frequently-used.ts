@@ -35,7 +35,7 @@ function add(emoji: { id: string }) {
 function get({ maxFrequentRows, perLine }) {
   if (!maxFrequentRows) return []
 
-  const frequently = Store.get('frequently')
+  let frequently = Store.get('frequently')
   let emojiIds = []
 
   if (!frequently) {
