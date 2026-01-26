@@ -19,34 +19,32 @@ const DEFAULTS = [
   'heart',
 ]
 
-let Index: any | null = null
-
 function add(emoji: { id: string }) {
-  Index || (Index = Store.get('frequently') || {})
+  const frequently = Store.get('frequently') || {}
 
   const emojiId = emoji.id || emoji
   if (!emojiId) return
 
-  Index[emojiId] || (Index[emojiId] = 0)
-  Index[emojiId] += 1
+  frequently[emojiId] || (frequently[emojiId] = 0)
+  frequently[emojiId] += 1
 
   Store.set('last', emojiId)
-  Store.set('frequently', Index)
+  Store.set('frequently', frequently)
 }
 
 function get({ maxFrequentRows, perLine }) {
   if (!maxFrequentRows) return []
 
-  Index || (Index = Store.get('frequently'))
+  const frequently = Store.get('frequently')
   let emojiIds = []
 
-  if (!Index) {
-    Index = {}
+  if (!frequently) {
+    frequently = {}
 
     for (let i in DEFAULTS.slice(0, perLine)) {
       const emojiId = DEFAULTS[i]
 
-      Index[emojiId] = perLine - i
+      frequently[emojiId] = perLine - i
       emojiIds.push(emojiId)
     }
 
@@ -56,13 +54,13 @@ function get({ maxFrequentRows, perLine }) {
   const max = maxFrequentRows * perLine
   const last = Store.get('last')
 
-  for (let emojiId in Index) {
+  for (let emojiId in frequently) {
     emojiIds.push(emojiId)
   }
 
   emojiIds.sort((a, b) => {
-    const aScore = Index[b]
-    const bScore = Index[a]
+    const aScore = frequently[b]
+    const bScore = frequently[a]
 
     if (aScore == bScore) {
       return a.localeCompare(b)
@@ -77,15 +75,15 @@ function get({ maxFrequentRows, perLine }) {
 
     for (let removedId of removedIds) {
       if (removedId == last) continue
-      delete Index[removedId]
+      delete frequently[removedId]
     }
 
     if (last && emojiIds.indexOf(last) == -1) {
-      delete Index[emojiIds[emojiIds.length - 1]]
+      delete frequently[emojiIds[emojiIds.length - 1]]
       emojiIds.splice(-1, 1, last)
     }
 
-    Store.set('frequently', Index)
+    Store.set('frequently', frequently)
   }
 
   return emojiIds
