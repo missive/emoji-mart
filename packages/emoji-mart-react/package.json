@@ -1,6 +1,6 @@
 {
   "name": "@emoji-mart/react",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "React wrapper for Emoji Mart; the emoji picker for the web.",
   "license": "MIT",
   "homepage": "https://missiveapp.com/open/emoji-mart",
@@ -19,10 +19,19 @@
   },
   "peerDependencies": {
     "emoji-mart": "^5.2",
-    "react": "^16.8 || ^17 || ^18"
+    "react": "^16.8 || ^17 || ^18 || ^19"
   },
   "files": [
     "/dist",
     "LICENSE"
-  ]
+  ],
+  "devDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/dom": "^10.0.0",
+    "@types/jest": "^28.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0"
+  }
 }

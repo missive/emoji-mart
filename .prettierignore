@@ -3,3 +3,4 @@
 *.scss
 **/dist
 **/sets
+coverage

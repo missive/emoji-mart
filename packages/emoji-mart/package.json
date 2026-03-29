@@ -39,7 +39,7 @@
     "prepublishOnly": "yarn build"
   },
   "devDependencies": {
-    "preact": "10.6.4"
+    "preact": "^10.29.0"
   },
   "alias": {
     "react": "preact/compat",

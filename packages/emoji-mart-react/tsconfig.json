@@ -1,0 +1,7 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "jsxImportSource": "react"
+  },
+  "include": ["react.tsx", "__tests__"]
+}

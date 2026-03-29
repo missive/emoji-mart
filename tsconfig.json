@@ -6,7 +6,6 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "preact",
     "isolatedModules": true,
     "strict": false,
     "skipLibCheck": true,
