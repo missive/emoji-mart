@@ -72,6 +72,22 @@ function App() {
 }
 ```
 
+### Vue
+```sh
+npm install --save emoji-mart @emoji-mart/data @emoji-mart/vue
+```
+
+```vue
+<script setup>
+import data from '@emoji-mart/data'
+import Picker from '@emoji-mart/vue'
+</script>
+
+<template>
+  <Picker :data="data" @emoji-select="console.log" />
+</template>
+```
+
 ### Browser
 ```html
 <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>

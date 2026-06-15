@@ -10,6 +10,7 @@
     "build": "yarn workspace emoji-mart build",
     "build:data": "yarn workspace @emoji-mart/data build",
     "build:react": "yarn workspace @emoji-mart/react build",
+    "build:vue": "yarn workspace @emoji-mart/vue build",
     "build:website": "yarn workspace @emoji-mart/website build",
     "check:types": "tsc",
     "prettier": "prettier --check .",
