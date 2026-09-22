@@ -1,0 +1,29 @@
+{
+  "search": "Buscar",
+  "search_no_results_1": "Que mágoa!",
+  "search_no_results_2": "Non se puido atopar ese emoji",
+  "pick": "Escolle un emoji…",
+  "add_custom": "Engadir emoji personalizado",
+  "categories": {
+    "activity": "Actividades",
+    "custom": "Personalizados",
+    "flags": "Bandeiras",
+    "foods": "Comida e bebida",
+    "frequent": "Usados habitualmente",
+    "nature": "Animais e natureza",
+    "objects": "Obxectos",
+    "people": "Emoticonas e persoas",
+    "places": "Viaxes e lugares",
+    "search": "Resultados da búsqueda",
+    "symbols": "Símbolos"
+  },
+  "skins": {
+    "choose": "Escolle o tono de pel por defecto",
+    "1": "Predeterminado",
+    "2": "Claro",
+    "3": "Medio-claro",
+    "4": "Medio",
+    "5": "Medio-escuro",
+    "6": "Escuro"
+  }
+}
