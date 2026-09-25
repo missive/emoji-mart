@@ -73,7 +73,7 @@ export default class Navigation extends PureComponent {
             return (
               <button
                 aria-label={title}
-                aria-selected={selected || undefined}
+                aria-current={selected ? 'true' : undefined}
                 title={title}
                 type="button"
                 class="flex flex-grow flex-center"

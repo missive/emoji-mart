@@ -312,7 +312,7 @@ button {
     transition: transform var(--duration) var(--easing);
   }
 
-  button[aria-selected] {
+  button[aria-current] {
     color: rgb(var(--em-rgb-accent));
   }
 }
@@ -375,7 +375,7 @@ button {
       transition-delay: 0ms;
     }
 
-    &[aria-selected] .background { opacity: 1 }
+    &[data-selected] .background { opacity: 1 }
     &[data-keyboard] .background { transition: none }
   }
 }
@@ -395,7 +395,7 @@ button {
   &:active { .skin-tone { transform: scale(.85) !important } }
              .skin-tone { transition: transform var(--duration) var(--easing) }
 
-  &[aria-selected] {
+  &[aria-expanded='true'] {
     border-left-width: 0;
     border-right-width: 0;
     border-top-color: rgba(0,0,0, .05);

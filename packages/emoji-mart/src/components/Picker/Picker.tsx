@@ -760,9 +760,7 @@ export default class Picker extends Component {
       <PureInlineComponent key={key} {...{ selected, skin, size }}>
         <button
           aria-label={native}
-          aria-selected={selected || undefined}
-          aria-posinset={posinset}
-          aria-setsize={grid.setsize}
+          data-selected={selected || undefined}
           data-keyboard={this.state.keyboard}
           title={this.props.previewPosition == 'none' ? emoji.name : undefined}
           type="button"
@@ -986,7 +984,7 @@ export default class Picker extends Component {
           type="button"
           ref={this.refs.skinToneButton}
           class="skin-tone-button flex flex-auto flex-center flex-middle"
-          aria-selected={this.state.showSkins ? '' : undefined}
+          aria-expanded={this.state.showSkins ? 'true' : 'false'}
           aria-label={I18n.skins.choose}
           title={I18n.skins.choose}
           onClick={this.openSkins}
