@@ -1,6 +1,6 @@
 {
   "name": "@agilemile/emoji-mart-website",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "parcel index.html --no-autoinstall",
