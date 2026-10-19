@@ -1,15 +1,15 @@
-# `@emoji-mart/react`
+# `@agilemile/emoji-mart-react`
 
 A React wrapper for [EmojiMart](https://missiveapp.com/open/emoji-mart).
 
 ## 🧑‍💻 Usage
 ```sh
-npm install --save emoji-mart @emoji-mart/data @emoji-mart/react
+npm install --save @agilemile/emoji-mart @agilemile/emoji-mart-data @agilemile/emoji-mart-react
 ```
 
 ```js
-import data from '@emoji-mart/data'
-import Picker from '@emoji-mart/react'
+import data from '@agilemile/emoji-mart-data'
+import Picker from '@agilemile/emoji-mart-react'
 
 function App() {
   return (

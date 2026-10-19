@@ -44,6 +44,7 @@
       <div class="flex flex-middle">
         Emoji version:&nbsp;<span class="select flex flex-grow"
           ><select id="version" class="flex-grow">
+            <option value="16">16.0</option>
             <option value="15">15.0</option>
             <option value="14">14.0</option>
             <option value="13.1">13.1</option>
@@ -182,8 +183,8 @@
       <img id="img-parrot" src="./assets/parrot.gif" />
     </div>
     <script type="module">
-      import data from '@emoji-mart/data'
-      import * as EmojiMart from 'emoji-mart'
+      import data from '@agilemile/emoji-mart-data'
+      import * as EmojiMart from '@agilemile/emoji-mart'
       window.EmojiMart = EmojiMart
 
       const reset = document.querySelector('#reset')

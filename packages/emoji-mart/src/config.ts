@@ -1,5 +1,5 @@
 // @ts-nocheck
-import i18n_en from '@emoji-mart/data/i18n/en.json'
+import i18n_en from '@agilemile/emoji-mart-data/i18n/en.json'
 import PickerProps from './components/Picker/PickerProps'
 import {
   FrequentlyUsed,
@@ -58,7 +58,7 @@ async function _init(props) {
     Data =
       (typeof props.data === 'function' ? await props.data() : props.data) ||
       (await fetchJSON(
-        `https://cdn.jsdelivr.net/npm/@emoji-mart/data@latest/sets/${emojiVersion}/${set}.json`,
+        `https://cdn.jsdelivr.net/npm/@agilemile/emoji-mart-data@latest/sets/${emojiVersion}/${set}.json`,
       ))
 
     Data.emoticons = {}
@@ -93,7 +93,7 @@ async function _init(props) {
     (locale == 'en'
       ? i18n_en
       : await fetchJSON(
-          `https://cdn.jsdelivr.net/npm/@emoji-mart/data@latest/i18n/${locale}.json`,
+          `https://cdn.jsdelivr.net/npm/@agilemile/emoji-mart-data@latest/i18n/${locale}.json`,
         ))
 
   if (props.custom) {

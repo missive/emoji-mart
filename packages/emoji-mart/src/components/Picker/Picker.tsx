@@ -16,7 +16,7 @@ const Performance = {
 
 export default class Picker extends Component {
   constructor(props) {
-    super()
+    super(props)
 
     this.observers = []
 
@@ -26,16 +26,7 @@ export default class Picker extends Component {
       visibleRows: { 0: true },
       ...this.getInitialState(props),
     }
-  }
 
-  getInitialState(props = this.props) {
-    return {
-      skin: Store.get('skin') || props.skin,
-      theme: this.initTheme(props.theme),
-    }
-  }
-
-  componentWillMount() {
     this.dir = I18n.rtl ? 'rtl' : 'ltr'
     this.refs = {
       menu: createRef(),
@@ -49,15 +40,19 @@ export default class Picker extends Component {
 
     this.initGrid()
 
-    if (
-      this.props.stickySearch == false &&
-      this.props.searchPosition == 'sticky'
-    ) {
+    if (props.stickySearch == false && props.searchPosition == 'sticky') {
       console.warn(
         '[EmojiMart] Deprecation warning: `stickySearch` has been renamed `searchPosition`.',
       )
 
-      this.props.searchPosition = 'static'
+      props.searchPosition = 'static'
+    }
+  }
+
+  getInitialState(props = this.props) {
+    return {
+      skin: Store.get('skin') || props.skin,
+      theme: this.initTheme(props.theme),
     }
   }
 

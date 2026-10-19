@@ -2,3 +2,6 @@
 coverage
 node_modules
 dist
+.ai/
+.idea/
+packages/emoji-mart-website/emoji-mart

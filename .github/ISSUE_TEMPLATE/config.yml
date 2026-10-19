@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/shout-out/emoji-mart/security/advisories/new
+    about: Report a security issue privately. Please do not open a public issue.
+  - name: Usage question
+    url: https://github.com/shout-out/emoji-mart#readme
+    about: Check the README first; most configuration questions are answered there.

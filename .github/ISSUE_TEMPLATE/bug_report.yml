@@ -1,0 +1,38 @@
+name: Bug report
+description: Something is broken or behaves unexpectedly
+labels: [bug]
+body:
+  - type: input
+    id: package
+    attributes:
+      label: Package and version
+      description: Which package and version are affected?
+      placeholder: '@agilemile/emoji-mart 0.1.0'
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: A minimal code sample or a link to a reproduction (CodeSandbox, StackBlitz, a repo) helps enormously.
+      render: js
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: 'Chrome 130 on macOS 15, React 19, Vite 6'
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console output
+      description: Any errors from the browser console.
+      render: shell

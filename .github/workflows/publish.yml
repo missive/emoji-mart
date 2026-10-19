@@ -1,0 +1,44 @@
+name: Publish to npm
+
+# Publishes every workspace package whose version in package.json is not yet on npm.
+# Triggered by publishing a GitHub Release. Uses npm trusted publishing (OIDC), so no
+# npm token is stored in the repo. Each package must have this repo and workflow
+# registered as a trusted publisher on npmjs.com (Package settings > Trusted publishers).
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    name: publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .node-version
+          cache: npm
+          registry-url: https://registry.npmjs.org
+      - run: npm ci
+      - run: npm run check:types
+      - run: npm test
+      - name: Publish packages not yet on npm
+        run: |
+          set -euo pipefail
+          # Order matters: data first (core's CDN fallback points at it), then core, then react.
+          for pkg in emoji-mart-data emoji-mart emoji-mart-react; do
+            name=$(node -p "require('./packages/$pkg/package.json').name")
+            version=$(node -p "require('./packages/$pkg/package.json').version")
+            if npm view "$name@$version" version >/dev/null 2>&1; then
+              echo "$name@$version already published, skipping"
+              continue
+            fi
+            echo "Publishing $name@$version"
+            (cd packages/$pkg && npm publish --provenance --access public)
+          done
