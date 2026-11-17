@@ -67,7 +67,18 @@ const isEmojiSupported = (() => {
   ctx.canvas.width = CANVAS_WIDTH * 2
   ctx.canvas.height = CANVAS_HEIGHT
 
+  // Scripts that override canvas readback (anti-fingerprinting) can make
+  // getImageData return null or throw. Assume support rather than let the
+  // error reject init() and leave the picker unrendered.
   return (unicode) => {
+    try {
+      return probe(unicode)
+    } catch {
+      return true
+    }
+  }
+
+  function probe(unicode) {
     ctx.clearRect(0, 0, CANVAS_WIDTH * 2, CANVAS_HEIGHT)
 
     // Draw in red on the left
